@@ -96,11 +96,28 @@
                             <a class="btn" href="https://wa.me/254702468460">Order on WhatsApp</a>
                                 </div>
      <div class="card">
-          <img src="Bluetooth bulb.jpg">
-                <h3>BLUETOOTH BULB</h3>
-                      <p class="price">KES 650</p>
-                            <a class="btn" href="https://wa.me/254702468460">Order on WhatsApp</a>
-                                </div>
+
+<img id="btMain" src="bluetooth1.jpg" class="main-img">
+
+<div class="thumbs">
+  <img src="bluetooth1.jpg" onclick="btImg(this.src)">
+  <img src="bluetooth2.jpg" onclick="btImg(this.src)">
+  <img src="bluetooth3.jpg" onclick="btImg(this.src)">
+</div>
+
+<h3>BLUETOOTH SMART BULB</h3>
+
+<select onchange="btPrice(this.value)">
+  <option value="650">Normal – KES 650</option>
+  <option value="850">With Remote – KES 850</option>
+  <option value="1200">Premium RGB – KES 1,200</option>
+</select>
+
+<p class="price">KES <span id="btCost">650</span></p>
+
+<a class="btn" href="https://wa.me/254702468460">Order on WhatsApp</a>
+       </div>
+                                 
                                   </div>
   <p><strong>Payment:</strong><br>
     Paybill: 542542<br>
