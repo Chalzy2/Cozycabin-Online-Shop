@@ -304,6 +304,41 @@
   * {
   box-sizing: border-box;
     }
+  .promo-slider {
+  width: 100%;
+  overflow: hidden;
+  background: #16a34a;
+  margin: 10px 0;
+}
+
+.promo-track {
+  display: flex;
+  width: 200%;
+  animation: slidePromo 10s linear infinite;
+}
+
+.promo-item {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.promo-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  padding: 4px;
+}
+
+@keyframes slidePromo {
+  0% {transform: translateX(0);}
+  100% {transform: translateX(-50%);}
+    }
     }
   
   </style>
@@ -320,8 +355,18 @@
 
 <div class="search-bar">
   <div class="service-bar">
-🚚 Free delivery on orders above KES 20,000 — Fast nationwide shipping!
-</div>
+<div class="promo-slider">
+  <div class="promo-track">
+
+    <div class="promo-item">
+      <img src="logo.jpg">
+      Free delivery on orders above KES 20,000 — Nationwide 🚚
+    </div>
+
+    <div class="promo-item">
+      <img src="logo.jpg">
+      Delivering across Kenya — All counties supported 🇰🇪
+    </div>
 
 <div class="delivery-wrapper">
 
