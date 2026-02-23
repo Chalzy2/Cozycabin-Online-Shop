@@ -278,6 +278,20 @@
   border-radius: 6px;
   border: 1px solid #ccc;
   }
+  body {
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 100%;
+  padding: 0 10px;
+    }
+  .delivery-wrapper {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+    }
     }
   
   </style>
@@ -297,20 +311,19 @@
 🚚 Free delivery on orders above KES 20,000 — Fast nationwide shipping!
 </div>
 
-<div class="delivery-box">
-Delivering across Kenya 🇰🇪  
-<select class="county-select">
-  <option>Select your county</option>
-  <option>Nairobi</option>
-  <option>Mombasa</option>
-  <option>Kisumu</option>
-  <option>Nakuru</option>
-  <option>Uasin Gishu</option>
-  <option>Machakos</option>
-  <option>Kiambu</option>
-  <option>All counties supported</option>
-</select>
-</div>
+<div class="delivery-wrapper">
+
+  <div class="delivery-box">
+    Delivering across Kenya 🇰🇪  
+    <select class="county-select">
+      <option>Select your county</option>
+      <option>Nairobi</option>
+      <option>Mombasa</option>
+      <option>Kisumu</option>
+      <option>Nakuru</option>
+      <option>All counties</option>
+    </select>
+  </div>
   <p style="text-align:center;font-size:14px;color:#444;margin:6px;">
 Serving customers across Kenya & all counties
   </p>
