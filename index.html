@@ -249,15 +249,35 @@
   
   </style>
   </head>
-                                     <body>
-<header>
-  <img src="logo.jpg" alt="Cozycabin Logo" class="logo" />
-  <h1>Cozycabin Online Shop</h1>
-    <p>Smart Living Solutions</p>
-      <p style="font-size:14px; opacity:0.9;">
-  📍 Serving customers across Kenya
-      </p>
-      </header>
+  <body>
+<div class="topbar">
+  <div class="menu-icon" onclick="openMenu()">☰</div>
+  <div class="logo-text">COZYCABIN * Smart Living Solution *</div>
+  <div class="cart-icon">
+    🛒
+    <span class="cart-count">0</span>
+  </div>
+</div>
+
+<div class="search-bar">
+  <p style="text-align:center;font-size:14px;color:#444;margin:6px;">
+Serving customers across Kenya & all counties
+  </p>
+  <div class="service-bar">
+  🚚 Delivering across Kenya — All Counties Supported
+  </div>
+  <input type="text" placeholder="Search for products">
+  <button>🔍</button>
+</div>
+
+<div id="sideMenu" class="side-menu">
+  <h3>Menu</h3>
+  <a href="#">Home</a>
+  <a href="#">Lighting</a>
+  <a href="#">Dispensers</a>
+  <a href="#">Kitchen</a>
+  <a href="#">Contact</a>
+</div>
 <div class="container">
   <section style="padding:20px;">
   <h2>Why Choose Cozycabin</h2>
