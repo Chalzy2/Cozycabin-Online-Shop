@@ -163,6 +163,88 @@
   padding: 3px 6px;
   border-radius: 5px;
   }
+  /* TOP NAVBAR */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 10px 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.menu-icon {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.logo-text {
+  font-weight: bold;
+  font-size: 18px;
+  color: #1f2937;
+}
+
+.cart-icon {
+  font-size: 20px;
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: orange;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* SEARCH BAR */
+.search-bar {
+  display: flex;
+  margin: 10px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-bar button {
+  padding: 8px 15px;
+  background: orange;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+}
+
+/* SIDE MENU */
+.side-menu {
+  position: fixed;
+  left: -250px;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  padding: 20px;
+  transition: 0.3s;
+  z-index: 2000;
+}
+
+.side-menu a {
+  display: block;
+  margin: 15px 0;
+  text-decoration: none;
+  color: #1f2937;
+  font-weight: bold;
+}
     }
   
   </style>
