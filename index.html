@@ -315,7 +315,22 @@
   .promo-track {
   width: 100%;
   }
+    <script>
+function searchProducts() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let products = document.querySelectorAll(".product");
+
+  products.forEach(function(product){
+    let text = product.innerText.toLowerCase();
+
+    if(text.includes(input)){
+      product.style.display = "block";
+    } else {
+      product.style.display = "none";
     }
+  });
+}
+</script>}
     
   </style>
  </head>
@@ -341,10 +356,8 @@
   </div>
   <div class="service-bar">
   🚚 Delivering across Kenya — All Counties Supported
-  </div>
-  <input type="text" placeholder="Search for products">
-  <button>🔍</button>
-</div>
+  <input type="text" id="searchInput" placeholder="Search for products">
+<button onclick="searchProducts()">🔍</button>
 
 <div id="sideMenu" class="side-menu">
   <h3>Menu</h3>
