@@ -315,22 +315,7 @@
   .promo-track {
   width: 100%;
   }
-    <script>
-function searchProducts() {
-  let input = document.getElementById("searchInput").value.toLowerCase();
-  let products = document.querySelectorAll(".product");
-
-  products.forEach(function(product){
-    let text = product.innerText.toLowerCase();
-
-    if(text.includes(input)){
-      product.style.display = "block";
-    } else {
-      product.style.display = "none";
     }
-  });
-}
-</script>}
     
   </style>
  </head>
@@ -444,6 +429,22 @@ function searchProducts() {
     <li>✅ Help customers understand the products</li>
   </ul>
   </div>
+  <script>
+function searchProducts() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let products = document.querySelectorAll(".product");
+
+  products.forEach(function(product){
+    let text = product.innerText.toLowerCase();
+
+    if(text.includes(input)){
+      product.style.display = "block";
+    } else {
+      product.style.display = "none";
+    }
+  });
+}
+</script>}
     
   <p><strong>Payment:</strong><br>
     Paybill: 542542<br>
