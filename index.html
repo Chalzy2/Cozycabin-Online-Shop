@@ -483,20 +483,20 @@ border-radius:6px;
   </ul>
   </div>
   <script>
-function searchProducts() {
+    function searchProducts() {
   let input = document.getElementById("searchInput").value.toLowerCase();
   let products = document.querySelectorAll(".product");
 
-  products.forEach(function(product){
-    let text = product.innerText.toLowerCase();
+  products.forEach(product => {
+    let title = product.querySelector("h3").innerText.toLowerCase();
 
-    if(text.includes(input)){
+    if (title.includes(input) || input === "") {
       product.style.display = "block";
     } else {
       product.style.display = "none";
     }
   });
-}
+    }
 </script>}
     
   <p><strong>Payment:</strong><br>
