@@ -483,21 +483,25 @@ border-radius:6px;
   </ul>
   </div>
   <script>
-    function searchProducts() {
-  let input = document.getElementById("searchInput").value.toLowerCase();
-  let products = document.querySelectorAll(".product");
+function searchProducts() {
 
-  products.forEach(product => {
-    let title = product.querySelector("h3").innerText.toLowerCase();
+let input = document.getElementById("searchInput").value.toLowerCase();
+let products = document.querySelectorAll(".product");
 
-    if (title.includes(input) || input === "") {
-      product.style.display = "block";
-    } else {
-      product.style.display = "none";
-    }
-  });
-    }
-</script>}
+products.forEach(product => {
+
+let title = product.querySelector("h3").innerText.toLowerCase();
+
+if (title.includes(input) || input === "") {
+product.style.display = "block";
+} else {
+product.style.display = "none";
+}
+
+});
+
+}
+  </script>
     
   <p><strong>Payment:</strong><br>
     Paybill: 542542<br>
