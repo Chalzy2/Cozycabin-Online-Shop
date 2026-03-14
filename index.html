@@ -393,6 +393,44 @@ z-index:1000;
 .whatsapp-float:hover{
 background:#1ebe5d;
   }
+  .popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+z-index:2000;
+justify-content:center;
+align-items:center;
+}
+
+.popup-content{
+background:white;
+padding:20px;
+border-radius:10px;
+width:90%;
+max-width:350px;
+text-align:center;
+}
+
+.popup-content img{
+width:100%;
+border-radius:8px;
+}
+
+.close-popup{
+font-size:25px;
+cursor:pointer;
+float:right;
+}
+
+#popupPrice{
+color:#16a34a;
+font-size:20px;
+font-weight:bold;
+    }
     }
     
   </style>
@@ -526,25 +564,29 @@ Order on WhatsApp
     <li>✅ Help customers understand the products</li>
   </ul>
   </div>
-  <script>
-function searchProducts() {
+ 
+    <script>
 
-let input = document.getElementById("searchInput").value.toLowerCase();
-let products = document.querySelectorAll(".product");
+function openPopup(title, price, image){
 
-products.forEach(product => {
+document.getElementById("popupTitle").innerText = title;
+document.getElementById("popupPrice").innerText = price;
+document.getElementById("popupImage").src = image;
 
-let title = product.querySelector("h3").innerText.toLowerCase();
+let message = "Hello Cozycabin, I want to order " + title + " - " + price;
 
-if (title.includes(input) || input === "") {
-product.style.display = "block";
-} else {
-product.style.display = "none";
-}
+document.getElementById("popupOrder").href =
+"https://wa.me/254702468460?text=" + encodeURIComponent(message);
 
-});
+document.getElementById("productPopup").style.display = "flex";
 
 }
+
+function closePopup(){
+document.getElementById("productPopup").style.display = "none";
+}
+
+</script>
   </script>
     
   <p><strong>Payment:</strong><br>
@@ -554,6 +596,21 @@ product.style.display = "none";
     <a href="https://wa.me/254702468460" class="whatsapp-float" target="_blank">
 💬
     </a>
+    <div id="productPopup" class="popup">
+<div class="popup-content">
+
+<span class="close-popup" onclick="closePopup()">×</span>
+
+<img id="popupImage" src="" alt="Product">
+
+<h3 id="popupTitle"></h3>
+
+<p id="popupPrice"></p>
+
+<a id="popupOrder" class="order-btn" target="_blank">Order on WhatsApp</a>
+
+</div>
+    </div>
 <footer>
   © 2026 Cozycabin – Smart Living Solutions
   </footer>
