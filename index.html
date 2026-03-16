@@ -631,25 +631,17 @@ Order on WhatsApp
   </ul>
   </div>
  
-    <script>
-
-function openPopup(title, price, image){
-
-document.getElementById("popupTitle").innerText = title;
-document.getElementById("popupPrice").innerText = price;
-document.getElementById("popupImage").src = image;
-
-let message = "Hello Cozycabin, I want to order " + title + " - " + price;
-
-document.getElementById("popupOrder").href =
-"https://wa.me/254702468460?text=" + encodeURIComponent(message);
-
-document.getElementById("productPopup").style.display = "flex";
-
+<script>
+function openPopup(name,price,image){
+document.getElementById("productPopup").style.display="flex";
+document.getElementById("popupTitle").innerText=name;
+document.getElementById("popupPrice").innerText=price;
+document.getElementById("popupImage").src=image;
+let message="Hello Cozycabin, I want "+name+" - "+price;
+document.getElementById("popupOrder").href="https://wa.me/254702468460?text="+encodeURIComponent(message);
 }
-
 function closePopup(){
-document.getElementById("productPopup").style.display = "none";
+document.getElementById("productPopup").style.display="none";
 }
 </script>
 <script>
