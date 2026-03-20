@@ -225,6 +225,9 @@
 }
 
 /* SIDE MENU */
+  <button onclick="closeMenu()" style="font-size:20px; margin-bottom:15px;">
+❌ Close
+</button>
 .side-menu {
   position: fixed;
   left: -260px;
@@ -566,13 +569,16 @@ font-size:18px;
   </div>
     <div id="sideMenu" class="side-menu">
 
+  <button onclick="closeMenu()">❌ Close</button>
+
   <div class="menu">
 
     <h3>🛒 Shop</h3>
     <ul>
-      <li onclick="filterProducts('lighting')">Solar</li>
-      <li onclick="filterProducts('cctv')">CCTV</li>
-      <li onclick="filterProducts('kitchen')">Kitchen</li>
+      <li onclick="filterProducts('lighting'); closeMenu();">Solar</li>
+      <li onclick="filterProducts('cctv'); closeMenu();">CCTV</li>
+      <li onclick="filterProducts('kitchen'); closeMenu();">Kitchen</li>
+      <li onclick="filterProducts('cctv'); closeMenu();">Contact</li>
     </ul>
 
     <h3>🎓 Academy</h3>
@@ -581,17 +587,24 @@ font-size:18px;
       'CCTV Installation Course',
       'Beginner to Pro. Only $10',
       'cctv-course.png'
-      )">CCTV Course</li>
+      ); closeMenu();">CCTV Course</li>
 
       <li onclick="openPopup(
       'WhatsApp Business Course',
       'Sell using WhatsApp. Only $7',
       'whatsapp.png'
-      )">WhatsApp Course</li>
+      ); closeMenu();">WhatsApp Course</li>
 
+      <li onclick="openPopup(
+      'Website Course',
+      'Build website step by step. Only $8',
+      'website.png'
+      ); closeMenu();">Website Course</li>
     </ul>
 
   </div>
+
+        </div>
 
     </div>
 
