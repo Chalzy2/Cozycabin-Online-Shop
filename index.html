@@ -539,6 +539,9 @@ font-size:18px;
 <header>
   <img src="Cozylogo.png" class="logo">
   <h1>Cozycabin Online Shop</h1>
+  <button onclick="document.getElementById('sideMenu').classList.add('active')">
+TEST OPEN
+  </button>
   <p>Smart Living Solutions</p>
   <button onclick="openMenu()" style="font-size:24px;">☰</button>
 </header>
@@ -903,6 +906,15 @@ product.style.display = "none";
 
 </script>
     
+    <script>
+function openMenu() {
+  document.getElementById("sideMenu").classList.add("active");
+}
+
+function closeMenu() {
+  document.getElementById("sideMenu").classList.remove("active");
+}
+    </script>
 
   </script>
     
