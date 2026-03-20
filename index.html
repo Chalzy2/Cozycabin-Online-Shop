@@ -227,16 +227,36 @@
 /* SIDE MENU */
 .side-menu {
   position: fixed;
-  left: -250px;
+  left: -260px;
   top: 0;
-  width: 250px;
+  width: 260px;
   height: 100%;
-  background: white;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  background: #111827;
+  color: white;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.4);
   padding: 20px;
-  transition: 0.3s;
+  transition: 0.3s ease;
   z-index: 2000;
+    }
+  .side-menu h3 {
+  margin-top: 20px;
+  color: #00c853;
 }
+
+.side-menu ul {
+  list-style: none;
+  padding-left: 10px;
+}
+
+.side-menu ul li {
+  padding: 10px 0;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.side-menu ul li:hover {
+  color: #00c853;
+    }
 
 .side-menu a {
   display: block;
@@ -541,14 +561,41 @@ font-size:18px;
   </div>
 
 <div id="sideMenu" class="side-menu">
-  <h3>Menu</h3>
-  <a href="#">Home</a>
-  <a href="#">Lighting</a>
-  <a href="#">Dispensers</a>
-  <a href="#">Kitchen</a>
-  <a href="#">Contact</a>
-  <a href="#">Flasks</a>
-  <a href="#">academy</a>
+<div class="menu">
+
+  <h3>🛒 Shop</h3>
+  <ul>
+    <li onclick="filterProducts('lighting')">Solar</li>
+    <li onclick="filterProducts('cctv')">CCTV</li>
+    <li onclick="filterProducts('kitchen')">Kitchen</li>
+    <li onclick="filterProducts('cctv')">Flasks</li>
+    <li onclick="filterProducts('kitchen')">Dispenser</li>
+     <li onclick="filterProducts('cctv')">Beddings</li>
+    <li onclick="filterProducts('kitchen')">Furniture</li>
+ 
+  </ul>
+
+  <h3>🎓 Academy</h3>
+  <ul>
+    <li onclick="openPopup(
+    'CCTV Installation Course',
+    'Beginner to Pro. Only $10',
+    'cctv-course.jpg'
+    )">CCTV Course</li>
+
+    <li onclick="openPopup(
+    'WhatsApp Business Course',
+    'Sell using WhatsApp. Only $7',
+    'whatsapp.jpg'
+    )">WhatsApp Course</li>
+
+    <li onclick="openPopup(
+    'Website Creation Course',
+    'Build website free. Only $8',
+    'website.jpg'
+    )">Website Course</li>
+  </ul>
+
 </div>
 
   </section>
