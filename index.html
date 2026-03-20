@@ -228,10 +228,16 @@
   <button onclick="closeMenu()" style="font-size:20px; margin-bottom:15px;">
 ❌ Close
 </button>
-  .side-menu {
+  .menu-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+    }
+.side-menu {
   position: fixed;
   top: 0;
-  left: -260px;   /* hidden on left */
+  left: -260px;
   width: 260px;
   height: 100%;
   background: #ffffff;
@@ -240,19 +246,7 @@
   padding: 20px;
   transition: left 0.3s ease;
   z-index: 2000;
-    }
-.side-menu {
-  position: fixed;
-  left: -260px;
-  top: 0;
-  width: 260px;
-  height: 100%;
-  background: #111827;
-  color: white;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.4);
-  padding: 20px;
-  transition: 0.3s ease;
-  z-index: 2000;
+  
     }
   .side-menu h3 {
   margin-top: 20px;
