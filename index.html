@@ -553,8 +553,7 @@ font-size:18px;
 </header>
 
 <div class="delivery-wrapper"></div>
-
-  <div class="delivery-box">
+<div class="delivery-box">
     Delivering across Kenya 🇰🇪  
     <select class="county-select">
       <option>Select your county</option>
@@ -574,12 +573,11 @@ font-size:18px;
 <button onclick="searchProducts()">🔍</button>
   </div>
     <div id="sideMenu" class="side-menu">
-
-  <button onclick="closeMenu()">❌ Close</button>
-
-  <div class="menu">
-
-    <h3>🛒 Shop</h3>
+     <button onclick="closeMenu()" style="margin-bottom:15px;">
+    ❌ Close
+     </button>
+    <div class="menu">
+      <h3>🛒 Shop</h3>
     <ul>
       <li onclick="filterProducts('lighting'); closeMenu();">Solar</li>
       <li onclick="filterProducts('cctv'); closeMenu();">CCTV</li>
