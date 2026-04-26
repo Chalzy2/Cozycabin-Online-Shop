@@ -1026,77 +1026,44 @@ onclick="openPopup(
     </div>
     </div>
       
-    <section id="premium-section" style="background: #111; padding: 30px 15px; border-radius: 25px; margin: 20px 10px; border: 2px solid #ffd700; font-family: sans-serif;">
-    <h2 style="text-align: center; color: #ffd700; font-weight: 900; text-transform: uppercase; margin-top: 0;">💎 Cozycabin <span style="color: white;">Premium</span></h2>
-    <p style="text-align: center; color: #888; font-size: 11px; margin-bottom: 25px;">Tap a category to see available titles (KSH 200 each)</p>
-
-    <div onclick="toggleSub('course-list')" style="background: #1a1a1a; padding: 15px; border-radius: 15px; display: flex; align-items: center; gap: 12px; margin-bottom: 10px; border: 1px solid #333; cursor: pointer;">
-        <div style="background: linear-gradient(135deg, #007bff, #0056b3); width: 50px; height: 50px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 8px; text-align: center;">COURSE</div>
+    <section id="premium-section" style="background: #111; padding: 30px 15px; border-radius: 25px; margin: 20px 10px; border: 2px solid #ffd700;">
+    
+    <div onclick="var x=document.getElementById('course-list'); x.style.display=(x.style.display==='none')?'block':'none';" 
+         style="background: #1a1a1a; padding: 15px; border-radius: 15px; display: flex; align-items: center; gap: 12px; margin-bottom: 10px; border: 1px solid #333; cursor: pointer;">
+        <div style="background: linear-gradient(135deg, #007bff, #0056b3); width: 50px; height: 50px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 8px;">COURSE</div>
         <div style="flex: 1;">
             <strong style="display: block; color: white; font-size: 16px;">Cozycabin Academy</strong>
-            <small style="color: #007bff; font-weight: bold;">Editing & Design Mastery ▼</small>
+            <small style="color: #007bff; font-weight: bold;">Tap to see Courses ▼</small>
         </div>
     </div>
+    
     <div id="course-list" style="display: none; padding: 10px; background: #000; margin-bottom: 15px; border-radius: 10px; border-left: 3px solid #007bff;">
-        <div style="display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #222; color: white; font-size: 14px;">
+        <div style="display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #222; color: white;">
             <span>📸 Photo Editing</span>
-            <a href="https://wa.me/254702468460?text=I+want+the+Photo+Editing+Course" style="color:#ffd700; text-decoration:none; font-weight:bold;">KSH 200 ></a>
+            <a href="https://wa.me/254702468460" style="color:#ffd700; text-decoration:none;">KSH 200 ></a>
         </div>
-        <div style="display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #222; color: white; font-size: 14px;">
-            <span>🎨 Business Logo Design</span>
-            <a href="https://wa.me/254702468460?text=I+want+the+Logo+Design+Course" style="color:#ffd700; text-decoration:none; font-weight:bold;">KSH 200 ></a>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #222; color: white; font-size: 14px;">
+        <div style="display: flex; justify-content: space-between; padding: 10px; color: white;">
             <span>🎥 Video Editing</span>
-            <a href="https://wa.me/254702468460?text=I+want+the+Video+Editing+Course" style="color:#ffd700; text-decoration:none; font-weight:bold;">KSH 200 ></a>
+            <a href="https://wa.me/254702468460" style="color:#ffd700; text-decoration:none;">KSH 200 ></a>
         </div>
     </div>
 
-    <div onclick="toggleSub('ebook-list')" style="background: #1a1a1a; padding: 15px; border-radius: 15px; display: flex; align-items: center; gap: 12px; margin-bottom: 10px; border: 1px solid #333; cursor: pointer;">
-        <div style="background: linear-gradient(135deg, #ffd700, #b8860b); width: 50px; height: 50px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: black; font-weight: 900; font-size: 8px; text-align: center;">E-BOOK</div>
+    <div onclick="var y=document.getElementById('ebook-list'); y.style.display=(y.style.display==='none')?'block':'none';" 
+         style="background: #1a1a1a; padding: 15px; border-radius: 15px; display: flex; align-items: center; gap: 12px; margin-bottom: 10px; border: 1px solid #333; cursor: pointer;">
+        <div style="background: linear-gradient(135deg, #ffd700, #b8860b); width: 50px; height: 50px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: black; font-weight: 900; font-size: 8px;">E-BOOK</div>
         <div style="flex: 1;">
             <strong style="display: block; color: white; font-size: 16px;">Digital Library</strong>
-            <small style="color: #ffd700; font-weight: bold;">Stories & Finance ▼</small>
+            <small style="color: #ffd700; font-weight: bold;">Tap to see E-books ▼</small>
         </div>
     </div>
-    <div id="ebook-list" style="display: none; padding: 10px; background: #000; margin-bottom: 15px; border-radius: 10px; border-left: 3px solid #ffd700;">
-        <div style="display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #222; color: white; font-size: 14px;">
-            <span>📖 The River Between</span>
-            <a href="https://wa.me/254702468460?text=I+want+The+River+Between+Ebook" style="color:#ffd700; text-decoration:none; font-weight:bold;">KSH 200 ></a>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #222; color: white; font-size: 14px;">
-            <span>💰 Rich Dad Poor Dad</span>
-            <a href="https://wa.me/254702468460?text=I+want+Rich+Dad+Poor+Dad+Ebook" style="color:#ffd700; text-decoration:none; font-weight:bold;">KSH 200 ></a>
-        </div>
-    </div>
-    </section>
 
-      <div style="padding: 30px 20px; text-align: center; background: #f0fdf4; border-radius: 20px; margin: 20px 10px; border: 1px solid #dcfce7;">
-    <h2 style="font-family: 'Inter', sans-serif; color: #1a7d32; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-weight: 800;">
-        Why Choose <span style="color: #b8860b;">Cozycabin</span>
-    </h2>
-    <div style="display: grid; gap: 12px; text-align: left; max-width: 400px; margin: 0 auto;">
-        <div style="background: white; padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            <span style="color: #1a7d32; font-weight: bold;">✅</span>
-            <span style="font-weight: 600; font-size: 14px;">Affordable **Smart Home** Solutions</span>
+    <div id="ebook-list" style="display: none; padding: 10px; background: #000; margin-bottom: 15px; border-radius: 10px; border-left: 3px solid #ffd700;">
+        <div style="display: flex; justify-content: space-between; padding: 10px; color: white;">
+            <span>📖 Rich Dad Poor Dad</span>
+            <a href="https://wa.me/254702468460" style="color:#ffd700; text-decoration:none;">KSH 200 ></a>
         </div>
-        <div style="background: white; padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            <span style="color: #1a7d32; font-weight: bold;">✅</span>
-            <span style="font-weight: 600; font-size: 14px;">**Quality-Tested** Products</span>
-        </div>
-        <div style="background: white; padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            <span style="color: #1a7d32; font-weight: bold;">✅</span>
-            <span style="font-weight: 600; font-size: 14px;">Fast Response on **WhatsApp**</span>
-        </div>
-        <div style="background: white; padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            <span style="color: #1a7d32; font-weight: bold;">✅</span>
-            <span style="font-weight: 600; font-size: 14px;">Trusted **Local Seller** in Kenya</span>
-        </div>
-        <div style="background: white; padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            <span style="color: #1a7d32; font-weight: bold;">✅</span>
-            <span style="font-weight: 600; font-size: 14px;">Simple Ordering & **Quick Delivery**</span>
-        </div>
-  </div>
+    </div>
+
 </section>
 
     
