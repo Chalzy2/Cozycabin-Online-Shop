@@ -1193,19 +1193,19 @@ product.style.display = "none";
     if (premiumSection) {
         premiumSection.scrollIntoView({ behavior: 'smooth' });
     } else {
-        // Fallback if class isn't set: scroll to bottom
+        //3. Fallback if class isn't set: scroll to bottom
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     }
 
-    // 3. Popup Logic (Search Results/Product Clicks)
+    // 4. Popup Logic (Search Results/Product Clicks)
     function openPopup(title, price, image) {
         document.getElementById("productPopup").style.display = "flex";
         document.getElementById("popupTitle").innerText = title;
         document.getElementById("popupPrice").innerText = price;
         document.getElementById("popupImage").src = image;
         
-        // Sets the WhatsApp order link automatically
+        //5. Sets the WhatsApp order link automatically
         let message = "Hello Cozycabin, I want to order: " + title;
         document.getElementById("popupOrder").href = "https://wa.me/254702468460?text=" + encodeURIComponent(message);
     }
@@ -1214,13 +1214,23 @@ product.style.display = "none";
         document.getElementById("productPopup").style.display = "none";
     }
 
-    // 4. Menu Logic
+    // 6. Menu Logic
     function openMenu() {
         document.getElementById("sideMenu").style.width = "250px";
     }
     function closeMenu() {
         document.getElementById("sideMenu").style.width = "0";
     }
+    // 7.Funtion togglesub
+          function toggleSub(id) {
+    var x = document.getElementById(id);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+   }
+          
 
 
 </div>
