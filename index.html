@@ -1078,66 +1078,76 @@ product.style.display = "none";
 
 </script>
     
-    <script>
-function openMenu() {
-  document.getElementById("sideMenu").classList.add("active");
-}
+<script>
+    // 1. Audio Player Logic
+    function playAudio(language) {
+        var audio = document.getElementById("audioPlayer");
+        var text = document.getElementById("storyText");
 
-function closeMenu() {
-  document.getElementById("sideMenu").classList.remove("active");
-}
-    </script>
-    <script>
-function playAudio(language) {
-  var audio = document.getElementById("audioPlayer");
-  var text = document.getElementById("storyText");
+        if (language === "luo") {
+            audio.src = "audio/otieno-luo.mp3";
+            text.innerHTML = "Otieno nodhi e bus...";
+        }
+        if (language === "kikuyu") {
+            audio.src = "audio/kamau-kikuyu.mp3";
+            text.innerHTML = "Kamau nĩarĩ agĩthiĩ...";
+        }
+        if (language === "swahili") {
+            audio.src = "audio/swahili.mp3";
+            text.innerHTML = "Otieno aliingia msituni...";
+        }
+        if (language === "kamba") {
+            audio.src = "audio/kamba.mp3";
+            text.innerHTML = "Mutheu aingiye musitu...";
+        }
+        audio.play();
+    }
 
-  if (language === "luo") {
-    audio.src = "audio/otieno-luo.mp3";
-    text.innerHTML = "Otieno nodhi e bus... to ochako winjo dwol moro machielo...";
-  }
+    // 2. Search Function Logic
+    function searchProducts() {
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        let products = document.getElementsByClassName('product-box');
 
-  if (language === "kikuyu") {
-    audio.src = "audio/kamau-kikuyu.mp3";
-    text.innerHTML = "Kamau nĩarĩ agĩthiĩ gĩthaka-inĩ... nĩaigua mũgambo ũtarĩ wa andũ...";
-  }
-  if (language === "swahili") {
-  audio.src = "audio/swahili.mp3";
-  text.innerHTML = "Otieno aliingia msituni kimya... ghafla akasikia sauti isiyo ya kawaida...";
-      }
-  if (language === "kamba") {
-  audio.src = "audio/kamba.mp3";
-  text.innerHTML = "Mutheu aingiye musitu akiwa eeka... na akasikia sauti ya kutia w'o...";
-      }
+        for (let i = 0; i < products.length; i++) {
+            let title = products[i].getElementsByTagName('h4')[0].innerText.toLowerCase();
+            if (title.includes(input)) {
+                products[i].style.display = "";
+            } else {
+                products[i].style.display = "none";
+            }
+        }
+    }
 
-  audio.play();
-}
-    </script>
-</script>
-    <div style="background:#f3f4f6; border:2px dashed #1a7d32; border-radius:12px; padding:15px; margin:20px; text-align:center;">
+    // 3. Popup Logic (Search Results/Product Clicks)
+    function openPopup(title, price, image) {
+        document.getElementById("productPopup").style.display = "flex";
+        document.getElementById("popupTitle").innerText = title;
+        document.getElementById("popupPrice").innerText = price;
+        document.getElementById("popupImage").src = image;
+        
+        // Sets the WhatsApp order link automatically
+        let message = "Hello Cozycabin, I want to order: " + title;
+        document.getElementById("popupOrder").href = "https://wa.me/254702468460?text=" + encodeURIComponent(message);
+    }
+
+    function closePopup() {
+        document.getElementById("productPopup").style.display = "none";
+    }
+
+    // 4. Menu Logic
+    function openMenu() {
+        document.getElementById("sideMenu").style.width = "250px";
+    }
+    function closeMenu() {
+        document.getElementById("sideMenu").style.width = "0";
+    }
+  <div style="background:#f3f4f6; border:2px dashed #1a7d32; border-radius:12px; padding:15px; margin:20px; text-align:center;">
     <p style="margin:0; font-weight:bold; color:#1a7d32;">💳 Lipa na M-Pesa</p>
     <p style="margin:5px 0;">Paybill: <strong>542542</strong></p>
     <p style="margin:0;">Account: <strong>702468</strong></p>
 </div>
+  }
+</script>
 
-<footer>
-  © 2026 Cozycabin – Smart Living Solutions
-    <script>
-    </a>
-    <div id="productPopup" class="popup">
-<div class="popup-content">
-
-<span class="close-popup" onclick="closePopup()">×</span>
-
-<img id="popupImage" src="" alt="Product">
-
-<h3 id="popupTitle"></h3>
-
-<p id="popupPrice"></p>
-
-<a id="popupOrder" class="order-btn" target="_blank">Order on WhatsApp</a>
-</div>
-    </script>
-</footer>
 </body>
 </html>
