@@ -13,6 +13,20 @@
   <meta charset="UTF-8">
   <title>Cozycabin Online Shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <section style="background:white; margin:20px; padding:20px; border-radius:10px;">
+  <h2>🎬 Cozycabin Stories</h2>
+  <p>Listen to stories in your language</p>
+
+  <h3>The Forest That Never Sleeps</h3>
+
+  <button onclick="playAudio('luo')">▶ Play Luo (Otieno)</button>
+  <button onclick="playAudio('kikuyu')">▶ Play Kikuyu (Kamau)</button>
+
+  <br><br>
+  <audio id="audioPlayer" controls></audio>
+
+  <p id="storyText">Select a language to see the story...</p>
+    </section>
 
   <style>
   body {
@@ -1062,6 +1076,24 @@ function closeMenu() {
   document.getElementById("sideMenu").classList.remove("active");
 }
     </script>
+    <script>
+function playAudio(language) {
+  var audio = document.getElementById("audioPlayer");
+  var text = document.getElementById("storyText");
+
+  if (language === "luo") {
+    audio.src = "audio/otieno-luo.mp3";
+    text.innerHTML = "Otieno nodhi e bus... to ochako winjo dwol moro machielo...";
+  }
+
+  if (language === "kikuyu") {
+    audio.src = "audio/kamau-kikuyu.mp3";
+    text.innerHTML = "Kamau nĩarĩ agĩthiĩ gĩthaka-inĩ... nĩaigua mũgambo ũtarĩ wa andũ...";
+  }
+
+  audio.play();
+}
+    </script>
 
   </script>
     
@@ -1087,8 +1119,7 @@ function closeMenu() {
 
 </div>
  <script>
-
-    </div>
+</div>
 <footer>
   © 2026 Cozycabin – Smart Living Solutions
   </footer>
