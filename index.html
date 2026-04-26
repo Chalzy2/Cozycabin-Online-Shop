@@ -21,6 +21,7 @@
 
   <button onclick="playAudio('luo')">▶ Play Luo (Otieno)</button>
   <button onclick="playAudio('kikuyu')">▶ Play Kikuyu (Kamau)</button>
+      <button onclick="playAudio('swahili')">▶ Play Kiswahili</button>
 
   <br><br>
   <audio id="audioPlayer" controls></audio>
@@ -1090,6 +1091,10 @@ function playAudio(language) {
     audio.src = "audio/kamau-kikuyu.mp3";
     text.innerHTML = "Kamau nĩarĩ agĩthiĩ gĩthaka-inĩ... nĩaigua mũgambo ũtarĩ wa andũ...";
   }
+  if (language === "swahili") {
+  audio.src = "audio/swahili.mp3";
+  text.innerHTML = "Otieno aliingia msituni kimya... ghafla akasikia sauti isiyo ya kawaida...";
+      }
 
   audio.play();
 }
