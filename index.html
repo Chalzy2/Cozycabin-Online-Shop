@@ -597,7 +597,7 @@ textarea {
   width: 90%;
   height: 80px;
 }
-    }
+}
     
   </style>
  </head>
@@ -1070,6 +1070,10 @@ onclick="openPopup(
                 <a href="https://wa.me/254702468460?text=I+want+to+buy+Secrets+of+the+Forest+Audio" 
                    style="background: #ffd700; color: #000; text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: 10px; font-weight: bold; display: inline-block;">Get Audio</a>
             </div>
+          <div class="premium-container" style="background: white; padding: 20px; border-radius: 20px; border: 2px solid #ffd700; ...">
+    <h2 style="text-align: center; color: #b8860b; ...">💎 Cozycabin Premium Store</h2>
+          </div>
+          
         </div>
     </div>
 
@@ -1162,6 +1166,13 @@ product.style.display = "none";
             } else {
                 products[i].style.display = "none";
             }
+          function scrollToPremium() {
+    const premiumSection = document.querySelector('.premium-container'); // Ensure your premium div has this class
+    if (premiumSection) {
+        premiumSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        // Fallback if class isn't set: scroll to bottom
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     }
 
