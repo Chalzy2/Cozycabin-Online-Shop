@@ -626,6 +626,36 @@ textarea {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('bg1.jpg');
     animation: rotateBg 30s infinite;
 }
+  .hero {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 🔥 THIS is the key fix */
+  object-position: center;
+  background: #000; /* fills empty space */
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.hero button {
+  background: #25D366;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: white;
+}
 
 @keyframes rotateBg {
     0%   { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('bg1.jpg'); }
@@ -740,6 +770,15 @@ textarea {
     <button onclick="filterProducts('dispenser')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">🧊Dispenser</button>
     <button onclick="filterProducts('w.bottles')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">🧊W.Bottle</button>
   </div>
+  <div class="hero">
+  <img src="your-image.jpg" class="hero-img" alt="banner">
+
+  <div class="hero-overlay">
+    <h1>🔥 Smart Living Deals</h1>
+    <p>✔ Save Energy<br>✔ Easy Setup</p>
+    <button>Order on WhatsApp</button>
+  </div>
+        </div>
     
   <h2>Our Products</h2>
     <div class="product lighting"
