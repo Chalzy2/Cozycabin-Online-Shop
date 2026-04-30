@@ -29,6 +29,17 @@
     <h3 style="color: #ffcc00; font-weight: 800; font-style: italic; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">"The Forest That Never Sleeps"</h3>
 
 </div>
+  <div id="popup" class="popup">
+  <span class="close" onclick="closePopup()">&times;</span>
+
+  <img id="popup-img">
+
+  <h2 id="popup-name"></h2>
+  <p id="popup-price"></p>
+
+  <button onclick="expandImage()">View Full</button>
+  <button id="whatsappBtn">Order on WhatsApp</button>
+  </div>
 
     <p>Listen to stories in your language</p>
     <h3>"The Forest That Never Sleeps"</h3>
@@ -658,6 +669,51 @@ textarea {
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
+  color: white;
+}
+  .popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  text-align: center;
+  color: white;
+  padding-top: 40px;
+}
+
+.popup img {
+  width: 80%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.popup img.full {
+  width: 95%;
+  max-width: 700px;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#whatsappBtn {
+  background: #25D366;
   color: white;
 }
 
@@ -1315,8 +1371,45 @@ document.addEventListener('click', function (e) {
     // Add this line at the very end of the function:
     initImagePopup(); 
   }
+            <script>
+function openPopup(el) {
+  const name = el.dataset.name;
+  const price = el.dataset.price;
+  const img = el.dataset.img;
+
+  document.getElementById("popup").style.display = "block";
+  document.getElementById("popup-name").innerText = name;
+  document.getElementById("popup-price").innerText = price;
+  document.getElementById("popup-img").src = img;
+
+  // WhatsApp link
+  const phone = "254702468460";
+  const message = `Hello, I'm interested in ${name} - ${price}`;
+  const link = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  document.getElementById("whatsappBtn").onclick = function() {
+    window.open(link, "_blank");
+  };
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+function expandImage() {
+  document.getElementById("popup-img").classList.toggle("full");
+}
+</script>
   
    }
+      <script>
+window.onclick = function(e) {
+  const popup = document.getElementById("popup");
+  if (e.target === popup) {
+    popup.style.display = "none";
+  }
+}
+      </script>
           
 
 
