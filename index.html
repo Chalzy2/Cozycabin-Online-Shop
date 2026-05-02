@@ -291,17 +291,84 @@ header {
     <hr style="border: 0.5px solid #333; margin: 20px 10px;">
 
     <h3 style="text-align: center; color: white; font-size: 16px;">🇰🇪 LOCAL SHOP (KENYA)</h3>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px;">
-        <button onclick="filterProducts('all')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">✅ All</button>
-        <button onclick="filterProducts('lighting')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">💡 Lighting</button>
-        <button onclick="filterProducts('beddings')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">🛏️ Beddings</button>
-        <button onclick="filterProducts('kitchen')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">👨‍🍳 Kitchen</button>
-        <button onclick="filterProducts('shoes')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">👟 Shoes</button>
-        <button onclick="filterProducts('solar')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">☀️ Solar</button>
-        <button onclick="filterProducts('cctv')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">📷 CCTV</button>
-        <button onclick="filterProducts('flask')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">🧂 Flasks</button>
-        <button onclick="filterProducts('bottles')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">🧊 Bottles</button>
+<div id="shop-categories" style="background: #000; padding: 10px;">
+
+    <button class="main-cat-btn" onclick="toggleSub('kit-sub')">👨‍🍳 Kitchen & Dining <span>▼</span></button>
+    <div id="kit-sub" class="sub-menu">
+        <button onclick="filterProducts('dish-rack')">🍽️ Dish Racks</button>
+        <button onclick="filterProducts('dispenser')">🧊 Dispensers</button>
+        <button onclick="filterProducts('kitchen')">🔥 Cookers</button>
+        <button onclick="filterProducts('fridge')">❄️ Fridges</button>
+        <button onclick="filterProducts('flask')">🧂 Flasks</button>
     </div>
+
+    <button class="main-cat-btn" onclick="toggleSub('sol-sub')">☀️ Solar & Lighting <span>▼</span></button>
+    <div id="sol-sub" class="sub-menu">
+        <button onclick="filterProducts('solar')">📡 Solar Kits</button>
+        <button onclick="filterProducts('lighting')">💡 Smart Bulbs</button>
+        <button onclick="filterProducts('lighting')">🔦 Floodlights</button>
+        <button onclick="filterProducts('lighting')">🚨 Emergency</button>
+    </div>
+
+    <button class="main-cat-btn" onclick="toggleSub('dec-sub')">🛋️ Home & Decor <span>▼</span></button>
+    <div id="dec-sub" class="sub-menu">
+        <button onclick="filterProducts('flowers')">💐 Flowers</button>
+        <button onclick="filterProducts('furniture')">🪑 Furniture</button>
+        <button onclick="filterProducts('decor')">🖼️ Wall Art</button>
+        <button onclick="filterProducts('decor')">🧶 Carpets</button>
+    </div>
+
+    <button class="main-cat-btn" onclick="toggleSub('bed-sub')">🛏️ Beddings <span>▼</span></button>
+    <div id="bed-sub" class="sub-menu">
+        <button onclick="filterProducts('beddings')">🛏️ Duvets</button>
+        <button onclick="filterProducts('beddings')">🧵 Sheets</button>
+        <button onclick="filterProducts('beddings')">☁️ Pillows</button>
+    </div>
+
+    <button class="main-cat-btn" onclick="toggleSub('sec-sub')">📷 Security & CCTV <span>▼</span></button>
+    <div id="sec-sub" class="sub-menu">
+        <button onclick="filterProducts('cctv')">📹 WiFi Bulbs</button>
+        <button onclick="filterProducts('cctv')">☀️ Solar Cam</button>
+        <button onclick="filterProducts('cctv')">🚫 Dummy Cam</button>
+    </div>
+
+    <button class="main-cat-btn" onclick="toggleSub('elec-sub')">📻 Electronics <span>▼</span></button>
+    <div id="elec-sub" class="sub-menu">
+        <button onclick="filterProducts('radios')">📻 Radios</button>
+        <button onclick="filterProducts('machines')">🔊 Woofers</button>
+        <button onclick="filterProducts('electronics')">📺 TV Sets</button>
+    </div>
+
+    <button class="main-cat-btn" onclick="toggleSub('digi-sub')">📱 Phones & Tech <span>▼</span></button>
+    <div id="digi-sub" class="sub-menu">
+        <button onclick="filterProducts('phones')">📱 Phones</button>
+        <button onclick="filterProducts('laptops')">💻 Laptops</button>
+        <button onclick="filterProducts('tech')">🔋 Powerbanks</button>
+    </div>
+
+    <button class="main-cat-btn" onclick="toggleSub('fas-sub')">👟 Fashion <span>▼</span></button>
+    <div id="fas-sub" class="sub-menu">
+        <button onclick="filterProducts('shoes')">👟 Nike/Shoes</button>
+        <button onclick="filterProducts('clothing')">👕 Clothing</button>
+        <button onclick="filterProducts('fashion')">⌚ Watches</button>
+    </div>
+
+    <button class="main-cat-btn" onclick="toggleSub('app-sub')">⚙️ Appliances <span>▼</span></button>
+    <div id="app-sub" class="sub-menu">
+        <button onclick="filterProducts('machines')">🍹 Blenders</button>
+        <button onclick="filterProducts('machines')">🧺 Washing</button>
+        <button onclick="filterProducts('machines')">🔌 Irons</button>
+    </div>
+
+    <button class="main-cat-btn" style="background: #ffd700; color: black;" onclick="toggleSub('aca-sub')">🎓 Digital Academy <span>▼</span></button>
+    <div id="aca-sub" class="sub-menu">
+        <button onclick="location.href='#academy'">🎥 Video Editing</button>
+        <button onclick="location.href='#academy'">📚 E-Books</button>
+        <button onclick="location.href='#academy'">💰 Mastery</button>
+    </div>
+
+</div>
+
 
 
   <h2>Our Products</h2>
