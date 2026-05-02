@@ -733,42 +733,28 @@ onclick="openPopup(
     
  
 <script>
-function openPopup(name,price,image){
-document.getElementById("productPopup").style.display="flex";
-document.getElementById("popupTitle").innerText=name;
-document.getElementById("popupPrice").innerText=price;
-document.getElementById("popupImage").src=image;
-let message="Hello Cozycabin, I want "+name+" - "+price;
-document.getElementById("popupOrder").href="https://wa.me/254702468460?text="+encodeURIComponent(message);
-}
-function closePopup(){
-document.getElementById("productPopup").style.display="none";
-}
-</script>
-<script>
+function openPopup(name, price, img) {
+  document.getElementById("popup").style.display = "flex";
+  document.getElementById("popup-name").innerText = name;
+  document.getElementById("popup-price").innerText = price;
+  document.getElementById("popup-img").src = img;
 
-function filterProducts(category){
+  const phone = "254702468460";
+  const message = `Hello, I'm interested in ${name} - ${price}`;
+  const link = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-let products = document.querySelectorAll(".product");
-
-products.forEach(product => {
-
-if(category === "all"){
-product.style.display = "block";
+  document.getElementById("whatsappBtn").onclick = () => {
+    window.open(link, "_blank");
+  };
 }
 
-else if(product.classList.contains(category)){
-product.style.display = "block";
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
 }
 
-else{
-product.style.display = "none";
+function expandImage() {
+  document.getElementById("popup-img").classList.toggle("full");
 }
-
-});
-
-}
-
 </script>
     
 <script>
@@ -880,30 +866,20 @@ document.addEventListener('click', function (e) {
         modal.onclick = () => modal.remove();
     }
 });
+<script>
+function openPopup(name, price, img) {
+  const popup = document.getElementById("popup");
 
-  function filterProducts(category) {
-    // ... your existing filtering code ...
-    
-    // Add this line at the very end of the function:
-    initImagePopup(); 
-  }
-            <script>
-function openPopup(el) {
-  const name = el.dataset.name;
-  const price = el.dataset.price;
-  const img = el.dataset.img;
-
-  document.getElementById("popup").style.display = "block";
+  popup.style.display = "flex";
   document.getElementById("popup-name").innerText = name;
   document.getElementById("popup-price").innerText = price;
   document.getElementById("popup-img").src = img;
 
-  // WhatsApp link
   const phone = "254702468460";
   const message = `Hello, I'm interested in ${name} - ${price}`;
   const link = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-  document.getElementById("whatsappBtn").onclick = function() {
+  document.getElementById("whatsappBtn").onclick = () => {
     window.open(link, "_blank");
   };
 }
@@ -915,21 +891,37 @@ function closePopup() {
 function expandImage() {
   document.getElementById("popup-img").classList.toggle("full");
 }
-</script>
-  
-   }
-      <script>
+
+// close when clicking outside
 window.onclick = function(e) {
   const popup = document.getElementById("popup");
   if (e.target === popup) {
     popup.style.display = "none";
   }
-  </script>
+};
+</script>
     <script>
+let startX = 0;
+const slider = document.querySelector(".slider");
+
+if (slider) {
+  slider.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) nextSlide();
+    if (endX - startX > 50) prevSlide();
+  });
+}
+</script>
+        <script>
 let currentSlide = 0;
-const slides = document.querySelectorAll(".slide");
 
 function showSlide(index) {
+  const slides = document.querySelectorAll(".slide");
   slides.forEach((slide, i) => {
     slide.classList.remove("active");
     if (i === index) slide.classList.add("active");
@@ -937,18 +929,19 @@ function showSlide(index) {
 }
 
 function nextSlide() {
+  const slides = document.querySelectorAll(".slide");
   currentSlide = (currentSlide + 1) % slides.length;
   showSlide(currentSlide);
 }
 
 function prevSlide() {
+  const slides = document.querySelectorAll(".slide");
   currentSlide = (currentSlide - 1 + slides.length) % slides.length;
   showSlide(currentSlide);
 }
 
-// 🔥 AUTO SLIDE
-setInterval(nextSlide, 4000); // every 4 seconds
-  </script>
+setInterval(nextSlide, 4000);
+        </script>
         <script>
 let startX = 0;
 
@@ -963,6 +956,23 @@ document.querySelector(".slider").addEventListener("touchend", e => {
   if (endX - startX > 50) prevSlide(); // swipe right
 });
       </script>
+        <script>
+let startX = 0;
+const slider = document.querySelector(".slider");
+
+if (slider) {
+  slider.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) nextSlide();
+    if (endX - startX > 50) prevSlide();
+  });
+}
+        </script>
           
 
 
