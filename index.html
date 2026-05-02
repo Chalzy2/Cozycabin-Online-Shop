@@ -1116,7 +1116,25 @@ setInterval(nextSlide, 4000);
     } else {
         x.style.display = "grid";
     }
-}
+    window.scrollTo({ top: document.querySelector('.products').offsetTop - 50, behavior: 'smooth' });
+      }
+          function filterProducts(category) {
+  const products = document.querySelectorAll('.product');
+  
+  products.forEach(product => {
+    if (category === 'all') {
+      product.style.display = 'block'; // Show everything
+    } else {
+      // Check if the product has the category class (e.g., 'flask')
+      if (product.classList.contains(category)) {
+        product.style.display = 'block';
+      } else {
+        product.style.display = 'none'; // Hide if it doesn't match
+      }
+    }
+  });
+
+          
 
 </script>
 
