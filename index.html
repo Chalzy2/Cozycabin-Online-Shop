@@ -926,64 +926,55 @@ if (slider) {
 </script>
         <script>
 let currentSlide = 0;
+let startX = 0;
 
+// 1. MAIN SLIDE FUNCTION
 function showSlide(index) {
   const slides = document.querySelectorAll(".slide");
+  if (slides.length === 0) return;
+
+  // Safety check for index boundaries
+  if (index >= slides.length) currentSlide = 0;
+  else if (index < 0) currentSlide = slides.length - 1;
+  else currentSlide = index;
+
   slides.forEach((slide, i) => {
     slide.classList.remove("active");
-    if (i === index) slide.classList.add("active");
+    if (i === currentSlide) slide.classList.add("active");
   });
 }
 
+// 2. NAVIGATION FUNCTIONS
 function nextSlide() {
-  const slides = document.querySelectorAll(".slide");
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
+  showSlide(currentSlide + 1);
 }
 
 function prevSlide() {
-  const slides = document.querySelectorAll(".slide");
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(currentSlide);
+  showSlide(currentSlide - 1);
 }
 
-setInterval(nextSlide, 4000);
-        </script>
-        <script>
-let startX = 0;
+// 3. TOUCH/SWIPE LOGIC FOR MOBILE
+const sliderContainer = document.querySelector(".slider");
 
-document.querySelector(".slider").addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
-
-document.querySelector(".slider").addEventListener("touchend", e => {
-  let endX = e.changedTouches[0].clientX;
-
-  if (startX - endX > 50) nextSlide(); // swipe left
-  if (endX - startX > 50) prevSlide(); // swipe right
-});
-      </script>
-        <script>
-let startX = 0;
-const slider = document.querySelector(".slider");
-
-if (slider) {
-  slider.addEventListener("touchstart", e => {
+if (sliderContainer) {
+  sliderContainer.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
-  });
+  }, {passive: true});
 
-  slider.addEventListener("touchend", e => {
+  sliderContainer.addEventListener("touchend", e => {
     let endX = e.changedTouches[0].clientX;
+    let distance = startX - endX;
 
-    if (startX - endX > 50) nextSlide();
-    if (endX - startX > 50) prevSlide();
-  });
+    if (Math.abs(distance) > 50) {
+      if (distance > 0) nextSlide(); // Swipe Left
+      else prevSlide(); // Swipe Right
+    }
+  }, {passive: true});
 }
-        </script>
-          
 
-
-</div>
+// 4. AUTO-PLAY (Every 4 seconds)
+setInterval(nextSlide, 4000);
+</script>
     
   }
 </script>
