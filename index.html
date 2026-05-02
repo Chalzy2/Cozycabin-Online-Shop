@@ -862,22 +862,21 @@ document.addEventListener('click', function (e) {
         modal.onclick = () => modal.remove();
     }
 });
-<script>
 function openPopup(name, price, img) {
-  const popup = document.getElementById("popup");
+  document.getElementById('popupTitle').innerText = name;
+  document.getElementById('popupPrice').innerText = price; // This adds the price!
+  document.getElementById('popupImg').src = img;
+  document.getElementById('productPopup').style.display = 'block';
+}
 
-  popup.style.display = "flex";
-  document.getElementById("popup-name").innerText = name;
-  document.getElementById("popup-price").innerText = price;
-  document.getElementById("popup-img").src = img;
+function closePopup() {
+  document.getElementById('productPopup').style.display = 'none';
+}
 
-  const phone = "254702468460";
-  const message = `Hello, I'm interested in ${name} - ${price}`;
-  const link = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-  document.getElementById("whatsappBtn").onclick = () => {
-    window.open(link, "_blank");
-  };
+function sendWhatsApp() {
+  let name = document.getElementById('popupTitle').innerText;
+  let url = "https://wa.me/254702468460?text=I+want+to+buy+the+" + encodeURIComponent(name);
+  window.open(url, '_blank');
 }
 
 function closePopup() {
