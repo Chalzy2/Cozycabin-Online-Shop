@@ -230,6 +230,43 @@ header {
     border-radius: 6px;
     font-size: 12px;
 }
+  .main-cat-btn {
+    background: #1f2937;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.sub-menu {
+    display: none; /* Hidden by default */
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    background: #111;
+    border: 1px solid #333;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.sub-menu button {
+    background: #2a3547;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    text-align: center;
+}
+  
   
 
 </style>
@@ -1066,14 +1103,21 @@ if (sliderContainer) {
 setInterval(nextSlide, 4000);
   }
   function toggleSub(id) {
-    var x = document.getElementById(id);
+    // Close all other menus first (Optional - keeps it very clean)
+    const menus = document.querySelectorAll('.sub-menu');
+    menus.forEach(menu => {
+        if (menu.id !== id) menu.style.display = "none";
+    });
+
+    // Toggle the clicked menu
+    const x = document.getElementById(id);
     if (x.style.display === "grid") {
         x.style.display = "none";
     } else {
         x.style.display = "grid";
     }
 }
-    
+
 </script>
 
 </body>
