@@ -199,30 +199,25 @@ header {
 </style>
 
 </head>
-  <body>
-    <div class="slider">
-
-  <div class="slides">
-    <img src="banner1.jpg" class="slide active">
-    <img src="banner2.jpg" class="slide">
-    <img src="banner3.jpg" class="slide">
-    <img src="banner4.jpg" class="slide">
+<body>
+  <div class="slider">
+    <div class="slides">
+      <img src="banner1.jpg" class="slide active">
+      <img src="banner2.jpg" class="slide">
+      <img src="banner3.jpg" class="slide">
+      <img src="banner4.jpg" class="slide">
+    </div>
+    <button class="prev" onclick="prevSlide()">❮</button>
+    <button class="next" onclick="nextSlide()">❯</button>
   </div>
 
-  <!-- Optional arrows -->
-  <button class="prev" onclick="prevSlide()">❮</button>
-  <button class="next" onclick="nextSlide()">❯</button>
+  <header>
+    <img src="Cozylogo.png" class="logo">
+    <h1>Cozycabin Online Shop</h1>
+    <p>Smart Living Solutions</p>
+  </header>
 
-    </div>
-  <div class="slideshow-bg"></div>
-    
-<header>
-  <img src="Cozylogo.png" class="logo">
-  <h1>Cozycabin Online Shop</h1>
-  <p>Smart Living Solutions</p>
-</header>
-<div class="delivery-wrapper"></div>
-<div class="delivery-box">
+  <div class="delivery-box">
     Delivering across Kenya 🇰🇪  
     <select class="county-select">
       <option>Select your county</option>
@@ -238,85 +233,81 @@ header {
       <option>All counties</option>
     </select>
   </div>
+
   <div class="service-bar">
-  🚚 Delivering across Kenya — All Counties Supported
+    🚚 Delivering across Kenya — All Counties Supported
   </div>
 
   <div class="search-bar">
-  <input type="text" id="searchInput" placeholder="Search for products">
-<button onclick="searchProducts()">🔍</button>
-  </div>
- <li onclick="filterProducts('all')">✅ All</li>
-<li onclick="filterProducts('lighting')">💡 Lighting</li>
-<li onclick="filterProducts('beddings')">🛏️ Beddings</li>
-<li onclick="filterProducts('kitchen')">👨‍🍳 Kitchen</li>
-<li onclick="filterProducts('shoes')">👟 Shoes</li>
-<li onclick="filterProducts('machines')">⚙️ Machines</li>
-<li onclick="filterProducts('cctv')">📷 Cctv</li>
-<li onclick="filterProducts('solar')">☀️ Solar</li>
-<li onclick="filterProducts('flowers')">💐 Flowers</li>
-<li onclick="filterProducts('phones')">📱 Phones</li>
-<li onclick="filterProducts('laptops')">💻 Laptops</li>
-<li onclick="filterProducts('furniture')">🛋️ Furniture</li>
-<li onclick="filterProducts('radios')">📻 Radios</li>
-<li onclick="filterProducts('clothing')">👕 Clothing</li>
-<li onclick="filterProducts('W.bottles)">🧋 W.bottles</li>
-<li onclick="filterProducts('flasks')">🧂 Flasks</li>
-<li onclick="filterProducts('dispenser')">🧊 Dispensers</li>
-
-    <h3>🎓 Academy</h3>
-    <ul>
-      
-
+    <input type="text" id="searchInput" placeholder="Search for products">
+    <button onclick="searchProducts()">🔍</button>
   </div>
 
-</div>
-</div>
+  <div class="category-nav">
+    <ul style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+      <li onclick="filterProducts('all')">✅ All</li>
+      <li onclick="filterProducts('lighting')">💡 Lighting</li>
+      <li onclick="filterProducts('beddings')">🛏️ Beddings</li>
+      <li onclick="filterProducts('kitchen')">👨‍🍳 Kitchen</li>
+      <li onclick="filterProducts('shoes')">👟 Shoes</li>
+      <li onclick="filterProducts('machines')">⚙️ Machines</li>
+      <li onclick="filterProducts('cctv')">📷 Cctv</li>
+      <li onclick="filterProducts('solar')">☀️ Solar</li>
+      <li onclick="filterProducts('flowers')">💐 Flowers</li>
+      <li onclick="filterProducts('phones')">📱 Phones</li>
+      <li onclick="filterProducts('laptops')">💻 Laptops</li>
+      <li onclick="filterProducts('furniture')">🛋️ Furniture</li>
+      <li onclick="filterProducts('radios')">📻 Radios</li>
+      <li onclick="filterProducts('clothing')">👕 Clothing</li>
+      <li onclick="filterProducts('w.bottles')">🧋 W.bottles</li>
+      <li onclick="filterProducts('flasks')">🧂 Flasks</li>
+      <li onclick="filterProducts('dispenser')">🧊 Dispensers</li>
+    </ul>
+  </div>
 
-  </section>
-    <div class="categories">
-      <div class="categories">
-<h3 style="text-align: center; color: #ffd700; margin-top: 20px;">🌐 DIGITAL & GLOBAL</h3>
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px;">
-    <a href="#premium-section" style="background: #ffd700; color: black; text-decoration: none; padding: 10px 5px; border-radius: 8px; font-weight: bold; font-size: 11px; text-align: center; border: 2px solid black;">🎓 ACADEMY</a>
+  <div class="academy-preview" style="text-align: center; padding: 15px; background: #1f2937; color: #ffd700; border-radius: 8px; margin: 10px;">
+    <h3>🎓 Cozycabin Academy</h3>
+    <p style="color: white; font-size: 14px;">Master video editing and digital business.</p>
+  </div>
+  
+
+  <div class="category-section" style="background: #111; padding-bottom: 20px;">
     
-    <a href="YOUR_JUMIA_LINK" style="background: #2a3547; color: white; text-decoration: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; text-align: center;">🧡 Jumia</a>
-    <a href="Https://amzn.to/4tDZaKV" style="background: #2a3547; color: white; text-decoration: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; text-align: center;">📦 Amazon</a>
-    <a href="Https://s.click.aliexpress.com/e/_c2QL6ZGL" style="background: #2a3547; color: white; text-decoration: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; text-align: center;">🌏 Alibaba</a>
+    <h3 style="text-align: center; color: #ffd700; margin-top: 20px; font-size: 16px;">🌐 DIGITAL & GLOBAL</h3>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px;">
+        <a href="#premium-section" style="background: #ffd700; color: black; text-decoration: none; padding: 12px 5px; border-radius: 8px; font-weight: bold; font-size: 11px; text-align: center; border: 2px solid black;">🎓 ACADEMY</a>
+        <a href="YOUR_JUMIA_LINK" style="background: #2a3547; color: white; text-decoration: none; padding: 12px 5px; border-radius: 8px; font-size: 11px; text-align: center;">🧡 Jumia</a>
+        <a href="https://amzn.to/4tDZaKV" style="background: #2a3547; color: white; text-decoration: none; padding: 12px 5px; border-radius: 8px; font-size: 11px; text-align: center;">📦 Amazon</a>
+        <a href="https://s.click.aliexpress.com/e/_c2QL6ZGL" style="background: #2a3547; color: white; text-decoration: none; padding: 12px 5px; border-radius: 8px; font-size: 11px; text-align: center; grid-column: span 3;">🌏 Alibaba / Global Sourcing</a>
+    </div>
+
+    <hr style="border: 0.5px solid #333; margin: 20px 10px;">
+
+    <h3 style="text-align: center; color: white; font-size: 16px;">🇰🇪 LOCAL SHOP (KENYA)</h3>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px;">
+        <button onclick="filterProducts('all')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">✅ All</button>
+        <button onclick="filterProducts('lighting')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">💡 Lighting</button>
+        <button onclick="filterProducts('beddings')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">🛏️ Beddings</button>
+        <button onclick="filterProducts('kitchen')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">👨‍🍳 Kitchen</button>
+        <button onclick="filterProducts('shoes')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">👟 Shoes</button>
+        <button onclick="filterProducts('solar')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">☀️ Solar</button>
+        <button onclick="filterProducts('cctv')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">📷 CCTV</button>
+        <button onclick="filterProducts('flask')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">🧂 Flasks</button>
+        <button onclick="filterProducts('w.bottles')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px; cursor: pointer;">🧊 Bottles</button>
+    </div>
 </div>
 
-<hr style="border: 0.5px solid #333; margin: 20px 0;">
+<div class="hero" style="position: relative; text-align: center; color: white;">
+    <img src="your-image.jpg" class="hero-img" alt="banner" style="width: 100%; height: auto; filter: brightness(60%);">
+    <div class="hero-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%;">
+        <h1 style="font-size: 24px; margin-bottom: 10px;">🔥 Smart Living Deals</h1>
+        <p style="margin-bottom: 15px;">✔ Save Energy &nbsp; ✔ Easy Setup</p>
+        <a href="https://wa.me/254702468460?text=I+want+to+order+from+Smart+Living+Deals" style="text-decoration: none;">
+            <button style="background: #25D366; color: white; border: none; padding: 12px 25px; border-radius: 30px; font-weight: bold; cursor: pointer;">Order on WhatsApp</button>
+        </a>
+    </div>
+</div>
 
-<h3 style="text-align: center; color: white;">🇰🇪 LOCAL SHOP (KENYA)</h3>
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px;">
-    <button onclick="filterProducts('all')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">✅ All</button>
-    <button onclick="filterProducts('lighting')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">💡 Lighting</button>
-    <button onclick="filterProducts('beddings')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">🛏️ Beddings</button>
-    <button onclick="filterProducts('kitchen')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">👨‍🍳 Kitchen</button>
-    <button onclick="filterProducts('shoes')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">👟 Shoes</button>
-    <button onclick="filterProducts('machines')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">⚙️ Machines</button>
-    <button onclick="filterProducts('cctv')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">📷 cctv</button>
-    <button onclick="filterProducts('solar')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">☀️ Solar</button>
-    <button onclick="filterProducts('flowers')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">💐 Flowers</button>
-    <button onclick="filterProducts('phones')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">📱 Phones</button>
-    <button onclick="filterProducts('laptops')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">💻 Laptops</button>
-    <button onclick="filterProducts('furniture')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">🛋️ Furniture</button>
-    <button onclick="filterProducts('radios')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">📻 Radios</button>
-    <button onclick="filterProducts('clothing')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">👕 Clothing</button>
-    <button onclick="filterProducts('flask')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">🧂 Flask</button>
-    <button onclick="filterProducts('dispenser')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">🧊Dispenser</button>
-    <button onclick="filterProducts('w.bottles')" style="background: #2a3547; color: white; border: none; padding: 10px 5px; border-radius: 8px; font-size: 11px;">🧊W.Bottle</button>
-  </div>
-  <div class="hero">
-  <img src="your-image.jpg" class="hero-img" alt="banner">
-
-  <div class="hero-overlay">
-    <h1>🔥 Smart Living Deals</h1>
-    <p>✔ Save Energy<br>✔ Easy Setup</p>
-    <button>Order on WhatsApp</button>
-  </div>
-        </div>
-    
   <h2>Our Products</h2>
     <div class="product lighting"
   on<div class="products">
