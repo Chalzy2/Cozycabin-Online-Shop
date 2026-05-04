@@ -1218,6 +1218,11 @@ setInterval(nextSlide, 4000);
       } else {
         product.style.display = 'none'; // Hide if it doesn't match
       }
+      <script>
+function toggleSub(id) {
+  const el = document.getElementById(id);
+  el.style.display = (el.style.display === "flex") ? "none" : "flex";
+</script>
     }
   });
 
