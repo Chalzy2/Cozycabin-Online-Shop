@@ -320,6 +320,26 @@ header {
   font-size: 11px;
   cursor: pointer;
 }
+  .product-scroll-container {
+    display: flex;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    white-space: nowrap;
+    gap: 15px;
+    padding: 10px;
+    scroll-snap-type: x mandatory; /* Makes it "snap" into place */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iPhone */
+}
+
+.product-scroll-container .product-card {
+    flex: 0 0 45%; /* Shows nearly two full cards at once */
+    scroll-snap-align: start;
+}
+
+/* Hide scrollbar for a cleaner look */
+.product-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+  
   
   
   
@@ -1217,10 +1237,20 @@ setInterval(nextSlide, 4000);
 function toggleSub(id) {
   const el = document.getElementById(id);
   el.style.display = (el.style.display === "flex") ? "none" : "flex";
+          }
 </script>
-    }
-  });
-
+    
+  <script>
+  
+  function openFullImage(imgSrc) {
+    const modal = document.createElement('div');
+    modal.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:999; display:flex; align-items:center; justify-content:center;";
+    modal.innerHTML = `<img src="${imgSrc}" style="max-width:90%; max-height:90%;">`;
+    modal.onclick = () => modal.remove(); // Click anywhere to close
+    document.body.appendChild(modal);
+}
+  
+  </script>
           
 
 </script>
