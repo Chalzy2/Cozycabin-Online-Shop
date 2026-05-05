@@ -1,1 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozycabin Premium & Online Shop</title>
+  
+<!-- FAVICON (FIXED) -->
+<link rel="icon" href="/Cozycabin log.png" type="image/png">
+<link rel="apple-touch-icon" href="/Cozycabin log.png">
 
+<!-- GOOGLE ANALYTICS -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4JVT3X5J5D"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-4JVT3X5J5D');
+</script
+    <style>
+        /* CSS: Professional Styles */
+        body {
+            background-color: #000;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container { width: 100%; max-width: 500px; margin: 0 auto; }
+
+        /* Academy Section */
+        .academy-box {
+            background: #0b0e14;
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 9-Button Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 15px;
+        }
+
+        .main-btn {
+            background: #232d3f;
+            border: 1px solid #3b4758;
+            border-radius: 15px;
+            padding: 20px 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .main-btn:active { transform: scale(0.95); background: #3b4758; }
+
+        /* Sub Menus & Product Lists */
+        .sub-menu, .product-list { display: none; padding: 15px; }
+
+        .minor-btn-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            background: #111;
+            padding: 15px;
+            border-radius: 15px;
+            border-top: 3px solid #ffd700;
+        }
+
+        .minor-btn {
+            background: #232d3f;
+            color: #ffd700;
+            border: 1px solid #444;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .product-card img { width: 100%; height: 150px; object-fit: cover; }
+
+        .product-info { padding: 10px; text-align: center; color: #333; }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Floating Button */
+        .float-wa {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            z-index: 1000;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="academy-box">
+        <h1 style="color: #ffd700; font-weight: 900; margin: 0;">💎 COZYCABIN PREMIUM</h1>
+        <p style="color: #888; font-size: 11px;">Masterclasses & Digital Library</p>
+        <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <button onclick="toggleSub('video-sub')" class="minor-btn" style="flex:1; color: #007bff;">🎥 Video Courses</button>
+            <button onclick="toggleSub('library-sub')" class="minor-btn" style="flex:1;">📚 E-Books</button>
+        </div>
+    </div>
+
+    <h3 style="text-align:center; color:#ffd700;">🌐 DIGITAL & GLOBAL</h3>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 15px;">
+        <button style="background: #f68b1e; border:none; color:white; padding:10px; border-radius:8px;">Jumia</button>
+        <button style="background: #ff9900; border:none; color:white; padding:10px; border-radius:8px;">Amazon</button>
+        <button style="background: #1a1a1a; border:1px solid #007bff; color:#007bff; padding:10px; border-radius:8px;">Alibaba</button>
+    </div>
+
+    <div style="background: #ffd700; color: black; padding: 8px 0; font-weight: bold; margin: 20px 0;">
+        <marquee>🚚 COUNTRYWIDE DELIVERY VIA G4S | PAY ON DELIVERY IN NAIROBI | SHOP QUALITY WITH COZYCABIN 🇰🇪</marquee>
+    </div>
+
+    <h3 style="text-align:center; color:#ffd700;">🇰🇪 LOCAL SHOP (KENYA)</h3>
+    <div class="main-grid">
+        <div class="main-btn" onclick="toggleSub('kitchen-sub')">🍳<br><small>KITCHEN ▼</small></div>
+        <div class="main-btn" onclick="toggleSub('solar-sub')">☀️<br><small>SOLAR ▼</small></div>
+        <div class="main-btn" onclick="toggleSub('decor-sub')">🛋️<br><small>DECOR ▼</small></div>
+        <div class="main-btn" onclick="toggleSub('beddings-sub')">🛏️<br><small>BEDS ▼</small></div>
+        <div class="main-btn" onclick="toggleSub('security-sub')">📷<br><small>SECURITY ▼</small></div>
+        <div class="main-btn" onclick="toggleSub('electro-sub')">📻<br><small>ELECTRO ▼</small></div>
+        <div class="main-btn" onclick="toggleSub('tech-sub')">📱<br><small>TECH ▼</small></div>
+        <div class="main-btn" onclick="toggleSub('fashion-sub')">👟<br><small>FASHION ▼</small></div>
+        <div class="main-btn" onclick="toggleSub('appliances-sub')">⚙️<br><small>TOOLS ▼</small></div>
+    </div>
+
+    <div id="kitchen-sub" class="sub-menu">
+        <div class="minor-btn-grid">
+            <button onclick="showProducts('cutlery')" class="minor-btn">🍴 Cutlery</button>
+            <button onclick="showProducts('dispensers')" class="minor-btn">💧 Dispensers</button>
+            <button onclick="showProducts('hotpots')" class="minor-btn">🥘 Hotpots</button>
+            <button onclick="showProducts('racks')" class="minor-btn">🍽️ Dishracks</button>
+        </div>
+    </div>
+
+    <div id="cutlery" class="product-list" style="grid-template-columns: repeat(2, 1fr); gap: 10px;">
+        <div class="product-card">
+            <img src="IMAGE_URL_HERE" alt="Item">
+            <div class="product-info">
+                <h4>Premium Cutlery</h4>
+                <p style="color:green; font-weight:bold;">KES 2,500</p>
+                <a href="https://wa.me/254700000000?text=I+want+to+order+Cutlery" class="whatsapp-btn">Order Now</a>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/254700000000" class="float-wa">💬</a>
+</div>
+
+<script>
+    function toggleSub(id) {
+        document.querySelectorAll('.sub-menu, .product-list').forEach(el => el.style.display = 'none');
+        var x = document.getElementById(id);
+        if (x) x.style.display = "block";
+    }
+
+    function showProducts(id) {
+        document.querySelectorAll('.product-list').forEach(el => el.style.display = 'none');
+        var x = document.getElementById(id);
+        if (x) {
+            x.style.display = "grid";
+            x.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>
+
+</body>
+          </html>
+                                     
