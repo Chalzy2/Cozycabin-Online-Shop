@@ -600,29 +600,47 @@ header {
     <hr style="border: 0.5px solid #333; margin: 20px 10px;">
  <h3 style="text-align: center; color: yellow;">🇰🇪 LOCAL SHOP (KENYA)</h3>
 <div class="main-buttons-grid">
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 15px; width: 100%; box-sizing: border-box;">
-
-    <div onclick="toggleSub('kitchen-sub')" style="background: #232d3f; color: white; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid #3b4758;">
-        <span style="font-size: 22px;">👨‍🍳</span>
-        <span style="font-size: 10px; font-weight: bold; margin-top: 5px;">KITCHEN ▼</span>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 15px; width: 100%; box-sizing: border-box; clear: both;">
+    
+    <div onclick="toggleSub('kitchen-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
+        <span style="font-size: 18px;">👨‍🍳</span><br><span style="font-size: 9px; font-weight: bold;">KITCHEN ▼</span>
+    </div>
+    <div onclick="toggleSub('solar-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
+        <span style="font-size: 18px;">☀️</span><br><span style="font-size: 9px; font-weight: bold;">SOLAR ▼</span>
+    </div>
+    <div onclick="toggleSub('decor-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
+        <span style="font-size: 18px;">🛋️</span><br><span style="font-size: 9px; font-weight: bold;">DECOR ▼</span>
     </div>
 
-    <div onclick="toggleSub('solar-sub')" style="background: #232d3f; color: white; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid #3b4758;">
-        <span style="font-size: 22px;">☀️</span>
-        <span style="font-size: 10px; font-weight: bold; margin-top: 5px;">SOLAR ▼</span>
+    <div onclick="toggleSub('beddings-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
+        <span style="font-size: 18px;">🛏️</span><br><span style="font-size: 9px; font-weight: bold;">BEDDINGS ▼</span>
+    </div>
+    <div onclick="toggleSub('security-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
+        <span style="font-size: 18px;">📷</span><br><span style="font-size: 9px; font-weight: bold;">SECURITY ▼</span>
+    </div>
+    <div onclick="toggleSub('electronics-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
+        <span style="font-size: 18px;">📻</span><br><span style="font-size: 9px; font-weight: bold;">ELECTRONICS ▼</span>
     </div>
 
-    <div onclick="toggleSub('decor-sub')" style="background: #232d3f; color: white; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid #3b4758;">
-        <span style="font-size: 22px;">🛋️</span>
-        <span style="font-size: 10px; font-weight: bold; margin-top: 5px;">DECOR ▼</span>
+    <div onclick="toggleSub('tech-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
+        <span style="font-size: 18px;">📱</span><br><span style="font-size: 9px; font-weight: bold;">TECH ▼</span>
     </div>
-
-    </div> <div id="kitchen-sub" style="display: none; padding: 15px; background: #111; margin: 10px 15px; border-radius: 10px; border-top: 2px solid #ffd700;">
-    <button onclick="filterProducts('dispenser')" style="width: 100%; background: #232d3f; color: #ffd700; border: 1px solid #444; padding: 12px; margin-bottom: 8px; border-radius: 8px; text-align: left;">💧 Water Dispensers</button>
+    <div onclick="toggleSub('fashion-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
+        <span style="font-size: 18px;">👟</span><br><span style="font-size: 9px; font-weight: bold;">FASHION ▼</span>
+    </div>
+    <div onclick="toggleSub('appliances-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
+        <span style="font-size: 18px;">⚙️</span><br><span style="font-size: 9px; font-weight: bold;">APPLIANCES ▼</span>
+    </div>
 </div>
 
+<div id="kitchen-sub" style="display: none; width: 95%; margin: 10px auto; padding: 15px; background: #1a1a1a; border-radius: 15px; border-top: 3px solid #ffd700; clear: both;">
+    <button onclick="filterProducts('dispenser')" style="width: 100%; background: #232d3f; color: #ffd700; border: 1px solid #444; padding: 12px; margin-bottom: 8px; border-radius: 8px; text-align: left;">💧 Water Dispensers</button>
+    <button onclick="filterProducts('cooker')" style="width: 100%; background: #232d3f; color: #ffd700; border: 1px solid #444; padding: 12px; border-radius: 8px; text-align: left;">🔥 Gas Cookers</button>
+</div>
 
-  
+<div id="product-display-area" style="width: 100%; clear: both; padding-top: 20px;">
+   </div>
+
 <div class="products-grid">
 
     <div class="product-card lighting">
