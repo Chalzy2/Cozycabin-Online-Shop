@@ -424,8 +424,45 @@ header {
     height: 34px; /* Keeps two lines of text aligned */
     overflow: hidden;
 }
-
+  /* Forces the grid to stay in 2 perfect columns */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
 }
+
+/* Ensures every card is the exact same height */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; 
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* The Magic Fix: Standardizes all image sizes */
+.product-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Makes every image a square */
+    object-fit: contain; /* Keeps the whole product visible without stretching */
+    background: #f9f9f9; /* Adds a light grey background for odd-sized images */
+    border-radius: 4px;
+    cursor: zoom-in;
+}
+
+/* Keeps the titles neat and aligned */
+.product-card h3 {
+    font-size: 13px;
+    margin: 8px 0;
+    height: 34px; /* Space for 2 lines of text */
+    overflow: hidden;
+    line-height: 1.2;
+}
+  
   
   
   
