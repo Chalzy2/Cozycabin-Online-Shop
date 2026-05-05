@@ -455,59 +455,105 @@ header {
 <div id="sec-sub" class="sub-menu">
 <button onclick="filterProducts('cctv')">📹 WiFi Bulbs</button>
 <button onclick="filterProducts('cctv')">☀️ Solar Cam</button>
-<button onclick="filterProducts('cctv')">🚫 Dummy Cam</button>
-</div>
+<h3 style="text-align: center; color: white;">🇰🇪 LOCAL SHOP (KENYA)</h3>
+<div class="main-buttons-grid">
+
+    <div class="category-box">
+        <button class="main-cat-btn" onclick="toggleSub('kit-sub')">👨‍🍳 Kitchen ▼</button>
+        <div id="kit-sub" class="sub-menu">
+            <button onclick="filterProducts('dish-rack')">🍽️ Dish Racks</button>
+            <button onclick="filterProducts('dispenser')">🧊 Dispensers</button>
+            <button onclick="filterProducts('kitchen')">🔥 Cookers</button>
+            <button onclick="filterProducts('fridge')">❄️ Fridges</button>
+            <button onclick="filterProducts('flask')">🧂 Flasks</button>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <button class="main-cat-btn" onclick="toggleSub('sol-sub')">☀️ Solar ▼</button>
+        <div id="sol-sub" class="sub-menu">
+            <button onclick="filterProducts('solar')">📡 Solar Kits</button>
+            <button onclick="filterProducts('lighting')">💡 Smart Bulbs</button>
+            <button onclick="filterProducts('lighting')">🔦 Floodlights</button>
+            <button onclick="filterProducts('lighting')">🚨 Emergency</button>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <button class="main-cat-btn" onclick="toggleSub('dec-sub')">🛋️ Decor ▼</button>
+        <div id="dec-sub" class="sub-menu">
+            <button onclick="filterProducts('flowers')">💐 Flowers</button>
+            <button onclick="filterProducts('furniture')">🪑 Furniture</button>
+            <button onclick="filterProducts('decor')">🖼️ Wall Art</button>
+            <button onclick="filterProducts('decor')">🧶 Carpets</button>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <button class="main-cat-btn" onclick="toggleSub('bed-sub')">🛏️ Beddings ▼</button>
+        <div id="bed-sub" class="sub-menu">
+            <button onclick="filterProducts('beddings')">🛏️ Duvets</button>
+            <button onclick="filterProducts('beddings')">🧵 Sheets</button>
+            <button onclick="filterProducts('beddings')">☁️ Pillows</button>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <button class="main-cat-btn" onclick="toggleSub('sec-sub')">📷 Security ▼</button>
+        <div id="sec-sub" class="sub-menu">
+            <button onclick="filterProducts('cctv')">📹 WiFi Bulbs</button>
+            <button onclick="filterProducts('cctv')">☀️ Solar Cam</button>
+            <button onclick="filterProducts('cctv')">🚫 Dummy Cam</button>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <button class="main-cat-btn" onclick="toggleSub('elec-sub')">📻 Electronics ▼</button>
+        <div id="elec-sub" class="sub-menu">
+            <button onclick="filterProducts('radios')">📻 Radios</button>
+            <button onclick="filterProducts('machines')">🔊 Woofers</button>
+            <button onclick="filterProducts('electronics')">📺 TV Sets</button>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <button class="main-cat-btn" onclick="toggleSub('digi-sub')">📱 Tech ▼</button>
+        <div id="digi-sub" class="sub-menu">
+            <button onclick="filterProducts('phones')">📱 Phones</button>
+            <button onclick="filterProducts('laptops')">💻 Laptops</button>
+            <button onclick="filterProducts('tech')">🔋 Powerbanks</button>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <button class="main-cat-btn" onclick="toggleSub('fas-sub')">👟 Fashion ▼</button>
+        <div id="fas-sub" class="sub-menu">
+            <button onclick="filterProducts('shoes')">👟 Shoes</button>
+            <button onclick="filterProducts('clothing')">👕 Clothing</button>
+            <button onclick="filterProducts('fashion')">⌚ Watches</button>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <button class="main-cat-btn" onclick="toggleSub('app-sub')">⚙️ Appliances ▼</button>
+        <div id="app-sub" class="sub-menu">
+            <button onclick="filterProducts('machines')">🍹 Blenders</button>
+            <button onclick="filterProducts('machines')">🧺 Washing</button>
+            <button onclick="filterProducts('machines')">🔌 Irons</button>
+        </div>
+    </div>
+
 </div>
 
-<!-- 6 -->
-<div class="category-box">
-<button class="main-cat-btn" onclick="toggleSub('elec-sub')">📻 Electronics ▼</button>
-<div id="elec-sub" class="sub-menu">
-<button onclick="filterProducts('radios')">📻 Radios</button>
-<button onclick="filterProducts('machines')">🔊 Woofers</button>
-<button onclick="filterProducts('electronics')">📺 TV Sets</button>
-</div>
-</div>
-
-<!-- 7 -->
-<div class="category-box">
-<button class="main-cat-btn" onclick="toggleSub('digi-sub')">📱 Phones & Tech ▼</button>
-<div id="digi-sub" class="sub-menu">
-<button onclick="filterProducts('phones')">📱 Phones</button>
-<button onclick="filterProducts('laptops')">💻 Laptops</button>
-<button onclick="filterProducts('tech')">🔋 Powerbanks</button>
-</div>
+<div class="category-box" style="margin: 10px; border-radius: 12px; overflow: hidden;">
+    <button class="main-cat-btn" style="background:#ffd700; color:black; font-weight: bold; width: 100%; border: none;" onclick="toggleSub('aca-sub')">✅ Fast Moving Products ▼</button>
+    <div id="aca-sub" class="sub-menu">
+        <button onclick="filterProducts('lighting')">⚡ Rechargeable Lamp</button>
+        <button onclick="filterProducts('kitchen')">🛖 Kitchen Items</button>
+        <button onclick="filterProducts('shoes')">🏑 Trending Shoes</button>
+    </div>
 </div>
 
-<!-- 8 -->
-<div class="category-box">
-<button class="main-cat-btn" onclick="toggleSub('fas-sub')">👟 Fashion ▼</button>
-<div id="fas-sub" class="sub-menu">
-<button onclick="filterProducts('shoes')">👟 Shoes</button>
-<button onclick="filterProducts('clothing')">👕 Clothing</button>
-<button onclick="filterProducts('fashion')">⌚ Watches</button>
-</div>
-</div>
-
-<!-- 9 -->
-<div class="category-box">
-<button class="main-cat-btn" onclick="toggleSub('app-sub')">⚙️ Appliances ▼</button>
-<div id="app-sub" class="sub-menu">
-<button onclick="filterProducts('machines')">🍹 Blenders</button>
-<button onclick="filterProducts('machines')">🧺 Washing</button>
-<button onclick="filterProducts('machines')">🔌 Irons</button>
-</div>
-</div>
-
-<!-- 10 -->
-<div class="category-box" style="background:#ffd700;">
-<button class="main-cat-btn" style="color:black;" onclick="toggleSub('aca-sub')">✅Fast Moving Products▼</button>
-<div id="aca-sub" class="sub-menu">
-<button onclick="location.href='#academy'">⚡ Rechargeable Lamp</button>
-<button onclick="location.href='#academy'"> 🛖kitchen </button>
-<button onclick="location.href='#academy'">🏑trending shoes</button>
-</div>
-</div>
 
   <h2>Our Products</h2>
     <div class="product lighting"
