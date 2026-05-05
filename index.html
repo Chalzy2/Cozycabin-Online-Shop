@@ -607,101 +607,60 @@ header {
  <h3 style="text-align: center; color: white;">🇰🇪 LOCAL SHOP (KENYA)</h3>
 <div class="main-buttons-grid">
 
-    <div class="category-box">
-        <button class="main-cat-btn" onclick="toggleSub('kit-sub')">👨‍🍳 Kitchen ▼</button>
-        <div id="kit-sub" class="sub-menu">
-            <button onclick="filterProducts('dish-rack')">🍽️ Dish Racks</button>
-            <button onclick="filterProducts('dispenser')">🧊 Dispensers</button>
-            <button onclick="filterProducts('kitchen')">🔥 Cookers</button>
-            <button onclick="filterProducts('fridge')">❄️ Fridges</button>
-            <button onclick="filterProducts('flask')">🧂 Flasks</button>
-        </div>
-    </div>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 15px; background: #111; border-radius: 15px; margin: 10px;">
+    
+    <button onclick="toggleSub('kitchen-sub')" style="background: #2c3e50; color: white; border: 1px solid #444; padding: 15px 5px; border-radius: 10px; font-size: 10px; font-weight: bold;">👩‍🍳 KITCHEN ▼</button>
+    <button onclick="toggleSub('solar-sub')" style="background: #2c3e50; color: white; border: 1px solid #444; padding: 15px 5px; border-radius: 10px; font-size: 10px; font-weight: bold;">☀️ SOLAR ▼</button>
+    <button onclick="toggleSub('decor-sub')" style="background: #2c3e50; color: white; border: 1px solid #444; padding: 15px 5px; border-radius: 10px; font-size: 10px; font-weight: bold;">🛋️ DECOR ▼</button>
 
-    <div class="category-box">
-        <button class="main-cat-btn" onclick="toggleSub('sol-sub')">☀️ Solar ▼</button>
-        <div id="sol-sub" class="sub-menu">
-            <button onclick="filterProducts('solar')">📡 Solar Kits</button>
-            <button onclick="filterProducts('lighting')">💡 Smart Bulbs</button>
-            <button onclick="filterProducts('lighting')">🔦 Floodlights</button>
-            <button onclick="filterProducts('lighting')">🚨 Emergency</button>
-        </div>
-    </div>
+    <button onclick="toggleSub('beddings-sub')" style="background: #2c3e50; color: white; border: 1px solid #444; padding: 15px 5px; border-radius: 10px; font-size: 10px; font-weight: bold;">🛏️ BEDDINGS ▼</button>
+    <button onclick="toggleSub('security-sub')" style="background: #2c3e50; color: white; border: 1px solid #444; padding: 15px 5px; border-radius: 10px; font-size: 10px; font-weight: bold;">📷 SECURITY ▼</button>
+    <button onclick="toggleSub('electronics-sub')" style="background: #2c3e50; color: white; border: 1px solid #444; padding: 15px 5px; border-radius: 10px; font-size: 10px; font-weight: bold;">📻 ELECTRONICS ▼</button>
 
-    <div class="category-box">
-        <button class="main-cat-btn" onclick="toggleSub('dec-sub')">🛋️ Decor ▼</button>
-        <div id="dec-sub" class="sub-menu">
-            <button onclick="filterProducts('flowers')">💐 Flowers</button>
-            <button onclick="filterProducts('furniture')">🪑 Furniture</button>
-            <button onclick="filterProducts('decor')">🖼️ Wall Art</button>
-            <button onclick="filterProducts('decor')">🧶 Carpets</button>
-        </div>
-    </div>
-
-    <div class="category-box">
-        <button class="main-cat-btn" onclick="toggleSub('bed-sub')">🛏️ Beddings ▼</button>
-        <div id="bed-sub" class="sub-menu">
-            <button onclick="filterProducts('beddings')">🛏️ Duvets</button>
-            <button onclick="filterProducts('beddings')">🧵 Sheets</button>
-            <button onclick="filterProducts('beddings')">☁️ Pillows</button>
-        </div>
-    </div>
-
-    <div class="category-box">
-        <button class="main-cat-btn" onclick="toggleSub('sec-sub')">📷 Security ▼</button>
-        <div id="sec-sub" class="sub-menu">
-            <button onclick="filterProducts('cctv')">📹 WiFi Bulbs</button>
-            <button onclick="filterProducts('cctv')">☀️ Solar Cam</button>
-            <button onclick="filterProducts('cctv')">🚫 Dummy Cam</button>
-        </div>
-    </div>
-
-    <div class="category-box">
-        <button class="main-cat-btn" onclick="toggleSub('elec-sub')">📻 Electronics ▼</button>
-        <div id="elec-sub" class="sub-menu">
-            <button onclick="filterProducts('radios')">📻 Radios</button>
-            <button onclick="filterProducts('machines')">🔊 Woofers</button>
-            <button onclick="filterProducts('electronics')">📺 TV Sets</button>
-        </div>
-    </div>
-
-    <div class="category-box">
-        <button class="main-cat-btn" onclick="toggleSub('digi-sub')">📱 Tech ▼</button>
-        <div id="digi-sub" class="sub-menu">
-            <button onclick="filterProducts('phones')">📱 Phones</button>
-            <button onclick="filterProducts('laptops')">💻 Laptops</button>
-            <button onclick="filterProducts('tech')">🔋 Powerbanks</button>
-        </div>
-    </div>
-
-    <div class="category-box">
-        <button class="main-cat-btn" onclick="toggleSub('fas-sub')">👟 Fashion ▼</button>
-        <div id="fas-sub" class="sub-menu">
-            <button onclick="filterProducts('shoes')">👟 Shoes</button>
-            <button onclick="filterProducts('clothing')">👕 Clothing</button>
-            <button onclick="filterProducts('fashion')">⌚ Watches</button>
-        </div>
-    </div>
-
-    <div class="category-box">
-        <button class="main-cat-btn" onclick="toggleSub('app-sub')">⚙️ Appliances ▼</button>
-        <div id="app-sub" class="sub-menu">
-            <button onclick="filterProducts('machines')">🍹 Blenders</button>
-            <button onclick="filterProducts('machines')">🧺 Washing</button>
-            <button onclick="filterProducts('machines')">🔌 Irons</button>
-        </div>
-    </div>
-
+    <button onclick="toggleSub('tech-sub')" style="background: #2c3e50; color: white; border: 1px solid #444; padding: 15px 5px; border-radius: 10px; font-size: 10px; font-weight: bold;">📱 TECH ▼</button>
+    <button onclick="toggleSub('fashion-sub')" style="background: #2c3e50; color: white; border: 1px solid #444; padding: 15px 5px; border-radius: 10px; font-size: 10px; font-weight: bold;">👟 FASHION ▼</button>
+    <button onclick="toggleSub('appliances-sub')" style="background: #2c3e50; color: white; border: 1px solid #444; padding: 15px 5px; border-radius: 10px; font-size: 10px; font-weight: bold;">⚙️ APPLIANCES ▼</button>
 </div>
 
-<div class="category-box" style="margin: 10px; border-radius: 12px; overflow: hidden;">
-    <button class="main-cat-btn" style="background:#ffd700; color:black; font-weight: bold; width: 100%; border: none;" onclick="toggleSub('aca-sub')">✅ Fast Moving Products ▼</button>
-    <div id="aca-sub" class="sub-menu">
-        <button onclick="filterProducts('lighting')">⚡ Rechargeable Lamp</button>
-        <button onclick="filterProducts('kitchen')">🛖 Kitchen Items</button>
-        <button onclick="filterProducts('shoes')">🏑 Trending Shoes</button>
-    </div>
+<div id="kitchen-sub" style="display: none; margin: 0 15px 15px; padding: 10px; background: #1a1a1a; border-radius: 10px; border-left: 4px solid #ffd700;">
+    <button onclick="filterProducts('dispenser')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; margin-bottom: 5px; border-radius: 5px; text-align: left;">💧 Water Dispensers ></button>
+    <button onclick="filterProducts('cooker')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; border-radius: 5px; text-align: left;">🔥 Gas Cookers ></button>
 </div>
+
+<div id="solar-sub" style="display: none; margin: 0 15px 15px; padding: 10px; background: #1a1a1a; border-radius: 10px; border-left: 4px solid #ffd700;">
+    <button onclick="filterProducts('solar-light')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; border-radius: 5px; text-align: left;">💡 Solar Security Lights ></button>
+</div>
+
+<div id="decor-sub" style="display: none; margin: 0 15px 15px; padding: 10px; background: #1a1a1a; border-radius: 10px; border-left: 4px solid #ffd700;">
+    <button onclick="filterProducts('wallpaper')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; border-radius: 5px; text-align: left;">🖼️ Wallpapers & Decor ></button>
+</div>
+
+<div id="beddings-sub" style="display: none; margin: 0 15px 15px; padding: 10px; background: #1a1a1a; border-radius: 10px; border-left: 4px solid #ffd700;">
+    <button onclick="filterProducts('duvet')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; margin-bottom: 5px; border-radius: 5px; text-align: left;">🛏️ Heavy Duvets ></button>
+    <button onclick="filterProducts('bedsheets')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; border-radius: 5px; text-align: left;">✨ Cotton Sheets ></button>
+</div>
+
+<div id="security-sub" style="display: none; margin: 0 15px 15px; padding: 10px; background: #1a1a1a; border-radius: 10px; border-left: 4px solid #ffd700;">
+    <button onclick="filterProducts('cctv')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; border-radius: 5px; text-align: left;">📹 WiFi Camera Bulbs ></button>
+</div>
+
+<div id="electronics-sub" style="display: none; margin: 0 15px 15px; padding: 10px; background: #1a1a1a; border-radius: 10px; border-left: 4px solid #ffd700;">
+    <button onclick="filterProducts('audio')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; border-radius: 5px; text-align: left;">🔊 Subwoofers & Audio ></button>
+</div>
+
+<div id="tech-sub" style="display: none; margin: 0 15px 15px; padding: 10px; background: #1a1a1a; border-radius: 10px; border-left: 4px solid #ffd700;">
+    <button onclick="filterProducts('smart')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; border-radius: 5px; text-align: left;">⌚ Smartwatches & Accessories ></button>
+</div>
+
+<div id="fashion-sub" style="display: none; margin: 0 15px 15px; padding: 10px; background: #1a1a1a; border-radius: 10px; border-left: 4px solid #ffd700;">
+    <button onclick="filterProducts('shoes')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; border-radius: 5px; text-align: left;">👟 Premium Sneakers ></button>
+</div>
+
+<div id="appliances-sub" style="display: none; margin: 0 15px 15px; padding: 10px; background: #1a1a1a; border-radius: 10px; border-left: 4px solid #ffd700;">
+    <button onclick="filterProducts('iron')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; margin-bottom: 5px; border-radius: 5px; text-align: left;">💨 Steam Irons ></button>
+    <button onclick="filterProducts('kettle')" style="width: 100%; background: #333; color: #ffd700; border: none; padding: 10px; border-radius: 5px; text-align: left;">☕ Electric Kettles ></button>
+</div>
+
 
 
   <h2 style="text-align: center; margin-top: 20px; font-family: sans-serif;">Our Products</h2>
