@@ -1351,21 +1351,26 @@ function filterProducts(category) {
         } else {
             products[i].style.display = "none";
         }
+    }<script>
+function toggleSub(id) {
+
+  // CLOSE ALL SUB MENUS FIRST
+  document.querySelectorAll('.sub-menu').forEach(menu => {
+    if (menu.id !== id) {
+      menu.style.display = "none";
     }
+  });
+
+  // TOGGLE CURRENT
+  let current = document.getElementById(id);
+  current.style.display = (current.style.display === "block") ? "none" : "block";
+}
+</script>
 }
 
 }
 
     
-    
-    
-  
-  
-    
-  
-  </script>
-          
-
 </script>
 
 </body>
