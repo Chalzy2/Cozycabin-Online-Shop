@@ -384,30 +384,47 @@ header {
     background: #f4f4f4; /* Light background to make cards pop */
 }
 
-/* This makes each product card look neat and balanced */
+/* The Grid: Works on all Android/iOS browsers */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Exactly 2 columns on all phones */
+    gap: 12px;
+    padding: 12px;
+    background: #fdfdfd; /* Clean background for better contrast */
+}
+
+/* The Card: Balanced for vertical scrolling */
 .product-card {
-    background: white;
-    border-radius: 8px;
-    padding: 8px;
+    background: #ffffff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
 }
 
+/* Universal Image Handling */
 .product-card img {
     width: 100%;
-    height: 140px; /* Uniform height for the 2-column view */
+    aspect-ratio: 1 / 1; /* Keeps images perfectly square on all devices */
     object-fit: contain;
-    cursor: zoom-in; /* Shows the user they can click to expand */
+    border-radius: 8px;
+    cursor: pointer;
 }
 
+/* Responsive Font for Titles */
 .product-card h3 {
-    font-size: 13px;
-    margin: 8px 0;
-    height: 32px; /* Keeps titles aligned even if one is longer */
+    font-size: 14px; /* Standard size for mobile readability */
+    margin: 10px 0;
+    color: #333;
+    line-height: 1.2;
+    height: 34px; /* Keeps two lines of text aligned */
     overflow: hidden;
+}
+
 }
   
   
