@@ -462,6 +462,50 @@ header {
     overflow: hidden;
     line-height: 1.2;
 }
+  /* This part fixes the layout stacking issue */
+.products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Forces two equal columns */
+    gap: 12px; /* Space between cards */
+    padding: 10px;
+    align-items: stretch; /* Keeps cards in the same row the same height */
+}
+
+.product-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes the button to the bottom */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+/* Forces all images to be the same square size */
+.product-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+    object-fit: contain;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+/* Keeps titles aligned so the price doesn't jump around */
+.product-card h3 {
+    font-size: 13px;
+    height: 32px; 
+    overflow: hidden;
+    margin: 5px 0;
+    line-height: 1.2;
+}
+
+.product-card p {
+    margin: 5px 0;
+    font-size: 14px;
+}
   
   
   
