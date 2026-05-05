@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="/Cozycabin log.png" type="image/png">
+    <link rel="apple-touch-icon" href="/Cozycabin log.png">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JVT3X5J5D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4JVT3X5J5D');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cozycabin Premium & Online Shop</title>
-  
-<!-- FAVICON (FIXED) -->
-<link rel="icon" href="/Cozycabin log.png" type="image/png">
-<link rel="apple-touch-icon" href="/Cozycabin log.png">
-
-<!-- GOOGLE ANALYTICS -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4JVT3X5J5D"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-4JVT3X5J5D');
-</script
+    <title>Cozycabin Premium & Shop</title>
+    
     <style>
         /* CSS: Professional Styles */
         body {
@@ -30,7 +29,7 @@ gtag('config', 'G-4JVT3X5J5D');
 
         .container { width: 100%; max-width: 500px; margin: 0 auto; }
 
-        /* Academy Section */
+        /* Academy Section (Bold Yellow Frame) */
         .academy-box {
             background: #0b0e14;
             border: 2px solid #ffd700;
@@ -40,7 +39,7 @@ gtag('config', 'G-4JVT3X5J5D');
             text-align: center;
         }
 
-        /* 9-Button Grid */
+        /* 9-Button Grid (Original Square Layout) */
         .main-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -89,28 +88,28 @@ gtag('config', 'G-4JVT3X5J5D');
             border-radius: 15px;
             overflow: hidden;
             border: 1px solid #ddd;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        .product-card img { width: 100%; height: 150px; object-fit: cover; }
+        .product-card img { width: 100%; height: 180px; object-fit: cover; }
 
-        .product-info { padding: 10px; text-align: center; color: #333; }
+        .product-info { padding: 12px; text-align: center; color: #333; }
 
         .whatsapp-btn {
             background: #25d366;
             color: white;
             text-decoration: none;
             display: block;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 10px;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 13px;
         }
 
-        /* Floating Button */
+        /* Floating WhatsApp Button */
         .float-wa {
             position: fixed;
-            bottom: 20px;
+            bottom: 25px;
             right: 20px;
             background: #25d366;
             width: 60px;
@@ -122,6 +121,7 @@ gtag('config', 'G-4JVT3X5J5D');
             font-size: 30px;
             z-index: 1000;
             text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -129,78 +129,85 @@ gtag('config', 'G-4JVT3X5J5D');
 
 <div class="container">
     <div class="academy-box">
-        <h1 style="color: #ffd700; font-weight: 900; margin: 0;">💎 COZYCABIN PREMIUM</h1>
+        <h1 style="color: #ffd700; font-weight: 900; margin: 0; font-size: 20px;">💎 COZYCABIN PREMIUM</h1>
         <p style="color: #888; font-size: 11px;">Masterclasses & Digital Library</p>
         <div style="display: flex; gap: 10px; margin-top: 15px;">
-            <button onclick="toggleSub('video-sub')" class="minor-btn" style="flex:1; color: #007bff;">🎥 Video Courses</button>
-            <button onclick="toggleSub('library-sub')" class="minor-btn" style="flex:1;">📚 E-Books</button>
+            <button onclick="toggleSub('video-sub')" class="minor-btn" style="flex:1; color: #007bff;">🎥 Video Academy ▼</button>
+            <button onclick="toggleSub('library-sub')" class="minor-btn" style="flex:1;">📚 Digital Library ▼</button>
         </div>
     </div>
 
-    <h3 style="text-align:center; color:#ffd700;">🌐 DIGITAL & GLOBAL</h3>
+    <h3 style="text-align:center; color:#ffd700; margin-top: 25px;">🌐 DIGITAL & GLOBAL SHOPPING</h3>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 15px;">
-        <button style="background: #f68b1e; border:none; color:white; padding:10px; border-radius:8px;">Jumia</button>
-        <button style="background: #ff9900; border:none; color:white; padding:10px; border-radius:8px;">Amazon</button>
-        <button style="background: #1a1a1a; border:1px solid #007bff; color:#007bff; padding:10px; border-radius:8px;">Alibaba</button>
+        <button style="background: #f68b1e; border:none; color:white; padding:12px; border-radius:10px; font-weight:bold;">🧡 Jumia</button>
+        <button style="background: #ff9900; border:none; color:white; padding:12px; border-radius:10px; font-weight:bold;">📦 Amazon</button>
+        <button style="background: #1a1a1a; border:1px solid #007bff; color:#007bff; padding:12px; border-radius:10px; font-weight:bold;">🌍 Alibaba</button>
     </div>
 
-    <div style="background: #ffd700; color: black; padding: 8px 0; font-weight: bold; margin: 20px 0;">
-        <marquee>🚚 COUNTRYWIDE DELIVERY VIA G4S | PAY ON DELIVERY IN NAIROBI | SHOP QUALITY WITH COZYCABIN 🇰🇪</marquee>
+    <div style="background: #ffd700; color: black; padding: 10px 0; font-weight: bold; margin: 25px 0;">
+        <marquee behavior="scroll" direction="left" scrollamount="7">
+            🚚 COUNTRYWIDE DELIVERY VIA G4S / SPEEDAF — 📍 PAY ON DELIVERY IN NAIROBI — ✅ QUALITY GUARANTEED BY COZYCABIN 🇰🇪
+        </marquee>
     </div>
 
-    <h3 style="text-align:center; color:#ffd700;">🇰🇪 LOCAL SHOP (KENYA)</h3>
+    <h3 style="text-align:center; color:#ffd700; margin-bottom: 15px;">🇰🇪 LOCAL SHOP (KENYA)</h3>
     <div class="main-grid">
-        <div class="main-btn" onclick="toggleSub('kitchen-sub')">🍳<br><small>KITCHEN ▼</small></div>
-        <div class="main-btn" onclick="toggleSub('solar-sub')">☀️<br><small>SOLAR ▼</small></div>
-        <div class="main-btn" onclick="toggleSub('decor-sub')">🛋️<br><small>DECOR ▼</small></div>
-        <div class="main-btn" onclick="toggleSub('beddings-sub')">🛏️<br><small>BEDS ▼</small></div>
-        <div class="main-btn" onclick="toggleSub('security-sub')">📷<br><small>SECURITY ▼</small></div>
-        <div class="main-btn" onclick="toggleSub('electro-sub')">📻<br><small>ELECTRO ▼</small></div>
-        <div class="main-btn" onclick="toggleSub('tech-sub')">📱<br><small>TECH ▼</small></div>
-        <div class="main-btn" onclick="toggleSub('fashion-sub')">👟<br><small>FASHION ▼</small></div>
-        <div class="main-btn" onclick="toggleSub('appliances-sub')">⚙️<br><small>TOOLS ▼</small></div>
+        <div class="main-btn" onclick="toggleSub('kitchen-sub')">👩‍🍳<br><span style="font-size:9px; font-weight:bold;">KITCHEN ▼</span></div>
+        <div class="main-btn" onclick="toggleSub('solar-sub')">☀️<br><span style="font-size:9px; font-weight:bold;">SOLAR ▼</span></div>
+        <div class="main-btn" onclick="toggleSub('decor-sub')">🛋️<br><span style="font-size:9px; font-weight:bold;">DECOR ▼</span></div>
+        <div class="main-btn" onclick="toggleSub('beddings-sub')">🛏️<br><span style="font-size:9px; font-weight:bold;">BEDDINGS ▼</span></div>
+        <div class="main-btn" onclick="toggleSub('security-sub')">📷<br><span style="font-size:9px; font-weight:bold;">SECURITY ▼</span></div>
+        <div class="main-btn" onclick="toggleSub('electro-sub')">📻<br><span style="font-size:9px; font-weight:bold;">ELECTRONICS ▼</span></div>
+        <div class="main-btn" onclick="toggleSub('tech-sub')">📱<br><span style="font-size:9px; font-weight:bold;">TECH ▼</span></div>
+        <div class="main-btn" onclick="toggleSub('fashion-sub')">👟<br><span style="font-size:9px; font-weight:bold;">FASHION ▼</span></div>
+        <div class="main-btn" onclick="toggleSub('appliances-sub')">⚙️<br><span style="font-size:9px; font-weight:bold;">APPLIANCES ▼</span></div>
     </div>
 
     <div id="kitchen-sub" class="sub-menu">
         <div class="minor-btn-grid">
-            <button onclick="showProducts('cutlery')" class="minor-btn">🍴 Cutlery</button>
-            <button onclick="showProducts('dispensers')" class="minor-btn">💧 Dispensers</button>
-            <button onclick="showProducts('hotpots')" class="minor-btn">🥘 Hotpots</button>
-            <button onclick="showProducts('racks')" class="minor-btn">🍽️ Dishracks</button>
+            <button onclick="showProducts('cutlery-list')" class="minor-btn">🍴 Cutlery</button>
+            <button onclick="showProducts('dispenser-list')" class="minor-btn">💧 Dispensers</button>
+            <button onclick="showProducts('hotpot-list')" class="minor-btn">🥘 Hotpots</button>
+            <button onclick="showProducts('rack-list')" class="minor-btn">🍽️ Dishracks</button>
         </div>
     </div>
 
-    <div id="cutlery" class="product-list" style="grid-template-columns: repeat(2, 1fr); gap: 10px;">
+    <div id="cutlery-list" class="product-list" style="grid-template-columns: repeat(2, 1fr); gap: 12px;">
         <div class="product-card">
-            <img src="IMAGE_URL_HERE" alt="Item">
+            <img src="YOUR_IMAGE_LINK" alt="Product">
             <div class="product-info">
-                <h4>Premium Cutlery</h4>
-                <p style="color:green; font-weight:bold;">KES 2,500</p>
-                <a href="https://wa.me/254700000000?text=I+want+to+order+Cutlery" class="whatsapp-btn">Order Now</a>
+                <h4 style="margin:5px 0; font-size:13px;">Premium Cutlery Set</h4>
+                <p style="color:#2e7d32; font-weight:bold; margin:5px 0;">KES 2,500</p>
+                <a href="https://wa.me/254700000000?text=I+want+to+order+the+Premium+Cutlery+Set" class="whatsapp-btn">Order Now</a>
             </div>
         </div>
     </div>
 
-    <a href="https://wa.me/254700000000" class="float-wa">💬</a>
+    <a href="https://wa.me/254700000000" class="float-wa">📱</a>
 </div>
 
 <script>
+    // Logic: Opens one category menu and hides everything else
     function toggleSub(id) {
         document.querySelectorAll('.sub-menu, .product-list').forEach(el => el.style.display = 'none');
         var x = document.getElementById(id);
-        if (x) x.style.display = "block";
+        if (x) {
+            x.style.display = "block";
+        }
     }
 
+    // Logic: Shows specific products and hides menus
     function showProducts(id) {
         document.querySelectorAll('.product-list').forEach(el => el.style.display = 'none');
         var x = document.getElementById(id);
         if (x) {
             x.style.display = "grid";
-            x.scrollIntoView({ behavior: 'smooth' });
+            x.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
 </script>
 
 </body>
-          </html>
-                                     
+</html>
+
+            
