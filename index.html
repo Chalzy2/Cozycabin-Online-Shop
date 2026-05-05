@@ -598,34 +598,32 @@ header {
     </div>
 
     <hr style="border: 0.5px solid #333; margin: 20px 10px;">
- <h3 style="text-align: center; color: white;">🇰🇪 LOCAL SHOP (KENYA)</h3>
+ <h3 style="text-align: center; color: yellow;">🇰🇪 LOCAL SHOP (KENYA)</h3>
 <div class="main-buttons-grid">
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 15px;">
-    
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 15px; background: #000;">
     <div onclick="toggleSub('kitchen-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
-        <span style="font-size: 20px;">👨‍🍳</span><br>
-        <span style="font-size: 10px; font-weight: bold;">KITCHEN ▼</span>
+        <span style="font-size: 18px;">👨‍🍳</span><br><span style="font-size: 9px; font-weight: bold;">KITCHEN ▼</span>
     </div>
-
     <div onclick="toggleSub('solar-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
-        <span style="font-size: 20px;">☀️</span><br>
-        <span style="font-size: 10px; font-weight: bold;">SOLAR ▼</span>
+        <span style="font-size: 18px;">☀️</span><br><span style="font-size: 9px; font-weight: bold;">SOLAR ▼</span>
+    </div>
+    <div onclick="toggleSub('decor-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
+        <span style="font-size: 18px;">🛋️</span><br><span style="font-size: 9px; font-weight: bold;">DECOR ▼</span>
+    </div>
     </div>
 
-    <div onclick="toggleSub('appliances-sub')" style="background: #232d3f; color: white; padding: 20px 5px; border-radius: 12px; text-align: center; border: 1px solid #3b4758;">
-        <span style="font-size: 20px;">⚙️</span><br>
-        <span style="font-size: 10px; font-weight: bold;">APPLIANCES ▼</span>
-    </div>
+<div id="kitchen-sub" class="category-menu" style="display: none; margin: 10px 15px; padding: 15px; background: #1a1a1a; border-radius: 15px; border-top: 3px solid #ffd700;">
+    <p style="color: #888; font-size: 11px; margin-bottom: 10px;">KITCHEN CATEGORIES:</p>
+    <button onclick="filterProducts('dispenser')" style="width: 100%; background: #232d3f; color: #ffd700; border: 1px solid #444; padding: 12px; margin-bottom: 8px; border-radius: 8px; text-align: left;">💧 Water Dispensers ></button>
+    <button onclick="filterProducts('cooker')" style="width: 100%; background: #232d3f; color: #ffd700; border: 1px solid #444; padding: 12px; border-radius: 8px; text-align: left;">🔥 Gas Cookers ></button>
 </div>
 
-<div id="kitchen-sub" class="sub-menu-container" style="display: none; margin: 0 15px 15px; padding: 10px; background: #111; border-radius: 10px; border-top: 2px solid #ffd700;">
-    <button onclick="filterProducts('dispenser')" style="width: 100%; background: #232d3f; color: #ffd700; border: 1px solid #444; padding: 12px; margin-bottom: 5px; border-radius: 8px; text-align: left;">💧 Water Dispensers</button>
-    <button onclick="filterProducts('cooker')" style="width: 100%; background: #232d3f; color: #ffd700; border: 1px solid #444; padding: 12px; border-radius: 8px; text-align: left;">🔥 Gas Cookers</button>
+<div id="solar-sub" class="category-menu" style="display: none; margin: 10px 15px; padding: 15px; background: #1a1a1a; border-radius: 15px; border-top: 3px solid #ffd700;">
+    <p style="color: #888; font-size: 11px; margin-bottom: 10px;">SOLAR CATEGORIES:</p>
+    <button onclick="filterProducts('solar-light')" style="width: 100%; background: #232d3f; color: #ffd700; border: 1px solid #444; padding: 12px; border-radius: 8px; text-align: left;">💡 Solar Security Lights ></button>
 </div>
 
-<div id="solar-sub" class="sub-menu-container" style="display: none; margin: 0 15px 15px; padding: 10px; background: #111; border-radius: 10px; border-top: 2px solid #ffd700;">
-    <button onclick="filterProducts('solar-light')" style="width: 100%; background: #232d3f; color: #ffd700; border: 1px solid #444; padding: 12px; border-radius: 8px; text-align: left;">💡 Solar Security Lights</button>
-</div>
   
 <div class="products-grid">
 
@@ -1226,16 +1224,16 @@ function toggleSub(id) {
     document.body.appendChild(modal);
 }
     function toggleSub(id) {
-    // 1. Hide ALL other sub-menus first so only one is open at a time
-    var allMenus = document.querySelectorAll('.sub-menu-container');
+    // This hides any open small menu before opening the new one
+    var allMenus = document.querySelectorAll('.category-menu');
     allMenus.forEach(menu => {
         if (menu.id !== id) menu.style.display = 'none';
     });
 
-    // 2. Open the selected menu
     var x = document.getElementById(id);
     if (x.style.display === "none" || x.style.display === "") {
         x.style.display = "block";
+        x.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     } else {
         x.style.display = "none";
     }
@@ -1251,6 +1249,8 @@ function filterProducts(category) {
             products[i].style.display = "none";
         }
     }
+}
+
 }
 
     
