@@ -91,6 +91,23 @@
 
         /* Floating Elements */
         .float-wa { position: fixed; bottom: 20px; right: 20px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    /* Updated for 4 Global Buttons */
+.global-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    padding: 0 10px;
+}
+.global-btn {
+    border: none;
+    color: white;
+    padding: 10px 2px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+        
     </style>
 </head>
 <body>
@@ -118,12 +135,17 @@
         </div>
     </div>
 
-    <h3 style="text-align:center; color:#ffd700; margin-top:30px;">🌐 DIGITAL & GLOBAL</h3>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 15px;">
-        <button style="background: #f68b1e; border:none; color:white; padding:12px; border-radius:12px; font-weight:bold;">Jumia</button>
-        <button style="background: #ff9900; border:none; color:white; padding:12px; border-radius:12px; font-weight:bold;">Amazon</button>
-        <button style="background: #1a1a1a; border:1px solid #007bff; color:#007bff; padding:12px; border-radius:12px; font-weight:bold;">Alibaba</button>
-    </div>
+    <h3 style="text-align:center; color:#ffd700; font-size:14px; margin-top:25px;">🌐 DIGITAL & GLOBAL</h3>
+<div class="global-grid">
+    <button class="global-btn" style="background:#f68b1e;">Jumia</button>
+    
+    <button class="global-btn" style="background:#ff9900;">Amazon</button>
+    
+    <button class="global-btn" style="background:#3dbb3d; border-bottom: 3px solid #005ea1;">Jiji</button>
+    
+    <button class="global-btn" style="background:#1a1a1a; border:1px solid #007bff; color:#007bff;">Alibaba</button>
+</div>
+
 
     <div style="background: #ffd700; color: black; padding: 10px 0; font-weight: bold; margin: 25px 0; overflow: hidden;">
         <marquee>🚚 COUNTRYWIDE DELIVERY VIA G4S | 📍 PAY ON DELIVERY IN NAIROBI | 🇰🇪 QUALITY BY COZYCABIN</marquee>
