@@ -1315,11 +1315,29 @@ function toggleSub(id) {
     }
       function toggleSub(id) {
     var x = document.getElementById(id);
+    if (!x) return; // Prevents errors if ID is missing
+
     if (x.style.display === "none" || x.style.display === "") {
         x.style.display = "block";
     } else {
         x.style.display = "none";
     }
+}
+
+// Special function for filtering products (like Dispenser)
+function filterProducts(category) {
+    let products = document.getElementsByClassName('product-card');
+    for (let i = 0; i < products.length; i++) {
+        let tags = products[i].getAttribute('data-category').toLowerCase();
+        if (tags.includes(category.toLowerCase())) {
+            products[i].style.display = "block";
+        } else {
+            products[i].style.display = "none";
+        }
+    }
+    
+    
+    
     
   
   
