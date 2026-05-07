@@ -274,12 +274,16 @@
 </div>
 
 <script>
+    // 1. Opens Minor Menus (like Cutlery, Hotpots, Dispensers)
     function toggleSub(id) {
         document.querySelectorAll('.minor-menu, .product-list').forEach(el => el.style.display = 'none');
         var x = document.getElementById(id);
-        if (x) x.style.display = "block";
+        if (x) {
+            x.style.display = "block";
+        }
     }
 
+    // 2. Opens Product Grids (like the actual shoe or cutlery listings)
     function showProducts(id) {
         document.querySelectorAll('.product-list').forEach(el => el.style.display = 'none');
         var x = document.getElementById(id);
@@ -288,21 +292,25 @@
             x.scrollIntoView({ behavior: 'smooth' });
         }
     }
-    document.addEventListener('click', function (e) {
-  if (e.target.tagName === 'IMG' && !e.target.closest('.image-overlay')) {
-    var overlay = document.getElementById('overlay');
-    var enlargedImg = document.getElementById('enlargedImg');
-    var captionText = document.getElementById('imgCaption');
-    
-    overlay.style.display = 'flex';
-    enlargedImg.src = e.target.src;
-    // This automatically shows the color name you put in the 'alt' tag
-    captionText.innerHTML = e.target.alt || ""; 
-  }
-});
 
-  }
-});
+    // 3. Handles Image Zooming and Color Labels
+    document.addEventListener('click', function (e) {
+        // Only triggers if clicking a product image, not the background
+        if (e.target.tagName === 'IMG' && !e.target.closest('.image-overlay')) {
+            var overlay = document.getElementById('overlay');
+            var enlargedImg = document.getElementById('enlargedImg');
+            var captionText = document.getElementById('imgCaption');
+            
+            if (overlay && enlargedImg) {
+                overlay.style.display = 'flex';
+                enlargedImg.src = e.target.src;
+                // Grabs the color name from the 'alt' attribute
+                captionText.innerHTML = e.target.alt || ""; 
+            }
+        }
+    });
+</script>
+
     
 </script>
 <div id="overlay" class="image-overlay" onclick="this.style.display='none'">
