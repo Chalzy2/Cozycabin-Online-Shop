@@ -107,52 +107,59 @@
     font-weight: bold;
     cursor: pointer;
 }
-        /* The background overlay */
+        /* 1. Updated Scroll Container (Optimized for 5 images) */
+.scroll-container {
+  display: flex;
+  overflow-x: auto; 
+  gap: 8px; /* Tighter gap to fit more on screen */
+  padding: 10px 0;
+  scrollbar-width: none; 
+}
+.scroll-container::-webkit-scrollbar { display: none; }
+
+.scroll-img {
+  width: 85px; /* Sized specifically to fit 5 maximum */
+  height: 85px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 0 0 auto; 
+  border: 1px solid #eee;
+}
+
+/* 2. New Universal Overlay (Centers everything & adds labels) */
 .image-overlay {
   display: none;
   position: fixed;
-  z-index: 9999;
+  z-index: 10000; /* Higher z-index to stay on top */
   left: 0; top: 0;
   width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.9);
-  cursor: zoom-out; /* Click anywhere to exit */
-}
-
-/* The actual enlarged image */
-.expanded-img {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 80%;
-  border: 3px solid white;
-  border-radius: 8px;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-        /* Container that allows side-to-side scrolling */
-.scroll-container {
-  display: flex;
-  overflow-x: auto; /* Enables horizontal scroll */
-  gap: 10px;
-  padding: 10px 0;
-  white-space: nowrap;
-  scrollbar-width: none; /* Hides scrollbar on Firefox */
-}
-
-.scroll-container::-webkit-scrollbar {
-  display: none; /* Hides scrollbar on Chrome/Safari/Redmi */
-}
-
-/* Small image size in the gallery */
-.scroll-img {
-  width: 100px; /* Small fixed size */
-  height: 100px;
-  object-fit: cover;
-  border-radius: 5px;
+  background-color: rgba(0,0,0,0.95);
   cursor: pointer;
-  flex: 0 0 auto; /* Prevents images from shrinking */
-  border: 1px solid #ddd;
+  
+  /* These lines center the image and text vertically/horizontally */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.expanded-img {
+  max-width: 90%;
+  max-height: 70%; /* Leaves room for the label below */
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+/* 3. Style for the Color Labels (Captions) */
+.img-caption {
+  color: white;
+  margin-top: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-shadow: 2px 2px 4px #000; /* Makes text pop on dark background */
+    }
+        
 }
         
         
@@ -262,16 +269,25 @@
   if (e.target.tagName === 'IMG' && !e.target.closest('.image-overlay')) {
     var overlay = document.getElementById('overlay');
     var enlargedImg = document.getElementById('enlargedImg');
-    overlay.style.display = 'block';
+    var captionText = document.getElementById('imgCaption');
+    
+    overlay.style.display = 'flex';
     enlargedImg.src = e.target.src;
+    // This automatically shows the color name you put in the 'alt' tag
+    captionText.innerHTML = e.target.alt || ""; 
+  }
+});
+
   }
 });
     
 </script>
 <div id="overlay" class="image-overlay" onclick="this.style.display='none'">
-  <span style="position:absolute; top:20px; right:35px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+  <span style="position:absolute; top:20px; right:30px; color:white; font-size:45px;">&times;</span>
   <img id="enlargedImg" class="expanded-img">
+  <div id="imgCaption" class="img-caption"></div>
 </div>
+
     
 </body>
 </html>
