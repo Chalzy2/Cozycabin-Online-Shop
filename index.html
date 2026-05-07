@@ -130,6 +130,31 @@
   top: 50%;
   transform: translateY(-50%);
 }
+        /* Container that allows side-to-side scrolling */
+.scroll-container {
+  display: flex;
+  overflow-x: auto; /* Enables horizontal scroll */
+  gap: 10px;
+  padding: 10px 0;
+  white-space: nowrap;
+  scrollbar-width: none; /* Hides scrollbar on Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Hides scrollbar on Chrome/Safari/Redmi */
+}
+
+/* Small image size in the gallery */
+.scroll-img {
+  width: 100px; /* Small fixed size */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 0 0 auto; /* Prevents images from shrinking */
+  border: 1px solid #ddd;
+}
+        
         
         
     </style>
