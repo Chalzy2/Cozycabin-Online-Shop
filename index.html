@@ -15,198 +15,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cozycabin Premium</title>
-    
-    <style>
-        body {
-            background-color: #000;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
+        <style>
+        /* BASE & CONTAINER */
+        body { background-color: #000; color: white; font-family: 'Arial', sans-serif; margin: 0; padding: 0; }
         .container { width: 100%; max-width: 450px; margin: 0 auto; padding-bottom: 50px; }
 
-        /* 1st Picture: Academy Premium Style */
-        .academy-header { text-align: center; padding: 30px 10px; }
-        .academy-header h1 { color: #ffd700; font-size: 24px; letter-spacing: 1.5px; margin-bottom: 5px; }
-        
-        .academy-card {
-            background: #1a1a1a;
-            border-radius: 25px;
-            margin: 15px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            border: 1px solid #333;
-        }
-
-        .icon-box {
-            width: 80px; height: 80px; border-radius: 15px; 
-            display: flex; align-items: center; justify-content: center;
-            margin-right: 20px; font-weight: bold; font-size: 10px;
-        }
-
-        /* 1st Picture: Main 9-Button Grid Style */
-        .main-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            padding: 15px;
-        }
-
-        .grid-btn {
-            background: #232d3f; /* Dark Blue from 1st picture */
-            border-radius: 18px;
-            padding: 20px 5px;
-            text-align: center;
-            border: 1px solid #3b4758;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .grid-btn:active { background: #2e7d32; border-color: #ffd700; } /* Turns Green on click */
-
-        .grid-btn span { display: block; font-size: 24px; margin-bottom: 8px; }
-        .grid-btn small { font-size: 10px; font-weight: bold; letter-spacing: 0.5px; }
-
-        /* Minor Menus */
-        .minor-menu {
-            display: none; background: #0b0e14; margin: 10px 15px;
-            padding: 15px; border-radius: 20px; border: 1px solid #ffd700;
-        }
-
-        .minor-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 buttons per row */
-    gap: 10px;
-    padding: 10px;
-}
-
-.minor-btn {
-    background: #232d3f; 
-    color: white;
-    border: 1px solid #3b4758;
-    border-radius: 10px;
-    padding: 12px 5px;
-    font-size: 11px;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: center;
-}
-
-
-        /* Product Display */
-        .product-list { display: none; padding: 15px; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .product-card { background: white; border-radius: 15px; overflow: hidden; color: #333; text-align: center; padding-bottom: 10px; }
-        .product-card img { width: 100%; height: 140px; object-fit: cover; }
-        .whatsapp-btn { background: #25d366; color: white; padding: 8px; border-radius: 8px; text-decoration: none; display: block; margin: 5px 10px; font-size: 11px; font-weight: bold; }
-
-        /* Floating Elements */
-        .float-wa { position: fixed; bottom: 20px; right: 20px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-    /* Updated for 4 Global Buttons */
-.global-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-    padding: 0 10px;
-}
-.global-btn {
-    border: none;
-    color: white;
-    padding: 10px 2px;
-    border-radius: 8px;
-    font-size: 10px;
-    font-weight: bold;
-    cursor: pointer;
-}
-        /* 1. Updated Scroll Container (Optimized for 5 images) */
-.scroll-container {
-  display: flex;
-  overflow-x: auto; 
-  gap: 8px; /* Tighter gap to fit more on screen */
-  padding: 10px 0;
-  scrollbar-width: none; 
-}
-.scroll-container::-webkit-scrollbar { display: none; }
-
-.scroll-img {
-  width: 85px; /* Sized specifically to fit 5 maximum */
-  height: 85px;
-  object-fit: cover;
-  border-radius: 6px;
-  cursor: pointer;
-  flex: 0 0 auto; 
-  border: 1px solid #eee;
-}
-
-/* 2. New Universal Overlay (Centers everything & adds labels) */
-.image-overlay {
-  display: none;
-  position: fixed;
-  z-index: 10000; /* Higher z-index to stay on top */
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.95);
-  cursor: pointer;
-  
-  /* These lines center the image and text vertically/horizontally */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.expanded-img {
-  max-width: 90%;
-  max-height: 70%; /* Leaves room for the label below */
-  border: 2px solid white;
-  border-radius: 10px;
-}
-
-/* 3. Style for the Color Labels (Captions) */
-.img-caption {
-  color: white;
-  margin-top: 15px;
-  font-size: 22px;
-  font-weight: bold;
-  font-family: sans-serif;
-  text-shadow: 2px 2px 4px #000; /* Makes text pop on dark background */
-    }
-        /* FROM image_67.png: The Cozycabin Identity */
-.main-grid { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 12px; 
-    padding: 15px; 
-}
-
-.grid-btn { 
-    background: #232d3f; 
-    border-radius: 20px; /* High rounding as seen in image_67.png */
-    border: 1px solid #3b4758;
-    padding: 20px 5px;
-    text-align: center;
-}
-
-/* NEW: Payment Buttons in Cozycabin Style */
-.pay-btn-cozy {
-    background: #232d3f; 
-    color: #ffd700; 
-    border: 1px solid #ffd700;
-    border-radius: 12px;
-    width: 100%;
-    padding: 15px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-           body { background-color: #000; color: white; font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        .container { width: 100%; max-width: 450px; margin: 0 auto; }
-
-        /* Currency Top Bar Group */
-        .top-bar { background: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
-        .currency-select { background: #232d3f; color: #ffd700; border: 1px solid #3b4758; border-radius: 5px; padding: 5px; font-size: 12px; }
-
-        /* Cozycabin 3x3 Grid Group (Exact Style) */
+        /* MAIN 3x3 GRID (Cozycabin Identity) */
         .main-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 15px; }
         .grid-btn { 
             background: #232d3f; border: 1px solid #3b4758; border-radius: 20px; 
@@ -216,79 +30,52 @@
         .grid-btn span { display: block; font-size: 24px; margin-bottom: 8px; }
         .grid-btn small { font-size: 10px; font-weight: bold; letter-spacing: 0.5px; display: block; color: #fff; }
 
-        /* Premium Checkout Group (The Bottom Station) */
-        .cozy-payment-box {
-            background: #1a1a1a; border: 1px solid #3b4758; border-radius: 20px;
-            padding: 20px; margin: 30px 15px; text-align: center;
+        /* MINOR MENUS (The Sub-categories like Kitchen) */
+        .minor-menu {
+            display: none; background: #0b0e14; margin: 10px 15px;
+            padding: 15px; border-radius: 20px; border: 1px solid #ffd700;
         }
-        .pay-btn-cozy {
-            background: #ffc439; color: #111; border: none; border-radius: 12px;
-            width: 100%; padding: 15px; font-weight: bold; cursor: pointer;
-             }.payment-methods-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Stays 3 per row like image_69.png */
-    gap: 8px;
-    margin-bottom: 20px;
-    background: #fff; 
-    padding: 10px;
-    border-radius: 12px;
-}
-
-.pay-icon-btn {
-    border: 1px solid #eee;
-    border-radius: 6px;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    height: 35px; /* Keeps all boxes the same height */
-}
-
-.pay-icon-btn img {
-    max-width: 100%;
-    max-height: 20px;
-    object-fit: contain;
-}
-       .cozy-payment-box {
-    background: #1a1a1a; 
-    border: 1px solid #3b4758; 
-    border-radius: 20px; 
-    padding: 12px; /* Reduced from 20px to make it smaller */
-    margin: 10px;  /* Reduced margin to bring it closer to the edges */
-    text-align: center;
-}
-
-/* Shrink the white icon grid slightly */
-.payment-methods-grid {
-    padding: 8px; 
-    margin-bottom: 12px;
-    gap: 5px;
-}
-        
-        .cozy-payment-box {
-    padding: 10px !important; /* Reduces internal space */
-    margin: 10px !important; /* Brings the box closer to the grid */
-    border-radius: 15px !important;
-}
-
-.payment-methods-grid {
-    padding: 5px !important;
-    gap: 5px !important;
-    margin-bottom: 10px !important;
-}
-
-.pay-icon-btn {
-    height: 25px !important; /* Makes the white icon boxes much shorter */
-}
-        
-        
-        
+        .minor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; }
+        .minor-btn {
+            background: #232d3f; color: white; border: 1px solid #3b4758;
+            border-radius: 10px; padding: 12px 5px; font-size: 11px; font-weight: bold;
+            cursor: pointer; text-align: center;
         }
+
+        /* PRODUCT DISPLAY */
+        .product-list { display: none; padding: 15px; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .product-card { background: white; border-radius: 15px; overflow: hidden; color: #333; text-align: center; padding-bottom: 10px; }
+        .product-card img { width: 100%; height: 140px; object-fit: cover; cursor: zoom-in; }
+        .whatsapp-btn { background: #25d366; color: white; padding: 8px; border-radius: 8px; text-decoration: none; display: block; margin: 5px 10px; font-size: 11px; font-weight: bold; }
+
+        /* SLIM PREMIUM CHECKOUT (Space-Saving) */
+        .cozy-payment-box {
+            background: #1a1a1a; border: 1px solid #3b4758; border-radius: 15px;
+            padding: 10px; margin: 10px; text-align: center;
+        }
+        .payment-methods-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;
+            background: #fff; padding: 5px; border-radius: 12px; margin-bottom: 10px;
+        }
+        .pay-icon-btn {
+            border: 1px solid #eee; border-radius: 6px; padding: 5px;
+            display: flex; align-items: center; justify-content: center;
+            background: white; height: 25px;
+        }
+        .pay-icon-btn img { max-width: 100%; max-height: 18px; object-fit: contain; }
+
+        /* IMAGE OVERLAY (Zoom) */
+        .image-overlay {
+            display: none; position: fixed; z-index: 10000; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
+            flex-direction: column; justify-content: center; align-items: center;
+        }
+        .expanded-img { max-width: 90%; max-height: 70%; border: 2px solid white; border-radius: 10px; }
+        .img-caption { color: white; margin-top: 15px; font-size: 18px; font-weight: bold; }
         
-        
-        
-    </style>
+    
+    
+         </style>
 </head>
 <body>
     <div class="container">
@@ -471,13 +258,12 @@
         Bank Online Transfer
     </button>
 </div>
-
-        <!-- 1. Load the PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 
 <script>
-    // 2. MAIN GRID LOGIC (Kitchen -> Sub-Buttons)
+    // FIX 1: Open Sub-Menus (Kitchen)
     function toggleMenu(id) {
+        // Close everything first to avoid clashing
         document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
             el.style.display = 'none';
         });
@@ -489,44 +275,36 @@
         }
     }
 
-    // 3. MINOR MENU LOGIC (Cutlery -> Products)
-    function showProducts(categoryId) {
+    // FIX 2: Open Products (Cutlery)
+    function showProducts(id) {
         document.querySelectorAll('.product-list').forEach(list => {
             list.style.display = 'none';
         });
 
-        const productList = document.getElementById(categoryId);
-        if (productList) {
-            productList.style.display = 'grid';
-            productList.scrollIntoView({ behavior: 'smooth' });
+        const list = document.getElementById(id);
+        if (list) {
+            list.style.display = 'grid';
+            list.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    // 4. IMAGE ZOOM LOGIC
+    // FIX 3: Zoom Overlay
     document.addEventListener('click', function (e) {
         if (e.target.tagName === 'IMG' && e.target.closest('.product-card')) {
             const overlay = document.getElementById('overlay');
             if (overlay) {
                 overlay.style.display = 'flex';
                 document.getElementById('enlargedImg').src = e.target.src;
-                document.getElementById('imgCaption').innerText = e.target.alt || "";
+                document.getElementById('imgCaption').innerText = e.target.alt || "Cozycabin Premium";
             }
         }
     });
 
-    // 5. SLIM PAYPAL BUTTON LOGIC
+    // FIX 4: Slim PayPal Button
     paypal.Buttons({
-        style: {
-            shape: 'pill',
-            color: 'gold',
-            layout: 'vertical',
-            label: 'paypal',
-            height: 35 // This makes the button shorter to save space
-        },
+        style: { shape: 'pill', color: 'gold', layout: 'vertical', height: 35 },
         createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{ amount: { value: '10.00' } }]
-            });
+            return actions.order.create({ purchase_units: [{ amount: { value: '10.00' } }] });
         }
     }).render('#paypal-button-container');
 </script>
