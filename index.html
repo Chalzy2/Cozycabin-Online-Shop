@@ -443,24 +443,34 @@
 </div>
 
     
-
-<script>
-    // 1. Opens Minor Menus (like Cutlery, Hotpots, Dispensers)
-    function toggleSub(id) {
-        document.querySelectorAll('.minor-menu, .product-list').forEach(el => el.style.display = 'none');
-        var x = document.getElementById(id);
-        if (x) {
-            x.style.display = "block";
+    <script>
+    // This function opens the Minor Menu (The buttons: Cutlery, Dispensers, etc.)
+    function toggleMenu(id) {
+        // Hide all major menus and product lists first
+        document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
+            el.style.display = 'none';
+        });
+        
+        // Show the Kitchen sub-buttons
+        const target = document.getElementById(id);
+        if (target) {
+            target.style.display = 'block';
+            target.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    // 2. Opens Product Grids (like the actual shoe or cutlery listings)
-    function showProducts(id) {
-        document.querySelectorAll('.product-list').forEach(el => el.style.display = 'none');
-        var x = document.getElementById(id);
-        if (x) {
-            x.style.display = "grid";
-            x.scrollIntoView({ behavior: 'smooth' });
+    // This function opens the actual Product Cards (The items with prices)
+    function showProducts(categoryId) {
+        // Hide all product lists to ensure only one category shows at a time
+        document.querySelectorAll('.product-list').forEach(list => {
+            list.style.display = 'none';
+        });
+
+        // Show the specific products (like 'cutlery' or 'dispenser')
+        const productList = document.getElementById(categoryId);
+        if (productList) {
+            productList.style.display = 'grid'; // Uses grid for your 2-column layout
+            productList.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
