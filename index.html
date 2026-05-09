@@ -211,7 +211,33 @@
         .pay-btn-cozy {
             background: #ffc439; color: #111; border: none; border-radius: 12px;
             width: 100%; padding: 15px; font-weight: bold; cursor: pointer;
-             }
+             }.payment-methods-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Stays 3 per row like image_69.png */
+    gap: 8px;
+    margin-bottom: 20px;
+    background: #fff; 
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.pay-icon-btn {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    height: 35px; /* Keeps all boxes the same height */
+}
+
+.pay-icon-btn img {
+    max-width: 100%;
+    max-height: 20px;
+    object-fit: contain;
+}
+        
         
         
         
@@ -367,19 +393,38 @@
     <a href="https://wa.me/254702468460" class="float-wa">📱</a>
 
 </div>
-         GLOBAL PAYMENTS 
-    <!-- BOTTOM CHECKOUT GROUP -->
-<div class="cozy-payment-box">
+         <div class="cozy-payment-box">
     <p style="color: #ffd700; font-size: 13px; font-weight: bold; margin-bottom: 15px;">💎 COZYCABIN PREMIUM CHECKOUT</p>
-    
-    <!-- PayPal Button Container -->
-    <div id="paypal-button-container" style="max-width: 300px; margin: 0 auto;"></div>
-    
-    <div style="margin-top: 15px;">
-        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" alt="Payment Methods" style="width: 150px; opacity: 0.8;">
-        <p style="font-size: 10px; color: #888; margin-top: 5px;">Secure International Payment</p>
+
+    <!-- THE ICON GRID: M-Pesa now sits with the Global Brands -->
+    <p style="font-size: 10px; color: #888; margin-bottom: 8px;">GUARANTEED SAFE CHECKOUT</p>
+    <div class="payment-methods-grid">
+        <div class="pay-icon-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"></div>
+        <div class="pay-icon-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+        <div class="pay-icon-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"></div>
+        
+        <!-- M-Pesa Icon Added Here -->
+        <div class="pay-icon-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/1024px-M-PESA_LOGO-01.svg.png" alt="M-Pesa"></div>
+        
+        <div class="pay-icon-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex"></div>
+        <div class="pay-icon-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Discover_Card_logo.svg" alt="Discover"></div>
     </div>
+
+    <!-- MAIN ACTION BUTTONS -->
+    <div id="paypal-button-container"></div> 
+
+    <hr style="border:0; border-top:1px solid #333; margin: 20px 0;">
+
+    <!-- DIRECT M-PESA ACTION BUTTON -->
+    <button class="local-pay-btn" style="background: #2db742;" onclick="showMpesa()">
+        Pay with M-PESA 
+    </button>
+    
+    <button class="local-pay-btn" style="background: #ffffff; color: #0033a0; border: 1px solid #0033a0;" onclick="showBank()">
+        Bank Online Transfer
+    </button>
 </div>
+
     
 
 <script>
