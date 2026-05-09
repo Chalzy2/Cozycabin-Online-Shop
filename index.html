@@ -168,7 +168,87 @@
 .exit-btn:active {
     background: #333; /* Visual feedback for the customer */
 }
+     /* Top Bar with Currency */
+.top-nav {
+    display: flex;
+    justify-content: flex-end; /* Pushes content to the right */
+    padding: 10px 15px;
+    background: #000;
+}
+
+.currency-select {
+    background: #1a1a1a;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+/* Matching the Title Styles */
+.brand-header {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.brand-logo {
+    width: 60px; /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.brand-title {
+    color: #ffd700; /* Gold to match Shop titles */
+    font-size: 14px; /* Same size as Local Shop title */
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.brand-tagline {
+    color: #888;
+    font-size: 10px;
+    margin-top: 2px;
+}
             
+     .brand-logo {
+    width: 100%;
+    max-width: 150px; /* Increased slightly for better visibility */
+    height: auto;
+    display: block;
+    margin: 10px auto 5px auto;
+    object-fit: contain;
+    
+    /* Premium Frame Effect */
+    border: 2px solid #ffd700; /* Gold frame */
+    border-radius: 20px; /* Rounded corners to match your buttons */
+    box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.3); /* Soft gold glow */
+    padding: 5px; /* Space between logo and frame */
+     }
+          .brand-logo {
+    width: 100%;
+    max-width: 150px; /* Perfect size for your Redmi screen */
+    height: auto;
+    display: block;
+    margin: 10px auto 8px auto;
+    object-fit: contain;
+    
+    /* THE YELLOW FRAME */
+    border: 2px solid #ffd700; /* Classic Gold/Yellow Frame */
+    border-radius: 15px; /* Matches your grid button curves */
+    padding: 5px; /* Space inside the frame */
+    background: rgba(255, 255, 255, 0.05); /* Very slight tint inside */
+    box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.2); /* Subtle outer glow */
+}
+
+/* Ensure the title below matches the frame color */
+.brand-title {
+    color: #ffd700; 
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
             
     
     
@@ -177,20 +257,21 @@
 <body>
     <div class="container">
     <!-- GROUP 1: TOP FEATURES (Currency Switcher) -->
-    <div class="top-bar">
-        <small style="color:#888;">🚢 Free Worldwide Shipping</small>
-        <select class="currency-select">
-            <option>🇰🇪 KSH</option>
-            <option>🇺🇸 USD</option>
-        </select>
-    </div>
+    <!-- 1. Currency at Far Top Right -->
+<div class="top-nav">
+    <select class="currency-select">
+        <option>🇰🇪 KSH</option>
+        <option>🇺🇸 USD</option>
+    </select>
+</div>
 
-<div class="container">
+<!-- 2. Framed Logo and Compact Title -->
+<div class="brand-header">
+    <img src="your_logo_image.png" alt="Cozycabin Logo" class="brand-logo">
+    <h3 style="text-align:center; color:#ffd700; margin-bottom:15px;">💎COZYCABIN PREMIUM</h3>
+    <p class="brand-tagline">Masterclasses & Digital Library</p>
+</div>
 
-    <div class="academy-header">
-              <h1>💎 COZYCABIN <br> PREMIUM</h1>
-        <p style="color: #888; font-size: 12px;">Masterclasses & Digital Library</p>
-    </div>
 <!-- ACADEMY COURSE CARD -->
 <div class="academy-card">
     <div class="academy-icon bg-blue">COURSE</div>
