@@ -553,17 +553,20 @@
             });
         }
     }).render('#paypal-button-container');
-
-       function openModal(imgSrc) {
+function openModal(imgSrc) {
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("expandedImg");
-    modal.style.display = "block";
-    modalImg.src = imgSrc;
+    
+    if (modal && modalImg) {
+        modal.style.display = "block";
+        modalImg.src = imgSrc;
+    }
 }
 
 function closeModal() {
     document.getElementById("imageModal").style.display = "none";
 }
+
     
 </script>
 
