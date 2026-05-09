@@ -497,8 +497,22 @@
     if (minorGrid) {
         minorGrid.style.display = 'block';
         minorGrid.scrollIntoView({ behavior: 'smooth' }); // Centers the buttons on your Redmi screen
+
     }
+        function toggleSub(id) {
+    // Hide all other open menus first for a clean look
+    document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
+        el.style.display = 'none';
+    });
+    
+    // Show the one you clicked
+    const target = document.getElementById(id);
+    if (target) {
+        target.style.display = 'block';
+        target.scrollIntoView({ behavior: 'smooth' }); // Helps on your Redmi screen
     }
+        }
+        
     
     
     
