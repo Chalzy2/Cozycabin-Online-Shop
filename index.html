@@ -460,81 +460,55 @@
     
     <!-- Load PayPal SDK first -->
 <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-
 <script>
-    /**
-     * 1. MASTER TOGGLE: Handles Main Grid & Sub-Menus
-     * Opens 'kitchen-sub' or other category buttons
-     */
+    // 1. FIXED TOGGLE: This opens the Kitchen Sub-buttons
     function toggleMenu(id) {
-        // Hide all minor menus and product lists to keep the view clean
-        document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
-            el.style.display = 'none';
-        });
-        
+        // Hide ALL other menus first to prevent clashing
+        const menus = document.querySelectorAll('.minor-menu, .product-list');
+        menus.forEach(m => m.style.display = 'none');
+
         const target = document.getElementById(id);
         if (target) {
-            target.style.display = 'block';
-            // Smooth scroll on Redmi phones so the user sees the new buttons
+            target.style.display = 'block'; // Force display to block
+            target.style.visibility = 'visible'; // Ensure it's not invisible
             target.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            console.error("Cozycabin Error: Could not find ID: " + id);
         }
     }
 
-    /**
-     * 2. PRODUCT DISPLAY: Shows the items (Cutlery, Dispensers, etc.)
-     */
-    function showProducts(categoryId) {
-        // Hide all product lists before showing the new selection
+    // 2. FIXED SHOW: This opens the actual Products (Cutlery, etc.)
+    function showProducts(id) {
+        // Hide only product lists so the sub-buttons stay visible
         document.querySelectorAll('.product-list').forEach(list => {
             list.style.display = 'none';
         });
 
-        const productList = document.getElementById(categoryId);
-        if (productList) {
-            productList.style.display = 'grid'; // Ensures your 2-column product layout
-            productList.scrollIntoView({ behavior: 'smooth' });
+        const list = document.getElementById(id);
+        if (list) {
+            list.style.display = 'grid'; // Maintain your 2-column layout
+            list.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    /**
-     * 3. IMAGE ZOOM: Handles the Overlay and Caption
-     */
+    // 3. ZOOM LOGIC: Fixed to work with your specific HTML structure
     document.addEventListener('click', function (e) {
-        // Only triggers when clicking product images
         if (e.target.tagName === 'IMG' && e.target.closest('.product-card')) {
             const overlay = document.getElementById('overlay');
-            const enlargedImg = document.getElementById('enlargedImg');
-            const captionText = document.getElementById('imgCaption');
-            
-            if (overlay && enlargedImg) {
+            if (overlay) {
                 overlay.style.display = 'flex';
-                enlargedImg.src = e.target.src;
-                // Grabs the alt text for the caption
-                captionText.innerText = e.target.alt || "Cozycabin Premium Product"; 
+                document.getElementById('enlargedImg').src = e.target.src;
+                document.getElementById('imgCaption').innerText = e.target.alt || "";
             }
         }
     });
 
-    /**
-     * 4. PAYPAL INTEGRATION: Premium Checkout
-     */
+    // 4. PREMIUM CHECKOUT: PayPal Buttons
     paypal.Buttons({
-        style: {
-            shape: 'pill',
-            color: 'gold',
-            layout: 'vertical',
-            label: 'checkout'
-        },
+        style: { shape: 'pill', color: 'gold', layout: 'vertical' },
         createOrder: function(data, actions) {
             return actions.order.create({
-                purchase_units: [{
-                    amount: { value: '10.00' } // Example price
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                alert('Transaction completed by ' + details.payer.name.given_name);
+                purchase_units: [{ amount: { value: '10.00' } }]
             });
         }
     }).render('#paypal-button-container');
