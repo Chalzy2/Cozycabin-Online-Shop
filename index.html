@@ -76,12 +76,25 @@
             padding: 15px; border-radius: 20px; border: 1px solid #ffd700;
         }
 
-        .minor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .minor-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 buttons per row */
+    gap: 10px;
+    padding: 10px;
+}
 
-        .minor-btn {
-            background: #232d3f; color: #ffd700; border: 1px solid #444;
-            padding: 12px; border-radius: 10px; font-weight: bold; font-size: 12px;
-        }
+.minor-btn {
+    background: #232d3f; 
+    color: white;
+    border: 1px solid #3b4758;
+    border-radius: 10px;
+    padding: 12px 5px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
+
 
         /* Product Display */
         .product-list { display: none; padding: 15px; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -309,14 +322,18 @@
         <div class="grid-btn" onclick="toggleSub('fashion-sub')"><span>👟</span><small>FASHION ▼</small></div>
         <div class="grid-btn" onclick="toggleSub('tools-sub')"><span>⚙️</span><small>APPLIANCES ▼</small></div>
     </div>
+<div id="kitchen-sub" class="minor-menu">
+    <div class="minor-grid">
+        <button onclick="showProducts('cutlery')" class="minor-btn">🍴 Cutlery</button>
+        <button onclick="showProducts('dispenser')" class="minor-btn">💧 Dispensers</button>
+        <button onclick="showProducts('hotpots')" class="minor-btn">🥘 Hotpots</button>
+        <button onclick="showProducts('racks')" class="minor-btn">🍽️ Dishracks</button>
+        <button onclick="showProducts('flasks')" class="minor-btn">☕ Flasks</button>
+        <button onclick="showProducts('bottles')" class="minor-btn">🍼 Bottles</button>
+        <button onclick="showProducts('cookers')" class="minor-btn">🍳 Cookers</button>
+        <button onclick="showProducts('blenders')" class="minor-btn">🌪️ Blenders</button>
+    </div>
 
-    <div id="kitchen-sub" class="minor-menu">
-        <div class="minor-grid">
-            <button onclick="showProducts('cutlery')" class="minor-btn">🍴 Cutlery</button>
-            <button onclick="showProducts('dispenser')" class="minor-btn">💧 Dispensers</button>
-            <button onclick="showProducts('hotpots')" class="minor-btn">🥘 Hotpots</button>
-            <button onclick="showProducts('racks')" class="minor-btn">🍽️ Dishracks</button>
-        </div>
     </div>
 <div id="cutlery" class="product-list" style="display:none;">
     
