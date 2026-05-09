@@ -123,6 +123,34 @@
 .academy-info p.yellow-text {
     color: #ffc107; /* Yellow text for E-book sub-links */
 }
+            /* Centered Row for Global Buttons */
+.global-grid {
+    display: flex; /* Changed from grid to flex for better centering */
+    justify-content: center; 
+    gap: 10px;
+    padding: 10px 15px;
+    flex-wrap: nowrap; /* Keeps them in one line */
+}
+
+.global-btn {
+    flex: 1; /* Makes all buttons the same width */
+    max-width: 90px; /* Prevents them from getting too wide */
+    border-radius: 8px;
+    padding: 10px 2px;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    color: white;
+}
+
+/* Original Brand Colors */
+.btn-jumia { background: #f68b1e; }
+.btn-amazon { background: #ff9900; color: black; }
+.btn-jiji { background: #3bb34a; }
+.btn-alibaba { background: #1a1a1a; border: 1px solid #00529b; color: #00529b; }
+            
             
     
     
@@ -142,7 +170,7 @@
 <div class="container">
 
     <div class="academy-header">
-        <h1>💎 COZYCABIN <br> PREMIUM</h1>
+              <h1>💎 COZYCABIN <br> PREMIUM</h1>
         <p style="color: #888; font-size: 12px;">Masterclasses & Digital Library</p>
     </div>
 <!-- ACADEMY COURSE CARD -->
@@ -164,16 +192,14 @@
 </div>
 
 
-    <h3 style="text-align:center; color:#ffd700; font-size:14px; margin-top:25px;">🌐 DIGITAL & GLOBAL SHOP</h3>
+    <h3 style="text-align:center; color:#ffd700; margin-bottom:15px;">🌐 DIGITAL & GLOBAL SHOP</h3>
 <div class="global-grid">
-    <button class="global-btn" style="background:#f68b1e;">Jumia</button>
-    
-    <button class="global-btn" style="background:#ff9900;">Amazon</button>
-    
-    <button class="global-btn" style="background:#3dbb3d; border-bottom: 3px solid #005ea1;">Jiji</button>
-    
-    <button class="global-btn" style="background:#1a1a1a; border:1px solid #007bff; color:#007bff;">Alibaba</button>
+    <div class="global-btn btn-jumia">Jumia</div>
+    <div class="global-btn btn-amazon">Amazon</div>
+    <div class="global-btn btn-jiji">Jiji</div>
+    <div class="global-btn btn-alibaba">Alibaba</div>
 </div>
+
 
 
     <div style="background: #ffd700; color: black; padding: 10px 0; font-weight: bold; margin: 25px 0; overflow: hidden;">
