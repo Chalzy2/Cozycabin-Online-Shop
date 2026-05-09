@@ -159,6 +159,35 @@
   font-family: sans-serif;
   text-shadow: 2px 2px 4px #000; /* Makes text pop on dark background */
     }
+        /* FROM image_67.png: The Cozycabin Identity */
+.main-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 12px; 
+    padding: 15px; 
+}
+
+.grid-btn { 
+    background: #232d3f; 
+    border-radius: 20px; /* High rounding as seen in image_67.png */
+    border: 1px solid #3b4758;
+    padding: 20px 5px;
+    text-align: center;
+}
+
+/* NEW: Payment Buttons in Cozycabin Style */
+.pay-btn-cozy {
+    background: #232d3f; 
+    color: #ffd700; 
+    border: 1px solid #ffd700;
+    border-radius: 12px;
+    width: 100%;
+    padding: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+        
+        
         
 }
         
@@ -303,6 +332,20 @@
     <a href="https://wa.me/254702468460" class="float-wa">📱</a>
 
 </div>
+         // 1.Last part of html
+    <!-- BOTTOM CHECKOUT GROUP -->
+<div class="cozy-payment-box">
+    <p style="color: #ffd700; font-size: 13px; font-weight: bold; margin-bottom: 15px;">💎 COZYCABIN PREMIUM CHECKOUT</p>
+    
+    <!-- PayPal Button Container -->
+    <div id="paypal-button-container" style="max-width: 300px; margin: 0 auto;"></div>
+    
+    <div style="margin-top: 15px;">
+        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" alt="Payment Methods" style="width: 150px; opacity: 0.8;">
+        <p style="font-size: 10px; color: #888; margin-top: 5px;">Secure International Payment</p>
+    </div>
+</div>
+    
 
 <script>
     // 1. Opens Minor Menus (like Cutlery, Hotpots, Dispensers)
@@ -340,6 +383,12 @@
             }
         }
     });
+    // This script will handle your future Currency and Payment logic
+function processPayment() {
+    // This is where you will connect your PayPal or Stripe link later
+    alert("Redirecting to Secure Payment...");
+}
+    
 </script>
 
     
