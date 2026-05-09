@@ -258,56 +258,54 @@
         Bank Online Transfer
     </button>
 </div>
+<!-- 1. Load PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 
 <script>
-    // FIX 1: Open Sub-Menus (Kitchen)
-    function toggleMenu(id) {
-        // Close everything first to avoid clashing
+    // FIX: Match the name 'toggleSub' used in your HTML buttons
+    function toggleSub(id) {
+        // Hide all minor menus and all product lists to keep it clean
         document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
             el.style.display = 'none';
         });
         
         const target = document.getElementById(id);
         if (target) {
-            target.style.display = 'block';
+            target.style.display = 'block'; // This opens 'kitchen-sub'
             target.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    // FIX 2: Open Products (Cutlery)
-    function showProducts(id) {
+    // This shows the actual products (like Cutlery or Dispensers)
+    function showProducts(categoryId) {
+        // Hide only the product lists so the sub-buttons stay visible
         document.querySelectorAll('.product-list').forEach(list => {
             list.style.display = 'none';
         });
 
-        const list = document.getElementById(id);
-        if (list) {
-            list.style.display = 'grid';
-            list.scrollIntoView({ behavior: 'smooth' });
+        const productList = document.getElementById(categoryId);
+        if (productList) {
+            productList.style.display = 'grid'; // Force open the grid
+            productList.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    // FIX 3: Zoom Overlay
-    document.addEventListener('click', function (e) {
-        if (e.target.tagName === 'IMG' && e.target.closest('.product-card')) {
-            const overlay = document.getElementById('overlay');
-            if (overlay) {
-                overlay.style.display = 'flex';
-                document.getElementById('enlargedImg').src = e.target.src;
-                document.getElementById('imgCaption').innerText = e.target.alt || "Cozycabin Premium";
-            }
-        }
-    });
-
-    // FIX 4: Slim PayPal Button
+    // PayPal Premium Checkout (Slim Version for space)
     paypal.Buttons({
-        style: { shape: 'pill', color: 'gold', layout: 'vertical', height: 35 },
+        style: {
+            shape: 'pill',
+            color: 'gold',
+            layout: 'vertical',
+            height: 35 
+        },
         createOrder: function(data, actions) {
-            return actions.order.create({ purchase_units: [{ amount: { value: '10.00' } }] });
+            return actions.order.create({
+                purchase_units: [{ amount: { value: '10.00' } }]
+            });
         }
     }).render('#paypal-button-container');
 </script>
+
 
 
 <div id="overlay" class="image-overlay" onclick="this.style.display='none'">
