@@ -442,35 +442,51 @@
 <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 
 <script>
-    // FIX: Match the name 'toggleSub' used in your HTML buttons
+    // 1. Function to open the Minor Menus (Kitchen, Solar, Decor, etc.)
     function toggleSub(id) {
-        // Hide all minor menus and all product lists to keep it clean
+        // Hide everything else first for a clean look
         document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
             el.style.display = 'none';
         });
         
         const target = document.getElementById(id);
         if (target) {
-            target.style.display = 'block'; // This opens 'kitchen-sub'
+            target.style.display = 'block';
             target.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    // This shows the actual products (like Cutlery or Dispensers)
+    // 2. Function to show the actual product photos (Cutlery, Dispensers, etc.)
     function showProducts(categoryId) {
-        // Hide only the product lists so the sub-buttons stay visible
-        document.querySelectorAll('.product-list').forEach(list => {
-            list.style.display = 'none';
+        // Hide the minor buttons menu so only photos show
+        document.querySelectorAll('.minor-menu').forEach(menu => {
+            menu.style.display = 'none';
         });
 
         const productList = document.getElementById(categoryId);
         if (productList) {
-            productList.style.display = 'grid'; // Force open the grid
+            productList.style.display = 'grid';
             productList.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    // PayPal Premium Checkout (Slim Version for space)
+    // 3. The "Back" button logic you requested
+    function backToMinor() {
+        // Hide the photo lists
+        document.querySelectorAll('.product-list').forEach(list => {
+            list.style.display = 'none';
+        });
+
+        // Show the minor buttons (Cutlery, Dispensers) again
+        // Note: Change 'kitchen-sub' if your ID is named differently
+        const minorGrid = document.getElementById('kitchen-sub') || document.querySelector('.minor-menu');
+        if (minorGrid) {
+            minorGrid.style.display = 'block';
+            minorGrid.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    // 4. PayPal Setup
     paypal.Buttons({
         style: {
             shape: 'pill',
@@ -484,43 +500,9 @@
             });
         }
     }).render('#paypal-button-container');
-    
-      }
-    function backToMinor() {
-    // 1. Hide the photos/product list
-    document.querySelectorAll('.product-list').forEach(list => {
-        list.style.display = 'none';
-    });
-
-    // 2. Show the minor buttons grid again
-    const minorGrid = document.querySelector('.minor-menu');
-    if (minorGrid) {
-        minorGrid.style.display = 'block';
-        minorGrid.scrollIntoView({ behavior: 'smooth' }); // Centers the buttons on your Redmi screen
-
-    }
-        function toggleSub(id) {
-    // Hide all other open menus first for a clean look
-    document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
-        el.style.display = 'none';
-    });
-    
-    // Show the one you clicked
-    const target = document.getElementById(id);
-    if (target) {
-        target.style.display = 'block';
-        target.scrollIntoView({ behavior: 'smooth' }); // Helps on your Redmi screen
-    }
-        }
-        
-    
-    
-    
 </script>
+
     
-
-
-
 <div id="overlay" class="image-overlay" onclick="this.style.display='none'">
   <span style="position:absolute; top:20px; right:30px; color:white; font-size:45px;">&times;</span>
   <img id="enlargedImg" class="expanded-img">
