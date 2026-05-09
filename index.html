@@ -186,16 +186,51 @@
     font-weight: bold;
     margin-top: 10px;
 }
+           body { background-color: #000; color: white; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .container { width: 100%; max-width: 450px; margin: 0 auto; }
+
+        /* Currency Top Bar Group */
+        .top-bar { background: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
+        .currency-select { background: #232d3f; color: #ffd700; border: 1px solid #3b4758; border-radius: 5px; padding: 5px; font-size: 12px; }
+
+        /* Cozycabin 3x3 Grid Group (Exact Style) */
+        .main-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 15px; }
+        .grid-btn { 
+            background: #232d3f; border: 1px solid #3b4758; border-radius: 20px; 
+            padding: 20px 5px; text-align: center; cursor: pointer; transition: 0.3s;
+        }
+        .grid-btn:active { background: #2e7d32; border-color: #ffd700; }
+        .grid-btn span { display: block; font-size: 24px; margin-bottom: 8px; }
+        .grid-btn small { font-size: 10px; font-weight: bold; letter-spacing: 0.5px; display: block; color: #fff; }
+
+        /* Premium Checkout Group (The Bottom Station) */
+        .cozy-payment-box {
+            background: #1a1a1a; border: 1px solid #3b4758; border-radius: 20px;
+            padding: 20px; margin: 30px 15px; text-align: center;
+        }
+        .pay-btn-cozy {
+            background: #ffc439; color: #111; border: none; border-radius: 12px;
+            width: 100%; padding: 15px; font-weight: bold; cursor: pointer;
+             }
         
         
         
-}
+        }
         
         
         
     </style>
 </head>
 <body>
+    <div class="container">
+    <!-- GROUP 1: TOP FEATURES (Currency Switcher) -->
+    <div class="top-bar">
+        <small style="color:#888;">🚢 Free Worldwide Shipping</small>
+        <select class="currency-select">
+            <option>🇰🇪 KSH</option>
+            <option>🇺🇸 USD</option>
+        </select>
+    </div>
 
 <div class="container">
 
