@@ -367,7 +367,7 @@
     <a href="https://wa.me/254702468460" class="float-wa">📱</a>
 
 </div>
-         // 1.Last part of html
+         GLOBAL PAYMENTS 
     <!-- BOTTOM CHECKOUT GROUP -->
 <div class="cozy-payment-box">
     <p style="color: #ffd700; font-size: 13px; font-weight: bold; margin-bottom: 15px;">💎 COZYCABIN PREMIUM CHECKOUT</p>
@@ -423,6 +423,22 @@ function processPayment() {
     // This is where you will connect your PayPal or Stripe link later
     alert("Redirecting to Secure Payment...");
 }
+    <!-- SCRIPTS (The Brain) -->
+<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+<script>
+    function toggleMenu(id) {
+        document.querySelectorAll('.product-list').forEach(el => el.style.display = 'none');
+        var x = document.getElementById(id);
+        if (x) x.style.display = "grid";
+    }
+
+    // PayPal Button Logic
+    paypal.Buttons({
+        style: { shape: 'pill', color: 'gold', layout: 'vertical', label: 'checkout' },
+        createOrder: function(data, actions) {
+            return actions.order.create({ purchase_units: [{ amount: { value: '10.00' } }] });
+        }
+    }).render('#paypal-button-container');
     
 </script>
 
