@@ -266,6 +266,21 @@
     gap: 5px;
 }
         
+        .cozy-payment-box {
+    padding: 10px !important; /* Reduces internal space */
+    margin: 10px !important; /* Brings the box closer to the grid */
+    border-radius: 15px !important;
+}
+
+.payment-methods-grid {
+    padding: 5px !important;
+    gap: 5px !important;
+    margin-bottom: 10px !important;
+}
+
+.pay-icon-btn {
+    height: 25px !important; /* Makes the white icon boxes much shorter */
+}
         
         
         
@@ -460,38 +475,37 @@
     
     <!-- Load PayPal SDK first -->
 <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-<script>
-    // 1. FIXED TOGGLE: This opens the Kitchen Sub-buttons
-    function toggleMenu(id) {
-        // Hide ALL other menus first to prevent clashing
-        const menus = document.querySelectorAll('.minor-menu, .product-list');
-        menus.forEach(m => m.style.display = 'none');
+<!-- 1. Load the PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 
+<script>
+    // 2. MAIN GRID LOGIC (Kitchen -> Sub-Buttons)
+    function toggleMenu(id) {
+        document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
+            el.style.display = 'none';
+        });
+        
         const target = document.getElementById(id);
         if (target) {
-            target.style.display = 'block'; // Force display to block
-            target.style.visibility = 'visible'; // Ensure it's not invisible
+            target.style.display = 'block';
             target.scrollIntoView({ behavior: 'smooth' });
-        } else {
-            console.error("Cozycabin Error: Could not find ID: " + id);
         }
     }
 
-    // 2. FIXED SHOW: This opens the actual Products (Cutlery, etc.)
-    function showProducts(id) {
-        // Hide only product lists so the sub-buttons stay visible
+    // 3. MINOR MENU LOGIC (Cutlery -> Products)
+    function showProducts(categoryId) {
         document.querySelectorAll('.product-list').forEach(list => {
             list.style.display = 'none';
         });
 
-        const list = document.getElementById(id);
-        if (list) {
-            list.style.display = 'grid'; // Maintain your 2-column layout
-            list.scrollIntoView({ behavior: 'smooth' });
+        const productList = document.getElementById(categoryId);
+        if (productList) {
+            productList.style.display = 'grid';
+            productList.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    // 3. ZOOM LOGIC: Fixed to work with your specific HTML structure
+    // 4. IMAGE ZOOM LOGIC
     document.addEventListener('click', function (e) {
         if (e.target.tagName === 'IMG' && e.target.closest('.product-card')) {
             const overlay = document.getElementById('overlay');
@@ -503,9 +517,15 @@
         }
     });
 
-    // 4. PREMIUM CHECKOUT: PayPal Buttons
+    // 5. SLIM PAYPAL BUTTON LOGIC
     paypal.Buttons({
-        style: { shape: 'pill', color: 'gold', layout: 'vertical' },
+        style: {
+            shape: 'pill',
+            color: 'gold',
+            layout: 'vertical',
+            label: 'paypal',
+            height: 35 // This makes the button shorter to save space
+        },
         createOrder: function(data, actions) {
             return actions.order.create({
                 purchase_units: [{ amount: { value: '10.00' } }]
@@ -513,6 +533,7 @@
         }
     }).render('#paypal-button-container');
 </script>
+
 
 <div id="overlay" class="image-overlay" onclick="this.style.display='none'">
   <span style="position:absolute; top:20px; right:30px; color:white; font-size:45px;">&times;</span>
