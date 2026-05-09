@@ -403,20 +403,8 @@
             });
         }
     }).render('#paypal-button-container');
-    function closeProducts() {
-    // 1. Hide all product photo lists
-    document.querySelectorAll('.product-list').forEach(list => {
-        list.style.display = 'none';
-    });
-
-    // 2. Make sure the minor menu (the buttons) is visible
-    // If it's the kitchen menu, we show 'kitchen-sub'
-    const kitchenMenu = document.getElementById('kitchen-sub');
-    if (kitchenMenu) {
-        kitchenMenu.style.display = 'block';
-        kitchenMenu.scrollIntoView({ behavior: 'smooth' });
-    }
-    }
+    
+      }
     function backToMinor() {
     // 1. Hide the photos/product list
     document.querySelectorAll('.product-list').forEach(list => {
