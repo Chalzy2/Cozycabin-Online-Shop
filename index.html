@@ -72,7 +72,58 @@
         }
         .expanded-img { max-width: 90%; max-height: 70%; border: 2px solid white; border-radius: 10px; }
         .img-caption { color: white; margin-top: 15px; font-size: 18px; font-weight: bold; }
-        
+
+            /* Academy Card Container (The Dark Rounded Box) */
+.academy-card {
+    background: #1a1a1a;
+    border-radius: 30px; /* High rounding from 2nd picture */
+    margin: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #333;
+}
+
+/* The Left Square (Blue for Course / Yellow for E-Book) */
+.academy-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.bg-blue { background-color: #007bff; }
+.bg-yellow { background-color: #ffc107; color: #000; }
+
+/* Text Content on the Right */
+.academy-info {
+    text-align: left;
+}
+
+.academy-info h2 {
+    font-size: 18px;
+    margin: 0 0 5px 0;
+    color: #fff;
+}
+
+.academy-info p {
+    font-size: 14px;
+    margin: 0;
+    color: #007bff; /* Blue text for the sub-links */
+    font-weight: bold;
+}
+
+.academy-info p.yellow-text {
+    color: #ffc107; /* Yellow text for E-book sub-links */
+}
+            
     
     
          </style>
@@ -94,22 +145,24 @@
         <h1>💎 COZYCABIN <br> PREMIUM</h1>
         <p style="color: #888; font-size: 12px;">Masterclasses & Digital Library</p>
     </div>
-
-    <div class="academy-card" onclick="toggleSub('video-menu')">
-        <div class="icon-box" style="background: #007bff;">COURSE</div>
-        <div>
-            <h3 style="margin:0;">Academy Courses</h3>
-            <p style="color:#007bff; margin:5px 0 0; font-size: 14px;">Video Editing & Setup ▼</p>
-        </div>
+<!-- ACADEMY COURSE CARD -->
+<div class="academy-card">
+    <div class="academy-icon bg-blue">COURSE</div>
+    <div class="academy-info">
+        <h2>Academy Courses</h2>
+        <p onclick="toggleSub('video-courses')">Video Editing & Setup ▼</p>
     </div>
+</div>
 
-    <div class="academy-card" onclick="toggleSub('ebook-menu')">
-        <div class="icon-box" style="background: #ffd700; color: black;">E-BOOK</div>
-        <div>
-            <h3 style="margin:0;">Digital Library</h3>
-            <p style="color:#ffd700; margin:5px 0 0; font-size: 14px;">Finance & Influence ▼</p>
-        </div>
+<!-- DIGITAL LIBRARY CARD -->
+<div class="academy-card">
+    <div class="academy-icon bg-yellow">E-BOOK</div>
+    <div class="academy-info">
+        <h2>Digital Library</h2>
+        <p class="yellow-text" onclick="toggleSub('finance-ebooks')">Finance & Influence ▼</p>
     </div>
+</div>
+
 
     <h3 style="text-align:center; color:#ffd700; font-size:14px; margin-top:25px;">🌐 DIGITAL & GLOBAL SHOP</h3>
 <div class="global-grid">
