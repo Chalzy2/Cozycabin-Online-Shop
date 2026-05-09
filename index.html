@@ -250,6 +250,21 @@
     max-height: 20px;
     object-fit: contain;
 }
+       .cozy-payment-box {
+    background: #1a1a1a; 
+    border: 1px solid #3b4758; 
+    border-radius: 20px; 
+    padding: 12px; /* Reduced from 20px to make it smaller */
+    margin: 10px;  /* Reduced margin to bring it closer to the edges */
+    text-align: center;
+}
+
+/* Shrink the white icon grid slightly */
+.payment-methods-grid {
+    padding: 8px; 
+    margin-bottom: 12px;
+    gap: 5px;
+}
         
         
         
@@ -443,76 +458,88 @@
 </div>
 
     
-    <script>
-    // This function opens the Minor Menu (The buttons: Cutlery, Dispensers, etc.)
+    <!-- Load PayPal SDK first -->
+<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+
+<script>
+    /**
+     * 1. MASTER TOGGLE: Handles Main Grid & Sub-Menus
+     * Opens 'kitchen-sub' or other category buttons
+     */
     function toggleMenu(id) {
-        // Hide all major menus and product lists first
+        // Hide all minor menus and product lists to keep the view clean
         document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
             el.style.display = 'none';
         });
         
-        // Show the Kitchen sub-buttons
         const target = document.getElementById(id);
         if (target) {
             target.style.display = 'block';
+            // Smooth scroll on Redmi phones so the user sees the new buttons
             target.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    // This function opens the actual Product Cards (The items with prices)
+    /**
+     * 2. PRODUCT DISPLAY: Shows the items (Cutlery, Dispensers, etc.)
+     */
     function showProducts(categoryId) {
-        // Hide all product lists to ensure only one category shows at a time
+        // Hide all product lists before showing the new selection
         document.querySelectorAll('.product-list').forEach(list => {
             list.style.display = 'none';
         });
 
-        // Show the specific products (like 'cutlery' or 'dispenser')
         const productList = document.getElementById(categoryId);
         if (productList) {
-            productList.style.display = 'grid'; // Uses grid for your 2-column layout
+            productList.style.display = 'grid'; // Ensures your 2-column product layout
             productList.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    // 3. Handles Image Zooming and Color Labels
+    /**
+     * 3. IMAGE ZOOM: Handles the Overlay and Caption
+     */
     document.addEventListener('click', function (e) {
-        // Only triggers if clicking a product image, not the background
-        if (e.target.tagName === 'IMG' && !e.target.closest('.image-overlay')) {
-            var overlay = document.getElementById('overlay');
-            var enlargedImg = document.getElementById('enlargedImg');
-            var captionText = document.getElementById('imgCaption');
+        // Only triggers when clicking product images
+        if (e.target.tagName === 'IMG' && e.target.closest('.product-card')) {
+            const overlay = document.getElementById('overlay');
+            const enlargedImg = document.getElementById('enlargedImg');
+            const captionText = document.getElementById('imgCaption');
             
             if (overlay && enlargedImg) {
                 overlay.style.display = 'flex';
                 enlargedImg.src = e.target.src;
-                // Grabs the color name from the 'alt' attribute
-                captionText.innerHTML = e.target.alt || ""; 
+                // Grabs the alt text for the caption
+                captionText.innerText = e.target.alt || "Cozycabin Premium Product"; 
             }
         }
     });
-    // This script will handle your future Currency and Payment logic
-function processPayment() {
-    // This is where you will connect your PayPal or Stripe link later
-    alert("Redirecting to Secure Payment...");
-}
-    <!-- SCRIPTS (The Brain) -->
-<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-<script>
-    function toggleMenu(id) {
-        document.querySelectorAll('.product-list').forEach(el => el.style.display = 'none');
-        var x = document.getElementById(id);
-        if (x) x.style.display = "grid";
-    }
 
-    // PayPal Button Logic
+    /**
+     * 4. PAYPAL INTEGRATION: Premium Checkout
+     */
     paypal.Buttons({
-        style: { shape: 'pill', color: 'gold', layout: 'vertical', label: 'checkout' },
+        style: {
+            shape: 'pill',
+            color: 'gold',
+            layout: 'vertical',
+            label: 'checkout'
+        },
         createOrder: function(data, actions) {
-            return actions.order.create({ purchase_units: [{ amount: { value: '10.00' } }] });
+            return actions.order.create({
+                purchase_units: [{
+                    amount: { value: '10.00' } // Example price
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+            });
         }
     }).render('#paypal-button-container');
-    
 </script>
+
 
     
 </script>
