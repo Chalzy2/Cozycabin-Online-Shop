@@ -149,7 +149,25 @@
 .btn-jumia { background: #f68b1e; }
 .btn-amazon { background: #ff9900; color: black; }
 .btn-jiji { background: #3bb34a; }
-.btn-alibaba { background: #1a1a1a; border: 1px solid #00529b; color: #00529b; }
+.btn-alibaba { background: #1a1a1a; border: 1px solid #00529b; color: #00529b; 
+             }
+            
+            .exit-btn {
+    grid-column: span 2;
+    background: #1a1a1a;
+    color: #ffd700;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+.exit-btn:active {
+    background: #333; /* Visual feedback for the customer */
+}
             
             
     
@@ -232,9 +250,7 @@
 
     </div>
 <div id="cutlery" class="product-list" style="display:none;">
-       <button onclick="closeProducts()" style="grid-column: span 2; background: #333; color: #ffd700; border: 1px solid #ffd700; border-radius: 10px; padding: 10px; margin-bottom: 10px; font-weight: bold;">
-        ⬅️ Back to Kitchen Menu
-       </button>
+        <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
     
     <div class="product-card">
         <img src="19 PSC Silicone Spoon-2700-.png" alt="Silicone Spoon Set">
@@ -274,9 +290,7 @@
     </div>
     
 <div id="dispenser" class="product-list" style="display:none;">
-       <button onclick="closeProducts()" style="grid-column: span 2; background: #333; color: #ffd700; border: 1px solid #ffd700; border-radius: 10px; padding: 10px; margin-bottom: 10px; font-weight: bold;">
-        ⬅️ Back to Kitchen Menu
-       </button>
+        <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
    
     <div class="product-card">
         <img src="Ailyons 3 taps 6999-.jpg" alt="Alyons 3Taps Dispenser">
@@ -403,6 +417,21 @@
         kitchenMenu.scrollIntoView({ behavior: 'smooth' });
     }
     }
+    function backToMinor() {
+    // 1. Hide the photos/product list
+    document.querySelectorAll('.product-list').forEach(list => {
+        list.style.display = 'none';
+    });
+
+    // 2. Show the minor buttons grid again
+    const minorGrid = document.querySelector('.minor-menu');
+    if (minorGrid) {
+        minorGrid.style.display = 'block';
+        minorGrid.scrollIntoView({ behavior: 'smooth' }); // Centers the buttons on your Redmi screen
+    }
+    }
+    
+    
     
 </script>
     
