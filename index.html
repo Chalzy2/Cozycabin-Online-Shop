@@ -448,66 +448,67 @@
 
         
     <div id="dispenser" class="product-list" style="display:none;">
-        <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
+    <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
    
     <div class="product-card">
-        <img src="Ailyons 3 taps 6999-.jpg" alt="Alyons 3Taps Dispenser"
-        onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <img src="Ailyons 3 taps 6999-.jpg" alt="Alyons 3Taps Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
         <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
-        <p style="color:green; font-weight:bold; margin:0;">KES 6999</p>
+        <p style="color:green; font-weight:bold; margin:0;">KES 6,999</p>
         <a href="https://wa.me/254702468460?text=I+want+Ailyons+3taps+Dispenser" class="whatsapp-btn">Order Now</a>
     </div>
-        
+
     <div class="product-card">
-        <img src="Premier Smart bottom Dispenser 15000-.jpg" alt="Premier Bottomload Dispenser"
-        onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <img src="Premier Smart bottom Dispenser 15000-.jpg" alt="Premier Bottomload Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
         <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
         <p style="color:green; font-weight:bold; margin:0;">KES 15,000</p>
         <a href="https://wa.me/254702468460?text=I+want+Smart+Premier+Bottomload+Dispenser" class="whatsapp-btn">Order Now</a>
     </div>
         
     <div class="product-card">
-        <img src="Primidale 2tap dispenser 3999-.jpg" alt="Premidale Dispenser"
-        onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <img src="Primidale 2tap dispenser 3999-.jpg" alt="Premidale Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
         <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
         <p style="color:green; font-weight:bold; margin:0;">KES 3,999</p>
         <a href="https://wa.me/254702468460?text=I+want+Premidale+Dispenser" class="whatsapp-btn">Order Now</a>
     </div>
         
     <div class="product-card">
-        <img src="Rantom 213L disp Refri-46500-.png" alt="Rantom Refrigerator Dispenser"
-        onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <img src="Rantom 213L disp Refri-46500-.png" alt="Rantom Refrigerator Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
         <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
         <p style="color:green; font-weight:bold; margin:0;">KES 46,500</p>
         <a href="https://wa.me/254702468460?text=I+want+Rantom+Refrigerator+Dispenser" class="whatsapp-btn">Order Now</a>
     </div>
-    
-    <div id="flasks" class="product-list" style="display:none;">
-        <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
+</div> <div id="flasks" class="product-list" style="display:none;">
+    <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
    
     <div class="product-card">
-        <img src="Flasks 2.png" alt="Rantom Dispenser"
-        onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <img src="Flasks 2.png" alt="Rantom Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
         <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
         <p style="color:green; font-weight:bold; margin:0;">KES 950</p>
         <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
     </div>
         
     <div class="product-card">
-        <img src="Redbry Flask1.png" alt="Rantom Dispenser"
-        onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <img src="Redbry Flask1.png" alt="Rantom Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
         <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
-        <p style="color:green; font-weight:bold; margin:0;">KES 1800</p>
+        <p style="color:green; font-weight:bold; margin:0;">KES 1,800</p>
         <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
     </div>
 
     <div class="product-card">
-        <img src="Flasks2.png" alt="Rantom Dispenser"
-        onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <img src="Flasks2.png" alt="Rantom Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
         <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
-        <p style="color:green; font-weight:bold; margin:0;">KES 1800</p>
+        <p style="color:green; font-weight:bold; margin:0;">KES 1,800</p>
         <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
-            </div>
+    </div>
+</div> ```
+
+### 📍 Why this fixes everything:
+1.  **Global Payments Appear**: Because the `flasks` section is now properly closed with `</div>`, the checkout section that follows it is no longer hidden.
+2.  **Cutlery Expansion**: By closing the sections, the browser can properly read the `openModal` script for all categories.
+3.  **WhatsApp Visibility**: This ensures the button stays in the "Global" part of the page instead of being tucked inside a hidden menu.
+
+**Paste this in, and your Flasks and Global Payments should show up perfectly!**
+
 
         
 
@@ -599,25 +600,15 @@
     
 </script>
 
-    
-<div id="overlay" class="image-overlay" onclick="this.style.display='none'">
-  <span style="position:absolute; top:20px; right:30px; color:white; font-size:45px;">&times;</span>
-  <img id="enlargedImg" class="expanded-img">
-  <div id="imgCaption" class="img-caption"></div>
-</div>
-        
- <div id="imageModal" class="modal" onclick="closeModal()">
+<div id="imageModal" class="modal" onclick="closeModal()">
     <span class="close-modal">&times;</span>
     <img class="modal-content" id="expandedImg">
 </div>
-        
-        <a href="https://wa.me/254702468460" class="float-wa" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Support">
-        </a>
-        
-        
 
-    
+<a href="https://wa.me/254702468460" class="float-wa" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Support">
+</a>
+
 </body>
 </html>
 
