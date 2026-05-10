@@ -291,6 +291,34 @@
 .product-card img:active {
     transform: scale(0.95); /* Slight "press" effect when touched */
 }
+            .float-wa {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    z-index: 10000; /* Stays on top of everything! */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.float-wa img {
+    width: 35px;
+    height: 35px;
+}
+
+/* Pulse effect to catch the customer's eye */
+.float-wa:active {
+    transform: scale(0.9);
+}
+            
             
             
     
@@ -481,9 +509,8 @@
         <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
             </div>
 
-    <a href="https://wa.me/254702468460" class="float-wa">📱</a>
+        
 
-</div>
          <div class="cozy-payment-box">
     <p style="color: #ffd700; font-size: 13px; font-weight: bold; margin-bottom: 15px;">💎 COZYCABIN PREMIUM CHECKOUT</p>
 
@@ -519,13 +546,10 @@
 <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 
 <script>
-    // 1. Function to open the Minor Menus (Kitchen, Solar, Decor, etc.)
     function toggleSub(id) {
-        // Hide everything else first for a clean look
         document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
             el.style.display = 'none';
         });
-        
         const target = document.getElementById(id);
         if (target) {
             target.style.display = 'block';
@@ -533,13 +557,10 @@
         }
     }
 
-    // 2. Function to show the actual product photos (Cutlery, Dispensers, etc.)
     function showProducts(categoryId) {
-        // Hide the minor buttons menu so only photos show
-        document.querySelectorAll('.minor-menu').forEach(menu => {
-            menu.style.display = 'none';
+        document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
+            el.style.display = 'none';
         });
-
         const productList = document.getElementById(categoryId);
         if (productList) {
             productList.style.display = 'grid';
@@ -547,51 +568,33 @@
         }
     }
 
-    // 3. The "Back" button logic you requested
+    function openModal(imgSrc) {
+        document.getElementById("imageModal").style.display = "block";
+        document.getElementById("expandedImg").src = imgSrc;
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+
     function backToMinor() {
-        // Hide the photo lists
-        document.querySelectorAll('.product-list').forEach(list => {
-            list.style.display = 'none';
-        });
-
-        // Show the minor buttons (Cutlery, Dispensers) again
-        // Note: Change 'kitchen-sub' if your ID is named differently
-        const minorGrid = document.getElementById('kitchen-sub') || document.querySelector('.minor-menu');
-        if (minorGrid) {
-            minorGrid.style.display = 'block';
-            minorGrid.scrollIntoView({ behavior: 'smooth' });
-        }
+        document.querySelectorAll('.product-list').forEach(list => list.style.display = 'none');
+        // This brings the minor buttons back
+        const kitchenSub = document.getElementById('kitchen-sub'); 
+        if (kitchenSub) kitchenSub.style.display = 'block';
     }
 
-    // 4. PayPal Setup
-    paypal.Buttons({
-        style: {
-            shape: 'pill',
-            color: 'gold',
-            layout: 'vertical',
-            height: 35 
-        },
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{ amount: { value: '10.00' } }]
-            });
-        }
-    }).render('#paypal-button-container');
-function openModal(imgSrc) {
-    const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("expandedImg");
-    
-    if (modal && modalImg) {
-        modal.style.display = "block";
-        modalImg.src = imgSrc;
+    // Load PayPal only if the container exists
+    if(document.getElementById('paypal-button-container')) {
+        paypal.Buttons({
+            style: { shape: 'pill', color: 'gold', layout: 'vertical', height: 35 },
+            createOrder: function(data, actions) {
+                return actions.order.create({ purchase_units: [{ amount: { value: '10.00' } }] });
+            }
+        }).render('#paypal-button-container');
     }
-}
+</script>
 
-function closeModal() {
-    document.getElementById("imageModal").style.display = "none";
-}
-    
-    
 
     
 </script>
@@ -607,6 +610,11 @@ function closeModal() {
     <span class="close-modal">&times;</span>
     <img class="modal-content" id="expandedImg">
 </div>
+        
+        <a href="https://wa.me/254702468460" class="float-wa" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Support">
+        </a>
+        
         
 
     
