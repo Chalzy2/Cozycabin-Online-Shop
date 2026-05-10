@@ -590,6 +590,24 @@ function openModal(imgSrc) {
 function closeModal() {
     document.getElementById("imageModal").style.display = "none";
 }
+    function showProducts(categoryId) {
+    // 1. Hide the minor buttons menu first
+    const minorMenu = document.getElementById('kitchen-sub');
+    if (minorMenu) minorMenu.style.display = 'none';
+
+    // 2. Hide any other product lists that might be open
+    document.querySelectorAll('.product-list').forEach(list => {
+        list.style.display = 'none';
+    });
+
+    // 3. Show the one you clicked
+    const target = document.getElementById(categoryId);
+    if (target) {
+        target.style.display = 'grid'; // Use grid to keep the 2-column look
+        target.scrollIntoView({ behavior: 'smooth' });
+    }
+    }
+    
 
     
 </script>
