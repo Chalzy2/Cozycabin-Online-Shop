@@ -318,6 +318,35 @@
 .float-wa:active {
     transform: scale(0.9);
 }
+
+   /* This only activates on screens wider than 768px (Laptops/Tablets) */
+@media screen and (min-width: 768px) {
+    body {
+        max-width: 1200px; /* Prevents the site from becoming too wide */
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Makes the main category buttons show 3 in a row instead of 1 */
+    .main-grid, .minor-menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    /* Makes product photos show 4 in a row on a laptop */
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 25px;
+    }
+
+    /* Keeps your Academy and Library cards from looking too long */
+    .academy-card {
+        max-width: 800px;
+        margin: 10px auto;
+    }
+}
             
             
             
