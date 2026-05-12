@@ -16,314 +16,519 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cozycabin Premium</title>
         <style>
-        /* BASE & CONTAINER */
-        body { background-color: #000; color: white; font-family: 'Arial', sans-serif; margin: 0; padding: 0; }
-        .container { width: 100%; max-width: 450px; margin: 0 auto; padding-bottom: 50px; }
+         /* =========================
+   COZYCABIN RESPONSIVE FIX
+   KEEPING YOUR ORIGINAL STYLE
+========================= */
 
-        /* MAIN 3x3 GRID (Cozycabin Identity) */
-        .main-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 15px; }
-        .grid-btn { 
-            background: #232d3f; border: 1px solid #3b4758; border-radius: 20px; 
-            padding: 20px 5px; text-align: center; cursor: pointer; transition: 0.3s;
-        }
-        .grid-btn:active { background: #2e7d32; border-color: #ffd700; }
-        .grid-btn span { display: block; font-size: 24px; margin-bottom: 8px; }
-        .grid-btn small { font-size: 10px; font-weight: bold; letter-spacing: 0.5px; display: block; color: #fff; }
-
-        /* MINOR MENUS (The Sub-categories like Kitchen) */
-        .minor-menu {
-            display: none; background: #0b0e14; margin: 10px 15px;
-            padding: 15px; border-radius: 20px; border: 1px solid #ffd700;
-        }
-        .minor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; }
-        .minor-btn {
-            background: #232d3f; color: white; border: 1px solid #3b4758;
-            border-radius: 10px; padding: 12px 5px; font-size: 11px; font-weight: bold;
-            cursor: pointer; text-align: center;
-        }
-
-        /* PRODUCT DISPLAY */
-        .product-list { display: none; padding: 15px; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .product-card { background: white; border-radius: 15px; overflow: hidden; color: #333; text-align: center; padding-bottom: 10px; }
-        .product-card img { width: 100%; height: 140px; object-fit: cover; cursor: zoom-in; }
-        .whatsapp-btn { background: #25d366; color: white; padding: 8px; border-radius: 8px; text-decoration: none; display: block; margin: 5px 10px; font-size: 11px; font-weight: bold; }
-
-        /* SLIM PREMIUM CHECKOUT (Space-Saving) */
-        .cozy-payment-box {
-            background: #1a1a1a; border: 1px solid #3b4758; border-radius: 15px;
-            padding: 10px; margin: 10px; text-align: center;
-        }
-        .payment-methods-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;
-            background: #fff; padding: 5px; border-radius: 12px; margin-bottom: 10px;
-        }
-        .pay-icon-btn {
-            border: 1px solid #eee; border-radius: 6px; padding: 5px;
-            display: flex; align-items: center; justify-content: center;
-            background: white; height: 25px;
-        }
-        .pay-icon-btn img { max-width: 100%; max-height: 18px; object-fit: contain; }
-
-        /* IMAGE OVERLAY (Zoom) */
-        .image-overlay {
-            display: none; position: fixed; z-index: 10000; left: 0; top: 0;
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
-            flex-direction: column; justify-content: center; align-items: center;
-        }
-        .expanded-img { max-width: 90%; max-height: 70%; border: 2px solid white; border-radius: 10px; }
-        .img-caption { color: white; margin-top: 15px; font-size: 18px; font-weight: bold; }
-
-            /* Academy Card Container (The Dark Rounded Box) */
-.academy-card {
-    background: #1a1a1a;
-    border-radius: 30px; /* High rounding from 2nd picture */
-    margin: 15px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    border: 1px solid #333;
+/* RESET */
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-/* The Left Square (Blue for Course / Yellow for E-Book) */
-.academy-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: bold;
-    color: #fff;
-    margin-right: 20px;
-    flex-shrink: 0;
+html,body{
+    width:100%;
+    overflow-x:hidden; /* Prevent side scrolling */
+    background:#000;
+    color:#fff;
+    font-family:'Arial',sans-serif;
 }
 
-.bg-blue { background-color: #007bff; }
-.bg-yellow { background-color: #ffc107; color: #000; }
-
-/* Text Content on the Right */
-.academy-info {
-    text-align: left;
+/* MAIN CONTAINER */
+.container{
+    width:100%;
+    max-width:1200px; /* Desktop friendly */
+    margin:auto;
+    padding:0 12px 80px;
 }
 
-.academy-info h2 {
-    font-size: 18px;
-    margin: 0 0 5px 0;
-    color: #fff;
+/* =========================
+   RESPONSIVE MAIN GRID
+========================= */
+.main-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    padding:15px 5px;
+    width:100%;
 }
 
-.academy-info p {
-    font-size: 14px;
-    margin: 0;
-    color: #007bff; /* Blue text for the sub-links */
-    font-weight: bold;
+/* MAIN CATEGORY BUTTONS */
+.grid-btn{
+    background:#232d3f;
+    border:1px solid #3b4758;
+    border-radius:20px;
+    padding:18px 8px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.3s;
+    min-height:110px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
 }
 
-.academy-info p.yellow-text {
-    color: #ffc107; /* Yellow text for E-book sub-links */
-}
-            /* Centered Row for Global Buttons */
-.global-grid {
-    display: flex; /* Changed from grid to flex for better centering */
-    justify-content: center; 
-    gap: 10px;
-    padding: 10px 15px;
-    flex-wrap: nowrap; /* Keeps them in one line */
+.grid-btn:hover{
+    border-color:#ffd700;
+    transform:translateY(-2px);
 }
 
-.global-btn {
-    flex: 1; /* Makes all buttons the same width */
-    max-width: 90px; /* Prevents them from getting too wide */
-    border-radius: 8px;
-    padding: 10px 2px;
-    font-size: 11px;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    border: none;
-    color: white;
+.grid-btn:active{
+    background:#2e7d32;
 }
 
-/* Original Brand Colors */
-.btn-jumia { background: #f68b1e; }
-.btn-amazon { background: #ff9900; color: black; }
-.btn-jiji { background: #3bb34a; }
-.btn-alibaba { background: #1a1a1a; border: 1px solid #00529b; color: #00529b; 
-             }
-            
-            .exit-btn {
-    grid-column: span 2;
-    background: #1a1a1a;
-    color: #ffd700;
-    border: 1px solid #333;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 15px;
-    font-weight: bold;
-    width: 100%;
-    cursor: pointer;
+.grid-btn span{
+    display:block;
+    font-size:24px;
+    margin-bottom:8px;
 }
 
-.exit-btn:active {
-    background: #333; /* Visual feedback for the customer */
-}
-     /* Top Bar with Currency */
-.top-nav {
-    display: flex;
-    justify-content: flex-end; /* Pushes content to the right */
-    padding: 10px 15px;
-    background: #000;
+.grid-btn small{
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:.5px;
+    color:#fff;
+    line-height:1.4;
 }
 
-.currency-select {
-    background: #1a1a1a;
-    color: #fff;
-    border: 1px solid #333;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 12px;
+/* =========================
+   SUB MENU AREA
+========================= */
+.minor-menu{
+    display:none;
+    width:100%;
+    background:#0b0e14;
+    margin:10px auto;
+    padding:15px;
+    border-radius:20px;
+    border:1px solid #ffd700;
+    animation:fadeIn .3s ease;
 }
 
-/* Matching the Title Styles */
-.brand-header {
-    text-align: center;
-    padding: 10px 0;
+/* SUB BUTTON GRID */
+.minor-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    width:100%;
 }
 
-.brand-logo {
-    width: 60px; /* Adjust size as needed */
-    height: auto;
-    margin-bottom: 5px;
+/* SMALL BUTTONS */
+.minor-btn{
+    background:#232d3f;
+    color:#fff;
+    border:1px solid #3b4758;
+    border-radius:12px;
+    padding:12px 6px;
+    font-size:11px;
+    font-weight:bold;
+    cursor:pointer;
+    text-align:center;
+    transition:.3s;
+    min-height:60px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1.3;
 }
 
-.brand-title {
-    color: #ffd700; /* Gold to match Shop titles */
-    font-size: 14px; /* Same size as Local Shop title */
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 0;
+.minor-btn:hover{
+    border-color:#ffd700;
+    background:#2a3549;
 }
 
-.brand-tagline {
-    color: #888;
-    font-size: 10px;
-    margin-top: 2px;
-}
-            
-     .brand-logo {
-    width: 100%;
-    max-width: 150px; /* Increased slightly for better visibility */
-    height: auto;
-    display: block;
-    margin: 10px auto 5px auto;
-    object-fit: contain;
-    
-    /* Premium Frame Effect */
-    border: 2px solid #ffd700; /* Gold frame */
-    border-radius: 20px; /* Rounded corners to match your buttons */
-    box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.3); /* Soft gold glow */
-    padding: 5px; /* Space between logo and frame */
-     }
-          .brand-logo {
-    width: 100%;
-    max-width: 150px; /* Perfect size for your Redmi screen */
-    height: auto;
-    display: block;
-    margin: 10px auto 8px auto;
-    object-fit: contain;
-    
-    /* THE YELLOW FRAME */
-    border: 2px solid #ffd700; /* Classic Gold/Yellow Frame */
-    border-radius: 15px; /* Matches your grid button curves */
-    padding: 5px; /* Space inside the frame */
-    background: rgba(255, 255, 255, 0.05); /* Very slight tint inside */
-    box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.2); /* Subtle outer glow */
+.minor-btn:active{
+    transform:scale(.96);
 }
 
-/* Ensure the title below matches the frame color */
-.brand-title {
-    color: #ffd700; 
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
+/* =========================
+   PRODUCT DISPLAY
+========================= */
+.product-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    padding:15px 5px;
+    width:100%;
+}
+
+/* PRODUCT CARD */
+.product-card{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    color:#333;
+    text-align:center;
+    padding-bottom:10px;
+    width:100%;
+}
+
+.product-card img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    cursor:zoom-in;
+    transition:transform .2s;
+}
+
+.product-card img:active{
+    transform:scale(.96);
+}
+
+/* PRODUCT TEXT */
+.product-card h3{
+    font-size:14px;
+    padding:10px 8px 5px;
+    line-height:1.4;
+}
+
+.product-card p{
+    font-size:15px;
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-btn{
+    background:#25d366;
+    color:#fff;
+    padding:10px;
+    border-radius:10px;
+    text-decoration:none;
+    display:block;
+    margin:8px 10px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* =========================
+   GLOBAL BUTTONS
+========================= */
+.global-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    padding:10px 15px;
+    width:100%;
+}
+
+.global-btn{
+    border-radius:12px;
+    padding:14px 5px;
+    font-size:12px;
+    font-weight:bold;
+    text-align:center;
+    cursor:pointer;
+    border:none;
+    color:#fff;
+    width:100%;
+}
+
+/* =========================
+   ACADEMY CARDS
+========================= */
+.academy-card{
+    background:#1a1a1a;
+    border-radius:30px;
+    margin:15px auto;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    border:1px solid #333;
+    width:100%;
+    max-width:500px;
+}
+
+.academy-icon{
+    width:80px;
+    height:80px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:10px;
+    font-weight:bold;
+    color:#fff;
+    margin-right:18px;
+    flex-shrink:0;
+}
+
+.academy-info{
+    flex:1;
+}
+
+.academy-info h2{
+    font-size:18px;
+    margin-bottom:5px;
+}
+
+.academy-info p{
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* =========================
+   BRAND LOGO
+========================= */
+.brand-header{
+    text-align:center;
+    padding:10px 0;
+}
+
+.brand-logo{
+    width:100%;
+    max-width:150px;
+    height:auto;
+    display:block;
+    margin:10px auto 8px auto;
+    object-fit:contain;
+
+    border:2px solid #ffd700;
+    border-radius:15px;
+    padding:5px;
+    background:rgba(255,255,255,.05);
+    box-shadow:0 0 10px rgba(255,215,0,.2);
+}
+
+.brand-title{
+    color:#ffd700;
+    font-size:14px;
+    font-weight:bold;
+    text-align:center;
+    margin-bottom:4px;
+}
+
+.brand-tagline{
+    color:#888;
+    font-size:10px;
+    text-align:center;
+}
+
+/* =========================
+   PAYMENT BOX
+========================= */
+.cozy-payment-box{
+    background:#1a1a1a;
+    border:1px solid #3b4758;
+    border-radius:15px;
+    padding:10px;
+    margin:15px 0;
+    text-align:center;
+}
+
+.payment-methods-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:5px;
+    background:#fff;
+    padding:5px;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.pay-icon-btn{
+    border:1px solid #eee;
+    border-radius:6px;
+    padding:5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:white;
+    height:40px;
+}
+
+.pay-icon-btn img{
+    max-width:100%;
+    max-height:22px;
+    object-fit:contain;
+}
+
+/* =========================
+   FLOATING WHATSAPP
+========================= */
+.float-wa{
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:20px;
+    right:20px;
+    background:#25d366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+    box-shadow:2px 2px 10px rgba(0,0,0,.5);
+}
+
+.float-wa img{
+    width:35px;
+    height:35px;
+}
+
+/* =========================
+   MODAL IMAGE
+========================= */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.9);
+}
+
+.modal-content{
+    margin:auto;
+    display:block;
+    width:90%;
+    max-width:500px;
+    border-radius:15px;
+    border:2px solid #ffd700;
+}
+
+.close-modal{
+    position:absolute;
+    top:20px;
+    right:35px;
+    color:#fff;
+    font-size:40px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
     }
-        /* Modal Background */
-.modal {
-    display: none; 
-    position: fixed;
-    z-index: 9999; /* Stays on top of everything */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.9); /* Dark backdrop */
-    
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-/* The Image itself */
-.modal-content {
-    margin: auto;
-    display: block;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 15px;
-    border: 2px solid #ffd700; /* Matching your yellow frame */
+/* =========================
+   TABLETS
+========================= */
+@media(max-width:768px){
+
+    .container{
+        max-width:100%;
+    }
+
+    .main-grid{
+        gap:10px;
+    }
+
+    .grid-btn{
+        min-height:100px;
+        padding:15px 6px;
+    }
+
+    .minor-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
 }
 
-/* Close Button */
-.close-modal {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
+/* =========================
+   SMALL PHONES
+========================= */
+@media(max-width:480px){
+
+    .main-grid{
+        grid-template-columns:repeat(3,1fr);
+        gap:8px;
+    }
+
+    .grid-btn{
+        border-radius:18px;
+        min-height:90px;
+        padding:12px 4px;
+    }
+
+    .grid-btn span{
+        font-size:20px;
+    }
+
+    .grid-btn small{
+        font-size:9px;
+    }
+
+    .minor-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .minor-btn{
+        font-size:10px;
+        padding:10px 4px;
+    }
+
+    .product-list{
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+    }
+
+    .product-card h3{
+        font-size:12px;
+    }
+
+    .whatsapp-btn{
+        font-size:11px;
+    }
+
+    .academy-card{
+        padding:15px;
+        border-radius:25px;
+    }
+
+    .academy-icon{
+        width:65px;
+        height:65px;
+    }
+
+    .academy-info h2{
+        font-size:16px;
+    }
+
+    .academy-info p{
+        font-size:12px;
+    }
 }
 
-     .product-card img {
-    cursor: zoom-in;
-    transition: transform 0.2s;
-}
+/* =========================
+   LARGE DESKTOP
+========================= */
+@media(min-width:1200px){
 
-.product-card img:active {
-    transform: scale(0.95); /* Slight "press" effect when touched */
-}
-            .float-wa {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: #fff;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-    z-index: 10000; /* Stays on top of everything! */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .container{
+        max-width:1300px;
+    }
 
-.float-wa img {
-    width: 35px;
-    height: 35px;
-}
+    .main-grid{
+        max-width:700px;
+        margin:auto;
+    }
 
-/* Pulse effect to catch the customer's eye */
-.float-wa:active {
-    transform: scale(0.9);
-}
+    .product-list{
+        grid-template-columns:repeat(4,1fr);
+    }
 
-   
+    .minor-grid{
+        grid-template-columns:repeat(5,1fr);
+    }
+                         }       
 
-            
-            
-    
     
          </style>
 </head>
