@@ -393,6 +393,35 @@
     }
         }
                 
+     /* Laptop & Desktop Optimization */
+@media screen and (min-width: 1024px) {
+    body {
+        max-width: 1200px; /* Stops the site from being a thin line */
+        margin: 0 auto;
+        padding: 40px;
+    }
+
+    /* Main Menu Grid - Shows more buttons side-by-side */
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 20px;
+    }
+
+    /* Product Grid - Shows 4 products in a row on laptop */
+    .product-list {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 30px;
+    }
+
+    /* Make Academy cards sit side-by-side */
+    .academy-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+}
             
             
     
