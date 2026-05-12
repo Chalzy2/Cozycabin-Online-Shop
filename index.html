@@ -347,7 +347,52 @@
         margin: 10px auto;
     }
 }
-            
+  /* Only for Laptops and Tablets (wider than 768px) */
+@media screen and (min-width: 768px) {
+    body {
+        /* Prevents the site from looking like a thin strip */
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px;
+    }
+
+    /* Main Category Buttons (Kitchen, Solar, etc.) */
+    /* Changes from 3 columns to 4 or 5 on a wide screen */
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    /* Sub-menu buttons (Cutlery, Dispensers, etc.) */
+    /* This makes them sit 4 in a row on a laptop */
+    .minor-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    /* Product Cards */
+    /* Shows 4 products side-by-side on desktop */
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 30px;
+    }
+
+    /* Academy & Library Cards */
+    /* Places them side-by-side instead of one on top of the other */
+    .academy-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .academy-card {
+        width: 45%;
+    }
+        }
+                
             
             
     
