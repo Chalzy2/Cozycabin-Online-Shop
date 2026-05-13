@@ -807,40 +807,45 @@ html,body{
          <div class="cozy-payment-box">
     <p style="color: #ffd700; font-size: 13px; font-weight: bold; margin-bottom: 15px;">💎 COZYCABIN PREMIUM CHECKOUT</p>
 
-    <!-- THE ICON GRID: M-Pesa now sits with the Global Brands -->
     <p style="font-size: 10px; color: #888; margin-bottom: 8px;">GUARANTEED SAFE CHECKOUT</p>
-    <div class="payment-methods-grid">
-        <!-- Visa -->
-        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/512px-Visa_Inc._logo.svg.png" alt="Visa" style="width: 100%; height: auto;"></div>
-        <div class="pay-icon-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
-        <div class="pay-icon-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"></div>
-        <div class="pay-icon-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex"></div>
-        <div class="pay-icon-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Discover_Card_logo.svg" alt="Discover"></div>
-        <div class="payment-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: white; padding: 10px; border-radius: 8px;">
-    <!-- M-Pesa -->
-    <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/512px-M-PESA_LOGO-01.svg.png" alt="M-Pesa" style="width: 100%; height: auto;"></div>
-    <!-- Binance -->
-    <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Binance_Logo.svg/512px-Binance_Logo.svg.png" alt="Binance" style="width: 100%; height: auto;"></div>
-        </div>
+    
+    <!-- All icons in ONE clean grid -->
+    <div class="payment-methods-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; background: white; padding: 12px; border-radius: 8px; align-items: center; justify-items: center;">
         
+        <!-- Visa -->
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Visa_2021.svg" alt="Visa" style="width: 100%; height: auto;"></div>
+        
+        <!-- Mastercard -->
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="width: 100%; height: auto;"></div>
+        
+        <!-- PayPal -->
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" style="width: 100%; height: auto;"></div>
+        
+        <!-- Amex -->
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex" style="width: 100%; height: auto;"></div>
+
+        <!-- Discover -->
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg" alt="Discover" style="width: 100%; height: auto;"></div>
+
+        <!-- M-Pesa -->
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/512px-M-PESA_LOGO-01.svg.png" alt="M-Pesa" style="width: 100%; height: auto;"></div>
+        
+        <!-- Binance -->
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Binance_Logo.svg/512px-Binance_Logo.svg.png" alt="Binance" style="width: 100%; height: auto;"></div>
     </div>
 
-    <!-- MAIN ACTION BUTTONS -->
-    <div id="paypal-button-container"></div> 
+    <div id="paypal-button-container" style="margin-top: 15px;"></div> 
 
     <hr style="border:0; border-top:1px solid #333; margin: 20px 0;">
 
-    <!-- DIRECT M-PESA ACTION BUTTON -->
-    <button class="local-pay-btn" style="background: #2db742;" onclick="showMpesa()">
+    <button class="local-pay-btn" style="background: #2db742; width: 100%; color: white; padding: 12px; border: none; border-radius: 5px; font-weight: bold; margin-bottom: 10px;" onclick="showMpesa()">
         Pay with M-PESA 
     </button>
     
-    <button class="local-pay-btn" style="background: #ffffff; color: #0033a0; border: 1px solid #0033a0;" onclick="showBank()">
+    <button class="local-pay-btn" style="background: #ffffff; color: #0033a0; border: 1px solid #0033a0; width: 100%; padding: 12px; border-radius: 5px; font-weight: bold;" onclick="showBank()">
         Bank Online Transfer
     </button>
 </div>
-<!-- 1. Load PayPal SDK -->
-<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 
 <script>
     function toggleSub(id) {
