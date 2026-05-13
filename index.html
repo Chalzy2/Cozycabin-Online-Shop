@@ -590,7 +590,7 @@ html,body{
 <div class="brand-header">
     <img src="Cozycabin log.png" alt="Cozycabin Logo" class="brand-logo">
     <!-- Updated Title to reflect your new focus -->
-    <h3 style="text-align:center; color:#ffd700; margin-bottom:5px;">💎 COZYCABIN DIGITAL ASSETS</h3>
+    <h3 style="text-align:center; color:#ffd700; margin-bottom:15px;">💎 COZYCABIN DIGITAL ASSETS</h3>
     <p class="brand-tagline">Courses, Crypto & Masterclasses</p>
 </div>
 
@@ -603,15 +603,36 @@ html,body{
     </div>
 </div>
 
-<!-- 3. NEW: CRYPTO MASTERY CARD -->
-<!-- This adds the crypto section you wanted without removing your other products -->
-<div class="academy-card" style="border: 1px solid #F3BA2F;"> 
-    <div class="academy-icon" style="background-color: #F3BA2F; color: black;">CRYPTO</div>
+<<!-- CRYPTO MASTERY CARD -->
+<div class="academy-card" style="border: 1px solid #F3BA2F; margin-bottom: 10px;">
+    <div class="academy-icon" style="background-color: #F3BA2F; color: black; font-weight: bold; display: flex; align-items: center; justify-content: center; border-radius: 12px;">CRYPTO</div>
     <div class="academy-info">
         <h2>Crypto Mastery</h2>
-        <p style="color: #F3BA2F;" onclick="toggleSub('crypto-assets')">Binance & Mobile Mining ▼</p>
+        <!-- This opens the new exchange menu -->
+        <p style="color: #F3BA2F;" onclick="toggleSub('crypto-exchanges')">Top Global Exchanges ▼</p>
     </div>
 </div>
+
+<!-- SUB-MENU: CRYPTO EXCHANGES -->
+<div id="crypto-exchanges" style="display: none; background: #1a1a1a; padding: 15px; border-radius: 0 0 15px 15px; border: 1px solid #333; border-top: none; margin-top: -10px; margin-bottom: 20px;">
+    
+    <!-- Binance Reward Section based on image_4.png -->
+    <div style="background: #2b2b2b; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #F3BA2F;">
+        <h4 style="color: #F3BA2F; margin: 0 0 5px 0; font-size: 14px;">🔥 Binance Reward: Up to $100</h4>
+        <p style="color: #ccc; font-size: 12px; margin-bottom: 8px;">Register and start your journey to claim a trading fee rebate!</p>
+        <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00TZ2L450F" target="_blank" style="display: inline-block; background: #F3BA2F; color: black; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 12px;">JOIN BINANCE</a>
+    </div>
+
+    <!-- Future Exchange Slots -->
+    <p style="color: #888; font-size: 11px; text-transform: uppercase; margin-bottom: 10px;">Coming Soon:</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">OKX</div>
+        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">Bybit</div>
+        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">KuCoin</div>
+        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">Gate.io</div>
+    </div>
+</div>
+
 
 <!-- 4. DIGITAL LIBRARY / MASTERCLASSES (Updated) -->
 <div class="academy-card">
