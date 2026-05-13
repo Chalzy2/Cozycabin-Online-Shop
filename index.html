@@ -804,48 +804,54 @@ html,body{
 
         
 
-         <div class="cozy-payment-box">
-    <p style="color: #ffd700; font-size: 13px; font-weight: bold; margin-bottom: 15px;">💎 COZYCABIN PREMIUM CHECKOUT</p>
+         <div class="cozy-payment-box" style="font-family: Arial, sans-serif; background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #333; max-width: 400px; margin: auto;">
+    <p style="color: #ffd700; font-size: 13px; font-weight: bold; margin-bottom: 15px; text-align: center;">💎 COZYCABIN PREMIUM CHECKOUT</p>
 
-    <p style="font-size: 10px; color: #888; margin-bottom: 8px;">GUARANTEED SAFE CHECKOUT</p>
+    <p style="font-size: 10px; color: #888; margin-bottom: 8px; text-align: center;">GUARANTEED SAFE CHECKOUT</p>
     
-    <!-- All icons in ONE clean grid -->
-    <div class="payment-methods-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; background: white; padding: 12px; border-radius: 8px; align-items: center; justify-items: center;">
+    <!-- THE ICON GRID: All logos in one clean, white container -->
+    <div class="payment-methods-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; background: white; padding: 15px; border-radius: 8px; align-items: center; justify-items: center;">
         
         <!-- Visa -->
-        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Visa_2021.svg" alt="Visa" style="width: 100%; height: auto;"></div>
+        <div class="pay-logo"><img src="https://cdn-icons-png.flaticon.com/512/196/196010.png" alt="Visa" style="width: 100%; height: auto; max-height: 25px; object-fit: contain;"></div>
         
         <!-- Mastercard -->
-        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="width: 100%; height: auto;"></div>
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="width: 100%; height: auto; max-height: 25px; object-fit: contain;"></div>
         
         <!-- PayPal -->
-        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" style="width: 100%; height: auto;"></div>
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" style="width: 100%; height: auto; max-height: 25px; object-fit: contain;"></div>
         
         <!-- Amex -->
-        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex" style="width: 100%; height: auto;"></div>
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex" style="width: 100%; height: auto; max-height: 25px; object-fit: contain;"></div>
 
         <!-- Discover -->
-        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg" alt="Discover" style="width: 100%; height: auto;"></div>
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg" alt="Discover" style="width: 100%; height: auto; max-height: 25px; object-fit: contain;"></div>
 
         <!-- M-Pesa -->
-        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/512px-M-PESA_LOGO-01.svg.png" alt="M-Pesa" style="width: 100%; height: auto;"></div>
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/512px-M-PESA_LOGO-01.svg.png" alt="M-Pesa" style="width: 100%; height: auto; max-height: 25px; object-fit: contain;"></div>
         
         <!-- Binance -->
-        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Binance_Logo.svg/512px-Binance_Logo.svg.png" alt="Binance" style="width: 100%; height: auto;"></div>
+        <div class="pay-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Binance_Logo.svg/512px-Binance_Logo.svg.png" alt="Binance" style="width: 100%; height: auto; max-height: 25px; object-fit: contain;"></div>
     </div>
 
-    <div id="paypal-button-container" style="margin-top: 15px;"></div> 
+    <!-- MAIN ACTION BUTTONS -->
+    <div id="paypal-button-container" style="margin-top: 20px;"></div> 
 
     <hr style="border:0; border-top:1px solid #333; margin: 20px 0;">
 
-    <button class="local-pay-btn" style="background: #2db742; width: 100%; color: white; padding: 12px; border: none; border-radius: 5px; font-weight: bold; margin-bottom: 10px;" onclick="showMpesa()">
+    <!-- DIRECT LOCAL ACTION BUTTONS -->
+    <button class="local-pay-btn" style="background: #2db742; width: 100%; color: white; padding: 14px; border: none; border-radius: 8px; font-weight: bold; margin-bottom: 12px; cursor: pointer;" onclick="showMpesa()">
         Pay with M-PESA 
     </button>
     
-    <button class="local-pay-btn" style="background: #ffffff; color: #0033a0; border: 1px solid #0033a0; width: 100%; padding: 12px; border-radius: 5px; font-weight: bold;" onclick="showBank()">
+    <button class="local-pay-btn" style="background: #ffffff; color: #0033a0; border: 1px solid #0033a0; width: 100%; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer;" onclick="showBank()">
         Bank Online Transfer
     </button>
 </div>
+
+<!-- PayPal SDK with your Test Client ID -->
+<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+
 
 <script>
     function toggleSub(id) {
