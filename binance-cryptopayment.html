@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Crypto Payment</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:20px;
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    max-width:500px;
+    margin:auto;
+    background:#1a1a1a;
+    padding:25px;
+    border-radius:20px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+select{
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    border:none;
+    border-radius:12px;
+    background:#2a2a2a;
+    color:white;
+    font-size:16px;
+}
+
+.wallet{
+    margin-top:20px;
+    background:#111;
+    padding:15px;
+    border-radius:12px;
+    word-break:break-all;
+    line-height:1.7;
+}
+
+button{
+    width:100%;
+    padding:16px;
+    margin-top:20px;
+    border:none;
+    border-radius:40px;
+    background:#f3ba2f;
+    color:black;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#qrcode{
+    text-align:center;
+    margin-top:25px;
+}
+
+#qrcode img{
+    background:white;
+    padding:10px;
+    border-radius:12px;
+}
+
+.note{
+    margin-top:20px;
+    text-align:center;
+    color:#bbb;
+    font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Pay with Crypto</h1>
+
+<select id="coin" onchange="updateNetworks()">
+
+<option value="usdt">
+USDT
+</option>
+
+<option value="eth">
+Ethereum
+</option>
+
+  <option value="bnb">
+  BNB 
+  </option>
+
+    <option value="pol">
+  Polygon 
+    </option>
+
+    <option value="sol">
+  Solana 
+    </option>
+
+</select>
+
+<select id="network"
+onchange="updateWallet()">
+</select>
+
+<div class="wallet" id="walletBox">
+</div>
+
+<button onclick="copyWallet()">
+Copy Wallet Address
+</button>
+
+<div id="qrcode"></div>
+
+<div class="note">
+Send payment only using selected network.
+</div>
+
+</div>
+
+<script>
+
+const wallets = {
+
+usdt: {
+
+"BEP20 / BSC":
+"0x2545509dbe9fa7e19af80352238281ba3391f781",
+
+"ERC20 / Ethereum":
+"0x2545509dbe9fa7e19af80352238281ba3391f781",
+
+"TRC20 / Tron":
+"TFTBNKnkn2Uin7m3NNVNZ1FJJFGW2HwdLj",
+
+"Solana":
+"AQGfDPuMZMXftpcTwYybBp18sdKEKn1Mes3Sq43iMJi8"
+
+},
+
+eth: {
+
+"Ethereum Mainnet":
+"0x2545509dbe9fa7e19af80352238281ba3391f781",
+
+"Base":
+"0x2545509dbe9fa7e19af80352238281ba3391f781",
+
+"Arbitrum":
+"0x2545509dbe9fa7e19af80352238281ba3391f781",
+
+"Optimism":
+"0x2545509dbe9fa7e19af80352238281ba3391f781",
+
+"Polygon":
+"0xYOUR_POLYGON_WALLET",
+
+"BNB Smart Chain":
+"0x2545509dbe9fa7e19af80352238281ba3391f781"
+
+}
+bnb:{
+"Ethereum ERC20":
+"0x2545509dbe9fa7e19af80352238281ba3391f781",
+
+"OpBNB":
+"0x2545509dbe9fa7e19af80352238281ba3391f781",
+
+"BNB Smart Chain":
+"0x2545509dbe9fa7e19af80352238281ba3391f781"
+}
+pol:{
+  "Ethereum ERC20"
+"0x2545509dbe9fa7e19af80352238281ba3391f781",
+
+"Polygon":
+"0x2545509dbe9fa7e19af80352238281ba3391f781",
+}
+sol:{
+  "Solana":
+"AQGfDPuMZMXftpcTwYybBp18sdKEKn1Mes3Sq43iMJi8",
+
+"BNB Smart Chain":
+"0x2545509dbe9fa7e19af80352238281ba3391f781"
+}
+};
+
+function updateNetworks(){
+
+const coin =
+document.getElementById("coin").value;
+
+const networkSelect =
+document.getElementById("network");
+
+networkSelect.innerHTML = "";
+
+for (const network in wallets[coin]){
+
+const option =
+document.createElement("option");
+
+option.value = network;
+
+option.textContent = network;
+
+networkSelect.appendChild(option);
+
+}
+
+updateWallet();
+
+}
+
+function updateWallet(){
+
+const coin =
+document.getElementById("coin").value;
+
+const network =
+document.getElementById("network").value;
+
+const wallet =
+wallets[coin][network];
+
+document.getElementById("walletBox")
+.innerText = wallet;
+
+document.getElementById("qrcode")
+.innerHTML =
+
+`<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${wallet}">`;
+
+}
+
+function copyWallet(){
+
+const wallet =
+document.getElementById("walletBox")
+.innerText;
+
+navigator.clipboard.writeText(wallet);
+
+alert("Wallet copied!");
+
+}
+
+updateNetworks();
+
+</script>
+
+</body>
+</html>
