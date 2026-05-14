@@ -800,8 +800,7 @@ html,body{
     </div>
 </div>
 
-
-<!-- THE CLEAN COZYCABIN ACADEMY CHECKOUT -->
+<!-- THE FINAL COZYCABIN ACADEMY CHECKOUT (FIXED) -->
 <div class="cozy-payment-box" style="font-family: Arial, sans-serif; background: #1a1a1a; padding: 22px; border-radius: 24px; border: 1px solid #333; max-width: 420px; margin: 20px auto; text-align: center;">
     
     <!-- BRANDING -->
@@ -810,7 +809,7 @@ html,body{
         <p style="font-size: 10px; color: #777; text-transform: uppercase;">Instant Digital Delivery</p>
     </div>
 
-    <!-- PRODUCT SELECTION (Corrected Style from image_14.png) -->
+    <!-- PRODUCT SELECTION -->
     <div style="background: #252525; padding: 18px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #444; text-align: left;">
         <p style="color: #ffd700; font-size: 11px; font-weight: bold; margin-bottom: 12px; text-align: center;">CHOOSE COURSE OR E-BOOK</p>
         <label style="display: block; color: #fff; font-size: 13px; margin-bottom: 10px; cursor: pointer;">
@@ -821,23 +820,24 @@ html,body{
         </label>
     </div>
 
-    <!-- SECTION 1: PAYPAL & CARD (Fixed to render only ONCE) -->
+    <!-- PAYPAL SECTION (Fixed duplicate from image_15.png) -->
     <div id="paypal-button-container" style="margin-bottom: 15px;"></div>
 
-    <!-- SECTION 2: BINANCE & SELAR (Replacing the duplicate buttons) -->
+    <!-- CRYPTO & ALTERNATIVE SECTION -->
     <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
-        <!-- Binance Pay Button -->
-        <a href="YOUR_BINANCE_PAY_LINK" style="background: #F3BA2F; color: #000; padding: 14px; border-radius: 35px; text-decoration: none; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" style="height: 20px; margin-right: 10px;"> Pay with Binance
-        </a>
+        
+        <!-- Binance Button (Modified to show your Wallet) -->
+        <button onclick="showBinance()" style="background: #F3BA2F; color: #000; padding: 14px; border-radius: 35px; border: none; font-weight: bold; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" style="height: 20px; margin-right: 10px;"> Pay with Binance (BSC)
+        </button>
 
         <!-- Selar Button -->
-        <a href="YOUR_SELAR_STORE_LINK" style="background: #5A27BA; color: white; padding: 14px; border-radius: 35px; text-decoration: none; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center;">
+        <a href="YOUR_SELAR_LINK" style="background: #5A27BA; color: white; padding: 14px; border-radius: 35px; text-decoration: none; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center;">
              Buy on Selar
         </a>
     </div>
 
-    <!-- SECTION 3: M-PESA (Using your corrected details) -->
+    <!-- M-PESA SECTION (Verified details) -->
     <div style="background: #2db742; color: white; padding: 20px; border-radius: 15px; text-align: left;">
         <p style="font-weight: bold; font-size: 14px; text-align: center; margin-bottom: 10px;">🟢 LIPA NA M-PESA</p>
         <p style="font-size: 12px; margin: 3px 0;">Paybill: <b>542542</b></p>
@@ -845,12 +845,17 @@ html,body{
     </div>
 </div>
 
-<!-- PAYPAL SCRIPT -->
 <script src="https://www.paypal.com/sdk/js?client-id=AT0WwagGFIiQdyLEHgqkZwL_mjYPE37_yurmrjTO5HN3Vx4yIDwiI_NoGJCLQVaaelPBTIFbbsLApX0W&currency=USD"></script>
 
 <script>
-    // This ensures buttons only render once
-    if (!document.getElementById('paypal-button-container').hasChildNodes()) {
+    // Binance Wallet Alert
+    function showBinance() {
+        alert("Binance USDT/BNB (BSC) Wallet:\n0x2545509dbe9fa7e19af80352238281ba3391f781\n\nPlease send the equivalent amount and email your receipt.");
+    }
+
+    // Fix for duplicate buttons
+    const container = document.getElementById('paypal-button-container');
+    if (container && !container.hasChildNodes()) {
         paypal.Buttons({
             style: { layout: 'vertical', color: 'gold', shape: 'pill', label: 'checkout' },
             createOrder: function(data, actions) {
@@ -861,12 +866,13 @@ html,body{
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    alert('Success! Check your email for your digital assets.');
+                    alert('Transaction completed! Check your email.');
                 });
             }
         }).render('#paypal-button-container');
     }
 </script>
+
 
 <script>
     function toggleSub(id) {
