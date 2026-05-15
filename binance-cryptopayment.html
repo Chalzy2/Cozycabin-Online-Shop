@@ -5,8 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Crypto Payment</title>
 
@@ -26,44 +25,61 @@ body{
     background:#1a1a1a;
     padding:25px;
     border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
 }
 
 h1{
     text-align:center;
-    margin-bottom:20px;
+    margin-bottom:10px;
+    font-size:42px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#999;
+    margin-bottom:25px;
+    font-size:15px;
 }
 
 select{
     width:100%;
-    padding:15px;
+    padding:16px;
     margin-top:15px;
     border:none;
-    border-radius:12px;
+    border-radius:14px;
     background:#2a2a2a;
     color:white;
     font-size:16px;
+    outline:none;
 }
 
 .wallet{
     margin-top:20px;
-    background:#111;
-    padding:15px;
-    border-radius:12px;
+    background:#0d0d0d;
+    padding:18px;
+    border-radius:14px;
     word-break:break-all;
     line-height:1.7;
+    font-size:15px;
+    border:1px solid #222;
 }
 
 button{
     width:100%;
-    padding:16px;
+    padding:17px;
     margin-top:20px;
     border:none;
     border-radius:40px;
-    background:#f3ba2f;
+    background:#F3BA2F;
     color:black;
-    font-size:18px;
+    font-size:19px;
     font-weight:bold;
     cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    opacity:0.9;
 }
 
 #qrcode{
@@ -74,7 +90,7 @@ button{
 #qrcode img{
     background:white;
     padding:10px;
-    border-radius:12px;
+    border-radius:14px;
 }
 
 .note{
@@ -82,6 +98,58 @@ button{
     text-align:center;
     color:#bbb;
     font-size:14px;
+    line-height:1.6;
+}
+
+.warning{
+    margin-top:15px;
+    text-align:center;
+    color:#ffcc00;
+    font-size:14px;
+}
+
+.referral-box{
+    margin-top:35px;
+    background:#111;
+    padding:22px;
+    border-radius:18px;
+    text-align:center;
+    border:1px solid #222;
+}
+
+.referral-box h3{
+    margin-bottom:12px;
+    font-size:22px;
+}
+
+.referral-box p{
+    color:#aaa;
+    margin-bottom:20px;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.referral-btn{
+    display:block;
+    background:#F3BA2F;
+    color:#000;
+    padding:15px;
+    border-radius:35px;
+    font-weight:bold;
+    text-decoration:none;
+    font-size:16px;
+}
+
+.support{
+    margin-top:25px;
+    text-align:center;
+}
+
+.support a{
+    color:#25D366;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:15px;
 }
 
 </style>
@@ -94,6 +162,10 @@ button{
 
 <h1>Pay with Crypto</h1>
 
+<div class="subtitle">
+Secure crypto payment gateway
+</div>
+
 <select id="coin" onchange="updateNetworks()">
 
 <option value="usdt">
@@ -104,22 +176,21 @@ USDT
 Ethereum
 </option>
 
-  <option value="bnb">
-  BNB 
-  </option>
+<option value="bnb">
+BNB
+</option>
 
-    <option value="pol">
-  Polygon 
-    </option>
+<option value="pol">
+Polygon
+</option>
 
-    <option value="sol">
-  Solana 
-    </option>
+<option value="sol">
+Solana
+</option>
 
 </select>
 
-<select id="network"
-onchange="updateWallet()">
+<select id="network" onchange="updateWallet()">
 </select>
 
 <div class="wallet" id="walletBox">
@@ -131,8 +202,42 @@ Copy Wallet Address
 
 <div id="qrcode"></div>
 
+<div class="warning">
+Send payment ONLY using selected network.
+</div>
+
 <div class="note">
-Send payment only using selected network.
+After payment, send screenshot or transaction receipt on WhatsApp for confirmation.
+</div>
+
+<div class="referral-box">
+
+<h3>
+Need a Crypto Wallet?
+</h3>
+
+<p>
+Create a Binance account to buy, send and receive crypto easily.
+</p>
+
+<a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00TZ2L450F"
+target="_blank"
+class="referral-btn">
+
+Create Binance Account
+
+</a>
+
+</div>
+
+<div class="support">
+
+<a href="https://wa.me/254702468460" target="_blank">
+
+Need help? Contact us on WhatsApp
+
+</a>
+
 </div>
 
 </div>
@@ -172,13 +277,15 @@ eth: {
 "0x2545509dbe9fa7e19af80352238281ba3391f781",
 
 "Polygon":
-"0xYOUR_POLYGON_WALLET",
+"0x2545509dbe9fa7e19af80352238281ba3391f781",
 
 "BNB Smart Chain":
 "0x2545509dbe9fa7e19af80352238281ba3391f781"
 
-}
-bnb:{
+},
+
+bnb: {
+
 "Ethereum ERC20":
 "0x2545509dbe9fa7e19af80352238281ba3391f781",
 
@@ -187,21 +294,29 @@ bnb:{
 
 "BNB Smart Chain":
 "0x2545509dbe9fa7e19af80352238281ba3391f781"
-}
-pol:{
-  "Ethereum ERC20"
+
+},
+
+pol: {
+
+"Ethereum ERC20":
 "0x2545509dbe9fa7e19af80352238281ba3391f781",
 
 "Polygon":
-"0x2545509dbe9fa7e19af80352238281ba3391f781",
-}
-sol:{
-  "Solana":
+"0x2545509dbe9fa7e19af80352238281ba3391f781"
+
+},
+
+sol: {
+
+"Solana":
 "AQGfDPuMZMXftpcTwYybBp18sdKEKn1Mes3Sq43iMJi8",
 
 "BNB Smart Chain":
 "0x2545509dbe9fa7e19af80352238281ba3391f781"
+
 }
+
 };
 
 function updateNetworks(){
@@ -260,7 +375,7 @@ document.getElementById("walletBox")
 
 navigator.clipboard.writeText(wallet);
 
-alert("Wallet copied!");
+alert("Wallet copied successfully!");
 
 }
 
