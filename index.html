@@ -586,6 +586,55 @@ body {
   -webkit-user-select: none;   /* Prevents text selection */
   user-select: none;
             }
+            .library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.book-card {
+    background: #1a1a1a; /* Dark gray for depth */
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    border-color: #d4af37; /* Gold highlight on hover */
+}
+
+.book-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.book-card h3 {
+    color: #d4af37;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.book-card p {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.buy-btn {
+    display: block;
+    background: #d4af37;
+    color: #000;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
             
     
          </style>
@@ -658,6 +707,23 @@ body {
         <!-- Updated to include Masterclasses in the text -->
         <p class="yellow-text" onclick="toggleSub('finance-ebooks')">Finance & Masterclasses ▼</p>
     </div>
+    <div class="library-grid">
+   <div class="book-card">
+      <img src="facebook-formula-cover.jpg" alt="Facebook Monetization Formula">
+      <h3>Facebook Profit Formula</h3>
+      <p>Master Meta monetization in 30 days.</p>
+      <a href="SELAR_LINK_1" class="buy-btn">Buy Now</a>
+   </div>
+
+   <div class="book-card">
+      <img src="crypto-mastery-cover.jpg" alt="Crypto Mastery">
+      <h3>Crypto Mastery Guide</h3>
+      <p>The ultimate blueprint for global exchanges.</p>
+      <a href="SELAR_LINK_2" class="buy-btn">Buy Now</a>
+   </div>
+   
+    </div>
+    
 </div>
 
 
