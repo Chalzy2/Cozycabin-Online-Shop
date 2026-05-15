@@ -875,28 +875,7 @@ Pay with Binance
     function showBinance() {
         alert("Binance USDT/BNB (BSC) Wallet:\n0x2545509dbe9fa7e19af80352238281ba3391f781\n\nPlease send the equivalent amount and email your receipt.");
     }
-
-    // Fix for duplicate buttons
-    const container = document.getElementById('paypal-button-container');
-    if (container && !container.hasChildNodes()) {
-        paypal.Buttons({
-            style: { layout: 'vertical', color: 'gold', shape: 'pill', label: 'checkout' },
-            createOrder: function(data, actions) {
-                const selectedPrice = document.querySelector('input[name="product"]:checked').value;
-                return actions.order.create({
-                    purchase_units: [{ amount: { value: (selectedPrice / 130).toFixed(2) } }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed! Check your email.');
-                });
-            }
-        }).render('#paypal-button-container');
-    }
 </script>
-
-
 <script>
     function toggleSub(id) {
         document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
