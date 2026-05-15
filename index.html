@@ -11,7 +11,8 @@
         gtag('js', new Date());
         gtag('config', 'G-4JVT3X5J5D');
     </script>
-
+    <script><link rel="stylesheet" href="style.css"></script>
+            
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cozycabin Premium</title>
@@ -569,8 +570,23 @@ html,body{
     font-weight:bold;
     font-size:11px;
     border-radius:18px;
+    }
+/* Cozycabin Content Protection */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-select: none;
+  pointer-events: none; /* This makes images "unclickable" so the save menu won't pop up */
 }
 
+body {
+  -webkit-touch-callout: none; /* Prevents callout menu on mobile */
+  -webkit-user-select: none;   /* Prevents text selection */
+  user-select: none;
+            }
+            
     
          </style>
 </head>
