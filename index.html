@@ -635,6 +635,68 @@ body {
     border-radius: 5px;
     text-transform: uppercase;
 }
+ /* Container that adapts to mobile or desktop automatically */
+.cozy-flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;       /* Crucial: Drops content to next line on mobile */
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* Image settings */
+.cozy-img-box {
+  flex: 1 1 220px;       /* Grows/shrinks, but prefers 220px width */
+  max-width: 250px;      /* Ensures the book cover stays a reasonable size */
+}
+
+.cozy-responsive-img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;        /* Prevents overlapping or baseline gaps */
+}
+
+/* Action block containing button and description */
+.cozy-action-box {
+  flex: 1.5 1 250px;     /* Takes up the remaining space on desktop */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cozy-text-desc {
+  font-size: 14px;
+  color: #cccccc;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Standalone Premium Button */
+.cozy-buy-now-btn {
+  display: block;
+  width: 100%;
+  max-width: 240px;      /* Comfortable sizing for both touch and mouse clicks */
+  background-color: #ffcc00;
+  color: #000000;
+  text-align: center;
+  padding: 12px 0;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.cozy-buy-now-btn:active {
+  background-color: #e6b800;
+            }
             
     
          </style>
@@ -699,54 +761,38 @@ body {
 </div>
 
 
-<!-- 4. DIGITAL LIBRARY / MASTERCLASSES (Updated) -->
 <div class="academy-card">
     <div class="academy-icon bg-yellow">E-BOOK</div>
     <div class="academy-info">
         <h2>Digital Library</h2>
-        <!-- Updated to include Masterclasses in the text -->
         <p class="yellow-text" onclick="toggleSub('finance-ebooks')">Finance & Masterclasses ▼</p>
     </div>
-    <div class="library-grid">
-   <div class="book-card">
-      <img src="facebook-formula-cover.jpg" alt="Facebook Monetization Formula">
-      <h3>Facebook Profit Formula</h3>
-      <p>Master Meta monetization in 30 days.</p>
-      <a href="SELAR_LINK_1" class="buy-btn">Buy Now</a>
-   </div>
 
-   <div class="book-card">
-      <img src="crypto-mastery-cover.jpg" alt="Crypto Mastery">
-      <h3>Crypto Mastery Guide</h3>
-      <p>The ultimate blueprint for global exchanges.</p>
-      <a href="SELAR_LINK_2" class="buy-btn">Buy Now</a>
-   </div>
-   
+    <div id="finance-ebooks" class="cozy-flex-container" style="display: none;">
+        
+        <div class="cozy-product-block">
+            <div class="cozy-img-box">
+                <img src="facebook-formula-cover.jpg" alt="Facebook Monetization Formula" class="cozy-responsive-img">
+            </div>
+            <div class="cozy-action-box">
+                <h3>Facebook Profit Formula</h3>
+                <p class="cozy-text-desc">Master Meta monetization in 30 days.</p>
+                <a href="https://selar.com/z6wn6j11g1" class="cozy-buy-now-btn">BUY NOW</a>
+            </div>
+        </div>
+
+        <div class="cozy-product-block">
+            <div class="cozy-img-box">
+                <img src="crypto-mastery-cover.jpg" alt="Crypto Mastery" class="cozy-responsive-img">
+            </div>
+            <div class="cozy-action-box">
+                <h3>Crypto Mastery Guide</h3>
+                <p class="cozy-text-desc">The ultimate blueprint for global exchanges.</p>
+                <a href="SELAR_LINK_2" class="cozy-buy-now-btn">BUY NOW</a>
+            </div>
+        </div>
+
     </div>
-    
-</div>
-
-
-
-    <h3 style="text-align:center; color:#ffd700; margin-bottom:15px;">🌐 OFFICIAL STORE LINKS</h3>
-
-<div class="global-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px;">
-    
-    <a href="https://jforce.jumia.co.ke/s/QfTI7gb" target="_blank" class="global-btn" style="background-color:#f68b1e; color:white; padding:15px; text-align:center; text-decoration:none; border-radius:8px; font-weight:bold;">
-        Jumia (Local)
-    </a>
-
-    <a href="https://amzn.to/4tDZaKV" target="_blank" class="global-btn" style="background-color:#FF9900; color:black; padding:15px; text-align:center; text-decoration:none; border-radius:8px; font-weight:bold;">
-        Amazon (Global)
-    </a>
-
-    <a href="https://s.click.aliexpress.com/e/_c2QL6ZGL" target="_blank" class="global-btn" style="background-color:#E62E04; color:white; padding:15px; text-align:center; text-decoration:none; border-radius:8px; font-weight:bold;">
-        AliExpress
-    </a>
-
-    <a href="#" class="global-btn" style="background-color:#333; color:white; padding:15px; text-align:center; text-decoration:none; border-radius:8px; font-weight:bold; opacity: 0.6;">
-        Alibaba (Soon)
-    </a>
 </div>
 
 
