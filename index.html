@@ -799,7 +799,46 @@ body {
     font-size: 0.85rem;
     color: #A0A0A0;            /* Soft gray subtitle */
 }
+/* Mobile-first layout adjustment for the dropdown content */
+@media (max-width: 768px) {
+    /* 1. Force the main container to stack its items vertically */
+    .digital-library-container, 
+    .dropdown-parent-selector { /* Replace with your actual parent wrapper class if different */
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
 
+    /* 2. Reset the dropdown content so it takes up the full width below the button */
+    .digital-library-content,
+    .dropdown-content-selector { /* Replace with your actual dropdown content class */
+        position: relative; /* Removes any absolute floating to the right */
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        margin-top: 15px; /* Adds clean breathing room below the button */
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    /* 3. Ensure images and store links span nicely across the screen */
+    .digital-library-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto 15px auto; /* Centers images with a gap underneath */
+    }
+
+    /* 4. Fix the 2x2 Grid for Store Links so it doesn't compress */
+    .store-links-grid,
+    .official-store-links + div { /* Target for your Jumia/Amazon/AliExpress buttons wrapper */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+}
+            
             
     
          </style>
