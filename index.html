@@ -838,6 +838,51 @@ body {
         width: 100%;
     }
 }
+/* --- UNIVERSAL ACCORDION STYLES (Laptop & Desktop) --- */
+.accordion-content {
+    display: none; /* Hidden by default, toggled by JS */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    background: #111; /* Matches your dark premium theme */
+    
+    /* Forces elements inside the dropdown to stack top-to-bottom naturally */
+    clear: both;
+    float: none;
+}
+
+/* When the accordion is active/open */
+.accordion-content.active {
+    display: block !important;
+}
+
+/* Ensure global store grids display beautifully on big screens */
+.store-links-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 side-by-side on Laptop */
+    gap: 15px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+
+/* --- RESPONSIVE ADJUSTMENTS (Phone Layout) --- */
+@media (max-width: 768px) {
+    /* Prevent side-by-side squishing on mobile */
+    body, .main-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Drop down to 2 columns for store links on mobile so buttons stay large */
+    .store-links-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
             
             
     
