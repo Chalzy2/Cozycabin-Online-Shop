@@ -697,73 +697,109 @@ body {
 .cozy-buy-now-btn:active {
   background-color: #e6b800;
             }
- /* Container for the store section */
+/* Container adjustments to match full width layout */
 .official-stores-section {
-    width: 100%;
-    padding: 20px 15px;
-    box-sizing: border-box;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 25px 0;
+    background-color: #000000;
     text-align: center;
-    background-color: #000000; /* Matches your dark theme */
+    box-sizing: border-box;
 }
 
-/* Title Styling */
 .store-title {
-    color: #FFD700; /* Gold text */
+    color: #FFD700; /* Gold header text */
     font-size: 1.1rem;
     font-weight: bold;
     letter-spacing: 1px;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
-/* 2x2 Grid Layout for Mobile */
-.store-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Creates two equal columns */
-    gap: 12px; /* Space between buttons */
-    max-width: 500px; /* Keeps it tight on larger screens */
+/* Vertically stacked full-width container */
+.stores-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Spacing between the rows */
+    width: 90%;
+    max-width: 500px;
     margin: 0 auto;
 }
 
-/* Base Button Styles */
-.store-btn {
+/* Individual Rectangular Row - Matches E-book & Course Styling */
+.custom-store-row {
+    display: flex;
+    align-items: center;
+    background-color: #1A1A1A; /* Dark grey body background */
+    border: 1px solid #2A2A2A;  /* Subtle boundary outline */
+    border-radius: 24px;       /* Smooth rounded capsule layout */
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.custom-store-row:active {
+    transform: scale(0.98);
+    background-color: #222222;
+}
+
+/* The Left Inner Square Icon Box */
+.store-icon-box {
+    width: 75px;
+    height: 75px;
+    border-radius: 18px;       /* Soft squared inner look */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 55px;
-    border-radius: 10px;
     font-weight: bold;
-    font-size: 0.9rem;
-    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
     color: #ffffff;
-    transition: transform 0.2s ease;
+    flex-shrink: 0;            /* Prevents the block from warping on small screens */
 }
 
-.store-btn:active {
-    transform: scale(0.98); /* Touch feedback */
+/* Brand backgrounds for inner icons */
+.jumia-bg {
+    background-color: #E67E22;
 }
 
-/* Individual Button Colors matching your brand */
-.jumia {
-    background-color: #E67E22; /* Soft Orange */
+.amazon-bg {
+    background-color: #FF9900;
 }
 
-.amazon {
-    background-color: #FF9900; /* Bright Orange/Yellow */
+.aliexpress-bg {
+    background-color: #E74C3C;
 }
 
-.aliexpress {
-    background-color: #E74C3C; /* Red */
+/* Text Information styling side alignment */
+.store-text-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    margin-left: 20px;         /* Creates uniform space from icon box */
+    flex-grow: 1;
 }
 
-.alibaba {
-    background-color: #2C3E50; /* Dark Grey for disabled/soon state */
-    color: #7F8C8D;
-    cursor: not-allowed;
+.store-main-name {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 4px;
 }
+
+.store-sub-name {
+    font-size: 0.85rem;
+    color: #A0A0A0;            /* Soft gray subtitle */
+}
+
             
     
          </style>
@@ -859,22 +895,39 @@ body {
     </div>
 </div>
 
- <section> 
 <<div class="digital-library-container">
     </div>
 
-<div class="official-stores-section">
-    <h3 class="store-title">
-        <span class="globe-icon">🌐</span> OFFICIAL STORE LINKS
-    </h3>
+<div<div class="official-stores-section">
+    <h3 class="store-title">🌐 OFFICIAL STORE LINKS</h3>
     
-    <div class="store-grid">
-        <a href="#" class="store-btn jumia">Jumia (Local)</a>
-        <a href="#" class="store-btn amazon">Amazon (Global)</a>
-        <a href="#" class="store-btn aliexpress">AliExpress</a>
-        <a href="#" class="store-btn alibaba disabled">Alibaba (Soon)</a>
+    <div class="stores-list-container">
+        <a href="#" class="custom-store-row">
+            <div class="store-icon-box jumia-bg">Jumia</div>
+            <div class="store-text-info">
+                <span class="store-main-name">Jumia (Local)</span>
+                <span class="store-sub-name">Official Kenya Store ▼</span>
+            </div>
+        </a>
+
+        <a href="#" class="custom-store-row">
+            <div class="store-icon-box amazon-bg">Amazon</div>
+            <div class="store-text-info">
+                <span class="store-main-name">Amazon (Global)</span>
+                <span class="store-sub-name">International Shipping ▼</span>
+            </div>
+        </a>
+
+        <a href="#" class="custom-store-row">
+            <div class="store-icon-box aliexpress-bg">AliExpress</div>
+            <div class="store-text-info">
+                <span class="store-main-name">AliExpress</span>
+                <span class="store-sub-name">Global Direct Sourcing ▼</span>
+            </div>
+        </a>
     </div>
 </div>
+
 
 
 
