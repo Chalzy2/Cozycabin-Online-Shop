@@ -619,66 +619,71 @@ font-size:19px;
     </div>
 </div>
 
-                        💎 COZYCABIN PREMIUM CHECKOUT
+                        <div id="premium-checkout-box" style="background: #111; border: 1px solid #d4af37; padding: 20px; border-radius: 15px; max-width: 420px; margin: 15px auto; text-align: center; position: relative; font-family: sans-serif; box-shadow: 0px 4px 15px rgba(0,0,0,0.5);">
+    
+    <span class="close-checkout-btn" onclick="closeCheckoutBlock()" style="position: absolute; top: 12px; right: 18px; color: #d4af37; font-size: 26px; font-weight: bold; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#d4af37'">&times;</span>
+
+    <div style="margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 12px;">
+        <p style="font-weight: bold; font-size: 16px; color: #ffd700; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 1px;">
+            💎 COZYCABIN PREMIUM CHECKOUT
         </p>
-        <p style="font-size:10px; color:#777; text-transform:uppercase; margin: 0;">
+        <p style="font-size: 10px; color: #777; text-transform: uppercase; margin: 0; letter-spacing: 0.5px;">
             Instant Digital Delivery
         </p>
     </div>
 
-    <div style="background:#252525; padding:18px; border-radius:15px; margin-bottom:20px; border:1px solid #444; text-align:left;">
-        <p style="color:#ffd700; font-size:11px; font-weight:bold; margin-bottom:12px; text-align:center;">
-            CHOOSE COURSE OR  E-BOOK
+    <div style="background: #1a1a1a; padding: 16px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #333; text-align: left;">
+        <p style="color: #ffd700; font-size: 11px; font-weight: bold; margin-bottom: 12px; text-align: center; text-transform: uppercase; letter-spacing: 0.5px;">
+            CHOOSE COURSE OR E-BOOK
         </p>
 
-        <label style="display:block; color:#fff; font-size:13px; margin-bottom:10px; cursor:pointer;">
-            <input type="radio" name="product" value="200" checked style="margin-right:10px;">
+        <label style="display: block; color: #fff; font-size: 13px; margin-bottom: 12px; cursor: pointer; user-select: none;">
+            <input type="radio" name="product" value="200" checked style="margin-right: 10px; accent-color: #ffd700;">
             AI Video Editing Masterclass (200 KES)
         </label>
 
-        <label style="display:block; color:#fff; font-size:13px; cursor:pointer;">
-            <input type="radio" name="product" value="150" style="margin-right:10px;">
+        <label style="display: block; color: #fff; font-size: 13px; cursor: pointer; user-select: none;">
+            <input type="radio" name="product" value="150" style="margin-right: 10px; accent-color: #ffd700;">
             Finance & Sourcing E-book (150 KES)
         </label>
     </div>
-<!-- PAYPAL -->
-    <div id="paypal-button-container" style="margin-bottom:15px;"></div>
 
-    <!-- OTHER PAYMENTS -->
-    <div style="
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-bottom:20px;
-    ">
+    <div id="paypal-button-container" style="margin-bottom: 15px;"></div>
 
-    <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px;">
-        <a href="binance-cryptopayment.html" style="text-decoration:none;">
-            <div style="background:#F3BA2F; color:#000; padding:12px; border-radius:35px; font-weight:bold; font-size:15px; display:flex; align-items:center; justify-content:center; width:100%;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" style="height:20px; margin-right:10px; pointer-events:none;">
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+        
+        <a href="binance-cryptopayment.html" style="text-decoration: none;">
+            <div style="background: #F3BA2F; color: #000; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 20px; margin-right: 10px; pointer-events: none;">
                 Pay with Binance
             </div>
         </a>
 
-        <a href="YOUR_SELAR_LINK" style="background:#5A27BA; color:#fff; padding:12px; border-radius:35px; text-decoration:none; font-weight:bold; font-size:15px; display:flex; align-items:center; justify-content:center; width:100%;">
+        <a href="YOUR_SELAR_LINK" style="background: #5A27BA; color: #fff; padding: 12px; border-radius: 35px; text-decoration: none; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
             Buy on Selar
         </a>
+        
     </div>
 
-    <div style="background:#2db742; color:#fff; padding:15px; border-radius:12px; text-align:left;">
-        <p style="font-weight:bold; font-size:14px; text-align:center; margin-bottom:10px;">
+    <div style="background: #2db742; color: #fff; padding: 15px; border-radius: 12px; text-align: left; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 15px;">
+        <p style="font-weight: bold; font-size: 14px; text-align: center; margin-bottom: 10px; letter-spacing: 0.5px;">
             🟢 LIPA NA M-PESA
         </p>
-        <p style="font-size:13px; margin:5px 0;">
-            Paybill: <b>542542</b>
-        </p>
-        <p style="font-size:13px; margin:5px 0;">
-            Account No: <b>702468</b>
+        <div style="display: flex; flex-direction: column; gap: 4px; padding-left: 10px;">
+            <p style="font-size: 13px; margin: 0;">Paybill: <b>542542</b></p>
+            <p style="font-size: 13px; margin: 0;">Account No: <b>702468</b></p>
+        </div>
+    </div>
+
+    <div style="border-top: 1px solid #222; padding-top: 12px; margin-top: 15px;">
+        <p style="font-size: 11px; color: #555; margin: 0; letter-spacing: 0.8px; font-weight: 500;">
+            © Cozycabin Online Shop 2026
         </p>
     </div>
+
 </div>
 
- <script src="https://www.paypal.com/sdk/js?client-id=AT0WwagGFIiQdyLEHgqkZwL_mjYPE37_yurmrjTO5HN3Vx4yIDwiI_NoGJCLQVaaelPBTIFbbsLApX0W&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AT0WwagGFIiQdyLEHgqkZwL_mjYPE37_yurmrjTO5HN3Vx4yIDwiI_NoGJCLQVaaelPBTIFbbsLApX0W&currency=USD"></script>
 
 <a href="https://wa.me/254702468460" class="float-wa" target="_blank" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 60px; height: 60px; pointer-events: auto;">
@@ -688,6 +693,42 @@ font-size:19px;
     <span class="close-modal" style="position: absolute; top: 15px; right: 35px; color: #d4af37; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>
     <img class="modal-content" id="expandedImg" style="margin: auto; display: block; max-width: 90%; max-height: 85%; border: 2px solid #d4af37; border-radius: 8px;">
 </div>
+<script>
+  // Dynamic PayPal Button Initialization
+  if (typeof paypal !== 'undefined') {
+      paypal.Buttons({
+          style: {
+              shape: 'pill',
+              color: 'gold',
+              layout: 'vertical',
+              height: 40
+          },
+          createOrder: function(data, actions) {
+              let selectedAmount = '1.50'; 
+              const activeProduct = document.querySelector('input[name="product"]:checked');
+              if (activeProduct) {
+                  if (activeProduct.value === "200") selectedAmount = '1.50';
+                  if (activeProduct.value === "150") selectedAmount = '1.10';
+              }
+              return actions.order.create({
+                  purchase_units: [{
+                      amount: {
+                          value: selectedAmount
+                      }
+                  }]
+              });
+          }
+      }).render('#paypal-button-container');
+  }
+
+  // Interactive Close Trigger 
+  function closeCheckoutBlock() {
+      const checkoutBox = document.getElementById('premium-checkout-box');
+      if (checkoutBox) {
+          checkoutBox.style.display = 'none';
+      }
+  }
+</script>
 
 
 <script>
