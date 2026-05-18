@@ -698,58 +698,8 @@ font-size:19px;
     <span class="close-modal" style="position: absolute; top: 15px; right: 35px; color: #d4af37; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>
     <img class="modal-content" id="expandedImg" style="margin: auto; display: block; max-width: 90%; max-height: 85%; border: 2px solid #d4af37; border-radius: 8px;">
 </div>
-<script>
-  // Dynamic PayPal Button Initialization
-  if (typeof paypal !== 'undefined') {
-      paypal.Buttons({
-          style: {
-              shape: 'pill',
-              color: 'gold',
-              layout: 'vertical',
-              height: 40
-          },
-          createOrder: function(data, actions) {
-              let selectedAmount = '1.50'; 
-              const activeProduct = document.querySelector('input[name="product"]:checked');
-              if (activeProduct) {
-                  if (activeProduct.value === "200") selectedAmount = '1.50';
-                  if (activeProduct.value === "150") selectedAmount = '1.10';
-              }
-              return actions.order.create({
-                  purchase_units: [{
-                      amount: {
-                          value: selectedAmount
-                      }
-                  }]
-              });
-          }
-      }).render('#paypal-button-container');
-  }
-<script>
-function toggleCryptoRowDropdown() {
-    const menu = document.getElementById('crypto-row-dropdown-menu');
-    const arrow = document.getElementById('crypto-row-arrow');
-    
-    // Automatically close other tabs to ensure clean stack order
-    document.querySelectorAll('.minor-menu, .product-list, #ebook-row-dropdown-menu').forEach(el => {
-        el.style.display = 'none';
-    });
-    
-    // Reset the E-book arrow if it was left upside down
-    const ebookArrow = document.getElementById('ebook-row-arrow');
-    if (ebookArrow) ebookArrow.style.transform = 'rotate(0deg)';
 
-    // Toggle the Crypto menu state smoothly
-    if (menu) {
-        if (menu.style.display === 'none' || menu.style.display === '') {
-            menu.style.display = 'block';
-            if (arrow) arrow.style.transform = 'rotate(180deg)';
-        } else {
-            menu.style.display = 'none';
-            if (arrow) arrow.style.transform = 'rotate(0deg)';
-        }
-    }
-}
+<script src="https://www.paypal.com/sdk/js?client-id=AT0WwagGFIiQdyLEHgqkZwL_mjYPE37_yurmrjTO5HN3Vx4yIDwiI_NoGJCLQVaaelPBTIFbbsLApX0W&currency=USD"></script>
 
 <script>
 /* ==========================================
@@ -764,15 +714,12 @@ if (typeof paypal !== 'undefined') {
             height: 40
         },
         createOrder: function(data, actions) {
-            // Evaluates selected radio values from your clean checkout box dynamically
-            let selectedAmount = '1.50'; // Default backup fallback value
+            let selectedAmount = '1.50'; 
             const activeProduct = document.querySelector('input[name="product"]:checked');
             if (activeProduct) {
-                // Translates KES estimates into standard platform base checkout value
                 if (activeProduct.value === "200") selectedAmount = '1.50';
                 if (activeProduct.value === "150") selectedAmount = '1.10';
             }
-            
             return actions.order.create({
                 purchase_units: [{
                     amount: {
@@ -784,17 +731,26 @@ if (typeof paypal !== 'undefined') {
     }).render('#paypal-button-container');
 }
 
-
 /* ==========================================
    B. INTERACTIVE MENUS, TABS, & SLIDE CONTROLS
    ========================================== */
 
-// Main Brand Drawer Toggles (Closes other open tabs to avoid stacking errors)
-function toggleSub(id) {
-    document.querySelectorAll('.minor-menu, .product-list, #crypto-exchanges, #ebook-row-dropdown-menu').forEach(el => {
+// Global navigation reset (Closes active panels to prevent layout overlaps)
+function closeAllDrawers() {
+    document.querySelectorAll('.minor-menu, .product-list, #ebook-row-dropdown-menu, #crypto-row-dropdown-menu').forEach(el => {
         el.style.display = 'none';
     });
+    
+    // Reset indicators safely back to initial arrow position
+    const cryptoArrow = document.getElementById('crypto-row-arrow');
+    const ebookArrow = document.getElementById('ebook-row-arrow');
+    if (cryptoArrow) cryptoArrow.style.transform = 'rotate(0deg)';
+    if (ebookArrow) ebookArrow.style.transform = 'rotate(0deg)';
+}
 
+// Global Shop Drawer Trigger
+function toggleSub(id) {
+    closeAllDrawers();
     const target = document.getElementById(id);
     if (target) {
         if (target.classList.contains('product-list')) {
@@ -806,12 +762,11 @@ function toggleSub(id) {
     }
 }
 
-// Local Categories Display Grid Handler (Kitchen, Cutlery Grid, Solar etc.)
+// Local Categories Display Grid (Kitchen, Solar, Decor, etc.)
 function showProducts(categoryId) {
     document.querySelectorAll('.product-list').forEach(el => {
         el.style.display = 'none';
     });
-
     const target = document.getElementById(categoryId);
     if (target) {
         target.style.display = 'grid';
@@ -819,11 +774,18 @@ function showProducts(categoryId) {
     }
 }
 
-// Custom E-Book Unified Row Dropdown Setup
+// Smooth E-Book Row Dropdown Accordion
 function toggleEbookRowDropdown() {
     const menu = document.getElementById('ebook-row-dropdown-menu');
     const arrow = document.getElementById('ebook-row-arrow');
     
+    // Clear out other rows to prevent stacking glitches
+    document.querySelectorAll('.minor-menu, .product-list, #crypto-row-dropdown-menu').forEach(el => {
+        el.style.display = 'none';
+    });
+    const cryptoArrow = document.getElementById('crypto-row-arrow');
+    if (cryptoArrow) cryptoArrow.style.transform = 'rotate(0deg)';
+
     if (menu) {
         if (menu.style.display === 'none' || menu.style.display === '') {
             menu.style.display = 'block';
@@ -835,42 +797,36 @@ function toggleEbookRowDropdown() {
     }
 }
 
-// Deprecated Ebook Toggle Fallback Hook (Maintains legacy layouts safe)
-function toggleEbookDropdown() {
-    const legacyMenu = document.getElementById('ebookDropdownMenu');
-    const legacyArrow = document.getElementById('ebook-arrow');
+// Smooth Crypto Mastery Row Dropdown Accordion
+function toggleCryptoRowDropdown() {
+    const menu = document.getElementById('crypto-row-dropdown-menu');
+    const arrow = document.getElementById('crypto-row-arrow');
     
-    if (legacyMenu) {
-        if (legacyMenu.style.display === 'none' || legacyMenu.style.display === '') {
-            legacyMenu.style.display = 'block';
-            if (legacyArrow) legacyArrow.style.transform = 'rotate(180deg)';
+    // Clear out other rows to prevent stacking glitches
+    document.querySelectorAll('.minor-menu, .product-list, #ebook-row-dropdown-menu').forEach(el => {
+        el.style.display = 'none';
+    });
+    const ebookArrow = document.getElementById('ebook-row-arrow');
+    if (ebookArrow) ebookArrow.style.transform = 'rotate(0deg)';
+
+    if (menu) {
+        if (menu.style.display === 'none' || menu.style.display === '') {
+            menu.style.display = 'block';
+            if (arrow) arrow.style.transform = 'rotate(180deg)';
         } else {
-            legacyMenu.style.display = 'none';
-            if (legacyArrow) legacyArrow.style.transform = 'rotate(0deg)';
+            menu.style.display = 'none';
+            if (arrow) arrow.style.transform = 'rotate(0deg)';
         }
     }
 }
 
-
 /* ==========================================
    C. LAYOUT CLOSING ACTIONS (EXIT HANDLERS)
    ========================================== */
-
-// Premium Checkout Module Dismissal
 function closeCheckoutBlock() {
     const checkoutBox = document.getElementById('premium-checkout-box');
     if (checkoutBox) checkoutBox.style.display = 'none';
 }
-
-// Crypto Exchanges Row Accordion Closer (Fixed Binance Stuck Loop)
-function closeCryptoDropdown() {
-    const cryptoContainer = document.getElementById('crypto-exchanges');
-    const cryptoArrow = document.getElementById('crypto-arrow'); 
-    
-    if (cryptoContainer) cryptoContainer.style.display = 'none';
-    if (cryptoArrow) cryptoArrow.style.transform = 'rotate(0deg)';
-}
-
 
 /* ==========================================
    D. PREMIUM POP-UP PICTURE ENGINE (MODALS)
@@ -879,7 +835,7 @@ function openModal(src) {
     const imgModal = document.getElementById('imageModal');
     const modalImg = document.getElementById('expandedImg');
     if (imgModal && modalImg) {
-        imgModal.style.display = 'flex'; // Flex perfectly centers content on Redmi screens
+        imgModal.style.display = 'flex'; 
         modalImg.src = src;
     }
 }
@@ -889,47 +845,26 @@ function closeModal() {
     if (imgModal) imgModal.style.display = 'none';
 }
 
-
 /* ==========================================
-   E. HIGH-LEVEL ANTI-THEFT AND CONTENT PROTECTION
+   E. ANTI-THEFT AND SOURCE CONTENT PROTECTION
    ========================================== */
-
-// Blocks long press and standard mouse right-clicks
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
 }, false);
 
-// Advanced shortcut blocking (Prevents Inspector, View Source, Saving, Printing)
 document.onkeydown = function(e) {
-    // Blocks F12 Keys
-    if (e.keyCode == 123) {
-        return false;
-    }
-    // Blocks Ctrl+Shift+I (Chrome developer tool interface inspect)
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-        return false;
-    }
-    // Blocks Ctrl+U (View Source target loops)
-    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-        return false;
-    }
-    // Blocks Ctrl+S (Save page commands)
-    if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) {
-        return false;
-    }
-    // Blocks Ctrl+P (Print page generation loops)
-    if (e.ctrlKey && e.keyCode == 'P'.charCodeAt(0)) {
-        return false;
-    }
+    if (e.keyCode == 123) return false;
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+    if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false;
+    if (e.ctrlKey && e.keyCode == 'P'.charCodeAt(0)) return false;
 };
 
-// Protect images dynamically without completely disabling critical touch events
 document.querySelectorAll('img').forEach(image => {
     image.style.webkitTouchCallout = 'none';
     image.style.userSelect = 'none';
     image.addEventListener('dragstart', e => e.preventDefault());
 });
 </script>
-
 </body>
 </html>
