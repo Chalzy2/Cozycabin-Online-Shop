@@ -713,50 +713,84 @@ font-size:19px;
         padding:15px;
         border-radius:35px;
         text-decoration:none;
-        font-weight:bold;
-        font-size:15px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        width:100%;
-        ">
-        Buy on Selar
+<div id="premium-checkout-box" style="background:#111; border: 1px solid #d4af37; padding: 20px; border-radius: 12px; max-width: 400px; margin: 0 auto; text-align: center; position: relative; font-family: sans-serif;">
+    
+    <span class="close-checkout-btn" onclick="closeCheckoutBlock()" style="position: absolute; top: 10px; right: 15px; color: #d4af37; font-size: 24px; font-weight: bold; cursor: pointer;">&times;</span>
+
+    <div style="margin-bottom: 20px;">
+        <p style="font-weight:bold; font-size:16px; color:#ffd700; margin: 0 0 5px 0; text-transform:uppercase; letter-spacing:1px;">
+            💎 COZYCABIN PREMIUM CHECKOUT
+        </p>
+        <p style="font-size:10px; color:#777; text-transform:uppercase; margin: 0;">
+            Instant Digital Delivery
+        </p>
+    </div>
+
+    <div style="background:#252525; padding:18px; border-radius:15px; margin-bottom:20px; border:1px solid #444; text-align:left;">
+        <p style="color:#ffd700; font-size:11px; font-weight:bold; margin-bottom:12px; text-align:center;">
+            CHOOSE COURSE OR E-BOOK
+        </p>
+
+        <label style="display:block; color:#fff; font-size:13px; margin-bottom:10px; cursor:pointer;">
+            <input type="radio" name="product" value="200" checked style="margin-right:10px;">
+            AI Video Editing Masterclass (200 KES)
+        </label>
+
+        <label style="display:block; color:#fff; font-size:13px; cursor:pointer;">
+            <input type="radio" name="product" value="150" style="margin-right:10px;">
+            Finance & Sourcing E-book (150 KES)
+        </label>
+    </div>
+
+    <div id="paypal-button-container" style="margin-bottom:15px;"></div>
+
+    <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px;">
+        <a href="binance-cryptopayment.html" style="text-decoration:none;">
+            <div style="background:#F3BA2F; color:#000; padding:12px; border-radius:35px; font-weight:bold; font-size:15px; display:flex; align-items:center; justify-content:center; width:100%;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" style="height:20px; margin-right:10px; pointer-events:none;">
+                Pay with Binance
+            </div>
         </a>
 
+        <a href="YOUR_SELAR_LINK" style="background:#5A27BA; color:#fff; padding:12px; border-radius:35px; text-decoration:none; font-weight:bold; font-size:15px; display:flex; align-items:center; justify-content:center; width:100%;">
+            Buy on Selar
+        </a>
     </div>
 
-    <!-- MPESA -->
-    <div style="
-    background:#2db742;
-    color:#fff;
-    padding:20px;
-    border-radius:18px;
-    text-align:left;
-    ">
-
-        <p style="
-        font-weight:bold;
-        font-size:14px;
-        text-align:center;
-        margin-bottom:10px;
-        ">
-        🟢 LIPA NA M-PESA
+    <div style="background:#2db742; color:#fff; padding:15px; border-radius:12px; text-align:left;">
+        <p style="font-weight:bold; font-size:14px; text-align:center; margin-bottom:10px;">
+            🟢 LIPA NA M-PESA
         </p>
-
-        <p style="font-size:13px;margin:5px 0;">
-        Paybill: <b>542542</b>
+        <p style="font-size:13px; margin:5px 0;">
+            Paybill: <b>542542</b>
         </p>
-
-        <p style="font-size:13px;margin:5px 0;">
-        Account No: <b>702468</b>
+        <p style="font-size:13px; margin:5px 0;">
+            Account No: <b>702468</b>
         </p>
-
     </div>
-
 </div>
 
-<!-- PAYPAL SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=AT0WwagGFIiQdyLEHgqkZwL_mjYPE37_yurmrjTO5HN3Vx4yIDwiI_NoGJCLQVaaelPBTIFbbsLApX0W&currency=USD"></script>
+
+<script>
+  // PayPal Integration Logic
+  paypal.Buttons({
+    style: {
+      shape: 'pill',
+      color: 'gold',
+      layout: 'vertical',
+      height: 40
+    }
+  }).render('#paypal-button-container');
+
+  // Close Checkout box layout fix
+  function closeCheckoutBlock() {
+    const checkoutBox = document.getElementById('premium-checkout-box');
+    if (checkoutBox) {
+      checkoutBox.style.display = 'none';
+    }
+  }
+</script>
 
 <script>
 
