@@ -851,6 +851,22 @@ function toggleEbookDropdown() {
   }
 }
     </script>
+    <script>
+// Corrected Closing Script to target the exact Exchange Accordion Block ID
+function closeCryptoDropdown() {
+    // This looks up the exact container holding Binance, OKX, and Bybit
+    const cryptoContainer = document.getElementById('crypto-exchanges');
+    const cryptoArrow = document.getElementById('crypto-arrow'); // If your crypto button has an arrow ID
+    
+    if (cryptoContainer) {
+        cryptoContainer.style.display = 'none'; // Closes the menu block instantly
+    }
+    if (cryptoArrow) {
+        cryptoArrow.style.transform = 'rotate(0deg)'; // Resets the layout arrow pointer
+    }
+}
+    </script>
+    
 
 <script>
 
