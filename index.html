@@ -396,82 +396,92 @@ font-size:19px;
 </div>
 
 <!-- SUB-MENU: CRYPTO EXCHANGES -->
-<div id="crypto-exchanges" style="display: none; background: #1a1a1a; padding: 15px; border-radius: 0 0 15px 15px; border: 1px solid #333; border-top: none; margin-top: -10px; margin-bottom: 20px;">
+<div id="crypto-exchanges" style="display: none; background: #050505; border: 1px solid #222; border-top: none; padding: 15px; border-radius: 0 0 6px 6px; margin-top: -5px; margin-bottom: 20px; font-family: sans-serif; position: relative;">
     
-    <!-- Binance Reward Section based on image_4.png -->
-    <div style="background: #2b2b2b; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #F3BA2F;">
-        <h4 style="color: #F3BA2F; margin: 0 0 5px 0; font-size: 14px;">🔥 Binance Reward: Up to $100</h4>
-        <p style="color: #ccc; font-size: 12px; margin-bottom: 8px;">Register and start your journey to claim a trading fee rebate!</p>
-        <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00TZ2L450F" target="_blank" style="display: inline-block; background: #F3BA2F; color: black; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 12px;">JOIN BINANCE</a>
+    <div class="crypto-row-item" style="display: flex; background: #111; border: 1px solid #d4af37; border-radius: 4px; padding: 12px; margin-bottom: 12px; align-items: center; position: relative;">
+        
+        <span class="exit-btn" onclick="closeCryptoDropdown()" style="position: absolute; top: 8px; right: 12px; color: #d4af37; font-size: 20px; font-weight: bold; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#d4af37'">×</span>
+
+        <div style="flex: 0 0 80px; margin-right: 15px;">
+            <img src="binance_logo_gold.jpg" alt="Binance" style="width: 100%; height: auto; border-radius: 4px; border: 1px solid #333; display: block;">
+        </div>
+        
+        <div style="flex: 1; padding-right: 15px;">
+            <h4 style="color: #F3BA2F; margin: 0 0 5px 0; font-size: 16px;">🔥 Binance Reward: Up to $100</h4>
+            <p style="color: #aaa; margin: 0 0 10px 0; font-size: 12px; line-height: 1.4;">Register and start your journey to claim a trading fee rebate securely.</p>
+            
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <span style="color: #fff; font-weight: bold; font-size: 12px; text-transform: uppercase; background: #222; padding: 2px 6px; border-radius: 3px; border: 1px solid #444;">Active Offer</span>
+                <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00TZ2L450F" target="_blank" class="buy-now-btn" style="background: #F3BA2F; color: #000; padding: 5px 12px; text-decoration: none; font-size: 12px; font-weight: bold; border-radius: 3px; text-transform: uppercase;">Join Binance</a>
+            </div>
+        </div>
     </div>
 
-    <!-- Future Exchange Slots -->
-    <p style="color: #888; font-size: 11px; text-transform: uppercase; margin-bottom: 10px;">Coming Soon:</p>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">OKX</div>
-        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">Bybit</div>
-        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">KuCoin</div>
-        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">Gate.io</div>
+    <p style="color: #888; font-size: 11px; text-transform: uppercase; margin: 15px 0 8px 0; letter-spacing: 1px;">Coming Soon:</p>
+    
+    <div class="crypto-row-item placeholder" style="display: flex; background: #111; border: 1px dashed #444; border-radius: 4px; padding: 12px; margin-bottom: 8px; align-items: center; opacity: 0.6;">
+        <div style="flex: 0 0 80px; margin-right: 15px; height: 50px; background: #222; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #666; font-weight: bold; font-size: 12px;">OKX</div>
+        <div style="flex: 1;">
+            <h4 style="color: #888; margin: 0 0 3px 0; font-size: 15px;">OKX Global Exchange</h4>
+            <p style="color: #555; margin: 0; font-size: 11px;">Affiliate rewards and copy trading setups coming soon.</p>
+        </div>
+    </div>
+
+    <div class="crypto-row-item placeholder" style="display: flex; background: #111; border: 1px dashed #444; border-radius: 4px; padding: 12px; align-items: center; opacity: 0.6;">
+        <div style="flex: 0 0 80px; margin-right: 15px; height: 50px; background: #222; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #666; font-weight: bold; font-size: 12px;">BYBIT</div>
+        <div style="flex: 1;">
+            <h4 style="color: #888; margin: 0 0 3px 0; font-size: 15px;">Bybit Trading Platform</h4>
+            <p style="color: #555; margin: 0; font-size: 11px;">Exclusive sign-up bonuses and active community tracking links.</p>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="premium-shop-category" style="margin-bottom: 15px; font-family: sans-serif;">
+  
+  <button class="ebook-trigger-btn" onclick="toggleEbookDropdown()" style="width: 100%; background: #000; border: 2px solid #d4af37; color: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-radius: 6px; cursor: pointer; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">
+    <span style="color: #d4af37;">📚 Cozycabin Premium E-Books</span>
+    <span id="ebook-arrow" style="color: #d4af37; transition: transform 0.3s;">▼</span>
+  </button>
+
+  <div id="ebookDropdownMenu" style="display: none; background: #050505; border: 1px solid #222; border-top: none; padding: 15px; border-radius: 0 0 6px 6px;">
+    
+    <div class="ebook-row-item" style="display: flex; background: #111; border: 1px solid #d4af37; border-radius: 4px; padding: 12px; margin-bottom: 12px; align-items: center;">
+      <div style="flex: 0 0 80px; margin-right: 15px;">
+        <img src="facebook_cover_mockup.jpg" alt="Facebook Formula" style="width: 100%; height: auto; border-radius: 2px; border: 1px solid #333; display: block;">
+      </div>
+      <div style="flex: 1;">
+        <h4 style="color: #d4af37; margin: 0 0 5px 0; font-size: 16px;">The Facebook Monetization Formula</h4>
+        <p style="color: #aaa; margin: 0 0 10px 0; font-size: 12px; line-height: 1.4;">Master page monetization, viral video loops, and earning frameworks step-by-step.</p>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <span style="color: #fff; font-weight: bold; font-size: 14px;">Ksh 1,499</span>
+          <a href="#" class="buy-now-btn" style="background: #d4af37; color: #000; padding: 5px 12px; text-decoration: none; font-size: 12px; font-weight: bold; border-radius: 3px;">Access Guide</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ebook-row-item" style="display: flex; background: #111; border: 1px solid #d4af37; border-radius: 4px; padding: 12px; align-items: center;">
+      <div style="flex: 0 0 80px; margin-right: 15px;">
+        <img src="crypto_cover_mockup.jpg" alt="Crypto Mastery" style="width: 100%; height: auto; border-radius: 2px; border: 1px solid #333; display: block;">
+      </div>
+      <div style="flex: 1;">
+        <h4 style="color: #d4af37; margin: 0 0 5px 0; font-size: 16px;">Crypto Mastery Guide</h4>
+        <p style="color: #aaa; margin: 0 0 10px 0; font-size: 12px; line-height: 1.4;">Learn secure trading tactics, portfolio building, and long-term mining mechanics.</p>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <span style="color: #fff; font-weight: bold; font-size: 14px;">Ksh 1,999</span>
+          <a href="#" class="buy-now-btn" style="background: #d4af37; color: #000; padding: 5px 12px; text-decoration: none; font-size: 12px; font-weight: bold; border-radius: 3px;">Access Guide</a>
+        </div>
+      </div>
+    </div>
+
     </div>
 </div>
 
-<div class="academy-card">
-    <div class="academy-icon bg-yellow">E-BOOK</div>
 
-    <div class="academy-info">
-        <h2>Digital Library</h2>
-        <p class="yellow-text" onclick="toggleSub('finance-ebooks')">
-            Finance & Masterclasses ▼
-        </p>
-    </div>
 
-    <div id="finance-ebooks" class="cozy-flex-container" style="display: none;">
-        
-        <div class="cozy-product-block">
-            <div class="cozy-img-box">
-                <img src="Facebook Pr.Fomula1 .png" alt="Facebook Monetization Formula" class="cozy-responsive-img">
-            </div>
-
-            <div class="cozy-action-box">
-                <h3>Facebook Profit Formula</h3>
-                <p class="cozy-text-desc">
-                    Master Meta monetization in 30 days.
-                </p>
-
-                <a href="https://selar.com/z6wn6j11g1" class="cozy-buy-now-btn">
-                    BUY NOW
-                </a>
-            </div>
-        </div>
-        
-        <div class="cozy-product-block">
-
-            <div class="cozy-img-box">
-                <img src="Crypto Guide...png" alt="Crypto Mastery" class="cozy-responsive-img">
-            </div>
-
-            <div class="cozy-action-box">
-                <h3>Crypto Mastery Guide</h3>
-
-                <p class="cozy-text-desc">
-                    The ultimate blueprint for global exchanges & mining mechanics.
-                </p>
-
-                <a href="https://selar.co/378373r336" class="cozy-buy-now-btn">
-                    BUY NOW
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>>
-
-    
-
- <div style="background: #ffd700; color: black; padding: 10px 0; font-weight: bold; margin: 25px 0; overflow: hidden;">
+<div style="background: #ffd700; color: black; padding: 10px 0; font-weight: bold; margin: 25px 0; overflow: hidden;">
         <marquee>🚚 COUNTRYWIDE DELIVERY VIA G4S, SIMBA COACH,TAHMEED,BUSCAR, MORDAN COACH & E.T.C PARCEL BUS| 📍 LOCAL DELIVERY IN KENYA, TANZANIA & UGANDA| 🇰🇪🇹🇿🇺🇬 BEST QUALITY BY COZYCABIN</marquee>
     </div>
 
@@ -600,89 +610,7 @@ font-size:19px;
     </div>
 </div>
 
-<!-- THE FINAL COZYCABIN ACADEMY CHECKOUT (FIXED) -->
-<div class="cozy-payment-box" style="font-family: Arial, sans-serif; background: #1a1a1a; padding: 22px; border-radius: 24px; border: 1px solid #333; max-width: 420px; margin: 20px auto; text-align: center;">
-    
-    <!-- BRANDING -->
-    <div style="margin-bottom: 20px;">
-        <p style="color: #ffd700; font-size: 15px; font-weight: bold; margin-bottom: 6px;">💎 COZYCABIN ACADEMY</p>
-        <p style="font-size: 10px; color: #777; text-transform: uppercase;">Instant Digital Delivery</p>
-    </div>
-
-    <!-- PRODUCT SELECTION -->
-    <div style="background: #252525; padding: 18px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #444; text-align: left;">
-        <p style="color: #ffd700; font-size: 11px; font-weight: bold; margin-bottom: 12px; text-align: center;">CHOOSE COURSE OR E-BOOK</p>
-        <label style="display: block; color: #fff; font-size: 13px; margin-bottom: 10px; cursor: pointer;">
-            <input type="radio" name="product" value="200" checked style="margin-right: 10px;"> AI Video Editing Masterclass (200 KES)
-        </label>
-        <label style="display: block; color: #fff; font-size: 13px; cursor: pointer;">
-            <input type="radio" name="product" value="150" style="margin-right: 10px;"> Finance & Sourcing E-book (150 KES)
-        </label>
-    </div>
-
-    <!-- PAYPAL SECTION (Fixed duplicate from image_15.png) -->
-    <div id="paypal-button-container" style="margin-bottom: 15px;"></div>
-
-    <!-- CRYPTO & ALTERNATIVE SECTION -->
-    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
-        
-        <!-- Binance Payment Button -->
-
-<a href="binance-cryptopayment.html">
-
-<button style="
-background: #F3BA2F;
-color: #000;
-padding: 14px;
-border-radius: 35px;
-border: none;
-font-weight: bold;
-font-size: 15px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-width: 100%;
-">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png"
-style="height: 20px; margin-right: 10px;">
-
-Pay with Binance
-
-</button>
-
-</a>
-
-        <!-- Selar Button -->
-        <a href="YOUR_SELAR_LINK" style="background: #5A27BA; color: white; padding: 14px; border-radius: 35px; text-decoration: none; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center;">
-             Buy on Selar
-        </a>
-    </div>
-
-    <!-- M-PESA SECTION (Verified details) -->
-<!-- FINAL COZYCABIN CHECKOUT -->
-<div class="cozy-payment-box" style="
-font-family: Arial, sans-serif;
-background:#1a1a1a;
-padding:22px;
-border-radius:24px;
-border:1px solid #333;
-max-width:420px;
-margin:20px auto;
-text-align:center;
-width:100%;
-">
-
-    <!-- BRANDING -->
-    <div style="margin-bottom:20px;">
-        <p style="
-        color:#ffd700;
-        font-size:15px;
-        font-weight:bold;
-        margin-bottom:6px;
-        ">
-        💎 COZYCABIN PREMIUM CHECKOUT
+     💎 COZYCABIN PREMIUM CHECKOUT
         </p>
 
         <p style="
@@ -839,7 +767,16 @@ paypal.Buttons({
         color:'gold',
         layout:'vertical',
         height:40
-    },
+    }
+        <script>
+function closeCryptoDropdown() {
+  const cryptoMenu = document.getElementById('crypto-exchanges');
+  // Hides the entire dropdown section gracefully
+  if (cryptoMenu) {
+    cryptoMenu.style.display = 'none';
+  }
+}
+</script>
 
     createOrder:function(data, actions){
 
@@ -866,6 +803,20 @@ paypal.Buttons({
 <a href="https://wa.me/254702468460" class="float-wa" target="_blank">
 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
 </a>
+    <script>
+function toggleEbookDropdown() {
+  const menu = document.getElementById('ebookDropdownMenu');
+  const arrow = document.getElementById('ebook-arrow');
+  
+  if (menu.style.display === 'none' || menu.style.display === '') {
+    menu.style.display = 'block';
+    arrow.style.transform = 'rotate(180deg)';
+  } else {
+    menu.style.display = 'none';
+    arrow.style.transform = 'rotate(0deg)';
+  }
+}
+    </script>
 
 <script>
 
