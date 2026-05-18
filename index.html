@@ -384,58 +384,63 @@ font-size:19px;
         <p onclick="toggleSub('video-courses')">Video Editing & Setup ▼</p>
     </div>
 </div>
-
-<!-- CRYPTO MASTERY CARD -->
-<div class="academy-card" style="border: 1px solid #F3BA2F; margin-bottom: 10px;">
-    <div class="academy-icon" style="background-color: #F3BA2F; color: black; font-weight: bold; display: flex; align-items: center; justify-content: center; border-radius: 12px;">CRYPTO</div>
-    <div class="academy-info">
-        <h2>Crypto Mastery</h2>
-        <!-- This opens the new exchange menu -->
-        <p style="color: #F3BA2F;" onclick="toggleSub('crypto-exchanges')">Top Global Exchanges ▼</p>
-    </div>
-</div>
-
-<!-- SUB-MENU: CRYPTO EXCHANGES -->
-<div id="crypto-exchanges" style="display: none; background: #050505; border: 1px solid #222; border-top: none; padding: 15px; border-radius: 0 0 6px 6px; margin-top: -5px; margin-bottom: 20px; font-family: sans-serif; position: relative;">
+<div style="margin-bottom: 15px; font-family: sans-serif;">
     
-    <div class="crypto-row-item" style="display: flex; background: #111; border: 1px solid #d4af37; border-radius: 4px; padding: 12px; margin-bottom: 12px; align-items: center; position: relative;">
+    <button class="menu-trigger-btn" onclick="toggleCryptoRowDropdown()" style="width: 100%; background: #1a1a1a; border: 1px solid #d4af37; padding: 12px; display: flex; align-items: center; justify-content: space-between; border-radius: 15px; cursor: pointer; text-align: left;">
         
-        <span class="exit-btn" onclick="closeCryptoDropdown()" style="position: absolute; top: 8px; right: 12px; color: #d4af37; font-size: 20px; font-weight: bold; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#d4af37'">×</span>
-
-        <div style="flex: 0 0 80px; margin-right: 15px;">
-            <img src="binance_logo_gold.jpg" alt="Binance" style="width: 100%; height: auto; border-radius: 4px; border: 1px solid #333; display: block;">
-        </div>
-        
-        <div style="flex: 1; padding-right: 15px;">
-            <h4 style="color: #F3BA2F; margin: 0 0 5px 0; font-size: 16px;">🔥 Binance Reward: Up to $100</h4>
-            <p style="color: #aaa; margin: 0 0 10px 0; font-size: 12px; line-height: 1.4;">Register and start your journey to claim a trading fee rebate securely.</p>
-            
-            <div style="display: flex; gap: 10px; align-items: center;">
-                <span style="color: #fff; font-weight: bold; font-size: 12px; text-transform: uppercase; background: #222; padding: 2px 6px; border-radius: 3px; border: 1px solid #444;">Active Offer</span>
-                <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00TZ2L450F" target="_blank" class="buy-now-btn" style="background: #F3BA2F; color: #000; padding: 5px 12px; text-decoration: none; font-size: 12px; font-weight: bold; border-radius: 3px; text-transform: uppercase;">Join Binance</a>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="background: #e6b800; color: #000; width: 55px; height: 55px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0;">
+                Crypto
+            </div>
+            <div>
+                <h3 style="color: #fff; margin: 0 0 4px 0; font-size: 16px; font-weight: 500; letter-spacing: 0.5px;">Crypto Mastery</h3>
+                <p style="color: #d4af37; margin: 0; font-size: 12px; font-weight: normal;">Top Global Exchanges</p>
             </div>
         </div>
-    </div>
 
-    <p style="color: #888; font-size: 11px; text-transform: uppercase; margin: 15px 0 8px 0; letter-spacing: 1px;">Coming Soon:</p>
-    
-    <div class="crypto-row-item placeholder" style="display: flex; background: #111; border: 1px dashed #444; border-radius: 4px; padding: 12px; margin-bottom: 8px; align-items: center; opacity: 0.6;">
-        <div style="flex: 0 0 80px; margin-right: 15px; height: 50px; background: #222; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #666; font-weight: bold; font-size: 12px;">OKX</div>
-        <div style="flex: 1;">
-            <h4 style="color: #888; margin: 0 0 3px 0; font-size: 15px;">OKX Global Exchange</h4>
-            <p style="color: #555; margin: 0; font-size: 11px;">Affiliate rewards and copy trading setups coming soon.</p>
+        <span id="crypto-row-arrow" style="color: #d4af37; font-size: 12px; margin-right: 5px; transition: transform 0.3s; display: inline-block;">▼</span>
+    </button>
+
+    <div id="crypto-row-dropdown-menu" style="display: none; background: #111; border: 1px solid #333; border-top: none; padding: 15px; border-radius: 0 0 15px 15px; margin-top: -10px; margin-bottom: 5px;">
+        
+        <div class="minor-crypto-item" style="background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 15px; margin-bottom: 15px; position: relative;">
+            
+            <p style="color: #ffd700; font-size: 14px; font-weight: bold; margin: 0 0 8px 0; display: flex; align-items: center; gap: 6px;">
+                🔥 Binance Reward: Up to $100
+            </p>
+            <p style="color: #aaa; margin: 0 0 12px 0; font-size: 12px; line-height: 1.5;">
+                Register and start your journey to claim a trading fee rebate securely.
+            </p>
+            
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+                <div style="background: #222; border: 1px solid #333; border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; gap: 8px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 16px; pointer-events: none;">
+                    <span style="color: #fff; font-size: 12px; font-weight: bold;">Binance</span>
+                </div>
+                
+                <div style="display: flex; gap: 8px;">
+                    <span style="border: 1px solid #444; color: #aaa; padding: 6px 10px; font-size: 11px; font-weight: bold; border-radius: 6px; text-transform: uppercase;">Active Offer</span>
+                    <a href="binance-cryptopayment.html" style="background: #e6b800; color: #000; padding: 6px 12px; text-decoration: none; font-size: 11px; font-weight: bold; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Join Binance</a>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="crypto-row-item placeholder" style="display: flex; background: #111; border: 1px dashed #444; border-radius: 4px; padding: 12px; align-items: center; opacity: 0.6;">
-        <div style="flex: 0 0 80px; margin-right: 15px; height: 50px; background: #222; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #666; font-weight: bold; font-size: 12px;">BYBIT</div>
-        <div style="flex: 1;">
-            <h4 style="color: #888; margin: 0 0 3px 0; font-size: 15px;">Bybit Trading Platform</h4>
-            <p style="color: #555; margin: 0; font-size: 11px;">Exclusive sign-up bonuses and active community tracking links.</p>
+        <p style="color: #555; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 5px;">Coming Soon:</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 5px;">
+            <div style="background: #151515; border: 1px dashed #333; padding: 10px; border-radius: 8px; text-align: center; opacity: 0.6;">
+                <p style="color: #fff; font-size: 12px; font-weight: bold; margin: 0 0 2px 0;">OKX</p>
+                <p style="color: #666; font-size: 9px; margin: 0;">Global Exchange</p>
+            </div>
+            <div style="background: #151515; border: 1px dashed #333; padding: 10px; border-radius: 8px; text-align: center; opacity: 0.6;">
+                <p style="color: #fff; font-size: 12px; font-weight: bold; margin: 0 0 2px 0;">Bybit</p>
+                <p style="color: #666; font-size: 9px; margin: 0;">Trading Platform</p>
+            </div>
         </div>
-    </div>
 
+    </div>
 </div>
+
 
 
 <div style="margin-bottom: 15px; font-family: sans-serif;">
