@@ -1,1 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/Cozycabin log.png" type="image/png">
+    <link rel="apple-touch-icon" href="/Cozycabin log.png">
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JVT3X5J5D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4JVT3X5J5D');
+    </script>
+    <script><link rel="stylesheet" href="style.css"></script>
+            
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozycabin Premium</title>
+        <style>
+         /* =========================
+   COZYCABIN RESPONSIVE FIX
+   KEEPING YOUR ORIGINAL STYLE
+========================= */
+
+/* RESET */
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,body{
+    width:100%;
+    overflow-x:hidden; /* Prevent side scrolling */
+    background:#000;
+    color:#fff;
+    font-family:'Arial',sans-serif;
+}
+
+/* MAIN CONTAINER */
+.container{
+    width:100%;
+    max-width:1200px; /* Desktop friendly */
+    margin:auto;
+    padding:0 12px 80px;
+}
+
+/* =========================
+   RESPONSIVE MAIN GRID
+========================= */
+.main-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    padding:15px 5px;
+    width:100%;
+}
+
+/* MAIN CATEGORY BUTTONS */
+.grid-btn{
+    background:#232d3f;
+    border:1px solid #3b4758;
+    border-radius:20px;
+    padding:18px 8px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.3s;
+    min-height:110px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+}
+
+.grid-btn:hover{
+    border-color:#ffd700;
+    transform:translateY(-2px);
+}
+
+.grid-btn:active{
+    background:#2e7d32;
+}
+
+.grid-btn span{
+    display:block;
+    font-size:24px;
+    margin-bottom:8px;
+}
+
+.grid-btn small{
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:.5px;
+    color:#fff;
+    line-height:1.4;
+}
+
+/* =========================
+   SUB MENU AREA
+========================= */
+.minor-menu{
+    display:none;
+    width:100%;
+    background:#0b0e14;
+    margin:10px auto;
+    padding:15px;
+    border-radius:20px;
+    border:1px solid #ffd700;
+    animation:fadeIn .3s ease;
+}
+
+/* SUB BUTTON GRID */
+.minor-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    width:100%;
+}
+
+/* SMALL BUTTONS */
+.minor-btn{
+    background:#232d3f;
+    color:#fff;
+    border:1px solid #3b4758;
+    border-radius:12px;
+    padding:12px 6px;
+    font-size:11px;
+    font-weight:bold;
+    cursor:pointer;
+    text-align:center;
+    transition:.3s;
+    min-height:60px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1.3;
+}
+
+.minor-btn:hover{
+    border-color:#ffd700;
+    background:#2a3549;
+}
+
+.minor-btn:active{
+    transform:scale(.96);
+}
+
+/* =========================
+   PRODUCT DISPLAY
+========================= */
+.product-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    padding:15px 5px;
+    width:100%;
+}
+
+/* PRODUCT CARD */
+.product-card{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    color:#333;
+    text-align:center;
+    padding-bottom:10px;
+    width:100%;
+}
+
+.product-card img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    cursor:zoom-in;
+    transition:transform .2s;
+}
+
+.product-card img:active{
+    transform:scale(.96);
+}
+
+/* PRODUCT TEXT */
+.product-card h3{
+    font-size:14px;
+    padding:10px 8px 5px;
+    line-height:1.4;
+}
+
+.product-card p{
+    font-size:15px;
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-btn{
+    background:#25d366;
+    color:#fff;
+    padding:10px;
+    border-radius:10px;
+    text-decoration:none;
+    display:block;
+    margin:8px 10px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* =========================
+   GLOBAL BUTTONS
+========================= */
+.global-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    padding:10px 15px;
+    width:100%;
+}
+
+.global-btn{
+    border-radius:12px;
+    padding:14px 5px;
+    font-size:12px;
+    font-weight:bold;
+    text-align:center;
+    cursor:pointer;
+    border:none;
+    color:#fff;
+    width:100%;
+}
+
+/* =========================
+   ACADEMY CARDS
+========================= */
+.academy-card{
+    background:#1a1a1a;
+    border-radius:30px;
+    margin:15px auto;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    border:1px solid #333;
+    width:100%;
+    max-width:500px;
+}
+
+.academy-icon{
+    width:80px;
+    height:80px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:10px;
+    font-weight:bold;
+    color:#fff;
+    margin-right:18px;
+    flex-shrink:0;
+}
+
+.academy-info{
+    flex:1;
+}
+
+.academy-info h2{
+    font-size:18px;
+    margin-bottom:5px;
+}
+
+.academy-info p{
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* =========================
+   BRAND LOGO
+========================= */
+.brand-header{
+    text-align:center;
+    padding:10px 0;
+}
+
+.brand-logo{
+    width:100%;
+    max-width:150px;
+    height:auto;
+    display:block;
+    margin:10px auto 8px auto;
+    object-fit:contain;
+
+    border:2px solid #ffd700;
+    border-radius:15px;
+    padding:5px;
+    background:rgba(255,255,255,.05);
+    box-shadow:0 0 10px rgba(255,215,0,.2);
+}
+
+.brand-title{
+    color:#ffd700;
+    font-size:14px;
+    font-weight:bold;
+    text-align:center;
+    margin-bottom:4px;
+}
+
+.brand-tagline{
+    color:#888;
+    font-size:10px;
+    text-align:center;
+}
+
+/* =========================
+   PAYMENT BOX
+========================= */
+.cozy-payment-box{
+    background:#1a1a1a;
+    border:1px solid #3b4758;
+    border-radius:15px;
+    padding:10px;
+    margin:15px 0;
+    text-align:center;
+}
+
+.payment-methods-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:5px;
+    background:#fff;
+    padding:5px;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.pay-icon-btn{
+    border:1px solid #eee;
+    border-radius:6px;
+    padding:5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:white;
+    height:40px;
+}
+
+.pay-icon-btn img{
+    max-width:100%;
+    max-height:22px;
+    object-fit:contain;
+}
+
+/* =========================
+   FLOATING WHATSAPP
+========================= */
+.float-wa{
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:20px;
+    right:20px;
+    background:#25d366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+    box-shadow:2px 2px 10px rgba(0,0,0,.5);
+}
+
+.float-wa img{
+    width:35px;
+    height:35px;
+}
+
+/* =========================
+   MODAL IMAGE
+========================= */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.9);
+}
+
+.modal-content{
+    margin:auto;
+    display:block;
+    width:90%;
+    max-width:500px;
+    border-radius:15px;
+    border:2px solid #ffd700;
+}
+
+.close-modal{
+    position:absolute;
+    top:20px;
+    right:35px;
+    color:#fff;
+    font-size:40px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   TABLETS
+========================= */
+@media(max-width:768px){
+
+    .container{
+        max-width:100%;
+    }
+
+    .main-grid{
+        gap:10px;
+    }
+
+    .grid-btn{
+        min-height:100px;
+        padding:15px 6px;
+    }
+
+    .minor-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+@media(max-width:480px){
+
+    .main-grid{
+        grid-template-columns:repeat(3,1fr);
+        gap:8px;
+    }
+
+    .grid-btn{
+        border-radius:18px;
+        min-height:90px;
+        padding:12px 4px;
+    }
+
+    .grid-btn span{
+        font-size:20px;
+    }
+
+    .grid-btn small{
+        font-size:9px;
+    }
+
+    .minor-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .minor-btn{
+        font-size:10px;
+        padding:10px 4px;
+    }
+
+    .product-list{
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+    }
+
+    .product-card h3{
+        font-size:12px;
+    }
+
+    .whatsapp-btn{
+        font-size:11px;
+    }
+
+    .academy-card{
+        padding:15px;
+        border-radius:25px;
+    }
+
+    .academy-icon{
+        width:65px;
+        height:65px;
+    }
+
+    .academy-info h2{
+        font-size:16px;
+    }
+
+    .academy-info p{
+        font-size:12px;
+    }
+}
+
+/* =========================
+   LARGE DESKTOP
+========================= */
+@media(min-width:1200px){
+
+    .container{
+        max-width:1300px;
+    }
+
+    .main-grid{
+        max-width:700px;
+        margin:auto;
+    }
+
+    .product-list{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .minor-grid{
+        grid-template-columns:repeat(5,1fr);
+    }
+                         }   
+            /* ===== TOP RIGHT CURRENCY ===== */
+.top-nav{
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    padding:10px 15px;
+    position:relative;
+    z-index:100;
+}
+
+.currency-select{
+    margin-left:auto;
+    background:#111;
+    color:#fff;
+    border:1px solid #333;
+    border-radius:6px;
+    padding:5px 8px;
+    font-size:12px;
+}
+
+/* ===== RESTORE BLUE COURSE BOX ===== */
+.bg-blue{
+    background:#007bff !important;
+    color:#fff !important;
+}
+
+/* ===== RESTORE YELLOW EBOOK BOX ===== */
+.bg-yellow{
+    background:#ffd700 !important;
+    color:#000 !important;
+}
+
+/* ===== ACADEMY ICON LOOK ===== */
+.academy-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:11px;
+    border-radius:18px;
+    }
+/* Cozycabin Content Protection */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-select: none;
+  pointer-events: none; /* This makes images "unclickable" so the save menu won't pop up */
+}
+
+body {
+  -webkit-touch-callout: none; /* Prevents callout menu on mobile */
+  -webkit-user-select: none;   /* Prevents text selection */
+  user-select: none;
+            }
+            .library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.book-card {
+    background: #1a1a1a; /* Dark gray for depth */
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    border-color: #d4af37; /* Gold highlight on hover */
+}
+
+.book-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.book-card h3 {
+    color: #d4af37;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.book-card p {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.buy-btn {
+    display: block;
+    background: #d4af37;
+    color: #000;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+ /* Container that adapts to mobile or desktop automatically */
+.cozy-flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;       /* Crucial: Drops content to next line on mobile */
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* Image settings */
+.cozy-img-box {
+  flex: 1 1 220px;       /* Grows/shrinks, but prefers 220px width */
+  max-width: 250px;      /* Ensures the book cover stays a reasonable size */
+}
+
+.cozy-responsive-img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;        /* Prevents overlapping or baseline gaps */
+}
+
+/* Action block containing button and description */
+.cozy-action-box {
+  flex: 1.5 1 250px;     /* Takes up the remaining space on desktop */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cozy-text-desc {
+  font-size: 14px;
+  color: #cccccc;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Standalone Premium Button */
+.cozy-buy-now-btn {
+  display: block;
+  width: 100%;
+  max-width: 240px;      /* Comfortable sizing for both touch and mouse clicks */
+  background-color: #ffcc00;
+  color: #000000;
+  text-align: center;
+  padding: 12px 0;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.cozy-buy-now-btn:active {
+  background-color: #e6b800;
+            }
+/* Container adjustments to match full width layout */
+.official-stores-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 25px 0;
+    background-color: #000000;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.store-title {
+    color: #FFD700; /* Gold header text */
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Vertically stacked full-width container */
+.stores-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Spacing between the rows */
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Individual Rectangular Row - Matches E-book & Course Styling */
+.custom-store-row {
+    display: flex;
+    align-items: center;
+    background-color: #1A1A1A; /* Dark grey body background */
+    border: 1px solid #2A2A2A;  /* Subtle boundary outline */
+    border-radius: 24px;       /* Smooth rounded capsule layout */
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.custom-store-row:active {
+    transform: scale(0.98);
+    background-color: #222222;
+}
+
+/* The Left Inner Square Icon Box */
+.store-icon-box {
+    width: 75px;
+    height: 75px;
+    border-radius: 18px;       /* Soft squared inner look */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #ffffff;
+    flex-shrink: 0;            /* Prevents the block from warping on small screens */
+}
+
+/* Brand backgrounds for inner icons */
+.jumia-bg {
+    background-color: #E67E22;
+}
+
+.amazon-bg {
+    background-color: #FF9900;
+}
+
+.aliexpress-bg {
+    background-color: #E74C3C;
+}
+
+/* Text Information styling side alignment */
+.store-text-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    margin-left: 20px;         /* Creates uniform space from icon box */
+    flex-grow: 1;
+}
+
+.store-main-name {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.store-sub-name {
+    font-size: 0.85rem;
+    color: #A0A0A0;            /* Soft gray subtitle */
+}
+/* Mobile-first layout adjustment for the dropdown content */
+@media (max-width: 768px) {
+    /* 1. Force the main container to stack its items vertically */
+    .digital-library-container, 
+    .dropdown-parent-selector { /* Replace with your actual parent wrapper class if different */
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* 2. Reset the dropdown content so it takes up the full width below the button */
+    .digital-library-content,
+    .dropdown-content-selector { /* Replace with your actual dropdown content class */
+        position: relative; /* Removes any absolute floating to the right */
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        margin-top: 15px; /* Adds clean breathing room below the button */
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    /* 3. Ensure images and store links span nicely across the screen */
+    .digital-library-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto 15px auto; /* Centers images with a gap underneath */
+    }
+
+    /* 4. Fix the 2x2 Grid for Store Links so it doesn't compress */
+    .store-links-grid,
+    .official-store-links + div { /* Target for your Jumia/Amazon/AliExpress buttons wrapper */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+}
+/* --- UNIVERSAL ACCORDION STYLES (Laptop & Desktop) --- */
+.accordion-content {
+    display: none; /* Hidden by default, toggled by JS */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    background: #111; /* Matches your dark premium theme */
+    
+    /* Forces elements inside the dropdown to stack top-to-bottom naturally */
+    clear: both;
+    float: none;
+}
+
+/* When the accordion is active/open */
+.accordion-content.active {
+    display: block !important;
+}
+
+/* Ensure global store grids display beautifully on big screens */
+.store-links-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 side-by-side on Laptop */
+    gap: 15px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+
+/* --- RESPONSIVE ADJUSTMENTS (Phone Layout) --- */
+@media (max-width: 768px) {
+    /* Prevent side-by-side squishing on mobile */
+    body, .main-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Drop down to 2 columns for store links on mobile so buttons stay large */
+    .store-links-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
+            
+            
+    
+         </style>
+</head>
+<body>
+    <div class="container">
+    <!-- GROUP 1: TOP FEATURES (Currency Switcher) -->
+    <!-- 1. Currency at Far Top Right -->
+<div class="top-nav">
+    <select class="currency-select">
+        <option>🇰🇪 KSH</option>
+        <option>🇺🇸 USD</option>
+    </select>
+</div>
+
+<!-- 2. Framed Logo and Compact Title -->
+<!-- 1. Updated Brand Header -->
+<div class="brand-header">
+    <img src="Cozycabin log.png" alt="Cozycabin Logo" class="brand-logo">
+    <!-- Updated Title to reflect your new focus -->
+    <h3 style="text-align:center; color:#ffd700; margin-bottom:15px;">💎 COZYCABIN DIGITAL ASSETS</h3>
+    <p class="brand-tagline">Courses, Crypto & Masterclasses</p>
+</div>
+
+<!-- 2. ACADEMY COURSE CARD (Original) -->
+<div class="academy-card">
+    <div class="academy-icon bg-blue">COURSE</div>
+    <div class="academy-info">
+        <h2>Academy Courses</h2>
+        <p onclick="toggleSub('video-courses')">Video Editing & Setup ▼</p>
+    </div>
+</div>
+
+<!-- CRYPTO MASTERY CARD -->
+<div class="academy-card" style="border: 1px solid #F3BA2F; margin-bottom: 10px;">
+    <div class="academy-icon" style="background-color: #F3BA2F; color: black; font-weight: bold; display: flex; align-items: center; justify-content: center; border-radius: 12px;">CRYPTO</div>
+    <div class="academy-info">
+        <h2>Crypto Mastery</h2>
+        <!-- This opens the new exchange menu -->
+        <p style="color: #F3BA2F;" onclick="toggleSub('crypto-exchanges')">Top Global Exchanges ▼</p>
+    </div>
+</div>
+
+<!-- SUB-MENU: CRYPTO EXCHANGES -->
+<div id="crypto-exchanges" style="display: none; background: #1a1a1a; padding: 15px; border-radius: 0 0 15px 15px; border: 1px solid #333; border-top: none; margin-top: -10px; margin-bottom: 20px;">
+    
+    <!-- Binance Reward Section based on image_4.png -->
+    <div style="background: #2b2b2b; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #F3BA2F;">
+        <h4 style="color: #F3BA2F; margin: 0 0 5px 0; font-size: 14px;">🔥 Binance Reward: Up to $100</h4>
+        <p style="color: #ccc; font-size: 12px; margin-bottom: 8px;">Register and start your journey to claim a trading fee rebate!</p>
+        <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00TZ2L450F" target="_blank" style="display: inline-block; background: #F3BA2F; color: black; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 12px;">JOIN BINANCE</a>
+    </div>
+
+    <!-- Future Exchange Slots -->
+    <p style="color: #888; font-size: 11px; text-transform: uppercase; margin-bottom: 10px;">Coming Soon:</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">OKX</div>
+        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">Bybit</div>
+        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">KuCoin</div>
+        <div style="background: #222; padding: 8px; border-radius: 5px; color: #666; font-size: 12px; text-align: center; border: 1px dashed #444;">Gate.io</div>
+    </div>
+</div>
+
+
+<div class="academy-card">
+    <div class="academy-icon bg-yellow">E-BOOK</div>
+    <div class="academy-info">
+        <h2>Digital Library</h2>
+        <p class="yellow-text" onclick="toggleSub('finance-ebooks')">Finance & Masterclasses ▼</p>
+    </div>
+
+    <div id="finance-ebooks" class="cozy-flex-container" style="display: none;">
+        
+        <div class="cozy-product-block">
+            <div class="cozy-img-box">
+                <img src="Facebook Pr.Fomula1 .png" alt="Facebook Monetization Formula" class="cozy-responsive-img">
+            </div>
+            <div class="cozy-action-box">
+                <h3>Facebook Profit Formula</h3>
+                <p class="cozy-text-desc">Master Meta monetization in 30 days.</p>
+                <a href="https://selar.com/z6wn6j11g1" class="cozy-buy-now-btn">BUY NOW</a>
+            </div>
+        </div>
+
+        <div class="cozy-product-block">
+    <div class="cozy-img-box">
+        <img src="Crypto Guide...png" alt="Crypto Mastery" class="cozy-responsive-img">
+    </div>
+    <div class="cozy-action-box">
+        <h3>Crypto Mastery Guide</h3>
+        <p class="cozy-text-desc">The ultimate blueprint for global exchanges & mining mechanics.</p>
+        <a href="https://selar.co/378373r336" class="cozy-buy-now-btn">BUY NOW</a>
+    </div>
+</div>
+
+
+ <div style="background: #ffd700; color: black; padding: 10px 0; font-weight: bold; margin: 25px 0; overflow: hidden;">
+        <marquee>🚚 COUNTRYWIDE DELIVERY VIA G4S, SIMBA COACH,TAHMEED,BUSCAR, MORDAN COACH & E.T.C PARCEL BUS| 📍 LOCAL DELIVERY IN KENYA, TANZANIA & UGANDA| 🇰🇪🇹🇿🇺🇬 BEST QUALITY BY COZYCABIN</marquee>
+    </div>
+
+    <h3 style="text-align:center; color:#ffd700; margin-bottom:15px;">🇰🇪 LOCAL & ONLINE SHOP (KENYA)</h3>
+    <div class="main-grid">
+        <div class="grid-btn" onclick="toggleSub('kitchen-sub')"><span>👨‍🍳</span><small>KITCHEN ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('solar-sub')"><span>☀️</span><small>SOLAR ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('decor-sub')"><span>🛋️</span><small>DECOR ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('beds-sub')"><span>🛏️</span><small>BEDDINGS ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('security-sub')"><span>📷</span><small>SECURITY ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('electro-sub')"><span>📻</span><small>ELECTRONICS ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('tech-sub')"><span>📱</span><small>TECH ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('fashion-sub')"><span>👟</span><small>FASHION ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('tools-sub')"><span>⚙️</span><small>APPLIANCES ▼</small></div>
+    </div>
+<div id="kitchen-sub" class="minor-menu">
+    <div class="minor-grid">
+        <button onclick="showProducts('cutlery')" class="minor-btn">🍴 Cutlery</button>
+        <button onclick="showProducts('dispenser')" class="minor-btn">💧 Dispensers</button>
+        <button onclick="showProducts('hotpots')" class="minor-btn">🥘 Hotpots</button>
+        <button onclick="showProducts('racks')" class="minor-btn">🍽️ Dishracks</button>
+        <button onclick="showProducts('flasks')" class="minor-btn">☕ Flasks</button>
+        <button onclick="showProducts('bottles')" class="minor-btn">🍼 Bottles</button>
+        <button onclick="showProducts('cookers')" class="minor-btn">🍳 Cookers</button>
+        <button onclick="showProducts('blenders')" class="minor-btn">🌪️ Blenders</button>
+    </div>
+
+    </div>
+<div id="cutlery" class="product-list" style="display:none;">
+        <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
+    
+    <div class="product-card">
+        <img src="19 PSC Silicone Spoon-2700-.png" alt="Silicone Spoon Set"
+         onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 2,700</p>
+        <a href="https://wa.me/254702468460?text=I+want+Silicone+Spoon+Set" class="whatsapp-btn">Order Now</a>
+    </div>
+
+  <div class="product-card">
+        <img src="19psc Pink 3200 .jpg" alt="Pink Premium Set"
+        onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 3,200</p>
+        <a href="https://wa.me/254702468460?text=I+want+Pink+Premium+Set" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    <div class="product-card">
+        <img src="Eggshell cutlery-4500-.jpg" alt="Eggshell Cutlery"
+         onclick="openModal(this.src)"style="cursor: zoom-in;">   
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 4,500</p>
+        <a href="https://wa.me/254702468460?text=I+want+Eggshell+Cutlery" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    <div class="product-card">
+        <img src="Spoons, stainless steel cutlery-2400-.jpg" alt="Stainless Steel Set"
+         onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 2,400</p>
+        <a href="https://wa.me/254702468460?text=I+want+Stainless+Steel+Set" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    <div class="product-card">
+        <img src="Special cutlery-2500-.jpg" alt="Special Cutlery Set"
+        onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 2,500</p>
+        <a href="https://wa.me/254702468460?text=I+want+Special+Cutlery" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    </div>
+
+        
+    <div id="dispenser" class="product-list" style="display:none;">
+    <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
+   
+    <div class="product-card">
+        <img src="Ailyons 3 taps 6999-.jpg" alt="Alyons 3Taps Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 6,999</p>
+        <a href="https://wa.me/254702468460?text=I+want+Ailyons+3taps+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    <div class="product-card">
+        <img src="Premier Smart bottom Dispenser 15000-.jpg" alt="Premier Bottomload Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 15,000</p>
+        <a href="https://wa.me/254702468460?text=I+want+Smart+Premier+Bottomload+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+        
+    <div class="product-card">
+        <img src="Primidale 2tap dispenser 3999-.jpg" alt="Premidale Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 3,999</p>
+        <a href="https://wa.me/254702468460?text=I+want+Premidale+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+        
+    <div class="product-card">
+        <img src="Rantom 213L disp Refri-46500-.png" alt="Rantom Refrigerator Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 46,500</p>
+        <a href="https://wa.me/254702468460?text=I+want+Rantom+Refrigerator+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+</div> <div id="flasks" class="product-list" style="display:none;">
+    <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
+   
+    <div class="product-card">
+        <img src="Flasks 2.png" alt="Rantom Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 950</p>
+        <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+<div class="product-card">
+        <img src="Redbry Flask1.png" alt="Rantom Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 1,800</p>
+        <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    <div class="product-card">
+        <img src="Flasks2.png" alt="Rantom Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 1,800</p>
+        <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+</div>
+
+<!-- THE FINAL COZYCABIN ACADEMY CHECKOUT (FIXED) -->
+<div class="cozy-payment-box" style="font-family: Arial, sans-serif; background: #1a1a1a; padding: 22px; border-radius: 24px; border: 1px solid #333; max-width: 420px; margin: 20px auto; text-align: center;">
+    
+    <!-- BRANDING -->
+    <div style="margin-bottom: 20px;">
+        <p style="color: #ffd700; font-size: 15px; font-weight: bold; margin-bottom: 6px;">💎 COZYCABIN ACADEMY</p>
+        <p style="font-size: 10px; color: #777; text-transform: uppercase;">Instant Digital Delivery</p>
+    </div>
+
+    <!-- PRODUCT SELECTION -->
+    <div style="background: #252525; padding: 18px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #444; text-align: left;">
+        <p style="color: #ffd700; font-size: 11px; font-weight: bold; margin-bottom: 12px; text-align: center;">CHOOSE COURSE OR E-BOOK</p>
+        <label style="display: block; color: #fff; font-size: 13px; margin-bottom: 10px; cursor: pointer;">
+            <input type="radio" name="product" value="200" checked style="margin-right: 10px;"> AI Video Editing Masterclass (200 KES)
+        </label>
+        <label style="display: block; color: #fff; font-size: 13px; cursor: pointer;">
+            <input type="radio" name="product" value="150" style="margin-right: 10px;"> Finance & Sourcing E-book (150 KES)
+        </label>
+    </div>
+
+    <!-- PAYPAL SECTION (Fixed duplicate from image_15.png) -->
+    <div id="paypal-button-container" style="margin-bottom: 15px;"></div>
+
+    <!-- CRYPTO & ALTERNATIVE SECTION -->
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+        
+        <!-- Binance Payment Button -->
+
+<a href="binance-cryptopayment.html">
+
+<button style="
+background: #F3BA2F;
+color: #000;
+padding: 14px;
+border-radius: 35px;
+border: none;
+font-weight: bold;
+font-size: 15px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
+">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png"
+style="height: 20px; margin-right: 10px;">
+
+Pay with Binance
+
+</button>
+
+</a>
+
+        <!-- Selar Button -->
+        <a href="YOUR_SELAR_LINK" style="background: #5A27BA; color: white; padding: 14px; border-radius: 35px; text-decoration: none; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center;">
+             Buy on Selar
+        </a>
+    </div>
+
+    <!-- M-PESA SECTION (Verified details) -->
+    <div style="background: #2db742; color: white; padding: 20px; border-radius: 15px; text-align: left;">
+        <p style="font-weight: bold; font-size: 14px; text-align: center; margin-bottom: 10px;">🟢 LIPA NA M-PESA</p>
+        <p style="font-size: 12px; margin: 3px 0;">Paybill: <b>542542</b></p>
+        <p style="font-size: 12px; margin: 3px 0;">Account No: <b>702468</b></p>
+    </div>
+</div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AT0WwagGFIiQdyLEHgqkZwL_mjYPE37_yurmrjTO5HN3Vx4yIDwiI_NoGJCLQVaaelPBTIFbbsLApX0W&currency=USD"></script>
+
+<script>
+// Binance Wallet Alert
+    function showBinance() {
+        alert("Binance USDT/BNB (BSC) Wallet:\n0x2545509dbe9fa7e19af80352238281ba3391f781\n\nPlease send the equivalent amount and email your receipt.");
+    }
+</script>
+<script>
+    function toggleSub(id) {
+        document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
+            el.style.display = 'none';
+        });
+        const target = document.getElementById(id);
+        if (target) {
+            target.style.display = 'block';
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    function showProducts(categoryId) {
+        document.querySelectorAll('.minor-menu, .product-list').forEach(el => {
+            el.style.display = 'none';
+        });
+        const productList = document.getElementById(categoryId);
+        if (productList) {
+            productList.style.display = 'grid';
+            productList.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    function openModal(imgSrc) {
+        document.getElementById("imageModal").style.display = "block";
+        document.getElementById("expandedImg").src = imgSrc;
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+
+    function backToMinor() {
+        document.querySelectorAll('.product-list').forEach(list => list.style.display = 'none');
+        // This brings the minor buttons back
+        const kitchenSub = document.getElementById('kitchen-sub'); 
+        if (kitchenSub) kitchenSub.style.display = 'block';
+    }
+
+    // Load PayPal only if the container exists
+    if(document.getElementById('paypal-button-container')) {
+        paypal.Buttons({
+            style: { shape: 'pill', color: 'gold', layout: 'vertical', height: 35 },
+            createOrder: function(data, actions) {
+                return actions.order.create({ purchase_units: [{ amount: { value: '10.00' } }] });
+            }
+        }).render('#paypal-button-container');
+    }
+</script>
+
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="expandedImg">
+</div>
+
+<a href="https://wa.me/254702468460" class="float-wa" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Support">
+</a>
+
+</body>
+</html>
