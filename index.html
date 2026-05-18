@@ -667,24 +667,26 @@ font-size:19px;
         </a>
         
     </div>
-
-    <div style="background: #2db742; color: #fff; padding: 15px; border-radius: 12px; text-align: left; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 15px;">
-        <p style="font-weight: bold; font-size: 14px; text-align: center; margin-bottom: 10px; letter-spacing: 0.5px;">
-            🟢 LIPA NA M-PESA
-        </p>
-        <div style="display: flex; flex-direction: column; gap: 4px; padding-left: 10px;">
-            <p style="font-size: 13px; margin: 0;">Paybill: <b>542542</b></p>
-            <p style="font-size: 13px; margin: 0;">Account No: <b>702468</b></p>
-        </div>
+    <div style="background: #2db742; color: #fff; padding: 15px; border-radius: 12px;">
+        <p>🟢 LIPA NA M-PESA</p>
+        <p>Paybill: <b>542542</b><br>Account No: <b>702468</b></p>
     </div>
 
     <div style="border-top: 1px solid #222; padding-top: 12px; margin-top: 15px;">
-        <p style="font-size: 11px; color: #555; margin: 0; letter-spacing: 0.8px; font-weight: 500;">
+        <p style="font-size: 11px; color: #555; margin: 0;">
             © Cozycabin Online Shop 2026
         </p>
     </div>
 
-</div>
+</div> <script>
+  function closeCheckoutBlock() {
+      const checkoutBox = document.getElementById('premium-checkout-box');
+      if (checkoutBox) {
+          checkoutBox.style.display = 'none';
+      }
+  }
+</script>
+
 
 <script src="https://www.paypal.com/sdk/js?client-id=AT0WwagGFIiQdyLEHgqkZwL_mjYPE37_yurmrjTO5HN3Vx4yIDwiI_NoGJCLQVaaelPBTIFbbsLApX0W&currency=USD"></script>
 
@@ -748,17 +750,6 @@ function toggleCryptoRowDropdown() {
         }
     }
 }
-</script>
-    
-  // Interactive Close Trigger 
-  function closeCheckoutBlock() {
-      const checkoutBox = document.getElementById('premium-checkout-box');
-      if (checkoutBox) {
-          checkoutBox.style.display = 'none';
-      }
-  }
-</script>
-
 
 <script>
 /* ==========================================
