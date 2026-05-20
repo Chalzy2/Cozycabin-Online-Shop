@@ -690,13 +690,14 @@ font-size:19px;
 
 <script src="https://www.paypal.com/sdk/js?client-id=AT0WwagGFIiQdyLEHgqkZwL_mjYPE37_yurmrjTO5HN3Vx4yIDwiI_NoGJCLQVaaelPBTIFbbsLApX0W&currency=USD"></script>
 
-<a href="https://wa.me/254702468460" class="float-wa" target="_blank" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 60px; height: 60px; pointer-events: auto;">
+            
+    <a href="https://wa.me/254702468460" class="float-wa" target="_blank" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 60px; height: 60px; pointer-events: auto;">
 </a>
 
 <div id="imageModal" class="modal" onclick="closeModal()" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow: auto; align-items: center; justify-content: center;">
     <span class="close-modal" style="position: absolute; top: 15px; right: 35px; color: #d4af37; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>
-    <img class="modal-content" id="expandedImg" style="margin: auto; display: block; max-width: 90%; max-height: 85%; border: 2px solid #d4af37; border-radius: 8px;">
+    <img class="modal-content" id="expandedImg" alt="Expanded Product View" style="margin: auto; display: block; max-width: 90%; max-height: 85%; border: 2px solid #d4af37; border-radius: 8px;">
 </div>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AT0WwagGFIiQdyLEHgqkZwL_mjYPE37_yurmrjTO5HN3Vx4yIDwiI_NoGJCLQVaaelPBTIFbbsLApX0W&currency=USD"></script>
@@ -748,104 +749,27 @@ function closeAllDrawers() {
     if (ebookArrow) ebookArrow.style.transform = 'rotate(0deg)';
 }
 
-// Global Shop Drawer Trigger
+// Global Shop & Academy Drawer Trigger
 function toggleSub(id) {
-    closeAllDrawers();
     const target = document.getElementById(id);
     if (target) {
-        if (target.classList.contains('product-list')) {
-            target.style.display = 'grid';
-        } else {
-            target.style.display = 'block';
-        }
-        target.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// Local Categories Display Grid (Kitchen, Solar, Decor, etc.)
-function showProducts(categoryId) {
-    document.querySelectorAll('.product-list').forEach(el => {
-        el.style.display = 'none';
-    });
-    const target = document.getElementById(categoryId);
-    if (target) {
-        target.style.display = 'grid';
-        target.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// Smooth E-Book Row Dropdown Accordion
-function toggleEbookRowDropdown() {
-    const menu = document.getElementById('ebook-row-dropdown-menu');
-    const arrow = document.getElementById('ebook-row-arrow');
-    <a href="https://wa.me/254702468460" class="float-wa" target="_blank" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 60px; height: 60px; pointer-events: auto;">
-</a>
-
-<div id="imageModal" class="modal" onclick="closeModal()" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow: auto; align-items: center; justify-content: center;">
-    <span class="close-modal" style="position: absolute; top: 15px; right: 35px; color: #d4af37; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>
-    <img class="modal-content" id="expandedImg" alt="Expanded Product View" style="margin: auto; display: block; max-width: 90%; max-height: 85%; border: 2px solid #d4af37; border-radius: 8px;">
-</div>
-
-<script src="https://www.paypal.com/sdk/js?client-id=AT0WwagGFIiQdyLEHgqkZwL_mjYPE37_yurmrjTO5HN3Vx4yIDwiI_NoGJCLQVaaelPBTIFbbsLApX0W&currency=USD"></script>
-
-<script>
-/* ==========================================
-   A. PAYPAL BUTTON TRANSACTION CONFIGURATION
-   ========================================== */
-if (typeof paypal !== 'undefined') {
-    paypal.Buttons({
-        style: {
-            shape: 'pill',
-            color: 'gold',
-            layout: 'vertical',
-            height: 40
-        },
-        createOrder: function(data, actions) {
-            let selectedAmount = '1.50'; 
-            const activeProduct = document.querySelector('input[name="product"]:checked');
-            if (activeProduct) {
-                if (activeProduct.value === "200") selectedAmount = '1.50';
-                if (activeProduct.value === "150") selectedAmount = '1.10';
+        const isCurrentlyOpen = (target.style.display === 'block' || target.style.display === 'grid');
+        
+        // Close everything else first to prevent overlapping mess
+        closeAllDrawers();
+        
+        if (!isCurrentlyOpen) {
+            if (target.classList.contains('product-list')) {
+                target.style.display = 'grid';
+            } else {
+                target.style.display = 'block';
             }
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: selectedAmount
-                    }
-                }]
-            });
-        }
-    }).render('#paypal-button-container');
-}
-
-/* ==========================================
-   B. INTERACTIVE MENUS, TABS, & SLIDE CONTROLS
-   ========================================== */
-
-// 1. Dedicated Drawer Trigger for Main Academy Courses Button
-function toggleSub(id) {
-    document.querySelectorAll('.minor-menu, #crypto-row-dropdown-menu, #ebook-row-dropdown-menu').forEach(el => {
-        el.style.display = 'none';
-    });
-
-    const cryptoArrow = document.getElementById('crypto-row-arrow');
-    const ebookArrow = document.getElementById('ebook-row-arrow');
-    if (cryptoArrow) cryptoArrow.style.transform = 'rotate(0deg)';
-    if (ebookArrow) ebookArrow.style.transform = 'rotate(0deg)';
-
-    const target = document.getElementById(id);
-    if (target) {
-        if (target.style.display === 'none' || target.style.display === '') {
-            target.style.display = 'block';
             target.scrollIntoView({ behavior: 'smooth' });
-        } else {
-            target.style.display = 'none';
         }
     }
 }
 
-// 2. Dedicated Local Categories Grid Handler (Kitchen, Solar, Decor, Beddings etc.)
+// Local Categories Display Grid (Kitchen, Solar, Decor, Beddings etc.)
 function showProducts(categoryId) {
     document.querySelectorAll('.product-list').forEach(el => {
         el.style.display = 'none';
@@ -858,46 +782,36 @@ function showProducts(categoryId) {
     }
 }
 
-// 3. Premium Digital Library Row Accordion
+// Premium Digital Library Row Accordion
 function toggleEbookRowDropdown() {
     const menu = document.getElementById('ebook-row-dropdown-menu');
     const arrow = document.getElementById('ebook-row-arrow');
     
-    document.querySelectorAll('.minor-menu, .product-list, #crypto-row-dropdown-menu').forEach(el => {
-        el.style.display = 'none';
-    });
-    const cryptoArrow = document.getElementById('crypto-row-arrow');
-    if (cryptoArrow) cryptoArrow.style.transform = 'rotate(0deg)';
-
     if (menu) {
-        if (menu.style.display === 'none' || menu.style.display === '') {
+        const isOpen = (menu.style.display === 'block');
+        closeAllDrawers(); // Clear fields cleanly
+        
+        if (!isOpen) {
             menu.style.display = 'block';
             if (arrow) arrow.style.transform = 'rotate(180deg)';
-        } else {
-            menu.style.display = 'none';
-            if (arrow) arrow.style.transform = 'rotate(0deg)';
+            menu.scrollIntoView({ behavior: 'smooth' });
         }
     }
 }
 
-// 4. Premium Crypto Mastery Row Accordion
+// Premium Crypto Mastery Row Accordion
 function toggleCryptoRowDropdown() {
     const menu = document.getElementById('crypto-row-dropdown-menu');
     const arrow = document.getElementById('crypto-row-arrow');
     
-    document.querySelectorAll('.minor-menu, .product-list, #ebook-row-dropdown-menu').forEach(el => {
-        el.style.display = 'none';
-    });
-    const ebookArrow = document.getElementById('ebook-row-arrow');
-    if (ebookArrow) ebookArrow.style.transform = 'rotate(0deg)';
-
     if (menu) {
-        if (menu.style.display === 'none' || menu.style.display === '') {
+        const isOpen = (menu.style.display === 'block');
+        closeAllDrawers(); // Clear fields cleanly
+        
+        if (!isOpen) {
             menu.style.display = 'block';
             if (arrow) arrow.style.transform = 'rotate(180deg)';
-        } else {
-            menu.style.display = 'none';
-            if (arrow) arrow.style.transform = 'rotate(0deg)';
+            menu.scrollIntoView({ behavior: 'smooth' });
         }
     }
 }
@@ -927,11 +841,13 @@ function closeModal() {
     if (imgModal) imgModal.style.display = 'none';
 }
 
-// UNIVERSAL CLICK LISTENER: Captures desktop mouse clicks and mobile finger taps instantly
+// UNIVERSAL INTERACTION MONITOR: Handles pop-ups seamlessly on phone taps, laptop clicks, and smart TV remotes
 document.addEventListener("click", function(event) {
-    // If the clicked element is an image inside a product list or sub-menu
-    if (event.target.tagName === "IMG" && (event.target.closest(".product-list") || event.target.closest(".minor-menu"))) {
-        openModal(event.target.src);
+    if (event.target.tagName === "IMG") {
+        // Triggers pop-up if the image is inside any product grid or premium dropdown panel
+        if (event.target.closest(".product-list") || event.target.closest(".minor-menu") || event.target.closest("#ebook-row-dropdown-menu") || event.target.closest("#crypto-row-dropdown-menu")) {
+            openModal(event.target.src);
+        }
     }
 });
 
@@ -959,3 +875,4 @@ document.querySelectorAll('img').forEach(image => {
 
 </body>
 </html>
+    
