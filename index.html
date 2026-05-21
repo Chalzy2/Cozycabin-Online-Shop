@@ -843,9 +843,9 @@ font-size:19px;
         <p style="color:green; font-weight:bold; margin:0;">KES 1,800</p>
         <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
     </div>
-</div>
 
-                        <div id="premium-checkout-box" style="background: #111; border: 1px solid #d4af37; padding: 20px; border-radius: 15px; max-width: 420px; margin: 15px auto; text-align: center; position: relative; font-family: sans-serif; box-shadow: 0px 4px 15px rgba(0,0,0,0.5);">
+    
+    </div<div id="premium-checkout-box" style="background: #111; border: 1px solid #d4af37; padding: 20px; border-radius: 15px; max-width: 420px; margin: 15px auto; text-align: center; position: relative; font-family: sans-serif; box-shadow: 0px 4px 15px rgba(0,0,0,0.5);">
     
     <span class="close-checkout-btn" onclick="closeCheckoutBlock()" style="position: absolute; top: 12px; right: 18px; color: #d4af37; font-size: 26px; font-weight: bold; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#d4af37'">&times;</span>
 
@@ -853,6 +853,8 @@ font-size:19px;
         <p style="font-weight: bold; font-size: 16px; color: #ffd700; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 1px;">
             
         
+    <div style="text-align: center; margin-bottom: 20px;">
+        <p style="font-size: 16px; font-weight: bold; color: #fff; margin: 0; tracking: 0.5px;">
             💎 COZYCABIN PREMIUM CHECKOUT
         </p>
         <p style="font-size: 10px; color: #777; text-transform: uppercase; margin: 0; letter-spacing: 0.5px;">
@@ -866,12 +868,12 @@ font-size:19px;
         </p>
 
         <label style="display: block; color: #fff; font-size: 13px; margin-bottom: 12px; cursor: pointer; user-select: none;">
-            <input type="radio" name="product" value="200" checked style="margin-right: 10px; accent-color: #ffd700;">
+            <input type="radio" name="product" value="200" data-name="AI Video Editing Masterclass" checked style="margin-right: 10px; accent-color: #ffd700;">
             AI Video Editing Masterclass (200 KES)
         </label>
 
         <label style="display: block; color: #fff; font-size: 13px; cursor: pointer; user-select: none;">
-            <input type="radio" name="product" value="150" style="margin-right: 10px; accent-color: #ffd700;">
+            <input type="radio" name="product" value="150" data-name="Finance & Sourcing E-book" style="margin-right: 10px; accent-color: #ffd700;">
             Finance & Sourcing E-book (150 KES)
         </label>
     </div>
@@ -880,22 +882,115 @@ font-size:19px;
 
     <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
         
-        <a href="binance-cryptopayment.html" style="text-decoration: none;">
-            <div style="background: #F3BA2F; color: #000; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 20px; margin-right: 10px; pointer-events: none;">
-                Pay with Binance
-            </div>
-        </a>
+        <button onclick="payWithExternal('Binance')" style="background: #F3BA2F; border: none; color: #000; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 20px; margin-right: 10px; pointer-events: none;">
+            Pay with Binance
+        </button>
 
-        <a href="https://selar.com/z6wn6j11g1" style="background: #5A27BA; color: #fff; padding: 12px; border-radius: 35px; text-decoration: none; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+        <button onclick="payWithExternal('Selar')" style="background: #5A27BA; border: none; color: #fff; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
             Buy on Selar
-        </a>
+        </button>
         
     </div>
-    <div style="background: #2db742; color: #fff; padding: 15px; border-radius: 12px;">
-        <p>🟢 LIPA NA M-PESA</p>
-        <p>Paybill: <b>542542</b><br>Account No: <b>702468</b></p>
+
+    <div style="background: #2db742; color: #fff; padding: 15px; border-radius: 12px; text-align: left;">
+        <p style="margin-top: 0; font-weight: bold;">🟢 LIPA NA M-PESA</p>
+        <p style="font-size: 13px; margin-bottom: 10px;">Paybill: <b>542542</b><br>Account No: <b>702468</b></p>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+            <input type="text" id="mpesa-code" placeholder="Enter M-Pesa Ref Code (e.g. RQA7X...)" style="width: 100%; padding: 8px; border-radius: 6px; border: none; font-size: 12px; color: #000;">
+            <button onclick="submitMpesaPayment()" style="background: #111; color: #fff; border: none; padding: 8px; font-weight: bold; font-size: 12px; border-radius: 6px; cursor: pointer;">Verify Payment & Claim Access</button>
+        </div>
     </div>
+
+    <div style="border-top: 1px solid #222; padding-top: 12px; margin-top: 15px; text-align: center;">
+        <p style="font-size: 11px; color: #555; margin: 0;">
+            © Cozycabin Online Shop 2026
+        </p>
+    </div>
+
+<script type="module">
+    import { getFirestore, collection, query, where, getDocs, updateDoc, addDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const db = getFirestore();
+
+    // Utility function to get currently active selection parameters
+    function getSelectedProductDetails() {
+        const radios = document.getElementsByName('product');
+        let selectedValue = 200;
+        let selectedName = "AI Video Editing Masterclass";
+        
+        for (const radio of radios) {
+            if (radio.checked) {
+                selectedValue = Number(radio.value);
+                selectedName = radio.getAttribute('data-name');
+                break;
+            }
+        }
+        return { price: selectedValue, name: selectedName };
+    }
+
+    // Process 20% calculations seamlessly if referenced
+    async function executeCommissionAward(price, method, optionalRef = "") {
+        const storedRef = localStorage.getItem('active_referrer');
+        if (!storedRef) return; 
+
+        const affiliatesRef = collection(db, "affiliates");
+        const q = query(affiliatesRef, where("referralCode", "==", storedRef));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            const affiliateDoc = querySnapshot.docs[0];
+            const commissionCut = price * 0.20; // 20% system policy match
+
+            await updateDoc(affiliateDoc.ref, {
+                commission: increment(commissionCut),
+                sales: increment(1)
+            });
+
+            await addDoc(collection(db, "payout_logs"), {
+                affiliateId: affiliateDoc.id,
+                gatewayUsed: method,
+                totalSale: price,
+                commissionEarned: commissionCut,
+                transactionReference: optionalRef || "External Click",
+                status: "Unpaid",
+                timestamp: new Date()
+            });
+
+            localStorage.removeItem('active_referrer');
+        }
+    }
+
+    // Handles outgoing traffic redirection targets safely
+    window.payWithExternal = async function(gatewayName) {
+        const product = getSelectedProductDetails();
+        
+        // Award affiliate commission right before changing pages
+        await executeCommissionAward(product.price, gatewayName);
+
+        if (gatewayName === "Selar") {
+            window.location.href = "https://selar.com/z6wn6j11g1";
+        } else if (gatewayName === "Binance") {
+            window.location.href = "binance-cryptopayment.html";
+        }
+    }
+
+    // Handles manual M-Pesa claim requests
+    window.submitMpesaPayment = async function() {
+        const product = getSelectedProductDetails();
+        const codeInput = document.getElementById('mpesa-code').value.trim().toUpperCase();
+
+        if (!codeInput) return alert("Please enter your M-Pesa transaction reference code first.");
+
+        // Award affiliate 20% for manually completed entries
+        await executeCommissionAward(product.price, "M-Pesa Paybill", codeInput);
+        
+        alert(`Receipt code ${codeInput} submitted successfully!\nProcessing your access link...`);
+        window.location.reload();
+    }
+</script>
+
 
     <div style="border-top: 1px solid #222; padding-top: 12px; margin-top: 15px;">
         <p style="font-size: 11px; color: #555; margin: 0;">
