@@ -366,17 +366,48 @@
         }
 
         // GOOGLE LOGIN
-        window.googleLogin = async function () {
-            try {
-                localStorage.setItem('pending_signup_ref', incomingReferralCode);
-                const result = await signInWithPopup(auth, provider);
-                if (result.user) {
-                    await checkAndCreateAffiliateProfile(result.user);
-                }
-            } catch (error) {
-                alert(error.message);
-            }
-        }
+        import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithRedirect,
+    getRedirectResult
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+// GOOGLE LOGIN
+window.googleLogin = async function () {
+
+    try {
+
+        localStorage.setItem(
+            'pending_signup_ref',
+            incomingReferralCode
+        );
+
+        await signInWithRedirect(auth, provider);
+
+    } catch (error) {
+
+        alert("Google Login Error: " + error.message);
+    }
+}
+
+// HANDLE REDIRECT RESULT
+getRedirectResult(auth)
+.then(async (result) => {
+
+    if (result && result.user) {
+
+        await checkAndCreateAffiliateProfile(result.user);
+    }
+
+})
+.catch((error) => {
+
+    console.error(error);
+});
 
         // CREATE PROFILE (Fixed form-switching element checks)
         async function checkAndCreateAffiliateProfile(user) {
