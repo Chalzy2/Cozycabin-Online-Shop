@@ -999,38 +999,212 @@ font-size:19px;
         </p>
     </div>
 
+    <div style="text-align: center; margin-bottom: 20px;">
+        <p style="font-size: 16px; font-weight: bold; color: #fff; margin: 0; tracking: 0.5px;">
+            💎 COZYCABIN PREMIUM CHECKOUT
+        </p>
+        <p style="font-size: 10px; color: #777; text-transform: uppercase; margin: 0; letter-spacing: 0.5px;">
+            Instant Digital Delivery
+        </p>
+    </div>
+
+    <div style="background: #1a1a1a; padding: 16px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #333; text-align: left;">
+        <p style="color: #ffd700; font-size: 11px; font-weight: bold; margin-bottom: 12px; text-align: center; text-transform: uppercase; letter-spacing: 0.5px;">
+            CHOOSE COURSE OR E-BOOK
+        </p>
+
+        <label style="display: block; color: #fff; font-size: 13px; margin-bottom: 12px; cursor: pointer; user-select: none;">
+            <input type="radio" name="product" value="200" data-name="AI Video Editing Masterclass" checked style="margin-right: 10px; accent-color: #ffd700;">
+            AI Video Editing Masterclass (200 KES)
+        </label>
+
+        <label style="display: block; color: #fff; font-size: 13px; cursor: pointer; user-select: none;">
+            <input type="radio" name="product" value="150" data-name="Finance & Sourcing E-book" style="margin-right: 10px; accent-color: #ffd700;">
+            Finance & Sourcing E-book (150 KES)
+        </label>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+        
+        <button onclick="payWithExternal('Binance', 'checkout')" style="background: #F3BA2F; border: none; color: #000; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 20px; margin-right: 10px; pointer-events: none;">
+            Pay with Binance
+        </button>
+
+        <button onclick="payWithExternal('Selar', 'checkout')" style="background: #5A27BA; border: none; color: #fff; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+            Buy on Selar
+        </button>
+
+        <button onclick="payWithExternal('PayPal', 'checkout')" style="background: #003087; border: none; color: #fff; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+            Pay with PayPal / Card
+        </button>
+        
+    </div>
+
+    <div style="background: #2db742; color: #fff; padding: 15px; border-radius: 12px; text-align: left; margin-bottom: 30px;">
+        <p style="margin-top: 0; font-weight: bold;">🟢 LIPA NA M-PESA (Buy Product)</p>
+        <p style="font-size: 13px; margin-bottom: 10px;">Paybill: <b>542542</b><br>Account No: <b>702468</b></p>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+            <input type="text" id="mpesa-code" placeholder="Enter M-Pesa Ref Code (e.g. RQA7X...)" style="width: 100%; padding: 8px; border-radius: 6px; border: none; font-size: 12px; color: #000;">
+            <button onclick="submitMpesaPayment('checkout')" style="background: #111; color: #fff; border: none; padding: 8px; font-weight: bold; font-size: 12px; border-radius: 6px; cursor: pointer;">Verify Payment & Claim Access</button>
+        </div>
+    </div>
+
+
+    <div style="margin-top: 35px; border-top: 1px dashed #333; padding-top: 25px; text-align: center;">
+        <p style="font-size: 15px; font-weight: bold; color: #ffd700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">
+            ❤️ Support & Bless My Work
+        </p>
+        <p style="font-size: 11px; color: #aaa; margin: 5px 0 20px 0; max-width: 100%;">
+            If my tools, courses, or guides have blessed you, feel free to drop a tip or donation directly!
+        </p>
+    </div>
+
     <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
         
         <div style="background: #111; padding: 14px; border-radius: 12px; border: 1px solid #2db742; text-align: left;">
-            <p style="margin: 0 0 5px 0; font-size: 12px; font-weight: bold; color: #2db742; display: flex; align-items: center; gap: 6px;">
+            <p style="margin: 0 0 5px 0; font-size: 12px; font-weight: bold; color: #2db742;">
                 <span>🟢 LIPA NA M-PESA (Send Tip)</span>
             </p>
             <p style="font-size: 12px; color: #fff; margin: 0; line-height: 1.5;">
                 Use Buy Goods Till Number: <b>702468</b> <br>
                 <span style="font-size: 10px; color: #777;">(Any amount is highly appreciated!)</span>
             </p>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+                <input type="text" id="mpesa-donation-code" placeholder="Enter M-Pesa Code for Donation" style="width: 100%; padding: 6px; border-radius: 6px; border: none; font-size: 11px; color: #000;">
+                <button onclick="submitMpesaPayment('donation')" style="background: #2db742; color: #fff; border: none; padding: 6px; font-weight: bold; font-size: 11px; border-radius: 6px; cursor: pointer;">Submit Donation Code</button>
+            </div>
         </div>
 
-        <a href="https://selar.co/showlove/your-username" target="_blank" style="text-decoration: none;">
-            <div style="background: #e91e63; color: #fff; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                💝 Tip Me via Selar (Card / MoMo)
-            </div>
-        </a>
+        <button onclick="payWithExternal('Selar', 'donation')" style="background: #e91e63; border: none; color: #fff; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+            💝 Tip Me via Selar (Card / MoMo)
+        </button>
 
-        <a href="binance-cryptopayment.html?type=donation" style="text-decoration: none;">
-            <div style="background: #F3BA2F; color: #000; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 18px; margin-right: 10px; pointer-events: none;">
-                Send Crypto Tip (Binance)
-            </div>
-        </a>
+        <button onclick="payWithExternal('Binance', 'donation')" style="background: #F3BA2F; border: none; color: #000; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 18px; margin-right: 10px; pointer-events: none;">
+            Send Crypto Tip (Binance)
+        </button>
 
-        <a href="https://paypal.me/yourlink/10" target="_blank" style="text-decoration: none;">
-            <div style="background: #003087; color: #fff; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                🌐 International Donation (PayPal)
-            </div>
-        </a>
+        <button onclick="payWithExternal('PayPal', 'donation')" style="background: #003087; border: none; color: #fff; padding: 12px; border-radius: 35px; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+            🌐 International Donation (PayPal)
+        </button>
         
     </div>
+
+    <div style="border-top: 1px solid #222; padding-top: 12px; margin-top: 15px; text-align: center;">
+        <p style="font-size: 11px; color: #555; margin: 0;">
+            © Cozycabin Online Shop 2026
+        </p>
+    </div>
+
+
+<script type="module">
+    import { getFirestore, collection, query, where, getDocs, updateDoc, addDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const db = getFirestore();
+
+    function getSelectedProductDetails() {
+        const radios = document.getElementsByName('product');
+        let selectedValue = 200;
+        let selectedName = "AI Video Editing Masterclass";
+        
+        for (const radio of radios) {
+            if (radio.checked) {
+                selectedValue = Number(radio.value);
+                selectedName = radio.getAttribute('data-name');
+                break;
+            }
+        }
+        return { price: selectedValue, name: selectedName };
+    }
+
+    async function executeCommissionAward(price, method, optionalRef = "") {
+        const storedRef = localStorage.getItem('active_referrer');
+        // If no affiliate brought them here, stop immediately!
+        if (!storedRef) return; 
+
+        const affiliatesRef = collection(db, "affiliates");
+        const q = query(affiliatesRef, where("referralCode", "==", storedRef));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            const affiliateDoc = querySnapshot.docs[0];
+            const commissionCut = price * 0.20; // 20% flat commission balance trigger
+
+            await updateDoc(affiliateDoc.ref, {
+                commission: increment(commissionCut),
+                sales: increment(1)
+            });
+
+            await addDoc(collection(db, "payout_logs"), {
+                affiliateId: affiliateDoc.id,
+                gatewayUsed: method,
+                totalSale: price,
+                commissionEarned: commissionCut,
+                transactionReference: optionalRef || "External Checkout Outflow Link",
+                status: "Unpaid",
+                timestamp: new Date()
+            });
+
+            localStorage.removeItem('active_referrer');
+        }
+    }
+
+    // MANAGED LINKS REDIRECT MATRIX
+    window.payWithExternal = async function(gatewayName, mode) {
+        if (mode === 'checkout') {
+            const product = getSelectedProductDetails();
+            // ONLY pay affiliate if they are buying a product
+            await executeCommissionAward(product.price, gatewayName);
+            
+            if (gatewayName === "Selar") {
+                window.location.href = "https://selar.com/z6wn6j11g1";
+            } else if (gatewayName === "Binance") {
+                window.location.href = "binance-cryptopayment.html";
+            } else if (gatewayName === "PayPal") {
+                window.location.href = "https://paypal.me/charlesowuor"; // Your exact PayPal link
+            }
+        } 
+        else if (mode === 'donation') {
+            // Donations are direct to you. 0 affiliate math executed here.
+            if (gatewayName === "Selar") {
+                window.location.href = "https://selar.co/showlove/charlesowuor"; // Your custom Selar showlove tip link
+            } else if (gatewayName === "Binance") {
+                window.location.href = "binance-cryptopayment.html?intent=donation";
+            } else if (gatewayName === "PayPal") {
+                window.location.href = "https://paypal.me/charlesowuor/10"; // Default $10 blessing
+            }
+        }
+    }
+
+    // MANAGED MANUAL MPESA FIELD INPUT PROCESSING
+    window.submitMpesaPayment = async function(mode) {
+        if (mode === 'checkout') {
+            const product = getSelectedProductDetails();
+            const codeInput = document.getElementById('mpesa-code').value.trim().toUpperCase();
+            if (!codeInput) return alert("Please type your M-Pesa verification transaction code.");
+
+            await executeCommissionAward(product.price, "M-Pesa Paybill", codeInput);
+            alert(`Order verified! Reference: ${codeInput}. Access link loading...`);
+            window.location.reload();
+        } 
+        else if (mode === 'donation') {
+            const donationCode = document.getElementById('mpesa-donation-code').value.trim().toUpperCase();
+            if (!donationCode) return alert("Please type your donation transaction reference code.");
+            
+            // Log it for your own review history (0 commission applied)
+            await addDoc(collection(db, "donations_received"), {
+                gateway: "M-Pesa Till",
+                reference: donationCode,
+                timestamp: new Date()
+            });
+            alert("Thank you so much for your blessing and support! Your donation has been logged successfully. 🙌");
+            window.location.reload();
+        }
+    }
+</script>
+
         
 
 
