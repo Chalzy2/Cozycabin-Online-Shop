@@ -1096,31 +1096,53 @@ document.querySelectorAll('img').forEach(image => {
     image.style.userSelect = 'none';
     image.addEventListener('dragstart', e => e.preventDefault());
 });
-    import { getFirestore, collection, query, where, getDocs, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { getFirestore, collection, query, where, getDocs, updateDoc, addDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// Initialize your database (make sure your firebase config is loaded above this)
 const db = getFirestore();
 
-// Check if a buyer clicked an affiliate link to get here
-const urlParams = new URLSearchParams(window.location.search);
-const refCode = urlParams.get('ref');
+// RUN THIS FUNCTION WHEN A SALE IS CONFIRMED
+async function processEbookSale(orderId, pricePaid) {
+    // Check if this buyer came from an affiliate link
+    const storedRef = localStorage.getItem('active_referrer');
+    
+    if (storedRef) {
+        const affiliatesRef = collection(db, "affiliates");
+        const q = query(affiliatesRef, where("referralCode", "==", storedRef));
+        const querySnapshot = await getDocs(q);
 
-if (refCode) {
-    // 1. Remember this code so if they buy an ebook later, we know who to pay!
-    localStorage.setItem('active_referrer', refCode);
-    
-    // 2. Add +1 to the affiliate's total click count
-    const affiliatesRef = collection(db, "affiliates");
-    const q = query(affiliatesRef, where("referralCode", "==", refCode));
-    const querySnapshot = await getDocs(q);
-    
-    if (!querySnapshot.empty) {
-        const affiliateDoc = querySnapshot.docs[0];
-        await updateDoc(affiliateDoc.ref, {
-            clicks: increment(1)
-        });
+        if (!querySnapshot.empty) {
+            const affiliateDoc = querySnapshot.docs[0];
+            
+            // Calculate the 20% commission cut
+            const commissionAmount = pricePaid * 0.20; 
+
+            // 1. Instantly update the affiliate's dashboard counters
+            await updateDoc(affiliateDoc.ref, {
+                commission: increment(commissionAmount),
+                sales: increment(1)
+            });
+
+            // 2. Log a private record so you know who to pay via M-Pesa
+            await addDoc(collection(db, "payout_logs"), {
+                affiliateId: affiliateDoc.id,
+                orderId: orderId,
+                totalSale: pricePaid,
+                commissionEarned: commissionAmount,
+                status: "Unpaid",
+                timestamp: new Date()
+            });
+
+            // Clear the tracking token so future regular purchases don't double-pay
+            localStorage.removeItem('active_referrer');
+            console.log("20% Commission successfully tracked!");
+        }
     }
-    }
+}
+
+// EXAMPLE TRIGGER: 
+// If someone buys a KES 1,000 book, you just run:
+// processEbookSale("ORDER-1002", 1000);
+
     
 </script>
 
