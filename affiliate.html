@@ -224,10 +224,104 @@
             } else {
                 // No session active, parse if they just came back from a redirect flow
                 handleRedirectCallback();
+            }    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { 
+            getAuth, 
+            GoogleAuthProvider, 
+            signInWithRedirect, 
+            getRedirectResult,
+            onAuthStateChanged 
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            getDoc,
+            setDoc
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // YOUR EXACT PROFILE CONFIGURATION KEY FILE
+        const firebaseConfig = {
+          apiKey: "AIzaSyDToZQ-f31ZA2RmPWNKZ4DTtVjyj-toMW0",
+          authDomain: "cozycabin-affiliate.firebaseapp.com",
+          databaseURL: "https://cozycabin-affiliate-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "cozycabin-affiliate",
+          storageBucket: "cozycabin-affiliate.firebasestorage.app",
+          messagingSenderId: "765281276271",
+          appId: "1:765281276271:web:1368fb340b1fb68a01189a",
+          measurementId: "G-NFYX4TH0H7"
+        };
+
+        // Initialize Connected Services
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const provider = new GoogleAuthProvider();
+
+        // 1. URL INTERCEPT FOR ATTRIBUTION
+        const urlParams = new URLSearchParams(window.location.search);
+        const incomingReferralCode = urlParams.get('ref') || "Direct";
+
+        // 2. MOBILE & DESKTOP PROOF HANDSHAKE TRIGGER
+        window.googleLogin = async function() {
+            try {
+                localStorage.setItem('pending_signup_ref', incomingReferralCode);
+                await signInWithRedirect(auth, provider);
+            } catch (error) {
+                console.error("Auth Error Trace:", error);
+                alert("Login Error: " + error.message);
+            }
+        }
+
+        // 3. RETURNING LANDING PROCESSOR
+        async function handleRedirectCallback() {
+            try {
+                const result = await getRedirectResult(auth);
+                if (result && result.user) {
+                    await checkAndCreateAffiliateProfile(result.user);
+                }
+            } catch (error) {
+                console.error("Callback Processing Error:", error);
+                alert("Authentication mismatch: " + error.message);
+            }
+        }
+
+        // 4. DATA SHEET VERIFICATION ENGINE
+        async function checkAndCreateAffiliateProfile(user) {
+            const userDocRef = doc(db, "affiliates", user.uid);
+            const userDocSnap = await getDoc(userDocRef);
+
+            if (!userDocSnap.exists()) {
+                const randomCode = 'CZ-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+                const storedRef = localStorage.getItem('pending_signup_ref') || "Direct";
+                
+                await setDoc(userDocRef, {
+                    name: user.displayName || "Cozycabin Partner",
+                    email: user.email,
+                    commission: 0,
+                    clicks: 0,
+                    sales: 0,
+                    referralCode: randomCode,
+                    referredBy: storedRef,
+                    createdAt: new Date()
+                });
+                localStorage.removeItem('pending_signup_ref');
+                alert("Welcome to the Cozycabin Partner Matrix! Account generated successfully.");
+            }
+            renderDashboard(userDocRef);
+        }
+
+        // 5. SECURE STATE LIFECYCLE LISTENERS
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const userDocRef = doc(db, "affiliates", user.uid);
+                renderDashboard(userDocRef);
+            } else {
+                handleRedirectCallback();
             }
         });
 
-        // 6. UI RENDER INTERFACE PANEL
+        // 6. DASHBOARD DOM UPDATE INTERFACE
         async function renderDashboard(userDocRef) {
             const snap = await getDoc(userDocRef);
             if (snap.exists()) {
@@ -240,7 +334,8 @@
                 document.getElementById('clicks-display').innerText = data.clicks || 0;
                 document.getElementById('sales-display').innerText = data.sales || 0;
 
-                const cleanDomain = window.location.origin + window.location.pathname;
+                // Sets up clean copy paths matching whether they land on index or affiliate
+                const cleanDomain = window.location.origin + "/index.html";
                 document.getElementById('share-link').value = `${cleanDomain}?ref=${data.referralCode}`;
             }
         }
@@ -250,11 +345,10 @@
             linkInput.select();
             linkInput.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(linkInput.value);
-            alert("Referral link copied safely to clipboard!");
+            alert("Your custom referral asset tracking link was copied successfully!");
         }
     </script>
 
-        
-    </script>
+</script>
 </body>
 </html>
