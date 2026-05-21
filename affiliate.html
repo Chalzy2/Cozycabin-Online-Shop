@@ -1,9 +1,173 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyDToZQ-f31ZA2RmPWNKZ4DTtVjyj-toMW0",
-  authDomain: "cozycabin-affiliate.firebaseapp.com",
-  projectId: "cozycabin-affiliate",
-  storageBucket: "cozycabin-affiliate.firebasestorage.app",
-  messagingSenderId: "765281276271",
-  appId: "1:765281276271:web:1368fb340b1fb68a01189a",
-  measurementId: "G-NFYX4TH0H7"
-};
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozycabin Affiliate Partner Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <div class="max-w-md mx-auto p-4 min-h-screen flex flex-col justify-center">
+        
+        <div class="text-center mb-6">
+            <h1 class="text-2xl font-bold tracking-tight text-amber-600">Cozycabin Academy</h1>
+            <p class="text-gray-500 text-sm mt-1">Partner Portal & Commission Engine</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+            
+            <div id="login-section" class="text-center py-4">
+                <h2 class="text-lg font-semibold mb-2">Join the Affiliate Program</h2>
+                <p class="text-xs text-gray-400 mb-6">Instantly generate tracking links and track your payouts.</p>
+                
+                <button onclick="googleLogin()" class="w-full bg-white border border-gray-300 text-gray-700 font-medium py-3 rounded-xl text-sm transition flex items-center justify-center gap-2 active:scale-95 shadow-sm">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24">
+                        <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l3.227-3.227C18.216 1.414 15.48 0 12.24 0 5.48 0 0 5.48 0 12.24s5.48 12.24 12.24 12.24c7.05 0 11.732-4.957 11.732-11.94 0-.804-.085-1.42-.19-1.97H12.24z"/>
+                    </svg>
+                    Continue with Google
+                </button>
+            </div>
+
+            <div id="dashboard-section" class="hidden space-y-6">
+                
+                <div class="p-4 bg-amber-50 rounded-xl border border-amber-100 flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase font-medium">Earned Balance</p>
+                        <h3 class="text-xl font-bold text-gray-800">KES <span id="balance-display">0.00</span></h3>
+                    </div>
+                    <span class="text-xs bg-amber-500 text-white px-2.5 py-1 rounded-full font-semibold">Partner Active</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-center">
+                    <div class="p-3 bg-gray-50 border border-gray-100 rounded-xl">
+                        <p class="text-[10px] uppercase font-bold text-gray-400">Total Clicks</p>
+                        <p id="clicks-display" class="text-lg font-bold text-gray-700">0</p>
+                    </div>
+                    <div class="p-3 bg-gray-50 border border-gray-100 rounded-xl">
+                        <p class="text-[10px] uppercase font-bold text-gray-400">Total Sales</p>
+                        <p id="sales-display" class="text-lg font-bold text-gray-700">0</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 uppercase mb-1">Your Unique Referral Link</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="share-link" readonly class="w-full bg-gray-50 px-3 py-2.5 border border-gray-200 rounded-xl text-xs text-gray-600 focus:outline-none">
+                        <button onclick="copyLink()" class="bg-gray-800 text-white text-xs px-4 rounded-xl font-medium active:scale-95">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { 
+            getAuth, 
+            GoogleAuthProvider, 
+            signInWithPopup,
+            onAuthStateChanged 
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            getDoc,
+            setDoc
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDToZQ-f31ZA2RmPWNKZ4DTtVjyj-toMW0",
+            authDomain: "cozycabin-affiliate.firebaseapp.com",
+            projectId: "cozycabin-affiliate",
+            storageBucket: "cozycabin-affiliate.firebasestorage.app",
+            messagingSenderId: "765281276271",
+            appId: "1:765281276271:web:1368fb340b1fb68a01189a",
+            measurementId: "G-NFYX4TH0H7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const provider = new GoogleAuthProvider();
+
+        // Check for an incoming tracking parameter in the URL bar
+        const urlParams = new URLSearchParams(window.location.search);
+        const incomingReferralCode = urlParams.get('ref') || "Direct";
+
+        // Google Authentication Logic tied to window for button compatibility
+        window.googleLogin = async function() {
+            try {
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+                
+                const userDocRef = doc(db, "affiliates", user.uid);
+                const userDocSnap = await getDoc(userDocRef);
+
+                // Create account only if it doesn't exist yet (Prevents resetting statistics back to 0)
+                if (!userDocSnap.exists()) {
+                    const randomCode = 'CZ-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+                    
+                    await setDoc(userDocRef, {
+                        name: user.displayName || "Cozycabin Partner",
+                        email: user.email,
+                        commission: 0,
+                        clicks: 0,
+                        sales: 0,
+                        referralCode: randomCode,
+                        referredBy: incomingReferralCode,
+                        createdAt: new Date()
+                    });
+                    alert("Affiliate registration complete!");
+                }
+                
+                // Show dashboard data
+                renderDashboard(userDocRef);
+
+            } catch (error) {
+                console.error("Auth Error:", error);
+                alert("Authentication failed: " + error.message);
+            }
+        }
+
+        // Keep the user logged in smoothly across refreshes
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const userDocRef = doc(db, "affiliates", user.uid);
+                renderDashboard(userDocRef);
+            }
+        });
+
+        // Pull database values and swap visibility configurations
+        async function renderDashboard(userDocRef) {
+            const snap = await getDoc(userDocRef);
+            if (snap.exists()) {
+                const data = snap.data();
+                
+                // Toggle interface views
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('dashboard-section').classList.remove('hidden');
+
+                // Map database values directly onto interface text
+                document.getElementById('balance-display').innerText = Number(data.commission || 0).toFixed(2);
+                document.getElementById('clicks-display').innerText = data.clicks || 0;
+                document.getElementById('sales-display').innerText = data.sales || 0;
+
+                // Build a clean, copyable absolute link
+                const cleanDomain = window.location.origin + window.location.pathname;
+                document.getElementById('share-link').value = `${cleanDomain}?ref=${data.referralCode}`;
+            }
+        }
+
+        // Quick clipboard handling for mobile users
+        window.copyLink = function() {
+            const linkInput = document.getElementById('share-link');
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(linkInput.value);
+            alert("Referral link copied safely to clipboard!");
+        }
+    </script>
+</body>
+</html>
