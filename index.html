@@ -1096,6 +1096,32 @@ document.querySelectorAll('img').forEach(image => {
     image.style.userSelect = 'none';
     image.addEventListener('dragstart', e => e.preventDefault());
 });
+    import { getFirestore, collection, query, where, getDocs, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// Initialize your database (make sure your firebase config is loaded above this)
+const db = getFirestore();
+
+// Check if a buyer clicked an affiliate link to get here
+const urlParams = new URLSearchParams(window.location.search);
+const refCode = urlParams.get('ref');
+
+if (refCode) {
+    // 1. Remember this code so if they buy an ebook later, we know who to pay!
+    localStorage.setItem('active_referrer', refCode);
+    
+    // 2. Add +1 to the affiliate's total click count
+    const affiliatesRef = collection(db, "affiliates");
+    const q = query(affiliatesRef, where("referralCode", "==", refCode));
+    const querySnapshot = await getDocs(q);
+    
+    if (!querySnapshot.empty) {
+        const affiliateDoc = querySnapshot.docs[0];
+        await updateDoc(affiliateDoc.ref, {
+            clicks: increment(1)
+        });
+    }
+    }
+    
 </script>
 
 </body>
