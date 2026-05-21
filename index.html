@@ -353,6 +353,125 @@ height:70px;
 .academy-info h2{
 font-size:19px;
 }
+    /* COZYCABIN AFFILIATE SECTION */
+
+.cozy-affiliate-box{
+    background: linear-gradient(135deg, #071129 0%, #0f172a 100%);
+    border: 1px solid rgba(45,183,66,0.25);
+    border-radius: 28px;
+    padding: 35px 22px;
+    margin: 30px auto;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 10px 35px rgba(0,0,0,0.45),
+        0 0 25px rgba(45,183,66,0.08);
+}
+
+/* TOP BADGE */
+
+.cozy-affiliate-badge{
+    display: inline-block;
+    background: linear-gradient(90deg,#2db742,#24a63c);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 15px rgba(45,183,66,0.35);
+}
+
+/* HEADING */
+
+.cozy-affiliate-title{
+    color: white;
+    font-size: 34px;
+    line-height: 1.35;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+.cozy-affiliate-title span{
+    color: #2db742;
+    text-shadow: 0 0 10px rgba(45,183,66,0.4);
+}
+
+/* DESCRIPTION */
+
+.cozy-affiliate-text{
+    color: #d1d5db;
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 30px;
+}
+
+/* BUTTON */
+
+.cozy-affiliate-btn{
+    background: linear-gradient(90deg,#2db742,#24a63c);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 18px 28px;
+    width: 100%;
+    max-width: 320px;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow:
+        0 8px 25px rgba(45,183,66,0.35),
+        0 0 15px rgba(45,183,66,0.18);
+}
+
+.cozy-affiliate-btn:hover{
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* SOCIAL AREA */
+
+.cozy-affiliate-social{
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.cozy-affiliate-platforms{
+    display: inline-block;
+    background: rgba(37,211,102,0.12);
+    color: #25D366;
+    padding: 9px 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(37,211,102,0.25);
+}
+
+.cozy-affiliate-proof{
+    color: #94a3b8;
+    font-size: 12px;
+    margin-top: 14px;
+    letter-spacing: 0.3px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.cozy-affiliate-title{
+    font-size: 28px;
+}
+
+.cozy-affiliate-text{
+    font-size: 15px;
+}
+
+.cozy-affiliate-btn{
+    font-size: 16px;
+} 
 
 }
 </style>
@@ -556,75 +675,43 @@ font-size:19px;
         >
             JOIN AFFILIATE PROGRAM
 <!-- COZYCABIN AFFILIATE HERO WITH REMINDER -->
-<div style="
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    padding: 35px 20px;
-    border-radius: 24px;
-    margin: 25px auto;
-    max-width: 600px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    border: 1px solid rgba(45, 183, 66, 0.3);
-    position: relative;
-    overflow: hidden;
-">
+<!-- COZYCABIN AFFILIATE SECTION -->
 
-    <!-- Small Reminder Badge -->
-    <div style="
-        background: #2db742;
-        color: white;
-        font-size: 11px;
-        font-weight: bold;
-        padding: 5px 15px;
-        border-radius: 20px;
-        display: inline-block;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    ">
-        Member Opportunity 💡
+<div class="cozy-affiliate-box">
+
+    <div class="cozy-affiliate-badge">
+        MEMBER OPPORTUNITY 💡
     </div>
 
-    <h2 style="
-        color: white;
-        font-size: 26px;
-        margin-bottom: 10px;
-        font-family: sans-serif;
-    ">
-        Earn Online by: <span style="color: #2db742;">Sharing Cozycabin E-books</span>
+    <h2 class="cozy-affiliate-title">
+        Earn Online with 
+        <span>Cozy Cabin</span>
     </h2>
 
-    <p style="
-        color: #cbd5e1;
-        font-size: 15px;
-        line-height: 1.6;
-        margin-bottom: 25px;
-        font-family: sans-serif;
-    ">
-     No Capital Needed — Share ebooks and earn commission for every sale.
+    <p class="cozy-affiliate-text">
+        No capital needed. Share ebooks and digital products using your affiliate link and earn commission for every successful sale.
     </p>
 
-    <a href="/affiliate.html" style="text-decoration: none;">
-        <button style="
-            background: #2db742;
-            color: white;
-            padding: 16px 30px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(45, 183, 66, 0.3);
-            transition: 0.3s;
-            width: 100%;
-            max-width: 280px;
-        "
-        onmouseover="this.style.background='#25a239'; this.style.transform='scale(1.03)';"
-        onmouseout="this.style.background='#2db742'; this.style.transform='scale(1)';"
-        >
+    <a href="/affiliate.html">
+
+        <button class="cozy-affiliate-btn">
             💰 START EARNING TODAY
         </button>
+
     </a>
+
+    <div class="cozy-affiliate-social">
+
+        <div class="cozy-affiliate-platforms">
+            📲 Perfect for WhatsApp, TikTok & Facebook
+        </div>
+
+        <div class="cozy-affiliate-proof">
+            🔥 Growing community of digital affiliates in Kenya
+        </div>
+
+    </div>
+
 </div>
 
 
