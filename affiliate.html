@@ -361,16 +361,25 @@
         const urlParams = new URLSearchParams(window.location.search);
         const incomingReferralCode = urlParams.get('ref') || "Direct";
 
-        // 2. MOBILE & DESKTOP PROOF HANDSHAKE TRIGGER
-        window.googleLogin = async function() {
-            try {
-                localStorage.setItem('pending_signup_ref', incomingReferralCode);
-                await signInWithRedirect(auth, provider);
-            } catch (error) {
-                console.error("Auth Error Trace:", error);
-                alert("Login Error: " + error.message);
-            }
-        }
+        // 2. MOBILE & DESKTOP PROOF HANDSHAKE TRIGGER WITH FORCE-FAILSAFE
+window.googleLogin = async function() {
+    console.log("Google Login clicked - Launching Cozycabin Handshake...");
+    try {
+        localStorage.setItem('pending_signup_ref', incomingReferralCode);
+        
+        // 🚀 MOBILE FAILSAFE: If the browser ignores the redirect for 1 second, force the location
+        setTimeout(() => {
+            const fallbackUrl = `https://cozycabin-affiliate.firebaseapp.com/__/auth/handler?authType=redirect&providerId=google.com&baseUrl=${encodeURIComponent(window.location.origin)}`;
+            window.location.href = fallbackUrl;
+        }, 1000);
+
+        await signInWithRedirect(auth, provider);
+    } catch (error) {
+        console.error("Auth Error Trace:", error);
+        alert("Login Error: " + error.message);
+    }
+}
+
 
         // 3. RETURNING LANDING PROCESSOR
         async function handleRedirectCallback() {
