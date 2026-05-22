@@ -9,212 +9,411 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-
-body{
-    background:
-    radial-gradient(circle at top,
-    rgba(255,215,0,0.08),
-    transparent 35%),
-    #0a0a0a;
-
-    min-height:100vh;
+body {
+    background: radial-gradient(circle at top, rgba(255,215,0,0.08), transparent 35%), #0a0a0a;
+    min-height: 100vh;
 }
-
-.glass-card{
-    background:rgba(17,17,17,0.96);
-    backdrop-filter:blur(12px);
+.glass-card {
+    background: rgba(17,17,17,0.96);
+    backdrop-filter: blur(12px);
 }
-
-.gold-glow{
-    box-shadow:0 0 20px rgba(255,215,0,0.12);
+.gold-glow {
+    box-shadow: 0 0 20px rgba(255,215,0,0.12);
 }
-
-.green-glow{
-    box-shadow:0 0 18px rgba(45,183,66,0.18);
+.green-glow {
+    box-shadow: 0 0 18px rgba(45,183,66,0.18);
 }
-
-.cozy-btn{
-    transition:all .2s ease;
+.cozy-btn {
+    transition: all .2s ease;
 }
-
-.cozy-btn:hover{
-    opacity:.92;
+.cozy-btn:hover {
+    opacity: .92;
 }
-
-.cozy-btn:active{
-    transform:scale(.97);
+.cozy-btn:active {
+    transform: scale(.97);
 }
-
-input::placeholder{
-    color:#666;
+input::placeholder {
+    color: #666;
 }
-
-input:focus{
-    box-shadow:0 0 0 1px #ffd700;
+input:focus {
+    box-shadow: 0 0 0 1px #ffd700;
 }
-
-::-webkit-scrollbar{
-    width:6px;
+::-webkit-scrollbar {
+    width: 6px;
 }
-
-::-webkit-scrollbar-thumb{
-    background:#333;
-    border-radius:20px;
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 20px;
 }
-
 </style>
 </head>
 
 <body class="text-white font-sans flex items-center justify-center p-4">
 
-<!-- MAIN -->
 <div class="w-full max-w-md">
 
-    <!-- LOGO -->
     <div class="text-center mb-6">
-
         <div class="flex justify-center mb-4">
             <div class="w-20 h-20 rounded-3xl bg-[#111] border border-[#2a2a2a] flex items-center justify-center gold-glow">
-                <span class="text-[#ffd700] text-3xl font-black">
-                    C
-                </span>
+                <span class="text-[#ffd700] text-3xl font-black">C</span>
             </div>
         </div>
-
         <h1 class="text-4xl font-black tracking-[5px] text-[#ffd700] uppercase">
             COZYCABIN
         </h1>
-
         <p class="text-gray-500 text-[11px] uppercase tracking-[5px] mt-2">
             Affiliate Partner Portal
         </p>
-
     </div>
 
-    <!-- CARD -->
     <div class="glass-card border border-[#222] rounded-[28px] p-6 gold-glow">
 
-        <!-- TITLE -->
-        <div class="text-center mb-5">
+        <div id="login-section">
+            <div class="text-center mb-5">
+                <h2 id="auth-title" class="text-2xl font-bold uppercase text-white">
+                    Join Affiliate Program
+                </h2>
+                <p id="auth-desc" class="text-gray-500 text-sm mt-2 leading-relaxed">
+                    Generate referral links, monitor sales and withdraw earnings instantly through M-Pesa.
+                </p>
+            </div>
 
-            <h2 class="text-2xl font-bold uppercase text-white">
-                Join Affiliate Program
-            </h2>
+            <div class="grid grid-cols-2 gap-3 mb-5">
+                <button onclick="googleLogin()" class="cozy-btn bg-white text-black font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-xl text-xs">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24">
+                        <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l3.227-3.227C18.216 1.414 15.48 0 12.24 0 5.48 0 0 5.48 0 12.24s5.48 12.24 12.24 12.24c7.05 0 11.732-4.957 11.732-11.94 0-.804-.085-1.42-.19-1.97H12.24z"/>
+                    </svg>
+                    GOOGLE
+                </button>
 
-            <p class="text-gray-500 text-sm mt-2 leading-relaxed">
-                Generate referral links, monitor sales and withdraw earnings instantly through M-Pesa.
-            </p>
+                <button onclick="facebookLogin()" class="cozy-btn bg-[#1877F2] text-white font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-xl text-xs">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.8z"/>
+                    </svg>
+                    FACEBOOK
+                </button>
+            </div>
 
+            <div class="flex items-center mb-5">
+                <div class="flex-1 border-t border-[#222]"></div>
+                <span id="divider-text" class="px-3 text-[10px] uppercase tracking-[3px] text-gray-600">Secure Login</span>
+                <div class="flex-1 border-t border-[#222]"></div>
+            </div>
+
+            <form id="email-auth-form" onsubmit="handleEmailAuth(event)" class="space-y-4">
+                
+                <div id="name-field-group" class="hidden">
+                    <label class="block text-[11px] text-[#ffd700] uppercase tracking-[3px] mb-2 font-bold">Full Name</label>
+                    <input type="text" id="auth-name" placeholder="Your Official Name" class="w-full bg-[#151515] border border-[#333] rounded-xl px-5 py-3.5 outline-none text-white text-sm transition"/>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] text-[#ffd700] uppercase tracking-[3px] mb-2 font-bold">Email Address</label>
+                    <input type="email" id="auth-email" required placeholder="name@gmail.com" class="w-full bg-[#151515] border border-[#333] rounded-xl px-5 py-3.5 outline-none text-white text-sm transition"/>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] text-[#ffd700] uppercase tracking-[3px] mb-2 font-bold">M-Pesa Number</label>
+                    <input type="tel" id="auth-phone" required placeholder="e.g. 0712345678" class="w-full bg-[#151515] border border-[#333] rounded-xl px-5 py-3.5 outline-none text-white text-sm transition"/>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] text-[#ffd700] uppercase tracking-[3px] mb-2 font-bold">Password</label>
+                    <input type="password" id="auth-password" required placeholder="Minimum 6 characters" class="w-full bg-[#151515] border border-[#333] rounded-xl px-5 py-3.5 outline-none text-white text-sm transition"/>
+                </div>
+
+                <button type="submit" id="auth-submit-btn" class="cozy-btn w-full bg-[#ffd700] text-black font-black py-4 rounded-2xl uppercase tracking-[3px] shadow-xl mt-2 text-xs">
+                    SIGN IN WITH EMAIL
+                </button>
+            </form>
+
+            <div class="text-center mt-6">
+                <span id="toggle-text" class="text-gray-500 text-sm">Don't have an affiliate account yet?</span>
+                <button onclick="toggleAuthMode()" id="toggle-action-btn" class="text-[#ffd700] underline font-bold ml-1 bg-transparent border-none cursor-pointer text-sm">Register Here</button>
+            </div>
         </div>
 
-        <!-- GOOGLE -->
-        <button
-        class="cozy-btn w-full bg-white text-black font-bold py-4 rounded-2xl flex items-center justify-center gap-3 shadow-xl mb-5">
-
-            <svg class="w-5 h-5" viewBox="0 0 24 24">
-                <path fill="#EA4335"
-                d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l3.227-3.227C18.216 1.414 15.48 0 12.24 0 5.48 0 0 5.48 0 12.24s5.48 12.24 12.24 12.24c7.05 0 11.732-4.957 11.732-11.94 0-.804-.085-1.42-.19-1.97H12.24z"/>
-            </svg>
-
-            CONTINUE WITH GOOGLE
-
-        </button>
-
-        <!-- DIVIDER -->
-        <div class="flex items-center mb-5">
-
-            <div class="flex-1 border-t border-[#222]"></div>
-
-            <span class="px-3 text-[10px] uppercase tracking-[3px] text-gray-600">
-                Secure Login
-            </span>
-
-            <div class="flex-1 border-t border-[#222]"></div>
-
-        </div>
-
-        <!-- FORM -->
-        <form class="space-y-4">
-
-            <!-- EMAIL -->
-            <div>
-
-                <label class="block text-[11px] text-[#ffd700] uppercase tracking-[3px] mb-2 font-bold">
-                    Email Address
-                </label>
-
-                <input
-                type="email"
-                placeholder="name@gmail.com"
-                class="w-full bg-[#151515] border border-[#333] rounded-2xl px-5 py-4 outline-none text-white"/>
-
+        <div id="dashboard-section" class="hidden space-y-5">
+            <div class="p-5 bg-[#151515] rounded-2xl border border-[#222] green-glow flex justify-between items-center">
+                <div>
+                    <p class="text-[10px] uppercase tracking-[2px] text-gray-500 font-bold">Earned Balance</p>
+                    <h3 class="text-2xl font-black text-[#2db742] mt-1">KES <span id="balance-display">0.00</span></h3>
+                </div>
+                <span class="text-[9px] bg-[#2db742]/10 border border-[#2db742]/30 text-[#2db742] px-2.5 py-0.5 rounded-full uppercase font-bold tracking-[2px]">Verified</span>
             </div>
 
-            <!-- MPESA -->
-            <div>
-
-                <label class="block text-[11px] text-[#ffd700] uppercase tracking-[3px] mb-2 font-bold">
-                    M-Pesa Number
-                </label>
-
-                <input
-                type="tel"
-                placeholder="0712345678"
-                class="w-full bg-[#151515] border border-[#333] rounded-2xl px-5 py-4 outline-none text-white"/>
-
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-[#151515] border border-[#222] rounded-2xl p-4 text-center shadow-md">
+                    <p class="text-[10px] text-gray-500 uppercase tracking-[2px] font-bold">Link Hits</p>
+                    <p id="clicks-display" class="text-2xl font-black text-white mt-1">0</p>
+                </div>
+                <div class="bg-[#151515] border border-[#222] rounded-2xl p-4 text-center shadow-md">
+                    <p class="text-[10px] text-gray-500 uppercase tracking-[2px] font-bold">Total Sales</p>
+                    <p id="sales-display" class="text-2xl font-black text-[#ffd700] mt-1">0</p>
+                </div>
             </div>
 
-            <!-- PASSWORD -->
-            <div>
-
-                <label class="block text-[11px] text-[#ffd700] uppercase tracking-[3px] mb-2 font-bold">
-                    Password
-                </label>
-
-                <input
-                type="password"
-                placeholder="Minimum 6 characters"
-                class="w-full bg-[#151515] border border-[#333] rounded-2xl px-5 py-4 outline-none text-white"/>
-
+            <div class="bg-[#151515] border border-[#222] rounded-2xl p-4 space-y-2">
+                <label class="text-[10px] uppercase tracking-[2px] text-gray-400 font-bold block">Your Custom Tracker Link</label>
+                <input type="text" id="share-link" readonly class="w-full bg-[#0d0d0d] border border-[#222] rounded-xl px-4 py-3 text-xs text-gray-400 font-mono outline-none">
+                <button onclick="copyLink()" class="cozy-btn w-full bg-[#ffd700] text-black py-3 rounded-xl font-black text-xs uppercase tracking-[2px]">Copy Tracker Link</button>
             </div>
 
-            <!-- BUTTON -->
-            <button
-            type="submit"
-            class="cozy-btn w-full bg-[#ffd700] text-black font-black py-4 rounded-2xl uppercase tracking-[3px] shadow-xl mt-2">
-
-                SIGN IN WITH EMAIL
-
-            </button>
-
-        </form>
-
-        <!-- REGISTER -->
-        <div class="text-center mt-6">
-
-            <span class="text-gray-500 text-sm">
-                Don't have an affiliate account yet?
-            </span>
-
-            <a href="#"
-            class="text-[#ffd700] underline font-bold ml-1">
-                Register Here
-            </a>
-
+            <div class="border-t border-[#222] pt-4">
+                <p class="text-[10px] text-center text-gray-500 uppercase tracking-[2px] mb-3">Minimum Payout threshold • KES 500</p>
+                <button onclick="requestPayout()" class="cozy-btn w-full bg-[#2db742] text-white py-3.5 rounded-xl font-black uppercase tracking-[2px] text-xs shadow-lg">Request M-Pesa Disbursal</button>
+            </div>
         </div>
 
     </div>
 
-    <!-- FOOTER -->
     <div class="text-center mt-6">
-
         <p class="text-[10px] uppercase tracking-[4px] text-gray-600">
             © COZYCABIN ONLINE SHOP 2026
         </p>
-
     </div>
 
 </div>
 
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+        getAuth,
+        GoogleAuthProvider,
+        FacebookAuthProvider,
+        signInWithRedirect,
+        getRedirectResult,
+        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
+        onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import {
+        getFirestore,
+        doc,
+        getDoc,
+        setDoc,
+        addDoc,
+        collection
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDToZQ-f31ZA2RmPWNKZ4DTtVjyj-toMW0",
+        authDomain: "cozycabin-affiliate.firebaseapp.com",
+        databaseURL: "https://cozycabin-affiliate-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "cozycabin-affiliate",
+        storageBucket: "cozycabin-affiliate.firebasestorage.app",
+        messagingSenderId: "765281276271",
+        appId: "1:765281276271:web:1368fb340b1fb68a01189a",
+        measurementId: "G-NFYX4TH0H7"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const googleProvider = new GoogleAuthProvider();
+    const facebookProvider = new FacebookAuthProvider();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const incomingReferralCode = urlParams.get('ref') || "Direct";
+
+    let currentAuthMode = "login";
+    let currentAffiliateData = null;
+    let currentUserUid = null;
+
+    // Evaluate Redirect Return Payloads safely
+    getRedirectResult(auth)
+        .then(async (result) => {
+            if (result && result.user) {
+                await checkAndCreateAffiliateProfile(result.user);
+            }
+        })
+        .catch((error) => {
+            if (error.code !== "auth/missing-or-insufficient-permissions") {
+                alert("Authorization Route Notice: " + error.message);
+            }
+        });
+
+    window.toggleAuthMode = function () {
+        const submitBtn = document.getElementById('auth-submit-btn');
+        const textLabel = document.getElementById('toggle-text');
+        const actionBtn = document.getElementById('toggle-action-btn');
+        const nameField = document.getElementById('name-field-group');
+        const authTitle = document.getElementById('auth-title');
+        const authDesc = document.getElementById('auth-desc');
+        const dividerText = document.getElementById('divider-text');
+
+        if (currentAuthMode === "login") {
+            currentAuthMode = "register";
+            authTitle.innerText = "Create Affiliate Account";
+            authDesc.innerText = "Register your business profile to generate commission links.";
+            dividerText.innerText = "Secure Register";
+            submitBtn.style.background = "#ffffff";
+            submitBtn.innerText = "REGISTER NEW ACCOUNT";
+            textLabel.innerText = "Already have an account?";
+            actionBtn.innerText = "Log In Here";
+            nameField.classList.remove('hidden');
+        } else {
+            currentAuthMode = "login";
+            authTitle.innerText = "Join Affiliate Program";
+            authDesc.innerText = "Generate referral links, monitor sales and withdraw earnings instantly through M-Pesa.";
+            dividerText.innerText = "Secure Login";
+            submitBtn.style.background = "#ffd700";
+            submitBtn.innerText = "SIGN IN WITH EMAIL";
+            textLabel.innerText = "Don't have an affiliate account yet?";
+            actionBtn.innerText = "Register Here";
+            nameField.classList.add('hidden');
+        }
+    }
+
+    window.handleEmailAuth = async function (event) {
+        event.preventDefault();
+        const email = document.getElementById('auth-email').value.trim();
+        const password = document.getElementById('auth-password').value;
+        const submitBtn = document.getElementById('auth-submit-btn');
+
+        if (password.length < 6) {
+            return alert("Password parameters require 6 or more characters.");
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "PROCESSING SYNC...";
+
+        try {
+            if (currentAuthMode === "register") {
+                const credential = await createUserWithEmailAndPassword(auth, email, password);
+                await checkAndCreateAffiliateProfile(credential.user);
+            } else {
+                await signInWithEmailAndPassword(auth, email, password);
+            }
+        } catch (error) {
+            if (error.code === "auth/invalid-credential") {
+                alert("Account matching failed. If you want to create a brand new tracker, tap 'Register Here' below first.");
+            } else {
+                alert("Authentication Hub Alert: " + error.message);
+            }
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerText = currentAuthMode === "register" ? "REGISTER NEW ACCOUNT" : "SIGN IN WITH EMAIL";
+        }
+    }
+
+    window.googleLogin = async function() {
+        try {
+            localStorage.setItem('pending_signup_ref', incomingReferralCode);
+            await signInWithRedirect(auth, googleProvider);
+        } catch (error) {
+            alert("Google System Interruption: " + error.message);
+        }
+    }
+
+    window.facebookLogin = async function() {
+        try {
+            localStorage.setItem('pending_signup_ref', incomingReferralCode);
+            await signInWithRedirect(auth, facebookProvider);
+        } catch (error) {
+            alert("Facebook System Interruption: " + error.message);
+        }
+    }
+
+    async function checkAndCreateAffiliateProfile(user) {
+        const userDocRef = doc(db, "affiliates", user.uid);
+        let userDocSnap = null;
+        
+        try {
+            userDocSnap = await getDoc(userDocRef);
+        } catch (e) {
+            console.log("Allocating initial configuration tables...");
+        }
+
+        if (!userDocSnap || !userDocSnap.exists()) {
+            const randomCode = 'CZ-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+            const nameEl = document.getElementById('auth-name');
+            const phoneEl = document.getElementById('auth-phone');
+
+            const customName = (nameEl && !nameEl.parentElement.classList.contains('hidden')) ? nameEl.value.trim() : "";
+            const customPhone = phoneEl ? phoneEl.value.trim() : "Not Provided";
+            const profileName = customName || user.displayName || user.email.split('@')[0];
+
+            try {
+                await setDoc(userDocRef, {
+                    name: profileName,
+                    email: user.email || `${user.uid}@facebook.com`,
+                    phone: customPhone,
+                    commission: 0,
+                    clicks: 0,
+                    sales: 0,
+                    referralCode: randomCode,
+                    referredBy: incomingReferralCode,
+                    createdAt: new Date()
+                });
+                alert("Welcome to CozyCabin Affiliate Network!");
+            } catch (err) {
+                alert("Data Write Suspended: Ensure Cloud Firestore configuration rules have been published inside your console dashboard.");
+                return;
+            }
+        }
+        renderDashboard(userDocRef);
+    }
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            currentUserUid = user.uid;
+            const userDocRef = doc(db, "affiliates", user.uid);
+            renderDashboard(userDocRef);
+        }
+    });
+
+    async function renderDashboard(userDocRef) {
+        try {
+            const snap = await getDoc(userDocRef);
+            if (snap.exists()) {
+                currentAffiliateData = snap.data();
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('dashboard-section').style.display = 'block';
+
+                document.getElementById('balance-display').innerText = Number(currentAffiliateData.commission || 0).toFixed(2);
+                document.getElementById('clicks-display').innerText = currentAffiliateData.clicks || 0;
+                document.getElementById('sales-display').innerText = currentAffiliateData.sales || 0;
+                document.getElementById('share-link').value = `${window.location.origin}/?ref=${currentAffiliateData.referralCode}`;
+            }
+        } catch (e) {
+            console.log("Data allocation buffering sync pipeline.");
+        }
+    }
+
+    window.copyLink = function () {
+        const copyText = document.getElementById('share-link');
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+        alert("Your personal tracker has been copied to your clipboard!");
+    }
+
+    window.requestPayout = async function () {
+        if (!currentAffiliateData || !currentUserUid) return;
+        const balance = Number(currentAffiliateData.commission || 0);
+
+        if (balance < 500) {
+            return alert("Minimum payout limit requires KES 500.00");
+        }
+
+        const confirmWithdraw = confirm(`Confirm request to disburse KES ${balance.toFixed(2)} to M-Pesa?`);
+        if (!confirmWithdraw) return;
+
+        try {
+            await addDoc(collection(db, "payoutRequests"), {
+                affiliateId: currentUserUid,
+                affiliateEmail: currentAffiliateData.email,
+                affiliatePhone: currentAffiliateData.phone || "Not Provided",
+                amount: balance,
+                requestedAt: new Date(),
+                status: "pending"
+            });
+            alert("Disbursal request queued successfully!");
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+</script>
 </body>
 </html>
