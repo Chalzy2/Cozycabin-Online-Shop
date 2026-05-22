@@ -248,8 +248,24 @@
     <img class="modal-content" id="expandedImg" alt="Expanded Product View" style="margin: auto; display: block; max-width: 95%; max-height: 85%; border: 2px solid #ffd700; border-radius: 12px; box-shadow: 0 0 30px rgba(0,0,0,0.6);">
 </div>
 
-<script>
-    // 💰 Simple External Gateway Router
+
+    <script>
+    // 📊 Read product states cleanly
+    function getSelectedProductDetails() {
+        const radios = document.getElementsByName('product');
+        let selectedValue = 200;
+        let selectedName = "AI Video Editing Masterclass";
+        for (const radio of radios) {
+            if (radio.checked) {
+                selectedValue = Number(radio.value);
+                selectedName = radio.getAttribute('data-name');
+                break;
+            }
+        }
+        return { price: selectedValue, name: selectedName };
+    }
+
+    // 💰 Commercial gateway processing engines
     window.payWithExternal = function(gatewayName, mode) {
         if (mode === 'checkout') {
             if (gatewayName === "Selar") {
@@ -287,9 +303,12 @@
 
     // 📱 Clean Dropdown Drawer Rules for Phones
     window.closeAllDrawers = function() {
+        // Target all possible menu blocks safely
         document.querySelectorAll('.minor-menu, .product-list, #ebook-row-dropdown-menu, #crypto-row-dropdown-menu, #academy-courses-dropdown').forEach(el => {
             el.style.display = 'none';
         });
+        
+        // Reset every indicator arrow to default pointing down position
         if (document.getElementById('crypto-row-arrow')) document.getElementById('crypto-row-arrow').style.transform = 'rotate(0deg)';
         if (document.getElementById('ebook-row-arrow')) document.getElementById('ebook-row-arrow').style.transform = 'rotate(0deg)';
         if (document.getElementById('academy-arrow')) document.getElementById('academy-arrow').style.transform = 'rotate(0deg)';
@@ -300,12 +319,16 @@
         if (target) {
             const isOpen = (target.style.display === 'block' || target.style.display === 'grid');
             window.closeAllDrawers();
+            
             if (!isOpen) {
+                // If it is a local grid element, render as grid, otherwise standard block block display
                 if (target.classList.contains('product-list') || id.includes('grid')) {
                     target.style.display = 'grid';
                 } else {
                     target.style.display = 'block';
                 }
+                
+                // Dynamically rotate the active yellow arrow element upside down
                 if (id === 'academy-courses-dropdown' && document.getElementById('academy-arrow')) document.getElementById('academy-arrow').style.transform = 'rotate(180deg)';
                 if (id === 'ebook-row-dropdown-menu' && document.getElementById('ebook-row-arrow')) document.getElementById('ebook-row-arrow').style.transform = 'rotate(180deg)';
                 if (id === 'crypto-row-dropdown-menu' && document.getElementById('crypto-row-arrow')) document.getElementById('crypto-row-arrow').style.transform = 'rotate(180deg)';
@@ -349,8 +372,8 @@
     // 🔒 Security Right-Click Block
     document.addEventListener('contextmenu', e => e.preventDefault(), false);
     document.onkeydown = function(e) { if (e.keyCode == 123) return false; };
-</script>
-</body>
+ </script>
+    </body>
 </html>
     
         
