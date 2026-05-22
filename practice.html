@@ -126,7 +126,6 @@ img{
 max-width:100%;
 display:block;
 -webkit-user-drag:none;
-pointer-events:none;
 }
 
 /* CONTAINER */
@@ -2644,6 +2643,18 @@ document.addEventListener(
 function(){},
 {passive:true}
 );
+/* DISABLE VIEW SOURCE SHORTCUT */
+
+document.onkeydown = function(e){
+
+if(e.ctrlKey &&
+e.keyCode == 85){
+
+return false;
+
+}
+
+};
 
 </script>
 </body>
