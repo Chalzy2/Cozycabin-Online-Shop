@@ -210,6 +210,7 @@ Forgot Password?
         signInWithEmailAndPassword,
         createUserWithEmailAndPassword,
         onAuthStateChanged
+        sendPasswordResetEmail
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
     import {
         getFirestore,
@@ -255,6 +256,44 @@ Forgot Password?
                 alert("Authorization Route Notice: " + error.message);
             }
         });
+        window.resetPassword = async function(){
+
+    const email =
+    document.getElementById(
+    'auth-email'
+    ).value.trim();
+
+    if(!email){
+
+        alert(
+        'Please enter your email first.'
+        );
+
+        return;
+    }
+
+    try{
+
+        await sendPasswordResetEmail(
+            auth,
+            email
+        );
+
+        alert(
+        'Password reset email sent successfully.'
+        );
+
+    }
+    catch(error){
+
+        alert(
+        'Reset Error: ' +
+        error.message
+        );
+
+    }
+
+        }
 
     window.toggleAuthMode = function () {
         const submitBtn = document.getElementById('auth-submit-btn');
