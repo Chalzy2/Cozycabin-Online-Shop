@@ -1,1 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cozycabin Premium</title>
 
+<link rel="icon" href="Images/Cozycabin log .webp" type="image/png">
+<link rel="apple-touch-icon" href="Images/Cozycabin log .webp">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4JVT3X5J5D"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-4JVT3X5J5D');
+</script>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+overflow-x:hidden;
+background:#000;
+color:#fff;
+font-family:Arial,sans-serif;
+-webkit-user-select:none;
+user-select:none;
+}
+
+img{
+max-width:100%;
+display:block;
+-webkit-user-drag:none;
+pointer-events:none;
+}
+
+.container{
+width:100%;
+max-width:1200px;
+margin:auto;
+padding:10px 14px 100px;
+}
+
+.top-nav{
+display:flex;
+justify-content:flex-end;
+margin-bottom:10px;
+}
+
+.currency-select{
+background:#111;
+color:#fff;
+border:1px solid #333;
+padding:7px 10px;
+border-radius:8px;
+font-size:12px;
+}
+
+.brand-header{
+text-align:center;
+padding:10px 0 20px;
+}
+
+.brand-logo{
+width:150px;
+margin:auto;
+border:2px solid #ffd700;
+border-radius:18px;
+padding:5px;
+background:#0d0d0d;
+box-shadow:0 0 12px rgba(255,215,0,.3);
+}
+
+.brand-title{
+color:#ffd700;
+margin-top:14px;
+font-size:22px;
+font-weight:bold;
+}
+
+.brand-tagline{
+font-size:11px;
+color:#888;
+margin-top:5px;
+}
+
+.academy-card{
+background:#1a1a1a;
+border:1px solid #333;
+border-radius:28px;
+padding:18px;
+display:flex;
+align-items:center;
+gap:18px;
+margin:18px auto;
+max-width:520px;
+}
+
+.academy-icon{
+width:85px;
+height:85px;
+border-radius:22px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:11px;
+font-weight:bold;
+flex-shrink:0;
+}
+
+.bg-blue{
+background:#007bff;
+color:#fff;
+}
+
+.bg-yellow{
+background:#ffd700;
+color:#000;
+}
+
+.academy-info h2{
+font-size:24px;
+margin-bottom:8px;
+}
+
+.academy-info p{
+font-size:15px;
+cursor:pointer;
+line-height:1.5;
+}
+
+.main-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+margin:20px 0;
+}
+
+.grid-btn{
+background:#232d3f;
+border:1px solid #3b4758;
+border-radius:24px;
+padding:24px 8px;
+text-align:center;
+cursor:pointer;
+transition:.3s;
+}
+
+.grid-btn:hover{
+border-color:#ffd700;
+transform:translateY(-2px);
+}
+
+.grid-btn span{
+font-size:28px;
+display:block;
+margin-bottom:10px;
+}
+
+.grid-btn small{
+font-size:12px;
+font-weight:bold;
+}
+
+.minor-menu{
+display:none;
+background:#0d1117;
+border:1px solid #ffd700;
+border-radius:22px;
+padding:18px;
+margin-bottom:20px;
+}
+
+.minor-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+}
+
+.minor-btn{
+background:#232d3f;
+border:none;
+color:#fff;
+border-radius:16px;
+padding:16px 8px;
+font-size:12px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.product-list{
+display:none;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+margin-top:20px;
+}
+
+.product-card{
+background:#fff;
+color:#000;
+border-radius:18px;
+overflow:hidden;
+padding-bottom:10px;
+}
+
+.product-card img{
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+}
+
+.product-card h4{
+font-size:13px;
+padding:10px 10px 5px;
+}
+
+.product-card p{
+font-weight:bold;
+color:green;
+padding:0 10px;
+}
+
+.whatsapp-btn{
+display:block;
+background:#25d366;
+color:#fff;
+text-decoration:none;
+padding:11px;
+margin:10px;
+text-align:center;
+border-radius:10px;
+font-size:12px;
+font-weight:bold;
+}
+
+.delivery-bar{
+background:#ffd700;
+color:#000;
+padding:12px;
+font-weight:bold;
+margin:25px 0;
+}
+
+.section-title{
+text-align:center;
+color:#ffd700;
+font-size:24px;
+margin-bottom:20px;
+font-weight:bold;
+}
+
+.cozy-payment-box{
+background:#1a1a1a;
+border:1px solid #333;
+border-radius:24px;
+padding:22px;
+max-width:450px;
+margin:30px auto;
+}
+
+.float-wa{
+position:fixed;
+width:65px;
+height:65px;
+right:18px;
+bottom:18px;
+border-radius:50%;
+background:#25d366;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 0 12px rgba(0,0,0,.5);
+z-index:99999;
+}
+
+.float-wa img{
+width:36px;
+pointer-events:auto;
+}
+
+.modal{
+display:none;
+position:fixed;
+z-index:9999;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+}
+
+.modal-content{
+margin:auto;
+display:block;
+width:90%;
+max-width:500px;
+border-radius:18px;
+border:2px solid #ffd700;
+margin-top:40px;
+}
+
+.close-modal{
+position:absolute;
+top:15px;
+right:25px;
+font-size:45px;
+color:#fff;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+
+.main-grid{
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.minor-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.grid-btn{
+padding:18px 6px;
+}
+
+.grid-btn span{
+font-size:22px;
+}
+
+.grid-btn small{
+font-size:10px;
+}
+
+.product-list{
+grid-template-columns:1fr 1fr;
+}
+
+.academy-card{
+padding:15px;
+}
+
+.academy-icon{
+width:70px;
+height:70px;
+}
+
+.academy-info h2{
+font-size:19px;
+}
+    /* COZYCABIN AFFILIATE SECTION */
+
+.cozy-affiliate-box{
+    background: linear-gradient(135deg, #071129 0%, #0f172a 100%);
+    border: 1px solid rgba(45,183,66,0.25);
+    border-radius: 28px;
+    padding: 35px 22px;
+    margin: 30px auto;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 10px 35px rgba(0,0,0,0.45),
+        0 0 25px rgba(45,183,66,0.08);
+}
+
+/* TOP BADGE */
+
+.cozy-affiliate-badge{
+    display: inline-block;
+    background: linear-gradient(90deg,#2db742,#24a63c);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 15px rgba(45,183,66,0.35);
+}
+
+/* HEADING */
+
+.cozy-affiliate-title{
+    color: white;
+    font-size: 34px;
+    line-height: 1.35;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+.cozy-affiliate-title span{
+    color: #2db742;
+    text-shadow: 0 0 10px rgba(45,183,66,0.4);
+}
+
+/* DESCRIPTION */
+
+.cozy-affiliate-text{
+    color: #d1d5db;
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 30px;
+}
+
+/* BUTTON */
+
+.cozy-affiliate-btn{
+    background: linear-gradient(90deg,#2db742,#24a63c);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 18px 28px;
+    width: 100%;
+    max-width: 320px;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow:
+        0 8px 25px rgba(45,183,66,0.35),
+        0 0 15px rgba(45,183,66,0.18);
+}
+
+.cozy-affiliate-btn:hover{
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* SOCIAL AREA */
+
+.cozy-affiliate-social{
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.cozy-affiliate-platforms{
+    display: inline-block;
+    background: rgba(37,211,102,0.12);
+    color: #25D366;
+    padding: 9px 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(37,211,102,0.25);
+}
+
+.cozy-affiliate-proof{
+    color: #94a3b8;
+    font-size: 12px;
+    margin-top: 14px;
+    letter-spacing: 0.3px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.cozy-affiliate-title{
+    font-size: 28px;
+}
+
+.cozy-affiliate-text{
+    font-size: 15px;
+}
+
+.cozy-affiliate-btn{
+    font-size: 16px;
+} 
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="top-nav">
+<select class="currency-select">
+<option>🇰🇪 KSH</option>
+<option>🇺🇸 USD</option>
+</select>
+</div>
+
+<div class="brand-header">
+    <img src="Images/Cozycabin log .webp" alt="Cozycabin Logo" class="brand-logo">
+    <!-- Updated Title to reflect your new focus -->
+    <h3 style="text-align:center; color:#ffd700; margin-bottom:15px;">💎 COZYCABIN DIGITAL ASSETS</h3>
+    <p class="brand-tagline">Courses, Crypto & Masterclasses</p>
+</div>
+
+<!-- 2. ACADEMY COURSE CARD (Original) -->
+<div class="academy-card">
+    <div class="academy-icon bg-blue">COURSE</div>
+    <div class="academy-info">
+        <h2>Academy Courses</h2>
+        <p onclick="toggleSub('video-courses')">Video Editing & Setup ▼</p>
+    </div>
+</div>
+
+
+<div style="margin-bottom: 15px; font-family: sans-serif;">
+    
+    <button class="menu-trigger-btn" onclick="toggleCryptoRowDropdown()" style="width: 100%; background: #1a1a1a; border: 1px solid #d4af37; padding: 12px; display: flex; align-items: center; justify-content: space-between; border-radius: 15px; cursor: pointer; text-align: left;">
+        
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="background: #e6b800; color: #000; width: 55px; height: 55px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0;">
+                Crypto
+            </div>
+            <div>
+                <h3 style="color: #fff; margin: 0 0 4px 0; font-size: 16px; font-weight: 500; letter-spacing: 0.5px;">Crypto Mastery</h3>
+                <p style="color: #d4af37; margin: 0; font-size: 12px; font-weight: normal;">Top Global Exchanges</p>
+            </div>
+        </div>
+
+        <span id="crypto-row-arrow" style="color: #d4af37; font-size: 12px; margin-right: 5px; transition: transform 0.3s; display: inline-block;">▼</span>
+    </button>
+
+    <div id="crypto-row-dropdown-menu" style="display: none; background: #111; border: 1px solid #333; border-top: none; padding: 15px; border-radius: 0 0 15px 15px; margin-top: -10px; margin-bottom: 5px;">
+        
+        <div class="minor-crypto-item" style="background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 15px; margin-bottom: 15px; position: relative;">
+            <p style="color: #ffd700; font-size: 14px; font-weight: bold; margin: 0 0 8px 0;">🔥 Binance Reward: Up to $100</p>
+            <p style="color: #aaa; margin: 0 0 12px 0; font-size: 12px; line-height: 1.5;">Register and start your journey to claim a trading fee rebate securely.</p>
+            
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+                <div style="background: #222; border: 1px solid #333; border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; gap: 8px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 16px; pointer-events: none;">
+                    <span style="color: #fff; font-size: 12px; font-weight: bold;">Binance</span>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <span style="border: 1px solid #444; color: #aaa; padding: 6px 10px; font-size: 11px; font-weight: bold; border-radius: 6px; text-transform: uppercase;">Active Offer</span>
+                    <a href="binance-cryptopayment.html" style="background: #e6b800; color: #000; padding: 6px 12px; text-decoration: none; font-size: 11px; font-weight: bold; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Join Binance</a>
+                </div>
+            </div>
+        </div>
+
+        <p style="color: #555; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 5px;">Coming Soon:</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 5px;">
+            <div style="background: #151515; border: 1px dashed #333; padding: 10px; border-radius: 8px; text-align: center; opacity: 0.6;">
+                <p style="color: #fff; font-size: 12px; font-weight: bold; margin: 0 0 2px 0;">OKX</p>
+                <p style="color: #666; font-size: 9px; margin: 0;">Global Exchange</p>
+            </div>
+            <div style="background: #151515; border: 1px dashed #333; padding: 10px; border-radius: 8px; text-align: center; opacity: 0.6;">
+                <p style="color: #fff; font-size: 12px; font-weight: bold; margin: 0 0 2px 0;">Bybit</p>
+                <p style="color: #666; font-size: 9px; margin: 0;">Trading Platform</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div style="margin-bottom: 15px; font-family: sans-serif;">
+    
+    <button class="menu-trigger-btn" onclick="toggleEbookRowDropdown()" style="width: 100%; background: #1a1a1a; border: 1px solid #d4af37; padding: 12px; display: flex; align-items: center; justify-content: space-between; border-radius: 15px; cursor: pointer; text-align: left;">
+        
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="background: #e6b800; color: #000; width: 55px; height: 55px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0;">
+                E-Book
+            </div>
+            <div>
+                <h3 style="color: #fff; margin: 0 0 4px 0; font-size: 16px; font-weight: 500; letter-spacing: 0.5px;">Digital Library</h3>
+                <p style="color: #d4af37; margin: 0; font-size: 12px; font-weight: normal;">Finance & Masterclasses</p>
+            </div>
+        </div>
+
+        <span id="ebook-row-arrow" style="color: #d4af37; font-size: 12px; margin-right: 5px; transition: transform 0.3s;">▼</span>
+    </button>
+
+    <div id="ebook-row-dropdown-menu" style="display: none; background: #111; border: 1px solid #333; border-top: none; padding: 15px; border-radius: 0 0 15px 15px; margin-top: -10px; margin-bottom: 5px;">
+        
+        <div class="minor-book-item" style="display: flex; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 12px; margin-bottom: 12px; align-items: center;">
+            <div style="flex: 0 0 65px; margin-right: 15px;">
+                <img src="Images/Facebook Pr.Fomula1 .webp" alt="Facebook Profit" style="width: 100%; height: auto; border-radius: 4px; display: block;">
+            </div>
+            <div style="flex: 1;">
+                <h4 style="color: #fff; margin: 0 0 4px 0; font-size: 14px; font-weight: bold;">Facebook Profit Formula</h4>
+                <p style="color: #aaa; margin: 0 0 8px 0; font-size: 12px; line-height: 1.4;">Master Meta monetization in 30 days.</p>
+                <div style="display: flex; justify-content: flex-end; align-items: center;">
+                    <a href="https://selar.com/z6wn6j11g1" style="background: #e6b800; color: #000; padding: 6px 15px; text-decoration: none; font-size: 11px; font-weight: bold; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Access Guide</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="minor-book-item" style="display: flex; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 12px; align-items: center;">
+            <div style="flex: 0 0 65px; margin-right: 15px;">
+                <img src="Images/Crypto Guide..webp" alt="Crypto Mastery" style="width: 100%; height: auto; border-radius: 4px; display: block;">
+            </div>
+            <div style="flex: 1;">
+                <h4 style="color: #fff; margin: 0 0 4px 0; font-size: 14px; font-weight: bold;">Crypto Mastery Guide</h4>
+                <p style="color: #aaa; margin: 0 0 8px 0; font-size: 12px; line-height: 1.4;">The ultimate blueprint for global exchanges & mining mechanics.</p>
+                <div style="display: flex; justify-content: flex-end; align-items: center;">
+                    <a href="https://selar.com/378373r336" style="background: #e6b800; color: #000; padding: 6px 15px; text-decoration: none; font-size: 11px; font-weight: bold; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Access Guide</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- COZYCABIN AFFILIATE HERO WITH REMINDER -->
+<div style="
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    padding: 35px 20px;
+    border-radius: 24px;
+    margin: 25px auto;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border: 1px solid rgba(45, 183, 66, 0.3);
+    position: relative;
+    overflow: hidden;
+">
+
+    <!-- Small Reminder Badge -->
+    <div style="
+        background: #2db742;
+        color: white;
+        font-size: 11px;
+        font-weight: bold;
+        padding: 5px 15px;
+        border-radius: 20px;
+        display: inline-block;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    ">
+        Member Opportunity 💡
+    </div>
+
+    <h2 style="
+        color: white;
+        font-size: 26px;
+        margin-bottom: 10px;
+        font-family: sans-serif;
+    ">
+        Don't Forget: <span style="color: #2db742;">You Can Earn!</span>
+    </h2>
+
+    <p style="
+        color: #cbd5e1;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        font-family: sans-serif;
+    ">
+        Turn your recommendations into profit. Share your link for our ebooks and digital products and get paid for every sale.
+    </p>
+
+    <a href="/affiliate.html" style="text-decoration: none;">
+        <button style="
+            background: #2db742;
+            color: white;
+            padding: 16px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(45, 183, 66, 0.3);
+            transition: 0.3s;
+            width: 100%;
+            max-width: 280px;
+        "
+        onmouseover="this.style.background='#25a239'; this.style.transform='scale(1.03)';"
+        onmouseout="this.style.background='#2db742'; this.style.transform='scale(1)';"
+        >
+            JOIN AFFILIATE PROGRAM
+<!-- COZYCABIN AFFILIATE HERO WITH REMINDER -->
+<!-- COZYCABIN AFFILIATE SECTION -->
+
+<div class="cozy-affiliate-box">
+
+    <div class="cozy-affiliate-badge">
+        MEMBER OPPORTUNITY 💡
+    </div>
+
+    <h2 class="cozy-affiliate-title">
+        Earn Online with 
+        <span>Cozy Cabin</span>
+    </h2>
+
+    <p class="cozy-affiliate-text">
+        No capital needed. Share ebooks and digital products using your affiliate link and earn commission for every successful sale.
+    </p>
+
+    <a href="/affiliate.html">
+
+        <button class="cozy-affiliate-btn">
+            💰 START EARNING TODAY
+        </button>
+
+    </a>
+
+    <div class="cozy-affiliate-social">
+
+        <div class="cozy-affiliate-platforms">
+            📲 Perfect for WhatsApp, TikTok & Facebook
+        </div>
+
+        <div class="cozy-affiliate-proof">
+            🔥 Growing community of digital affiliates in Kenya
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div style="background: #ffd700; color: black; padding: 10px 0; font-weight: bold; margin: 25px 0; overflow: hidden;">
+        <marquee>🚚 COUNTRYWIDE DELIVERY VIA G4S, SIMBA COACH,TAHMEED,BUSCAR, MORDAN COACH & E.T.C PARCEL BUS| 📍 LOCAL DELIVERY IN KENYA, TANZANIA & UGANDA| 🇰🇪🇹🇿🇺🇬 BEST QUALITY BY COZYCABIN</marquee>
+    </div>
+
+    <h3 style="text-align:center; color:#ffd700; margin-bottom:15px;">🇰🇪 LOCAL & ONLINE SHOP (KENYA)</h3>
+    <div class="main-grid">
+        <div class="grid-btn" onclick="toggleSub('kitchen-sub')"><span>👨‍🍳</span><small>KITCHEN ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('solar-sub')"><span>☀️</span><small>SOLAR ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('decor-sub')"><span>🛋️</span><small>DECOR ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('beds-sub')"><span>🛏️</span><small>BEDDINGS ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('security-sub')"><span>📷</span><small>SECURITY ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('electro-sub')"><span>📻</span><small>ELECTRONICS ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('tech-sub')"><span>📱</span><small>TECH ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('fashion-sub')"><span>👟</span><small>FASHION ▼</small></div>
+        <div class="grid-btn" onclick="toggleSub('tools-sub')"><span>⚙️</span><small>APPLIANCES ▼</small></div>
+      <div id="kitchen-sub" class="minor-menu">
+    <div class="minor-grid">
+        <button onclick="showProducts('cutlery')" class="minor-btn">🍴 Cutlery</button>
+        <button onclick="showProducts('dispenser')" class="minor-btn">💧 Dispensers</button>
+        <button onclick="showProducts('hotpots')" class="minor-btn">🥘 Hotpots</button>
+        <button onclick="showProducts('racks')" class="minor-btn">🍽️ Dishracks</button>
+        <button onclick="showProducts('flasks')" class="minor-btn">☕ Flasks</button>
+        <button onclick="showProducts('bottles')" class="minor-btn">🍼 Bottles</button>
+        <button onclick="showProducts('cookers')" class="minor-btn">🍳 Cookers</button>
+        <button onclick="showProducts('blenders')" class="minor-btn">🌪️ Blenders</button>
+    </div>
+
+    </div>
+<div id="cutlery" class="product-list" style="display:none;">
+        <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
+    
+    <div class="product-card">
+        <img src="19 PSC Silicone Spoon-2700-.png" alt="Silicone Spoon Set"
+         onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 2,700</p>
+        <a href="https://wa.me/254702468460?text=I+want+Silicone+Spoon+Set" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    <div class="product-card">
+        <img src="19psc Pink 3200 .jpg" alt="Pink Premium Set"
+        onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 3,200</p>
+        <a href="https://wa.me/254702468460?text=I+want+Pink+Premium+Set" class="whatsapp-btn">Order Now</a>
+    </div>
+    
+    <div class="product-card">
+        <img src="Eggshell cutlery-4500-.jpg" alt="Eggshell Cutlery"
+         onclick="openModal(this.src)"style="cursor: zoom-in;">   
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 4,500</p>
+        <a href="https://wa.me/254702468460?text=I+want+Eggshell+Cutlery" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    <div class="product-card">
+        <img src="Spoons, stainless steel cutlery-2400-.jpg" alt="Stainless Steel Set"
+         onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 2,400</p>
+        <a href="https://wa.me/254702468460?text=I+want+Stainless+Steel+Set" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    <div class="product-card">
+        <img src="Special cutlery-2500-.jpg" alt="Special Cutlery Set"
+        onclick="openModal(this.src)"style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 2,500</p>
+        <a href="https://wa.me/254702468460?text=I+want+Special+Cutlery" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    </div>
+
+        
+    <div id="dispenser" class="product-list" style="display:none;">
+    <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
+   
+    <div class="product-card">
+        <img src="Ailyons 3 taps 6999-.jpg" alt="Alyons 3Taps Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 6,999</p>
+        <a href="https://wa.me/254702468460?text=I+want+Ailyons+3taps+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    <div class="product-card">
+        <img src="Premier Smart bottom Dispenser 15000-.jpg" alt="Premier Bottomload Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 15,000</p>
+        <a href="https://wa.me/254702468460?text=I+want+Smart+Premier+Bottomload+Dispenser" class="whatsapp-btn">Order Now</a>
+          </div>
+      div class="product-card">
+        <img src="Premier Smart bottom Dispenser 15000-.jpg" alt="Premier Bottomload Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 15,000</p>
+        <a href="https://wa.me/254702468460?text=I+want+Smart+Premier+Bottomload+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+        
+    <div class="product-card">
+        <img src="Primidale 2tap dispenser 3999-.jpg" alt="Premidale Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 3,999</p>
+        <a href="https://wa.me/254702468460?text=I+want+Premidale+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+    <div class="product-card">
+        <img src="Rantom 213L disp Refri-46500-.png" alt="Rantom Refrigerator Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 46,500</p>
+        <a href="https://wa.me/254702468460?text=I+want+Rantom+Refrigerator+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+</div> <div id="flasks" class="product-list" style="display:none;">
+    <button onclick="backToMinor()" class="exit-btn">⬅️ Back to Menu</button>
+   
+    <div class="product-card">
+        <img src="Flasks 2.png" alt="Rantom Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 950</p>
+        <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+        
+    <div class="product-card">
+        <img src="Redbry Flask1.png" alt="Rantom Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 1,800</p>
+        <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+
+    <div class="product-card">
+        <img src="Flasks2.png" alt="Rantom Dispenser" onclick="openModal(this.src)" style="cursor: zoom-in;">
+        <h4 style="font-size:12px; margin:5px 0;">Premium Set</h4>
+        <p style="color:green; font-weight:bold; margin:0;">KES 1,800</p>
+        <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
+    </div>
+    <!-- GLOBAL CHECKOUT WRAPPER -->
+<div id="premium-checkout-wrapper"
+style="
+width:100%;
+max-width:1200px;
+margin:50px auto;
+padding:0 18px;
+box-sizing:border-box;
+">
+
+    <!-- INNER CHECKOUT -->
+    <div id="premium-checkout-box"
+    style="
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    background:#000000;
+    border:2px solid #ffd700;
+    border-radius:28px;
+    padding:26px;
+    box-sizing:border-box;
+    box-shadow:0 0 25px rgba(255,215,0,0.12);
+    ">
+
+        <!-- YOUR CHECKOUT CONTENT HERE -->
+
+    </div>
+
+</div>
+
+        <!-- ===================================================== -->
+<!-- COZYCABIN FULL PREMIUM CHECKOUT + AFFILIATE TRACKING -->
+<!-- ===================================================== -->
+
+<div id="premium-checkout-box" style="
+display:block;
+background:#000000;
+border:2px solid #ffd700;
+padding:22px;
+border-radius:24px;
+max-width:450px;
+width:100%;
+margin:25px auto;
+font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+box-sizing:border-box;
+box-shadow:0 0 25px rgba(255,215,0,0.12);
+position:relative;
+overflow:hidden;
+z-index:9999;
+">
+
+<!-- HEADER -->
+<div style="text-align:center;margin-bottom:22px;">
+
+<p style="
+font-size:18px;
+font-weight:900;
+color:#ffd700;
+margin:0;
+text-transform:uppercase;
+letter-spacing:2px;
+">
+💎 COZYCABIN PREMIUM CHECKOUT
+</p>
+
+<p style="
+font-size:11px;
+color:#777777;
+margin-top:6px;
+text-transform:uppercase;
+letter-spacing:1px;
+">
+Instant Digital Delivery
+</p>
+
+</div>
+
+<!-- PRODUCT SELECTION -->
+<div style="
+background:#111111;
+border:1px solid #222222;
+padding:18px;
+border-radius:18px;
+margin-bottom:22px;
+">
+
+<p style="
+color:#ffd700;
+font-size:11px;
+font-weight:700;
+text-align:center;
+margin-top:0;
+margin-bottom:18px;
+letter-spacing:1px;
+text-transform:uppercase;
+">
+Choose Course or E-book
+</p>
+
+<label style="
+display:flex;
+align-items:center;
+color:#ffffff;
+margin-bottom:15px;
+font-size:15px;
+cursor:pointer;
+">
+
+<input
+type="radio"
+name="product"
+value="200"
+data-name="AI Video Editing Masterclass"
+checked
+style="
+width:18px;
+height:18px;
+margin-right:12px;
+accent-color:#ffd700;
+">
+
+AI Video Editing Masterclass (200 KES)
+
+</label>
+
+<label style="
+display:flex;
+align-items:center;
+color:#ffffff;
+font-size:15px;
+cursor:pointer;
+">
+
+<input
+type="radio"
+name="product"
+value="150"
+data-name="Finance & Sourcing E-book"
+style="
+width:18px;
+height:18px;
+margin-right:12px;
+accent-color:#ffd700;
+">
+
+Finance & Sourcing E-book (150 KES)
+
+</label>
+
+</div>
+
+<!-- PAYMENT BUTTONS -->
+<div style="
+display:flex;
+flex-direction:column;
+gap:14px;
+margin-bottom:24px;
+">
+
+<a href="https://paypal.me/charlesowuor"
+target="_blank"
+style="
+background:#ffc439;
+color:#003087;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:17px;
+font-weight:900;
+text-align:center;
+display:block;
+">
+PayPal
+</a>
+
+<a href="https://paypal.me/charlesowuor"
+target="_blank"
+style="
+background:#2d2d2d;
+color:#ffffff;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:16px;
+text-align:center;
+display:block;
+border:1px solid #444444;
+">
+💳 Debit or Credit Card
+</a>
+
+<a href="binance-cryptopayment.html"
+style="
+background:#f3ba2f;
+color:#000000;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:17px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+Pay with Binance
+</a>
+
+<a href="https://selar.co/z6wn6j11g1"
+target="_blank"
+style="
+background:#6126c6;
+color:#ffffff;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:17px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+Buy on Selar
+</a>
+
+</div>
+
+<!-- MPESA -->
+<div style="
+background:#2db742;
+border-radius:18px;
+padding:20px;
+color:#ffffff;
+margin-bottom:24px;
+">
+
+<p style="
+margin-top:0;
+margin-bottom:12px;
+font-size:18px;
+font-weight:800;
+text-align:center;
+">
+🟢 LIPA NA M-PESA
+</p>
+
+<p style="
+margin:0;
+  line-height:1.8;
+font-size:16px;
+text-align:center;
+">
+Paybill: <b>542542</b><br>
+Account No: <b>702468</b>
+</p>
+
+<div style="
+margin-top:18px;
+display:flex;
+flex-direction:column;
+gap:12px;
+">
+
+<input
+type="text"
+id="mpesa-code"
+placeholder="Enter M-Pesa Ref Code"
+style="
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+outline:none;
+box-sizing:border-box;
+font-size:14px;
+">
+
+<button onclick="submitMpesaPayment()"
+style="
+background:#000000;
+color:#ffffff;
+border:none;
+padding:14px;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
+font-size:13px;
+letter-spacing:1px;
+text-transform:uppercase;
+">
+Verify Payment & Claim Access
+</button>
+
+</div>
+
+</div>
+
+<!-- DONATION -->
+<div style="
+margin-top:30px;
+border-top:1px dashed #222222;
+padding-top:22px;
+">
+
+<p style="
+font-size:16px;
+font-weight:900;
+color:#ffd700;
+text-align:center;
+margin-top:0;
+margin-bottom:10px;
+text-transform:uppercase;
+">
+❤️ Support My Work
+</p>
+
+<p style="
+font-size:12px;
+color:#777777;
+text-align:center;
+line-height:1.6;
+margin-bottom:18px;
+">
+If my guides or tools helped you, feel free to support Cozycabin.
+</p>
+
+<div style="
+background:#0a0a0a;
+border:1px solid #2db742;
+padding:16px;
+border-radius:14px;
+margin-bottom:14px;
+">
+
+<p style="
+margin-top:0;
+margin-bottom:8px;
+font-size:13px;
+font-weight:800;
+color:#2db742;
+">
+🟢 LIPA NA M-PESA (Donation)
+</p>
+
+<p style="
+margin:0;
+font-size:13px;
+color:#cccccc;
+line-height:1.6;
+">
+Buy Goods Till Number:
+<b>702468</b>
+</p>
+
+<div style="
+margin-top:14px;
+display:flex;
+flex-direction:column;
+gap:10px;
+">
+
+<input
+type="text"
+id="donation-code"
+placeholder="Enter Donation M-Pesa Code"
+style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+outline:none;
+box-sizing:border-box;
+">
+
+<button onclick="submitDonation()"
+style="
+background:#2db742;
+color:#ffffff;
+border:none;
+padding:12px;
+border-radius:8px;
+font-weight:700;
+cursor:pointer;
+">
+SUBMIT DONATION CODE
+</button>
+
+</div>
+
+</div>
+
+<div style="
+display:flex;
+flex-direction:column;
+gap:12px;
+">
+
+<a href="https://selar.co/showlove/charlesowuor"
+target="_blank"
+style="
+background:#e91e63;
+color:#ffffff;
+text-decoration:none;
+padding:14px;
+border-radius:40px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+💝 Tip Me via Selar
+</a>
+
+<a href="binance-cryptopayment.html?intent=donation"
+style="
+background:#f3ba2f;
+color:#000000;
+text-decoration:none;
+padding:14px;
+border-radius:40px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+Send Crypto Tip (Binance)
+</a>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div style="
+border-top:1px solid #111111;
+padding-top:18px;
+margin-top:28px;
+text-align:center;
+">
+
+<p style="
+font-size:11px;
+color:#444444;
+margin:0;
+letter-spacing:1px;
+">
+© Cozycabin Online Shop 2026
+</p>
+
+</div>
+
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/254702468460"
+target="_blank"
+style="
+position:fixed;
+bottom:24px;
+right:20px;
+z-index:99999;
+">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+style="
+width:58px;
+height:58px;
+">
+
+</a>
+
+<!-- FIREBASE -->
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* FIREBASE CONFIG */
+const firebaseConfig = {
+
+apiKey: "YOUR_API_KEY",
+
+authDomain:
+"cozycabin-affiliate.firebaseapp.com",
+
+projectId:
+"cozycabin-affiliate",
+
+storageBucket:
+"cozycabin-affiliate.appspot.com",
+
+messagingSenderId:
+"765281276271",
+
+appId:
+"1:765281276271:web:1368fb340b1fb68a01189a"
+
+};
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
+
+/* REFERRAL TRACKING */
+const urlParams =
+new URLSearchParams(window.location.search);
+
+const referralCode =
+urlParams.get('ref') || "Direct";
+
+/* PRODUCT DETAILS */
+window.getSelectedProductDetails =
+function(){
+
+const radios =
+document.getElementsByName('product');
+
+let selected = {
+price:200,
+name:'AI Video Editing Masterclass'
+};
+
+for(const radio of radios){
+
+if(radio.checked){
+
+selected.price =
+radio.value;
+
+selected.name =
+radio.getAttribute('data-name');
+
+}
+  }
+  return selected;
+}
+
+/* MPESA PAYMENT */
+window.submitMpesaPayment =
+async function(){
+
+const code =
+document.getElementById(
+'mpesa-code'
+).value.trim();
+
+if(!code){
+
+alert(
+'Please enter your M-Pesa transaction code.'
+);
+
+return;
+}
+
+const product =
+window.getSelectedProductDetails();
+
+try{
+
+await addDoc(
+collection(db, "orders"),
+{
+
+productName:
+product.name,
+
+amount:
+product.price,
+
+mpesaCode:
+code,
+
+referralCode:
+referralCode,
+
+status:
+"pending",
+
+createdAt:
+serverTimestamp()
+
+});
+
+alert(
+'Payment submitted successfully. Verification in progress.'
+);
+
+document.getElementById(
+'mpesa-code'
+).value = '';
+
+}
+catch(error){
+
+alert(
+'Error saving order: ' +
+error.message
+);
+
+}
+
+}
+
+/* DONATION */
+window.submitDonation =
+async function(){
+
+const code =
+document.getElementById(
+'donation-code'
+).value.trim();
+
+if(!code){
+
+alert(
+'Please enter donation transaction code.'
+);
+
+return;
+}
+
+try{
+
+await addDoc(
+collection(db, "donations"),
+{
+
+mpesaCode:
+code,
+
+referralCode:
+referralCode,
+
+createdAt:
+serverTimestamp()
+
+});
+
+alert(
+'Thank you so much for supporting Cozycabin 🙌'
+);
+
+document.getElementById(
+'donation-code'
+).value = '';
+
+}
+catch(error){
+
+alert(
+'Donation error: ' +
+error.message
+);
+
+}
+
+}
+
+/* IMAGE MODAL */
+window.openModal =
+function(src){
+
+document.getElementById(
+'imageModal'
+).style.display='flex';
+
+document.getElementById(
+'expandedImg'
+).src=src;
+
+}
+
+window.closeModal =
+function(){
+
+document.getElementById(
+'imageModal'
+).style.display='none';
+
+}
+
+/* ANTI-THEFT */
+document.addEventListener(
+'contextmenu',
+event => event.preventDefault()
+);
+
+document.onkeydown =
+function(e){
+
+if(e.keyCode == 123){
+
+return false;
+
+}
+
+if(
+e.ctrlKey &&
+e.shiftKey &&
+e.keyCode == 'I'.charCodeAt(0)
+){
+
+return false;
+
+}
+
+if(
+e.ctrlKey &&
+e.keyCode == 'U'.charCodeAt(0)
+){
+
+return false;
+
+}
+
+};
+
+</script>                 
+</body>
+</html>
+  
+  
