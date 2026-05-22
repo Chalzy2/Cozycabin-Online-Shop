@@ -225,7 +225,407 @@ color:#000;
 }
 
 /* CONTINUE REMAINING CSS HERE */
+.academy-info h2{
+font-size:24px;
+margin-bottom:8px;
+}
 
+.academy-info p{
+font-size:15px;
+cursor:pointer;
+line-height:1.5;
+}
+
+/* MAIN GRID */
+
+.main-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+margin:20px 0;
+}
+
+.grid-btn{
+background:#232d3f;
+border:1px solid #3b4758;
+border-radius:24px;
+padding:24px 8px;
+text-align:center;
+cursor:pointer;
+transition:.3s;
+}
+
+.grid-btn:hover{
+border-color:#ffd700;
+transform:translateY(-2px);
+}
+
+.grid-btn span{
+font-size:28px;
+display:block;
+margin-bottom:10px;
+}
+
+.grid-btn small{
+font-size:12px;
+font-weight:bold;
+}
+
+/* MINOR MENU */
+
+.minor-menu{
+display:none;
+background:#0d1117;
+border:1px solid #ffd700;
+border-radius:22px;
+padding:18px;
+margin-bottom:20px;
+}
+
+.minor-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+}
+
+.minor-btn{
+background:#232d3f;
+border:none;
+color:#fff;
+border-radius:16px;
+padding:16px 8px;
+font-size:12px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.minor-btn:hover{
+background:#ffd700;
+color:#000;
+}
+
+/* PRODUCTS */
+
+.product-list{
+display:none;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:14px;
+margin-top:20px;
+}
+
+.product-card{
+background:#fff;
+color:#000;
+border-radius:18px;
+overflow:hidden;
+padding-bottom:10px;
+box-shadow:0 0 12px rgba(0,0,0,.2);
+}
+
+.product-card img{
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+cursor:zoom-in;
+}
+
+.product-card h4{
+font-size:13px;
+padding:10px 10px 5px;
+}
+
+.product-card p{
+font-weight:bold;
+color:green;
+padding:0 10px;
+}
+
+.whatsapp-btn{
+display:block;
+background:#25d366;
+color:#fff;
+text-decoration:none;
+padding:11px;
+margin:10px;
+text-align:center;
+border-radius:10px;
+font-size:12px;
+font-weight:bold;
+transition:.3s;
+}
+
+.whatsapp-btn:hover{
+opacity:.9;
+ }
+ /* EXIT BUTTON */
+
+.exit-btn{
+grid-column:1/-1;
+background:#ffd700;
+border:none;
+padding:12px;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+margin-bottom:10px;
+}
+
+/* DELIVERY BAR */
+
+.delivery-bar{
+background:#ffd700;
+color:#000;
+padding:12px;
+font-weight:bold;
+margin:25px 0;
+}
+
+/* SECTION TITLE */
+
+.section-title{
+text-align:center;
+color:#ffd700;
+font-size:24px;
+margin-bottom:20px;
+font-weight:bold;
+}
+
+/* PAYMENT */
+
+.cozy-payment-box{
+background:#1a1a1a;
+border:1px solid #333;
+border-radius:24px;
+padding:22px;
+max-width:450px;
+margin:30px auto;
+}
+
+/* AFFILIATE */
+
+.cozy-affiliate-box{
+background:linear-gradient(135deg,#071129 0%,#0f172a 100%);
+border:1px solid rgba(45,183,66,0.25);
+border-radius:28px;
+padding:35px 22px;
+margin:30px auto;
+text-align:center;
+position:relative;
+overflow:hidden;
+box-shadow:
+0 10px 35px rgba(0,0,0,0.45),
+0 0 25px rgba(45,183,66,0.08);
+}
+
+.cozy-affiliate-badge{
+display:inline-block;
+background:linear-gradient(90deg,#2db742,#24a63c);
+color:white;
+padding:8px 18px;
+border-radius:50px;
+font-size:11px;
+font-weight:700;
+letter-spacing:1px;
+margin-bottom:22px;
+}
+
+.cozy-affiliate-title{
+color:white;
+font-size:34px;
+line-height:1.35;
+font-weight:800;
+margin-bottom:18px;
+}
+
+.cozy-affiliate-title span{
+color:#2db742;
+}
+
+.cozy-affiliate-text{
+color:#d1d5db;
+font-size:16px;
+line-height:1.9;
+margin-bottom:30px;
+}
+
+.cozy-affiliate-btn{
+background:linear-gradient(90deg,#2db742,#24a63c);
+color:white;
+border:none;
+border-radius:16px;
+padding:18px 28px;
+width:100%;
+max-width:320px;
+font-size:17px;
+font-weight:800;
+cursor:pointer;
+transition:.3s ease;
+}
+
+.cozy-affiliate-btn:hover{
+transform:translateY(-2px);
+}
+
+/* FLOATING WHATSAPP */
+
+.float-wa{
+position:fixed;
+width:65px;
+height:65px;
+right:18px;
+bottom:18px;
+border-radius:50%;
+background:#25d366;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 0 12px rgba(0,0,0,.5);
+z-index:99999;
+}
+
+.float-wa img{
+width:36px;
+pointer-events:auto;
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+z-index:9999;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.modal-content{
+width:90%;
+max-width:500px;
+border-radius:18px;
+border:2px solid #ffd700;
+}
+
+.close-modal{
+position:absolute;
+top:15px;
+right:25px;
+font-size:45px;
+color:#fff;
+cursor:pointer;
+ }
+@media(max-width:768px){
+
+.container{
+padding:10px 10px 100px;
+}
+
+.main-grid{
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.minor-grid{
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.product-list{
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.grid-btn{
+padding:16px 6px;
+border-radius:18px;
+}
+
+.grid-btn span{
+font-size:22px;
+}
+
+.grid-btn small{
+font-size:10px;
+}
+
+.academy-card{
+padding:14px;
+gap:12px;
+}
+
+.academy-icon{
+width:65px;
+height:65px;
+font-size:10px;
+}
+
+.academy-info h2{
+font-size:18px;
+}
+
+.cozy-affiliate-title{
+font-size:26px;
+}
+
+.cozy-affiliate-text{
+font-size:14px;
+line-height:1.7;
+}
+
+.cozy-affiliate-btn{
+font-size:15px;
+padding:16px;
+}
+
+.brand-logo{
+width:120px;
+}
+
+.currency-select{
+font-size:11px;
+padding:6px 8px;
+}
+
+#premium-checkout-box{
+padding:18px;
+border-radius:20px;
+}
+
+.float-wa{
+width:58px;
+height:58px;
+right:14px;
+bottom:14px;
+}
+
+.float-wa img{
+width:32px;
+}
+img{
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-khtml-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+-webkit-user-drag:none;
+    }
+
+}
+    body,
+.container,
+.main-grid,
+.product-list{
+overflow-x:hidden;
+}
+
+ 
 </style>
 
  </head>  
@@ -239,7 +639,6 @@ color:#000;
 <select class="currency-select">
 
 <option>🇰🇪 KSH</option>
-
 <option>🇺🇸 USD</option>
 <option> 💶 EURO</option>
 </select>
@@ -298,9 +697,1406 @@ Video Editing & Setup ▼
 
 <!-- CONTINUE ALL WEBSITE CONTENT HERE -->
 
+<!-- VIDEO COURSES -->
+
+<div id="video-courses" class="minor-menu">
+
+<div class="minor-grid">
+
+<button class="minor-btn">
+
+🎬 CapCut Editing
+
+</button>
+
+<button class="minor-btn">
+
+📱 TikTok Growth
+
+</button>
+
+<button class="minor-btn">
+
+💻 Website Setup
+
+</button>
+
+<button class="minor-btn">
+
+📢 Digital Marketing
+
+</button>
+
 </div>
 
-<!-- FLOATING WHATSAPP -->
+</div>
+
+<!-- CRYPTO SECTION -->
+
+<div style="
+margin-bottom:15px;
+font-family:sans-serif;
+">
+
+<button
+class="menu-trigger-btn"
+onclick="toggleCryptoRowDropdown()"
+style="
+width:100%;
+background:#1a1a1a;
+border:1px solid #d4af37;
+padding:12px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-radius:15px;
+cursor:pointer;
+text-align:left;
+">
+
+<div style="
+display:flex;
+align-items:center;
+gap:15px;
+">
+
+<div style="
+background:#e6b800;
+color:#000;
+width:55px;
+height:55px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+font-size:11px;
+">
+
+Crypto
+
+</div>
+
+<div>
+</div>
+
+
+ <h3 style="
+color:#fff;
+margin:0 0 4px 0;
+font-size:16px;
+">
+
+Crypto Mastery
+
+</h3>
+
+<p style="
+color:#d4af37;
+margin:0;
+font-size:12px;
+">
+
+Top Global Exchanges
+
+</p>
+
+</div>
+
+</div>
+
+<span id="crypto-row-arrow"
+style="
+color:#d4af37;
+font-size:12px;
+transition:transform .3s;
+">
+
+▼
+
+</span>
+
+</button>
+
+<!-- CRYPTO DROPDOWN -->
+
+<div id="crypto-row-dropdown-menu"
+style="
+display:none;
+background:#111;
+border:1px solid #333;
+border-top:none;
+padding:15px;
+border-radius:0 0 15px 15px;
+">
+
+<div style="
+background:#1a1a1a;
+border:1px solid #333;
+border-radius:12px;
+padding:15px;
+margin-bottom:15px;
+">
+
+<p style="
+color:#ffd700;
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
+">
+
+🔥 Binance Reward: Up to $100
+
+</p>
+
+<p style="
+color:#aaa;
+font-size:12px;
+line-height:1.5;
+margin-bottom:12px;
+">
+
+Register and start your journey securely.
+
+</p>
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+">
+
+<div style="
+background:#222;
+border:1px solid #333;
+border-radius:8px;
+padding:6px 12px;
+display:flex;
+align-items:center;
+gap:8px;
+">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png"
+style="height:16px;">
+
+<span style="
+color:#fff;
+font-size:12px;
+font-weight:bold;
+">
+
+Binance
+
+</span>
+
+</div>
+<a href="binance-cryptopayment.html"
+style="
+background:#e6b800;
+color:#000;
+padding:8px 14px;
+text-decoration:none;
+font-size:11px;
+font-weight:bold;
+border-radius:6px;
+">
+
+Join Binance
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- EBOOK SECTION -->
+
+<div style="
+margin-bottom:15px;
+font-family:sans-serif;
+">
+
+<button
+class="menu-trigger-btn"
+onclick="toggleEbookRowDropdown()"
+style="
+width:100%;
+background:#1a1a1a;
+border:1px solid #d4af37;
+padding:12px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-radius:15px;
+cursor:pointer;
+text-align:left;
+">
+
+<div style="
+display:flex;
+align-items:center;
+gap:15px;
+">
+
+<div style="
+background:#e6b800;
+color:#000;
+width:55px;
+height:55px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+font-size:11px;
+">
+
+E-Book
+
+</div>
+
+<div>
+
+<h3 style="
+color:#fff;
+margin:0 0 4px 0;
+font-size:16px;
+">
+
+Digital Library
+
+</h3>
+
+<p style="
+color:#d4af37;
+margin:0;
+font-size:12px;
+">
+
+Finance & Masterclasses
+
+</p>
+
+</div>
+
+</div>
+<span id="ebook-row-arrow"
+style="
+color:#d4af37;
+font-size:12px;
+transition:transform .3s;
+">
+
+▼
+
+</span>
+
+</button>
+
+<!-- EBOOK DROPDOWN -->
+
+<div id="ebook-row-dropdown-menu"
+style="
+display:none;
+background:#111;
+border:1px solid #333;
+border-top:none;
+padding:15px;
+border-radius:0 0 15px 15px;
+">
+
+<!-- BOOK 1 -->
+
+<div style="
+display:flex;
+background:#1a1a1a;
+border:1px solid #333;
+border-radius:8px;
+padding:12px;
+margin-bottom:12px;
+align-items:center;
+">
+
+<div style="
+flex:0 0 65px;
+margin-right:15px;
+">
+
+<img src="Images/Facebook Pr.Fomula1 .webp"
+alt="Facebook Profit"
+style="
+width:100%;
+border-radius:4px;
+">
+
+</div>
+
+<div style="flex:1;">
+
+<h4 style="
+color:#fff;
+margin-bottom:4px;
+font-size:14px;
+">
+
+Facebook Profit Formula
+
+</h4>
+
+<p style="
+color:#aaa;
+font-size:12px;
+line-height:1.4;
+margin-bottom:8px;
+">
+
+Master Meta monetization in 30 days.
+
+</p>
+
+<a href="https://selar.com/z6wn6j11g1"
+style="
+background:#e6b800;
+color:#000;
+padding:6px 15px;
+text-decoration:none;
+font-size:11px;
+font-weight:bold;
+border-radius:4px;
+display:inline-block;
+">
+
+Access Guide
+
+</a>
+
+</div>
+
+</div>
+
+<!-- BOOK 2 -->
+<div style="
+display:flex;
+background:#1a1a1a;
+border:1px solid #333;
+border-radius:8px;
+padding:12px;
+align-items:center;
+">
+
+<div style="
+flex:0 0 65px;
+margin-right:15px;
+">
+
+<img src="Images/Crypto Guide..webp"
+alt="Crypto Guide"
+style="
+width:100%;
+border-radius:4px;
+">
+
+</div>
+
+<div style="flex:1;">
+
+<h4 style="
+color:#fff;
+margin-bottom:4px;
+font-size:14px;
+">
+
+Crypto Mastery Guide
+
+</h4>
+
+<p style="
+color:#aaa;
+font-size:12px;
+line-height:1.4;
+margin-bottom:8px;
+">
+
+Blueprint for exchanges & mining.
+
+</p>
+
+<a href="https://selar.com/378373r336"
+style="
+background:#e6b800;
+color:#000;
+padding:6px 15px;
+text-decoration:none;
+font-size:11px;
+font-weight:bold;
+border-radius:4px;
+display:inline-block;
+">
+
+Access Guide
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- AFFILIATE HERO -->
+
+<div class="cozy-affiliate-box">
+
+<div class="cozy-affiliate-badge">
+
+MEMBER OPPORTUNITY 💡
+
+</div>
+
+<h2 class="cozy-affiliate-title">
+
+Earn Online with
+<span>Cozycabin</span>
+
+</h2>
+
+<p class="cozy-affiliate-text">
+
+No capital needed.
+Share ebooks and digital products using your affiliate link and earn commission for every successful sale.
+
+</p>
+ 
+ <a href="/affiliate.html">
+
+<button class="cozy-affiliate-btn">
+
+💰 START EARNING TODAY
+
+</button>
+
+</a>
+
+<div style="
+margin-top:24px;
+padding-top:18px;
+border-top:1px solid rgba(255,255,255,0.08);
+">
+
+<div style="
+display:inline-block;
+background:rgba(37,211,102,0.12);
+color:#25D366;
+padding:9px 18px;
+border-radius:50px;
+font-size:13px;
+font-weight:600;
+border:1px solid rgba(37,211,102,0.25);
+">
+
+📲 Perfect for WhatsApp, TikTok & Facebook
+
+</div>
+
+<div style="
+color:#94a3b8;
+font-size:12px;
+margin-top:14px;
+">
+
+🔥 Growing community of digital affiliates in Kenya
+
+</div>
+
+</div>
+
+</div>
+
+<!-- DELIVERY BAR -->
+
+<div style="
+background:#ffd700;
+color:black;
+padding:10px 0;
+font-weight:bold;
+margin:25px 0;
+overflow:hidden;
+">
+
+<marquee>
+
+🚚 COUNTRYWIDE DELIVERY VIA G4S, SIMBA COACH, TAHMEED, BUSCAR, MODERN COACH & PARCEL BUS |
+📍 LOCAL DELIVERY IN KENYA, TANZANIA & UGANDA |
+🇰🇪🇹🇿🇺🇬 BEST QUALITY BY COZYCABIN
+
+</marquee>
+
+</div>
+
+<!-- LOCAL SHOP TITLE -->
+
+<h3 style="
+text-align:center;
+color:#ffd700;
+margin-bottom:15px;
+">
+
+🇰🇪 LOCAL & ONLINE SHOP (KENYA)
+
+</h3>
+
+<!-- MAIN CATEGORY GRID -->
+
+<div class="main-grid">
+
+<div class="grid-btn"
+onclick="toggleSub('kitchen-sub')">
+
+<span>👨‍🍳</span>
+
+<small>KITCHEN ▼</small>
+
+</div>
+
+<div class="grid-btn"
+onclick="toggleSub('solar-sub')">
+
+<span>☀️</span>
+ 
+<small>SOLAR ▼</small>
+
+</div>
+
+<div class="grid-btn"
+onclick="toggleSub('decor-sub')">
+
+<span>🛋️</span>
+
+<small>DECOR ▼</small>
+
+</div>
+
+<div class="grid-btn"
+onclick="toggleSub('beds-sub')">
+
+<span>🛏️</span>
+
+<small>BEDDINGS ▼</small>
+
+</div>
+
+<div class="grid-btn"
+onclick="toggleSub('security-sub')">
+
+<span>📷</span>
+
+<small>SECURITY ▼</small>
+
+</div>
+
+<div class="grid-btn"
+onclick="toggleSub('electro-sub')">
+
+<span>📻</span>
+
+<small>ELECTRONICS ▼</small>
+
+</div>
+
+<div class="grid-btn"
+onclick="toggleSub('tech-sub')">
+
+<span>📱</span>
+
+<small>TECH ▼</small>
+
+</div>
+
+<div class="grid-btn"
+onclick="toggleSub('fashion-sub')">
+
+<span>👟</span>
+
+<small>FASHION ▼</small>
+
+</div>
+
+<div class="grid-btn"
+onclick="toggleSub('tools-sub')">
+
+<span>⚙️</span>
+
+<small>APPLIANCES ▼</small>
+
+</div>
+
+</div>
+
+<!-- KITCHEN SUB MENU -->
+
+<div id="kitchen-sub" class="minor-menu">
+
+<div class="minor-grid">
+
+<button onclick="showProducts('cutlery')"
+class="minor-btn">
+
+🍴 Cutlery
+
+</button>
+
+<button onclick="showProducts('dispenser')"
+class="minor-btn">
+
+💧 Dispensers
+
+</button>
+
+<button onclick="showProducts('hotpots')"
+class="minor-btn">
+
+🥘 Hotpots
+
+</button>
+
+<button onclick="showProducts('racks')"
+class="minor-btn">
+
+ 🍽️ Dishracks
+
+</button>
+
+<button onclick="showProducts('flasks')"
+class="minor-btn">
+
+☕ Flasks
+
+</button>
+
+<button onclick="showProducts('bottles')"
+class="minor-btn">
+
+🍼 Bottles
+
+</button>
+
+<button onclick="showProducts('cookers')"
+class="minor-btn">
+
+🍳 Cookers
+
+</button>
+
+<button onclick="showProducts('blenders')"
+class="minor-btn">
+
+🌪️ Blenders
+
+</button>
+
+</div>
+
+</div>
+
+<!-- CUTLERY PRODUCTS -->
+
+<div id="cutlery" class="product-list">
+
+<button onclick="backToMinor()"
+class="exit-btn">
+
+⬅️ Back to Menu
+
+</button>
+
+<!-- PRODUCT 1 -->
+
+<div class="product-card">
+
+<img src="Images/19 PSC Silicone Spoon-2700-.png"
+alt="Silicone Spoon Set"
+onclick="openModal(this.src)">
+
+<h4>Premium Set</h4>
+
+<p>KES 2,700</p>
+
+<a href="https://wa.me/254702468460?text=I+want+Silicone+Spoon+Set"
+class="whatsapp-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+<!-- PRODUCT 2 -->
+
+<div class="product-card">
+
+<img src="Images/19psc Pink 3200 .jpg"
+alt="Pink Premium Set"
+onclick="openModal(this.src)">
+
+<h4>Premium Set</h4>
+
+<p>KES 3,200</p>
+ <a href="https://wa.me/254702468460?text=I+want+Pink+Premium+Set"
+class="whatsapp-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+<!-- PRODUCT 3 -->
+
+<div class="product-card">
+
+<img src="Images/Eggshell cutlery-4500-.jpg"
+alt="Eggshell Cutlery"
+onclick="openModal(this.src)">
+
+<h4>Premium Set</h4>
+
+<p>KES 4,500</p>
+
+<a href="https://wa.me/254702468460?text=I+want+Eggshell+Cutlery"
+class="whatsapp-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+<!-- PRODUCT 4 -->
+
+<div class="product-card">
+
+<img src="Images/Spoons, stainless steel cutlery-2400-.jpg"
+alt="Stainless Steel Set"
+onclick="openModal(this.src)">
+
+<h4>Premium Set</h4>
+
+<p>KES 2,400</p>
+
+<a href="https://wa.me/254702468460?text=I+want+Stainless+Steel+Set"
+class="whatsapp-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+<!-- PRODUCT 5 -->
+
+<div class="product-card">
+
+<img src="Images/Special cutlery-2500-.jpg"
+alt="Special Cutlery Set"
+onclick="openModal(this.src)">
+
+<h4>Premium Set</h4>
+
+<p>KES 2,500</p>
+
+<a href="https://wa.me/254702468460?text=I+want+Special+Cutlery"
+class="whatsapp-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+</div>
+
+<!-- DISPENSER PRODUCTS -->
+ <div id="dispenser" class="product-list">
+
+<button onclick="backToMinor()"
+class="exit-btn">
+
+⬅️ Back to Menu
+
+</button>
+
+<div class="product-card">
+
+<img src="Images/Ailyons 3 taps 6999-.jpg"
+alt="Ailyons Dispenser"
+onclick="openModal(this.src)">
+
+<h4>Premium Set</h4>
+
+<p>KES 6,999</p>
+
+<a href="https://wa.me/254702468460?text=I+want+Ailyons+Dispenser"
+class="whatsapp-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+<div class="product-card">
+
+<img src="Images/Premier Smart bottom Dispenser 15000-.jpg"
+alt="Premier Bottomload"
+onclick="openModal(this.src)">
+
+<h4>Premium Set</h4>
+
+<p>KES 15,000</p>
+
+<a href="https://wa.me/254702468460?text=I+want+Premier+Bottomload"
+class="whatsapp-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+<div class="product-card">
+
+<img src="Images/Primidale 2tap dispenser 3999-.jpg"
+alt="Premidale Dispenser"
+onclick="openModal(this.src)">
+
+<h4>Premium Set</h4>
+
+<p>KES 3,999</p>
+
+<a href="https://wa.me/254702468460?text=I+want+Premidale+Dispenser"
+class="whatsapp-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+ </div>
+
+<!-- FLASK PRODUCTS -->
+
+<div id="flasks" class="product-list">
+
+<button onclick="backToMinor()"
+class="exit-btn">
+
+⬅️ Back to Menu
+
+</button>
+
+<div class="product-card">
+
+<img src="Images/Flasks 2.png"
+alt="Flask"
+onclick="openModal(this.src)">
+
+<h4>Premium Flask</h4>
+
+<p>KES 950</p>
+
+<a href="https://wa.me/254702468460?text=I+want+Flask"
+class="whatsapp-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+<div class="product-card">
+
+<img src="Images/Redbry Flask1.png"
+alt="Redbry Flask"
+onclick="openModal(this.src)">
+
+<h4>Premium Flask</h4>
+
+<p>KES 1,800</p>
+
+<a href="https://wa.me/254702468460?text=I+want+Redbry+Flask"
+class="whatsapp-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+<div class="product-card">
+
+<img src="Images/Flasks2.png"
+alt="Flask"
+onclick="openModal(this.src)">
+
+<h4>Premium Flask</h4>
+
+<p>KES 1,800</p>
+
+<a href="https://wa.me/254702468460?text=I+want+Premium+Flask"
+class="whatsapp-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+</div>
+   <!-- PREMIUM CHECKOUT SECTION -->
+
+<div id="premium-checkout-wrapper"
+style="
+width:100%;
+max-width:1200px;
+margin:50px auto;
+padding:0 18px;
+box-sizing:border-box;
+">
+
+<div id="premium-checkout-box"
+style="
+width:100%;
+max-width:520px;
+margin:auto;
+background:#000;
+border:2px solid #ffd700;
+border-radius:28px;
+padding:26px;
+box-sizing:border-box;
+box-shadow:0 0 25px rgba(255,215,0,0.12);
+overflow:hidden;
+">
+
+<!-- HEADER -->
+
+<div style="text-align:center;margin-bottom:22px;">
+
+<p style="
+font-size:18px;
+font-weight:900;
+color:#ffd700;
+margin:0;
+text-transform:uppercase;
+letter-spacing:2px;
+">
+
+💎 COZYCABIN PREMIUM CHECKOUT
+
+</p>
+
+<p style="
+font-size:11px;
+color:#777;
+margin-top:6px;
+text-transform:uppercase;
+letter-spacing:1px;
+">
+
+Instant Digital Delivery
+
+</p>
+
+</div>
+
+
+<!-- PAYMENT BUTTONS -->
+
+<div style="
+display:flex;
+flex-direction:column;
+gap:14px;
+margin-bottom:24px;
+">
+
+<!-- PAYPAL -->
+
+<a href="https://paypal.me/charlesowuor"
+target="_blank"
+style="
+background:#ffc439;
+color:#003087;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:17px;
+font-weight:900;
+text-align:center;
+display:block;
+">
+
+PayPal
+
+</a>
+
+<!-- CARD -->
+
+<a href="https://paypal.me/charlesowuor"
+target="_blank"
+style="
+background:#2d2d2d;
+color:#fff;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:16px;
+text-align:center;
+display:block;
+border:1px solid #444;
+">
+ 
+💳 Debit or Credit Card
+
+</a>
+
+<!-- BINANCE -->
+
+<a href="binance-cryptopayment.html"
+style="
+background:#f3ba2f;
+color:#000;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:17px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+
+Pay with Binance
+
+</a>
+
+<!-- SELAR -->
+
+<a href="https://selar.co/z6wn6j11g1"
+target="_blank"
+style="
+background:#6126c6;
+color:#fff;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:17px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+
+Buy on Selar
+
+</a>
+
+</div>
+
+<!-- MPESA -->
+
+<div style="
+background:#2db742;
+border-radius:18px;
+padding:20px;
+color:#fff;
+margin-bottom:24px;
+">
+
+<p style="
+margin-bottom:12px;
+font-size:18px;
+font-weight:800;
+text-align:center;
+">
+
+🟢 LIPA NA M-PESA
+
+</p>
+
+ <p style="
+line-height:1.8;
+font-size:16px;
+text-align:center;
+">
+
+Paybill:
+<b>542542</b>
+
+<br>
+
+Account No:
+<b>702468</b>
+
+</p>
+
+<div style="
+margin-top:18px;
+display:flex;
+flex-direction:column;
+gap:12px;
+">
+
+<input
+type="text"
+id="mpesa-code"
+placeholder="Enter M-Pesa Ref Code"
+style="
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+outline:none;
+font-size:14px;
+">
+
+<button onclick="submitMpesaPayment()"
+style="
+background:#000;
+color:#fff;
+border:none;
+padding:14px;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
+font-size:13px;
+letter-spacing:1px;
+text-transform:uppercase;
+">
+
+Verify Payment & Claim Access
+
+</button>
+
+</div>
+
+</div>
+
+<!-- DONATION -->
+
+<div style="
+margin-top:30px;
+border-top:1px dashed #222;
+padding-top:22px;
+">
+
+<p style="
+font-size:16px;
+font-weight:900;
+color:#ffd700;
+text-align:center;
+margin-bottom:10px;
+text-transform:uppercase;
+">
+
+❤️ Support My Work
+
+</p>
+
+<p style="
+font-size:12px;
+color:#777;
+text-align:center;
+line-height:1.6;
+margin-bottom:18px;
+">
+
+If my guides or tools helped you,
+feel free to support Cozycabin.
+
+</p>
+
+<!-- DONATION MPESA -->
+
+<div style="
+background:#0a0a0a;
+border:1px solid #2db742;
+padding:16px;
+border-radius:14px;
+margin-bottom:14px;
+">
+
+<p style="
+margin-bottom:8px;
+font-size:13px;
+font-weight:800;
+color:#2db742;
+">
+
+🟢 LIPA NA M-PESA (Donation)
+
+</p>
+
+<p style="
+font-size:12px;
+color:#25D366;
+font-weight:bold;
+margin-bottom:10px;
+">
+
+🪙 PAY WITH MINIPAY
+
+</p>
+ <img
+src="Images/Minipay image.webp"
+alt="MiniPay QR"
+style="
+width:170px;
+margin:auto;
+border-radius:14px;
+background:white;
+padding:8px;
+display:block;
+">
+
+<p style="
+font-size:12px;
+color:#ccc;
+margin-top:12px;
+line-height:1.7;
+">
+
+Scan QR or send payment to:
+
+<br><br>
+
+<b style="
+font-size:18px;
+color:#fff;
+letter-spacing:1px;
+">
+
+0702468460
+
+</b>
+
+</p>
+
+</div>
+
+<div style="
+margin-top:14px;
+display:flex;
+flex-direction:column;
+gap:10px;
+">
+
+<input
+type="text"
+id="donation-code"
+placeholder="Enter Donation M-Pesa Code"
+style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+outline:none;
+">
+
+<button onclick="submitDonation()"
+style="
+background:#2db742;
+color:#fff;
+border:none;
+padding:12px;
+border-radius:8px;
+font-weight:700;
+cursor:pointer;
+">
+
+SUBMIT DONATION CODE
+
+</button>
+
+</div>
+
+</div>
+
+<!-- EXTRA DONATION BUTTONS -->
+
+<div style="
+display:flex;
+flex-direction:column;
+gap:12px;
+">
+
+<a href="https://selar.co/showlove/charlesowuor"
+target="_blank"
+style="
+background:#e91e63;
+color:#fff;
+text-decoration:none;
+padding:14px;
+border-radius:40px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+
+💝 Tip Me via Selar
+
+</a>
+<a href="binance-cryptopayment.html?intent=donation"
+style="
+background:#f3ba2f;
+color:#000;
+text-decoration:none;
+padding:14px;
+border-radius:40px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+
+Send Crypto Tip (Binance)
+
+</a>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div style="
+border-top:1px solid #111;
+padding-top:18px;
+margin-top:28px;
+text-align:center;
+">
+
+<p style="
+font-size:11px;
+color:#444;
+letter-spacing:1px;
+">
+
+© Cozycabin Online Shop 2026
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+ 
+ <!-- FLOATING WHATSAPP -->
 
 <a href="https://wa.me/254702468460"
 target="_blank"
@@ -311,7 +2107,6 @@ src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
 alt="WhatsApp">
 
 </a>
-
 <!-- IMAGE MODAL -->
 
 <div id="imageModal" class="modal">
@@ -327,7 +2122,7 @@ onclick="closeModal()">
 id="expandedImg">
 
 </div>
-<!-- FIREBASE + FUNCTIONS -->
+ <!-- FIREBASE + FUNCTIONS -->
 
 <script type="module">
 
@@ -377,11 +2172,337 @@ initializeApp(firebaseConfig);
 const db =
 getFirestore(app);
 
-/* ALL YOUR FUNCTIONS HERE */
-
 </script>
+ <script>
 
-<script>
+/* REFERRAL TRACKING */
+
+const urlParams =
+new URLSearchParams(window.location.search);
+
+const referralCode =
+urlParams.get('ref') || "Direct";
+
+/* CATEGORY TOGGLE */
+
+window.toggleSub = function(id){
+
+const allMenus =
+document.querySelectorAll('.minor-menu');
+
+allMenus.forEach(menu=>{
+
+if(menu.id !== id){
+
+menu.style.display='none';
+
+}
+
+});
+
+const menu =
+document.getElementById(id);
+
+if(menu.style.display === 'block'){
+
+menu.style.display='none';
+
+}else{
+
+menu.style.display='block';
+
+}
+
+}
+
+/* PRODUCT DISPLAY */
+
+window.showProducts = function(id){
+
+document.querySelectorAll('.product-list')
+.forEach(p=>{
+
+p.style.display='none';
+
+});
+
+const target =
+document.getElementById(id);
+
+if(target){
+
+target.style.display='grid';
+
+target.scrollIntoView({
+behavior:'smooth'
+});
+
+}
+
+}
+
+/* BACK BUTTON */
+
+window.backToMinor = function(){
+
+document.querySelectorAll('.product-list')
+.forEach(p=>{
+
+p.style.display='none';
+
+});
+
+}
+
+/* CRYPTO TOGGLE */
+
+window.toggleCryptoRowDropdown =
+function(){
+
+const menu =
+document.getElementById(
+'crypto-row-dropdown-menu'
+);
+
+const arrow =
+document.getElementById(
+'crypto-row-arrow'
+);
+
+if(menu.style.display === 'block'){
+
+menu.style.display='none';
+
+arrow.style.transform='rotate(0deg)';
+
+}else{
+
+menu.style.display='block';
+
+arrow.style.transform='rotate(180deg)';
+
+}
+
+}
+
+/* EBOOK TOGGLE */
+
+window.toggleEbookRowDropdown =
+function(){
+
+const menu =
+document.getElementById(
+'ebook-row-dropdown-menu'
+);
+
+const arrow =
+document.getElementById(
+'ebook-row-arrow'
+);
+
+if(menu.style.display === 'block'){
+
+menu.style.display='none';
+
+arrow.style.transform='rotate(0deg)';
+
+}else{
+
+menu.style.display='block';
+
+arrow.style.transform='rotate(180deg)';
+
+}
+
+}
+
+/* IMAGE MODAL */
+
+window.openModal = function(src){
+
+document.getElementById(
+'imageModal'
+).style.display='flex';
+
+document.getElementById(
+'expandedImg'
+).src = src;
+
+}
+
+window.closeModal = function(){
+
+document.getElementById(
+'imageModal'
+).style.display='none';
+
+}
+
+ </script>
+ <script>
+
+/* PRODUCT SELECTION */
+
+window.getSelectedProductDetails =
+function(){
+
+const radios =
+document.getElementsByName('product');
+
+let selected = {
+
+price:200,
+name:'AI Video Editing Masterclass'
+
+};
+
+for(const radio of radios){
+
+if(radio.checked){
+
+selected.price =
+radio.value;
+
+selected.name =
+radio.getAttribute('data-name');
+
+}
+
+}
+
+return selected;
+
+}
+
+/* MPESA PAYMENT */
+
+window.submitMpesaPayment =
+async function(){
+
+const code =
+document.getElementById(
+'mpesa-code'
+).value.trim();
+
+if(!code){
+
+alert(
+'Please enter your M-Pesa transaction code.'
+);
+
+return;
+
+}
+
+const product =
+window.getSelectedProductDetails();
+
+try{
+
+await addDoc(
+collection(db, "orders"),
+{
+
+productName:
+product.name,
+
+amount:
+product.price,
+
+mpesaCode:
+code,
+
+referralCode:
+referralCode,
+
+affiliateCommission:"20%",
+
+status:"pending",
+
+createdAt:
+serverTimestamp()
+
+});
+
+alert(
+'Payment submitted successfully. Verification in progress.'
+);
+
+document.getElementById(
+'mpesa-code'
+).value='';
+
+}
+catch(error){
+
+alert(
+'Error saving order: ' +
+error.message
+);
+
+}
+
+}
+
+/* DONATION */
+
+window.submitDonation =
+async function(){
+
+const code =
+document.getElementById(
+'donation-code'
+).value.trim();
+
+if(!code){
+
+alert(
+'Please enter donation transaction code.'
+);
+
+return;
+
+}
+
+try{
+
+await addDoc(
+collection(db, "donations"),
+{
+
+mpesaCode:
+code,
+
+referralCode:
+referralCode,
+
+createdAt:
+serverTimestamp()
+
+});
+
+alert(
+'Thank you for supporting Cozycabin 🙌'
+);
+
+document.getElementById(
+'donation-code'
+).value='';
+
+}
+catch(error){
+
+alert(
+'Donation error: ' +
+error.message
+);
+
+}
+
+}
+
+ </script>
+ <script>
 
 /* =========================================
    COZYCABIN ANTI-THEFT PROTECTION
@@ -438,7 +2559,9 @@ document.addEventListener(
 function(e){
 
 if(e.key === "F12"){
+
 e.preventDefault();
+
 }
 
 if(
@@ -446,7 +2569,9 @@ e.ctrlKey &&
 e.shiftKey &&
 e.key === "I"
 ){
+
 e.preventDefault();
+
 }
 
 if(
@@ -454,25 +2579,43 @@ e.ctrlKey &&
 e.shiftKey &&
 e.key === "J"
 ){
+
 e.preventDefault();
+
 }
 
 if(
 e.ctrlKey &&
 e.key === "u"
 ){
+
 e.preventDefault();
+
 }
 
 if(
 e.ctrlKey &&
 e.key === "s"
 ){
+
 e.preventDefault();
+
 }
 
 }
 );
+
+/* DISABLE LONG PRESS SAVE ON MOBILE */
+
+document.querySelectorAll('img')
+.forEach(img=>{
+
+img.setAttribute(
+'draggable',
+'false'
+);
+
+});
 
 /* CONSOLE WARNING */
 
@@ -486,8 +2629,8 @@ console.log(
 "color:gold;font-size:18px;"
 );
 
-</script>
-<script>
+ </script>
+ <script>
 
 document.addEventListener(
 'touchstart',
@@ -511,49 +2654,5 @@ return false;
 </script>
 
 </body>
+
 </html>
-
-
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
