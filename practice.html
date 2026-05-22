@@ -1,27 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Cozycabin Premium</title>
 
 <link rel="icon" href="Images/Cozycabin log .webp" type="image/png">
+
 <link rel="apple-touch-icon" href="Images/Cozycabin log .webp">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JVT3X5J5D"></script>
+
 <script>
+
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
+
+function gtag(){
+dataLayer.push(arguments);
+}
+
 gtag('js', new Date());
+
 gtag('config', 'G-4JVT3X5J5D');
+
 </script>
 
 <style>
+
+/* RESET */
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+max-width:100%;
 }
+
+/* BODY */
 
 html,body{
 width:100%;
@@ -31,7 +49,10 @@ color:#fff;
 font-family:Arial,sans-serif;
 -webkit-user-select:none;
 user-select:none;
+scroll-behavior:smooth;
 }
+
+/* IMAGES */
 
 img{
 max-width:100%;
@@ -40,12 +61,16 @@ display:block;
 pointer-events:none;
 }
 
+/* CONTAINER */
+
 .container{
 width:100%;
 max-width:1200px;
 margin:auto;
 padding:10px 14px 100px;
 }
+
+/* TOP NAV */
 
 .top-nav{
 display:flex;
@@ -60,7 +85,10 @@ border:1px solid #333;
 padding:7px 10px;
 border-radius:8px;
 font-size:12px;
+outline:none;
 }
+
+/* BRAND */
 
 .brand-header{
 text-align:center;
@@ -89,6 +117,8 @@ font-size:11px;
 color:#888;
 margin-top:5px;
 }
+
+/* ACADEMY CARD */
 
 .academy-card{
 background:#1a1a1a;
@@ -135,6 +165,8 @@ cursor:pointer;
 line-height:1.5;
 }
 
+/* MAIN GRID */
+
 .main-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -168,6 +200,8 @@ font-size:12px;
 font-weight:bold;
 }
 
+/* MINOR MENU */
+
 .minor-menu{
 display:none;
 background:#0d1117;
@@ -192,11 +226,19 @@ padding:16px 8px;
 font-size:12px;
 font-weight:bold;
 cursor:pointer;
+transition:.3s;
 }
+
+.minor-btn:hover{
+background:#ffd700;
+color:#000;
+}
+
+/* PRODUCTS */
 
 .product-list{
 display:none;
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
 gap:14px;
 margin-top:20px;
 }
@@ -207,12 +249,14 @@ color:#000;
 border-radius:18px;
 overflow:hidden;
 padding-bottom:10px;
+box-shadow:0 0 12px rgba(0,0,0,.2);
 }
 
 .product-card img{
 width:100%;
 aspect-ratio:1/1;
 object-fit:cover;
+cursor:zoom-in;
 }
 
 .product-card h4{
@@ -237,7 +281,27 @@ text-align:center;
 border-radius:10px;
 font-size:12px;
 font-weight:bold;
+transition:.3s;
 }
+
+.whatsapp-btn:hover{
+opacity:.9;
+}
+
+/* EXIT BUTTON */
+
+.exit-btn{
+grid-column:1/-1;
+background:#ffd700;
+border:none;
+padding:12px;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+margin-bottom:10px;
+}
+
+/* DELIVERY BAR */
 
 .delivery-bar{
 background:#ffd700;
@@ -247,6 +311,8 @@ font-weight:bold;
 margin:25px 0;
 }
 
+/* SECTION TITLE */
+
 .section-title{
 text-align:center;
 color:#ffd700;
@@ -254,6 +320,8 @@ font-size:24px;
 margin-bottom:20px;
 font-weight:bold;
 }
+
+/* PAYMENT */
 
 .cozy-payment-box{
 background:#1a1a1a;
@@ -263,6 +331,73 @@ padding:22px;
 max-width:450px;
 margin:30px auto;
 }
+
+/* AFFILIATE */
+
+.cozy-affiliate-box{
+background:linear-gradient(135deg,#071129 0%,#0f172a 100%);
+border:1px solid rgba(45,183,66,0.25);
+border-radius:28px;
+padding:35px 22px;
+margin:30px auto;
+text-align:center;
+position:relative;
+overflow:hidden;
+box-shadow:
+0 10px 35px rgba(0,0,0,0.45),
+0 0 25px rgba(45,183,66,0.08);
+}
+
+.cozy-affiliate-badge{
+display:inline-block;
+background:linear-gradient(90deg,#2db742,#24a63c);
+color:white;
+padding:8px 18px;
+border-radius:50px;
+font-size:11px;
+font-weight:700;
+letter-spacing:1px;
+margin-bottom:22px;
+}
+
+.cozy-affiliate-title{
+color:white;
+font-size:34px;
+line-height:1.35;
+font-weight:800;
+margin-bottom:18px;
+}
+
+.cozy-affiliate-title span{
+color:#2db742;
+}
+
+.cozy-affiliate-text{
+color:#d1d5db;
+font-size:16px;
+line-height:1.9;
+margin-bottom:30px;
+}
+
+.cozy-affiliate-btn{
+background:linear-gradient(90deg,#2db742,#24a63c);
+color:white;
+border:none;
+border-radius:16px;
+padding:18px 28px;
+width:100%;
+max-width:320px;
+font-size:17px;
+font-weight:800;
+cursor:pointer;
+transition:.3s ease;
+}
+
+.cozy-affiliate-btn:hover{
+transform:translateY(-2px);
+}
+
+/* FLOATING WHATSAPP */
 
 .float-wa{
 position:fixed;
@@ -284,6 +419,8 @@ width:36px;
 pointer-events:auto;
 }
 
+/* MODAL */
+
 .modal{
 display:none;
 position:fixed;
@@ -293,16 +430,16 @@ top:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,.95);
+justify-content:center;
+align-items:center;
+padding:20px;
 }
 
 .modal-content{
-margin:auto;
-display:block;
 width:90%;
 max-width:500px;
 border-radius:18px;
 border:2px solid #ffd700;
-margin-top:40px;
 }
 
 .close-modal{
@@ -313,6 +450,8 @@ font-size:45px;
 color:#fff;
 cursor:pointer;
 }
+
+/* MOBILE */
 
 @media(max-width:768px){
 
@@ -353,129 +492,30 @@ height:70px;
 .academy-info h2{
 font-size:19px;
 }
-    /* COZYCABIN AFFILIATE SECTION */
-
-.cozy-affiliate-box{
-    background: linear-gradient(135deg, #071129 0%, #0f172a 100%);
-    border: 1px solid rgba(45,183,66,0.25);
-    border-radius: 28px;
-    padding: 35px 22px;
-    margin: 30px auto;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 
-        0 10px 35px rgba(0,0,0,0.45),
-        0 0 25px rgba(45,183,66,0.08);
-}
-
-/* TOP BADGE */
-
-.cozy-affiliate-badge{
-    display: inline-block;
-    background: linear-gradient(90deg,#2db742,#24a63c);
-    color: white;
-    padding: 8px 18px;
-    border-radius: 50px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 22px;
-    box-shadow: 0 4px 15px rgba(45,183,66,0.35);
-}
-
-/* HEADING */
 
 .cozy-affiliate-title{
-    color: white;
-    font-size: 34px;
-    line-height: 1.35;
-    font-weight: 800;
-    margin-bottom: 18px;
-}
-
-.cozy-affiliate-title span{
-    color: #2db742;
-    text-shadow: 0 0 10px rgba(45,183,66,0.4);
-}
-
-/* DESCRIPTION */
-
-.cozy-affiliate-text{
-    color: #d1d5db;
-    font-size: 16px;
-    line-height: 1.9;
-    margin-bottom: 30px;
-}
-
-/* BUTTON */
-
-.cozy-affiliate-btn{
-    background: linear-gradient(90deg,#2db742,#24a63c);
-    color: white;
-    border: none;
-    border-radius: 16px;
-    padding: 18px 28px;
-    width: 100%;
-    max-width: 320px;
-    font-size: 17px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow:
-        0 8px 25px rgba(45,183,66,0.35),
-        0 0 15px rgba(45,183,66,0.18);
-}
-
-.cozy-affiliate-btn:hover{
-    transform: translateY(-2px) scale(1.02);
-}
-
-/* SOCIAL AREA */
-
-.cozy-affiliate-social{
-    margin-top: 24px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.cozy-affiliate-platforms{
-    display: inline-block;
-    background: rgba(37,211,102,0.12);
-    color: #25D366;
-    padding: 9px 18px;
-    border-radius: 50px;
-    font-size: 13px;
-    font-weight: 600;
-    border: 1px solid rgba(37,211,102,0.25);
-}
-
-.cozy-affiliate-proof{
-    color: #94a3b8;
-    font-size: 12px;
-    margin-top: 14px;
-    letter-spacing: 0.3px;
-}
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-.cozy-affiliate-title{
-    font-size: 28px;
+font-size:28px;
 }
 
 .cozy-affiliate-text{
-    font-size: 15px;
+font-size:15px;
 }
 
 .cozy-affiliate-btn{
-    font-size: 16px;
-} 
+font-size:16px;
+}
+
+.brand-logo{
+width:120px;
+}
 
 }
+
 </style>
+
 </head>
+
+
 
 <body>
 
