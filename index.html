@@ -1604,81 +1604,6 @@ Instant Digital Delivery
 
 </div>
 
-<!-- PRODUCT SELECTION -->
-
-<div style="
-background:#111;
-border:1px solid #222;
-padding:18px;
-border-radius:18px;
-margin-bottom:22px;
-">
-
-<p style="
-color:#ffd700;
-font-size:11px;
-font-weight:700;
-text-align:center;
-margin-bottom:18px;
-letter-spacing:1px;
-text-transform:uppercase;
-">
-
-Choose Course or E-book
-
-</p>
-
-<label style="
-display:flex;
-align-items:center;
-color:#fff;
-margin-bottom:15px;
-font-size:15px;
-cursor:pointer;
-">
-
-<input
-type="radio"
-name="product"
-value="200"
-data-name="AI Video Editing Masterclass"
-checked
-style="
-width:18px;
-height:18px;
-margin-right:12px;
-accent-color:#ffd700;
-">
-
-AI Video Editing Masterclass (200 KES)
-
-</label>
-
-<label style="
-display:flex;
-align-items:center;
-color:#fff;
-font-size:15px;
-cursor:pointer;
-">
-
-<input
-type="radio"
-name="product"
-value="150"
-data-name="Finance & Sourcing E-book"
-style="
-width:18px;
-height:18px;
-margin-right:12px;
-accent-color:#ffd700;
-">
-
-Finance & Sourcing E-book (150 KES)
-
-</label>
-
-</div>
 
 <!-- PAYMENT BUTTONS -->
 
@@ -2302,40 +2227,6 @@ document.getElementById(
 ).style.display='none';
 
 }
-
-/* PRODUCT SELECTION */
-
-window.getSelectedProductDetails =
-function(){
-
-const radios =
-document.getElementsByName('product');
-
-let selected = {
-
-price:200,
-name:'AI Video Editing Masterclass'
-
-};
-
-for(const radio of radios){
-
-if(radio.checked){
-
-selected.price =
-radio.value;
-
-selected.name =
-radio.getAttribute('data-name');
-
-}
-
-}
-
-return selected;
-
-}
-
 /* MPESA PAYMENT */
 
 window.submitMpesaPayment =
@@ -2356,9 +2247,12 @@ return;
 
 }
 
-const product =
-window.getSelectedProductDetails();
+const product = {
 
+price:"Custom",
+name:"Cozycabin Digital Product"
+
+};
 try{
 
 await addDoc(
