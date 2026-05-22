@@ -2435,37 +2435,109 @@ error.message
 }
 
 }
+<script>
+/* =========================================
+   COZYCABIN ANTI-THEFT PROTECTION
+========================================= */
 
-/* ANTITHEFT */
+/* DISABLE RIGHT CLICK */
 
 document.addEventListener(
 'contextmenu',
-e => e.preventDefault()
+function(e){
+
+e.preventDefault();
+
+}
 );
+
+/* DISABLE IMAGE DRAG */
+
+document.addEventListener(
+'dragstart',
+function(e){
+
+e.preventDefault();
+
+}
+);
+
+/* DISABLE TEXT COPY */
+
+document.addEventListener(
+'copy',
+function(e){
+
+e.preventDefault();
+
+}
+);
+
+/* DISABLE CUT */
+
+document.addEventListener(
+'cut',
+function(e){
+
+e.preventDefault();
+
+}
+);
+
+/* DISABLE CERTAIN KEYS */
 
 document.addEventListener(
 'keydown',
 function(e){
 
-if(e.keyCode == 123){
+/* F12 */
+
+if(e.key === "F12"){
 
 e.preventDefault();
 
 }
+
+/* CTRL+SHIFT+I */
 
 if(
 e.ctrlKey &&
 e.shiftKey &&
-e.keyCode == 'I'.charCodeAt(0)
+e.key === "I"
 ){
 
 e.preventDefault();
 
 }
+
+/* CTRL+SHIFT+J */
 
 if(
 e.ctrlKey &&
-e.keyCode == 'U'.charCodeAt(0)
+e.shiftKey &&
+e.key === "J"
+){
+
+e.preventDefault();
+
+}
+
+/* CTRL+U */
+
+if(
+e.ctrlKey &&
+e.key === "u"
+){
+
+e.preventDefault();
+
+}
+
+/* CTRL+S */
+
+if(
+e.ctrlKey &&
+e.key === "s"
 ){
 
 e.preventDefault();
@@ -2473,9 +2545,31 @@ e.preventDefault();
 }
 
 }
-
 );
 
+/* DISABLE LONG PRESS SAVE ON MOBILE */
+
+document.querySelectorAll('img')
+.forEach(img=>{
+
+img.setAttribute(
+'draggable',
+'false'
+);
+
+});
+
+/* CONSOLE WARNING */
+
+console.log(
+"%cSTOP!",
+"color:red;font-size:40px;font-weight:bold;"
+);
+
+console.log(
+"%cCozycabin Protected System",
+"color:gold;font-size:18px;"
+);
 </script>
 
 </body>
