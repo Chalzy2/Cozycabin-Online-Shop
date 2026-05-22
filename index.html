@@ -844,329 +844,624 @@ font-size:19px;
         <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
     </div>
 
-    
-            <div id="premium-checkout-box" style="background: #000000; border: 2px solid #ffd700; padding: 22px; border-radius: 16px; max-width: 450px; margin: 25px auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; box-sizing: border-box; box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.15); position: relative;">
-    
-    <div style="text-align: center; margin-bottom: 20px;">
-        <p style="font-size: 16px; font-weight: bold; color: #ffd700; margin: 0; text-transform: uppercase; letter-spacing: 1.5px;">
-            💎 COZYCABIN PREMIUM CHECKOUT
-        </p>
-        <p style="font-size: 10px; color: #888888; text-transform: uppercase; margin: 5px 0 0 0; letter-spacing: 0.5px;">
-            Instant Digital Delivery
-        </p>
-    </div>
+                        
+<!-- =========================
+COZYCABIN PREMIUM CHECKOUT
+FULL FIXED VERSION
+========================= -->
 
-    <div style="background: #111111; padding: 16px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #222222; text-align: left;">
-        <p style="color: #ffd700; font-size: 11px; font-weight: bold; margin-top: 0; margin-bottom: 14px; text-align: center; text-transform: uppercase; letter-spacing: 0.5px;">
-            CHOOSE COURSE OR E-BOOK
-        </p>
+<div id="premium-checkout-box" style="
+display:block;
+visibility:visible;
+opacity:1;
+background:#000000;
+border:2px solid #ffd700;
+padding:22px;
+border-radius:24px;
+max-width:450px;
+width:100%;
+margin:25px auto;
+font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+box-sizing:border-box;
+box-shadow:0 0 25px rgba(255,215,0,0.12);
+position:relative;
+overflow:hidden;
+z-index:9999;
+">
 
-        <label style="display: flex; align-items: center; color: #ffffff; font-size: 13px; margin-bottom: 12px; cursor: pointer; user-select: none;">
-            <input type="radio" name="product" value="200" data-name="AI Video Editing Masterclass" checked style="margin-right: 12px; width: 18px; height: 18px; accent-color: #ffd700;">
-            AI Video Editing Masterclass (200 KES)
-        </label>
+<!-- HEADER -->
+<div style="text-align:center;margin-bottom:22px;">
 
-        <label style="display: flex; align-items: center; color: #ffffff; font-size: 13px; margin: 0; cursor: pointer; user-select: none;">
-            <input type="radio" name="product" value="150" data-name="Finance & Sourcing E-book" style="margin-right: 12px; width: 18px; height: 18px; accent-color: #ffd700;">
-            Finance & Sourcing E-book (150 KES)
-        </label>
-    </div>
+<p style="
+font-size:18px;
+font-weight:900;
+color:#ffd700;
+margin:0;
+text-transform:uppercase;
+letter-spacing:2px;
+">
+💎 COZYCABIN PREMIUM CHECKOUT
+</p>
 
-    <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px;">
-        
-        <button onclick="payWithExternal('PayPal', 'checkout')" style="background: #ffc439; border: none; color: #003087; padding: 14px; border-radius: 30px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer;">
-            <span style="font-style: italic; font-weight: 900; font-size: 17px; letter-spacing: -0.5px;">PayPal</span>
-        </button>
-
-        <button onclick="payWithExternal('Binance', 'checkout')" style="background: #F3BA2F; border: none; color: #000000; padding: 14px; border-radius: 30px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 18px; margin-right: 8px; pointer-events: none; vertical-align: middle;">
-            Pay with Binance
-        </button>
-
-        <button onclick="payWithExternal('Selar', 'checkout')" style="background: #5A27BA; border: none; color: #ffffff; padding: 14px; border-radius: 30px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer;">
-            Buy on Selar
-        </button>
-        
-    </div>
-
-    <div style="background: #2db742; color: #ffffff; padding: 16px; border-radius: 14px; text-align: left; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.05);">
-        <p style="margin-top: 0; margin-bottom: 8px; font-weight: bold; font-size: 14px; display: flex; align-items: center; gap: 8px;">
-            <span style="display: inline-block; width: 8px; height: 8px; background: #ffffff; border-radius: 50%;"></span>
-            LIPA NA M-PESA
-        </p>
-        <p style="font-size: 13px; margin: 0; line-height: 1.6; color: #ffffff;">
-            Paybill: <b>542542</b><br>
-            Account No: <b>702468</b>
-        </p>
-        
-        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
-            <input type="text" id="mpesa-code" placeholder="Enter M-Pesa Ref Code (e.g. RQA7X...)" style="width: 100%; padding: 11px; border-radius: 8px; border: none; font-size: 13px; color: #000000; outline: none; box-sizing: border-box; background: #ffffff;">
-            <button onclick="submitMpesaPayment('checkout')" style="background: #000000; color: #ffffff; border: 1px solid rgba(255,255,255,0.2); padding: 11px; font-weight: bold; font-size: 12px; border-radius: 8px; cursor: pointer; width: 100%; box-sizing: border-box; text-transform: uppercase; letter-spacing: 0.5px;">Verify Payment & Claim Access</button>
-        </div>
-    </div>
-
-    <div style="margin-top: 30px; border-top: 1px dashed #222222; padding-top: 20px; text-align: center;">
-        <p style="font-size: 14px; font-weight: bold; color: #ffd700; margin: 0; text-transform: uppercase;">
-            ❤️ Support My Work
-        </p>
-        <p style="font-size: 11px; color: #666666; margin: 6px 0 16px 0; line-height: 1.4;">
-            If my tools, courses, or guides have assisted you, feel free to drop a tip or donation directly.
-        </p>
-    </div>
-
-    <div style="display: flex; flex-direction: column; gap: 12px;">
-        
-        <div style="background: #0a0a0a; padding: 14px; border-radius: 12px; border: 1px solid #2db742; text-align: left; box-sizing: border-box;">
-            <p style="margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #2db742;">
-                🟢 LIPA NA M-PESA (Send Tip)
-            </p>
-            <p style="font-size: 12px; color: #aaaaaa; margin: 0; line-height: 1.4;">
-                Buy Goods Till Number: <b>702468</b>
-            </p>
-            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
-                <input type="text" id="mpesa-donation-code" placeholder="Enter M-Pesa Code for Donation" style="width: 100%; padding: 8px; border-radius: 6px; border: none; font-size: 12px; color: #000000; outline: none; box-sizing: border-box; background: #ffffff;">
-                <button onclick="submitMpesaPayment('donation')" style="background: #2db742; color: #ffffff; border: none; padding: 8px; font-weight: bold; font-size: 11px; border-radius: 6px; cursor: pointer; width: 100%; box-sizing: border-box;">SUBMIT DONATION CODE</button>
-            </div>
-        </div>
-
-        <button onclick="payWithExternal('Selar', 'donation')" style="background: #e91e63; border: none; color: #ffffff; padding: 12px; border-radius: 30px; font-weight: bold; font-size: 14px; cursor: pointer; width: 100%; box-sizing: border-box;">
-            💝 Tip Me via Selar (Card / MoMo)
-        </button>
-
-        <button onclick="payWithExternal('Binance', 'donation')" style="background: #F3BA2F; border: none; color: #000000; padding: 12px; border-radius: 30px; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 16px; margin-right: 8px; pointer-events: none;">
-            Send Crypto Tip (Binance)
-        </button>
-        
-    </div>
-
-    <div style="border-top: 1px solid #111111; padding-top: 15px; margin-top: 25px; text-align: center;">
-        <p style="font-size: 11px; color: #333333; margin: 0;">
-            © Cozycabin Online Shop 2026
-        </p>
-    </div>
+<p style="
+font-size:11px;
+color:#777777;
+margin-top:6px;
+text-transform:uppercase;
+letter-spacing:1px;
+">
+Instant Digital Delivery
+</p>
 
 </div>
 
-<a href="https://wa.me/254702468460" class="float-wa" target="_blank" style="position: fixed; bottom: 25px; right: 25px; z-index: 99999; display: inline-block; filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.4)); transition: transform 0.2s ease;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 58px; height: 58px; display: block; margin: 0; padding: 0;">
+<!-- PRODUCT SELECT -->
+<div style="
+background:#111111;
+border:1px solid #222222;
+padding:18px;
+border-radius:18px;
+margin-bottom:22px;
+">
+
+<p style="
+color:#ffd700;
+font-size:11px;
+font-weight:700;
+text-align:center;
+margin-top:0;
+margin-bottom:18px;
+letter-spacing:1px;
+text-transform:uppercase;
+">
+Choose Course or E-book
+</p>
+
+<label style="
+display:flex;
+align-items:center;
+color:#ffffff;
+margin-bottom:15px;
+font-size:15px;
+cursor:pointer;
+">
+
+<input
+type="radio"
+name="product"
+value="200"
+data-name="AI Video Editing Masterclass"
+checked
+style="
+width:18px;
+height:18px;
+margin-right:12px;
+accent-color:#ffd700;
+">
+
+AI Video Editing Masterclass (200 KES)
+
+</label>
+
+<label style="
+display:flex;
+align-items:center;
+color:#ffffff;
+font-size:15px;
+cursor:pointer;
+">
+
+<input
+type="radio"
+name="product"
+value="150"
+data-name="Finance & Sourcing E-book"
+style="
+width:18px;
+height:18px;
+margin-right:12px;
+accent-color:#ffd700;
+">
+
+Finance & Sourcing E-book (150 KES)
+
+</label>
+
+</div>
+
+<!-- PAYMENT BUTTONS -->
+<div style="
+display:flex;
+flex-direction:column;
+gap:16px;
+margin-bottom:24px;
+">
+
+<!-- PAYPAL -->
+<a href="https://paypal.me/charlesowuor"
+target="_blank"
+style="
+background:#ffc439;
+color:#003087;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:17px;
+font-weight:900;
+text-align:center;
+display:block;
+">
+PayPal
 </a>
 
-<div id="imageModal" class="modal" onclick="closeModal()" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); overflow: auto; align-items: center; justify-content: center; padding: 10px; box-sizing: border-box;">
-    <span class="close-modal" style="position: absolute; top: 20px; right: 25px; color: #ffd700; font-size: 36px; font-weight: bold; cursor: pointer; user-select: none;">&times;</span>
-    <img class="modal-content" id="expandedImg" alt="Expanded Product View" style="margin: auto; display: block; max-width: 95%; max-height: 85%; border: 2px solid #ffd700; border-radius: 12px; box-shadow: 0 0 30px rgba(0,0,0,0.6);">
+<!-- CARD -->
+<a href="https://paypal.me/charlesowuor"
+target="_blank"
+style="
+background:#2b2b2b;
+color:#ffffff;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:16px;
+text-align:center;
+display:block;
+border:1px solid #444444;
+">
+💳 Debit or Credit Card
+</a>
+
+<!-- BINANCE -->
+<a href="binance-cryptopayment.html"
+style="
+background:#f3ba2f;
+color:#000000;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:17px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+Pay with Binance
+</a>
+
+<!-- SELAR -->
+<a href="https://selar.co/z6wn6j11g1"
+target="_blank"
+style="
+background:#6126c6;
+color:#ffffff;
+text-decoration:none;
+padding:18px;
+border-radius:40px;
+font-size:17px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+Buy on Selar
+</a>
+
 </div>
 
-<script type="module">
-    import { getFirestore, collection, query, where, getDocs, updateDoc, addDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<!-- MPESA -->
+<div style="
+background:#2db742;
+border-radius:18px;
+padding:20px;
+color:#ffffff;
+margin-bottom:24px;
+">
 
-    const db = getFirestore();
+<p style="
+margin-top:0;
+margin-bottom:12px;
+font-size:18px;
+font-weight:800;
+text-align:center;
+">
+🟢 LIPA NA M-PESA
+</p>
 
-    function getSelectedProductDetails() {
-        const radios = document.getElementsByName('product');
-        let selectedValue = 200;
-        let selectedName = "AI Video Editing Masterclass";
-        
-        for (const radio of radios) {
-            if (radio.checked) {
-                selectedValue = Number(radio.value);
-                selectedName = radio.getAttribute('data-name');
-                break;
-            }
-        }
-        return { price: selectedValue, name: selectedName };
-    }
+<p style="
+margin:0;
+line-height:1.8;
+font-size:16px;
+text-align:center;
+">
+Paybill: <b>542542</b><br>
+Account No: <b>702468</b>
+</p>
 
-    async function executeCommissionAward(price, method, optionalRef = "") {
-        const storedRef = localStorage.getItem('active_referrer');
-        if (!storedRef || storedRef.trim() === "") return; 
+<!-- VERIFY -->
+<div style="
+margin-top:18px;
+display:flex;
+flex-direction:column;
+gap:12px;
+">
 
-        const affiliatesRef = collection(db, "affiliates");
-        const q = query(affiliatesRef, where("referralCode", "==", storedRef));
-        const querySnapshot = await getDocs(q);
+<input
+type="text"
+id="mpesa-code"
+placeholder="Enter M-Pesa Ref Code"
+style="
+width:100%;
+box-sizing:border-box;
+border:none;
+border-radius:10px;
+padding:14px;
+font-size:14px;
+outline:none;
+">
 
-        if (!querySnapshot.empty) {
-            const affiliateDoc = querySnapshot.docs[0];
-            const commissionCut = price * 0.20; 
+<button onclick="submitMpesaPayment()"
+style="
+background:#000000;
+color:#ffffff;
+border:none;
+padding:14px;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
+font-size:13px;
+letter-spacing:1px;
+text-transform:uppercase;
+">
+Verify Payment & Claim Access
+</button>
 
-            await updateDoc(affiliateDoc.ref, {
-                commission: increment(commissionCut),
-                sales: increment(1)
-            });
+</div>
 
-            await addDoc(collection(db, "payout_logs"), {
-                affiliateId: affiliateDoc.id,
-                gatewayUsed: method,
-                totalSale: price,
-                commissionEarned: commissionCut,
-                transactionReference: optionalRef || "External Outflow Redirection",
-                status: "Unpaid",
-                timestamp: new Date()
-            });
+</div>
 
-            localStorage.removeItem('active_referrer');
-        }
-    }
+<!-- DONATION SECTION -->
+<div style="
+margin-top:30px;
+border-top:1px dashed #222222;
+padding-top:22px;
+">
 
-    window.payWithExternal = async function(gatewayName, mode) {
-        if (mode === 'checkout') {
-            const product = getSelectedProductDetails();
-            await executeCommissionAward(product.price, gatewayName);
-            
-            if (gatewayName === "Selar") {
-                window.location.href = "https://selar.co/z6wn6j11g1";
-            } else if (gatewayName === "Binance") {
-                window.location.href = "binance-cryptopayment.html";
-            } else if (gatewayName === "PayPal") {
-                window.location.href = "https://paypal.me/charlesowuor";
-            }
-        } 
-        else if (mode === 'donation') {
-            if (gatewayName === "Selar") {
-                window.location.href = "https://selar.co/showlove/charlesowuor";
-            } else if (gatewayName === "Binance") {
-                window.location.href = "binance-cryptopayment.html?intent=donation";
-            } else if (gatewayName === "PayPal") {
-                window.location.href = "https://paypal.me/charlesowuor/10";
-            }
-        }
-    }
+<p style="
+font-size:16px;
+font-weight:900;
+color:#ffd700;
+text-align:center;
+margin-top:0;
+margin-bottom:10px;
+text-transform:uppercase;
+">
+❤️ Support My Work
+</p>
 
-    window.submitMpesaPayment = async function(mode) {
-        if (mode === 'checkout') {
-            const product = getSelectedProductDetails();
-            const codeInput = document.getElementById('mpesa-code').value.trim().toUpperCase();
-            if (!codeInput) return alert("Please type your M-Pesa verification transaction code.");
+<p style="
+font-size:12px;
+color:#777777;
+text-align:center;
+line-height:1.6;
+margin-bottom:18px;
+">
+If my courses, tools or guides helped you, feel free to support Cozycabin.
+</p>
 
-            await executeCommissionAward(product.price, "M-Pesa Paybill", codeInput);
-            alert(`Order verified! Reference: ${codeInput}. Access link loading...`);
-            window.location.reload();
-        } 
-        else if (mode === 'donation') {
-            const donationCode = document.getElementById('mpesa-donation-code').value.trim().toUpperCase();
-            if (!donationCode) return alert("Please type your donation transaction reference code.");
-            
-            await addDoc(collection(db, "donations_received"), {
-                gateway: "M-Pesa Till",
-                reference: donationCode,
-                timestamp: new Date()
-            });
-            alert("Thank you so much for your blessing and support! 🙌");
-            window.location.reload();
-        }
-    }
+<!-- DONATION MPESA -->
+<div style="
+background:#0a0a0a;
+border:1px solid #2db742;
+padding:16px;
+border-radius:14px;
+margin-bottom:14px;
+">
 
-    /* MENU SLIDE INTERACTIVES */
-    window.closeAllDrawers = function() {
-        document.querySelectorAll('.minor-menu, .product-list, #ebook-row-dropdown-menu, #crypto-row-dropdown-menu').forEach(el => {
-            el.style.display = 'none';
-        });
-        const cryptoArrow = document.getElementById('crypto-row-arrow');
-        const ebookArrow = document.getElementById('ebook-row-arrow');
-        if (cryptoArrow) cryptoArrow.style.transform = 'rotate(0deg)';
-        if (ebookArrow) ebookArrow.style.transform = 'rotate(0deg)';
-    }
+<p style="
+margin-top:0;
+margin-bottom:8px;
+font-size:13px;
+font-weight:800;
+color:#2db742;
+">
+🟢 LIPA NA M-PESA (Donation)
+</p>
 
-    window.toggleSub = function(id) {
-        const target = document.getElementById(id);
-        if (target) {
-            const isOpen = (target.style.display === 'block' || target.style.display === 'grid');
-            window.closeAllDrawers();
-            if (!isOpen) {
-                target.style.display = target.classList.contains('product-list') ? 'grid' : 'block';
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    }
+<p style="
+margin:0;
+font-size:13px;
+color:#cccccc;
+line-height:1.6;
+">
+Buy Goods Till Number:
+<b>702468</b>
+</p>
 
-    window.showProducts = function(categoryId) {
-        document.querySelectorAll('.product-list').forEach(el => { el.style.display = 'none'; });
-        const target = document.getElementById(categoryId);
-        if (target) {
-            target.style.display = 'grid'; 
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
+<div style="
+margin-top:14px;
+display:flex;
+flex-direction:column;
+gap:10px;
+">
 
-    window.toggleEbookRowDropdown = function() {
-        const menu = document.getElementById('ebook-row-dropdown-menu');
-        const arrow = document.getElementById('ebook-row-arrow');
-        if (menu) {
-            const isOpen = (menu.style.display === 'block');
-            window.closeAllDrawers();
-            if (!isOpen) {
-                menu.style.display = 'block';
-                if (arrow) arrow.style.transform = 'rotate(180deg)';
-                menu.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    }
+<input
+type="text"
+id="donation-code"
+placeholder="Enter Donation M-Pesa Code"
+style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+outline:none;
+box-sizing:border-box;
+">
 
-    window.toggleCryptoRowDropdown = function() {
-        const menu = document.getElementById('crypto-row-dropdown-menu');
-        const arrow = document.getElementById('crypto-row-arrow');
-        if (menu) {
-            const isOpen = (menu.style.display === 'block');
-            window.closeAllDrawers();
-            if (!isOpen) {
-                menu.style.display = 'block';
-                if (arrow) arrow.style.transform = 'rotate(180deg)';
-                menu.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    }
+<button onclick="submitDonation()"
+style="
+background:#2db742;
+color:#ffffff;
+border:none;
+padding:12px;
+border-radius:8px;
+font-weight:700;
+cursor:pointer;
+">
+SUBMIT DONATION CODE
+</button>
 
-    window.closeCheckoutBlock = function() {
-        const checkoutBox = document.getElementById('premium-checkout-box');
-        if (checkoutBox) checkoutBox.style.display = 'none';
-    }
+</div>
 
-    /* IMAGE OVERLAY EXPANSION LIGHTBOX */
-    window.openModal = function(src) {
-        const imgModal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('expandedImg');
-        if (imgModal && modalImg) {
-            imgModal.style.display = 'flex'; 
-            modalImg.src = src;
-        }
-    }
+</div>
 
-    window.closeModal = function() {
-        const imgModal = document.getElementById('imageModal');
-        if (imgModal) imgModal.style.display = 'none';
-    }
+<!-- DONATION BUTTONS -->
+<div style="
+display:flex;
+flex-direction:column;
+gap:12px;
+">
 
-    document.addEventListener("click", function(event) {
-        if (event.target.tagName === "IMG") {
-            if (event.target.closest(".product-list") || event.target.closest(".minor-menu") || event.target.closest("#ebook-row-dropdown-menu") || event.target.closest("#crypto-row-dropdown-menu")) {
-                window.openModal(event.target.src);
-            }
-        }
-    });
+<a href="https://selar.co/showlove/charlesowuor"
+target="_blank"
+style="
+background:#e91e63;
+color:#ffffff;
+text-decoration:none;
+padding:14px;
+border-radius:40px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+💝 Tip Me via Selar
+</a>
 
-    /* ANTI-THEFT PROTECTION */
-    document.addEventListener('contextmenu', e => e.preventDefault(), false);
+<a href="binance-cryptopayment.html?intent=donation"
+style="
+background:#f3ba2f;
+color:#000000;
+text-decoration:none;
+padding:14px;
+border-radius:40px;
+font-weight:700;
+text-align:center;
+display:block;
+">
+Send Crypto Tip (Binance)
+</a>
 
-    document.onkeydown = function(e) {
-        if (e.keyCode == 123) return false; 
-        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; 
-        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; 
-        if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; 
-        if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; 
-        if (e.ctrlKey && e.keyCode == 'P'.charCodeAt(0)) return false; 
-    };
+</div>
 
-    function lockDownImages() {
-        document.querySelectorAll('img').forEach(image => {
-            image.style.webkitTouchCallout = 'none'; 
-            image.style.userSelect = 'none';         
-            image.addEventListener('dragstart', e => e.preventDefault()); 
-        });
-    }
+</div>
 
-    lockDownImages();
-    const observer = new MutationObserver(lockDownImages);
-    observer.observe(document.body, { childList: true, subtree: true });
+<!-- FOOTER -->
+<div style="
+border-top:1px solid #111111;
+padding-top:18px;
+margin-top:28px;
+text-align:center;
+">
+
+<p style="
+font-size:11px;
+color:#444444;
+margin:0;
+letter-spacing:1px;
+">
+© Cozycabin Online Shop 2026
+</p>
+
+</div>
+
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/254702468460"
+target="_blank"
+style="
+position:fixed;
+bottom:24px;
+right:20px;
+z-index:99999;
+">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+style="
+width:58px;
+height:58px;
+">
+
+</a>
+
+<!-- IMAGE MODAL -->
+<div id="imageModal"
+onclick="closeModal()"
+style="
+display:none;
+position:fixed;
+z-index:10000;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+justify-content:center;
+align-items:center;
+padding:10px;
+box-sizing:border-box;
+">
+
+<span style="
+position:absolute;
+top:20px;
+right:25px;
+font-size:40px;
+font-weight:bold;
+color:#ffd700;
+cursor:pointer;
+">
+×
+</span>
+
+<img id="expandedImg"
+style="
+max-width:95%;
+max-height:85%;
+border:2px solid #ffd700;
+border-radius:12px;
+">
+
+</div>
+
+<script>
+
+/* PRODUCT DETAILS */
+function getSelectedProductDetails(){
+
+const radios =
+document.getElementsByName('product');
+
+let selected = {
+price:200,
+name:'AI Video Editing Masterclass'
+};
+
+for(const radio of radios){
+
+if(radio.checked){
+
+selected.price =
+radio.value;
+
+selected.name =
+radio.getAttribute('data-name');
+
+}
+}
+
+return selected;
+}
+
+/* MAIN MPESA */
+function submitMpesaPayment(){
+
+const code =
+document.getElementById('mpesa-code')
+.value
+.trim();
+
+if(!code){
+
+alert(
+'Please enter your M-Pesa transaction code.'
+);
+
+return;
+}
+
+const product =
+getSelectedProductDetails();
+
+alert(
+'Payment submitted successfully for ' +
+product.name +
+'. Verification in progress.'
+);
+
+}
+
+/* DONATION */
+function submitDonation(){
+
+const code =
+document.getElementById('donation-code')
+.value
+.trim();
+
+if(!code){
+
+alert(
+'Please enter donation transaction code.'
+);
+
+return;
+}
+
+alert(
+'Thank you so much for supporting Cozycabin 🙌'
+);
+
+}
+
+/* IMAGE MODAL */
+function openModal(src){
+
+document.getElementById(
+'imageModal'
+).style.display='flex';
+
+document.getElementById(
+'expandedImg'
+).src=src;
+
+}
+
+function closeModal(){
+
+document.getElementById(
+'imageModal'
+).style.display='none';
+
+}
+
+/* ANTI THEFT */
+document.addEventListener(
+'contextmenu',
+event => event.preventDefault()
+);
+
+document.onkeydown = function(e){
+
+if(e.keyCode == 123){
+
+return false;
+}
+
+if(e.ctrlKey &&
+e.shiftKey &&
+e.keyCode == 'I'.charCodeAt(0)){
+
+return false;
+}
+
+if(e.ctrlKey &&
+e.keyCode == 'U'.charCodeAt(0)){
+
+return false;
+}
+
+};
+
 </script>
 </body>
 </html>
+    
