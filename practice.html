@@ -140,74 +140,215 @@
         <div id="fashion-grid" class="product-list" style="display:none;"></div>
         <div id="appliances-grid" class="product-list" style="display:none;"></div>
     </div>
+<div id="premium-checkout-box" style="display: block !important; visibility: visible !important; opacity: 1 !important; background: #000000; border: 2px solid #ffd700; padding: 22px; border-radius: 16px; max-width: 450px; margin: 25px auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; box-sizing: border-box; box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.15); position: relative; z-index: 9999;">
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+        <p style="font-size: 16px; font-weight: bold; color: #ffd700; margin: 0; text-transform: uppercase; letter-spacing: 1.5px;">
+            💎 COZYCABIN PREMIUM CHECKOUT
+        </p>
+        <p style="font-size: 10px; color: #888888; text-transform: uppercase; margin: 5px 0 0 0; letter-spacing: 0.5px;">
+            Instant Digital Delivery
+        </p>
+    </div>
 
-    <div id="premium-checkout-box" style="display: block !important; visibility: visible !important; opacity: 1 !important; background: #000000; border: 2px solid #ffd700; padding: 22px; border-radius: 16px; max-width: 450px; margin: 30px auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; box-sizing: border-box; box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.2); position: relative; z-index: 999;">
+    <div style="background: #111111; padding: 16px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #222222; text-align: left;">
+        <p style="color: #ffd700; font-size: 11px; font-weight: bold; margin-top: 0; margin-bottom: 14px; text-align: center; text-transform: uppercase; letter-spacing: 0.5px;">
+            CHOOSE COURSE OR E-BOOK
+        </p>
+
+        <label style="display: flex; align-items: center; color: #ffffff; font-size: 13px; margin-bottom: 12px; cursor: pointer; user-select: none;">
+            <input type="radio" name="product" value="200" data-name="AI Video Editing Masterclass" checked style="margin-right: 12px; width: 18px; height: 18px; accent-color: #ffd700;">
+            AI Video Editing Masterclass (200 KES)
+        </label>
+
+        <label style="display: flex; align-items: center; color: #ffffff; font-size: 13px; margin: 0; cursor: pointer; user-select: none;">
+            <input type="radio" name="product" value="150" data-name="Finance & Sourcing E-book" style="margin-right: 12px; width: 18px; height: 18px; accent-color: #ffd700;">
+            Finance & Sourcing E-book (150 KES)
+        </label>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px;">
+        <button onclick="payWithExternal('PayPal', 'checkout')" style="background: #ffc439; border: none; color: #003087; padding: 14px; border-radius: 30px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer;">
+            <span style="font-style: italic; font-weight: 900; font-size: 17px; letter-spacing: -0.5px;">PayPal</span>
+        </button>
+
+        <button onclick="payWithExternal('Binance', 'checkout')" style="background: #F3BA2F; border: none; color: #000000; padding: 14px; border-radius: 30px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 18px; margin-right: 8px; pointer-events: none; vertical-align: middle;">
+            Pay with Binance
+        </button>
+
+        <button onclick="payWithExternal('Selar', 'checkout')" style="background: #5A27BA; border: none; color: #ffffff; padding: 14px; border-radius: 30px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer;">
+            Buy on Selar
+        </button>
+    </div>
+
+    <div style="background: #2db742; color: #ffffff; padding: 16px; border-radius: 14px; text-align: left; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.05);">
+        <p style="margin-top: 0; margin-bottom: 8px; font-weight: bold; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+            <span style="display: inline-block; width: 8px; height: 8px; background: #ffffff; border-radius: 50%;"></span>
+            LIPA NA M-PESA
+        </p>
+        <p style="font-size: 13px; margin: 0; line-height: 1.6; color: #ffffff;">
+            Paybill: <b>542542</b><br>
+            Account No: <b>702468</b>
+        </p>
         
-        <div style="text-align: center; margin-bottom: 20px;">
-            <p style="font-size: 16px; font-weight: bold; color: #ffd700; margin: 0; text-transform: uppercase; letter-spacing: 1.5px;">
-                💎 COZYCABIN PREMIUM CHECKOUT
-            </p>
-            <p style="font-size: 10px; color: #888888; text-transform: uppercase; margin: 5px 0 0 0; letter-spacing: 0.5px;">
-                Instant Digital Delivery
-            </p>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
+            <input type="text" id="mpesa-code" placeholder="Enter M-Pesa Ref Code (e.g. RQA7X...)" style="width: 100%; padding: 11px; border-radius: 8px; border: none; font-size: 13px; color: #000000; outline: none; box-sizing: border-box; background: #ffffff;">
+            <button onclick="submitMpesaPayment('checkout')" style="background: #000000; color: #ffffff; border: 1px solid rgba(255,255,255,0.2); padding: 11px; font-weight: bold; font-size: 12px; border-radius: 8px; cursor: pointer; width: 100%; box-sizing: border-box; text-transform: uppercase; letter-spacing: 0.5px;">Verify Payment & Claim Access</button>
         </div>
+    </div>
 
-        
+    <div style="margin-top: 30px; border-top: 1px dashed #222222; padding-top: 20px; text-align: center;">
+        <p style="font-size: 14px; font-weight: bold; color: #ffd700; margin: 0; text-transform: uppercase;">
+            ❤️ Support My Work
+        </p>
+        <p style="font-size: 11px; color: #666666; margin: 6px 0 16px 0; line-height: 1.4;">
+            If my tools, courses, or guides have assisted you, feel free to drop a tip or donation directly.
+        </p>
+    </div>
 
-        <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px;">
-            <button onclick="payWithExternal('PayPal', 'checkout')" style="background: #ffc439; border: none; color: #003087; padding: 14px; border-radius: 30px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer;">
-                <span style="font-style: italic; font-weight: 900; font-size: 17px; letter-spacing: -0.5px;">PayPal</span>
-            </button>
-            <button onclick="payWithExternal('Binance', 'checkout')" style="background: #F3BA2F; border: none; color: #000000; padding: 14px; border-radius: 30px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 18px; margin-right: 8px; pointer-events: none; vertical-align: middle;">
-                Pay with Binance
-            </button>
-            <button onclick="payWithExternal('Selar', 'checkout')" style="background: #5A27BA; border: none; color: #ffffff; padding: 14px; border-radius: 30px; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer;">
-                Buy on Selar
-            </button>
-        </div>
-
-        <div style="background: #2db742; color: #ffffff; padding: 16px; border-radius: 14px; text-align: left; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.05);">
-            <p style="margin-top: 0; margin-bottom: 8px; font-weight: bold; font-size: 14px; display: flex; align-items: center; gap: 8px;">
-                <span style="display: inline-block; width: 8px; height: 8px; background: #ffffff; border-radius: 50%;"></span>
-                LIPA NA M-PESA
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="background: #0a0a0a; padding: 14px; border-radius: 12px; border: 1px solid #2db742; text-align: left; box-sizing: border-box;">
+            <p style="margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #2db742;">
+                🟢 LIPA NA M-PESA (Send Tip)
             </p>
-            <p style="font-size: 13px; margin: 0; line-height: 1.6; color: #ffffff;">
-                Paybill: <b>542542</b><br>
-                Account No: <b>702468</b>
+            <p style="font-size: 12px; color: #aaaaaa; margin: 0; line-height: 1.4;">
+                Buy Goods Till Number: <b>702468</b>
             </p>
-            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
-                <input type="text" id="mpesa-code" placeholder="Enter M-Pesa Ref Code (e.g. RQA7X...)" style="width: 100%; padding: 11px; border-radius: 8px; border: none; font-size: 13px; color: #000000; outline: none; box-sizing: border-box; background: #ffffff;">
-                <button onclick="submitMpesaPayment('checkout')" style="background: #000000; color: #ffffff; border: 1px solid rgba(255,255,255,0.2); padding: 11px; font-weight: bold; font-size: 12px; border-radius: 8px; cursor: pointer; width: 100%; box-sizing: border-box; text-transform: uppercase; letter-spacing: 0.5px;">Verify Payment & Claim Access</button>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
+                <input type="text" id="mpesa-donation-code" placeholder="Enter M-Pesa Code for Donation" style="width: 100%; padding: 8px; border-radius: 6px; border: none; font-size: 12px; color: #000000; outline: none; box-sizing: border-box; background: #ffffff;">
+                <button onclick="submitMpesaPayment('donation')" style="background: #2db742; color: #ffffff; border: none; padding: 8px; font-weight: bold; font-size: 11px; border-radius: 6px; cursor: pointer; width: 100%;">SUBMIT DONATION CODE</button>
             </div>
         </div>
 
-        <div style="margin-top: 30px; border-top: 1px dashed #222222; padding-top: 20px; text-align: center;">
-            <p style="font-size: 14px; font-weight: bold; color: #ffd700; margin: 0; text-transform: uppercase;">
-                ❤️ Support My Work
-            </p>
-            <p style="font-size: 11px; color: #666666; margin: 6px 0 16px 0; line-height: 1.4;">
-                If my tools, courses, or guides have assisted you, feel free to drop a tip or donation directly.
-            </p>
-        </div>
+        <button onclick="payWithExternal('Selar', 'donation')" style="background: #e91e63; border: none; color: #ffffff; padding: 12px; border-radius: 30px; font-weight: bold; font-size: 14px; cursor: pointer; width: 100%; box-sizing: border-box;">
+            💝 Tip Me via Selar (Card / MoMo)
+        </button>
 
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-            <div style="background: #0a0a0a; padding: 14px; border-radius: 12px; border: 1px solid #2db742; text-align: left; box-sizing: border-box;">
-                <p style="margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #2db742;">
-                    🟢 LIPA NA M-PESA (Send Tip)
-                </p>
-                <p style="font-size: 12px; color: #aaaaaa; margin: 0; line-height: 1.4;">
-                    Paybill: <b>542542</b><br>
-                Account No: <b>702468</b>
-                    
-                Pochi la Bishara:<b>0702468460</b>
-                </p>
-                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
-                    <input type="text" id="mpesa-donation-code" placeholder="Enter M-Pesa Code for Donation" style="width: 100%; padding: 8px; border-radius: 6px; border: none; font-size: 12px; color: #000000; outline: none; box-sizing: border-box; background: #ffffff;">
-                    <button onclick="submitMpesaPayment('donation')" style="background: #2db742; color: #ffffff; border: none; padding: 8px; font-weight: bold; font-size: 11px; border-radius: 6px; cursor: pointer; width: 100%; box-sizing: border-box;">SUBMIT DONATION CODE</button>
-                </div>
-            </div>
-            <button onclick="payWithExternal('Selar', 'donation')" style="background: #e91e63; border: none; color: #ffffff; padding: 12px; border-radius: 30px; font-weight: bold; font-size: 14px; cursor: pointer; width: 100%; box-sizing: border-box;">
-                💝 Tip Me via Selar (Card / MoMo)
-            </button>
-            <button onclick="payWithExternal('Binance', 'donation')" style="background: #F3BA2F; border: none; color: #000000; paddi
+        <button onclick="payWithExternal('Binance', 'donation')" style="background: #F3BA2F; border: none; color: #000000; padding: 12px; border-radius: 30px; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; cursor: pointer;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height: 16px; margin-right: 8px; pointer-events: none;">
+            Send Crypto Tip (Binance)
+        </button>
+    </div>
+
+    <div style="border-top: 1px solid #111111; padding-top: 15px; margin-top: 25px; text-align: center;">
+        <p style="font-size: 11px; color: #333333; margin: 0;">
+            © Cozycabin Online Shop 2026
+        </p>
+    </div>
+
+</div>
+
+<a href="https://wa.me/254702468460" class="float-wa" target="_blank" style="position: fixed; bottom: 25px; right: 25px; z-index: 99999; display: inline-block; filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.4));">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 58px; height: 58px; display: block;">
+</a>
+
+<div id="imageModal" class="modal" onclick="closeModal()" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); overflow: auto; align-items: center; justify-content: center; padding: 10px; box-sizing: border-box;">
+    <span class="close-modal" style="position: absolute; top: 20px; right: 25px; color: #ffd700; font-size: 36px; font-weight: bold; cursor: pointer; user-select: none;">&times;</span>
+    <img class="modal-content" id="expandedImg" alt="Expanded Product View" style="margin: auto; display: block; max-width: 95%; max-height: 85%; border: 2px solid #ffd700; border-radius: 12px; box-shadow: 0 0 30px rgba(0,0,0,0.6);">
+</div>
+
+<script>
+    // 💰 Simple External Gateway Router
+    window.payWithExternal = function(gatewayName, mode) {
+        if (mode === 'checkout') {
+            if (gatewayName === "Selar") {
+                window.location.href = "https://selar.co/z6wn6j11g1";
+            } else if (gatewayName === "Binance") {
+                window.location.href = "binance-cryptopayment.html";
+            } else if (gatewayName === "PayPal") {
+                window.location.href = "https://paypal.me/charlesowuor";
+            }
+        } 
+        else if (mode === 'donation') {
+            if (gatewayName === "Selar") {
+                window.location.href = "https://selar.co/showlove/charlesowuor";
+            } else if (gatewayName === "Binance") {
+                window.location.href = "binance-cryptopayment.html?intent=donation";
+            } else if (gatewayName === "PayPal") {
+                window.location.href = "https://paypal.me/charlesowuor/10";
+            }
+        }
+    }
+
+    // 🟢 Simple M-Pesa Input Triggers
+    window.submitMpesaPayment = function(mode) {
+        if (mode === 'checkout') {
+            const codeInput = document.getElementById('mpesa-code').value.trim().toUpperCase();
+            if (!codeInput) return alert("Please type your M-Pesa verification transaction code.");
+            alert("Order reference submitted! Verification checking in progress...");
+        } 
+        else if (mode === 'donation') {
+            const donationCode = document.getElementById('mpesa-donation-code').value.trim().toUpperCase();
+            if (!donationCode) return alert("Please type your donation transaction reference code.");
+            alert("Thank you so much for your blessing and support! 🙌");
+        }
+    }
+
+    // 📱 Clean Dropdown Drawer Rules for Phones
+    window.closeAllDrawers = function() {
+        document.querySelectorAll('.minor-menu, .product-list, #ebook-row-dropdown-menu, #crypto-row-dropdown-menu, #academy-courses-dropdown').forEach(el => {
+            el.style.display = 'none';
+        });
+        if (document.getElementById('crypto-row-arrow')) document.getElementById('crypto-row-arrow').style.transform = 'rotate(0deg)';
+        if (document.getElementById('ebook-row-arrow')) document.getElementById('ebook-row-arrow').style.transform = 'rotate(0deg)';
+        if (document.getElementById('academy-arrow')) document.getElementById('academy-arrow').style.transform = 'rotate(0deg)';
+    }
+
+    window.toggleSub = function(id) {
+        const target = document.getElementById(id);
+        if (target) {
+            const isOpen = (target.style.display === 'block' || target.style.display === 'grid');
+            window.closeAllDrawers();
+            if (!isOpen) {
+                if (target.classList.contains('product-list') || id.includes('grid')) {
+                    target.style.display = 'grid';
+                } else {
+                    target.style.display = 'block';
+                }
+                if (id === 'academy-courses-dropdown' && document.getElementById('academy-arrow')) document.getElementById('academy-arrow').style.transform = 'rotate(180deg)';
+                if (id === 'ebook-row-dropdown-menu' && document.getElementById('ebook-row-arrow')) document.getElementById('ebook-row-arrow').style.transform = 'rotate(180deg)';
+                if (id === 'crypto-row-dropdown-menu' && document.getElementById('crypto-row-arrow')) document.getElementById('crypto-row-arrow').style.transform = 'rotate(180deg)';
+            }
+        }
+    }
+
+    // Opens local product display grids smoothly
+    window.showProducts = function(categoryId) {
+        window.closeAllDrawers();
+        const target = document.getElementById(categoryId);
+        if (target) {
+            target.style.display = 'grid';
+            target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    // 🔍 Clean Lightbox Image Modal Controllers
+    window.openModal = function(src) {
+        const imgModal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('expandedImg');
+        if (imgModal && modalImg) {
+            imgModal.style.display = 'flex'; 
+            modalImg.src = src;
+        }
+    }
+
+    window.closeModal = function() {
+        const imgModal = document.getElementById('imageModal');
+        if (imgModal) imgModal.style.display = 'none';
+    }
+
+    document.addEventListener("click", function(event) {
+        if (event.target.tagName === "IMG") {
+            if (event.target.closest(".product-list") || event.target.closest(".minor-menu") || event.target.closest("[id*='grid']")) {
+                window.openModal(event.target.src);
+            }
+        }
+    });
+
+    // 🔒 Security Right-Click Block
+    document.addEventListener('contextmenu', e => e.preventDefault(), false);
+    document.onkeydown = function(e) { if (e.keyCode == 123) return false; };
+</script>
+    
+        
