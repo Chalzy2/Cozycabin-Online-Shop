@@ -844,16 +844,12 @@ font-size:19px;
         <a href="https://wa.me/254702468460?text=I+want+Rantom+Dispenser" class="whatsapp-btn">Order Now</a>
     </div>
 
-                        
-<!-- =========================
-COZYCABIN PREMIUM CHECKOUT
-FULL FIXED VERSION
-========================= -->
+       <!-- ===================================================== -->
+<!-- COZYCABIN FULL PREMIUM CHECKOUT + AFFILIATE TRACKING -->
+<!-- ===================================================== -->
 
 <div id="premium-checkout-box" style="
 display:block;
-visibility:visible;
-opacity:1;
 background:#000000;
 border:2px solid #ffd700;
 padding:22px;
@@ -895,7 +891,7 @@ Instant Digital Delivery
 
 </div>
 
-<!-- PRODUCT SELECT -->
+<!-- PRODUCT SELECTION -->
 <div style="
 background:#111111;
 border:1px solid #222222;
@@ -973,11 +969,10 @@ Finance & Sourcing E-book (150 KES)
 <div style="
 display:flex;
 flex-direction:column;
-gap:16px;
+gap:14px;
 margin-bottom:24px;
 ">
 
-<!-- PAYPAL -->
 <a href="https://paypal.me/charlesowuor"
 target="_blank"
 style="
@@ -994,11 +989,10 @@ display:block;
 PayPal
 </a>
 
-<!-- CARD -->
 <a href="https://paypal.me/charlesowuor"
 target="_blank"
 style="
-background:#2b2b2b;
+background:#2d2d2d;
 color:#ffffff;
 text-decoration:none;
 padding:18px;
@@ -1011,7 +1005,6 @@ border:1px solid #444444;
 💳 Debit or Credit Card
 </a>
 
-<!-- BINANCE -->
 <a href="binance-cryptopayment.html"
 style="
 background:#f3ba2f;
@@ -1027,7 +1020,6 @@ display:block;
 Pay with Binance
 </a>
 
-<!-- SELAR -->
 <a href="https://selar.co/z6wn6j11g1"
 target="_blank"
 style="
@@ -1075,7 +1067,6 @@ Paybill: <b>542542</b><br>
 Account No: <b>702468</b>
 </p>
 
-<!-- VERIFY -->
 <div style="
 margin-top:18px;
 display:flex;
@@ -1089,12 +1080,12 @@ id="mpesa-code"
 placeholder="Enter M-Pesa Ref Code"
 style="
 width:100%;
-box-sizing:border-box;
+padding:14px;
 border:none;
 border-radius:10px;
-padding:14px;
-font-size:14px;
 outline:none;
+box-sizing:border-box;
+font-size:14px;
 ">
 
 <button onclick="submitMpesaPayment()"
@@ -1117,7 +1108,7 @@ Verify Payment & Claim Access
 
 </div>
 
-<!-- DONATION SECTION -->
+<!-- DONATION -->
 <div style="
 margin-top:30px;
 border-top:1px dashed #222222;
@@ -1143,10 +1134,9 @@ text-align:center;
 line-height:1.6;
 margin-bottom:18px;
 ">
-If my courses, tools or guides helped you, feel free to support Cozycabin.
+If my guides or tools helped you, feel free to support Cozycabin.
 </p>
 
-<!-- DONATION MPESA -->
 <div style="
 background:#0a0a0a;
 border:1px solid #2db742;
@@ -1212,7 +1202,6 @@ SUBMIT DONATION CODE
 
 </div>
 
-<!-- DONATION BUTTONS -->
 <div style="
 display:flex;
 flex-direction:column;
@@ -1292,50 +1281,58 @@ height:58px;
 
 </a>
 
-<!-- IMAGE MODAL -->
-<div id="imageModal"
-onclick="closeModal()"
-style="
-display:none;
-position:fixed;
-z-index:10000;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.95);
-justify-content:center;
-align-items:center;
-padding:10px;
-box-sizing:border-box;
-">
+<!-- FIREBASE -->
+<script type="module">
 
-<span style="
-position:absolute;
-top:20px;
-right:25px;
-font-size:40px;
-font-weight:bold;
-color:#ffd700;
-cursor:pointer;
-">
-×
-</span>
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-<img id="expandedImg"
-style="
-max-width:95%;
-max-height:85%;
-border:2px solid #ffd700;
-border-radius:12px;
-">
+import {
+getFirestore,
+collection,
+addDoc,
+serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-</div>
+/* FIREBASE CONFIG */
+const firebaseConfig = {
 
-<script>
+apiKey: "YOUR_API_KEY",
+
+authDomain:
+"cozycabin-affiliate.firebaseapp.com",
+
+projectId:
+"cozycabin-affiliate",
+
+storageBucket:
+"cozycabin-affiliate.appspot.com",
+
+messagingSenderId:
+"765281276271",
+
+appId:
+"1:765281276271:web:1368fb340b1fb68a01189a"
+
+};
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
+
+/* REFERRAL TRACKING */
+const urlParams =
+new URLSearchParams(window.location.search);
+
+const referralCode =
+urlParams.get('ref') || "Direct";
 
 /* PRODUCT DETAILS */
-function getSelectedProductDetails(){
+window.getSelectedProductDetails =
+function(){
 
 const radios =
 document.getElementsByName('product');
@@ -1361,13 +1358,14 @@ radio.getAttribute('data-name');
 return selected;
 }
 
-/* MAIN MPESA */
-function submitMpesaPayment(){
+/* MPESA PAYMENT */
+window.submitMpesaPayment =
+async function(){
 
 const code =
-document.getElementById('mpesa-code')
-.value
-.trim();
+document.getElementById(
+'mpesa-code'
+).value.trim();
 
 if(!code){
 
@@ -1379,23 +1377,62 @@ return;
 }
 
 const product =
-getSelectedProductDetails();
+window.getSelectedProductDetails();
+
+try{
+
+await addDoc(
+collection(db, "orders"),
+{
+
+productName:
+product.name,
+
+amount:
+product.price,
+
+mpesaCode:
+code,
+
+referralCode:
+referralCode,
+
+status:
+"pending",
+
+createdAt:
+serverTimestamp()
+
+});
 
 alert(
-'Payment submitted successfully for ' +
-product.name +
-'. Verification in progress.'
+'Payment submitted successfully. Verification in progress.'
+);
+
+document.getElementById(
+'mpesa-code'
+).value = '';
+
+}
+catch(error){
+
+alert(
+'Error saving order: ' +
+error.message
 );
 
 }
 
+}
+
 /* DONATION */
-function submitDonation(){
+window.submitDonation =
+async function(){
 
 const code =
-document.getElementById('donation-code')
-.value
-.trim();
+document.getElementById(
+'donation-code'
+).value.trim();
 
 if(!code){
 
@@ -1406,14 +1443,46 @@ alert(
 return;
 }
 
+try{
+
+await addDoc(
+collection(db, "donations"),
+{
+
+mpesaCode:
+code,
+
+referralCode:
+referralCode,
+
+createdAt:
+serverTimestamp()
+
+});
+
 alert(
 'Thank you so much for supporting Cozycabin 🙌'
 );
 
+document.getElementById(
+'donation-code'
+).value = '';
+
+}
+catch(error){
+
+alert(
+'Donation error: ' +
+error.message
+);
+
+}
+
 }
 
 /* IMAGE MODAL */
-function openModal(src){
+window.openModal =
+function(src){
 
 document.getElementById(
 'imageModal'
@@ -1425,7 +1494,8 @@ document.getElementById(
 
 }
 
-function closeModal(){
+window.closeModal =
+function(){
 
 document.getElementById(
 'imageModal'
@@ -1433,35 +1503,43 @@ document.getElementById(
 
 }
 
-/* ANTI THEFT */
+/* ANTI-THEFT */
 document.addEventListener(
 'contextmenu',
 event => event.preventDefault()
 );
 
-document.onkeydown = function(e){
+document.onkeydown =
+function(e){
 
 if(e.keyCode == 123){
 
 return false;
+
 }
 
-if(e.ctrlKey &&
+if(
+e.ctrlKey &&
 e.shiftKey &&
-e.keyCode == 'I'.charCodeAt(0)){
+e.keyCode == 'I'.charCodeAt(0)
+){
 
 return false;
+
 }
 
-if(e.ctrlKey &&
-e.keyCode == 'U'.charCodeAt(0)){
+if(
+e.ctrlKey &&
+e.keyCode == 'U'.charCodeAt(0)
+){
 
 return false;
+
 }
 
 };
 
-</script>
+</script>                 
 </body>
 </html>
     
