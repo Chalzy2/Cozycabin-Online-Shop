@@ -175,7 +175,6 @@ input:focus {
     </div>
 
 </div>
-
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import {
@@ -183,6 +182,7 @@ input:focus {
         GoogleAuthProvider,
         FacebookAuthProvider,
         signInWithRedirect,
+        signInWithPopup,
         getRedirectResult,
         signInWithEmailAndPassword,
         createUserWithEmailAndPassword,
@@ -221,6 +221,7 @@ input:focus {
     let currentAffiliateData = null;
     let currentUserUid = null;
 
+    // Safely parse redirect payloads for Google while ignoring mobile storage limitations
     getRedirectResult(auth)
         .then(async (result) => {
             if (result && result.user) {
@@ -228,7 +229,10 @@ input:focus {
             }
         })
         .catch((error) => {
-            if (error.code !== "auth/missing-or-insufficient-permissions") {
+            if (
+                error.code !== "auth/missing-or-insufficient-permissions" && 
+                error.code !== "auth/unsupported-persistence-mechanism"
+            ) {
                 alert("Authorization Route Notice: " + error.message);
             }
         });
@@ -309,9 +313,19 @@ input:focus {
     window.facebookLogin = async function() {
         try {
             localStorage.setItem('pending_signup_ref', incomingReferralCode);
-            await signInWithRedirect(auth, facebookProvider);
+            
+            // Popup context completely resolves mobile webview local storage blocks
+            const result = await signInWithPopup(auth, facebookProvider);
+            if (result && result.user) {
+                await checkAndCreateAffiliateProfile(result.user);
+            }
         } catch (error) {
-            alert("Facebook System Interruption: " + error.message);
+            // Dynamic fallback routine if mobile browser stops windows completely
+            if (error.code === "auth/popup-blocked" || error.code === "auth/operation-not-supported-in-this-environment") {
+                await signInWithRedirect(auth, facebookProvider);
+            } else {
+                alert("Facebook Secure Login: Please open the portal inside Chrome/Safari directly, or use Email access.");
+            }
         }
     }
 
@@ -416,5 +430,10 @@ input:focus {
     }
 </script>
 </body>
-    </html>
-                
+</html>
+
+
+    
+    
+    
+ 
