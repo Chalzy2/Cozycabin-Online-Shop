@@ -1,158 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cozycabin | Crypto Gateway</title>
-<style>
-    :root {
-        --gold: #d4af37;
-        --deep-black: #050505;
-        --surface: #0d0d0d;
-    }
-
-    body {
-        margin: 0; padding: 20px;
-        background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
-        color: white;
-        font-family: 'Segoe UI', sans-serif;
-    }
-
-    .container {
-        max-width: 400px; margin: auto;
-        background: var(--surface);
-        padding: 30px; border-radius: 24px;
-        border: 1px solid #222;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-    }
-
-    h1 { text-align: center; color: var(--gold); font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 20px; }
-
-    select {
-        width: 100%; padding: 16px; margin-bottom: 15px;
-        background: #111; border: 1px solid #333;
-        border-radius: 12px; color: white;
-        font-size: 1rem; outline: none; cursor: pointer;
-    }
-
-    .wallet {
-        background: #000; padding: 20px; border-radius: 12px;
-        border: 1px solid var(--gold); text-align: center;
-        word-break: break-all; font-family: monospace;
-        margin: 20px 0; color: var(--gold);
-    }
-
-    button {
-        width: 100%; padding: 18px; border: none;
-        border-radius: 12px; background: var(--gold);
-        color: #000; font-weight: 900; font-size: 1rem;
-        cursor: pointer; text-transform: uppercase;
-        letter-spacing: 1px; transition: 0.3s;
-    }
-
-    button:hover { background: #fff; transform: translateY(-2px); }
-
-    #qrcode { text-align: center; margin-top: 25px; }
-    #qrcode img { background: white; padding: 10px; border-radius: 12px; }
-
-    .note { text-align: center; color: #666; font-size: 0.8rem; margin-top: 20px; text-transform: uppercase; }
-
-    .referral-box {
-        margin-top: 30px; padding: 20px; border-top: 1px solid #222;
-        text-align: center;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozycabin | Crypto Payment</title>
+    <style>
+        body { margin: 0; padding: 20px; background: #0f0f0f; color: white; font-family: Arial, sans-serif; }
+        .container { max-width: 500px; margin: auto; background: #1a1a1a; padding: 25px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.4); border: 1px solid #333; }
+        h1 { text-align: center; color: #d4af37; margin-bottom: 10px; font-size: 32px; }
+        .subtitle { text-align: center; color: #999; margin-bottom: 25px; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        select { width: 100%; padding: 16px; margin-top: 15px; border: none; border-radius: 14px; background: #2a2a2a; color: white; font-size: 16px; outline: none; cursor: pointer; }
+        .wallet { margin-top: 20px; background: #0d0d0d; padding: 18px; border-radius: 14px; word-break: break-all; line-height: 1.7; font-size: 15px; border: 1px solid #d4af37; color: #d4af37; text-align: center; }
+        button { width: 100%; padding: 17px; margin-top: 20px; border: none; border-radius: 40px; background: #d4af37; color: black; font-size: 19px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { opacity: 0.9; }
+        #qrcode { text-align: center; margin-top: 25px; }
+        #qrcode img { background: white; padding: 10px; border-radius: 14px; }
+        .note { margin-top: 20px; text-align: center; color: #bbb; font-size: 14px; line-height: 1.6; }
+        .warning { margin-top: 15px; text-align: center; color: #ffcc00; font-size: 14px; }
+        .referral-box { margin-top: 35px; background: #111; padding: 22px; border-radius: 18px; text-align: center; border: 1px solid #222; }
+        .referral-btn { display: block; background: #d4af37; color: #000; padding: 15px; border-radius: 35px; font-weight: bold; text-decoration: none; font-size: 16px; margin-top: 15px; }
+        .support { margin-top: 25px; text-align: center; }
+        .support a { color: #25D366; text-decoration: none; font-weight: bold; font-size: 15px; }
+    </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>SECURE CRYPTO</h1>
-    
+    <h1>Pay with Crypto</h1>
+    <div class="subtitle">Secure Cozycabin Payment Gateway</div>
+
     <select id="coin" onchange="updateNetworks()">
-        <option value="usdt">USDT</option>
-        <option value="eth">Ethereum</option>
-        <option value="bnb">BNB</option>
-        <option value="sol">Solana</option>
+        <option value="usdt">USDT (Tether)</option>
+        <option value="btc">Bitcoin (BTC)</option>
+        <option value="sol">Solana (SOL)</option>
+        <option value="bnb">BNB (Smart Chain)</option>
+        <option value="pol">Polygon (MATIC)</option>
     </select>
 
     <select id="network" onchange="updateWallet()"></select>
 
     <div class="wallet" id="walletBox">...</div>
 
-    <button onclick="copyWallet()">Copy Address</button>
+    <button onclick="copyWallet()">Copy Wallet Address</button>
 
     <div id="qrcode"></div>
 
-    <div class="note">
-        Confirm transaction on WhatsApp after sending.
-    </div>
+    <div class="warning">Send payment ONLY using selected network.</div>
+    <div class="note">After payment, send screenshot or transaction receipt on WhatsApp for confirmation.</div>
 
     <div class="referral-box">
-        <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00TZ2L450F" 
-           style="color:var(--gold); text-decoration:none; font-weight:bold; font-size:0.9rem;">
-           CREATE BINANCE ACCOUNT →
-        </a>
+        <h3>Need a Crypto Wallet?</h3>
+        <p>Create a Binance account to buy, send and receive crypto easily.</p>
+        <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00TZ2L450F" target="_blank" class="referral-btn">Create Binance Account</a>
+    </div>
+
+    <div class="support">
+        <a href="https://wa.me/254702468460" target="_blank">Need help? Contact us on WhatsApp</a>
     </div>
 </div>
 
 <script>
 const wallets = {
     usdt: {
-        "TRC20 (Best for Fees)": "TFTBNKnkn2Uin7m3NNVNZ1FJJFGW2HwdLj",
-        "BEP20 / BSC": "0x2545509dbe9fa7e19af80352238281ba3391f781",
-        "ERC20 / Ethereum": "0x2545509dbe9fa7e19af80352238281ba3391f781"
+        "TRC20 (Tron)": "TFTBNKnkn2Uin7m3NNVNZ1FJJFGW2HwdLj",
+        "BEP20 (BSC)": "0x2545509dbe9fa7e19af80352238281ba3391f781",
+        "ERC20 (Ethereum)": "0x2545509dbe9fa7e19af80352238281ba3391f781"
     },
     btc: {
-        "Bitcoin (Native Segwit)": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
-        "Bitcoin (Taproot)": "bc1p0xlxgs6yy6n82436r6k62v7n8a543888y984r8n4x0l4"
+        "Bitcoin (Btc network)": "155RvL7q8XxAuVUzZuVN2M8VCQ53AvF4YU",
+        "Bitcoin (Native Segwit)": "bc1qly9xuac6y2jly8ju9dr3mpjm3f542t84mpfn4s",
+        "Bitcoin (BSC)": "0x2545509dbe9fa7e19af80352238281ba3391f781"
+    },
+    sol: {
+        "Solana Network": "AQGfDPuMZMXftpcTwYybBp18sdKEKn1Mes3Sq43iMJi8"
+    },
+    bnb: {
+        "BNB Smart Chain": "0x2545509dbe9fa7e19af80352238281ba3391f781"
+    },
+    pol: {
+        "Polygon Network": "0x2545509dbe9fa7e19af80352238281ba3391f781"
     }
 };
 
-function updateNetworks() {
+function updateNetworks(){
     const coin = document.getElementById("coin").value;
     const networkSelect = document.getElementById("network");
-    
-    // Clear existing
     networkSelect.innerHTML = "";
-
-    // Add new
-    for (const network in wallets[coin]) {
+    for (const network in wallets[coin]){
         const option = document.createElement("option");
         option.value = network;
         option.textContent = network;
         networkSelect.appendChild(option);
     }
-    
-    // Update address immediately
     updateWallet();
 }
 
-function updateWallet() {
+function updateWallet(){
     const coin = document.getElementById("coin").value;
     const network = document.getElementById("network").value;
     const wallet = wallets[coin][network];
-    
-    const walletBox = document.getElementById("walletBox");
-    walletBox.innerText = wallet;
-    
-    // Update QR Code
-    document.getElementById("qrcode").innerHTML = 
-        `<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${wallet}">`;
+    document.getElementById("walletBox").innerText = wallet;
+    document.getElementById("qrcode").innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${wallet}">`;
 }
 
-function copyWallet() {
+function copyWallet(){
     const wallet = document.getElementById("walletBox").innerText;
     navigator.clipboard.writeText(wallet).then(() => {
         alert("Wallet address copied to clipboard!");
     });
 }
 
-// Initialize on load
 window.onload = updateNetworks;
-</script>
-
-    
-
 </script>
 
 </body>
