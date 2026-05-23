@@ -1681,418 +1681,111 @@ Order Now
 </div>
 
 </div>
+ <div id="premium-checkout-wrapper" style="width:100%; max-width:1200px; margin:50px auto; padding:0 18px; box-sizing:border-box;">
     
-<!-- PREMIUM CHECKOUT SECTION -->
+    <div id="premium-checkout-box" style="width:100%; max-width:520px; margin:auto; background:#000; border:2px solid #ffd700; border-radius:28px; padding:26px; box-sizing:border-box; box-shadow:0 0 25px rgba(255,215,0,0.12); overflow:hidden;">
+        
+        <div style="text-align:center; margin-bottom:22px;">
+            <p style="font-size:18px; font-weight:900; color:#ffd700; margin:0; text-transform:uppercase; letter-spacing:2px;">
+                💎 COZYCABIN PREMIUM CHECKOUT
+            </p>
+            <p style="font-size:11px; color:#777; margin-top:6px; text-transform:uppercase; letter-spacing:1px;">
+                Instant Digital & Physical Logistics Delivery
+            </p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px;">
+            
+            <div id="paypal-button-container" style="width:100%;">
+                <a href="https://paypal.me/charlesowuor" target="_blank" style="background:#ffc439; color:#003087; text-decoration:none; padding:16px; border-radius:12px; font-size:16px; font-weight:900; text-align:center; display:block; box-sizing:border-box;">
+                    PayPal
+                </a>
+            </div>
+            
+            <div id="card-button-container" style="width:100%;">
+                <a href="https://paypal.me/charlesowuor" target="_blank" style="background:#2d2d2d; color:#fff; text-decoration:none; padding:16px; border-radius:12px; font-size:15px; font-weight:700; text-align:center; display:block; border:1px solid #444; box-sizing:border-box;">
+                    💳 Debit or Credit Card
+                </a>
+            </div>
+
+            <div id="crypto-button-container" style="width:100%;">
+                <a href="binance-cryptopayment.html" style="background:#f3ba2f; color:#000; text-decoration:none; padding:16px; border-radius:12px; font-size:16px; font-weight:700; text-align:center; display:block; box-sizing:border-box; text-transform:uppercase; letter-spacing:0.5px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" alt="Binance" style="height:15px; width:15px; vertical-align:middle; margin-right:6px; pointer-events:none;">
+                    Pay with Binance
+                </a>
+            </div>
+
+            <div id="selar-button-container" style="width:100%;">
+                <a href="https://selar.co/z6wn6j11g1" target="_blank" style="background:#6126c6; color:#fff; text-decoration:none; padding:16px; border-radius:12px; font-size:16px; font-weight:700; text-align:center; display:block; box-sizing:border-box;">
+                    📱 Buy on Selar (Courses)
+                </a>
+            </div>
+
+        </div>
+
+        <div id="mpesa-checkout-container" style="background:#1e7e34; border-radius:18px; padding:20px; color:#fff; margin-bottom:24px; box-sizing:border-box;">
+            <p style="margin-bottom:12px; font-size:16px; font-weight:800; text-align:center; letter-spacing:0.5px; text-transform:uppercase;">
+                🟢 LIPA NA M-PESA (SHOP)
+            </p>
+            <p style="line-height:1.6; font-size:15px; text-align:center; margin:0 0 16px 0;">
+                Paybill: <b style="color:#85ea2d;">542542</b><br>
+                Account No: <b style="color:#85ea2d;">702468</b>
+            </p>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <input type="text" id="mpesa-code" placeholder="Enter M-Pesa Ref Code (e.g. RQA7X...)" style="width:100%; padding:12px; border:none; border-radius:10px; outline:none; font-size:13px; text-align:center; box-sizing:border-box;">
+                <button onclick="submitMpesaPayment()" style="background:#000; color:#ffd700; border:1px solid #ffd700; padding:12px; border-radius:10px; font-weight:700; cursor:pointer; font-size:12px; letter-spacing:0.5px; text-transform:uppercase; width:100%; box-sizing:border-box;">
+                    Verify Payment & Claim Order
+                </button>
+            </div>
+        </div>
+
+        <div style="margin-top:30px; border-top:1px dashed #222; padding-top:22px;">
+            <p style="font-size:15px; font-weight:900; color:#ffd700; text-align:center; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px;">
+                ❤️ Support My Work
+            </p>
+            <p style="font-size:12px; color:#777; text-align:center; line-height:1.6; margin-bottom:18px;">
+                If my guides or tools helped you, feel free to support Cozycabin.
+            </p>
+
+            <div style="background:#0a0a0a; border:1px solid #1e7e34; padding:16px; border-radius:14px; margin-bottom:14px; text-align:center; box-sizing:border-box;">
+                <p style="margin-bottom:4px; font-size:13px; font-weight:800; color:#2db742; text-transform:uppercase;">
+                    🟢 LIPA NA M-PESA (Donation)
+                </p>
+                <p style="font-size:11px; color:#25D366; font-weight:bold; margin-top:0; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px;">
+                    🪙 PAY WITH MINIPAY
+                </p>
+                <img src="Images/Minipay image.webp" alt="MiniPay QR" style="width:160px; margin:auto; border-radius:12px; background:white; padding:8px; display:block; box-sizing:border-box;">
+                <p style="font-size:12px; color:#ccc; margin-top:12px; margin-bottom:0; line-height:1.5;">
+                    Scan QR or send payment to:<br><br>
+                    <b style="font-size:18px; color:#fff; letter-spacing:1px;">0702468460</b>
+                </p>
+            </div>
+
+            <div style="margin-top:14px; display:flex; flex-direction:column; gap:10px; margin-bottom:14px;">
+                <input type="text" id="donation-code" placeholder="Enter Donation M-Pesa Code" style="width:100%; padding:12px; border:none; border-radius:10px; outline:none; text-align:center; font-size:13px; box-sizing:border-box;">
+                <button onclick="submitDonation()" style="background:#1e7e34; color:#fff; border:none; padding:12px; border-radius:10px; font-weight:700; cursor:pointer; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; width:100%; box-sizing:border-box;">
+                    SUBMIT DONATION CODE
+                </button>
+            </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px;">
+            <a href="https://selar.co/showlove/charlesowuor" target="_blank" style="background:#e91e63; color:#fff; text-decoration:none; padding:12px; border-radius:12px; font-size:14px; font-weight:700; text-align:center; display:block; box-sizing:border-box;">
+                💝 Tip Me via Selar
+            </a>
+            <a href="binance-cryptopayment.html?intent=donation" style="background:#f3ba2f; color:#000; text-decoration:none; padding:12px; border-radius:12px; font-size:14px; font-weight:700; text-align:center; display:block; box-sizing:border-box; text-transform:uppercase; letter-spacing:0.5px;">
+                Send Crypto Tip (Binance)
+            </a>
+        </div>
+
+    </div>
+ </div>
+        
 
-<div id="premium-checkout-wrapper"
-style="
-width:100%;
-max-width:1200px;
-margin:50px auto;
-padding:0 18px;
-box-sizing:border-box;
-">
 
-<div id="premium-checkout-box"
-style="
-width:100%;
-max-width:520px;
-margin:auto;
-background:#000;
-border:2px solid #ffd700;
-border-radius:28px;
-padding:26px;
-box-sizing:border-box;
-box-shadow:0 0 25px rgba(255,215,0,0.12);
-overflow:hidden;
-">
 
-<!-- HEADER -->
 
-<div style="text-align:center;margin-bottom:22px;">
 
-<p style="
-font-size:18px;
-font-weight:900;
-color:#ffd700;
-margin:0;
-text-transform:uppercase;
-letter-spacing:2px;
-">
-
-💎 COZYCABIN PREMIUM CHECKOUT
-
-</p>
-
-<p style="
-font-size:11px;
-color:#777;
-margin-top:6px;
-text-transform:uppercase;
-letter-spacing:1px;
-">
-
-Instant Digital Delivery
-
-</p>
-
-</div>
-
-
-<!-- PAYMENT BUTTONS -->
-
-<div style="
-display:flex;
-flex-direction:column;
-gap:14px;
-margin-bottom:24px;
-">
-
-<!-- PAYPAL -->
-
-<a href="https://paypal.me/charlesowuor"
-target="_blank"
-style="
-background:#ffc439;
-color:#003087;
-text-decoration:none;
-padding:18px;
-border-radius:40px;
-font-size:17px;
-font-weight:900;
-text-align:center;
-display:block;
-">
-
-PayPal
-
-</a>
-
-<!-- CARD -->
-
-<a href="https://paypal.me/charlesowuor"
-target="_blank"
-style="
-background:#2d2d2d;
-color:#fff;
-text-decoration:none;
-padding:18px;
-border-radius:40px;
-font-size:16px;
-text-align:center;
-display:block;
-border:1px solid #444;
-">
-
-💳 Debit or Credit Card
-
-</a>
-
-<!-- BINANCE -->
-
-<a href="binance-cryptopayment.html"
-style="
-background:#f3ba2f;
-color:#000;
-text-decoration:none;
-padding:18px;
-border-radius:40px;
-font-size:17px;
-font-weight:700;
-text-align:center;
-display:block;
-">
-
-Pay with Binance
-
-</a>
-
-<!-- SELAR -->
-
-<a href="https://selar.co/z6wn6j11g1"
-target="_blank"
-style="
-background:#6126c6;
-color:#fff;
-text-decoration:none;
-padding:18px;
-border-radius:40px;
-font-size:17px;
-font-weight:700;
-text-align:center;
-display:block;
-">
-
-Buy on Selar
-
-</a>
-
-</div>
-
-<!-- MPESA -->
-
-<div style="
-background:#2db742;
-border-radius:18px;
-padding:20px;
-color:#fff;
-margin-bottom:24px;
-">
-
-<p style="
-margin-bottom:12px;
-font-size:18px;
-font-weight:800;
-text-align:center;
-">
-
-🟢 LIPA NA M-PESA
-
-</p>
-
-<p style="
-line-height:1.8;
-font-size:16px;
-text-align:center;
-">
-
-Paybill:
-<b>542542</b>
-
-<br>
-
-Account No:
-<b>702468</b>
-
-</p>
-
-<div style="
-margin-top:18px;
-display:flex;
-flex-direction:column;
-gap:12px;
-">
-
-<input
-type="text"
-id="mpesa-code"
-placeholder="Enter M-Pesa Ref Code"
-style="
-width:100%;
-padding:14px;
-border:none;
-border-radius:10px;
-outline:none;
-font-size:14px;
-">
-
-<button onclick="submitMpesaPayment()"
-style="
-background:#000;
-color:#fff;
-border:none;
-padding:14px;
-border-radius:10px;
-font-weight:700;
-cursor:pointer;
-font-size:13px;
-letter-spacing:1px;
-text-transform:uppercase;
-">
-
-Verify Payment & Claim Access
-
-</button>
-
-</div>
-
-</div>
-
-<!-- DONATION -->
-
-<div style="
-margin-top:30px;
-border-top:1px dashed #222;
-padding-top:22px;
-">
-
-<p style="
-font-size:16px;
-font-weight:900;
-color:#ffd700;
-text-align:center;
-margin-bottom:10px;
-text-transform:uppercase;
-">
-
-❤️ Support My Work
-
-</p>
-
-<p style="
-font-size:12px;
-color:#777;
-text-align:center;
-line-height:1.6;
-margin-bottom:18px;
-">
-
-If my guides or tools helped you,
-feel free to support Cozycabin.
-
-</p>
-
-<!-- DONATION MPESA -->
-
-<div style="
-background:#0a0a0a;
-border:1px solid #2db742;
-padding:16px;
-border-radius:14px;
-margin-bottom:14px;
-">
-
-<p style="
-margin-bottom:8px;
-font-size:13px;
-font-weight:800;
-color:#2db742;
-">
-
-🟢 LIPA NA M-PESA (Donation)
-
-</p>
-
-<p style="
-font-size:12px;
-color:#25D366;
-font-weight:bold;
-margin-bottom:10px;
-">
-
-🪙 PAY WITH MINIPAY
-
-</p>
-
-<img
-src="Images/Minipay image.webp"
-alt="MiniPay QR"
-style="
-width:170px;
-margin:auto;
-border-radius:14px;
-background:white;
-padding:8px;
-display:block;
-">
-
-<p style="
-font-size:12px;
-color:#ccc;
-margin-top:12px;
-line-height:1.7;
-">
-
-Scan QR or send payment to:
-
-<br><br>
-
-<b style="
-font-size:18px;
-color:#fff;
-letter-spacing:1px;
-">
-
-0702468460
-
-</b>
-
-</p>
-
-</div>
-
-<div style="
-margin-top:14px;
-display:flex;
-flex-direction:column;
-gap:10px;
-">
-
-<input
-type="text"
-id="donation-code"
-placeholder="Enter Donation M-Pesa Code"
-style="
-width:100%;
-padding:12px;
-border:none;
-border-radius:8px;
-outline:none;
-">
-
-<button onclick="submitDonation()"
-style="
-background:#2db742;
-color:#fff;
-border:none;
-padding:12px;
-border-radius:8px;
-font-weight:700;
-cursor:pointer;
-">
-
-SUBMIT DONATION CODE
-
-</button>
-
-</div>
-
-</div>
-
-<!-- EXTRA DONATION BUTTONS -->
-
-<div style="
-display:flex;
-flex-direction:column;
-gap:12px;
-">
-
-<a href="https://selar.co/showlove/charlesowuor"
-target="_blank"
-style="
-background:#e91e63;
-color:#fff;
-text-decoration:none;
-padding:14px;
-border-radius:40px;
-font-weight:700;
-text-align:center;
-display:block;
-">
-
-💝 Tip Me via Selar
-
-</a>
-
-<a href="binance-cryptopayment.html?intent=donation"
-style="
-background:#f3ba2f;
-color:#000;
-text-decoration:none;
-padding:14px;
-border-radius:40px;
-font-weight:700;
-text-align:center;
-display:block;
-">
-
-Send Crypto Tip (Binance)
-
-</a>
-
-</div>
-
-</div>
 
 <!-- FOOTER -->
 
@@ -2678,45 +2371,41 @@ return false;
 };
     <script>
     function handlePaymentSelection(selectedValue) {
-        // Reset picker baseline so it displays cleanly for the user again
+        // Instantly force the dropdown selection back to visual baseline context
         document.getElementById('cozycabin-currency-picker').value = 'PREVIEW';
 
         if (selectedValue === "KES_DIGITAL") {
-            // Smoothly scrolls straight down to your existing Selar button container
             const selarSection = document.getElementById('selar-button-container');
             if (selarSection) {
                 selarSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         } 
         else if (selectedValue === "KES_PHYSICAL") {
-            // Smoothly scrolls straight down to your green M-Pesa form container
             const mpesaSection = document.getElementById('mpesa-checkout-container');
             if (mpesaSection) {
                 mpesaSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
-            alert("📦 Physical Shop Order:\n\nPlease fill out your payment details using our Direct Paybill below:\n\n• Paybill: 542542\n• Account: 702468");
+            alert("📦 Physical Shop Order:\n\nPlease complete your transaction details via the Green M-Pesa Paybill section centered on your view.");
         } 
         else if (selectedValue === "INTL_PAYPAL") {
-            // Smoothly scrolls down right to your existing PayPal button container
             const paypalSection = document.getElementById('paypal-button-container');
             if (paypalSection) {
                 paypalSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
         else if (selectedValue === "INTL_CARD") {
-            // Smoothly scrolls down to Selar container which processes international credit cards
-            const selarSection = document.getElementById('selar-button-container');
-            if (selarSection) {
-                selarSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const cardSection = document.getElementById('card-button-container');
+            if (cardSection) {
+                cardSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
         else if (selectedValue === "CRYPTO") {
-            // Direct immediate routing straight into your custom Binance local processing file
+            // Jump directly over into your separate crypto page
             window.location.href = "binance-cryptopayment.html";
         }
     }
 </script>
-        
+
 
 </script>
 </body>
