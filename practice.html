@@ -2273,6 +2273,53 @@ error.message
 
 }
 <script>
+    <script>
+    // 1. Unified function for showing the modal
+    window.showPaymentModal = function(currency) {
+        if (currency === "PREVIEW") return;
+        const modal = document.getElementById('payment-modal');
+        const title = document.getElementById('modal-title');
+        const body = document.getElementById('modal-body');
+        
+        modal.style.display = 'flex';
+        title.innerText = currency + " PAYMENT";
+        
+        if (currency === "KES") {
+            body.innerHTML = `
+                <div style="background: #009e49; padding: 20px; border-radius: 16px; color: #fff; border: 2px solid #fff;">
+                    <div style="font-weight: 800; margin-bottom: 15px; text-transform: uppercase;">Lipa na M-Pesa</div>
+                    <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 10px;">Paybill: <b style="font-size: 1.2rem;">542542</b></div>
+                    <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 15px;">Account: <b style="font-size: 1.2rem;">702468</b></div>
+                    <input type="text" id="mpesa-code" placeholder="Enter Transaction Code" style="width:100%; padding:12px; border-radius:8px; border:none; margin-bottom:10px; text-align:center;">
+                    <button onclick="if(typeof submitMpesaPayment === 'function') submitMpesaPayment()" style="width:100%; padding:12px; background:#fff; color:#009e49; border:none; border-radius:8px; font-weight:900; cursor:pointer;">VERIFY PAYMENT</button>
+                </div>
+            `;
+        } else if (currency === "CRYPTO") {
+            body.innerHTML = `
+                <button onclick="alert('BTC')" style="width:100%; padding:14px; margin:8px 0; background:#f7931a; border:none; border-radius:12px; font-weight:bold; cursor:pointer; color:white;">₿ Bitcoin Payment</button>
+                <button onclick="alert('USDT')" style="width:100%; padding:14px; margin:8px 0; background:#26a17b; border:none; border-radius:12px; font-weight:bold; cursor:pointer; color:white;">💵 USDT (Tether)</button>
+                <button onclick="window.location.href='binance-cryptopayment.html'" style="width:100%; padding:14px; margin:8px 0; background:#f3ba2f; border:none; border-radius:12px; font-weight:bold; cursor:pointer;">PAY VIA BINANCE</button>
+            `;
+        } else {
+            body.innerHTML = `<p>Proceed with ${currency} payment via our secure international gateway.</p>`;
+        }
+    };
+
+    // 2. Unified function for closing the modal
+    window.closeModal = function() {
+        document.getElementById('payment-modal').style.display = 'none';
+        const picker = document.getElementById('cozycabin-currency-picker');
+        if (picker) picker.value = 'PREVIEW';
+    };
+
+    // 3. Failsafe: Add event listener to the modal overlay itself
+    document.getElementById('payment-modal').addEventListener('click', function(e) {
+        if (e.target.id === 'payment-modal') {
+            window.closeModal();
+        }
+    });
+</script>
+    
 /* =========================================
    COZYCABIN ANTI-THEFT PROTECTION
 ========================================= */
@@ -2427,33 +2474,7 @@ return false;
 }
 
 }
-    <script>
-function showPaymentModal(currency) {
-    if (currency === "PREVIEW") return;
-    
-    const modal = document.getElementById('payment-modal');
-    const title = document.getElementById('modal-title');
-    const body = document.getElementById('modal-body');
-    
-    modal.style.display = 'flex';
-    title.innerText = currency + " PAYMENT";
-    
-    if (currency === "CRYPTO") {
-        body.innerHTML = `
-            <button onclick="window.location.href='binance-cryptopayment.html'" style="width:100%; background:#f3ba2f; border:none; padding:12px; border-radius:10px; font-weight:bold; cursor:pointer;">Pay via Binance</button>
-        `;
-    } else if (currency === "KES") {
-        body.innerHTML = `<p>Paybill: 542542<br>Account: 702468</p>`;
-    } else {
-        body.innerHTML = `<p>Proceed with ${currency} payment via our secure international gateway.</p>
-                          <a href="https://paypal.me/charlesowuor" style="color:#ffd700;">Click to Pay</a>`;
-    }
-}
 
-function closeModal() {
-    document.getElementById('payment-modal').style.display = 'none';
-    document.getElementById('cozycabin-currency-picker').value = 'PREVIEW';
-}
 </script>
 
 </script>
