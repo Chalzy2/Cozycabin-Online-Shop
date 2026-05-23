@@ -96,49 +96,62 @@
 </div>
 
 <script>
-    // Keep your existing 'wallets' object and functions here.
-    // They will automatically inherit the new design!
-    const wallets = { const wallets = {
+const wallets = {
     usdt: {
+        "TRC20 (Best for Fees)": "TFTBNKnkn2Uin7m3NNVNZ1FJJFGW2HwdLj",
         "BEP20 / BSC": "0x2545509dbe9fa7e19af80352238281ba3391f781",
-        "ERC20 / Ethereum": "0x2545509dbe9fa7e19af80352238281ba3391f781",
-        "TRC20 / Tron": "TFTBNKnkn2Uin7m3NNVNZ1FJJFGW2HwdLj",
-        "Solana": "AQGfDPuMZMXftpcTwYybBp18sdKEKn1Mes3Sq43iMJi8",
-        "Polygon": "0x2545509dbe9fa7e19af80352238281ba3391f781"
-    },
-    eth: {
-        "Ethereum Mainnet": "0x2545509dbe9fa7e19af80352238281ba3391f781",
-        "Base": "0x2545509dbe9fa7e19af80352238281ba3391f781",
-        "Arbitrum": "0x2545509dbe9fa7e19af80352238281ba3391f781",
-        "Optimism": "0x2545509dbe9fa7e19af80352238281ba3391f781",
-        "Polygon": "0x2545509dbe9fa7e19af80352238281ba3391f781",
-        "BNB Smart Chain": "0x2545509dbe9fa7e19af80352238281ba3391f781"
-    },
-    bnb: {
-        "BNB Smart Chain": "0x2545509dbe9fa7e19af80352238281ba3391f781",
-        "OpBNB": "0x2545509dbe9fa7e19af80352238281ba3391f781"
-    },
-    pol: {
-        "Polygon": "0x2545509dbe9fa7e19af80352238281ba3391f781",
-        "Ethereum (ERC20)": "0x2545509dbe9fa7e19af80352238281ba3391f781"
-    },
-    sol: {
-        "Solana": "AQGfDPuMZMXftpcTwYybBp18sdKEKn1Mes3Sq43iMJi8"
+        "ERC20 / Ethereum": "0x2545509dbe9fa7e19af80352238281ba3391f781"
     },
     btc: {
         "Bitcoin (Native Segwit)": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
         "Bitcoin (Taproot)": "bc1p0xlxgs6yy6n82436r6k62v7n8a543888y984r8n4x0l4"
     }
 };
- };
-    
-    function updateNetworks(){ /* ... your logic ... */ }
-    function updateWallet(){ /* ... your logic ... */ }
-    function copyWallet(){ /* ... your logic ... */ }
-    
-    // Initial call
-    updateNetworks();
 
+function updateNetworks() {
+    const coin = document.getElementById("coin").value;
+    const networkSelect = document.getElementById("network");
+    
+    // Clear existing
+    networkSelect.innerHTML = "";
+
+    // Add new
+    for (const network in wallets[coin]) {
+        const option = document.createElement("option");
+        option.value = network;
+        option.textContent = network;
+        networkSelect.appendChild(option);
+    }
+    
+    // Update address immediately
+    updateWallet();
+}
+
+function updateWallet() {
+    const coin = document.getElementById("coin").value;
+    const network = document.getElementById("network").value;
+    const wallet = wallets[coin][network];
+    
+    const walletBox = document.getElementById("walletBox");
+    walletBox.innerText = wallet;
+    
+    // Update QR Code
+    document.getElementById("qrcode").innerHTML = 
+        `<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${wallet}">`;
+}
+
+function copyWallet() {
+    const wallet = document.getElementById("walletBox").innerText;
+    navigator.clipboard.writeText(wallet).then(() => {
+        alert("Wallet address copied to clipboard!");
+    });
+}
+
+// Initialize on load
+window.onload = updateNetworks;
+</script>
+
+    
 
 </script>
 
