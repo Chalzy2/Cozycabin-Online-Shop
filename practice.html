@@ -2245,6 +2245,7 @@ function closeModal() {
     document.getElementById('cozycabin-currency-picker').value = 'PREVIEW';
 }
 </script>
+    <script>
     /* Updated KES section inside showPaymentModal */
 } else if (currency === "KES") {
     body.innerHTML = `
@@ -2262,13 +2263,7 @@ function closeModal() {
         </div>
     `;
 }
-    <script>
-    /* Add this to the "else" block of your showPaymentModal */
-} else {
-    // This redirects the user to your payment processing page with the currency attached
-    window.location.href = `binance-cryptopayment.html?currency=${currency}`;
-}
-<s/cript>
+    
 <script>
 // Add this script to your binance-cryptopayment.html
 const urlParams = new URLSearchParams(window.location.search);
