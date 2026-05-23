@@ -625,8 +625,7 @@ overflow-x:hidden;
 </head>
 </style>
 <body>
-
-<div class="header" style="display: flex; justify-content: flex-end; align-items: center; padding: 12px 16px; background: #000000; position: relative; z-index: 100001;">
+<div class="header" style="display: flex; justify-content: flex-end; align-items: center; padding: 12px 16px; background: #000000; position: sticky; top: 0; z-index: 100001; border-bottom: 1px solid #222;">
     <div style="display: flex; align-items: center; gap: 12px;">
         <select id="cozycabin-currency-picker" onchange="showPaymentModal(this.value)" style="background: #111; color: #ffd700; border: 1px solid #333; border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: bold; cursor: pointer;">
             <option value="PREVIEW">Select Currency ▼</option>
@@ -647,12 +646,51 @@ overflow-x:hidden;
 <div id="payment-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 200000; align-items: center; justify-content: center; padding: 20px;">
     <div style="background: #0d0d0d; border: 2px solid #ffd700; border-radius: 20px; max-width: 400px; width: 100%; padding: 25px; text-align: center;">
         <h3 id="modal-title" style="color: #ffd700; margin-bottom: 20px;">Payment</h3>
-        <div id="modal-body" style="color: #fff; margin-bottom: 20px;">
-            </div>
+        <div id="modal-body" style="color: #fff; margin-bottom: 20px;"></div>
         <button onclick="closeModal()" style="background: transparent; border: 1px solid #444; color: #aaa; padding: 10px 20px; border-radius: 8px; cursor: pointer;">Close</button>
     </div>
 </div>
 
+<script>
+function showPaymentModal(currency) {
+    if (currency === "PREVIEW") return;
+    const modal = document.getElementById('payment-modal');
+    const title = document.getElementById('modal-title');
+    const body = document.getElementById('modal-body');
+    
+    modal.style.display = 'flex';
+    title.innerText = currency + " PAYMENT";
+    
+    if (currency === "KES") {
+        body.innerHTML = `
+            <div style="background: #009e49; padding: 20px; border-radius: 16px; color: #fff; border: 2px solid #fff;">
+                <div style="font-weight: 800; margin-bottom: 15px; text-transform: uppercase;">Lipa na M-Pesa</div>
+                <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                    Paybill: <b style="font-size: 1.5rem;">542542</b>
+                </div>
+                <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+                    Account: <b style="font-size: 1.5rem;">702468</b>
+                </div>
+                <input type="text" id="mpesa-code" placeholder="Enter Transaction Code" style="width:100%; padding:12px; border-radius:8px; border:none; margin-bottom:10px; text-align:center;">
+                <button onclick="submitMpesaPayment()" style="width:100%; padding:12px; background:#fff; color:#009e49; border:none; border-radius:8px; font-weight:900; cursor:pointer;">VERIFY PAYMENT</button>
+            </div>
+        `;
+    } else if (currency === "CRYPTO") {
+        body.innerHTML = `
+            <button onclick="alert('BTC')" style="width:100%; padding:14px; margin:8px 0; background:#f7931a; border:none; border-radius:12px; font-weight:bold; cursor:pointer; color:white;">₿ Bitcoin Payment</button>
+            <button onclick="alert('USDT')" style="width:100%; padding:14px; margin:8px 0; background:#26a17b; border:none; border-radius:12px; font-weight:bold; cursor:pointer; color:white;">💵 USDT (Tether)</button>
+            <button onclick="window.location.href='binance-cryptopayment.html'" style="width:100%; padding:14px; margin:8px 0; background:#f3ba2f; border:none; border-radius:12px; font-weight:bold; cursor:pointer;">PAY VIA BINANCE</button>
+        `;
+    } else {
+        body.innerHTML = `<p>Proceed with ${currency} payment via our secure international gateway.</p>`;
+    }
+}
+
+function closeModal() {
+    document.getElementById('payment-modal').style.display = 'none';
+    document.getElementById('cozycabin-currency-picker').value = 'PREVIEW';
+}
+</script>
 
 
 
