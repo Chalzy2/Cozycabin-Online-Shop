@@ -2676,6 +2676,47 @@ return false;
 }
 
 };
+    <script>
+    function handlePaymentSelection(selectedValue) {
+        // Reset picker baseline so it displays cleanly for the user again
+        document.getElementById('cozycabin-currency-picker').value = 'PREVIEW';
+
+        if (selectedValue === "KES_DIGITAL") {
+            // Smoothly scrolls straight down to your existing Selar button container
+            const selarSection = document.getElementById('selar-button-container');
+            if (selarSection) {
+                selarSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        } 
+        else if (selectedValue === "KES_PHYSICAL") {
+            // Smoothly scrolls straight down to your green M-Pesa form container
+            const mpesaSection = document.getElementById('mpesa-checkout-container');
+            if (mpesaSection) {
+                mpesaSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            alert("📦 Physical Shop Order:\n\nPlease fill out your payment details using our Direct Paybill below:\n\n• Paybill: 542542\n• Account: 702468");
+        } 
+        else if (selectedValue === "INTL_PAYPAL") {
+            // Smoothly scrolls down right to your existing PayPal button container
+            const paypalSection = document.getElementById('paypal-button-container');
+            if (paypalSection) {
+                paypalSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        else if (selectedValue === "INTL_CARD") {
+            // Smoothly scrolls down to Selar container which processes international credit cards
+            const selarSection = document.getElementById('selar-button-container');
+            if (selarSection) {
+                selarSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        else if (selectedValue === "CRYPTO") {
+            // Direct immediate routing straight into your custom Binance local processing file
+            window.location.href = "binance-cryptopayment.html";
+        }
+    }
+</script>
+        
 
 </script>
 </body>
