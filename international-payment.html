@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cozycabin | Global Secure Payment</title>
+
+<style>
+    :root {
+        --gold: #d4af37;
+        --gold-light: #ffd700;
+        --deep-black: #050505;
+        --surface: #0d0d0d;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
+
+    body {
+        background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .payment-container {
+        width: 100%;
+        max-width: 400px;
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 24px;
+        padding: 40px 30px;
+        text-align: center;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 1px var(--gold);
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 20px;
+        border: 2px solid var(--gold);
+        margin-bottom: 25px;
+        filter: drop-shadow(0 0 10px rgba(212,175,55,0.3));
+    }
+
+    .title {
+        color: var(--gold);
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        color: #777;
+        font-size: 0.85rem;
+        margin-bottom: 35px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .pay-btn {
+        width: 100%;
+        padding: 18px;
+        border: 1px solid var(--gold);
+        border-radius: 12px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        transition: all 0.4s ease;
+        background: transparent;
+        color: var(--gold);
+    }
+
+    .pay-btn:hover {
+        background: var(--gold);
+        color: black;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(212,175,55,0.2);
+    }
+
+    .info-box {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #222;
+        color: #555;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin-top: 30px;
+        color: #444;
+        font-size: 0.8rem;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .back-btn:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="payment-container">
+    <img src="Cozycabin log.png" class="logo" alt="Cozycabin">
+    
+    <div class="title">Global Checkout</div>
+    <div class="subtitle">Secure International Gateway</div>
+
+    <button class="pay-btn" onclick="window.location.href='https://selar.co/z6wn6j11g1'">
+        Pay via Selar
+    </button>
+
+    <button class="pay-btn" onclick="window.location.href='https://paypal.me/charlesowuor'">
+        Pay via PayPal
+    </button>
+
+    <div class="info-box">
+        USD • EURO • GBP • VISA • MASTERCARD
+    </div>
+
+    <a href="practice.html" class="back-btn">← Return to Shop</a>
+</div>
+
+</body>
+</html>
+  
