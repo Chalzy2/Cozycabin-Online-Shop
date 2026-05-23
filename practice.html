@@ -623,6 +623,17 @@ user-select:none;
 overflow-x:hidden;
 }
 
+    @keyframes modalFade{
+    from{
+        opacity:0;
+        transform:scale(0.9);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+    }
+    
 </style>
 </head>
 <body>
@@ -2207,75 +2218,66 @@ error.message
 
 }
     <script>
-    function handleIndependentRouting(selectedValue) {
-        console.log("Routing execution triggered for value: " + selectedValue);
+<!-- PAYMENT MODAL HTML -->
+<div id="payment-modal" style="
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    z-index:999999;
+    justify-content:center;
+    align-items:center;
+    padding:18px;
+">
 
-        // 1. CRITICAL CRYPTO GATEWAY DIRECT ROUTE (Runs first)
-        if (selectedValue === "CRYPTO" || selectedValue === "crypto") {
-            window.location.href = "binance-cryptopayment.html";
-            return; // Exit script instantly to push the browser to load the page
-        }
+    <div style="
+        background:#050505;
+        width:100%;
+        max-width:620px;
+        border:4px solid #ffd700;
+        border-radius:28px;
+        padding:30px 22px;
+        position:relative;
+        box-shadow:0 0 30px rgba(255,215,0,0.25);
+        animation:modalFade 0.35s ease;
+    ">
 
-        // 2. Reset the top menu display looks back to local currency preview baseline
-        const menuPicker = document.getElementById('cozycabin-currency-picker');
-        if (menuPicker) {
-            menuPicker.value = 'PREVIEW';
-        }
+        <div id="modal-title" style="
+            text-align:center;
+            color:#ffd700;
+            font-size:2rem;
+            font-weight:900;
+            margin-bottom:25px;
+        ">
+            PAYMENT
+        </div>
 
-        // 3. Process the remaining standard links independently
-        if (selectedValue === "KES_DIGITAL" || selectedValue === "INTL_CARD") {
-            window.location.href = "https://selar.co/z6wn6j11g1";
-        } 
-        else if (selectedValue === "INTL_PAYPAL") {
-            window.location.href = "https://paypal.me/charlesowuor";
-        } 
-        else if (selectedValue === "KES_PHYSICAL") {
-            alert("📦 CozyCabin Physical Shop Order:\n\nPlease complete your payment manually using M-Pesa:\n\n• Paybill: 542542\n• Account No: 702468\n\nOnce done, scroll down to the green section to input your Ref Code!");
-        }
-    }
-    </script>
+        <div id="modal-body"></div>
 
-<script>
-function showPaymentModal(currency) {
-    if (currency === "PREVIEW") return;
-    const modal = document.getElementById('payment-modal');
-    const title = document.getElementById('modal-title');
-    const body = document.getElementById('modal-body');
-    
-    modal.style.display = 'flex';
-    title.innerText = currency + " PAYMENT";
-    
-    if (currency === "KES") {
-        body.innerHTML = `
-            <div style="background: #009e49; padding: 20px; border-radius: 16px; color: #fff; border: 2px solid #fff;">
-                <div style="font-weight: 800; margin-bottom: 15px; text-transform: uppercase;">Lipa na M-Pesa</div>
-                <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
-                    Paybill: <b style="font-size: 1.5rem;">542542</b>
-                </div>
-                <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 15px;">
-                    Account: <b style="font-size: 1.5rem;">702468</b>
-                </div>
-                <input type="text" id="mpesa-code" placeholder="Enter Transaction Code" style="width:100%; padding:12px; border-radius:8px; border:none; margin-bottom:10px; text-align:center;">
-                <button onclick="submitMpesaPayment()" style="width:100%; padding:12px; background:#fff; color:#009e49; border:none; border-radius:8px; font-weight:900; cursor:pointer;">VERIFY PAYMENT</button>
-            </div>
-        `;
-    } else if (currency === "CRYPTO") {
-        body.innerHTML = `
-            <button onclick="alert('BTC')" style="width:100%; padding:14px; margin:8px 0; background:#f7931a; border:none; border-radius:12px; font-weight:bold; cursor:pointer; color:white;">₿ Bitcoin Payment</button>
-            <button onclick="alert('USDT')" style="width:100%; padding:14px; margin:8px 0; background:#26a17b; border:none; border-radius:12px; font-weight:bold; cursor:pointer; color:white;">💵 USDT (Tether)</button>
-            <button onclick="window.location.href='binance-cryptopayment.html'" style="width:100%; padding:14px; margin:8px 0; background:#f3ba2f; border:none; border-radius:12px; font-weight:bold; cursor:pointer;">PAY VIA BINANCE</button>
-        `;
-    } else {
-        body.innerHTML = `<p>Proceed with ${currency} payment via our secure international gateway.</p>`;
-    }
-}
+        <button 
+            type="button"
+            onclick="closeModal(event)"
+            style="
+                margin:28px auto 0 auto;
+                display:block;
+                padding:14px 35px;
+                background:#111;
+                color:white;
+                border:2px solid #333;
+                border-radius:16px;
+                font-size:1rem;
+                cursor:pointer;
+            "
+        >
+            Close
+        </button>
 
-function closeModal() {
-    document.getElementById('payment-modal').style.display = 'none';
-    document.getElementById('cozycabin-currency-picker').value = 'PREVIEW';
-}
-</script>
-
+    </div>
+</div>
+ </script>       
  <script>
    
 /* =========================================
