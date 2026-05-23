@@ -631,10 +631,10 @@ overflow-x:hidden;
 <div class="header" style="display: flex; justify-content: flex-end; align-items: center; padding: 12px 16px; background: #000000; box-sizing: border-box; position: relative; z-index: 100001;">
     <div style="display: flex; align-items: center; gap: 12px;">
         
-        <select id="cozycabin-currency-picker" onchange="handlePaymentSelection(this.value)" style="background: #111111; color: #ffd700; border: 1px solid #222222; border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: bold; outline: none; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
+        <select id="cozycabin-currency-picker" onchange="handleIndependentRouting(this.value)" style="background: #111111; color: #ffd700; border: 1px solid #222222; border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: bold; outline: none; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
             <option value="PREVIEW">🇰🇪 KES (Local Currency)</option>
             <option value="KES_DIGITAL">📱 KES: Buy Courses / E-Books (Selar)</option>
-            <option value="KES_PHYSICAL">📦 KES: Buy Shop Products (M-Pesa Paybill)</option>
+            <option value="KES_PHYSICAL">📦 KES: Buy Shop Products (Show Paybill)</option>
             <option value="INTL_PAYPAL">🇺🇸/🇪🇺/🇬🇧 International: Pay via PayPal</option>
             <option value="INTL_CARD">💳 International: Pay via Credit Card (Selar)</option>
             <option value="CRYPTO">🪙 Crypto (Bitcoin/Binance)</option>
@@ -646,6 +646,7 @@ overflow-x:hidden;
         </div>
     </div>
 </div>
+
 
 
 <script>
@@ -2370,55 +2371,29 @@ return false;
 
 };
     <script>
-    function handlePaymentSelection(selectedValue) {
-        // Find the currency picker safely (checking two possible common IDs)
-        const picker = document.getElementById('cozycabin-currency-picker') || document.getElementById('currency-picker');
-        if (picker) {
-            picker.value = 'PREVIEW'; // Reset preview text instantly
-        }
+    function handleIndependentRouting(selectedValue) {
+        // Instantly switch visual picker view baseline back to normal
+        document.getElementById('cozycabin-currency-picker').value = 'PREVIEW';
 
-        // Define our target container IDs based on choices
-        let targetId = "";
-        let isCrypto = false;
-
-        if (selectedValue === "KES_DIGITAL") {
-            targetId = 'selar-button-container';
-        } else if (selectedValue === "KES_PHYSICAL") {
-            targetId = 'mpesa-checkout-container';
-        } else if (selectedValue === "INTL_PAYPAL") {
-            targetId = 'paypal-button-container';
-        } else if (selectedValue === "INTL_CARD") {
-            targetId = 'card-button-container';
-        } else if (selectedValue === "CRYPTO") {
-            isCrypto = true;
-        }
-
-        // Execute action based on choice
-        if (isCrypto) {
+        if (selectedValue === "CRYPTO") {
+            // Direct jump to your custom Binance template page
             window.location.href = "binance-cryptopayment.html";
-        } else if (targetId) {
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                // Smoothly slide straight to the matching container element
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                // Show physical shop alert after scrolling if applicable
-                if (selectedValue === "KES_PHYSICAL") {
-                    setTimeout(() => {
-                        alert("📦 Physical Shop Order:\n\nPlease complete your transaction details via the Green M-Pesa Paybill section centered on your view.");
-                    }, 400);
-                }
-            } else {
-                // FALLBACK: If individual IDs aren't found, scroll to the entire checkout box wrapper
-                const mainWrapper = document.getElementById('premium-checkout-wrapper') || document.getElementById('premium-checkout-box');
-                if (mainWrapper) {
-                    mainWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
+        } 
+        else if (selectedValue === "KES_DIGITAL" || selectedValue === "INTL_CARD") {
+            // Direct jump to your automated Selar checkout gateway link
+            window.location.href = "https://selar.co/z6wn6j11g1";
+        } 
+        else if (selectedValue === "INTL_PAYPAL") {
+            // Direct jump to your professional PayPal link
+            window.location.href = "https://paypal.me/charlesowuor";
+        } 
+        else if (selectedValue === "KES_PHYSICAL") {
+            // Instantly gives local physical buyers your payment instructions anywhere on the site
+            alert("📦 CozyCabin Physical Shop Order:\n\nPlease complete your payment manually using M-Pesa:\n\n• Paybill: 542542\n• Account No: 702468\n\nOnce done, scroll down to the green section to input your Ref Code!");
         }
     }
 </script>
+
 
 
 
