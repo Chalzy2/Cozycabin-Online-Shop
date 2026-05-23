@@ -622,41 +622,7 @@ user-select:none;
 .product-list{
 overflow-x:hidden;
 }
-    <div class="header" style="display: flex; justify-content: flex-end; align-items: center; padding: 12px 16px; background: #000000; position: relative; z-index: 100001;">
-    <div style="display: flex; align-items: center; gap: 12px;">
-        <select id="cozycabin-currency-picker" onchange="showPaymentModal(this.value)" style="background: #111; color: #ffd700; border: 1px solid #333; border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: bold; cursor: pointer;">
-            <option value="PREVIEW">Select Currency ▼</option>
-            <option value="KES">🇰🇪 KES (Local)</option>
-            <option value="USD">🇺🇸 USD</option>
-            <option value="EUR">🇪🇺 EURO</option>
-            <option value="GBP">🇬🇧 GBP</option>
-            <option value="CRYPTO">🪙 Crypto (Bitcoin/Binance)</option>
-        </select>
-        
-        <div class="header-icons" style="display: flex; gap: 14px; align-items: center;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffd700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffd700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-        </div>
-    </div>
-</div>
-
-<div id="payment-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 200000; align-items: center; justify-content: center; padding: 20px;">
-    <div style="background: #0d0d0d; border: 2px solid #ffd700; border-radius: 20px; max-width: 400px; width: 100%; padding: 25px; text-align: center;">
-        <h3 id="modal-title" style="color: #ffd700; margin-bottom: 20px;">Payment</h3>
-        <div id="modal-body" style="color: #fff; margin-bottom: 20px;">
-            </div>
-        <button onclick="closeModal()" style="background: transparent; border: 1px solid #444; color: #aaa; padding: 10px 20px; border-radius: 8px; cursor: pointer;">Close</button>
-    </div>
-</div>
-
-
     
-
-</style>
-
-</head>
-    <body>
-
 
 <div class="header" style="display: flex; justify-content: flex-end; align-items: center; padding: 12px 16px; background: #000000; position: relative; z-index: 100001;">
     <div style="display: flex; align-items: center; gap: 12px;">
@@ -685,34 +651,6 @@ overflow-x:hidden;
     </div>
 </div>
 
-<script>
-function showPaymentModal(currency) {
-    if (currency === "PREVIEW") return;
-    
-    const modal = document.getElementById('payment-modal');
-    const title = document.getElementById('modal-title');
-    const body = document.getElementById('modal-body');
-    
-    modal.style.display = 'flex';
-    title.innerText = currency + " PAYMENT";
-    
-    if (currency === "CRYPTO") {
-        body.innerHTML = `
-            <button onclick="window.location.href='binance-cryptopayment.html'" style="width:100%; background:#f3ba2f; border:none; padding:12px; border-radius:10px; font-weight:bold; cursor:pointer;">Pay via Binance</button>
-        `;
-    } else if (currency === "KES") {
-        body.innerHTML = `<p>Paybill: 542542<br>Account: 702468</p>`;
-    } else {
-        body.innerHTML = `<p>Proceed with ${currency} payment via our secure international gateway.</p>
-                          <a href="https://paypal.me/charlesowuor" style="color:#ffd700;">Click to Pay</a>`;
-    }
-}
-
-function closeModal() {
-    document.getElementById('payment-modal').style.display = 'none';
-    document.getElementById('cozycabin-currency-picker').value = 'PREVIEW';
-}
-</script>
 
 
 
