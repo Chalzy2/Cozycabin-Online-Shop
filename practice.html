@@ -628,20 +628,38 @@ overflow-x:hidden;
 </head>
     <body>
 
-<div class="container">
-
-<!-- TOP NAV -->
-<div class="top-nav">
-
-<select class="currency-select">
-
-<option>🇰🇪 KSH</option>
-
-<option>🇺🇸 USD</option>
-
-</select>
-
+<div class="header" style="display: flex; justify-content: flex-end; align-items: center; padding: 12px 16px; background: #000000; box-sizing: border-box; position: relative; z-index: 100001;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+        
+        <select id="cozycabin-currency-picker" onchange="handleCurrencyChange(this.value)" style="background: #111111; color: #ffd700; border: 1px solid #222222; border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: bold; outline: none; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
+            <option value="KES">🇰🇪 KES</option>
+            <option value="USD">🇺🇸 USD</option>
+            <option value="EUR">🇪🇺 EURO</option>
+            <option value="CRYPTO">🪙 Crypto (Bitcoin)</option>
+        </select>
+        
+        <div class="header-icons" style="display: flex; gap: 14px; align-items: center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffd700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffd700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor: pointer;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        </div>
+    </div>
 </div>
+
+<script>
+    function handleCurrencyChange(selectedValue) {
+        if (selectedValue === "CRYPTO") {
+            // Automatically switch the visible choice back to KES so it resets cleanly for the next view
+            document.getElementById('cozycabin-currency-picker').value = 'KES';
+            
+            // Instantly jump straight to your customized Binance payment template file
+            window.location.href = "binance-cryptopayment.html";
+        } else {
+            // Put any code here if you want to change product price labels between KES, USD, and EURO later
+            console.log("Local currency context switched to: " + selectedValue);
+        }
+    }
+</script>
+
 
 <!-- BRAND HEADER -->
 
