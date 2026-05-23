@@ -2216,46 +2216,35 @@ error.message
 }
     
 
-  <script>
+<script>
 
 function handleIndependentRouting(selectedValue){
 
-    // reset selector back
     document.getElementById("cozycabin-currency-picker").value = "PREVIEW";
 
 
-    // KES LOCAL PAYMENT
+    // KES
     if(selectedValue === "KES"){
 
         window.location.href = "mpesa-payment.html";
     }
 
 
-    // CRYPTO PAGE
+    // CRYPTO
     else if(selectedValue === "CRYPTO"){
 
         window.location.href = "binance-cryptopayment.html";
     }
 
 
-    // USD
-    else if(selectedValue === "USD"){
+    // USD / EURO / GBP
+    else if(
+        selectedValue === "USD" ||
+        selectedValue === "EUR" ||
+        selectedValue === "GBP"
+    ){
 
-        window.location.href = "https://paypal.me/charlesowuor";
-    }
-
-
-    // EURO
-    else if(selectedValue === "EUR"){
-
-        window.location.href = "https://selar.co/z6wn6j11g1";
-    }
-
-
-    // GBP
-    else if(selectedValue === "GBP"){
-
-        window.location.href = "https://selar.co/z6wn6j11g1";
+        window.location.href = "international-payment.html";
     }
 
 }
