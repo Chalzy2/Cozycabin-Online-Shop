@@ -101,9 +101,9 @@
         <div class="payment-label">Paybill Number</div>
         <div class="payment-number">542542</div>
     </div>
-    <div class="payment-card">
-        <div class="payment-label">Account Number</div>
-        <div class="payment-number">702468</div>
+    <div class="payment-card" onclick="copyToClipboard('542542')" style="cursor:pointer;">
+    <div class="payment-label">Paybill (Tap to Copy)</div>
+    <div class="payment-number">542542</div>
     </div>
 
     <div class="pochi-box">
@@ -115,7 +115,15 @@
     <button class="verify-btn" onclick="verifyPayment()">VERIFY PAYMENT</button>
     <div class="success" id="success-message">✅ Verification Sent Successfully</div>
 </div>
-
+    
+    
+<script>
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert("Copied: " + text);
+    });
+}
+</script>
 <script>
     function verifyPayment(){
         let code = document.getElementById("mpesa-code").value.trim();
