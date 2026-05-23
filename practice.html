@@ -2371,40 +2371,55 @@ return false;
 };
     <script>
     function handlePaymentSelection(selectedValue) {
-        // Instantly force the dropdown selection back to visual baseline context
-        document.getElementById('cozycabin-currency-picker').value = 'PREVIEW';
+        // Find the currency picker safely (checking two possible common IDs)
+        const picker = document.getElementById('cozycabin-currency-picker') || document.getElementById('currency-picker');
+        if (picker) {
+            picker.value = 'PREVIEW'; // Reset preview text instantly
+        }
+
+        // Define our target container IDs based on choices
+        let targetId = "";
+        let isCrypto = false;
 
         if (selectedValue === "KES_DIGITAL") {
-            const selarSection = document.getElementById('selar-button-container');
-            if (selarSection) {
-                selarSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        } 
-        else if (selectedValue === "KES_PHYSICAL") {
-            const mpesaSection = document.getElementById('mpesa-checkout-container');
-            if (mpesaSection) {
-                mpesaSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-            alert("📦 Physical Shop Order:\n\nPlease complete your transaction details via the Green M-Pesa Paybill section centered on your view.");
-        } 
-        else if (selectedValue === "INTL_PAYPAL") {
-            const paypalSection = document.getElementById('paypal-button-container');
-            if (paypalSection) {
-                paypalSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            targetId = 'selar-button-container';
+        } else if (selectedValue === "KES_PHYSICAL") {
+            targetId = 'mpesa-checkout-container';
+        } else if (selectedValue === "INTL_PAYPAL") {
+            targetId = 'paypal-button-container';
+        } else if (selectedValue === "INTL_CARD") {
+            targetId = 'card-button-container';
+        } else if (selectedValue === "CRYPTO") {
+            isCrypto = true;
         }
-        else if (selectedValue === "INTL_CARD") {
-            const cardSection = document.getElementById('card-button-container');
-            if (cardSection) {
-                cardSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-        else if (selectedValue === "CRYPTO") {
-            // Jump directly over into your separate crypto page
+
+        // Execute action based on choice
+        if (isCrypto) {
             window.location.href = "binance-cryptopayment.html";
+        } else if (targetId) {
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                // Smoothly slide straight to the matching container element
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Show physical shop alert after scrolling if applicable
+                if (selectedValue === "KES_PHYSICAL") {
+                    setTimeout(() => {
+                        alert("📦 Physical Shop Order:\n\nPlease complete your transaction details via the Green M-Pesa Paybill section centered on your view.");
+                    }, 400);
+                }
+            } else {
+                // FALLBACK: If individual IDs aren't found, scroll to the entire checkout box wrapper
+                const mainWrapper = document.getElementById('premium-checkout-wrapper') || document.getElementById('premium-checkout-box');
+                if (mainWrapper) {
+                    mainWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
         }
     }
 </script>
+
 
 
 </script>
