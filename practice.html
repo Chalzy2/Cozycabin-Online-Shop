@@ -652,6 +652,34 @@ overflow-x:hidden;
         <button onclick="closeModal()" style="background: transparent; border: 1px solid #444; color: #aaa; padding: 10px 20px; border-radius: 8px; cursor: pointer;">Close</button>
     </div>
 </div>
+    <script>
+    function handleIndependentRouting(selectedValue) {
+        console.log("Routing execution triggered for value: " + selectedValue);
+
+        // 1. CRITICAL CRYPTO GATEWAY DIRECT ROUTE (Runs first)
+        if (selectedValue === "CRYPTO" || selectedValue === "crypto") {
+            window.location.href = "binance-cryptopayment.html";
+            return; // Exit script instantly to push the browser to load the page
+        }
+
+        // 2. Reset the top menu display looks back to local currency preview baseline
+        const menuPicker = document.getElementById('cozycabin-currency-picker');
+        if (menuPicker) {
+            menuPicker.value = 'PREVIEW';
+        }
+
+        // 3. Process the remaining standard links independently
+        if (selectedValue === "KES_DIGITAL" || selectedValue === "INTL_CARD") {
+            window.location.href = "https://selar.co/z6wn6j11g1";
+        } 
+        else if (selectedValue === "INTL_PAYPAL") {
+            window.location.href = "https://paypal.me/charlesowuor";
+        } 
+        else if (selectedValue === "KES_PHYSICAL") {
+            alert("📦 CozyCabin Physical Shop Order:\n\nPlease complete your payment manually using M-Pesa:\n\n• Paybill: 542542\n• Account No: 702468\n\nOnce done, scroll down to the green section to input your Ref Code!");
+        }
+    }
+    </script>
 
 <script>
 function showPaymentModal(currency) {
