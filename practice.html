@@ -628,40 +628,33 @@ overflow-x:hidden;
 </style>
 </head>
 <body>
-<div class="header" style="display:flex;justify-content:flex-end;align-items:center;padding:12px 16px;background:#000;position:sticky;top:0;z-index:100001;border-bottom:1px solid #222;">
+    
+<select id="cozycabin-currency-picker"
+onchange="handleIndependentRouting(this.value)"
+style="
+background:#111;
+color:#ffd700;
+border:1px solid #333;
+border-radius:8px;
+padding:6px 12px;
+font-size:13px;
+font-weight:bold;
+cursor:pointer;
+">
 
-    <div style="display:flex;align-items:center;gap:12px;">
+<option value="PREVIEW">Select Currency ▼</option>
 
-        <select id="cozycabin-currency-picker"
-        onchange="handleIndependentRouting(this.value)"
-        style="
-        background:#111;
-        color:#ffd700;
-        border:1px solid #333;
-        border-radius:8px;
-        padding:6px 12px;
-        font-size:13px;
-        font-weight:bold;
-        cursor:pointer;
-        ">
+<option value="KES">🇰🇪 KES (Local)</option>
 
-            <option value="PREVIEW">Select Currency ▼</option>
+<option value="USD">🇺🇸 USD</option>
 
-            <option value="KES">🇰🇪 KES (Local)</option>
+<option value="EUR">🇪🇺 EURO</option>
 
-            <option value="USD">🇺🇸 USD</option>
+<option value="GBP">🇬🇧 GBP</option>
 
-            <option value="EUR">🇪🇺 EURO</option>
+<option value="CRYPTO">🪙 Crypto (Bitcoin/Binance)</option>
 
-            <option value="GBP">🇬🇧 GBP</option>
-
-            <option value="CRYPTO">🪙 Crypto (Bitcoin/Binance)</option>
-
-        </select>
-
-    </div>
-
-</div>
+</select>
 
 
 <!-- BRAND HEADER -->
