@@ -659,7 +659,6 @@ overflow-x:hidden;
 
 
 
-
 <!-- BRAND HEADER -->
 
 <div class="brand-header">
@@ -2210,52 +2209,27 @@ error.message
 }
 
 }
-    <script>
-    // 1. Show the specific currency view
-    function showPaymentModal(currency) {
-        if (currency === "PREVIEW") return;
+<script>
+    // Ensure the function is attached to the window so the HTML can find it
+    window.closeModal = function() {
         const modal = document.getElementById('payment-modal');
-        const title = document.getElementById('modal-title');
-        const body = document.getElementById('modal-body');
+        modal.style.display = 'none';
         
-        modal.style.display = 'flex';
-        title.innerText = currency + " PAYMENT";
+        // Reset the dropdown so the user can select again
+        const picker = document.getElementById('cozycabin-currency-picker');
+        if (picker) picker.value = 'PREVIEW';
         
-        // This 'backButton' HTML is added to every view to allow "Backwards" navigation
-        const backButton = `<button onclick="showPaymentModal('PREVIEW_MENU')" style="background:none; border:1px solid #333; color:#888; padding:5px 10px; border-radius:5px; margin-bottom:15px; cursor:pointer;">← Back</button>`;
+        console.log("Modal closed successfully");
+    };
 
-        if (currency === "KES") {
-            body.innerHTML = backButton + `
-                <div style="background: #009e49; padding: 20px; border-radius: 16px; color: #fff; border: 2px solid #fff;">
-                    <div style="font-weight: 800; margin-bottom: 15px;">LIPA NA M-PESA</div>
-                    <div style="margin-bottom:10px;">Paybill: <b>542542</b></div>
-                    <div>Account: <b>702468</b></div>
-                    <input type="text" id="mpesa-code" placeholder="Enter Code" style="width:100%; padding:10px; border-radius:8px; border:none; margin:10px 0;">
-                    <button onclick="submitMpesaPayment()" style="width:100%; padding:10px; background:#fff; color:#009e49; border:none; border-radius:8px; font-weight:900;">VERIFY</button>
-                </div>
-            `;
-        } else if (currency === "CRYPTO") {
-            body.innerHTML = backButton + `
-                <button onclick="alert('BTC')" style="width:100%; padding:12px; margin:5px 0; background:#f7931a; border-radius:10px; border:none; color:white;">Bitcoin</button>
-                <button onclick="window.location.href='binance-cryptopayment.html'" style="width:100%; padding:12px; margin:5px 0; background:#f3ba2f; border-radius:10px; border:none;">Pay via Binance</button>
-            `;
-        } else if (currency === "PREVIEW_MENU") {
-            // This is the "Backwards" target: resets the menu look
-            title.innerText = "SELECT PAYMENT";
-            body.innerHTML = `
-                <button onclick="showPaymentModal('KES')" style="width:100%; padding:12px; margin:5px; background:#333; color:#fff; border-radius:10px; border:none;">🇰🇪 KES (M-Pesa)</button>
-                <button onclick="showPaymentModal('CRYPTO')" style="width:100%; padding:12px; margin:5px; background:#333; color:#fff; border-radius:10px; border:none;">🪙 Crypto</button>
-            `;
+    // Optional: Close if user clicks outside the modal box
+    window.onclick = function(event) {
+        const modal = document.getElementById('payment-modal');
+        if (event.target == modal) {
+            closeModal();
         }
-    }
-
-    // 2. Failsafe close
-    function closeModal(e) {
-        if(e) e.stopPropagation();
-        document.getElementById('payment-modal').style.display = 'none';
-        document.getElementById('cozycabin-currency-picker').value = 'PREVIEW';
-    }
-</script>
+    };
+</script>>
 
  <script>
    
