@@ -649,21 +649,6 @@ overflow-x:hidden;
 
 
 
-<script>
-    function handleCurrencyChange(selectedValue) {
-        if (selectedValue === "CRYPTO") {
-            // Automatically switch the visible choice back to KES so it resets cleanly for the next view
-            document.getElementById('cozycabin-currency-picker').value = 'KES';
-            
-            // Instantly jump straight to your customized Binance payment template file
-            window.location.href = "binance-cryptopayment.html";
-        } else {
-            // Put any code here if you want to change product price labels between KES, USD, and EURO later
-            console.log("Local currency context switched to: " + selectedValue);
-        }
-    }
-</script>
-
 
 <!-- BRAND HEADER -->
 
