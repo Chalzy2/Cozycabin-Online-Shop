@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cozycabin | Secure Payment</title>
+<style>
+    :root {
+        --gold: #ffd700;
+        --deep-black: #050505;
+        --marble-bg: linear-gradient(135deg, #050505 0%, #1a1a1a 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+    body {
+        background: var(--marble-bg);
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .mpesa-container {
+        width: 100%;
+        max-width: 400px;
+        background: #0d0d0d;
+        border: 1px solid #333;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 10px rgba(255, 215, 0, 0.1);
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid var(--gold);
+        margin-bottom: 20px;
+    }
+
+    .title { color: var(--gold); font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 25px; }
+
+    .payment-card {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 15px;
+        border-radius: 12px;
+        border: 1px solid #222;
+        margin-bottom: 15px;
+    }
+
+    .payment-label { font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .payment-number { font-size: 1.6rem; font-weight: 700; color: #fff; }
+
+    .pochi-box {
+        border-top: 1px solid #333;
+        padding-top: 20px;
+        margin-top: 20px;
+    }
+
+    input {
+        width: 100%;
+        padding: 16px;
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 10px;
+        color: #fff;
+        margin: 20px 0;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    .verify-btn {
+        width: 100%;
+        padding: 16px;
+        border: none;
+        border-radius: 10px;
+        background: var(--gold);
+        color: #000;
+        font-weight: 900;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .verify-btn:hover { background: #fff; transform: translateY(-2px); }
+
+    .success { margin-top: 15px; color: var(--gold); font-size: 0.9rem; display: none; }
+</style>
+</head>
+<body>
+
+<div class="mpesa-container">
+    <img src="Cozycabin log.png" class="logo" alt="Cozycabin">
+    <div class="title">SECURE CHECKOUT</div>
+
+    <div class="payment-card">
+        <div class="payment-label">Paybill Number</div>
+        <div class="payment-number">542542</div>
+    </div>
+    <div class="payment-card">
+        <div class="payment-label">Account Number</div>
+        <div class="payment-number">702468</div>
+    </div>
+
+    <div class="pochi-box">
+        <div class="payment-label" style="margin-bottom:5px;">Pochi La Biashara</div>
+        <div style="color:var(--gold); font-size:1.2rem; font-weight:bold;">0702468460</div>
+    </div>
+
+    <input type="text" id="mpesa-code" placeholder="Enter M-Pesa Code">
+    <button class="verify-btn" onclick="verifyPayment()">VERIFY PAYMENT</button>
+    <div class="success" id="success-message">✅ Verification Sent Successfully</div>
+</div>
+
+<script>
+    function verifyPayment(){
+        let code = document.getElementById("mpesa-code").value.trim();
+        if(code.length < 5){ alert("Please enter a valid transaction code"); return; }
+        document.getElementById("success-message").style.display = "block";
+        document.getElementById("mpesa-code").value = "";
+    }
+</script>
+</body>
+  </html>
+  
