@@ -645,18 +645,14 @@ overflow-x:hidden;
         </div>
     </div>
 </div>
+
 <div id="payment-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 200000; align-items: center; justify-content: center; padding: 20px;">
     <div style="background: #0d0d0d; border: 2px solid #ffd700; border-radius: 20px; max-width: 400px; width: 100%; padding: 25px; text-align: center;">
         <h3 id="modal-title" style="color: #ffd700; margin-bottom: 20px;">Payment</h3>
         <div id="modal-body" style="color: #fff; margin-bottom: 20px;"></div>
-        
-        <button type="button" onclick="closeModal()" style="background: transparent; border: 1px solid #444; color: #aaa; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
-            Close Window
-        </button>
+        <button onclick="closeModal()" style="background: transparent; border: 1px solid #444; color: #aaa; padding: 10px 20px; border-radius: 8px; cursor: pointer;">Close</button>
     </div>
 </div>
-
-
 
 
 <!-- BRAND HEADER -->
@@ -2210,27 +2206,79 @@ error.message
 
 }
 <script>
-    // Ensure the function is attached to the window so the HTML can find it
-    window.closeModal = function() {
-        const modal = document.getElementById('payment-modal');
-        modal.style.display = 'none';
-        
-        // Reset the dropdown so the user can select again
-        const picker = document.getElementById('cozycabin-currency-picker');
-        if (picker) picker.value = 'PREVIEW';
-        
-        console.log("Modal closed successfully");
-    };
+function showPaymentModal(currency) {
+    if (currency === "PREVIEW") return;
+    const modal = document.getElementById('payment-modal');
+    const title = document.getElementById('modal-title');
+    const body = document.getElementById('modal-body');
+    
+    modal.style.display = 'flex';
+    title.innerText = currency + " PAYMENT";
+    
+    if (currency === "KES") {
+        body.innerHTML = `
+            <div style="background: #009e49; padding: 20px; border-radius: 16px; color: #fff; border: 2px solid #fff;">
+                <div style="font-weight: 800; margin-bottom: 15px; text-transform: uppercase;">Lipa na M-Pesa</div>
+                <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                    Paybill: <b style="font-size: 1.5rem;">542542</b>
+                </div>
+                <div style="background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+                    Account: <b style="font-size: 1.5rem;">702468</b>
+                </div>
+                <input type="text" id="mpesa-code" placeholder="Enter Transaction Code" style="width:100%; padding:12px; border-radius:8px; border:none; margin-bottom:10px; text-align:center;">
+                <button onclick="submitMpesaPayment()" style="width:100%; padding:12px; background:#fff; color:#009e49; border:none; border-radius:8px; font-weight:900; cursor:pointer;">VERIFY PAYMENT</button>
+            </div>
+        `;
+    } else if (currency === "CRYPTO") {
+        body.innerHTML = `
+            <button onclick="alert('BTC')" style="width:100%; padding:14px; margin:8px 0; background:#f7931a; border:none; border-radius:12px; font-weight:bold; cursor:pointer; color:white;">₿ Bitcoin Payment</button>
+            <button onclick="alert('USDT')" style="width:100%; padding:14px; margin:8px 0; background:#26a17b; border:none; border-radius:12px; font-weight:bold; cursor:pointer; color:white;">💵 USDT (Tether)</button>
+            <button onclick="window.location.href='binance-cryptopayment.html'" style="width:100%; padding:14px; margin:8px 0; background:#f3ba2f; border:none; border-radius:12px; font-weight:bold; cursor:pointer;">PAY VIA BINANCE</button>
+        `;
+    } else {
+        body.innerHTML = `<p>Proceed with ${currency} payment via our secure international gateway.</p>`;
+    }
+}
 
-    // Optional: Close if user clicks outside the modal box
-    window.onclick = function(event) {
-        const modal = document.getElementById('payment-modal');
-        if (event.target == modal) {
-            closeModal();
-        }
-    };
-</script>>
+function closeModal() {
+    document.getElementById('payment-modal').style.display = 'none';
+    document.getElementById('cozycabin-currency-picker').value = 'PREVIEW';
+}
+</script>
+    /* Updated KES section inside showPaymentModal */
+} else if (currency === "KES") {
+    body.innerHTML = `
+        <div style="background:#009e49; padding:20px; border-radius:16px; color:#fff; border:2px solid #fff;">
+            <div style="display:flex; gap:10px; margin-bottom:15px;">
+                <button onclick="toggleMpesa('paybill')" style="flex:1; padding:8px; border-radius:8px; border:none; font-weight:bold;">PAYBILL</button>
+                <button onclick="toggleMpesa('pochi')" style="flex:1; padding:8px; border-radius:8px; border:none; font-weight:bold;">POCHI</button>
+            </div>
+            <div id="mpesa-display">
+                <div style="font-size:1.5rem; font-weight:900;">Paybill: 542542</div>
+                <div style="font-size:1.5rem; font-weight:900;">Account: 702468</div>
+            </div>
+            <input type="text" id="mpesa-code" placeholder="Enter Trans Code" style="width:100%; padding:12px; margin:15px 0; border-radius:8px; border:none; text-align:center;">
+            <button onclick="submitMpesaPayment()" style="width:100%; padding:12px; background:#fff; color:#009e49; border:none; border-radius:8px; font-weight:900;">VERIFY</button>
+        </div>
+    `;
+}
+    <script>
+    /* Add this to the "else" block of your showPaymentModal */
+} else {
+    // This redirects the user to your payment processing page with the currency attached
+    window.location.href = `binance-cryptopayment.html?currency=${currency}`;
+}
+<s/cript>
+<script>
+// Add this script to your binance-cryptopayment.html
+const urlParams = new URLSearchParams(window.location.search);
+const currency = urlParams.get('currency');
 
+if (currency) {
+    document.getElementById('payment-title').innerText = `Proceed with ${currency} Payment`;
+    // You can now hide/show specific bank or wallet details based on the currency variable
+}
+ </script>
  <script>
    
 /* =========================================
