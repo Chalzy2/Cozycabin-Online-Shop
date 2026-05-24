@@ -656,7 +656,6 @@ cursor:pointer;
 
 </select>
 
-
 <!-- BRAND HEADER -->
 
 <div class="brand-header">
@@ -2213,6 +2212,9 @@ error.message
 
 function handleIndependentRouting(selectedValue){
 
+    console.log(selectedValue);
+
+    // RESET SELECTOR
     document.getElementById("cozycabin-currency-picker").value = "PREVIEW";
 
 
@@ -2230,12 +2232,22 @@ function handleIndependentRouting(selectedValue){
     }
 
 
-    // USD / EURO / GBP
-    else if(
-        selectedValue === "USD" ||
-        selectedValue === "EUR" ||
-        selectedValue === "GBP"
-    ){
+    // USD
+    else if(selectedValue === "USD"){
+
+        window.location.href = "international-payment.html";
+    }
+
+
+    // EURO
+    else if(selectedValue === "EUR"){
+
+        window.location.href = "international-payment.html";
+    }
+
+
+    // GBP
+    else if(selectedValue === "GBP"){
 
         window.location.href = "international-payment.html";
     }
@@ -2246,7 +2258,6 @@ function handleIndependentRouting(selectedValue){
             
 
 
-    
     
     
            
