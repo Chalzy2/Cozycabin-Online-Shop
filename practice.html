@@ -2207,28 +2207,16 @@ error.message
 
 }
     
-
 <script>
 
 function handleIndependentRouting(selectedValue){
 
-    console.log(selectedValue);
-
-    // RESET SELECTOR
-    document.getElementById("cozycabin-currency-picker").value = "PREVIEW";
-
+    console.log("Selected:", selectedValue);
 
     // KES
     if(selectedValue === "KES"){
 
         window.location.href = "mpesa-payment.html";
-    }
-
-
-    // CRYPTO
-    else if(selectedValue === "CRYPTO"){
-
-        window.location.href = "binance-cryptopayment.html";
     }
 
 
@@ -2252,10 +2240,16 @@ function handleIndependentRouting(selectedValue){
         window.location.href = "international-payment.html";
     }
 
+
+    // CRYPTO
+    else if(selectedValue === "CRYPTO"){
+
+        window.location.href = "binance-cryptopayment.html";
+    }
+
 }
 
 </script>
-            
 
 
     
@@ -2416,10 +2410,50 @@ return false;
 }
 
 }
+<script>
+
+function handleIndependentRouting(selectedValue){
+
+    console.log("Selected:", selectedValue);
+
+    // KES
+    if(selectedValue === "KES"){
+
+        window.location.href = "mpesa-payment.html";
+    }
+
+
+    // USD
+    else if(selectedValue === "USD"){
+
+        window.location.href = "international-payment.html";
+    }
+
+
+    // EURO
+    else if(selectedValue === "EUR"){
+
+        window.location.href = "international-payment.html";
+    }
+
+
+    // GBP
+    else if(selectedValue === "GBP"){
+
+        window.location.href = "international-payment.html";
+    }
+
+
+    // CRYPTO
+    else if(selectedValue === "CRYPTO"){
+
+        window.location.href = "binance-cryptopayment.html";
+    }
+
+}
 
 </script>
 
-</script>
 </body>
 
 </html>
