@@ -321,7 +321,8 @@ Register Here
 
 <!-- DASHBOARD -->
 <div id="dashboard-section"
-class="hidden space-y-5">
+style="display:none"
+class="space-y-5">
 
 <!-- BALANCE -->
 <div class="p-5 bg-[#151515] rounded-2xl border border-[#222] green-glow flex justify-between items-center">
@@ -421,7 +422,7 @@ Copy Tracker Link
 
 <p class="text-[10px] text-center text-gray-500 uppercase tracking-[2px] mb-3">
 
-Minimum Payout threshold • KES 500
+Minimum Payout threshold • KES 350
 
 </p>
 
@@ -943,10 +944,13 @@ if(
 ){
 
 const randomCode =
-'CZ-' +
+'CZ' +
+Date.now()
+.toString()
+.slice(-5) +
 Math.random()
 .toString(36)
-.substring(2,7)
+.substring(2,5)
 .toUpperCase();
 
 const nameEl =
@@ -1102,8 +1106,7 @@ currentAffiliateData.sales || 0;
 document.getElementById(
 'share-link'
 ).value =
-`${window.location.origin}/?ref=${currentAffiliateData.referralCode}`;
-
+`${window.location.origin}/?ref=${currentAffiliateData.referralCode || 'COZY0000001'}`;
 }
 
 }
@@ -1162,7 +1165,7 @@ currentAffiliateData.commission || 0
 if(balance < 500){
 
 alert(
-"Minimum payout is KES 500."
+"Minimum payout is KES 350."
 );
 
 return;
