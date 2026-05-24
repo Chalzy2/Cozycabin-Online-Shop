@@ -2193,29 +2193,6 @@ error.message
 
 }
     
-<script>
-function handleIndependentRouting(selectedValue) {
-    console.log("Selected Currency:", selectedValue);
-
-    const routes = {
-        "KES": "mpesa-payment.html",
-        "USD": "international-payment.html",
-        "EUR": "international-payment.html",
-        "GBP": "international-payment.html",
-        "CRYPTO": "binance-cryptopayment.html"
-    };
-
-    // Prevent preview option redirect
-    if (selectedValue === "PREVIEW") {
-        return;
-    }
-
-    // Redirect automatically
-    if (routes[selectedValue]) {
-        window.location.href = routes[selectedValue];
-    }
-} // <--- This closing brace was missing in your code!
-</script>
 
 <script>
    /* =========================================
