@@ -631,17 +631,94 @@ overflow-x:hidden;
  </head>  
 <body>
 
-<div class="container">
+<!-- CURRENCY PAYMENT SELECTOR -->
 
-<!-- TOP NAV -->
-<div class="top-nav">
+<div style="
+margin:25px 0;
+background:#111;
+border:1px solid #d4af37;
+border-radius:22px;
+padding:18px;
+">
 
-<select class="currency-select">
+<h3 style="
+color:#ffd700;
+margin-bottom:16px;
+font-size:18px;
+text-align:center;
+">
 
-<option>🇰🇪 KSH</option>
-<option>🇺🇸 USD</option>
-<option> 💶 EURO</option>
+💳 Select Payment Currency
+
+</h3>
+
+<select
+id="currencySelector"
+onchange="handleCurrencySelection()"
+style="
+width:100%;
+padding:16px;
+border-radius:14px;
+background:#1a1a1a;
+color:#fff;
+border:1px solid #333;
+font-size:16px;
+outline:none;
+cursor:pointer;
+">
+
+<option value="">Select Currency</option>
+
+<option value="kes">
+🇰🇪 KES (Local)
+</option>
+
+<option value="usd">
+🇺🇸 USD
+</option>
+
+<option value="euro">
+🇪🇺 EURO
+</option>
+
+<option value="gbp">
+🇬🇧 GBP
+</option>
+
+<option value="crypto">
+🪙 Crypto (Bitcoin/Binance)
+</option>
+
 </select>
+
+<!-- DYNAMIC PAYMENT BUTTON -->
+
+<div id="paymentButtonArea"
+style="
+margin-top:18px;
+display:none;
+">
+
+<a
+id="paymentLink"
+href="#"
+style="
+display:block;
+background:#ffd700;
+color:#000;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+">
+
+Continue Payment
+
+</a>
+
+</div>
 
 </div>
 
@@ -2721,7 +2798,203 @@ return false;
 }
 
 };
+<script>
 
+function handleCurrencySelection(){
+
+const currency =
+document.getElementById(
+'currencySelector'
+).value;
+
+const paymentArea =
+document.getElementById(
+'paymentButtonArea'
+);
+
+/* KES OPTIONS */
+
+if(currency === 'kes'){
+
+paymentArea.style.display='block';
+
+paymentArea.innerHTML = `
+
+<a
+href="mpesa-payment.html"
+style="
+display:block;
+background:#25d366;
+color:#fff;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+margin-bottom:12px;
+">
+
+🛒 Pay for Local Products
+
+</a>
+
+<a
+href="https://selar.co/z6wn6j11g1"
+target="_blank"
+style="
+display:block;
+background:#ffd700;
+color:#000;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+">
+
+📘 Pay for Ebook/Course
+
+</a>
+
+`;
+
+}
+
+/* USD */
+
+else if(currency === 'usd'){
+
+paymentArea.style.display='block';
+
+paymentArea.innerHTML = `
+
+<a
+href="international-payment.html"
+style="
+display:block;
+background:#ffd700;
+color:#000;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+">
+
+🇺🇸 International Payment
+
+</a>
+
+`;
+
+}
+
+/* EURO */
+
+else if(currency === 'euro'){
+
+paymentArea.style.display='block';
+
+paymentArea.innerHTML = `
+
+<a
+href="international-payment.html"
+style="
+display:block;
+background:#ffd700;
+color:#000;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+">
+
+🇪🇺 International Payment
+
+</a>
+
+`;
+
+}
+
+/* GBP */
+
+else if(currency === 'gbp'){
+
+paymentArea.style.display='block';
+
+paymentArea.innerHTML = `
+
+<a
+href="international-payment.html"
+style="
+display:block;
+background:#ffd700;
+color:#000;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+">
+
+🇬🇧 International Payment
+
+</a>
+
+`;
+
+}
+
+/* CRYPTO */
+
+else if(currency === 'crypto'){
+
+paymentArea.style.display='block';
+
+paymentArea.innerHTML = `
+
+<a
+href="binance-cryptopayment.html"
+style="
+display:block;
+background:#f3ba2f;
+color:#000;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+">
+
+🪙 Pay with Binance
+
+</a>
+
+`;
+
+}
+
+/* EMPTY */
+
+else{
+
+paymentArea.style.display='none';
+
+paymentArea.innerHTML = '';
+
+}
+
+}
+
+</script>
 </script>
 
 </body>
