@@ -462,25 +462,6 @@ Logout
 </div>
 
  
- <script>
- try {
-
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-window.location.href = "dashboard.html";
-
-}
-
-catch(error){
-
-alert(error.message);
-
-}
-</script>
 
 <script type="module">
 
@@ -858,12 +839,23 @@ credential.user
 }
 else{
 
-async function login(){
-}
+/* FIXED LOGIN */
+const credential =
+await signInWithEmailAndPassword(
 auth,
 email,
 password
 );
+
+/* LOAD DASHBOARD */
+const userDocRef =
+doc(
+db,
+"affiliates",
+credential.user.uid
+);
+
+await renderDashboard(userDocRef);
 
 }
 
