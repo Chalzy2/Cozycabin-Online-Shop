@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cozycabin | Crypto Payment</title>
     <style>
+        /* Add this to your existing <style> section */
+.modal-logo {
+    width: 80px; 
+    height: 80px; 
+    margin-bottom: 15px; 
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 2px solid #ffd700;
+}
+        
         body { margin: 0; padding: 20px; background: #0f0f0f; color: white; font-family: Arial, sans-serif; }
         .container { max-width: 500px; margin: auto; background: #1a1a1a; padding: 25px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.4); border: 1px solid #333; }
         h1 { text-align: center; color: #d4af37; margin-bottom: 10px; font-size: 32px; }
@@ -24,6 +34,20 @@
     </style>
 </head>
 <body>
+    <div id="payment-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 200000; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: #0d0d0d; border: 2px solid #ffd700; border-radius: 20px; max-width: 400px; width: 100%; padding: 25px; text-align: center;">
+        
+        <img src="Images/Cozycabin log .webp" alt="Logo" style="width: 80px; height: auto; margin-bottom: 15px; border-radius: 50%;">
+        
+        <h3 id="modal-title" style="color: #ffd700; margin-bottom: 20px;">Payment</h3>
+        <div id="modal-body" style="color: #fff; margin-bottom: 20px;"></div>
+        
+        <button type="button" onclick="closeModal(event)" style="background: transparent; border: 1px solid #444; color: #aaa; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
+            Close Window
+        </button>
+    </div>
+    </div>
+    
 
 <div class="container">
     <h1>Pay with Crypto</h1>
