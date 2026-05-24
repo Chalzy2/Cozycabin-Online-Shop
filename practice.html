@@ -414,7 +414,7 @@ box-shadow:
 0 10px 35px rgba(0,0,0,0.45),
 0 0 25px rgba(45,183,66,0.08);
 }
-
+window.location.href
 .cozy-affiliate-badge{
 display:inline-block;
 background:linear-gradient(90deg,#2db742,#24a63c);
@@ -2208,47 +2208,24 @@ error.message
 }
     
 <script>
-
-function handleIndependentRouting(selectedValue){
-
+function handleIndependentRouting(selectedValue) {
+    // Debugging
     console.log("Selected:", selectedValue);
 
-    // KES
-    if(selectedValue === "KES"){
+    // Map your values to the destination URLs
+    const routes = {
+        "KES": "mpesa-payment.html",
+        "USD": "international-payment.html",
+        "EUR": "international-payment.html",
+        "GBP": "international-payment.html",
+        "CRYPTO": "binance-payment.html" 
+    };
 
-        window.location.href = "mpesa-payment.html";
+    // Check if the selected value exists in our routes map
+    if (routes[selectedValue]) {
+        window.location.href = routes[selectedValue];
     }
-
-
-    // USD
-    else if(selectedValue === "USD"){
-
-        window.location.href = "international-payment.html";
-    }
-
-
-    // EURO
-    else if(selectedValue === "EUR"){
-
-        window.location.href = "international-payment.html";
-    }
-
-
-    // GBP
-    else if(selectedValue === "GBP"){
-
-        window.location.href = "international-payment.html";
-    }
-
-
-    // CRYPTO
-    else if(selectedValue === "CRYPTO"){
-
-        window.location.href = "binance-cryptopayment.html";
-    }
-
 }
-
 </script>
 
 
@@ -2408,47 +2385,6 @@ e.keyCode == 85){
 return false;
 
 }
-
-}
-<script>
-
-function handleIndependentRouting(selectedValue){
-
-    console.log("Selected:", selectedValue);
-
-    // KES
-    if(selectedValue === "KES"){
-
-        window.location.href = "mpesa-payment.html";
-    }
-
-
-    // USD
-    else if(selectedValue === "USD"){
-
-        window.location.href = "international-payment.html";
-    }
-
-
-    // EURO
-    else if(selectedValue === "EUR"){
-
-        window.location.href = "international-payment.html";
-    }
-
-
-    // GBP
-    else if(selectedValue === "GBP"){
-
-        window.location.href = "international-payment.html";
-    }
-
-
-    // CRYPTO
-    else if(selectedValue === "CRYPTO"){
-
-        window.location.href = "binance-cryptopayment.html";
-    }
 
 }
 
