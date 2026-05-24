@@ -97,7 +97,46 @@ transform:rotate(360deg);
 
 </head>
 
-<body class="text-white font-sans flex items-center justify-center p-4">
+<body>
+ <div class="bg-[#151515] border border-[#222] rounded-2xl p-5 mt-6">
+
+<h3 class="text-[#ffd700] font-black text-sm uppercase tracking-[3px] mb-4">
+
+Generate Product Affiliate Link
+
+</h3>
+
+<input
+type="text"
+id="product-url"
+placeholder="Paste Cozycabin product URL"
+class="w-full bg-black border border-[#333] rounded-xl px-4 py-3 text-sm text-white outline-none">
+
+<button
+onclick="generateCustomAffiliateLink()"
+class="w-full mt-4 bg-[#ffd700] text-black py-3 rounded-xl font-black uppercase text-xs tracking-[2px]">
+
+Generate Link
+
+</button>
+
+<input
+type="text"
+id="generated-affiliate-link"
+readonly
+class="w-full mt-4 bg-black border border-[#222] rounded-xl px-4 py-3 text-xs text-gray-400">
+
+<button
+onclick="copyGeneratedLink()"
+class="w-full mt-3 bg-[#2db742] text-white py-3 rounded-xl font-black uppercase text-xs tracking-[2px]">
+
+Copy Link
+
+</button>
+
+ </div>
+ 
+<div class="text-white font-sans flex items-center justify-center p-4">
 
 <div class="w-full max-w-md">
 
@@ -1247,6 +1286,58 @@ catch(error){
 alert(error.message);
 
 }
+
+};
+ window.generateCustomAffiliateLink =
+function(){
+
+const productUrl =
+document.getElementById(
+'product-url'
+).value.trim();
+
+if(!productUrl){
+
+alert("Paste product URL first.");
+
+return;
+
+}
+
+if(!currentAffiliateData){
+
+alert("Affiliate data not loaded.");
+
+return;
+
+}
+
+const separator =
+productUrl.includes('?')
+? '&'
+: '?';
+
+const finalLink =
+`${productUrl}${separator}ref=${currentAffiliateData.referralCode}`;
+
+document.getElementById(
+'generated-affiliate-link'
+).value = finalLink;
+
+};
+ window.copyGeneratedLink =
+function(){
+
+const copyText =
+document.getElementById(
+'generated-affiliate-link'
+);
+
+navigator.clipboard.writeText(
+copyText.value
+);
+
+alert("Affiliate link copied!");
 
 };
 
