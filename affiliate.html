@@ -569,23 +569,25 @@ incomingReferralCode !== "Direct"
 
 try{
 
-const referralRef =
-doc(
+await addDoc(
+
+collection(
 db,
-"referralClicks",
-incomingReferralCode
+"referralClicks"
+),
+
+{
+referralCode: incomingReferralCode,
+clickedAt: new Date(),
+userAgent: navigator.userAgent
+}
+
 );
 
-await setDoc(
-referralRef,
-{
-code:incomingReferralCode,
-clickedAt:new Date()
-},
-{
-merge:true
-}
-);
+/* INCREMENT AFFILIATE CLICK COUNT */
+
+const affiliatesRef =
+collection(db,"affiliates");
 
 }
 catch(error){
@@ -597,8 +599,6 @@ console.log(error);
 }
 
 }
-
-trackReferralClick();
 
 
 
