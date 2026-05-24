@@ -2427,7 +2427,6 @@ return false;
 }
 }
 </script>
-
 <script>
 
 function handleCurrencySelection(){
@@ -2442,24 +2441,53 @@ document.getElementById(
 'paymentButtonArea'
 );
 
-const paymentLink =
-document.getElementById(
-'paymentLink'
-);
-
-/* SHOW BUTTON */
-
-paymentArea.style.display='block';
-
-/* KES */
+/* KES OPTIONS */
 
 if(currency === 'kes'){
 
-paymentLink.innerHTML =
-'🇰🇪 Pay with M-Pesa';
+paymentArea.style.display='block';
 
-paymentLink.href =
-'mpesa-payment.html';
+paymentArea.innerHTML = `
+
+<a
+href="mpesa-payment.html"
+style="
+display:block;
+background:#25d366;
+color:#fff;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+margin-bottom:12px;
+">
+
+🛒 Pay for Local Products
+
+</a>
+
+<a
+href="https://selar.co/z6wn6j11g1"
+target="_blank"
+style="
+display:block;
+background:#ffd700;
+color:#000;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+">
+
+📘 Pay for Ebook/Course
+
+</a>
+
+`;
 
 }
 
@@ -2467,11 +2495,29 @@ paymentLink.href =
 
 else if(currency === 'usd'){
 
-paymentLink.innerHTML =
-'🇺🇸 International Payment';
+paymentArea.style.display='block';
 
-paymentLink.href =
-'international-payment.html';
+paymentArea.innerHTML = `
+
+<a
+href="international-payment.html"
+style="
+display:block;
+background:#ffd700;
+color:#000;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+">
+
+🇺🇸 International Payment
+
+</a>
+
+`;
 
 }
 
@@ -2479,11 +2525,29 @@ paymentLink.href =
 
 else if(currency === 'euro'){
 
-paymentLink.innerHTML =
-'🇪🇺 International Payment';
+paymentArea.style.display='block';
 
-paymentLink.href =
-'international-payment.html';
+paymentArea.innerHTML = `
+
+<a
+href="international-payment.html"
+style="
+display:block;
+background:#ffd700;
+color:#000;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+">
+
+🇪🇺 International Payment
+
+</a>
+
+`;
 
 }
 
@@ -2491,11 +2555,29 @@ paymentLink.href =
 
 else if(currency === 'gbp'){
 
-paymentLink.innerHTML =
-'🇬🇧 International Payment';
+paymentArea.style.display='block';
 
-paymentLink.href =
-'international-payment.html';
+paymentArea.innerHTML = `
+
+<a
+href="international-payment.html"
+style="
+display:block;
+background:#ffd700;
+color:#000;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+">
+
+🇬🇧 International Payment
+
+</a>
+
+`;
 
 }
 
@@ -2503,11 +2585,29 @@ paymentLink.href =
 
 else if(currency === 'crypto'){
 
-paymentLink.innerHTML =
-'🪙 Pay with Binance';
+paymentArea.style.display='block';
 
-paymentLink.href =
-'binance-cryptopayment.html';
+paymentArea.innerHTML = `
+
+<a
+href="binance-cryptopayment.html"
+style="
+display:block;
+background:#f3ba2f;
+color:#000;
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:bold;
+text-align:center;
+font-size:16px;
+">
+
+🪙 Pay with Binance
+
+</a>
+
+`;
 
 }
 
@@ -2517,12 +2617,13 @@ else{
 
 paymentArea.style.display='none';
 
+paymentArea.innerHTML = '';
+
 }
 
 }
 
 </script>
-    
     
 
 </script>
