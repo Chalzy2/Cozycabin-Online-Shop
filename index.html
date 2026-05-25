@@ -192,7 +192,7 @@ margin-top:5px;
 
 .academy-card{
 background:#1a1a1a;
-border:1px solid #333;
+border:1px solid #0007ff;
 border-radius:28px;
 padding:18px;
 display:flex;
@@ -624,7 +624,27 @@ user-select:none;
 .product-list{
 overflow-x:hidden;
 }
+/* 1. Ensure all boxes have consistent rounded corners (as in Crypto Mastery) */
+.course-box, .crypto-box, .ebook-box {
+    border-radius: 15px; /* Adjust this value for the level of roundness you want */
+    border-width: 2px;
+    border-style: solid;
+    padding: 15px;
+    margin-bottom: 15px; /* Adds the space between the boxes */
+}
 
+/* 2. Set the Course (Academy Courses) border to blue */
+.course-box {
+    border-color: blue;
+}
+
+.ebook-box {
+    border: 2px solid #CD853F; /* Warm, visible brown */
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    }
+    
  
 </style>
 
