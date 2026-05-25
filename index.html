@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
  <head>
 <meta
 http-equiv="Content-Security-Policy"
 content="
-default-src 'self' https:;
+default-src 'self';
 img-src 'self' https: data:;
 script-src 'self' https://www.gstatic.com https://www.googletagmanager.com 'unsafe-inline';
 style-src 'self' 'unsafe-inline' https:;
-connect-src https:;
-frame-src https:;
+connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com;
+frame-ancestors 'none';
+base-uri 'self';
+form-action 'self';
+upgrade-insecure-requests;
 ">
 
 <meta charset="UTF-8">
@@ -3191,6 +3193,9 @@ font-size:16px;
 `;
 
 }
+ if(!localStorage.getItem("paymentAccess")){
+location.href="index.html";
+ }
 
 /* EMPTY */
 
@@ -3201,10 +3206,45 @@ paymentArea.style.display='none';
 paymentArea.innerHTML = '';
 
 }
+let lastSubmit = 0;
+
+window.submitMpesaPayment = async function(){
+
+const now = Date.now();
+
+if(now - lastSubmit < 15000){
+alert("Please wait before submitting again.");
+return;
+}
+
+lastSubmit = now;
+
+/* continue */
 
 }
 
+}
+ <script type="module">
+
+import {
+initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+initializeAppCheck,
+ReCaptchaV3Provider
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
+
+const app = initializeApp(firebaseConfig);
+
+initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider('YOUR_RECAPTCHA_SITE_KEY'),
+  isTokenAutoRefreshEnabled: true
+});
+
 </script>
+
+
 </script>
 
 </body>
