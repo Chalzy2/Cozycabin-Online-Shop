@@ -804,7 +804,6 @@ Video Editing & Setup ▼
 </div>
 
 <!-- CRYPTO SECTION -->
-
 <div style="margin-bottom:15px; font-family:sans-serif;">
     <button class="menu-trigger-btn" onclick="toggleCryptoRowDropdown()" style="width:100%; background:#1a1a1a; border:1px solid #d4af37; padding:12px; display:flex; align-items:center; justify-content:space-between; border-radius:15px; cursor:pointer; text-align:left;">
         <div style="display:flex; align-items:center; gap:15px;">
@@ -818,60 +817,66 @@ Video Editing & Setup ▼
     </button>
 
     <div id="crypto-row-dropdown-menu" style="display:none; background:#111; border:1px solid #333; border-top:none; padding:15px; border-radius:0 0 15px 15px;">
-
+        
         <style>
-            .crypto-card { background:#1a1a1a; border:1px solid #333; border-radius:12px; padding:15px; margin-bottom:15px; }
-            .card-title { color:#fff; font-size:14px; font-weight:bold; margin-bottom:8px; }
-            .card-desc { color:#aaa; font-size:12px; line-height:1.5; margin-bottom:12px; }
-            .card-btn { color:#000; padding:8px 14px; text-decoration:none; font-size:11px; font-weight:bold; border-radius:6px; }
+            .crypto-item { background:#1a1a1a; border:1px solid #333; border-radius:12px; padding:12px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; }
+            .item-left { display:flex; align-items:center; gap:10px; }
+            .item-icon { width:28px; height:28px; border-radius:6px; object-fit:cover; }
+            .item-name { color:#fff; font-size:14px; font-weight:bold; margin:0; }
+            .item-btn { background:#e6b800; color:#000; padding:8px 16px; text-decoration:none; font-size:11px; font-weight:bold; border-radius:8px; }
         </style>
 
-        <div class="crypto-card">
-            <p class="card-title" style="color:#ffd700;">🔥 Binance: Up to $100 Reward</p>
-            <p class="card-desc">Register and start your journey securely.</p>
-            <a href="binance-cryptopayment.html" class="card-btn" style="background:#e6b800;">Join Binance</a>
+        <div class="crypto-item">
+            <div class="item-left">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" class="item-icon">
+                <p class="item-name">Binance</p>
+            </div>
+            <a href="binance-cryptopayment.html" class="item-btn">Join</a>
         </div>
 
-        <div class="crypto-card">
-            <p class="card-title" style="color:#0087ff;">⚡ Trade on OKX</p>
-            <p class="card-desc">Explore global markets and advanced tools.</p>
-            <a href="https://okx.com/ul/J6l2R5" class="card-btn" style="background:#0087ff; color:#fff;">Join OKX</a>
+        <div class="crypto-item">
+            <div class="item-left">
+                <img src="https://static.okx.com/cdn/assets/imgs/221/530B2E761E8D9D86.png" class="item-icon">
+                <p class="item-name">OKX</p>
+            </div>
+            <a href="https://okx.com/ul/J6l2R5" class="item-btn" style="background:#0087ff; color:#fff;">Join</a>
         </div>
 
-        <div class="crypto-card">
-            <p class="card-title" style="color:#ff8c00;">💎 Bybit Exchange</p>
-            <p class="card-desc">Professional crypto exchange platform.</p>
-            <a href="https://partner.bybit.com/b/123495" class="card-btn" style="background:#ff8c00; color:#fff;">Join Bybit</a>
+        <div class="crypto-item">
+            <div class="item-left">
+                <img src="https://images.bybit.com/bybit/main/logo.png" class="item-icon" style="background:#fff;">
+                <p class="item-name">Bybit</p>
+            </div>
+            <a href="https://partner.bybit.com/b/123495" class="item-btn" style="background:#ff8c00; color:#fff;">Join</a>
         </div>
 
-        <div class="crypto-card">
-            <p class="card-title" style="color:#20a8d8;">📈 KuCoin</p>
-            <p class="card-desc">Your gateway to global altcoins.</p>
-            <a href="https://link.kucoin.com/iqEP/alk9lpk6" class="card-btn" style="background:#20a8d8; color:#fff;">Join KuCoin</a>
+        <div class="crypto-item">
+            <div class="item-left">
+                <img src="https://assets.staticimg.com/cms/media/2PICk17A645U2U1F95642517616.png" class="item-icon">
+                <p class="item-name">KuCoin</p>
+            </div>
+            <a href="https://link.kucoin.com/iqEP/alk9lpk6" class="item-btn" style="background:#20a8d8; color:#fff;">Join</a>
         </div>
 
-        <div class="crypto-card">
-            <p class="card-title" style="color:#16a34a;">🚀 MiniPay</p>
-            <p class="card-desc">Instant payments with low fees.</p>
-            <a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ" class="card-btn" style="background:#16a34a; color:#fff;">Join MiniPay</a>
+        <div class="crypto-item">
+            <div class="item-left">
+                <img src="https://minipay.to/assets/logo.png" class="item-icon" style="background:#fff;">
+                <p class="item-name">MiniPay</p>
+            </div>
+            <a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ" class="item-btn" style="background:#16a34a; color:#fff;">Join</a>
         </div>
 
-        <div class="crypto-card">
-            <p class="card-title" style="color:#800080;">💎 Pi Network</p>
-            <p class="card-desc">Use code: Chalzy1</p>
-            <a href="https://minepi.com/Chalzy1" class="card-btn" style="background:#800080; color:#fff;">Join Pi</a>
+        <div class="crypto-item">
+            <div class="item-left">
+                <img src="https://minepi.com/images/pi-logo.png" class="item-icon">
+                <p class="item-name">Pi Network</p>
+            </div>
+            <a href="https://minepi.com/Chalzy1" class="item-btn" style="background:#800080; color:#fff;">Join</a>
         </div>
-
-        <div class="crypto-card">
-            <p class="card-title" style="color:#00c853;">🌐 Bondex Web3</p>
-            <p class="card-desc">Access exclusive airdrops and jobs.</p>
-            <a href="https://bondex.page.link/BnW5anRoct37Fngy5?inviteCode=5IGQM" class="card-btn" style="background:#00c853; color:#fff;">Join Bondex</a>
+        
+        <div style="text-align: center; color: #555; font-size: 10px; margin-top: 15px;">
+            DYOR: Always research before investing.
         </div>
-
-        <div style="text-align: center; color: #555; font-size: 10px; margin-top: 10px;">
-            DYOR: Do your own research before investing.
-        </div>
-
     </div>
 </div>
 
