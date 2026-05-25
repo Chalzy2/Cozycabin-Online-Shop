@@ -817,68 +817,99 @@ Video Editing & Setup ▼
     </button>
 
     <div id="crypto-row-dropdown-menu" style="display:none; background:#111; border:1px solid #333; border-top:none; padding:15px; border-radius:0 0 15px 15px;">
-        
-        <style>
-            .crypto-item { background:#1a1a1a; border:1px solid #333; border-radius:12px; padding:12px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; }
-            .item-left { display:flex; align-items:center; gap:10px; }
-            .item-icon { width:28px; height:28px; border-radius:6px; object-fit:cover; }
-            .item-name { color:#fff; font-size:14px; font-weight:bold; margin:0; }
-            .item-btn { background:#e6b800; color:#000; padding:8px 16px; text-decoration:none; font-size:11px; font-weight:bold; border-radius:8px; }
-        </style>
+    
+    <style>
+        .crypto-item { background:#1a1a1a; border:1px solid #333; border-radius:12px; padding:12px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; }
+        .item-left { display:flex; align-items:center; gap:12px; }
+        .item-icon { width:32px; height:32px; border-radius:6px; object-fit:contain; background:#222; }
+        .item-text { display:flex; flex-direction:column; gap:2px; }
+        .item-name { color:#fff; font-size:14px; font-weight:bold; margin:0; }
+        .item-desc { color:#aaa; font-size:10px; margin:0; }
+        .item-btn { padding:6px 14px; text-decoration:none; font-size:11px; font-weight:bold; border-radius:8px; }
+    </style>
 
-        <div class="crypto-item">
-            <div class="item-left">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" class="item-icon">
+    <div class="crypto-item">
+        <div class="item-left">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" class="item-icon">
+            <div class="item-text">
                 <p class="item-name">Binance</p>
+                <p class="item-desc">Up to $100 Reward</p>
             </div>
-            <a href="binance-cryptopayment.html" class="item-btn">Join</a>
         </div>
+        <a href="binance-cryptopayment.html" class="item-btn" style="background:#e6b800; color:#000;">Join</a>
+    </div>
 
-        <div class="crypto-item">
-            <div class="item-left">
-                <img src="https://static.okx.com/cdn/assets/imgs/221/530B2E761E8D9D86.png" class="item-icon">
+    <div class="crypto-item">
+        <div class="item-left">
+            <img src="https://static.okx.com/cdn/assets/imgs/221/530B2E761E8D9D86.png" class="item-icon">
+            <div class="item-text">
                 <p class="item-name">OKX</p>
+                <p class="item-desc">Trade global markets</p>
             </div>
-            <a href="https://okx.com/ul/J6l2R5" class="item-btn" style="background:#0087ff; color:#fff;">Join</a>
         </div>
+        <a href="https://okx.com/ul/J6l2R5" class="item-btn" style="background:#0087ff; color:#fff;">Join</a>
+    </div>
 
-        <div class="crypto-item">
-            <div class="item-left">
-                <img src="https://images.bybit.com/bybit/main/logo.png" class="item-icon" style="background:#fff;">
+    <div class="crypto-item">
+        <div class="item-left">
+            <img src="https://images.bybit.com/bybit/main/logo.png" class="item-icon" style="background:#fff;">
+            <div class="item-text">
                 <p class="item-name">Bybit</p>
+                <p class="item-desc">Professional exchange</p>
             </div>
-            <a href="https://partner.bybit.com/b/123495" class="item-btn" style="background:#ff8c00; color:#fff;">Join</a>
         </div>
+        <a href="https://partner.bybit.com/b/123495" class="item-btn" style="background:#ff8c00; color:#fff;">Join</a>
+    </div>
 
-        <div class="crypto-item">
-            <div class="item-left">
-                <img src="https://assets.staticimg.com/cms/media/2PICk17A645U2U1F95642517616.png" class="item-icon">
+    <div class="crypto-item">
+        <div class="item-left">
+            <img src="https://assets.staticimg.com/cms/media/2PICk17A645U2U1F95642517616.png" class="item-icon">
+            <div class="item-text">
                 <p class="item-name">KuCoin</p>
+                <p class="item-desc">Gateway to altcoins</p>
             </div>
-            <a href="https://link.kucoin.com/iqEP/alk9lpk6" class="item-btn" style="background:#20a8d8; color:#fff;">Join</a>
         </div>
+        <a href="https://link.kucoin.com/iqEP/alk9lpk6" class="item-btn" style="background:#20a8d8; color:#fff;">Join</a>
+    </div>
 
-        <div class="crypto-item">
-            <div class="item-left">
-                <img src="https://minipay.to/assets/logo.png" class="item-icon" style="background:#fff;">
+    <div class="crypto-item">
+        <div class="item-left">
+            <img src="https://minipay.to/assets/logo.png" class="item-icon" style="background:#fff;">
+            <div class="item-text">
                 <p class="item-name">MiniPay</p>
+                <p class="item-desc">Instant payments</p>
             </div>
-            <a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ" class="item-btn" style="background:#16a34a; color:#fff;">Join</a>
         </div>
+        <a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ" class="item-btn" style="background:#16a34a; color:#fff;">Join</a>
+    </div>
 
-        <div class="crypto-item">
-            <div class="item-left">
-                <img src="https://minepi.com/images/pi-logo.png" class="item-icon">
+    <div class="crypto-item">
+        <div class="item-left">
+            <img src="https://minepi.com/images/pi-logo.png" class="item-icon">
+            <div class="item-text">
                 <p class="item-name">Pi Network</p>
+                <p class="item-desc">Use code: Chalzy1</p>
             </div>
-            <a href="https://minepi.com/Chalzy1" class="item-btn" style="background:#800080; color:#fff;">Join</a>
         </div>
-        
-        <div style="text-align: center; color: #555; font-size: 10px; margin-top: 15px;">
-            DYOR: Always research before investing.
+        <a href="https://minepi.com/Chalzy1" class="item-btn" style="background:#800080; color:#fff;">Join</a>
+    </div>
+
+    <div class="crypto-item">
+        <div class="item-left">
+            <img src="https://bondex.app/images/logo.png" class="item-icon">
+            <div class="item-text">
+                <p class="item-name">Bondex</p>
+                <p class="item-desc">Web3 jobs & airdrops</p>
+            </div>
         </div>
+        <a href="https://bondex.page.link/BnW5anRoct37Fngy5?inviteCode=5IGQM" class="item-btn" style="background:#00c853; color:#fff;">Join</a>
+    </div>
+
+    <div style="text-align: center; color: #555; font-size: 10px; margin-top: 15px;">
+        DYOR: Always research before investing.
     </div>
 </div>
+
 
     
     <!-- EBOOK SECTION -->
