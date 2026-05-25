@@ -828,91 +828,8 @@ Video Editing & Setup ▼
 
 </div>
 
+ 
 <!-- CRYPTO SECTION -->
-
-<div style="
-margin-bottom:15px;
-font-family:sans-serif;
-">
-
-<button
-class="menu-trigger-btn"
-onclick="toggleCryptoRowDropdown()"
-style="
-width:100%;
-background:#1a1a1a;
-border:1px solid #d4af37;
-padding:12px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-border-radius:15px;
-cursor:pointer;
-text-align:left;
-">
-
-<div style="
-display:flex;
-align-items:center;
-gap:15px;
-">
-
-<div style="
-background:#e6b800;
-color:#000;
-width:55px;
-height:55px;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:bold;
-font-size:11px;
-">
-
-Crypto
-
-</div>
-
-<div>
-
-<h3 style="
-color:#fff;
-margin:0 0 4px 0;
-font-size:16px;
-">
-
-Crypto Mastery
-
-</h3>
-
-<p style="
-color:#d4af37;
-margin:0;
-font-size:12px;
-">
-
-Top Global Exchanges
-
-</p>
-
-</div>
-
-</div>
-
-<span id="crypto-row-arrow"
-style="
-color:#d4af37;
-font-size:12px;
-transition:transform .3s;
-">
-
-▼
-
-</span>
-
-</button>
-
 <div style="margin-bottom:15px; font-family:sans-serif;">
     <button class="menu-trigger-btn" onclick="toggleCryptoRowDropdown()" style="width:100%; background:#1a1a1a; border:1px solid #d4af37; padding:12px; display:flex; align-items:center; justify-content:space-between; border-radius:15px; cursor:pointer; text-align:left;">
         <div style="display:flex; align-items:center; gap:15px;">
@@ -925,65 +842,307 @@ transition:transform .3s;
         <span id="crypto-row-arrow" style="color:#d4af37; font-size:12px; transition:transform .3s;">▼</span>
     </button>
 
-    <div id="crypto-row-dropdown-menu" style="display:none; background:#111; border:1px solid #333; border-top:none; padding:15px; border-radius:0 0 15px 15px;">
+<div id="crypto-row-dropdown-menu" style="display:none; background:#0b0b0b; border:1px solid #d4a017; border-top:none; padding:18px; border-radius:0 0 28px 28px;">
 
-        <style>
-            .crypto-card { background:#1a1a1a; border:1px solid #333; border-radius:12px; padding:15px; margin-bottom:15px; }
-            .card-title { color:#fff; font-size:14px; font-weight:bold; margin-bottom:8px; }
-            .card-desc { color:#aaa; font-size:12px; line-height:1.5; margin-bottom:12px; }
-            .card-btn { color:#000; padding:8px 14px; text-decoration:none; font-size:11px; font-weight:bold; border-radius:6px; }
-        </style>
+<style>
 
-        <div class="crypto-card">
-            <p class="card-title" style="color:#ffd700;">🔥 Binance: Up to $100 Reward</p>
-            <p class="card-desc">Register and start your journey securely.</p>
-            <a href="binance-cryptopayment.html" class="card-btn" style="background:#e6b800;">Join Binance</a>
+.crypto-box{
+    background:linear-gradient(145deg,#181818,#101010);
+    border:1px solid #2d2d2d;
+    border-radius:22px;
+    padding:16px;
+    margin-bottom:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    box-shadow:0 0 14px rgba(0,0,0,0.45);
+}
+
+.crypto-left{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex:1;
+}
+
+.crypto-logo-box{
+    width:74px;
+    height:74px;
+    border-radius:18px;
+    background:#111;
+    border:1px solid #303030;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-shrink:0;
+}
+
+.crypto-logo{
+    width:46px;
+    height:46px;
+    object-fit:contain;
+}
+
+.crypto-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.crypto-title{
+    color:#f2c94c;
+    font-size:15px;
+    font-weight:700;
+    margin:0 0 8px;
+    line-height:1.4;
+}
+
+.crypto-desc{
+    color:#a1a1a1;
+    font-size:11px;
+    line-height:1.5;
+    margin:0;
+}
+
+.crypto-btn{
+    padding:13px 22px;
+    border-radius:14px;
+    font-size:13px;
+    font-weight:700;
+    text-decoration:none;
+    color:#fff;
+    white-space:nowrap;
+    transition:0.3s ease;
+}
+
+.crypto-btn:hover{
+    transform:scale(1.03);
+    opacity:0.92;
+}
+
+@media(max-width:600px){
+
+.crypto-box{
+    padding:14px;
+    gap:12px;
+}
+
+.crypto-logo-box{
+    width:65px;
+    height:65px;
+}
+
+.crypto-logo{
+    width:40px;
+    height:40px;
+}
+
+.crypto-title{
+    font-size:14px;
+}
+
+.crypto-desc{
+    font-size:10px;
+}
+
+.crypto-btn{
+    padding:11px 18px;
+    font-size:12px;
+}
+
+}
+
+</style>
+
+<!-- Binance -->
+<div class="crypto-box">
+
+    <div class="crypto-left">
+
+        <div class="crypto-logo-box">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" class="crypto-logo">
         </div>
 
-        <div class="crypto-card">
-            <p class="card-title" style="color:#0087ff;">⚡ Trade on OKX</p>
-            <p class="card-desc">Explore global markets and advanced tools.</p>
-            <a href="https://okx.com/ul/J6l2R5" class="card-btn" style="background:#0087ff; color:#fff;">Join OKX</a>
-        </div>
-
-        <div class="crypto-card">
-            <p class="card-title" style="color:#ff8c00;">💎 Bybit Exchange</p>
-            <p class="card-desc">Professional crypto exchange platform.</p>
-            <a href="https://partner.bybit.com/b/123495" class="card-btn" style="background:#ff8c00; color:#fff;">Join Bybit</a>
-        </div>
-
-        <div class="crypto-card">
-            <p class="card-title" style="color:#20a8d8;">📈 KuCoin</p>
-            <p class="card-desc">Your gateway to global altcoins.</p>
-            <a href="https://link.kucoin.com/iqEP/alk9lpk6" class="card-btn" style="background:#20a8d8; color:#fff;">Join KuCoin</a>
-        </div>
-
-        <div class="crypto-card">
-            <p class="card-title" style="color:#16a34a;">🚀 MiniPay</p>
-            <p class="card-desc">Instant payments with low fees.</p>
-            <a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ" class="card-btn" style="background:#16a34a; color:#fff;">Join MiniPay</a>
-        </div>
-
-        <div class="crypto-card">
-            <p class="card-title" style="color:#800080;">💎 Pi Network</p>
-            <p class="card-desc">Use code: Chalzy1</p>
-            <a href="https://minepi.com/Chalzy1" class="card-btn" style="background:#800080; color:#fff;">Join Pi</a>
-        </div>
-
-        <div class="crypto-card">
-            <p class="card-title" style="color:#00c853;">🌐 Bondex Web3</p>
-            <p class="card-desc">Access exclusive airdrops and jobs.</p>
-            <a href="https://bondex.page.link/BnW5anRoct37Fngy5?inviteCode=5IGQM" class="card-btn" style="background:#00c853; color:#fff;">Join Bondex</a>
-        </div>
-
-        <div style="text-align: center; color: #555; font-size: 10px; margin-top: 10px;">
-            DYOR: Do your own research before investing.
+        <div class="crypto-info">
+            <p class="crypto-title">🔥 Binance Rewards: Up to $100</p>
+            <p class="crypto-desc">Register and start your journey securely.</p>
         </div>
 
     </div>
+
+    <a href="binance-cryptopayment.html"
+       class="crypto-btn"
+       style="background:#e0b400; color:#000;">
+       Join Binance
+    </a>
+
 </div>
 
+<!-- OKX -->
+<div class="crypto-box">
 
+    <div class="crypto-left">
+
+        <div class="crypto-logo-box">
+            <img src="Image/okex.webp" class="crypto-logo">
+        </div>
+
+        <div class="crypto-info">
+            <p class="crypto-title">⚡ OKX Bonus: Up to $60</p>
+            <p class="crypto-desc">Trade smarter with advanced tools.</p>
+        </div>
+
+    </div>
+
+    <a href="https://okx.com/ul/J6l2R5"
+       class="crypto-btn"
+       style="background:#0d84ff;">
+       Join OKX
+    </a>
+
+</div>
+
+<!-- Bybit -->
+<div class="crypto-box">
+
+    <div class="crypto-left">
+
+        <div class="crypto-logo-box">
+            <img src="Image/bybit.webp"
+                 class="crypto-logo"
+                 style="background:#fff; border-radius:10px; padding:4px;">
+        </div>
+
+        <div class="crypto-info">
+            <p class="crypto-title">💎 Bybit Bonus: Up to $50</p>
+            <p class="crypto-desc">Level up your trading with Bybit.</p>
+        </div>
+
+    </div>
+
+    <a href="https://partner.bybit.com/b/123495"
+       class="crypto-btn"
+       style="background:#ff8a00;">
+       Join Bybit
+    </a>
+
+</div>
+
+<!-- KuCoin -->
+<div class="crypto-box">
+
+    <div class="crypto-left">
+
+        <div class="crypto-logo-box">
+            <img src="Image/kuicoin.webp"
+                 class="crypto-logo">
+        </div>
+
+        <div class="crypto-info">
+            <p class="crypto-title">🚀 KuCoin Bonus: Up to $500</p>
+            <p class="crypto-desc">Discover gems before they trend.</p>
+        </div>
+
+    </div>
+
+    <a href="https://link.kucoin.com/iqEP/alk9lpk6"
+       class="crypto-btn"
+       style="background:#27b8e7;">
+       Join KuCoin
+    </a>
+
+</div>
+
+<!-- MiniPay -->
+<div class="crypto-box">
+
+    <div class="crypto-left">
+
+        <div class="crypto-logo-box">
+            <img src="Image/minipay.webp"
+                 class="crypto-logo"
+                 style="background:#fff; border-radius:10px; padding:4px;">
+        </div>
+
+        <div class="crypto-info">
+            <p class="crypto-title">💰 MiniPay Cashback: Up to 2%</p>
+            <p class="crypto-desc">Fast, secure payments worldwide.</p>
+        </div>
+
+    </div>
+
+    <a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ"
+       class="crypto-btn"
+       style="background:#12b347;">
+       Join MiniPay
+    </a>
+
+</div>
+
+<!-- Pi Network -->
+<div class="crypto-box">
+
+    <div class="crypto-left">
+
+        <div class="crypto-logo-box">
+            <img src="Image/pi.webp"
+                 class="crypto-logo">
+        </div>
+
+        <div class="crypto-info">
+            <p class="crypto-title">🎁 Pi Network Bonus: Free Mining</p>
+            <p class="crypto-desc">Mine crypto easily from your phone.</p>
+        </div>
+
+    </div>
+
+    <a href="https://minepi.com/Chalzy1"
+       class="crypto-btn"
+       style="background:#7b1fa2;">
+       Join Pi Network
+    </a>
+
+</div>
+
+<!-- Bondex -->
+<div class="crypto-box">
+
+    <div class="crypto-left">
+
+        <div class="crypto-logo-box">
+            <img src="Image/Bondex.webp"
+                 class="crypto-logo">
+        </div>
+
+        <div class="crypto-info">
+            <p class="crypto-title">💼 Bondex Rewards: Earn & Grow</p>
+            <p class="crypto-desc">Web3 jobs, tasks & airdrop rewards.</p>
+        </div>
+
+    </div>
+
+    <a href="https://bondex.page.link/BnW5anRoct37Fngy5?inviteCode=5IGQM"
+       class="crypto-btn"
+       style="background:#00b84f;">
+       Join Bondex
+    </a>
+
+</div>
+
+<!-- Footer -->
+<div style="text-align:center; color:#666; font-size:10px; margin-top:18px;">
+    Cozycabin Crypto Hub • DYOR Before Investing
+</div>
+
+</div>
+
+ </div>
+
+
+
+
+
+         
 <!-- EBOOK SECTION -->
 
 <div style="
@@ -997,7 +1156,7 @@ onclick="toggleEbookRowDropdown()"
 style="
 width:100%;
 background:#1a1a1a;
-border:1px solid #d4af37;
+border:1px solid  #CD853F;
 padding:12px;
 display:flex;
 align-items:center;
@@ -1014,7 +1173,7 @@ gap:15px;
 ">
 
 <div style="
-background:#e6b800;
+background: #CD853F;
 color:#000;
 width:55px;
 height:55px;
