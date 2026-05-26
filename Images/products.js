@@ -108,3 +108,10 @@ comfortable for long wear.
 });
 
 }
+function changeImage(index,image){
+
+document.getElementById(
+`product-image-${index}`
+).src = image;
+
+}
