@@ -105,7 +105,6 @@ comfortable for long wear.
 `;
 
 });
-  
 
 }
 function changeImage(index,image){
@@ -115,5 +114,31 @@ document.getElementById(
 ).src = image;
 
 }
+
+const products = {
+
+shoes: [
+
+{
+title: "Adidas Casual",
+price: 3200,
+sizes: [40,41,42,43,44,45],
+images: [
+"images/fashion/shoes/adidas-black.webp"
+]
+},
+
+{
+title: "Calvin Klein Casual",
+price: 3200,
+sizes: [40,41,42,43,44,45],
+images: [
+"images/fashion/shoes/calvin-brown.webp"
+]
+}
+
+]
+
+};
 showCategory('shoes');
 
