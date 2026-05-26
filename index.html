@@ -1900,13 +1900,10 @@ onclick="toggleSub('appliances-sub')">
 </div>
 
 <div id="fashion-sub" class="minor-menu">
-    <button onclick="hideSub('fashion-sub')">Back</button>
-    <div class="minor-grid">
-     <!-- Inside the sub-menu -->
-<button class="sub-btn" onclick="showProducts('shoes')">
-    <span>👟</span> Shoes
-</button>
-
+    <div class="minor-top">
+        <button onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
+    </div>
+        <button onclick="showProducts('shoes')" class="minor-btn">📷 Shoes</button>
         <button onclick="showProducts('shirts')" class="minor-btn">👕 Shirts</button>
         <button onclick="showProducts('hoodies')" class="minor-btn">🧥 Hoodies</button>
         <button onclick="showProducts('watches')" class="minor-btn">⌚ Watches</button>
@@ -1914,11 +1911,9 @@ onclick="toggleSub('appliances-sub')">
         <button onclick="showProducts('caps')" class="minor-btn">🧢 Caps</button>
         <button onclick="showProducts('jeans')" class="minor-btn">👖 Jeans</button>
         <button onclick="showProducts('jackets')" class="minor-btn">🥼 Jackets</button>
+    
+</div>
     </div>
-  <div id="products-container"></div>
-  <button class="order-btn">Order Now</button>
-</div>
-</div>
 
 <div id="appliances-sub" class="minor-menu">
     <div class="minor-top">
