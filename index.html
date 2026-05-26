@@ -3202,24 +3202,8 @@ paymentArea.style.display='none';
 paymentArea.innerHTML = '';
 
 }
-let lastSubmit = 0;
-
-window.submitMpesaPayment = async function(){
-
-const now = Date.now();
-
-if(now - lastSubmit < 15000){
-alert("Please wait before submitting again.");
-return;
 }
-
-lastSubmit = now;
-
-/* continue */
-
-}
-
-}
+ </script>
  <script type="module">
 
 import {
@@ -3239,83 +3223,121 @@ initializeAppCheck(app, {
 });
 
 </script>
- <script>
- 
+<script>
+
+/* PAYMENT ACCESS CHECK */
+
+if(!localStorage.getItem("paymentAccess")){
+console.log("No premium access detected");
 }
- if(!localStorage.getItem("paymentAccess")){
-location.href="index.html";
- }
+
 </script>
 
-<script>
-     <!-- FOOTER -->
+<!-- FOOTER -->
+
 <footer style="background:#0b0b0b; border-top:1px solid #222; padding:40px 20px 25px; margin-top:50px; color:#fff;">
 
-    <div style="max-width:1200px; margin:auto; display:flex; flex-wrap:wrap; gap:40px; justify-content:space-between;">
+<div style="max-width:1200px; margin:auto; display:flex; flex-wrap:wrap; gap:40px; justify-content:space-between;">
 
-        <!-- BRAND -->
-        <div style="flex:1; min-width:220px;">
+<!-- BRAND -->
+<div style="flex:1; min-width:220px;">
 
-            <img src="Image/cozycabin-logo-1.webp"
-                 alt="Cozycabin Logo"
-                 style="width:160px; margin-bottom:15px;">
+<img src="Image/cozycabin-logo-1.webp"
+alt="Cozycabin Logo"
+style="width:160px; margin-bottom:15px;">
 
-            <p style="color:#aaa; font-size:14px; line-height:1.7;">
-                Smart Living Solutions for modern homes, digital products, crypto tools & global affiliate opportunities.
-            </p>
+<p style="color:#aaa; font-size:14px; line-height:1.7;">
 
-        </div>
+Smart Living Solutions for modern homes, digital products, crypto tools & global affiliate opportunities.
 
-        <!-- QUICK LINKS -->
-        <div style="flex:1; min-width:180px;">
+</p>
 
-            <h3 style="color:#d4a017; margin-bottom:15px;">Quick Links</h3>
+</div>
 
-            <a href="index.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">Home</a>
+<!-- QUICK LINKS -->
 
-            <a href="products.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">Products</a>
+<div style="flex:1; min-width:180px;">
 
-            <a href="affiliate.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">Affiliate</a>
+<h3 style="color:#d4a017; margin-bottom:15px;">
 
-            <a href="ebooks.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">Digital Library</a>
+Quick Links
 
-        </div>
+</h3>
 
-        <!-- CONTACT -->
-        <div style="flex:1; min-width:220px;">
+<a href="index.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">
 
-            <h3 style="color:#d4a017; margin-bottom:15px;">Contact</h3>
+Home
 
-            <p style="color:#bbb; margin-bottom:10px;">
-                🌍 Nairobi, Kenya
-            </p>
+</a>
 
-            <p style="color:#bbb; margin-bottom:10px;">
-                📞 +254 702 468 460
-            </p>
+<a href="products.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">
 
-            <p style="color:#bbb; margin-bottom:10px;">
-                📧 support@cozycabin.co.ke
-            </p>
+Products
 
-            <a href="https://wa.me/254702468460"
-               style="display:inline-block; margin-top:10px; background:#25D366; color:#fff; padding:10px 18px; border-radius:10px; text-decoration:none; font-weight:bold;">
-               Chat on WhatsApp
-            </a>
+</a>
 
-        </div>
+<a href="affiliate.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">
 
-    </div>
+Affiliate
 
-    <!-- COPYRIGHT -->
-    <div style="text-align:center; margin-top:35px; border-top:1px solid #1f1f1f; padding-top:20px; color:#666; font-size:12px;">
+</a>
 
-        © 2026 Cozycabin • Smart Living Solutions • All Rights Reserved
+<a href="ebooks.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">
 
-    </div>
+Digital Library
+
+</a>
+
+</div>
+
+<!-- CONTACT -->
+
+<div style="flex:1; min-width:220px;">
+
+<h3 style="color:#d4a017; margin-bottom:15px;">
+
+Contact
+
+</h3>
+
+<p style="color:#bbb; margin-bottom:10px;">
+
+🌍 Nairobi, Kenya
+
+</p>
+
+<p style="color:#bbb; margin-bottom:10px;">
+
+📞 +254 702 468 460
+
+</p>
+
+<p style="color:#bbb; margin-bottom:10px;">
+
+📧 support@cozycabin.co.ke
+
+</p>
+
+<a href="https://wa.me/254702468460"
+style="display:inline-block; margin-top:10px; background:#25D366; color:#fff; padding:10px 18px; border-radius:10px; text-decoration:none; font-weight:bold;">
+
+Chat on WhatsApp
+
+</a>
+
+</div>
+
+</div>
+
+<!-- COPYRIGHT -->
+
+<div style="text-align:center; margin-top:35px; border-top:1px solid #1f1f1f; padding-top:20px; color:#666; font-size:12px;">
+
+© 2026 Cozycabin • Smart Living Solutions • All Rights Reserved
+
+</div>
 
 </footer>
-</script>
 
 </body>
 
