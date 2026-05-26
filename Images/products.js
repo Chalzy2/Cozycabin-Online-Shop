@@ -136,6 +136,43 @@ images: [
 "images/fashion/shoes/calvin-brown.webp"
 ]
 }
+  {
+title: "Lacoste Casual",
+
+price: 3200,
+
+sizes: [40,41,42,43,44,45],
+
+description:
+"Stylish Lacoste casual shoes suitable for both casual and smart outfits.",
+
+images: [
+
+"images/fashion/shoes/lacoste-blue.webp"
+
+]
+
+},
+ {
+title: "Timberland Casual",
+
+price: 3200,
+
+sizes: [40,41,42,43,44,45],
+
+description:
+"Elegant Timberland casual shoes designed for smart everyday fashion.",
+
+images: [
+
+"images/fashion/shoes/timber-black.webp",
+
+"images/fashion/shoes/timber-white.webp"
+
+]
+
+},
+   
 
 ]
 
