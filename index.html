@@ -1702,19 +1702,37 @@ onclick="toggleSub('appliances-sub')">
  
 <!-- KITCHEN -->
 
-<div id="kitchen-sub" class="minor-menu">
+<div id="kitchen-sub" class="minor-menu" style="background: #0f172a; border: 1px solid #ffcc00; border-radius: 20px; padding: 20px; box-sizing: border-box;">
 
-<div class="minor-top">
+    <div class="minor-top" style="display: block; text-align: left; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+        
+        <button 
+            onclick="closeAllSubmenus()" 
+            class="back-btn" 
+            style="
+                background: rgba(255, 255, 255, 0.07);
+                color: #cbd5e1;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                transition: all 0.2s ease-in-out;
+                outline: none;
+                -webkit-tap-highlight-color: transparent;
+            "
+            onmouseover="this.style.background='rgba(255, 204, 0, 0.15)'; this.style.color='#ffcc00'; this.style.borderColor='#ffcc00'; this.style.transform='translateX(-2px)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.07)'; this.style.color='#cbd5e1'; this.style.borderColor='rgba(255, 255, 255, 0.15)'; this.style.transform='translateX(0)';"
+        >
+            ⬅️ Back
+        </button>
 
-<button
-onclick="closeAllSubmenus()"
-class="back-btn">
-
-← Back
-
-</button>
-
-</div>
+    </div> 
 <div class="minor-grid">
 
 <button onclick="openCategory('cutlery')" class="minor-btn">
@@ -1758,22 +1776,37 @@ class="back-btn">
 <!-- SOLAR -->
 
  
-<div class="minor-top">
+<div id="solar-sub" class="minor-menu" style="background: #0f172a; border: 1px solid #ffcc00; border-radius: 20px; padding: 20px; box-sizing: border-box;">
 
-<div id="solar-sub" class="minor-menu">
+    <div class="minor-top" style="display: block; text-align: left; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+        
+        <button 
+            onclick="closeAllSubmenus()" 
+            class="back-btn" 
+            style="
+                background: rgba(255, 255, 255, 0.07);
+                color: #cbd5e1;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                transition: all 0.2s ease-in-out;
+                outline: none;
+                -webkit-tap-highlight-color: transparent;
+            "
+            onmouseover="this.style.background='rgba(255, 204, 0, 0.15)'; this.style.color='#ffcc00'; this.style.borderColor='#ffcc00'; this.style.transform='translateX(-2px)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.07)'; this.style.color='#cbd5e1'; this.style.borderColor='rgba(255, 255, 255, 0.15)'; this.style.transform='translateX(0)';"
+        >
+            ⬅️ Back
+        </button>
 
- 
-<div class="minor-top">
-
-<button
-onclick="closeAllSubmenus()"
-class="back-btn">
-
-← Back
-
-</button>
-
-</div>
+    </div> 
 <div class="minor-grid">
 
 <button onclick="openCategory('solarlights')" class="minor-btn">
@@ -1816,20 +1849,37 @@ class="back-btn">
 
 <!-- DECOR -->
 
-<div id="decor-sub" class="minor-menu">
+<div id="decor-sub" class="minor-menu" style="background: #0f172a; border: 1px solid #ffcc00; border-radius: 20px; padding: 20px; box-sizing: border-box;">
 
- 
-<div class="minor-top">
+    <div class="minor-top" style="display: block; text-align: left; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+        
+        <button 
+            onclick="closeAllSubmenus()" 
+            class="back-btn" 
+            style="
+                background: rgba(255, 255, 255, 0.07);
+                color: #cbd5e1;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                transition: all 0.2s ease-in-out;
+                outline: none;
+                -webkit-tap-highlight-color: transparent;
+            "
+            onmouseover="this.style.background='rgba(255, 204, 0, 0.15)'; this.style.color='#ffcc00'; this.style.borderColor='#ffcc00'; this.style.transform='translateX(-2px)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.07)'; this.style.color='#cbd5e1'; this.style.borderColor='rgba(255, 255, 255, 0.15)'; this.style.transform='translateX(0)';"
+        >
+            ⬅️ Back
+        </button>
 
-<button
-onclick="closeAllSubmenus()"
-class="back-btn">
-
-← Back
-
-</button>
-
-</div>
+    </div> >
 <div class="minor-grid">
 
 <button onclick="openCategory('wallart')" class="minor-btn">
@@ -1872,19 +1922,37 @@ class="back-btn">
 
 <!-- BEDDINGS -->
 
-<div id="beddings-sub" class="minor-menu">
+<div id="beddings-sub" class="minor-menu" style="background: #0f172a; border: 1px solid #ffcc00; border-radius: 20px; padding: 20px; box-sizing: border-box;">
 
-<div class="minor-top">
+    <div class="minor-top" style="display: block; text-align: left; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+        
+        <button 
+            onclick="closeAllSubmenus()" 
+            class="back-btn" 
+            style="
+                background: rgba(255, 255, 255, 0.07);
+                color: #cbd5e1;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                transition: all 0.2s ease-in-out;
+                outline: none;
+                -webkit-tap-highlight-color: transparent;
+            "
+            onmouseover="this.style.background='rgba(255, 204, 0, 0.15)'; this.style.color='#ffcc00'; this.style.borderColor='#ffcc00'; this.style.transform='translateX(-2px)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.07)'; this.style.color='#cbd5e1'; this.style.borderColor='rgba(255, 255, 255, 0.15)'; this.style.transform='translateX(0)';"
+        >
+            ⬅️ Back
+        </button>
 
-<button
-onclick="closeAllSubmenus()"
-class="back-btn">
-
-← Back
-
-</button>
-
-</div>
+    </div> >
 <div class="minor-grid">
 
 <button onclick="openCategory('duvets')" class="minor-btn">
@@ -1927,19 +1995,37 @@ class="back-btn">
 
 <!-- SECURITY -->
 
-<div id="security-sub" class="minor-menu">
+<div id="security-sub" class="minor-menu" style="background: #0f172a; border: 1px solid #ffcc00; border-radius: 20px; padding: 20px; box-sizing: border-box;">
 
-<div class="minor-top">
+    <div class="minor-top" style="display: block; text-align: left; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+        
+        <button 
+            onclick="closeAllSubmenus()" 
+            class="back-btn" 
+            style="
+                background: rgba(255, 255, 255, 0.07);
+                color: #cbd5e1;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                transition: all 0.2s ease-in-out;
+                outline: none;
+                -webkit-tap-highlight-color: transparent;
+            "
+            onmouseover="this.style.background='rgba(255, 204, 0, 0.15)'; this.style.color='#ffcc00'; this.style.borderColor='#ffcc00'; this.style.transform='translateX(-2px)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.07)'; this.style.color='#cbd5e1'; this.style.borderColor='rgba(255, 255, 255, 0.15)'; this.style.transform='translateX(0)';"
+        >
+            ⬅️ Back
+        </button>
 
-<button
-onclick="closeAllSubmenus()"
-class="back-btn">
-
-← Back
-
-</button>
-
-</div>
+    </div> 
 <div class="minor-grid">
 
 <button onclick="openCategory('cameras')" class="minor-btn">
@@ -1981,20 +2067,37 @@ class="back-btn">
 
 
 <!-- ELECTRONICS -->
+<div id="electronics-sub" class="minor-menu" style="background: #0f172a; border: 1px solid #ffcc00; border-radius: 20px; padding: 20px; box-sizing: border-box;">
 
-<div id="electronics-sub" class="minor-menu">
+    <div class="minor-top" style="display: block; text-align: left; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+        
+        <button 
+            onclick="closeAllSubmenus()" 
+            class="back-btn" 
+            style="
+                background: rgba(255, 255, 255, 0.07);
+                color: #cbd5e1;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                transition: all 0.2s ease-in-out;
+                outline: none;
+                -webkit-tap-highlight-color: transparent;
+            "
+            onmouseover="this.style.background='rgba(255, 204, 0, 0.15)'; this.style.color='#ffcc00'; this.style.borderColor='#ffcc00'; this.style.transform='translateX(-2px)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.07)'; this.style.color='#cbd5e1'; this.style.borderColor='rgba(255, 255, 255, 0.15)'; this.style.transform='translateX(0)';"
+        >
+            ⬅️ Back
+        </button>
 
-<div class="minor-top">
-
-<button
-onclick="closeAllSubmenus()"
-class="back-btn">
-
-← Back
-
-</button>
-
-</div>
+    </div> 
 <div class="minor-grid">
 
 <button onclick="openCategory('speakers')" class="minor-btn">
@@ -2035,21 +2138,39 @@ class="back-btn">
 
 
 
-<!-- TECH -->
+<!-- SMART TECH -->
 
-<div id="tech-sub" class="minor-menu">
+<div id="smart tech-sub" class="minor-menu" style="background: #0f172a; border: 1px solid #ffcc00; border-radius: 20px; padding: 20px; box-sizing: border-box;">
 
-<div class="minor-top">
+    <div class="minor-top" style="display: block; text-align: left; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+        
+        <button 
+            onclick="closeAllSubmenus()" 
+            class="back-btn" 
+            style="
+                background: rgba(255, 255, 255, 0.07);
+                color: #cbd5e1;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                transition: all 0.2s ease-in-out;
+                outline: none;
+                -webkit-tap-highlight-color: transparent;
+            "
+            onmouseover="this.style.background='rgba(255, 204, 0, 0.15)'; this.style.color='#ffcc00'; this.style.borderColor='#ffcc00'; this.style.transform='translateX(-2px)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.07)'; this.style.color='#cbd5e1'; this.style.borderColor='rgba(255, 255, 255, 0.15)'; this.style.transform='translateX(0)';"
+        >
+            ⬅️ Back
+        </button>
 
-<button
-onclick="closeAllSubmenus()"
-class="back-btn">
-
-← Back
-
-</button>
-
-</div>
+    </div> 
 <div class="minor-grid">
 
 <button onclick="openCategory('phones')" class="minor-btn">
@@ -2092,19 +2213,37 @@ class="back-btn">
 
 <!-- FASHION -->
 
-<div id="fashion-sub" class="minor-menu">
+<div id="fasion-sub" class="minor-menu" style="background: #0f172a; border: 1px solid #ffcc00; border-radius: 20px; padding: 20px; box-sizing: border-box;">
 
-<div class="minor-top">
+    <div class="minor-top" style="display: block; text-align: left; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+        
+        <button 
+            onclick="closeAllSubmenus()" 
+            class="back-btn" 
+            style="
+                background: rgba(255, 255, 255, 0.07);
+                color: #cbd5e1;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                transition: all 0.2s ease-in-out;
+                outline: none;
+                -webkit-tap-highlight-color: transparent;
+            "
+            onmouseover="this.style.background='rgba(255, 204, 0, 0.15)'; this.style.color='#ffcc00'; this.style.borderColor='#ffcc00'; this.style.transform='translateX(-2px)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.07)'; this.style.color='#cbd5e1'; this.style.borderColor='rgba(255, 255, 255, 0.15)'; this.style.transform='translateX(0)';"
+        >
+            ⬅️ Back
+        </button>
 
-<button
-onclick="closeAllSubmenus()"
-class="back-btn">
-
-← Back
-
-</button>
-
-</div>
+    </div> 
 <div class="minor-grid">
 
 <button onclick="openCategory('shoes')" class="minor-btn">
@@ -2147,19 +2286,37 @@ class="back-btn">
 
 <!-- APPLIANCES -->
 
-<div id="appliances-sub" class="minor-menu">
+<div id="appliances-sub" class="minor-menu" style="background: #0f172a; border: 1px solid #ffcc00; border-radius: 20px; padding: 20px; box-sizing: border-box;">
 
-<div class="minor-top">
+    <div class="minor-top" style="display: block; text-align: left; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+        
+        <button 
+            onclick="closeAllSubmenus()" 
+            class="back-btn" 
+            style="
+                background: rgba(255, 255, 255, 0.07);
+                color: #cbd5e1;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                transition: all 0.2s ease-in-out;
+                outline: none;
+                -webkit-tap-highlight-color: transparent;
+            "
+            onmouseover="this.style.background='rgba(255, 204, 0, 0.15)'; this.style.color='#ffcc00'; this.style.borderColor='#ffcc00'; this.style.transform='translateX(-2px)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.07)'; this.style.color='#cbd5e1'; this.style.borderColor='rgba(255, 255, 255, 0.15)'; this.style.transform='translateX(0)';"
+        >
+            ⬅️ Back
+        </button>
 
-<button
-onclick="closeAllSubmenus()"
-class="back-btn">
-
-← Back
-
-</button>
-
-</div>
+    </div> 
 <div class="minor-grid">
 
 <button onclick="openCategory('fridges')" class="minor-btn">
