@@ -138,9 +138,9 @@ description:
 
 images: [
 
-"images/fashion/shoes/timber-black.webp",
+"Image/timber-black.webp",
 
-"images/fashion/shoes/timber-white.webp"
+"Image/timber-white.webp"
 
 ]
 
@@ -192,13 +192,38 @@ description:
 
 images: [
 
-"images/fashion/shoes/lacoste-blue.webp"
+"Image/lacoste-blue.webp"
+
+]
+},
+{
+
+title: "Tommy Casual",
+
+company: "Tommy",
+
+price: 3200,
+
+oldPrice: 4000,
+
+sizes: [40,41,42,43,44,45],
+
+colors: ["Brown"],
+
+description:
+"Stylish tommy casual shoes suitable for both casual and official outfits.",
+
+images: [
+
+"Image/tommy-brown.webp"
 
 ]
 
-}
+},
 
-],
+]
+
+
 
 
 
