@@ -655,11 +655,13 @@ menu.style.display = 'none';
 
 
 /* =========================
-   AUTO LOAD PRODUCTS
+   AUTO LOAD PRODUCTS (FIXED)
 ========================= */
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryFromUrl = urlParams.get("category");
 
-if(category){
-
-showProducts(category);
-
-   }
+    if (categoryFromUrl) {
+        showProducts(categoryFromUrl);
+    }
+});
