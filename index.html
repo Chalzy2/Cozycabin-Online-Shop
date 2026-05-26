@@ -717,7 +717,21 @@ overflow-x:hidden;
     clear: both;
 }
  
-    
+#products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.product-card {
+    background: #1e293b;
+    border-radius: 15px;
+    padding: 15px;
+    color: white;
+    text-align: center;
+ }
+ 
  
 </style>
 
@@ -3292,7 +3306,9 @@ Chat on WhatsApp
 </div>
 
 </footer>
-
+<!-- Correct path for JS inside the Images folder -->
+<script src="Images/products.js"></script>
+ 
 </body>
 
 </html>
