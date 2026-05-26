@@ -13,10 +13,9 @@ description:
 "Comfortable lightweight sneakers for daily wear.",
 
 images: [
-"images/fashion/shoes/black-shoe.webp",
-"images/fashion/shoes/gray-shoe.webp",
-"images/fashion/shoes/gold-shoe.webp"
-]
+"Image/black shoes.webp",
+"Image/Greyshoes.webp",
+"Image/gold shoes.webp",
 },
 
 {
@@ -30,8 +29,8 @@ description:
 "Stylish ladies sneakers with soft inner comfort.",
 
 images: [
-"images/fashion/shoes/ladies-white.webp",
-"images/fashion/shoes/ladies-black.webp"
+"Image/women Wshoe.webp",
+"Image/women Bshoes.webp"
 ]
 }
 
