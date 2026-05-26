@@ -695,6 +695,27 @@ overflow-x:hidden;
     border-color: #ffcc00;
     transform: scale(0.97);                   /* Tactile bounce effect */
 }
+ .minor-menu {
+    background: #0f172a;
+    border: 2px solid #ffcc00;
+    border-radius: 24px;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 15px 0;
+    clear: both; /* Prevents elements below from creeping up into the sides */
+    display: none; /* Controlled by your JavaScript function */
+}
+
+/* Ensure the top wrapper block clears all inner floating elements */
+.minor-top {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    clear: both;
+}
  
     
  
@@ -1722,11 +1743,11 @@ onclick="toggleSub('electronics-sub')">
 </div>
 
 <div class="grid-btn"
-onclick="toggleSub('smart tech-sub')">
+onclick="toggleSub('smarttech-sub')">
 
 <span>📱</span>
 
-<small>SMART TECH ▼</small>
+<small>SMARTTECH ▼</small>
 
 </div>
 
@@ -1752,7 +1773,7 @@ onclick="toggleSub('appliances-sub')">
  
 <!-- KITCHEN -->
 
-<<div id="kitchen-sub" class="minor-menu">
+<div id="kitchen-sub" class="minor-menu">
 
     <div class="minor-top">
         <button onclick="closeAllSubmenus()" class="back-btn">
