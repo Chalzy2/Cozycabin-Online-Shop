@@ -1,0 +1,57 @@
+/* Dark Theme Overrides for Dynamic Product Cards */
+#products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 15px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.product-card {
+    background: #1e293b !important; /* Premium Dark Navy */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.price-box {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.new-price {
+    color: #ffcc00; /* CozyCabin Yellow */
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.old-price {
+    color: #64748b;
+    text-decoration: line-through;
+    font-size: 14px;
+}
+
+/* Buy Button Styling matches your Premium Checkout Layout */
+.buy-btn {
+    background: #00cc66; /* Matching Green */
+    color: white;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+}
+
+.buy-btn:active {
+    transform: scale(0.98);
+}
