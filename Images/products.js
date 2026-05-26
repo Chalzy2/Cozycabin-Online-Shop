@@ -335,45 +335,32 @@ fansapp: []
 
 
 
-
 /* =========================
-   SHOW PRODUCTS
+   SHOW PRODUCTS (FIXED)
 ========================= */
 
 function showProducts(category){
 
-const container =
-document.getElementById(
-"products-container"
-);
+    const container = document.getElementById("products-container");
 
-container.innerHTML = "";
+    // FIX: Stop the function if the container is missing from the current page
+    if (!container) {
+        console.warn("Product container not found on this page. Navigation mode active.");
+        return; 
+    }
 
+    container.innerHTML = "";
 
-
-if(!products[category] ||
-products[category].length === 0){
-
-container.innerHTML = `
-
-<div class="empty-products">
-
-<h2>No Products Yet</h2>
-
-<p>
-Products for this category
-will appear here soon.
-</p>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
+    // Check if the category exists in your products object
+    if(!products[category] || products[category].length === 0){
+        container.innerHTML = `
+            <div class="empty-products" style="text-align: center; padding: 50px 20px;">
+                <h2 style="color: #ffcc00;">No Products Yet</h2>
+                <p style="color: #cbd5e1;">Products for this category will appear here soon.</p>
+            </div>
+        `;
+        return;
+    }
 
 products[category].forEach((product,index)=>{
 
