@@ -109,11 +109,11 @@ description:
 
 images: [
 
-"images/fashion/shoes/calvin-brown.webp",
+"Image/calvin-brown.webp",
 
-"images/fashion/shoes/calvin-blue.webp",
+"Image/calvin-blue.webp",
 
-"images/fashion/shoes/calvin-tan.webp"
+"Image/calvin-tan.webp"
 
 ]
 
@@ -165,9 +165,9 @@ description:
 
 images: [
 
-"images/fashion/shoes/adidas-black.webp",
+"Image/adidas-black.webp",
 
-"images/fashion/shoes/adidas-gray.webp"
+"Image/adidas-gray.webp"
 
 ]
 
