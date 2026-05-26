@@ -18,6 +18,12 @@ referralCode
 
 }
 
+
+
+/* =========================
+   PRODUCTS DATABASE
+========================= */
+
 const products = {
 
 
@@ -26,42 +32,66 @@ const products = {
    FASHION
 ========================= */
 
-
-  const products = {
-
 shoes: [
 
 {
+
 title: "Classic Black Sneakers",
 
+company: "Fashion",
+
 price: 1999,
-oldPrice:2500,
+
+oldPrice: 2500,
+
 sizes: [41,42,43,44],
+
+colors: ["Black","Gray","Gold"],
 
 description:
 "Comfortable lightweight sneakers for daily wear.",
 
 images: [
+
 "Image/black shoes.webp",
+
 "Image/Greyshoes.webp",
-"Image/gold shoes.webp",
+
+"Image/gold shoes.webp"
+
+]
+
 },
 
 {
+
 title: "Ladies Fashion Sneakers",
 
+company: "Fashion",
+
 price: 1999,
-oldPrice:2500,
+
+oldPrice: 2500,
+
 sizes: [41,42,43,44],
+
+colors: ["White","Black"],
 
 description:
 "Stylish ladies sneakers with soft inner comfort.",
 
 images: [
+
 "Image/women Wshoe.webp",
+
 "Image/women Bshoes.webp"
+
 ]
+
 },
+
+{
+
 title: "Calvin Klein Casual",
 
 company: "Calvin Klein",
@@ -90,6 +120,7 @@ images: [
 },
 
 {
+
 title: "Timberland Casual",
 
 company: "Timberland",
@@ -116,6 +147,7 @@ images: [
 },
 
 {
+
 title: "Adidas Casual",
 
 company: "Adidas",
@@ -142,6 +174,7 @@ images: [
 },
 
 {
+
 title: "Lacoste Casual",
 
 company: "Lacoste",
@@ -310,13 +343,16 @@ fansapp: []
 function showProducts(category){
 
 const container =
-document.getElementById("products-container");
+document.getElementById(
+"products-container"
+);
 
 container.innerHTML = "";
 
 
 
-if(products[category].length === 0){
+if(!products[category] ||
+products[category].length === 0){
 
 container.innerHTML = `
 
@@ -469,13 +505,13 @@ Buy Now
 
 </button>
 
+
+
 <button class="cart-btn">
 
 Add to Cart
 
 </button>
-
-</div>
 
 
 
@@ -537,6 +573,15 @@ document.getElementById(
 ).src = image;
 
 }
+
+
+
+
+
+/* =========================
+   BUY NOW
+========================= */
+
 function buyNow(productName){
 
 const referral =
@@ -561,13 +606,7 @@ alert(
 
 }
 
-function changeImage(index,image){
 
-document.getElementById(
-`mainImage-${index}`
-).src = image;
-
-}
 
 
 
@@ -603,3 +642,37 @@ window.location.href =
 
 
 
+
+
+/* =========================
+   CLOSE SUBMENUS
+========================= */
+
+function closeAllSubmenus(){
+
+const menus =
+document.querySelectorAll(
+'.minor-menu'
+);
+
+menus.forEach(menu => {
+
+menu.style.display = 'none';
+
+});
+
+}
+
+
+
+
+
+/* =========================
+   AUTO LOAD PRODUCTS
+========================= */
+
+if(category){
+
+showProducts(category);
+
+   }
