@@ -2737,6 +2737,21 @@ return selected;
 
 window.submitMpesaPayment =
 async function(){
+ const now = Date.now();
+
+if(!window.lastSubmit){
+window.lastSubmit = 0;
+}
+
+if(now - window.lastSubmit < 15000){
+
+alert("Please wait 15 seconds before submitting again.");
+
+return;
+
+}
+
+window.lastSubmit = now;
 
 const code =
 document.getElementById(
