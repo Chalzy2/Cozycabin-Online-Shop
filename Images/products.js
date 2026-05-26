@@ -1,4 +1,15 @@
+
+
 const products = {
+
+
+
+/* =========================
+   FASHION
+========================= */
+
+
+  const products = {
 
 shoes: [
 
@@ -6,7 +17,7 @@ shoes: [
 title: "Classic Black Sneakers",
 
 price: 1999,
-
+oldPrice:2500,
 sizes: [41,42,43,44],
 
 description:
@@ -22,7 +33,7 @@ images: [
 title: "Ladies Fashion Sneakers",
 
 price: 1999,
-
+oldPrice:2500,
 sizes: [41,42,43,44],
 
 description:
@@ -32,133 +43,46 @@ images: [
 "Image/women Wshoe.webp",
 "Image/women Bshoes.webp"
 ]
-}
-
-]
-
-};
-function showCategory(category){
-
-const container =
-document.getElementById("products-container");
-
-container.innerHTML = "";
-
-products[category].forEach((product,index)=>{
-
-container.innerHTML += `
-
-<div class="product-card">
-
-<img
-id="product-image-${index}"
-src="${product.images[0]}"
->
-
-<h2>${product.title}</h2>
-
-<p>${product.description}</p>
-
-<h3 class="price">
-KES ${product.price}
-</h3>
-
-<p><b>Available Sizes:</b></p>
-
-<div class="sizes">
-
-${product.sizes.map(size => `
-<button>${size}</button>
-`).join("")}
-
-</div>
-
-<p><b>Colors:</b></p>
-
-<div class="color-options">
-
-${product.images.map((image,imgIndex)=>`
-
-<button
-class="color-btn"
-onclick="changeImage(${index}, '${image}')">
-</button>
-
-`).join("")}
-
-</div>
-
-<details>
-
-<summary>More Details</summary>
-
-<p>
-Premium quality fashion sneakers.
-Durable sole, breathable fabric,
-comfortable for long wear.
-</p>
-
-</details>
-
-</div>
-
-`;
-
-});
-
-}
-function changeImage(index,image){
-
-document.getElementById(
-`product-image-${index}`
-).src = image;
-
-}
-
-const products = {
-
-shoes: [
-
-{
-title: "Adidas Casual",
-price: 3200,
-sizes: [40,41,42,43,44,45],
-images: [
-"images/fashion/shoes/adidas-black.webp"
-]
 },
-
-{
 title: "Calvin Klein Casual",
-price: 3200,
-sizes: [40,41,42,43,44,45],
-images: [
-"images/fashion/shoes/calvin-brown.webp"
-]
-}
-  {
-title: "Lacoste Casual",
+
+company: "Calvin Klein",
 
 price: 3200,
 
+oldPrice: 4000,
+
 sizes: [40,41,42,43,44,45],
+
+colors: ["Brown","Blue","Tan"],
 
 description:
-"Stylish Lacoste casual shoes suitable for both casual and smart outfits.",
+"Premium Calvin Klein casual sneakers with durable sole and soft inner comfort.",
 
 images: [
 
-"images/fashion/shoes/lacoste-blue.webp"
+"images/fashion/shoes/calvin-brown.webp",
+
+"images/fashion/shoes/calvin-blue.webp",
+
+"images/fashion/shoes/calvin-tan.webp"
 
 ]
 
 },
- {
+
+{
 title: "Timberland Casual",
+
+company: "Timberland",
 
 price: 3200,
 
+oldPrice: 4000,
+
 sizes: [40,41,42,43,44,45],
+
+colors: ["Black","White"],
 
 description:
 "Elegant Timberland casual shoes designed for smart everyday fashion.",
@@ -172,10 +96,426 @@ images: [
 ]
 
 },
-   
+
+{
+title: "Adidas Casual",
+
+company: "Adidas",
+
+price: 3200,
+
+oldPrice: 4000,
+
+sizes: [40,41,42,43,44,45],
+
+colors: ["Black","Gray"],
+
+description:
+"Modern Adidas casual sneakers with lightweight comfort and premium finishing.",
+
+images: [
+
+"images/fashion/shoes/adidas-black.webp",
+
+"images/fashion/shoes/adidas-gray.webp"
 
 ]
 
-};
-showCategory('shoes');
+},
 
+{
+title: "Lacoste Casual",
+
+company: "Lacoste",
+
+price: 3200,
+
+oldPrice: 4000,
+
+sizes: [40,41,42,43,44,45],
+
+colors: ["Blue"],
+
+description:
+"Stylish Lacoste casual shoes suitable for both casual and official outfits.",
+
+images: [
+
+"images/fashion/shoes/lacoste-blue.webp"
+
+]
+
+}
+
+],
+
+
+
+shirts: [],
+hoodies: [],
+watches: [],
+bags: [],
+caps: [],
+jeans: [],
+jackets: [],
+
+
+
+/* =========================
+   KITCHEN
+========================= */
+
+cutlery: [],
+dispenser: [],
+hotpots: [],
+racks: [],
+flasks: [],
+bottles: [],
+cookers: [],
+blenders: [],
+
+
+
+/* =========================
+   SOLAR
+========================= */
+
+solarlights: [],
+panels: [],
+inverters: [],
+batteries: [],
+streetlights: [],
+floodlights: [],
+chargers: [],
+fans: [],
+
+
+
+/* =========================
+   DECOR
+========================= */
+
+wallart: [],
+mirrors: [],
+flowers: [],
+lamps: [],
+carpets: [],
+curtains: [],
+frames: [],
+vases: [],
+
+
+
+/* =========================
+   BEDDINGS
+========================= */
+
+duvets: [],
+bedsheets: [],
+blankets: [],
+pillows: [],
+mattress: [],
+covers: [],
+nets: [],
+towels: [],
+
+
+
+/* =========================
+   SECURITY
+========================= */
+
+cameras: [],
+alarms: [],
+locks: [],
+doorbells: [],
+trackers: [],
+sensors: [],
+safes: [],
+recorders: [],
+
+
+
+/* =========================
+   ELECTRONICS
+========================= */
+
+speakers: [],
+radios: [],
+earbuds: [],
+tvbox: [],
+powerbanks: [],
+flashdisks: [],
+smartwatch: [],
+gaming: [],
+
+
+
+/* =========================
+   TECH
+========================= */
+
+phones: [],
+laptops: [],
+tablets: [],
+routers: [],
+keyboards: [],
+mouse: [],
+printers: [],
+storage: [],
+
+
+
+/* =========================
+   APPLIANCES
+========================= */
+
+fridges: [],
+microwaves: [],
+washing: [],
+cookersapp: [],
+kettles: [],
+irons: [],
+heaters: [],
+fansapp: []
+
+};
+
+
+
+
+
+/* =========================
+   SHOW PRODUCTS
+========================= */
+
+function showProducts(category){
+
+const container =
+document.getElementById("products-container");
+
+container.innerHTML = "";
+
+
+
+if(products[category].length === 0){
+
+container.innerHTML = `
+
+<div class="empty-products">
+
+<h2>No Products Yet</h2>
+
+<p>
+Products for this category
+will appear here soon.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+
+products[category].forEach((product,index)=>{
+
+container.innerHTML += `
+
+<div class="product-card">
+
+
+
+<div class="product-gallery">
+
+<img
+id="mainImage-${index}"
+src="${product.images[0]}"
+class="main-product-image"
+>
+
+</div>
+
+
+
+<div class="thumbnail-row">
+
+${product.images.map((img)=>`
+
+<img
+src="${img}"
+class="thumb-image"
+onclick="changeImage(${index}, '${img}')"
+>
+
+`).join("")}
+
+</div>
+
+
+
+<h2 class="product-title">
+
+${product.title}
+
+</h2>
+
+
+
+<p class="company-name">
+
+${product.company}
+
+</p>
+
+
+
+<p class="product-description">
+
+${product.description}
+
+</p>
+
+
+
+<div class="price-box">
+
+<span class="new-price">
+
+KES ${product.price}
+
+</span>
+
+<span class="old-price">
+
+KES ${product.oldPrice}
+
+</span>
+
+</div>
+
+
+
+<div class="sizes-box">
+
+<h4>Available Sizes</h4>
+
+<div class="sizes-row">
+
+${product.sizes.map(size => `
+
+<button class="size-btn">
+
+${size}
+
+</button>
+
+`).join("")}
+
+</div>
+
+</div>
+
+
+
+<div class="colors-box">
+
+<h4>Colors</h4>
+
+<div class="colors-row">
+
+${product.colors.map(color => `
+
+<button class="color-btn">
+
+${color}
+
+</button>
+
+`).join("")}
+
+</div>
+
+</div>
+
+
+
+<div class="product-buttons">
+
+<button class="buy-btn">
+
+Buy Now
+
+</button>
+
+<button class="cart-btn">
+
+Add to Cart
+
+</button>
+
+</div>
+
+
+
+<details class="details-box">
+
+<summary>
+
+More Details
+
+</summary>
+
+<p>
+
+Premium quality product.
+Comfortable, durable,
+stylish and suitable for
+daily use.
+
+</p>
+
+</details>
+
+
+
+<div class="similar-products">
+
+<h4>Find Similar</h4>
+
+<p>
+
+More related products coming soon.
+
+</p>
+
+</div>
+
+
+
+</div>
+
+`;
+
+});
+
+}
+
+
+
+
+
+/* =========================
+   CHANGE IMAGE
+========================= */
+
+function changeImage(index,image){
+
+document.getElementById(
+`mainImage-${index}`
+).src = image;
+
+}
