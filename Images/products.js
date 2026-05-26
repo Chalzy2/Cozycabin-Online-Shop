@@ -1,4 +1,22 @@
+const urlParams =
+new URLSearchParams(
+window.location.search
+);
 
+const referralCode =
+urlParams.get("ref");
+
+const category =
+urlParams.get("category");
+
+if(referralCode){
+
+localStorage.setItem(
+"referralCode",
+referralCode
+);
+
+}
 
 const products = {
 
@@ -443,9 +461,9 @@ ${color}
 
 
 
-<div class="product-buttons">
-
-<button class="buy-btn">
+<button
+class="buy-btn"
+onclick="buyNow('${product.title}')">
 
 Buy Now
 
@@ -519,3 +537,69 @@ document.getElementById(
 ).src = image;
 
 }
+function buyNow(productName){
+
+const referral =
+localStorage.getItem(
+"referralCode"
+);
+
+if(referral){
+
+alert(
+`Buying: ${productName}
+Referral: ${referral}`
+);
+
+}else{
+
+alert(
+`Buying: ${productName}`
+);
+
+}
+
+}
+
+function changeImage(index,image){
+
+document.getElementById(
+`mainImage-${index}`
+).src = image;
+
+}
+
+
+
+/* =========================
+   OPEN CATEGORY
+========================= */
+
+function openCategory(category){
+
+localStorage.setItem(
+"selectedCategory",
+category
+);
+
+const referral =
+localStorage.getItem(
+"referralCode"
+);
+
+if(referral){
+
+window.location.href =
+`product.html?category=${category}&ref=${referral}`;
+
+}else{
+
+window.location.href =
+`product.html?category=${category}`;
+
+}
+
+}
+
+
+
