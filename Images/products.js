@@ -106,6 +106,7 @@ comfortable for long wear.
 `;
 
 });
+  
 
 }
 function changeImage(index,image){
@@ -115,3 +116,5 @@ document.getElementById(
 ).src = image;
 
 }
+showCategory('shoes');
+
