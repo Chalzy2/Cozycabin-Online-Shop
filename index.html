@@ -2390,6 +2390,18 @@ onclick="closeModal()">
 id="expandedImg">
 
 </div>
+ <script>
+ /* Integrated Buy Now */
+window.buyNow = function(productName) {
+    const currentRef = localStorage.getItem("referralCode") || "Direct";
+    
+    // Alert for testing
+    alert("Buying: " + productName + "\nReferral: " + currentRef);
+    
+    // Redirect to your M-Pesa page with the info
+    window.location.href = `mpesa-payment.html?product=${encodeURIComponent(productName)}&ref=${currentRef}`;
+};
+ </script>
  <!-- FIREBASE + FUNCTIONS -->
 
 <script type="module">
@@ -2443,13 +2455,16 @@ getFirestore(app);
 </script>
  <script>
 
-/* REFERRAL TRACKING */
+/* Updated Referral Tracking for Firebase */
+const urlParams = new URLSearchParams(window.location.search);
+const urlRef = urlParams.get('ref');
 
-const urlParams =
-new URLSearchParams(window.location.search);
+// If found in URL, save it. Otherwise, try to get it from memory.
+if (urlRef) {
+    localStorage.setItem("referralCode", urlRef);
+}
+const referralCode = localStorage.getItem("referralCode") || "Direct";
 
-const referralCode =
-urlParams.get('ref') || "Direct";
 
 /* CATEGORY TOGGLE */
 
@@ -3147,13 +3162,20 @@ initializeAppCheck(app, {
 });
 </script>
 <script>
- function openSubmenu(menuId) {
-    // First close any that are already open
-    closeAllSubmenus();
+ /* Standardized Menu Toggle */
+window.openSubmenu = function(menuId) {
+    // Hide all submenus first
+    document.querySelectorAll('.minor-menu').forEach(menu => {
+        menu.style.display = 'none';
+    });
     
-    // Then open the clicked one safely
-    document.getElementById(menuId).style.display = 'block';
-}
+    // Show the selected one
+    const target = document.getElementById(menuId);
+    if (target) {
+        target.style.display = 'block';
+    }
+};
+
  </script>
 <script>
 
