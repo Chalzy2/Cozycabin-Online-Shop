@@ -2779,9 +2779,28 @@ paymentArea.innerHTML = '';
 }
 
 </script>
-    
+<script type="module">
+
+import {
+initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+initializeAppCheck,
+ReCaptchaV3Provider
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
+
+const app = initializeApp(firebaseConfig);
+
+initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider('6LdgJfwsAAAAAIz_zUXCxXmTLZDc_UAUsfk4acgm'),
+  isTokenAutoRefreshEnabled: true
+});
 
 </script>
+    
+
+<script>
     <!-- FOOTER -->
 <footer style="background:#0b0b0b; border-top:1px solid #222; padding:40px 20px 25px; margin-top:50px; color:#fff;">
 
