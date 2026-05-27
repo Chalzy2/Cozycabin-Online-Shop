@@ -731,6 +731,233 @@ overflow-x:hidden;
     color: white;
     text-align: center;
  }
+ /* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+*{
+
+box-sizing:border-box;
+
+}
+
+img{
+
+max-width:100%;
+
+height:auto;
+
+display:block;
+
+}
+
+body{
+
+overflow-x:hidden;
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.contact-section{
+
+padding:20px;
+
+border-radius:20px;
+
+}
+
+.contact-title{
+
+font-size:24px;
+
+}
+
+.contact-form input,
+
+.contact-form textarea,
+
+.contact-form button{
+
+font-size:15px;
+
+padding:14px;
+
+}
+
+}
+
+/* TABLETS */
+
+@media(min-width:769px) and (max-width:1024px){
+
+.contact-section{
+
+max-width:700px;
+
+margin:auto;
+
+}
+
+}
+
+/* DESKTOP */
+
+@media(min-width:1025px){
+
+.contact-section{
+
+max-width:800px;
+
+margin:auto;
+
+padding:35px;
+
+}
+
+.contact-title{
+
+font-size:32px;
+
+}
+
+.contact-form input,
+
+.contact-form textarea{
+
+font-size:16px;
+
+}
+
+}
+ /* =========================
+   CONTACT FORM
+========================= */
+
+.contact-section{
+
+background:#071129;
+
+border:2px solid #ffd700;
+
+border-radius:25px;
+
+padding:25px;
+
+margin-top:40px;
+
+box-shadow:
+0 0 20px rgba(255,215,0,0.15);
+
+}
+
+.contact-title{
+
+color:#ffd700;
+
+font-size:28px;
+
+text-align:center;
+
+margin-bottom:10px;
+
+}
+
+.contact-subtitle{
+
+color:#cbd5e1;
+
+text-align:center;
+
+margin-bottom:25px;
+
+font-size:15px;
+
+line-height:1.6;
+
+}
+
+.contact-form{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.contact-form input,
+
+.contact-form textarea{
+
+background:#111827;
+
+border:1px solid rgba(255,255,255,0.1);
+
+border-radius:14px;
+
+padding:16px;
+
+color:white;
+
+font-size:15px;
+
+outline:none;
+
+}
+
+.contact-form textarea{
+
+min-height:140px;
+
+resize:none;
+
+}
+
+.contact-form input:focus,
+
+.contact-form textarea:focus{
+
+border:1px solid #ffd700;
+
+box-shadow:
+0 0 10px rgba(255,215,0,0.2);
+
+}
+
+.contact-form button{
+
+background:#ffd700;
+
+color:#000;
+
+font-weight:700;
+
+padding:16px;
+
+border:none;
+
+border-radius:14px;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+.contact-form button:hover{
+
+transform:scale(1.02);
+
+background:#ffcc00;
+
+}
+
  
  
 </style>
@@ -3300,18 +3527,52 @@ Chat on WhatsApp
 </div>
 
 </div>
- <form action="https://formspree.io/f/xzdwypbv" method="POST">
-  <label>Your Name:</label>
-  <input type="text" name="name" required>
-  
-  <label>Your Email:</label>
-  <input type="email" name="email" required>
-  
-  <label>Your Message:</label>
-  <textarea name="message"></textarea>
-  
-  <button type="submit">Send</button>
- </form>
+ <<!-- CONTACT SECTION -->
+
+<section class="contact-section">
+
+<h2 class="contact-title">
+📩 Contact Cozycabin
+</h2>
+
+<p class="contact-subtitle">
+Need help, product inquiry or support?
+Send us a message below.
+</p>
+
+<form
+action="https://formspree.io/f/your-form-id"
+method="POST"
+class="contact-form"
+>
+
+<input
+type="text"
+name="name"
+placeholder="Your Name"
+required
+>
+
+<input
+type="email"
+name="email"
+placeholder="Your Email"
+required
+>
+
+<textarea
+name="message"
+placeholder="Write your message..."
+required
+></textarea>
+
+<button type="submit">
+Send Message
+</button>
+
+</form>
+
+</section>
 
 <!-- COPYRIGHT -->
 
