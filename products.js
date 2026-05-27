@@ -607,3 +607,4 @@ behavior:"smooth"
 });
 
    }
+function showProducts(category){
