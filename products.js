@@ -616,4 +616,4 @@ function showProducts(category){
 
    
 
-   alert("JS FINISHED");
+
