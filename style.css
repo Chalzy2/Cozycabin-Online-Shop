@@ -679,6 +679,19 @@ border-radius:24px;
 
 }
 
+#products-container{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(320px,1fr));
+gap:20px;
+padding:20px;
+width:100%;
+box-sizing:border-box;
+position:relative;
+z-index:5;
+}
+
+
 
 
 
