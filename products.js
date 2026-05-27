@@ -1,7 +1,7 @@
 /* =========================
    REFERRAL SYSTEM
 ========================= */
-
+alert("products.js loaded");
 const urlParams =
 new URLSearchParams(
 window.location.search
