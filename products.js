@@ -2,9 +2,6 @@
    REFERRAL SYSTEM
 ========================= */
 
-
-alert("products.js loaded");
-
 const urlParams =
 new URLSearchParams(
 window.location.search
@@ -227,8 +224,6 @@ images: [
 
 ],
 
-
-
 shirts: [],
 hoodies: [],
 watches: [],
@@ -236,6 +231,10 @@ bags: [],
 caps: [],
 jeans: [],
 jackets: [],
+
+/* =========================
+   KITCHEN
+========================= */
 
 cutlery: [],
 dispenser: [],
@@ -246,6 +245,10 @@ bottles: [],
 cookers: [],
 blenders: [],
 
+/* =========================
+   SOLAR
+========================= */
+
 solarlights: [],
 panels: [],
 inverters: [],
@@ -254,6 +257,10 @@ streetlights: [],
 floodlights: [],
 chargers: [],
 fans: [],
+
+/* =========================
+   DECOR
+========================= */
 
 wallart: [],
 mirrors: [],
@@ -264,6 +271,10 @@ curtains: [],
 frames: [],
 vases: [],
 
+/* =========================
+   BEDDINGS
+========================= */
+
 duvets: [],
 bedsheets: [],
 blankets: [],
@@ -272,6 +283,10 @@ mattress: [],
 covers: [],
 nets: [],
 towels: [],
+
+/* =========================
+   SECURITY
+========================= */
 
 cameras: [],
 alarms: [],
@@ -282,6 +297,10 @@ sensors: [],
 safes: [],
 recorders: [],
 
+/* =========================
+   ELECTRONICS
+========================= */
+
 speakers: [],
 radios: [],
 earbuds: [],
@@ -291,6 +310,10 @@ flashdisks: [],
 smartwatch: [],
 gaming: [],
 
+/* =========================
+   SMARTTECH
+========================= */
+
 phones: [],
 laptops: [],
 tablets: [],
@@ -299,6 +322,10 @@ keyboards: [],
 mouse: [],
 printers: [],
 storage: [],
+
+/* =========================
+   APPLIANCES
+========================= */
 
 fridges: [],
 microwaves: [],
@@ -311,15 +338,15 @@ fansapp: []
 
 };
 
-alert("PRODUCTS OBJECT OK");
 
 
 /* =========================
    SHOW PRODUCTS
 ========================= */
-alert("showProducts loaded");
 
 function showProducts(category){
+
+closeAllSubmenus();
 
 const container =
 document.getElementById(
@@ -349,6 +376,12 @@ will appear here soon.
 </div>
 
 `;
+
+container.scrollIntoView({
+
+behavior:"smooth"
+
+});
 
 return;
 
@@ -512,10 +545,6 @@ coming soon.
 
 });
 
-
-
-/* SCROLL TO PRODUCTS */
-
 container.scrollIntoView({
 
 behavior:"smooth"
@@ -612,9 +641,3 @@ behavior:"smooth"
 });
 
    }
-function showProducts(category){
-
-
-   
-
-
