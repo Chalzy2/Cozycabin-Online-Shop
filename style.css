@@ -55,3 +55,47 @@
 .buy-btn:active {
     transform: scale(0.98);
 }
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-products-btn{
+
+background:#111827;
+
+color:#ffd700;
+
+border:2px solid #ffd700;
+
+padding:14px 22px;
+
+border-radius:14px;
+
+font-size:15px;
+
+font-weight:700;
+
+margin-bottom:20px;
+
+cursor:pointer;
+
+transition:0.3s;
+
+display:inline-block;
+
+}
+
+.back-products-btn:hover{
+
+background:#ffd700;
+
+color:#000;
+
+transform:scale(1.03);
+
+}
+
+
+
+
+
