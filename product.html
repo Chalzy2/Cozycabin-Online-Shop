@@ -36,12 +36,38 @@
 </head>
 <body>
 
+<div class="products-page">
+
+    <!-- TOP NAVIGATION -->
+
     <div class="nav-header">
-        <a href="index.html" class="home-btn">🏠 Back to Shop</a>
+
+        <button
+        onclick="goBack()"
+        class="home-btn">
+
+        ← Back to Shop
+
+        </button>
+
     </div>
+
+    <!-- PRODUCTS CONTAINER -->
 
     <div id="products-container"></div>
 
-    <script src="products.js"></script>
+</div>
+
+<script src="products.js"></script>
+
+<script>
+
+function goBack(){
+
+window.history.back();
+
+}
+
+</script>
+
 </body>
-</html>
