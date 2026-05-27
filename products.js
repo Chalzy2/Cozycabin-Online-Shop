@@ -1,7 +1,7 @@
 /* =========================
    REFERRAL SYSTEM
 ========================= */
-alert("JS STARTED");
+
 
 alert("products.js loaded");
 
@@ -311,6 +311,7 @@ fansapp: []
 
 };
 
+alert("PRODUCTS OBJECT OK");
 
 
 /* =========================
