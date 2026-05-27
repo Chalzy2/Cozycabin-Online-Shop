@@ -53,11 +53,11 @@ description:
 
 images: [
 
-"Image/black shoes.webp",
+"images/fashion/black shoes.webp",
 
-"Image/Greyshoes.webp",
+"images/fashion/Greyshoes.webp",
 
-"Image/gold shoes.webp"
+"images/fashion/gold shoes.webp"
 
 ]
 
@@ -82,9 +82,9 @@ description:
 
 images: [
 
-"Image/women Wshoe.webp",
+"images/fashion/women Wshoe.webp",
 
-"Image/women Bshoes.webp"
+"images/fashion/women Bshoes.webp"
 
 ]
 
@@ -109,11 +109,11 @@ description:
 
 images: [
 
-"Image/calvin-brown.webp",
+"images/fashion/calvin-brown.webp",
 
-"Image/calvin-blue.webp",
+"images/fashion/calvin-blue.webp",
 
-"Image/calvin-tan.webp"
+"imaged/fashion/calvin-tan.webp"
 
 ]
 
@@ -138,9 +138,9 @@ description:
 
 images: [
 
-"Image/timber-black.webp",
+"images/fashion/timber-black.webp",
 
-"Image/timber-white.webp"
+"images/fashion/timber-white.webp"
 
 ]
 
@@ -165,9 +165,9 @@ description:
 
 images: [
 
-"Image/adidas-black.webp",
+"images/fashion/adidas-black.webp",
 
-"Image/adidas-gray.webp"
+"images/fashion/adidas-gray.webp"
 
 ]
 
@@ -192,7 +192,7 @@ description:
 
 images: [
 
-"Image/lacoste-blue.webp"
+"imags/fashion/lacoste-blue.webp"
 
 ]
 },
@@ -215,7 +215,7 @@ description:
 
 images: [
 
-"Image/tommy-brown.webp"
+"images/fashion/tommy-brown.webp"
 
 ]
 
@@ -674,10 +674,11 @@ menu.style.display = 'none';
 });
 
 }
+function goBack(){
 
+window.history.back();
 
-
-
+}
 
 /* =========================
    AUTO LOAD PRODUCTS (FIXED)
@@ -690,3 +691,9 @@ window.addEventListener('DOMContentLoaded', () => {
         showProducts(categoryFromUrl);
     }
 });
+if(category){
+
+showProducts(category);
+
+}
+
