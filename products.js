@@ -1,7 +1,10 @@
 /* =========================
    REFERRAL SYSTEM
 ========================= */
+alert("JS STARTED");
+
 alert("products.js loaded");
+
 const urlParams =
 new URLSearchParams(
 window.location.search
@@ -609,3 +612,8 @@ behavior:"smooth"
 
    }
 function showProducts(category){
+
+
+   
+
+   alert("JS FINISHED");
