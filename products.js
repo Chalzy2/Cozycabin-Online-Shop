@@ -697,3 +697,9 @@ showProducts(category);
 
 }
 
+function goBack(){
+
+window.history.back();
+
+}
+
