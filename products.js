@@ -52,11 +52,11 @@ description:
 
 images: [
 
-"Images/black shoes.webp",
+"Images/black-shoes.webp",
 
-"Images/Greyshoes.webp",
+"Images/greyshoes.webp",
 
-"Images/gold shoes.webp"
+"Images/gold-shoes.webp"
 
 ]
 
@@ -81,9 +81,9 @@ description:
 
 images: [
 
-"Images/women Wshoe.webp",
+"Images/women-wshoe.webp",
 
-"Images/women Bshoes.webp"
+"Images/women-bshoes.webp"
 
 ]
 
@@ -313,6 +313,7 @@ fansapp: []
 /* =========================
    SHOW PRODUCTS
 ========================= */
+alert("showProducts loaded");
 
 function showProducts(category){
 
