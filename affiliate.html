@@ -862,69 +862,30 @@ submitBtn.disabled = true;
 
 submitBtn.innerHTML =
 '<div class="loader"></div>';
+// 1. First, tell reCAPTCHA to get ready
+grecaptcha.enterprise.ready(async () => {
+    try {
+        // 2. Generate the security token for the specific action
+        const actionName = currentAuthMode === "register" ? "signup" : "login";
+        const token = await grecaptcha.enterprise.execute('6Le99f4sAAAAABz6KQK0CIslyyoK1St4r_-FIBVc', {action: actionName});
 
-try{
-
-if(currentAuthMode === "register"){
-
-const credential =
-await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-await checkAndCreateAffiliateProfile(
-credential.user
-);
-
-}
-else{
-
-/* FIXED LOGIN */
-const credential =
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-/* LOAD DASHBOARD */
-const userDocRef =
-doc(
-db,
-"affiliates",
-credential.user.uid
-);
-
-await renderDashboard(userDocRef);
-
-}
-
-}
-catch(error){
-
-alert(error.message);
-
-}
-finally{
-
-submitBtn.disabled = false;
-
-submitBtn.innerText =
-currentAuthMode === "register"
-?
-"REGISTER NEW ACCOUNT"
-:
-"SIGN IN WITH EMAIL";
-
-}
-
-};
-
-
-
-
+        // 3. Now run your Firebase code
+        if (currentAuthMode === "register") {
+            const credential = await createUserWithEmailAndPassword(auth, email, password);
+            await checkAndCreateAffiliateProfile(credential.user);
+        } else {
+            const credential = await signInWithEmailAndPassword(auth, email, password);
+            const userDocRef = doc(db, "affiliates", credential.user.uid);
+            await renderDashboard(userDocRef);
+        }
+    } catch (error) {
+        // This handles the "auth/invalid-credential" error for Josiah
+        alert("Cozycabin Security: " + error.message);
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = currentAuthMode === "register" ? "REGISTER NEW ACCOUNT" : "SIGN IN WITH EMAIL";
+    }
+});
 
 /* GOOGLE LOGIN */
 
