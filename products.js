@@ -53,11 +53,11 @@ description:
 
 images: [
 
-"images/fashion/black shoes.webp",
+"Images/black shoes.webp",
 
-"images/fashion/Greyshoes.webp",
+"Images/Greyshoes.webp",
 
-"images/fashion/gold shoes.webp"
+"Images/gold shoes.webp"
 
 ]
 
@@ -82,9 +82,9 @@ description:
 
 images: [
 
-"images/fashion/women Wshoe.webp",
+"Images/women Wshoe.webp",
 
-"images/fashion/women Bshoes.webp"
+"Images/women Bshoes.webp"
 
 ]
 
@@ -109,11 +109,11 @@ description:
 
 images: [
 
-"images/fashion/calvin-brown.webp",
+"Images/calvin-brown.webp",
 
-"images/fashion/calvin-blue.webp",
+"Images/calvin-blue.webp",
 
-"imaged/fashion/calvin-tan.webp"
+"images/calvin-tan.webp"
 
 ]
 
@@ -138,9 +138,9 @@ description:
 
 images: [
 
-"images/fashion/timber-black.webp",
+"Images/timber-black.webp",
 
-"images/fashion/timber-white.webp"
+"Images/timber-white.webp"
 
 ]
 
@@ -165,9 +165,9 @@ description:
 
 images: [
 
-"images/fashion/adidas-black.webp",
+"Images/adidas-black.webp",
 
-"images/fashion/adidas-gray.webp"
+"Images/adidas-gray.webp"
 
 ]
 
@@ -192,7 +192,7 @@ description:
 
 images: [
 
-"imags/fashion/lacoste-blue.webp"
+"Images/lacoste-blue.webp"
 
 ]
 },
@@ -215,7 +215,7 @@ description:
 
 images: [
 
-"images/fashion/tommy-brown.webp"
+"Images/tommy-brown.webp"
 
 ]
 
