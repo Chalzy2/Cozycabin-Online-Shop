@@ -354,10 +354,9 @@ document.getElementById(
 );
 
 if(!container) return;
-// Force the container to show if it was hidden
-    container.style.display = "grid"; 
-   
+ // Reset content and ensure it's visible
     container.innerHTML = "";
+    container.style.display = "grid"; // Explicitly set to grid to force visibility
 
 
 if(
