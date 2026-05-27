@@ -354,8 +354,11 @@ document.getElementById(
 );
 
 if(!container) return;
+// Force the container to show if it was hidden
+    container.style.display = "grid"; 
+   
+    container.innerHTML = "";
 
-container.innerHTML = "";
 
 if(
 !products[category] ||
