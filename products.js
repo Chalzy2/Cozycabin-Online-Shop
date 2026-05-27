@@ -605,21 +605,18 @@ alert(
    CLOSE ALL SUBMENUS
 ========================= */
 
-function closeAllSubmenus(){
+function closeAllSubmenus() {
+    const menus = document.querySelectorAll('.minor-menu');
+    menus.forEach(menu => {
+        menu.style.display = 'none';
+    });
 
-const menus =
-document.querySelectorAll(
-'.minor-menu'
-);
-
-menus.forEach(menu => {
-
-menu.style.display = 'none';
-
-});
-
+    // Hide the products container when closing the menu
+    const container = document.getElementById("products-container");
+    if (container) {
+        container.style.display = 'none';
+    }
 }
-
 
 
 /* =========================
