@@ -113,7 +113,7 @@ images: [
 
 "Images/calvin-blue.webp",
 
-"images/calvin-tan.webp"
+"Images/calvin-tan.webp"
 
 ]
 
@@ -221,7 +221,7 @@ images: [
 
 },
 
-]
+],
 
 
 
