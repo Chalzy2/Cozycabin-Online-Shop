@@ -1,24 +1,4 @@
-alert("JS WORKING");
-
-window.showProducts = function(category){
-
-alert(category);
-
-document.getElementById(
-"products-container"
-).innerHTML = `
-
-<h1 style="color:red;">
-PRODUCTS WORKING
-</h1>
-
-`;
-
-document.getElementById(
-"products-container"
-).style.display = "block";
-
-};
+alert("TOP LOADED");
 
 /* =========================
    REFERRAL SYSTEM
@@ -148,7 +128,7 @@ function hideProducts() {
 /* =========================
    SHOW PRODUCTS
 ========================= */
-
+alert("SHOW PRODUCTS REACHED");
 window.showProducts = function(category) {
         alert("Opening " + category);
   var container = document.getElementById('products-container');
