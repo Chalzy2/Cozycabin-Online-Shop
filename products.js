@@ -1,3 +1,4 @@
+alert("products.js loaded");
 /* =========================
    REFERRAL SYSTEM
 ========================= */
