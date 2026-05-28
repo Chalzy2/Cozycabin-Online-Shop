@@ -102,7 +102,7 @@ sizes: [40,41,42,43,44,45],
 colors: ["Brown","Blue","Tan"],
 
 description:
-"Premium Calvin Klein casual sneakers with durable sole and soft inner comfort.",
+"Premium Calvin Klein casual sneakers.",
 
 images: [
 
@@ -131,7 +131,7 @@ sizes: [40,41,42,43,44,45],
 colors: ["Black","White"],
 
 description:
-"Elegant Timberland casual shoes designed for smart everyday fashion.",
+"Elegant Timberland casual shoes.",
 
 images: [
 
@@ -151,46 +151,7 @@ watches: [],
 bags: [],
 caps: [],
 jeans: [],
-jackets: [],
-
-/* =========================
-   KITCHEN
-========================= */
-
-cutlery: [],
-dispenser: [],
-hotpots: [],
-racks: [],
-flasks: [],
-bottles: [],
-cookers: [],
-blenders: [],
-
-/* =========================
-   SOLAR
-========================= */
-
-solarlights: [],
-panels: [],
-inverters: [],
-batteries: [],
-streetlights: [],
-floodlights: [],
-chargers: [],
-fans: [],
-
-/* =========================
-   APPLIANCES
-========================= */
-
-fridges: [],
-microwaves: [],
-washing: [],
-cookersapp: [],
-kettles: [],
-irons: [],
-heaters: [],
-fansapp: []
+jackets: []
 
 };
 
@@ -205,20 +166,51 @@ document.getElementById(
 "products-container"
 );
 
-if(!container) return;
+if(!container){
 
-/* CLEAR OLD PRODUCTS */
+console.log(
+"products-container missing"
+);
 
-container.innerHTML = "";
+return;
+
+}
 
 /* SHOW CONTAINER */
 
 container.style.display = "grid";
 
-/* EMPTY CATEGORY */
+/* CLEAR OLD */
+
+container.innerHTML = "";
+
+/* CHECK CATEGORY */
 
 if(
-!products[category] ||
+!products[category]
+){
+
+container.innerHTML = `
+
+<div class="empty-products">
+
+<h2>Category Missing</h2>
+
+<p>
+This category does not exist.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+/* EMPTY */
+
+if(
 products[category].length === 0
 ){
 
@@ -229,17 +221,12 @@ container.innerHTML = `
 <h2>No Products Yet</h2>
 
 <p>
-Products for this category
-will appear here soon.
+Products coming soon.
 </p>
 
 </div>
 
 `;
-
-container.scrollIntoView({
-behavior:"smooth"
-});
 
 return;
 
@@ -367,38 +354,6 @@ Add to Cart
 
 </button>
 
-<details class="details-box">
-
-<summary>
-
-More Details
-
-</summary>
-
-<p>
-
-Premium quality product.
-Comfortable, durable,
-stylish and suitable for
-daily use.
-
-</p>
-
-</details>
-
-<div class="similar-products">
-
-<h4>Find Similar</h4>
-
-<p>
-
-More related products
-coming soon.
-
-</p>
-
-</div>
-
 </div>
 
 `;
@@ -413,24 +368,27 @@ behavior:"smooth"
 
 });
 
-}
+};
 
 /* =========================
-   CHANGE PRODUCT IMAGE
+   CHANGE IMAGE
 ========================= */
 
-window.changeImage = function(index,image){
+window.changeImage =
+function(index,image){
 
 document.getElementById(
 `mainImage-${index}`
 ).src = image;
 
-}
+};
 
 /* =========================
    BUY NOW
 ========================= */
-window.buyNow = function(productName){
+
+window.buyNow =
+function(productName){
 
 const referral =
 localStorage.getItem(
@@ -452,16 +410,19 @@ alert(
 
 }
 
-}
+};
 
 /* =========================
-   CLOSE ALL SUBMENUS
+   CLOSE SUBMENUS
 ========================= */
 
-window.closeAllSubmenus = function(){
+window.closeAllSubmenus =
+function(){
 
 const menus =
-document.querySelectorAll('.minor-menu');
+document.querySelectorAll(
+'.minor-menu'
+);
 
 menus.forEach(menu => {
 
@@ -469,26 +430,4 @@ menu.style.display = 'none';
 
 });
 
-}
-
-/* =========================
-   BACK BUTTON
-========================= */
-
-function goBack(){
-
-closeAllSubmenus();
-
-document.getElementById(
-"products-container"
-).innerHTML = "";
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-}
+};
