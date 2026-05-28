@@ -1,4 +1,4 @@
-alert("products.js connected");
+alert("CONNECTED");
 /* =========================
    REFERRAL SYSTEM
 ========================= */
