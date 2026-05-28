@@ -2062,7 +2062,7 @@ class="minor-btn">🌪️ Blenders</button>
 </div>
 </div>
 
-
+<div id="products-container"></div>
 
 <!-- SOLAR -->
 
@@ -2800,32 +2800,6 @@ menu.style.display='none';
 }else{
 
 menu.style.display='block';
-
-}
-
-}
-
-/* PRODUCT DISPLAY */
-
-window.showProducts = function(id){
-
-document.querySelectorAll('.product-list')
-.forEach(p=>{
-
-p.style.display='none';
-
-});
-
-const target =
-document.getElementById(id);
-
-if(target){
-
-target.style.display='grid';
-
-target.scrollIntoView({
-behavior:'smooth'
-});
 
 }
 
@@ -3645,8 +3619,7 @@ Send Message
 </div>
 
 </footer>
-
-<script src="products.js?v=5"></script>
+<script src="products.js?v=10"></script>
 </body>
 
 </html>
