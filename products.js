@@ -1,3 +1,25 @@
+alert("JS WORKING");
+
+window.showProducts = function(category){
+
+alert(category);
+
+document.getElementById(
+"products-container"
+).innerHTML = `
+
+<h1 style="color:red;">
+PRODUCTS WORKING
+</h1>
+
+`;
+
+document.getElementById(
+"products-container"
+).style.display = "block";
+
+};
+
 /* =========================
    REFERRAL SYSTEM
 ========================= */
