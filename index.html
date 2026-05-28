@@ -956,19 +956,6 @@ transform:scale(1.02);
 
 background:#ffcc00;
 
-}
-============================================================
-  PASTE THIS IN index.html
-  Place it directly after your #fashion-sub closing </div>
-  ============================================================ -->
-
-<div id="products-container" style="display:none;"></div>
-
-
-<!-- ============================================================
-  ADD THESE CSS RULES to your <style> block in index.html
-  ============================================================ -->
-<style>
 
 #products-container {
   display: none;
@@ -1015,7 +1002,8 @@ background:#ffcc00;
  
 </style>
 
- </head>  
+</head>  
+ 
 <body>
 
 <!-- CURRENCY PAYMENT SELECTOR -->
@@ -2412,11 +2400,12 @@ onclick="showProducts('jackets')"
 class="minor-btn">🥼 Jackets</button>
 
 </div>
-</div><!-- =========================
-PRODUCTS CONTAINER
-ONLY ONE ON ENTIRE PAGE 
- <div id="products-container" style="display:none;"></div><!-- =========================
-APPLIANCES
+</div>
+ 
+ 
+ <div id="products-container" style="display:none;"></div>
+
+ APPLIANCES
 ========================= --><div id="appliances-sub" class="minor-menu"><div class="minor-top"><button type="button"
 onclick="closeAllSubmenus()"
 class="back-btn">
@@ -2920,18 +2909,7 @@ onclick="closeModal()">
 id="expandedImg">
 
 </div>
- <script>
- /* Integrated Buy Now */
-window.buyNow = function(productName) {
-    const currentRef = localStorage.getItem("referralCode") || "Direct";
-    
-    // Alert for testing
-    alert("Buying: " + productName + "\nReferral: " + currentRef);
-    
-    // Redirect to your M-Pesa page with the info
-    window.location.href = `mpesa-payment.html?product=${encodeURIComponent(productName)}&ref=${currentRef}`;
-};
- </script>
+
  <!-- FIREBASE + FUNCTIONS -->
 
 <script type="module">
@@ -3842,7 +3820,7 @@ Send Message
 </div>
 
 </footer>
-<script src="products.js"></script>
+<script src="products.js?v=999"></script>
  <script>
 (function() {
 
