@@ -1967,6 +1967,21 @@ overflow:hidden;
 </div>
 
 <!-- LOCAL SHOP TITLE -->
+ 
+<div id="debug-box" style="
+  background: #1a0000;
+  border: 2px solid red;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 15px 0;
+  font-family: monospace;
+  font-size: 13px;
+  color: #ff6666;
+  display: none;
+  word-break: break-all;
+  line-height: 1.6;
+"></div>
+ 
 
 <h3 style="
 text-align:center;
@@ -3828,6 +3843,63 @@ Send Message
 
 </footer>
 <script src="products.js"></script>
+ <script>
+(function() {
+
+  var box = document.getElementById("debug-box");
+
+  function show(msg, color) {
+    if (!box) return;
+    box.style.display = "block";
+    box.innerHTML += "<div style='color:" + (color||"#ff6666") + ";margin-bottom:6px;'>▶ " + msg + "</div>";
+  }
+
+  /* TEST 1: Is products.js loaded? */
+  if (typeof window.showProducts === "function") {
+    show("✅ products.js loaded OK", "#22c55e");
+  } else {
+    show("❌ products.js NOT loaded — showProducts is undefined");
+    show("Check: is products.js in the same folder as index.html?");
+    show("Check: does <script src='products.js'> appear before this line?");
+  }
+
+  /* TEST 2: Does products-container exist? */
+  var container = document.getElementById("products-container");
+  if (container) {
+    show("✅ products-container div found", "#22c55e");
+  } else {
+    show("❌ products-container div NOT found");
+    show("Add this line to index.html after #fashion-sub closing div:");
+    show("&lt;div id='products-container' style='display:none;'&gt;&lt;/div&gt;");
+  }
+
+  /* TEST 3: Is there a duplicate buyNow? */
+  /* We check by calling it with dummy args and seeing if alert fires */
+  /* Instead just warn if it's inline */
+  var scripts = document.querySelectorAll("script");
+  var foundDupe = false;
+  for (var i = 0; i < scripts.length; i++) {
+    var src = scripts[i].src || "";
+    /* external scripts only have src */
+    if (src.indexOf("products.js") > -1) {
+      show("✅ products.js script tag found: " + src, "#22c55e");
+    }
+  }
+
+  /* TEST 4: Try calling showProducts manually */
+  if (typeof window.showProducts === "function") {
+    try {
+      window.showProducts("shoes");
+      show("✅ showProducts('shoes') ran without crashing", "#22c55e");
+    } catch(e) {
+      show("❌ showProducts crashed: " + e.message);
+    }
+  }
+
+})();
+</script>
+EOF
+echo "Done"
 </body>
 
 </html>
