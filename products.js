@@ -198,7 +198,7 @@ fansapp: []
    SHOW PRODUCTS
 ========================= */
 
-function showProducts(category){
+window.showProducts = function(category){
 
 const container =
 document.getElementById(
@@ -419,7 +419,7 @@ behavior:"smooth"
    CHANGE PRODUCT IMAGE
 ========================= */
 
-function changeImage(index,image){
+window.changeImage = function(index,image){
 
 document.getElementById(
 `mainImage-${index}`
@@ -430,8 +430,7 @@ document.getElementById(
 /* =========================
    BUY NOW
 ========================= */
-
-function buyNow(productName){
+window.buyNow = function(productName){
 
 const referral =
 localStorage.getItem(
@@ -459,7 +458,7 @@ alert(
    CLOSE ALL SUBMENUS
 ========================= */
 
-function closeAllSubmenus(){
+window.closeAllSubmenus = function(){
 
 const menus =
 document.querySelectorAll('.minor-menu');
