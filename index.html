@@ -1,3513 +1,616 @@
+cat > /mnt/user-data/outputs/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
- <head>
- <link rel="icon" href="Images/Cozycabin log .webp" type="image/png">
-  <link rel="stylesheet" href="fix.css"> 
-
-<meta http-equiv="Content-Security-Policy"
-content="
-  default-src 'self';
-  img-src 'self' https: data:;
-  script-src 'self' https://www.gstatic.com https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval';
-  style-src 'self' 'unsafe-inline' https:;
-  connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://www.google-analytics.com;
-  frame-ancestors 'none';
-  base-uri 'self';
-  form-action 'self';
-">
-
+<head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Cozycabin Premium</title>
-
 <link rel="icon" href="Images/Cozycabin log .webp" type="image/png">
-
 <link rel="apple-touch-icon" href="Images/Cozycabin log .webp">
+<link rel="stylesheet" href="fix.css">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; script-src 'self' https://www.gstatic.com https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://www.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JVT3X5J5D"></script>
-
 <script>
-
 window.dataLayer = window.dataLayer || [];
-
-function gtag(){
-dataLayer.push(arguments);
-}
-
+function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-
 gtag('config', 'G-4JVT3X5J5D');
-
 </script>
 
 <style>
-
-/* GLOBAL RESPONSIVE FIX */
-
-*{
-box-sizing:border-box;
-max-width:100%;
-}
-
-html,body{
-width:100%;
-overflow-x:hidden;
-}
-
-/* FLEXIBLE MEDIA */
-
-img,
-video,
-iframe{
-max-width:100%;
-height:auto;
-display:block;
-}
-
-/* BUTTON FIX */
-
-button,
-a{
-touch-action:manipulation;
-}
-
-/* INPUT FIX */
-
-input,
-select,
-textarea{
-width:100%;
-max-width:100%;
-}
-
-/* GRID FIX */
-
-.main-grid,
-.minor-grid,
-.product-list{
-width:100%;
-}
-
-/* CHECKOUT FIX */
-
-#premium-checkout-box{
-width:100%;
-max-width:520px;
-margin:auto;
-}
-
-/* PREVENT SIDE OVERFLOW */
-
-.container{
-overflow:hidden;
-}
-
-/* RESET */
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-max-width:100%;
-}
-
-/* BODY */
-
-html,body{
-width:100%;
-overflow-x:hidden;
-background:#000;
-color:#fff;
-font-family:Arial,sans-serif;
--webkit-user-select:none;
-user-select:none;
-scroll-behavior:smooth;
-}
-
-/* IMAGES */
-
-img{
-max-width:100%;
-display:block;
--webkit-user-drag:none;
-}
-
-/* CONTAINER */
-
-.container{
-width:100%;
-max-width:1200px;
-margin:auto;
-padding:10px 14px 100px;
-}
-
-/* TOP NAV */
-
-.top-nav{
-display:flex;
-justify-content:flex-end;
-margin-bottom:10px;
-}
-
-.currency-select{
-background:#111;
-color:#fff;
-border:1px solid #333;
-padding:7px 10px;
-border-radius:8px;
-font-size:12px;
-outline:none;
-}
-
-/* BRAND */
-
-.brand-header{
-text-align:center;
-padding:10px 0 20px;
-}
-
-.brand-logo{
-width:150px;
-margin:auto;
-border:2px solid #ffd700;
-border-radius:18px;
-padding:5px;
-background:#0d0d0d;
-box-shadow:0 0 12px rgba(255,215,0,.3);
-}
-
-.brand-title{
-color:#ffd700;
-margin-top:14px;
-font-size:22px;
-font-weight:bold;
-}
-
-.brand-tagline{
-font-size:11px;
-color:#888;
-margin-top:5px;
-}
-
-/* ACADEMY CARD */
-
-.academy-card{
-background:#1a1a1a;
-border:1px solid #0007ff;
-border-radius:28px;
-padding:18px;
-display:flex;
-align-items:center;
-gap:18px;
-margin:18px auto;
-max-width:520px;
-}
-
-.academy-icon{
-width:85px;
-height:85px;
-border-radius:22px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:11px;
-font-weight:bold;
-flex-shrink:0;
-}
-
-.bg-blue{
-background:#007bff;
-color:#fff;
-}
-
-.bg-yellow{
-background:#ffd700;
-color:#000;
-}
-
-/* CONTINUE REMAINING CSS HERE */
-.academy-info h2{
-font-size:24px;
-margin-bottom:8px;
-}
-
-.academy-info p{
-font-size:15px;
-cursor:pointer;
-line-height:1.5;
-}
-
-/* MAIN GRID */
-
-.main-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px;
-margin:20px 0;
-}
-
-.grid-btn{
-background:#232d3f;
-border:1px solid #3b4758;
-border-radius:24px;
-padding:24px 8px;
-text-align:center;
-cursor:pointer;
-transition:.3s;
-}
-
-.grid-btn:hover{
-border-color:#ffd700;
-transform:translateY(-2px);
-}
-
-.grid-btn span{
-font-size:28px;
-display:block;
-margin-bottom:10px;
-}
-
-.grid-btn small{
-font-size:12px;
-font-weight:bold;
-}
-
-/* MINOR MENU */
-
-.minor-menu{
-display:none;
-background:#0d1117;
-border:1px solid #ffd700;
-border-radius:22px;
-padding:18px;
-margin-bottom:20px;
-}
-
-.minor-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-}
-
-.minor-btn{
-background:#232d3f;
-border:none;
-color:#fff;
-border-radius:16px;
-padding:16px 8px;
-font-size:12px;
-font-weight:bold;
-cursor:pointer;
-transition:.3s;
-}
-
-.minor-btn:hover{
-background:#ffd700;
-color:#000;
-}
-
-/* PRODUCTS */
-
-.product-list{
-display:none;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:14px;
-margin-top:20px;
-}
-
-.product-card{
-background:#fff;
-color:#000;
-border-radius:18px;
-overflow:hidden;
-padding-bottom:10px;
-box-shadow:0 0 12px rgba(0,0,0,.2);
-}
-
-.product-card img{
-width:100%;
-aspect-ratio:1/1;
-object-fit:cover;
-cursor:zoom-in;
-}
-
-.product-card h4{
-font-size:13px;
-padding:10px 10px 5px;
-}
-
-.product-card p{
-font-weight:bold;
-color:green;
-padding:0 10px;
-}
-
-.whatsapp-btn{
-display:block;
-background:#25d366;
-color:#fff;
-text-decoration:none;
-padding:11px;
-margin:10px;
-text-align:center;
-border-radius:10px;
-font-size:12px;
-font-weight:bold;
-transition:.3s;
-}
-
-.whatsapp-btn:hover{
-opacity:.9;
- }
- /* EXIT BUTTON */
-
-.exit-btn{
-grid-column:1/-1;
-background:#ffd700;
-border:none;
-padding:12px;
-border-radius:12px;
-font-weight:bold;
-cursor:pointer;
-margin-bottom:10px;
-}
-
-/* DELIVERY BAR */
-
-.delivery-bar{
-background:#ffd700;
-color:#000;
-padding:12px;
-font-weight:bold;
-margin:25px 0;
-}
-
-/* SECTION TITLE */
-
-.section-title{
-text-align:center;
-color:#ffd700;
-font-size:24px;
-margin-bottom:20px;
-font-weight:bold;
-}
-
-/* PAYMENT */
-
-.cozy-payment-box{
-background:#1a1a1a;
-border:1px solid #333;
-border-radius:24px;
-padding:22px;
-max-width:450px;
-margin:30px auto;
-}
-
-/* AFFILIATE */
-
-.cozy-affiliate-box{
-background:linear-gradient(135deg,#071129 0%,#0f172a 100%);
-border:1px solid rgba(45,183,66,0.25);
-border-radius:28px;
-padding:35px 22px;
-margin:30px auto;
-text-align:center;
-position:relative;
-overflow:hidden;
-box-shadow:
-0 10px 35px rgba(0,0,0,0.45),
-0 0 25px rgba(45,183,66,0.08);
-}
-
-.cozy-affiliate-badge{
-display:inline-block;
-background:linear-gradient(90deg,#2db742,#24a63c);
-color:white;
-padding:8px 18px;
-border-radius:50px;
-font-size:11px;
-font-weight:700;
-letter-spacing:1px;
-margin-bottom:22px;
-}
-
-.cozy-affiliate-title{
-color:white;
-font-size:34px;
-line-height:1.35;
-font-weight:800;
-margin-bottom:18px;
-}
-
-.cozy-affiliate-title span{
-color:#2db742;
-}
-
-.cozy-affiliate-text{
-color:#d1d5db;
-font-size:16px;
-line-height:1.9;
-margin-bottom:30px;
-}
-
-.cozy-affiliate-btn{
-background:linear-gradient(90deg,#2db742,#24a63c);
-color:white;
-border:none;
-border-radius:16px;
-padding:18px 28px;
-width:100%;
-max-width:320px;
-font-size:17px;
-font-weight:800;
-cursor:pointer;
-transition:.3s ease;
-}
-
-.cozy-affiliate-btn:hover{
-transform:translateY(-2px);
-}
-
-/* FLOATING WHATSAPP */
-
-.float-wa{
-position:fixed;
-width:65px;
-height:65px;
-right:18px;
-bottom:18px;
-border-radius:50%;
-background:#25d366;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 0 12px rgba(0,0,0,.5);
-z-index:99999;
-}
-
-.float-wa img{
-width:36px;
-pointer-events:auto;
-}
-
-/* MODAL */
-
-.modal{
-display:none;
-position:fixed;
-z-index:9999;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.95);
-justify-content:center;
-align-items:center;
-padding:20px;
-}
-
-.modal-content{
-width:90%;
-max-width:500px;
-border-radius:18px;
-border:2px solid #ffd700;
-}
-
-.close-modal{
-position:absolute;
-top:15px;
-right:25px;
-font-size:45px;
-color:#fff;
-cursor:pointer;
- }
+*{box-sizing:border-box;margin:0;padding:0;max-width:100%;}
+html,body{width:100%;overflow-x:hidden;background:#000;color:#fff;font-family:Arial,sans-serif;-webkit-user-select:none;user-select:none;scroll-behavior:smooth;}
+img{max-width:100%;display:block;-webkit-user-drag:none;}
+button,a{touch-action:manipulation;}
+input,select,textarea{width:100%;max-width:100%;}
+.container{width:100%;max-width:1200px;margin:auto;padding:10px 14px 100px;overflow:hidden;}
+.brand-header{text-align:center;padding:10px 0 20px;}
+.brand-logo{width:150px;margin:auto;border:2px solid #ffd700;border-radius:18px;padding:5px;background:#0d0d0d;box-shadow:0 0 12px rgba(255,215,0,.3);}
+.brand-tagline{font-size:11px;color:#888;margin-top:5px;}
+.academy-card{background:#1a1a1a;border:1px solid #0007ff;border-radius:28px;padding:18px;display:flex;align-items:center;gap:18px;margin:18px auto;max-width:520px;}
+.academy-icon{width:85px;height:85px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;flex-shrink:0;}
+.bg-blue{background:#007bff;color:#fff;}
+.bg-yellow{background:#ffd700;color:#000;}
+.academy-info h2{font-size:24px;margin-bottom:8px;}
+.academy-info p{font-size:15px;cursor:pointer;line-height:1.5;}
+.main-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;}
+.grid-btn{background:#232d3f;border:1px solid #3b4758;border-radius:24px;padding:24px 8px;text-align:center;cursor:pointer;transition:.3s;}
+.grid-btn:hover{border-color:#ffd700;transform:translateY(-2px);}
+.grid-btn span{font-size:28px;display:block;margin-bottom:10px;}
+.grid-btn small{font-size:12px;font-weight:bold;}
+.minor-menu{display:none;background:#0f172a;border:2px solid #ffcc00;border-radius:24px;padding:20px 15px;margin:15px 0;width:100%;box-sizing:border-box;}
+.minor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.minor-btn{background:#232d3f;border:none;color:#fff;border-radius:16px;padding:16px 8px;font-size:12px;font-weight:bold;cursor:pointer;transition:.3s;}
+.minor-btn:hover{background:#ffd700;color:#000;}
+.minor-top{width:100%;display:flex;justify-content:flex-start;margin-bottom:15px;box-sizing:border-box;}
+.back-btn{background:rgba(255,255,255,0.07);color:#cbd5e1;border:1px solid rgba(255,255,255,0.15);padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s ease-in-out;outline:none;-webkit-tap-highlight-color:transparent;}
+.back-btn:active{background:rgba(255,204,0,0.3);color:#ffcc00;border-color:#ffcc00;transform:scale(0.97);}
+.section-title{text-align:center;color:#ffd700;font-size:24px;margin-bottom:20px;font-weight:bold;}
+.cozy-affiliate-box{background:linear-gradient(135deg,#071129 0%,#0f172a 100%);border:1px solid rgba(45,183,66,0.25);border-radius:28px;padding:35px 22px;margin:30px auto;text-align:center;position:relative;overflow:hidden;box-shadow:0 10px 35px rgba(0,0,0,0.45);}
+.cozy-affiliate-badge{display:inline-block;background:linear-gradient(90deg,#2db742,#24a63c);color:white;padding:8px 18px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:22px;}
+.cozy-affiliate-title{color:white;font-size:34px;line-height:1.35;font-weight:800;margin-bottom:18px;}
+.cozy-affiliate-title span{color:#2db742;}
+.cozy-affiliate-text{color:#d1d5db;font-size:16px;line-height:1.9;margin-bottom:30px;}
+.cozy-affiliate-btn{background:linear-gradient(90deg,#2db742,#24a63c);color:white;border:none;border-radius:16px;padding:18px 28px;width:100%;max-width:320px;font-size:17px;font-weight:800;cursor:pointer;transition:.3s ease;}
+.float-wa{position:fixed;width:65px;height:65px;right:18px;bottom:18px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(0,0,0,.5);z-index:99999;}
+.float-wa img{width:36px;}
+.modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.95);justify-content:center;align-items:center;padding:20px;}
+.modal-content{width:90%;max-width:500px;border-radius:18px;border:2px solid #ffd700;}
+.close-modal{position:absolute;top:15px;right:25px;font-size:45px;color:#fff;cursor:pointer;}
+.crypto-box{background:linear-gradient(145deg,#181818,#101010);border:1px solid #2d2d2d;border-radius:22px;padding:16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:15px;box-shadow:0 0 14px rgba(0,0,0,0.45);}
+.crypto-left{display:flex;align-items:center;gap:16px;flex:1;}
+.crypto-logo-box{width:74px;height:74px;border-radius:18px;background:#111;border:1px solid #303030;display:flex;justify-content:center;align-items:center;flex-shrink:0;}
+.crypto-logo{width:46px;height:46px;object-fit:contain;}
+.crypto-info{display:flex;flex-direction:column;}
+.crypto-title{color:#f2c94c;font-size:15px;font-weight:700;margin:0 0 8px;line-height:1.4;}
+.crypto-desc{color:#a1a1a1;font-size:11px;line-height:1.5;margin:0;}
+.crypto-btn{padding:13px 22px;border-radius:14px;font-size:13px;font-weight:700;text-decoration:none;color:#fff;white-space:nowrap;transition:0.3s ease;}
+.contact-section{background:#071129;border:2px solid #ffd700;border-radius:25px;padding:25px;margin-top:40px;box-shadow:0 0 20px rgba(255,215,0,0.15);}
+.contact-title{color:#ffd700;font-size:28px;text-align:center;margin-bottom:10px;}
+.contact-subtitle{color:#cbd5e1;text-align:center;margin-bottom:25px;font-size:15px;line-height:1.6;}
+.contact-form{display:flex;flex-direction:column;gap:18px;}
+.contact-form input,.contact-form textarea{background:#111827;border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:16px;color:white;font-size:15px;outline:none;}
+.contact-form textarea{min-height:140px;resize:none;}
+.contact-form input:focus,.contact-form textarea:focus{border:1px solid #ffd700;box-shadow:0 0 10px rgba(255,215,0,0.2);}
+.contact-form button{background:#ffd700;color:#000;font-weight:700;padding:16px;border:none;border-radius:14px;font-size:16px;cursor:pointer;transition:0.3s;}
+.contact-form button:hover{transform:scale(1.02);background:#ffcc00;}
+.ebook-box{border:2px solid #CD853F;border-radius:15px;padding:15px;margin-bottom:15px;}
+#premium-checkout-box{width:100%;max-width:520px;margin:auto;}
+body,.container,.main-grid{overflow-x:hidden;}
 @media(max-width:768px){
-
-.container{
-padding:10px 10px 100px;
-}
-
-.main-grid{
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-}
-
-.minor-grid{
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-
-.product-list{
-grid-template-columns:1fr 1fr;
-gap:12px;
-}
-
-.grid-btn{
-padding:16px 6px;
-border-radius:18px;
-}
-
-.grid-btn span{
-font-size:22px;
-}
-
-.grid-btn small{
-font-size:10px;
-}
-
-.academy-card{
-padding:14px;
-gap:12px;
-}
-
-.academy-icon{
-width:65px;
-height:65px;
-font-size:10px;
-}
-
-.academy-info h2{
-font-size:18px;
-}
-
-.cozy-affiliate-title{
-font-size:26px;
-}
-
-.cozy-affiliate-text{
-font-size:14px;
-line-height:1.7;
-}
-
-.cozy-affiliate-btn{
-font-size:15px;
-padding:16px;
-}
-
-.brand-logo{
-width:120px;
-}
-
-.currency-select{
-font-size:11px;
-padding:6px 8px;
-}
-
-#premium-checkout-box{
-padding:18px;
-border-radius:20px;
-}
-
-.float-wa{
-width:58px;
-height:58px;
-right:14px;
-bottom:14px;
-}
-
-.float-wa img{
-width:32px;
-}
-img{
--webkit-touch-callout:none;
--webkit-user-select:none;
--khtml-user-select:none;
--moz-user-select:none;
--ms-user-select:none;
-user-select:none;
--webkit-user-drag:none;
-    }
-
-}
-    body,
-.container,
-.main-grid,
-.product-list{
-overflow-x:hidden;
-}
-/* 1. Ensure all boxes have consistent rounded corners (as in Crypto Mastery) */
-.course-box, .crypto-box, .ebook-box {
-    border-radius: 15px; /* Adjust this value for the level of roundness you want */
-    border-width: 2px;
-    border-style: solid;
-    padding: 15px;
-    margin-bottom: 15px; /* Adds the space between the boxes */
-}
-
-/* 2. Set the Course (Academy Courses) border to blue */
-.course-box {
-    border-color: blue;
-}
-
-.ebook-box {
-    border: 2px solid #CD853F; /* Warm, visible brown */
-    border-radius: 15px;
-    padding: 15px;
-    margin-bottom: 15px;
-    }
- /* ==========================================================================
-   COZYCABIN SUB-MENU BACK BUTTON SYSTEM
-   ========================================================================== */
-
-/* Container wrapper that anchors elements cleanly to the top-left */
-.minor-top {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-}
-
-/* Premium, responsive glass-morphism back button */
-.back-btn {
-    background: rgba(255, 255, 255, 0.07);
-    color: #cbd5e1;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    transition: all 0.2s ease-in-out;
-    outline: none;
-    -webkit-tap-highlight-color: transparent; /* Removes default Android selection box */
-}
-
-/* Smooth micro-interactions for Laptop & Desktop browsers */
-@media (hover: hover) {
-    .back-btn:hover {
-        background: rgba(255, 204, 0, 0.15); /* Soft CozyCabin Yellow tint */
-        color: #ffcc00;                      /* Bright CozyCabin Yellow text */
-        border-color: #ffcc00;
-        transform: translateX(-3px);          /* Interactive nudge to the left */
-    }
+  .container{padding:10px 10px 100px;}
+  .main-grid{grid-template-columns:repeat(3,1fr);gap:10px;}
+  .minor-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .grid-btn{padding:16px 6px;border-radius:18px;}
+  .grid-btn span{font-size:22px;}
+  .grid-btn small{font-size:10px;}
+  .academy-card{padding:14px;gap:12px;}
+  .academy-icon{width:65px;height:65px;font-size:10px;}
+  .academy-info h2{font-size:18px;}
+  .cozy-affiliate-title{font-size:26px;}
+  .brand-logo{width:120px;}
+  .float-wa{width:58px;height:58px;right:14px;bottom:14px;}
+  .float-wa img{width:32px;}
+  .crypto-box{padding:14px;gap:12px;}
+  .crypto-logo-box{width:65px;height:65px;}
+  .crypto-logo{width:40px;height:40px;}
+  .crypto-title{font-size:14px;}
+  .crypto-desc{font-size:10px;}
+  .crypto-btn{padding:11px 18px;font-size:12px;}
+  img{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none;}
 }
 </style>
-
-
-</head>  
- 
+</head>
 <body>
 
-<!-- CURRENCY PAYMENT SELECTOR -->
-
-<div style="
-margin:25px 0;
-background:#111;
-border:1px solid #d4af37;
-border-radius:22px;
-padding:18px;
-">
-
-<h3 style="
-color:#ffd700;
-margin-bottom:16px;
-font-size:18px;
-text-align:center;
-">
-
-💳 Select Payment Currency
-
-</h3>
-
-<select
-id="currencySelector"
-onchange="handleCurrencySelection()"
-style="
-width:100%;
-padding:16px;
-border-radius:14px;
-background:#1a1a1a;
-color:#fff;
-border:1px solid #333;
-font-size:16px;
-outline:none;
-cursor:pointer;
-">
-
+<!-- CURRENCY SELECTOR -->
+<div style="margin:25px 0;background:#111;border:1px solid #d4af37;border-radius:22px;padding:18px;">
+<h3 style="color:#ffd700;margin-bottom:16px;font-size:18px;text-align:center;">💳 Select Payment Currency</h3>
+<select id="currencySelector" onchange="handleCurrencySelection()" style="width:100%;padding:16px;border-radius:14px;background:#1a1a1a;color:#fff;border:1px solid #333;font-size:16px;outline:none;cursor:pointer;">
 <option value="">Select Currency</option>
-
-<option value="kes">
-🇰🇪 KES (Local)
-</option>
-
-<option value="usd">
-🇺🇸 USD
-</option>
-
-<option value="euro">
-🇪🇺 EURO
-</option>
-
-<option value="gbp">
-🇬🇧 GBP
-</option>
-
-<option value="crypto">
-🪙 Crypto (Bitcoin/Binance)
-</option>
-
+<option value="kes">🇰🇪 KES (Local)</option>
+<option value="usd">🇺🇸 USD</option>
+<option value="euro">🇪🇺 EURO</option>
+<option value="gbp">🇬🇧 GBP</option>
+<option value="crypto">🪙 Crypto (Bitcoin/Binance)</option>
 </select>
-
-<!-- DYNAMIC PAYMENT BUTTON -->
-
-<div id="paymentButtonArea"
-style="
-margin-top:18px;
-display:none;
-">
-
-<a
-id="paymentLink"
-href="#"
-style="
-display:block;
-background:#ffd700;
-color:#000;
-text-decoration:none;
-padding:16px;
-border-radius:14px;
-font-weight:bold;
-text-align:center;
-font-size:16px;
-">
-
-Continue Payment
-
-</a>
-
+<div id="paymentButtonArea" style="margin-top:18px;display:none;">
+<a id="paymentLink" href="#" style="display:block;background:#ffd700;color:#000;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;">Continue Payment</a>
 </div>
-
 </div>
 
 <!-- BRAND HEADER -->
-
 <div class="brand-header">
-
-<img src="Images/Cozycabin log .webp"
-alt="Cozycabin Logo"
-class="brand-logo">
-
-<h3 style="
-text-align:center;
-color:#ffd700;
-margin-bottom:15px;
-">
-
-💎 COZYCABIN DIGITAL ASSETS
-
-</h3>
-
-<p class="brand-tagline">
-
-Courses, Crypto & Masterclasses
-
-</p>
-
+<img src="Images/Cozycabin log .webp" alt="Cozycabin Logo" class="brand-logo">
+<h3 style="text-align:center;color:#ffd700;margin-bottom:15px;">💎 COZYCABIN DIGITAL ASSETS</h3>
+<p class="brand-tagline">Courses, Crypto & Masterclasses</p>
 </div>
 
 <!-- ACADEMY CARD -->
-
 <div class="academy-card">
-
-<div class="academy-icon bg-blue">
-
-COURSE
-
-</div>
-
+<div class="academy-icon bg-blue">COURSE</div>
 <div class="academy-info">
-
 <h2>Academy Courses</h2>
-
-<p onclick="toggleSub('video-courses')">
-
-Video Editing & Setup ▼
-
-</p>
-
+<p onclick="toggleSub('video-courses')">Video Editing & Setup ▼</p>
 </div>
-
 </div>
-
-<!-- CONTINUE ALL WEBSITE CONTENT HERE -->
 
 <!-- VIDEO COURSES -->
-
 <div id="video-courses" class="minor-menu">
-
 <div class="minor-grid">
-
-<button class="minor-btn">
-
-🎬 CapCut Editing
-
-</button>
-
-<button class="minor-btn">
-
-📱 TikTok Growth
-
-</button>
-
-<button class="minor-btn">
-
-💻 Website Setup
-
-</button>
-
-<button class="minor-btn">
-
-📢 Digital Marketing
-
-</button>
-
+<button class="minor-btn">🎬 CapCut Editing</button>
+<button class="minor-btn">📱 TikTok Growth</button>
+<button class="minor-btn">💻 Website Setup</button>
+<button class="minor-btn">📢 Digital Marketing</button>
+</div>
 </div>
 
-</div>
-
- 
 <!-- CRYPTO SECTION -->
-<div style="margin-bottom:15px; font-family:sans-serif;">
-    <button class="menu-trigger-btn" onclick="toggleCryptoRowDropdown()" style="width:100%; background:#1a1a1a; border:1px solid #d4af37; padding:12px; display:flex; align-items:center; justify-content:space-between; border-radius:15px; cursor:pointer; text-align:left;">
-        <div style="display:flex; align-items:center; gap:15px;">
-            <div style="background:#e6b800; color:#000; width:55px; height:55px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:11px;">Crypto</div>
-            <div>
-                <h3 style="color:#fff; margin:0 0 4px 0; font-size:16px;">Crypto Mastery</h3>
-                <p style="color:#d4af37; margin:0; font-size:12px;">Top Global Exchanges & Tools</p>
-            </div>
-        </div>
-        <span id="crypto-row-arrow" style="color:#d4af37; font-size:12px; transition:transform .3s;">▼</span>
-    </button>
+<div style="margin-bottom:15px;">
+<button onclick="toggleCryptoRowDropdown()" style="width:100%;background:#1a1a1a;border:1px solid #d4af37;padding:12px;display:flex;align-items:center;justify-content:space-between;border-radius:15px;cursor:pointer;text-align:left;">
+<div style="display:flex;align-items:center;gap:15px;">
+<div style="background:#e6b800;color:#000;width:55px;height:55px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:11px;">Crypto</div>
+<div>
+<h3 style="color:#fff;margin:0 0 4px 0;font-size:16px;">Crypto Mastery</h3>
+<p style="color:#d4af37;margin:0;font-size:12px;">Top Global Exchanges & Tools</p>
+</div>
+</div>
+<span id="crypto-row-arrow" style="color:#d4af37;font-size:12px;transition:transform .3s;">▼</span>
+</button>
+<div id="crypto-row-dropdown-menu" style="display:none;background:#0b0b0b;border:1px solid #d4a017;border-top:none;padding:18px;border-radius:0 0 28px 28px;">
 
-<div id="crypto-row-dropdown-menu" style="display:none; background:#0b0b0b; border:1px solid #d4a017; border-top:none; padding:18px; border-radius:0 0 28px 28px;">
-
-<style>
-
-.crypto-box{
-    background:linear-gradient(145deg,#181818,#101010);
-    border:1px solid #2d2d2d;
-    border-radius:22px;
-    padding:16px;
-    margin-bottom:16px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    box-shadow:0 0 14px rgba(0,0,0,0.45);
-}
-
-.crypto-left{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    flex:1;
-}
-
-.crypto-logo-box{
-    width:74px;
-    height:74px;
-    border-radius:18px;
-    background:#111;
-    border:1px solid #303030;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-shrink:0;
-}
-
-.crypto-logo{
-    width:46px;
-    height:46px;
-    object-fit:contain;
-}
-
-.crypto-info{
-    display:flex;
-    flex-direction:column;
-}
-
-.crypto-title{
-    color:#f2c94c;
-    font-size:15px;
-    font-weight:700;
-    margin:0 0 8px;
-    line-height:1.4;
-}
-
-.crypto-desc{
-    color:#a1a1a1;
-    font-size:11px;
-    line-height:1.5;
-    margin:0;
-}
-
-.crypto-btn{
-    padding:13px 22px;
-    border-radius:14px;
-    font-size:13px;
-    font-weight:700;
-    text-decoration:none;
-    color:#fff;
-    white-space:nowrap;
-    transition:0.3s ease;
-}
-
-.crypto-btn:hover{
-    transform:scale(1.03);
-    opacity:0.92;
-}
-
-@media(max-width:600px){
-
-.crypto-box{
-    padding:14px;
-    gap:12px;
-}
-
-.crypto-logo-box{
-    width:65px;
-    height:65px;
-}
-
-.crypto-logo{
-    width:40px;
-    height:40px;
-}
-
-.crypto-title{
-    font-size:14px;
-}
-
-.crypto-desc{
-    font-size:10px;
-}
-
-.crypto-btn{
-    padding:11px 18px;
-    font-size:12px;
-}
-
-}
-
-</style>
-
-<!-- Binance -->
 <div class="crypto-box">
-
-    <div class="crypto-left">
-
-        <div class="crypto-logo-box">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" class="crypto-logo">
-        </div>
-
-        <div class="crypto-info">
-            <p class="crypto-title">🔥 Binance Rewards: Up to $100</p>
-            <p class="crypto-desc">Register and start your journey securely.</p>
-        </div>
-
-    </div>
-
-    <a href="binance-cryptopayment.html"
-       class="crypto-btn"
-       style="background:#e0b400; color:#000;">
-       Join Binance
-    </a>
-
+<div class="crypto-left"><div class="crypto-logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Binance_Logo.png" class="crypto-logo"></div>
+<div class="crypto-info"><p class="crypto-title">🔥 Binance Rewards: Up to $100</p><p class="crypto-desc">Register and start your journey securely.</p></div></div>
+<a href="binance-cryptopayment.html" class="crypto-btn" style="background:#e0b400;color:#000;">Join Binance</a>
 </div>
 
-<!-- OKX -->
 <div class="crypto-box">
-
-    <div class="crypto-left">
-
-        <div class="crypto-logo-box">
-            <img src="Image/okex.webp" class="crypto-logo">
-        </div>
-
-        <div class="crypto-info">
-            <p class="crypto-title">⚡ OKX Bonus: Up to $60</p>
-            <p class="crypto-desc">Trade smarter with advanced tools.</p>
-        </div>
-
-    </div>
-
-    <a href="https://okx.com/ul/J6l2R5"
-       class="crypto-btn"
-       style="background:#0d84ff;">
-       Join OKX
-    </a>
-
+<div class="crypto-left"><div class="crypto-logo-box"><img src="Images/okex.webp" class="crypto-logo"></div>
+<div class="crypto-info"><p class="crypto-title">⚡ OKX Bonus: Up to $60</p><p class="crypto-desc">Trade smarter with advanced tools.</p></div></div>
+<a href="https://okx.com/ul/J6l2R5" class="crypto-btn" style="background:#0d84ff;">Join OKX</a>
 </div>
 
-<!-- Bybit -->
 <div class="crypto-box">
-
-    <div class="crypto-left">
-
-        <div class="crypto-logo-box">
-            <img src="Image/bybit.webp"
-                 class="crypto-logo"
-                 style="background:#fff; border-radius:10px; padding:4px;">
-        </div>
-
-        <div class="crypto-info">
-            <p class="crypto-title">💎 Bybit Bonus: Up to $50</p>
-            <p class="crypto-desc">Level up your trading with Bybit.</p>
-        </div>
-
-    </div>
-
-    <a href="https://partner.bybit.com/b/123495"
-       class="crypto-btn"
-       style="background:#ff8a00;">
-       Join Bybit
-    </a>
-
+<div class="crypto-left"><div class="crypto-logo-box"><img src="Images/bybit.webp" class="crypto-logo" style="background:#fff;border-radius:10px;padding:4px;"></div>
+<div class="crypto-info"><p class="crypto-title">💎 Bybit Bonus: Up to $50</p><p class="crypto-desc">Level up your trading with Bybit.</p></div></div>
+<a href="https://partner.bybit.com/b/123495" class="crypto-btn" style="background:#ff8a00;">Join Bybit</a>
 </div>
 
-<!-- KuCoin -->
 <div class="crypto-box">
-
-    <div class="crypto-left">
-
-        <div class="crypto-logo-box">
-            <img src="Image/kuicoin.webp"
-                 class="crypto-logo">
-        </div>
-
-        <div class="crypto-info">
-            <p class="crypto-title">🚀 KuCoin Bonus: Up to $500</p>
-            <p class="crypto-desc">Discover gems before they trend.</p>
-        </div>
-
-    </div>
-
-    <a href="https://link.kucoin.com/iqEP/alk9lpk6"
-       class="crypto-btn"
-       style="background:#27b8e7;">
-       Join KuCoin
-    </a>
-
+<div class="crypto-left"><div class="crypto-logo-box"><img src="Images/kuicoin.webp" class="crypto-logo"></div>
+<div class="crypto-info"><p class="crypto-title">🚀 KuCoin Bonus: Up to $500</p><p class="crypto-desc">Discover gems before they trend.</p></div></div>
+<a href="https://link.kucoin.com/iqEP/alk9lpk6" class="crypto-btn" style="background:#27b8e7;">Join KuCoin</a>
 </div>
 
-<!-- MiniPay -->
 <div class="crypto-box">
-
-    <div class="crypto-left">
-
-        <div class="crypto-logo-box">
-            <img src="Image/minipay1.webp"
-                 class="crypto-logo"
-                 style="background:#fff; border-radius:10px; padding:4px;">
-        </div>
-
-        <div class="crypto-info">
-            <p class="crypto-title">💰 MiniPay Cashback: Up to 2%</p>
-            <p class="crypto-desc">Fast, secure payments worldwide.</p>
-        </div>
-
-    </div>
-
-    <a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ"
-       class="crypto-btn"
-       style="background:#12b347;">
-       Join MiniPay
-    </a>
-
+<div class="crypto-left"><div class="crypto-logo-box"><img src="Images/minipay1.webp" class="crypto-logo" style="background:#fff;border-radius:10px;padding:4px;"></div>
+<div class="crypto-info"><p class="crypto-title">💰 MiniPay Cashback: Up to 2%</p><p class="crypto-desc">Fast, secure payments worldwide.</p></div></div>
+<a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ" class="crypto-btn" style="background:#12b347;">Join MiniPay</a>
 </div>
 
-
-
-<!-- Bondex -->
 <div class="crypto-box">
-
-    <div class="crypto-left">
-
-        <div class="crypto-logo-box">
-            <img src="Image/Bondex.webp"
-                 class="crypto-logo">
-        </div>
-
-        <div class="crypto-info">
-            <p class="crypto-title">💼 Bondex Rewards: Earn & Grow</p>
-            <p class="crypto-desc">Web3 jobs, tasks & airdrop rewards.</p>
-        </div>
-
-    </div>
-
-    <a href="https://bondex.page.link/BnW5anRoct37Fngy5?inviteCode=5IGQM"
-       class="crypto-btn"
-       style="background:#00b84f;">
-       Join Bondex
-    </a>
-
+<div class="crypto-left"><div class="crypto-logo-box"><img src="Images/Bondex.webp" class="crypto-logo"></div>
+<div class="crypto-info"><p class="crypto-title">💼 Bondex Rewards: Earn & Grow</p><p class="crypto-desc">Web3 jobs, tasks & airdrop rewards.</p></div></div>
+<a href="https://bondex.page.link/BnW5anRoct37Fngy5?inviteCode=5IGQM" class="crypto-btn" style="background:#00b84f;">Join Bondex</a>
 </div>
- <!-- MINING TOOLS -->
+
 <div class="section-title">Mining & Browser Tools</div>
 
-<!-- CryptoTab Browser -->
 <div class="crypto-box">
-
-    <div class="crypto-left">
-
-        <div class="crypto-logo-box">
-            <img src="Image/crypto tab.webp"
-                 class="crypto-logo"
-                 style="background:#fff; border-radius:10px; padding:4px;">
-        </div>
-
-        <div class="crypto-info">
-            <p class="crypto-title">⚡ CryptoTab Browser: Earn While Browsing</p>
-            <p class="crypto-desc">Turn daily browsing into passive crypto earnings.</p>
-        </div>
-
-    </div>
-
-    <a href="https://cryptotabbrowser.com/landing/89/20904432"
-       class="crypto-btn"
-       style="background:#ff5a1f;">
-       Join Now
-    </a>
-
+<div class="crypto-left"><div class="crypto-logo-box"><img src="Images/crypto tab.webp" class="crypto-logo" style="background:#fff;border-radius:10px;padding:4px;"></div>
+<div class="crypto-info"><p class="crypto-title">⚡ CryptoTab Browser: Earn While Browsing</p><p class="crypto-desc">Turn daily browsing into passive crypto earnings.</p></div></div>
+<a href="https://cryptotabbrowser.com/landing/89/20904432" class="crypto-btn" style="background:#ff5a1f;">Join Now</a>
 </div>
 
-<!-- CryptoTab Farm -->
 <div class="crypto-box">
-
-    <div class="crypto-left">
-
-        <div class="crypto-logo-box">
-            <img src="Image/crypto farm.webp"
-                 class="crypto-logo"
-                 style="background:#fff; border-radius:10px; padding:4px;">
-        </div>
-
-        <div class="crypto-info">
-            <p class="crypto-title">🚀 CryptoTab Farm: Cloud Mining Power</p>
-            <p class="crypto-desc">Boost your mining with automated cloud systems.</p>
-        </div>
-
-    </div>
-
-    <a href="https://cryptotab.farm/FONADE9D"
-       class="crypto-btn"
-       style="background:#ff5a1f;">
-       Join Farm
-    </a>
-
+<div class="crypto-left"><div class="crypto-logo-box"><img src="Images/crypto farm.webp" class="crypto-logo" style="background:#fff;border-radius:10px;padding:4px;"></div>
+<div class="crypto-info"><p class="crypto-title">🚀 CryptoTab Farm: Cloud Mining Power</p><p class="crypto-desc">Boost your mining with automated cloud systems.</p></div></div>
+<a href="https://cryptotab.farm/FONADE9D" class="crypto-btn" style="background:#ff5a1f;">Join Farm</a>
 </div>
- <!-- Pi Network -->
+
 <div class="crypto-box">
-
-    <div class="crypto-left">
-
-        <div class="crypto-logo-box">
-            <img src="Image/pi.webp"
-                 class="crypto-logo">
-        </div>
-
-        <div class="crypto-info">
-            <p class="crypto-title">🎁 Pi Network Bonus: Free Mining</p>
-            <p class="crypto-desc">Mine crypto easily from your phone.</p>
-        </div>
-
-    </div>
-
-    <a href="https://minepi.com/Chalzy1"
-       class="crypto-btn"
-       style="background:#7b1fa2;">
-       Join Pi Network
-    </a>
-
+<div class="crypto-left"><div class="crypto-logo-box"><img src="Images/pi.webp" class="crypto-logo"></div>
+<div class="crypto-info"><p class="crypto-title">🎁 Pi Network Bonus: Free Mining</p><p class="crypto-desc">Mine crypto easily from your phone.</p></div></div>
+<a href="https://minepi.com/Chalzy1" class="crypto-btn" style="background:#7b1fa2;">Join Pi Network</a>
 </div>
 
-
-
-<!-- Footer -->
-<div class="footer-note">
-    Cozycabin Crypto Hub • DYOR Before Investing
+<div style="color:#666;font-size:11px;text-align:center;padding-top:10px;">Cozycabin Crypto Hub • DYOR Before Investing</div>
+</div>
 </div>
 
-</div>
- 
-</div>
-
-
-
-
-
-
-         
 <!-- EBOOK SECTION -->
-
-<div style="
-margin-bottom:15px;
-font-family:sans-serif;
-">
-
-<button
-class="menu-trigger-btn"
-onclick="toggleEbookRowDropdown()"
-style="
-width:100%;
-background:#1a1a1a;
-border:1px solid  #CD853F;
-padding:12px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-border-radius:15px;
-cursor:pointer;
-text-align:left;
-">
-
-<div style="
-display:flex;
-align-items:center;
-gap:15px;
-">
-
-<div style="
-background: #CD853F;
-color:#000;
-width:55px;
-height:55px;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:bold;
-font-size:11px;
-">
-
-E-Book
-
+<div style="margin-bottom:15px;">
+<button onclick="toggleEbookRowDropdown()" style="width:100%;background:#1a1a1a;border:1px solid #CD853F;padding:12px;display:flex;align-items:center;justify-content:space-between;border-radius:15px;cursor:pointer;text-align:left;">
+<div style="display:flex;align-items:center;gap:15px;">
+<div style="background:#CD853F;color:#000;width:55px;height:55px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:11px;">E-Book</div>
+<div><h3 style="color:#fff;margin:0 0 4px 0;font-size:16px;">Digital Library</h3><p style="color:#d4af37;margin:0;font-size:12px;">Finance & Masterclasses</p></div>
 </div>
-
-<div>
-
-<h3 style="
-color:#fff;
-margin:0 0 4px 0;
-font-size:16px;
-">
-
-Digital Library
-
-</h3>
-
-<p style="
-color:#d4af37;
-margin:0;
-font-size:12px;
-">
-
-Finance & Masterclasses
-
-</p>
-
-</div>
-
-</div>
-<span id="ebook-row-arrow"
-style="
-color:#d4af37;
-font-size:12px;
-transition:transform .3s;
-">
-
-▼
-
-</span>
-
+<span id="ebook-row-arrow" style="color:#d4af37;font-size:12px;transition:transform .3s;">▼</span>
 </button>
+<div id="ebook-row-dropdown-menu" style="display:none;background:#111;border:1px solid #333;border-top:none;padding:15px;border-radius:0 0 15px 15px;">
 
-<!-- EBOOK DROPDOWN -->
-
-<div id="ebook-row-dropdown-menu"
-style="
-display:none;
-background:#111;
-border:1px solid #333;
-border-top:none;
-padding:15px;
-border-radius:0 0 15px 15px;
-">
-
-<!-- BOOK 1 -->
-
-<div style="
-display:flex;
-background:#1a1a1a;
-border:1px solid #333;
-border-radius:8px;
-padding:12px;
-margin-bottom:12px;
-align-items:center;
-">
-
-<div style="
-flex:0 0 65px;
-margin-right:15px;
-">
-
-<img src="Images/Facebook Pr.Fomula1 .webp"
-alt="Facebook Profit"
-style="
-width:100%;
-border-radius:4px;
-">
-
+<div style="display:flex;background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:12px;margin-bottom:12px;align-items:center;">
+<div style="flex:0 0 65px;margin-right:15px;"><img src="Images/Facebook Pr.Fomula1 .webp" alt="Facebook Profit" style="width:100%;border-radius:4px;"></div>
+<div style="flex:1;"><h4 style="color:#fff;margin-bottom:4px;font-size:14px;">Facebook Profit Formula</h4><p style="color:#aaa;font-size:12px;line-height:1.4;margin-bottom:8px;">Master Meta monetization in 30 days.</p>
+<a href="https://selar.com/z6wn6j11g1" style="background:#e6b800;color:#000;padding:6px 15px;text-decoration:none;font-size:11px;font-weight:bold;border-radius:4px;display:inline-block;">Access Guide</a></div>
 </div>
 
-<div style="flex:1;">
+<div style="display:flex;background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:12px;margin-bottom:12px;align-items:center;">
+<div style="flex:0 0 65px;margin-right:15px;"><img src="Images/Sell Every Day (1).webp" alt="Selling Daily" style="width:100%;border-radius:4px;"></div>
+<div style="flex:1;"><h4 style="color:#fff;margin-bottom:4px;font-size:14px;">Selling Daily</h4><p style="color:#aaa;font-size:12px;line-height:1.4;margin-bottom:8px;">Sell Every single Day.</p>
+<a href="https://selar.com/dy79oz7112" style="background:#e6b800;color:#000;padding:6px 15px;text-decoration:none;font-size:11px;font-weight:bold;border-radius:4px;display:inline-block;">Access Guide</a></div>
+</div>
 
-<h4 style="
-color:#fff;
-margin-bottom:4px;
-font-size:14px;
-">
-
-Facebook Profit Formula
-
-</h4>
-
-<p style="
-color:#aaa;
-font-size:12px;
-line-height:1.4;
-margin-bottom:8px;
-">
-
-Master Meta monetization in 30 days.
-
-</p>
-
-<a href="https://selar.com/z6wn6j11g1"
-style="
-background:#e6b800;
-color:#000;
-padding:6px 15px;
-text-decoration:none;
-font-size:11px;
-font-weight:bold;
-border-radius:4px;
-display:inline-block;
-">
-
-Access Guide
-
-</a>
-
+<div style="display:flex;background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:12px;align-items:center;">
+<div style="flex:0 0 65px;margin-right:15px;"><img src="Images/Crypto Guide..webp" alt="Crypto Guide" style="width:100%;border-radius:4px;"></div>
+<div style="flex:1;"><h4 style="color:#fff;margin-bottom:4px;font-size:14px;">Crypto Mastery Guide</h4><p style="color:#aaa;font-size:12px;line-height:1.4;margin-bottom:8px;">Blueprint for exchanges & mining.</p>
+<a href="https://selar.com/378373r336" style="background:#e6b800;color:#000;padding:6px 15px;text-decoration:none;font-size:11px;font-weight:bold;border-radius:4px;display:inline-block;">Access Guide</a></div>
 </div>
 
 </div>
- 
- <!-- BOOK 2 -->
- 
-<div style="
-display:flex;
-background:#1a1a1a;
-border:1px solid #333;
-border-radius:8px;
-padding:12px;
-margin-bottom:12px;
-align-items:center;
-">
-
-<div style="
-flex:0 0 65px;
-margin-right:15px;
-">
-
-<img src="Images/Sell Every Day (1).webp"
-alt="Facebook Profit"
-style="
-width:100%;
-border-radius:4px;
-">
-
 </div>
-
-<div style="flex:1;">
-
-<h4 style="
-color:#fff;
-margin-bottom:4px;
-font-size:14px;
-">
-
-Selling Daily 
-
-</h4>
-
-<p style="
-color:#aaa;
-font-size:12px;
-line-height:1.4;
-margin-bottom:8px;
-">
-
-Sell Every single Day
-
-</p>
-
-<a href="https://selar.com/dy79oz7112"
-style="
-background:#e6b800;
-color:#000;
-padding:6px 15px;
-text-decoration:none;
-font-size:11px;
-font-weight:bold;
-border-radius:4px;
-display:inline-block;
-">
-
-Access Guide
-
-</a>
-
-</div>
- 
-</div>
- 
-<!-- BOOK 3 -->
- 
-<div style="
-display:flex;
-background:#1a1a1a;
-border:1px solid #333;
-border-radius:8px;
-padding:12px;
-align-items:center;
-">
-
-<div style="
-flex:0 0 65px;
-margin-right:15px;
-">
-
-<img src="Images/Crypto Guide..webp"
-alt="Crypto Guide"
-style="
-width:100%;
-border-radius:4px;
-">
-
-</div>
-
-<div style="flex:1;">
-
-<h4 style="
-color:#fff;
-margin-bottom:4px;
-font-size:14px;
-">
-
-Crypto Mastery Guide
-
-</h4>
-
-<p style="
-color:#aaa;
-font-size:12px;
-line-height:1.4;
-margin-bottom:8px;
-">
-
-Blueprint for exchanges & mining.
-
-</p>
-
-<a href="https://selar.com/378373r336"
-style="
-background:#e6b800;
-color:#000;
-padding:6px 15px;
-text-decoration:none;
-font-size:11px;
-font-weight:bold;
-border-radius:4px;
-display:inline-block;
-">
-
-Access Guide
-
-</a>
-
-</div>
-
-</div>
- 
-</div>
- 
-</div>
- 
-
 
 <!-- AFFILIATE HERO -->
-
 <div class="cozy-affiliate-box">
-
-<div class="cozy-affiliate-badge">
-
-MEMBER OPPORTUNITY 💡
-
+<div class="cozy-affiliate-badge">MEMBER OPPORTUNITY 💡</div>
+<h2 class="cozy-affiliate-title">Earn Online with <span>Cozycabin</span></h2>
+<p class="cozy-affiliate-text">No capital needed. Share ebooks and digital products using your affiliate link and earn commission for every successful sale.</p>
+<a href="/affiliate.html"><button class="cozy-affiliate-btn">💰 START EARNING TODAY</button></a>
+<div style="margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08);">
+<div style="display:inline-block;background:rgba(37,211,102,0.12);color:#25D366;padding:9px 18px;border-radius:50px;font-size:13px;font-weight:600;border:1px solid rgba(37,211,102,0.25);">📲 Perfect for WhatsApp, TikTok & Facebook</div>
+<div style="color:#94a3b8;font-size:12px;margin-top:14px;">🔥 Growing community of digital affiliates in Kenya</div>
 </div>
-
-<h2 class="cozy-affiliate-title">
-
-Earn Online with
-<span>Cozycabin</span>
-
-</h2>
-
-<p class="cozy-affiliate-text">
-
-No capital needed.
-Share ebooks and digital products using your affiliate link and earn commission for every successful sale.
-
-</p>
- 
- <a href="/affiliate.html">
-
-<button class="cozy-affiliate-btn">
-
-💰 START EARNING TODAY
-
-</button>
-
-</a>
-
-<div style="
-margin-top:24px;
-padding-top:18px;
-border-top:1px solid rgba(255,255,255,0.08);
-">
-
-<div style="
-display:inline-block;
-background:rgba(37,211,102,0.12);
-color:#25D366;
-padding:9px 18px;
-border-radius:50px;
-font-size:13px;
-font-weight:600;
-border:1px solid rgba(37,211,102,0.25);
-">
-
-📲 Perfect for WhatsApp, TikTok & Facebook
-
-</div>
-
-<div style="
-color:#94a3b8;
-font-size:12px;
-margin-top:14px;
-">
-
-🔥 Growing community of digital affiliates in Kenya
-
-</div>
-
-</div>
-
 </div>
 
 <!-- DELIVERY BAR -->
-
-<div style="
-background:#ffd700;
-color:black;
-padding:10px 0;
-font-weight:bold;
-margin:25px 0;
-overflow:hidden;
-">
-
-<marquee>
-
-🚚 COUNTRYWIDE DELIVERY VIA G4S, SIMBA COACH, TAHMEED, BUSCAR, MODERN COACH & PARCEL BUS |
-📍 LOCAL DELIVERY IN KENYA, TANZANIA & UGANDA |
-🇰🇪🇹🇿🇺🇬 BEST QUALITY BY COZYCABIN
-
-</marquee>
-
+<div style="background:#ffd700;color:black;padding:10px 0;font-weight:bold;margin:25px 0;overflow:hidden;">
+<marquee>🚚 COUNTRYWIDE DELIVERY VIA G4S, SIMBA COACH, TAHMEED, BUSCAR, MODERN COACH & PARCEL BUS | 📍 LOCAL DELIVERY IN KENYA, TANZANIA & UGANDA | 🇰🇪🇹🇿🇺🇬 BEST QUALITY BY COZYCABIN</marquee>
 </div>
 
 <!-- LOCAL SHOP TITLE -->
- 
-<div id="debug-box" style="
-  background: #1a0000;
-  border: 2px solid red;
-  border-radius: 12px;
-  padding: 15px;
-  margin: 15px 0;
-  font-family: monospace;
-  font-size: 13px;
-  color: #ff6666;
-  display: none;
-  word-break: break-all;
-  line-height: 1.6;
-"></div>
- 
-
-<h3 style="
-text-align:center;
-color:#ffd700;
-margin-bottom:15px;
-">
-
-🇰🇪 LOCAL & ONLINE SHOP (KENYA)
-
-</h3>
-
+<h3 style="text-align:center;color:#ffd700;margin-bottom:15px;">🇰🇪 LOCAL & ONLINE SHOP (KENYA)</h3>
 <!-- MAIN CATEGORY GRID -->
-
 <div class="main-grid">
-
-<div class="grid-btn"
-onclick="toggleSub('kitchen-sub')">
-
-<span>👨‍🍳</span>
-
-<small>KITCHEN ▼</small>
-
+<div class="grid-btn" onclick="toggleSub('kitchen-sub')"><span>👨‍🍳</span><small>KITCHEN ▼</small></div>
+<div class="grid-btn" onclick="toggleSub('solar-sub')"><span>☀️</span><small>SOLAR ▼</small></div>
+<div class="grid-btn" onclick="toggleSub('decor-sub')"><span>🛋️</span><small>DECOR ▼</small></div>
+<div class="grid-btn" onclick="toggleSub('beddings-sub')"><span>🛏️</span><small>BEDDINGS ▼</small></div>
+<div class="grid-btn" onclick="toggleSub('security-sub')"><span>📷</span><small>SECURITY ▼</small></div>
+<div class="grid-btn" onclick="toggleSub('electronics-sub')"><span>📻</span><small>ELECTRONICS ▼</small></div>
+<div class="grid-btn" onclick="toggleSub('smarttech-sub')"><span>📱</span><small>SMARTTECH ▼</small></div>
+<div class="grid-btn" onclick="toggleSub('fashion-sub')"><span>👟</span><small>FASHION ▼</small></div>
+<div class="grid-btn" onclick="toggleSub('appliances-sub')"><span>⚙️</span><small>APPLIANCES ▼</small></div>
 </div>
 
-<div class="grid-btn"
-onclick="toggleSub('solar-sub')">
-
-<span>☀️</span>
-
-<small>SOLAR ▼</small>
-
-</div>
-
-<div class="grid-btn"
-onclick="toggleSub('decor-sub')">
-
-<span>🛋️</span>
-
-<small>DECOR ▼</small>
-
-</div>
-
-<div class="grid-btn"
-onclick="toggleSub('beddings-sub')">
-
-<span>🛏️</span>
-
-<small>BEDDINGS ▼</small>
-
-</div>
-
-<div class="grid-btn"
-onclick="toggleSub('security-sub')">
-
-<span>📷</span>
-
-<small>SECURITY ▼</small>
-
-</div>
-
-<div class="grid-btn"
-onclick="toggleSub('electronics-sub')">
-
-<span>📻</span>
-
-<small>ELECTRONICS ▼</small>
-
-</div>
-
-<div class="grid-btn"
-onclick="toggleSub('smarttech-sub')">
-
-<span>📱</span>
-
-<small>SMARTTECH ▼</small>
-
-</div>
-
-<div class="grid-btn"
-onclick="toggleSub('fashion-sub')">
-
-<span>👟</span>
-
-<small>FASHION ▼</small>
-
-</div>
-
-<div class="grid-btn"
-onclick="toggleSub('appliances-sub')">
-
-<span>⚙️</span>
-
-<small>APPLIANCES ▼</small>
-
-</div>
-
-</div>
- 
-
-<!-- =========================
-KITCHEN
-========================= --><div id="kitchen-sub" class="minor-menu"><div class="minor-top">
-<button type="button"
-onclick="closeAllSubmenus()"
-class="back-btn">
-⬅️ Back
-</button>
-</div><div class="minor-grid"><button type="button"
-onclick="showProducts('cutlery')"
-class="minor-btn">🍴 Cutlery</button>
-
-<button type="button"
-onclick="showProducts('dispenser')"
-class="minor-btn">💧 Dispensers</button>
-
-<button type="button"
-onclick="showProducts('hotpots')"
-class="minor-btn">🥘 Hotpots</button>
-
-<button type="button"
-onclick="showProducts('racks')"
-class="minor-btn">🍽️ Dishracks</button>
-
-<button type="button"
-onclick="showProducts('flasks')"
-class="minor-btn">☕ Flasks</button>
-
-<button type="button"
-onclick="showProducts('bottles')"
-class="minor-btn">🍼 Bottles</button>
-
-<button type="button"
-onclick="showProducts('cookers')"
-class="minor-btn">🍳 Cookers</button>
-
-<button type="button"
-onclick="showProducts('blenders')"
-class="minor-btn">🌪️ Blenders</button>
-
-</div>
-</div><!-- =========================
-SOLAR
-========================= --><div id="solar-sub" class="minor-menu"><div class="minor-top">
-<button type="button"
-onclick="closeAllSubmenus()"
-class="back-btn">
-⬅️ Back
-</button>
-</div><div class="minor-grid"><button type="button"
-onclick="showProducts('solarlights')"
-class="minor-btn">💡 Solar Lights</button>
-
-<button type="button"
-onclick="showProducts('panels')"
-class="minor-btn">🔋 Panels</button>
-
-<button type="button"
-onclick="showProducts('inverters')"
-class="minor-btn">⚡ Inverters</button>
-
-<button type="button"
-onclick="showProducts('batteries')"
-class="minor-btn">🔋 Batteries</button>
-
-<button type="button"
-onclick="showProducts('streetlights')"
-class="minor-btn">🏮 Street Lights</button>
-
-<button type="button"
-onclick="showProducts('floodlights')"
-class="minor-btn">🔦 Flood Lights</button>
-
-<button type="button"
-onclick="showProducts('chargers')"
-class="minor-btn">🔌 Chargers</button>
-
-<button type="button"
-onclick="showProducts('fans')"
-class="minor-btn">🌀 Solar Fans</button>
-
-</div>
-</div><!-- =========================
-DECOR
-========================= --><div id="decor-sub" class="minor-menu"><div class="minor-top">
-<button type="button"
-onclick="closeAllSubmenus()"
-class="back-btn">
-⬅️ Back
-</button>
-</div><div class="minor-grid"><button type="button"
-onclick="showProducts('wallart')"
-class="minor-btn">🖼️ Wall Art</button>
-
-<button type="button"
-onclick="showProducts('mirrors')"
-class="minor-btn">🪞 Mirrors</button>
-
-<button type="button"
-onclick="showProducts('flowers')"
-class="minor-btn">🌸 Flowers</button>
-
-<button type="button"
-onclick="showProducts('lamps')"
-class="minor-btn">💡 Lamps</button>
-
-<button type="button"
-onclick="showProducts('carpets')"
-class="minor-btn">🧶 Carpets</button>
-
-<button type="button"
-onclick="showProducts('curtains')"
-class="minor-btn">🪟 Curtains</button>
-
-<button type="button"
-onclick="showProducts('frames')"
-class="minor-btn">🖼️ Frames</button>
-
-<button type="button"
-onclick="showProducts('vases')"
-class="minor-btn">🏺 Vases</button>
-
-</div>
-</div><!-- =========================
-BEDDINGS
-========================= --><div id="beddings-sub" class="minor-menu"><div class="minor-top">
-<button type="button"
-onclick="closeAllSubmenus()"
-class="back-btn">
-⬅️ Back
-</button>
-</div><div class="minor-grid"><button type="button"
-onclick="showProducts('duvets')"
-class="minor-btn">🛏️ Duvets</button>
-
-<button type="button"
-onclick="showProducts('bedsheets')"
-class="minor-btn">🧺 Bedsheets</button>
-
-<button type="button"
-onclick="showProducts('blankets')"
-class="minor-btn">🧸 Blankets</button>
-
-<button type="button"
-onclick="showProducts('pillows')"
-class="minor-btn">🛌 Pillows</button>
-
-<button type="button"
-onclick="showProducts('mattress')"
-class="minor-btn">🛏️ Mattress</button>
-
-<button type="button"
-onclick="showProducts('covers')"
-class="minor-btn">🧥 Covers</button>
-
-<button type="button"
-onclick="showProducts('nets')"
-class="minor-btn">🦟 Nets</button>
-
-<button type="button"
-onclick="showProducts('towels')"
-class="minor-btn">🧻 Towels</button>
-
-</div>
-</div><!-- =========================
-SECURITY
-========================= --><div id="security-sub" class="minor-menu"><div class="minor-top">
-<button type="button"
-onclick="closeAllSubmenus()"
-class="back-btn">
-⬅️ Back
-</button>
-</div><div class="minor-grid"><button type="button"
-onclick="showProducts('cameras')"
-class="minor-btn">📷 Cameras</button>
-
-<button type="button"
-onclick="showProducts('alarms')"
-class="minor-btn">🚨 Alarms</button>
-
-<button type="button"
-onclick="showProducts('locks')"
-class="minor-btn">🔒 Locks</button>
-
-<button type="button"
-onclick="showProducts('doorbells')"
-class="minor-btn">🔔 Doorbells</button>
-
-<button type="button"
-onclick="showProducts('trackers')"
-class="minor-btn">📍 Trackers</button>
-
-<button type="button"
-onclick="showProducts('sensors')"
-class="minor-btn">📡 Sensors</button>
-
-<button type="button"
-onclick="showProducts('safes')"
-class="minor-btn">🗄️ Safes</button>
-
-<button type="button"
-onclick="showProducts('recorders')"
-class="minor-btn">💾 Recorders</button>
-
-</div>
-</div><!-- =========================
-ELECTRONICS
-========================= --><div id="electronics-sub" class="minor-menu"><div class="minor-top">
-<button type="button"
-onclick="closeAllSubmenus()"
-class="back-btn">
-⬅️ Back
-</button>
-</div><div class="minor-grid"><button type="button"
-onclick="showProducts('speakers')"
-class="minor-btn">🔊 Speakers</button>
-
-<button type="button"
-onclick="showProducts('radios')"
-class="minor-btn">📻 Radios</button>
-
-<button type="button"
-onclick="showProducts('earbuds')"
-class="minor-btn">🎧 Earbuds</button>
-
-<button type="button"
-onclick="showProducts('tvbox')"
-class="minor-btn">📺 TV Box</button>
-
-<button type="button"
-onclick="showProducts('powerbanks')"
-class="minor-btn">🔋 Powerbanks</button>
-
-<button type="button"
-onclick="showProducts('flashdisks')"
-class="minor-btn">💾 Flash Disks</button>
-
-<button type="button"
-onclick="showProducts('smartwatch')"
-class="minor-btn">⌚ Smartwatch</button>
-
-<button type="button"
-onclick="showProducts('gaming')"
-class="minor-btn">🎮 Gaming</button>
-
-</div>
-</div><!-- =========================
-SMARTTECH
-========================= --><div id="smarttech-sub" class="minor-menu"><div class="minor-top">
-<button type="button"
-onclick="closeAllSubmenus()"
-class="back-btn">
-⬅️ Back
-</button>
-</div><div class="minor-grid"><button type="button"
-onclick="showProducts('phones')"
-class="minor-btn">📱 Phones</button>
-
-<button type="button"
-onclick="showProducts('laptops')"
-class="minor-btn">💻 Laptops</button>
-
-<button type="button"
-onclick="showProducts('tablets')"
-class="minor-btn">📲 Tablets</button>
-
-<button type="button"
-onclick="showProducts('routers')"
-class="minor-btn">📡 Routers</button>
-
-<button type="button"
-onclick="showProducts('keyboards')"
-class="minor-btn">⌨️ Keyboards</button>
-
-<button type="button"
-onclick="showProducts('mouse')"
-class="minor-btn">🖱️ Mouse</button>
-
-<button type="button"
-onclick="showProducts('printers')"
-class="minor-btn">🖨️ Printers</button>
-
-<button type="button"
-onclick="showProducts('storage')"
-class="minor-btn">💽 Storage</button>
-
-</div>
-</div><!--=========================
-FASHION
-========================= --><div id="fashion-sub" class="minor-menu"><div class="minor-top">
-<button type="button"
-onclick="closeAllSubmenus()"
-class="back-btn">
-⬅️ Back
-</button>
-</div><div class="minor-grid"><button type="button"
-onclick="showProducts('shoes')"
-class="minor-btn">👟 Shoes</button>
-
-<button type="button"
-onclick="showProducts('shirts')"
-class="minor-btn">👕 Shirts</button>
-
-<button type="button"
-onclick="showProducts('hoodies')"
-class="minor-btn">🧥 Hoodies</button>
-
-<button type="button"
-onclick="showProducts('watches')"
-class="minor-btn">⌚ Watches</button>
-
-<button type="button"
-onclick="showProducts('bags')"
-class="minor-btn">👜 Bags</button>
-
-<button type="button"
-onclick="showProducts('caps')"
-class="minor-btn">🧢 Caps</button>
-
-<button type="button"
-onclick="showProducts('jeans')"
-class="minor-btn">👖 Jeans</button>
-
-<button type="button"
-onclick="showProducts('jackets')"
-class="minor-btn">🥼 Jackets</button>
-
-</div>
-</div><!-- =========================
-PRODUCTS CONTAINER
-ONLY ONE ON ENTIRE PAGE
-========================= --><div id="products-container"></div><!-- =========================
-APPLIANCES
-========================= --><div id="appliances-sub" class="minor-menu"><div class="minor-top"><button type="button"
-onclick="closeAllSubmenus()"
-class="back-btn">
-⬅️ Back
-</button>
-
-</div><div class="minor-grid"><button type="button"
-onclick="showProducts('fridges')"
-class="minor-btn">🧊 Fridges</button>
-
-<button type="button"
-onclick="showProducts('microwaves')"
-class="minor-btn">📡 Microwaves</button>
-
-<button type="button"
-onclick="showProducts('washing')"
-class="minor-btn">🧺 Washing Machines</button>
-
-<button type="button"
-onclick="showProducts('cookersapp')"
-class="minor-btn">🍳 Cookers</button>
-
-<button type="button"
-onclick="showProducts('kettles')"
-class="minor-btn">☕ Kettles</button>
-
-<button type="button"
-onclick="showProducts('irons')"
-class="minor-btn">🧲 Irons</button>
-
-<button type="button"
-onclick="showProducts('heaters')"
-class="minor-btn">🔥 Heaters</button>
-
-<button type="button"
-onclick="showProducts('fansapp')"
-class="minor-btn">🌀 Fans</button>
-
-</div>
- </div>
-
-
-
-<!-- PREMIUM CHECKOUT SECTION -->
-
-<div id="premium-checkout-wrapper"
-style="
-width:100%;
-max-width:1200px;
-margin:50px auto;
-padding:0 18px;
-box-sizing:border-box;
-">
-
-<div id="premium-checkout-box"
-style="
-width:100%;
-max-width:520px;
-margin:auto;
-background:#000;
-border:2px solid #ffd700;
-border-radius:28px;
-padding:26px;
-box-sizing:border-box;
-box-shadow:0 0 25px rgba(255,215,0,0.12);
-overflow:hidden;
-">
-
-<!-- HEADER -->
-
+<!-- KITCHEN -->
+<div id="kitchen-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
+<div class="minor-grid">
+<button type="button" onclick="showProducts('cutlery')" class="minor-btn">🍴 Cutlery</button>
+<button type="button" onclick="showProducts('dispenser')" class="minor-btn">💧 Dispensers</button>
+<button type="button" onclick="showProducts('hotpots')" class="minor-btn">🥘 Hotpots</button>
+<button type="button" onclick="showProducts('racks')" class="minor-btn">🍽️ Dishracks</button>
+<button type="button" onclick="showProducts('flasks')" class="minor-btn">☕ Flasks</button>
+<button type="button" onclick="showProducts('bottles')" class="minor-btn">🍼 Bottles</button>
+<button type="button" onclick="showProducts('cookers')" class="minor-btn">🍳 Cookers</button>
+<button type="button" onclick="showProducts('blenders')" class="minor-btn">🌪️ Blenders</button>
+</div></div>
+
+<!-- SOLAR -->
+<div id="solar-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
+<div class="minor-grid">
+<button type="button" onclick="showProducts('solarlights')" class="minor-btn">💡 Solar Lights</button>
+<button type="button" onclick="showProducts('panels')" class="minor-btn">🔋 Panels</button>
+<button type="button" onclick="showProducts('inverters')" class="minor-btn">⚡ Inverters</button>
+<button type="button" onclick="showProducts('batteries')" class="minor-btn">🔋 Batteries</button>
+<button type="button" onclick="showProducts('streetlights')" class="minor-btn">🏮 Street Lights</button>
+<button type="button" onclick="showProducts('floodlights')" class="minor-btn">🔦 Flood Lights</button>
+<button type="button" onclick="showProducts('chargers')" class="minor-btn">🔌 Chargers</button>
+<button type="button" onclick="showProducts('fans')" class="minor-btn">🌀 Solar Fans</button>
+</div></div>
+
+<!-- DECOR -->
+<div id="decor-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
+<div class="minor-grid">
+<button type="button" onclick="showProducts('wallart')" class="minor-btn">🖼️ Wall Art</button>
+<button type="button" onclick="showProducts('mirrors')" class="minor-btn">🪞 Mirrors</button>
+<button type="button" onclick="showProducts('flowers')" class="minor-btn">🌸 Flowers</button>
+<button type="button" onclick="showProducts('lamps')" class="minor-btn">💡 Lamps</button>
+<button type="button" onclick="showProducts('carpets')" class="minor-btn">🧶 Carpets</button>
+<button type="button" onclick="showProducts('curtains')" class="minor-btn">🪟 Curtains</button>
+<button type="button" onclick="showProducts('frames')" class="minor-btn">🖼️ Frames</button>
+<button type="button" onclick="showProducts('vases')" class="minor-btn">🏺 Vases</button>
+</div></div>
+
+<!-- BEDDINGS -->
+<div id="beddings-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
+<div class="minor-grid">
+<button type="button" onclick="showProducts('duvets')" class="minor-btn">🛏️ Duvets</button>
+<button type="button" onclick="showProducts('bedsheets')" class="minor-btn">🧺 Bedsheets</button>
+<button type="button" onclick="showProducts('blankets')" class="minor-btn">🧸 Blankets</button>
+<button type="button" onclick="showProducts('pillows')" class="minor-btn">🛌 Pillows</button>
+<button type="button" onclick="showProducts('mattress')" class="minor-btn">🛏️ Mattress</button>
+<button type="button" onclick="showProducts('covers')" class="minor-btn">🧥 Covers</button>
+<button type="button" onclick="showProducts('nets')" class="minor-btn">🦟 Nets</button>
+<button type="button" onclick="showProducts('towels')" class="minor-btn">🧻 Towels</button>
+</div></div>
+
+<!-- SECURITY -->
+<div id="security-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
+<div class="minor-grid">
+<button type="button" onclick="showProducts('cameras')" class="minor-btn">📷 Cameras</button>
+<button type="button" onclick="showProducts('alarms')" class="minor-btn">🚨 Alarms</button>
+<button type="button" onclick="showProducts('locks')" class="minor-btn">🔒 Locks</button>
+<button type="button" onclick="showProducts('doorbells')" class="minor-btn">🔔 Doorbells</button>
+<button type="button" onclick="showProducts('trackers')" class="minor-btn">📍 Trackers</button>
+<button type="button" onclick="showProducts('sensors')" class="minor-btn">📡 Sensors</button>
+<button type="button" onclick="showProducts('safes')" class="minor-btn">🗄️ Safes</button>
+<button type="button" onclick="showProducts('recorders')" class="minor-btn">💾 Recorders</button>
+</div></div>
+
+<!-- ELECTRONICS -->
+<div id="electronics-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
+<div class="minor-grid">
+<button type="button" onclick="showProducts('speakers')" class="minor-btn">🔊 Speakers</button>
+<button type="button" onclick="showProducts('radios')" class="minor-btn">📻 Radios</button>
+<button type="button" onclick="showProducts('earbuds')" class="minor-btn">🎧 Earbuds</button>
+<button type="button" onclick="showProducts('tvbox')" class="minor-btn">📺 TV Box</button>
+<button type="button" onclick="showProducts('powerbanks')" class="minor-btn">🔋 Powerbanks</button>
+<button type="button" onclick="showProducts('flashdisks')" class="minor-btn">💾 Flash Disks</button>
+<button type="button" onclick="showProducts('smartwatch')" class="minor-btn">⌚ Smartwatch</button>
+<button type="button" onclick="showProducts('gaming')" class="minor-btn">🎮 Gaming</button>
+</div></div>
+
+<!-- SMARTTECH -->
+<div id="smarttech-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
+<div class="minor-grid">
+<button type="button" onclick="showProducts('phones')" class="minor-btn">📱 Phones</button>
+<button type="button" onclick="showProducts('laptops')" class="minor-btn">💻 Laptops</button>
+<button type="button" onclick="showProducts('tablets')" class="minor-btn">📲 Tablets</button>
+<button type="button" onclick="showProducts('routers')" class="minor-btn">📡 Routers</button>
+<button type="button" onclick="showProducts('keyboards')" class="minor-btn">⌨️ Keyboards</button>
+<button type="button" onclick="showProducts('mouse')" class="minor-btn">🖱️ Mouse</button>
+<button type="button" onclick="showProducts('printers')" class="minor-btn">🖨️ Printers</button>
+<button type="button" onclick="showProducts('storage')" class="minor-btn">💽 Storage</button>
+</div></div>
+
+<!-- FASHION -->
+<div id="fashion-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
+<div class="minor-grid">
+<button type="button" onclick="showProducts('shoes')" class="minor-btn">👟 Shoes</button>
+<button type="button" onclick="showProducts('shirts')" class="minor-btn">👕 Shirts</button>
+<button type="button" onclick="showProducts('hoodies')" class="minor-btn">🧥 Hoodies</button>
+<button type="button" onclick="showProducts('watches')" class="minor-btn">⌚ Watches</button>
+<button type="button" onclick="showProducts('bags')" class="minor-btn">👜 Bags</button>
+<button type="button" onclick="showProducts('caps')" class="minor-btn">🧢 Caps</button>
+<button type="button" onclick="showProducts('jeans')" class="minor-btn">👖 Jeans</button>
+<button type="button" onclick="showProducts('jackets')" class="minor-btn">🥼 Jackets</button>
+</div></div>
+
+<!-- PRODUCTS CONTAINER — renders here on same page -->
+<div id="products-container" style="display:none;"></div>
+
+<!-- APPLIANCES -->
+<div id="appliances-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
+<div class="minor-grid">
+<button type="button" onclick="showProducts('fridges')" class="minor-btn">🧊 Fridges</button>
+<button type="button" onclick="showProducts('microwaves')" class="minor-btn">📡 Microwaves</button>
+<button type="button" onclick="showProducts('washing')" class="minor-btn">🧺 Washing Machines</button>
+<button type="button" onclick="showProducts('cookersapp')" class="minor-btn">🍳 Cookers</button>
+<button type="button" onclick="showProducts('kettles')" class="minor-btn">☕ Kettles</button>
+<button type="button" onclick="showProducts('irons')" class="minor-btn">🧲 Irons</button>
+<button type="button" onclick="showProducts('heaters')" class="minor-btn">🔥 Heaters</button>
+<button type="button" onclick="showProducts('fansapp')" class="minor-btn">🌀 Fans</button>
+</div></div>
+
+ <!-- PREMIUM CHECKOUT -->
+<div id="premium-checkout-wrapper" style="width:100%;max-width:1200px;margin:50px auto;padding:0 18px;box-sizing:border-box;">
+<div id="premium-checkout-box" style="width:100%;max-width:520px;margin:auto;background:#000;border:2px solid #ffd700;border-radius:28px;padding:26px;box-sizing:border-box;box-shadow:0 0 25px rgba(255,215,0,0.12);overflow:hidden;">
 <div style="text-align:center;margin-bottom:22px;">
-
-<p style="
-font-size:18px;
-font-weight:900;
-color:#ffd700;
-margin:0;
-text-transform:uppercase;
-letter-spacing:2px;
-">
-
-💎 COZYCABIN PREMIUM CHECKOUT
-
-</p>
-
-<p style="
-font-size:11px;
-color:#777;
-margin-top:6px;
-text-transform:uppercase;
-letter-spacing:1px;
-">
-
-Instant Digital Delivery
-
-</p>
-
+<p style="font-size:18px;font-weight:900;color:#ffd700;margin:0;text-transform:uppercase;letter-spacing:2px;">💎 COZYCABIN PREMIUM CHECKOUT</p>
+<p style="font-size:11px;color:#777;margin-top:6px;text-transform:uppercase;letter-spacing:1px;">Instant Digital Delivery</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
+<a href="https://paypal.me/charlesowuor" target="_blank" style="background:#ffc439;color:#003087;text-decoration:none;padding:18px;border-radius:40px;font-size:17px;font-weight:900;text-align:center;display:block;">PayPal</a>
+<a href="https://paypal.me/charlesowuor" target="_blank" style="background:#2d2d2d;color:#fff;text-decoration:none;padding:18px;border-radius:40px;font-size:16px;text-align:center;display:block;border:1px solid #444;">💳 Debit or Credit Card</a>
+<a href="binance-cryptopayment.html" style="background:#f3ba2f;color:#000;text-decoration:none;padding:18px;border-radius:40px;font-size:17px;font-weight:700;text-align:center;display:block;">Pay with Binance</a>
+<a href="https://selar.com/m/charles-owuor1" target="_blank" style="background:#6126c6;color:#fff;text-decoration:none;padding:18px;border-radius:40px;font-size:17px;font-weight:700;text-align:center;display:block;">Buy on Selar</a>
+</div>
+<div style="background:#2db742;border-radius:18px;padding:20px;color:#fff;margin-bottom:24px;">
+<p style="margin-bottom:12px;font-size:18px;font-weight:800;text-align:center;">🟢 LIPA NA M-PESA</p>
+<p style="line-height:1.8;font-size:16px;text-align:center;">Paybill: <b>542542</b><br>Account No: <b>702468</b></p>
+<div style="margin-top:18px;display:flex;flex-direction:column;gap:12px;">
+<input type="text" id="mpesa-code" placeholder="Enter M-Pesa Ref Code" style="width:100%;padding:14px;border:none;border-radius:10px;outline:none;font-size:14px;">
+<button onclick="submitMpesaPayment()" style="background:#000;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:13px;letter-spacing:1px;text-transform:uppercase;">Verify Payment & Claim Access</button>
+</div>
+</div>
+<div style="margin-top:30px;border-top:1px dashed #222;padding-top:22px;">
+<p style="font-size:16px;font-weight:900;color:#ffd700;text-align:center;margin-bottom:10px;text-transform:uppercase;">❤️ Support My Work</p>
+<p style="font-size:12px;color:#777;text-align:center;line-height:1.6;margin-bottom:18px;">If you like my work you can tip me via any payment method. Feel free to support Cozycabin.</p>
+<div style="background:#0a0a0a;border:1px solid #2db742;padding:16px;border-radius:14px;margin-bottom:14px;">
+<p style="margin-bottom:8px;font-size:13px;font-weight:800;color:#2db742;">🟢 LIPA NA M-PESA (Donation)</p>
+<p style="font-size:12px;color:#25D366;font-weight:bold;margin-bottom:10px;">🪙 PAY WITH MINIPAY</p>
+<img src="Images/Minipay image.webp" alt="MiniPay QR" style="width:170px;margin:auto;border-radius:14px;background:white;padding:8px;display:block;">
+<p style="font-size:12px;color:#ccc;margin-top:12px;line-height:1.7;">Scan QR or send to: <br><br><b style="font-size:18px;color:#fff;letter-spacing:1px;">0702468460</b></p>
+</div>
+<div style="margin-top:14px;display:flex;flex-direction:column;gap:10px;">
+<input type="text" id="donation-code" placeholder="Enter Donation M-Pesa Code" style="width:100%;padding:12px;border:none;border-radius:8px;outline:none;">
+<button onclick="submitDonation()" style="background:#2db742;color:#fff;border:none;padding:12px;border-radius:8px;font-weight:700;cursor:pointer;">SUBMIT DONATION CODE</button>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;">
+<a href="https://selar.com/m/charles-owuor1" target="_blank" style="background:#e91e63;color:#fff;text-decoration:none;padding:14px;border-radius:40px;font-weight:700;text-align:center;display:block;">💝 Tip Me via Selar</a>
+<a href="binance-cryptopayment.html?intent=donation" style="background:#f3ba2f;color:#000;text-decoration:none;padding:14px;border-radius:40px;font-weight:700;text-align:center;display:block;">Send Crypto Tip (Binance)</a>
+</div>
+<div style="border-top:1px solid #111;padding-top:18px;margin-top:28px;text-align:center;">
+<p style="font-size:11px;color:#444;letter-spacing:1px;">© Cozycabin Online Shop 2026</p>
+</div>
+</div>
 </div>
 
-
-<!-- PAYMENT BUTTONS -->
-
-<div style="
-display:flex;
-flex-direction:column;
-gap:14px;
-margin-bottom:24px;
-">
-
-<!-- PAYPAL -->
-
-<a href="https://paypal.me/charlesowuor"
-target="_blank"
-style="
-background:#ffc439;
-color:#003087;
-text-decoration:none;
-padding:18px;
-border-radius:40px;
-font-size:17px;
-font-weight:900;
-text-align:center;
-display:block;
-">
-
-PayPal
-
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/254702468460" target="_blank" class="float-wa">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
 </a>
 
-<!-- CARD -->
-
-<a href="https://paypal.me/charlesowuor"
-target="_blank"
-style="
-background:#2d2d2d;
-color:#fff;
-text-decoration:none;
-padding:18px;
-border-radius:40px;
-font-size:16px;
-text-align:center;
-display:block;
-border:1px solid #444;
-">
- 
-💳 Debit or Credit Card
-
-</a>
-
-<!-- BINANCE -->
-
-<a href="binance-cryptopayment.html"
-style="
-background:#f3ba2f;
-color:#000;
-text-decoration:none;
-padding:18px;
-border-radius:40px;
-font-size:17px;
-font-weight:700;
-text-align:center;
-display:block;
-">
-
-Pay with Binance
-
-</a>
-
-<!-- SELAR -->
-
-<a href="https://selar.com/m/charles-owuor1"
-target="_blank"
-style="
-background:#6126c6;
-color:#fff;
-text-decoration:none;
-padding:18px;
-border-radius:40px;
-font-size:17px;
-font-weight:700;
-text-align:center;
-display:block;
-">
-
-Buy on Selar
-
-</a>
-
-</div>
-
-<!-- MPESA -->
-
-<div style="
-background:#2db742;
-border-radius:18px;
-padding:20px;
-color:#fff;
-margin-bottom:24px;
-">
-
-<p style="
-margin-bottom:12px;
-font-size:18px;
-font-weight:800;
-text-align:center;
-">
-
-🟢 LIPA NA M-PESA
-
-</p>
-
- <p style="
-line-height:1.8;
-font-size:16px;
-text-align:center;
-">
-
-Paybill:
-<b>542542</b>
-
-<br>
-
-Account No:
-<b>702468</b>
-
-</p>
-
-<div style="
-margin-top:18px;
-display:flex;
-flex-direction:column;
-gap:12px;
-">
-
-<input
-type="text"
-id="mpesa-code"
-placeholder="Enter M-Pesa Ref Code"
-style="
-width:100%;
-padding:14px;
-border:none;
-border-radius:10px;
-outline:none;
-font-size:14px;
-">
-
-<button onclick="submitMpesaPayment()"
-style="
-background:#000;
-color:#fff;
-border:none;
-padding:14px;
-border-radius:10px;
-font-weight:700;
-cursor:pointer;
-font-size:13px;
-letter-spacing:1px;
-text-transform:uppercase;
-">
-
-Verify Payment & Claim Access
-
-</button>
-
-</div>
-
-</div>
-
-<!-- DONATION -->
-
-<div style="
-margin-top:30px;
-border-top:1px dashed #222;
-padding-top:22px;
-">
-
-<p style="
-font-size:16px;
-font-weight:900;
-color:#ffd700;
-text-align:center;
-margin-bottom:10px;
-text-transform:uppercase;
-">
-
-❤️ Support My Work
-
-</p>
-
-<p style="
-font-size:12px;
-color:#777;
-text-align:center;
-line-height:1.6;
-margin-bottom:18px;
-">
-
-If you like my work you can tip me via any methods of payment you prefer or if you like my tools we can meet for inquiry or improvement,feel free to support Cozycabin.
-
-</p>
-
-<!-- DONATION MPESA -->
-
-<div style="
-background:#0a0a0a;
-border:1px solid #2db742;
-padding:16px;
-border-radius:14px;
-margin-bottom:14px;
-">
-
-<p style="
-margin-bottom:8px;
-font-size:13px;
-font-weight:800;
-color:#2db742;
-">
-
-🟢 LIPA NA M-PESA (Donation)
-
-</p>
-
-<p style="
-font-size:12px;
-color:#25D366;
-font-weight:bold;
-margin-bottom:10px;
-">
-
-🪙 PAY WITH MINIPAY
-
-</p>
- <img
-src="Images/Minipay image.webp"
-alt="MiniPay QR"
-style="
-width:170px;
-margin:auto;
-border-radius:14px;
-background:white;
-padding:8px;
-display:block;
-">
-
-<p style="
-font-size:12px;
-color:#ccc;
-margin-top:12px;
-line-height:1.7;
-">
-
-Scan QR or send payment to:
-
-<br><br>
-
-<b style="
-font-size:18px;
-color:#fff;
-letter-spacing:1px;
-">
-
-0702468460
-
-</b>
-
-</p>
-
-</div>
-
-<div style="
-margin-top:14px;
-display:flex;
-flex-direction:column;
-gap:10px;
-">
-
-<input
-type="text"
-id="donation-code"
-placeholder="Enter Donation M-Pesa Code"
-style="
-width:100%;
-padding:12px;
-border:none;
-border-radius:8px;
-outline:none;
-">
-
-<button onclick="submitDonation()"
-style="
-background:#2db742;
-color:#fff;
-border:none;
-padding:12px;
-border-radius:8px;
-font-weight:700;
-cursor:pointer;
-">
-
-SUBMIT DONATION CODE
-
-</button>
-
-</div>
-
-</div>
-
-<!-- EXTRA DONATION BUTTONS -->
-
-<div style="
-display:flex;
-flex-direction:column;
-gap:12px;
-">
-
-<a href="https://selar.com/m/charles-owuor1"
-target="_blank"
-style="
-background:#e91e63;
-color:#fff;
-text-decoration:none;
-padding:14px;
-border-radius:40px;
-font-weight:700;
-text-align:center;
-display:block;
-">
-
-💝 Tip Me via Selar
-
-</a>
-<a href="binance-cryptopayment.html?intent=donation"
-style="
-background:#f3ba2f;
-color:#000;
-text-decoration:none;
-padding:14px;
-border-radius:40px;
-font-weight:700;
-text-align:center;
-display:block;
-">
-
-Send Crypto Tip (Binance)
-
-</a>
-
-</div>
-
-</div>
-
-<!-- FOOTER -->
-
-<div style="
-border-top:1px solid #111;
-padding-top:18px;
-margin-top:28px;
-text-align:center;
-">
-
-<p style="
-font-size:11px;
-color:#444;
-letter-spacing:1px;
-">
-
-© Cozycabin Online Shop 2026
-
-</p>
-
-</div>
-
-</div>
-
-</div>
- 
- <!-- FLOATING WHATSAPP -->
-
-<a href="https://wa.me/254702468460"
-target="_blank"
-class="float-wa">
-
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-alt="WhatsApp">
-
-</a>
 <!-- IMAGE MODAL -->
-
 <div id="imageModal" class="modal">
-
-<span class="close-modal"
-onclick="closeModal()">
-
-&times;
-
-</span>
-
-<img class="modal-content"
-id="expandedImg">
-
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<img class="modal-content" id="expandedImg">
 </div>
 
- <!-- FIREBASE + FUNCTIONS -->
+ <!-- FOOTER -->
+<footer style="background:#0b0b0b;border-top:1px solid #222;padding:40px 20px 25px;margin-top:50px;color:#fff;">
+<div style="max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;">
+<div style="flex:1;min-width:220px;">
+<img src="Images/Cozycabin log .webp" alt="Cozycabin Logo" style="width:160px;margin-bottom:15px;">
+<p style="color:#aaa;font-size:14px;line-height:1.7;">Smart Living Solutions for modern homes, digital products, crypto tools & global affiliate opportunities.</p>
+</div>
+<div style="flex:1;min-width:180px;">
+<h3 style="color:#d4a017;margin-bottom:15px;">Quick Links</h3>
+<a href="index.html" style="display:block;color:#bbb;text-decoration:none;margin-bottom:10px;">Home</a>
+<a href="affiliate.html" style="display:block;color:#bbb;text-decoration:none;margin-bottom:10px;">Affiliate</a>
+<a href="ebooks.html" style="display:block;color:#bbb;text-decoration:none;margin-bottom:10px;">Digital Library</a>
+</div>
+<div style="flex:1;min-width:220px;">
+<h3 style="color:#d4a017;margin-bottom:15px;">Contact</h3>
+<p style="color:#bbb;margin-bottom:10px;">🌍 Nairobi, Kenya</p>
+<p style="color:#bbb;margin-bottom:10px;">📞 +254 702 468 460</p>
+<p style="color:#bbb;margin-bottom:10px;">📧 support@cozycabin.co.ke</p>
+<a href="https://wa.me/254702468460" style="display:inline-block;margin-top:10px;background:#25D366;color:#fff;padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:bold;">Chat on WhatsApp</a>
+</div>
+</div>
+<section class="contact-section">
+<h2 class="contact-title">📩 Contact Cozycabin</h2>
+<p class="contact-subtitle">Need help, product inquiry or support? Send us a message below.</p>
+<form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" placeholder="Write your message..." required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</section>
+<div style="text-align:center;margin-top:35px;border-top:1px solid #1f1f1f;padding-top:20px;color:#666;font-size:12px;">© 2026 Cozycabin • Smart Living Solutions • All Rights Reserved</div>
+</footer>
 
-<script type="module">
+<!-- ALL JAVASCRIPT -->
+<script>
+/* REFERRAL */
+var urlParams = new URLSearchParams(window.location.search);
+var urlRef = urlParams.get('ref');
+if (urlRef) { localStorage.setItem('referralCode', urlRef); }
+var referralCode = localStorage.getItem('referralCode') || 'Direct';
 
-import { initializeApp }
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-
-getFirestore,
-collection,
-addDoc,
-serverTimestamp
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-/* FIREBASE CONFIG */
-
-const firebaseConfig = {
-
-apiKey:"AIzaSyDToZQ-f31ZA2RmPWNKZ4DTtVjyj-toMW0",
-
-authDomain:
-"cozycabin-affiliate.firebaseapp.com",
-
-projectId:
-"cozycabin-affiliate",
-
-storageBucket:
-"cozycabin-affiliate.appspot.com",
-
-messagingSenderId:
-"765281276271",
-
-appId:
-"1:765281276271:web:1368fb340b1fb68a01189a"
-
+/* TOGGLE SUBMENU */
+window.toggleSub = function(id) {
+  document.querySelectorAll('.minor-menu').forEach(function(m) {
+    if (m.id !== id) m.style.display = 'none';
+  });
+  var menu = document.getElementById(id);
+  if (!menu) return;
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
 };
 
-/* INITIALIZE */
-
-const app =
-initializeApp(firebaseConfig);
-
-const db =
-getFirestore(app);
-
-</script>
- <script>
-
-/* Updated Referral Tracking for Firebase */
-const urlParams = new URLSearchParams(window.location.search);
-const urlRef = urlParams.get('ref');
-
-// If found in URL, save it. Otherwise, try to get it from memory.
-if (urlRef) {
-    localStorage.setItem("referralCode", urlRef);
-}
-const referralCode = localStorage.getItem("referralCode") || "Direct";
-
-
-/* CATEGORY TOGGLE */
-
-window.toggleSub = function(id){
-
-const allMenus =
-document.querySelectorAll('.minor-menu');
-
-allMenus.forEach(menu=>{
-
-if(menu.id !== id){
-
-menu.style.display='none';
-
-}
-
-});
-
-const menu =
-document.getElementById(id);
-
-if(menu.style.display === 'block'){
-
-menu.style.display='none';
-
-}else{
-
-menu.style.display='block';
-
-}
-
-}
-
-/* BACK BUTTON */
-
-window.backToMinor = function(){
-
-document.querySelectorAll('.product-list')
-.forEach(p=>{
-
-p.style.display='none';
-
-});
-
-}
+/* CLOSE ALL */
+window.closeAllSubmenus = function() {
+  document.querySelectorAll('.minor-menu').forEach(function(m) { m.style.display = 'none'; });
+  var c = document.getElementById('products-container');
+  if (c) { c.innerHTML = ''; c.style.display = 'none'; }
+};
 
 /* CRYPTO TOGGLE */
-
-window.toggleCryptoRowDropdown =
-function(){
-
-const menu =
-document.getElementById(
-'crypto-row-dropdown-menu'
-);
-
-const arrow =
-document.getElementById(
-'crypto-row-arrow'
-);
-
-if(menu.style.display === 'block'){
-
-menu.style.display='none';
-
-arrow.style.transform='rotate(0deg)';
-
-}else{
-
-menu.style.display='block';
-
-arrow.style.transform='rotate(180deg)';
-
-}
-
-}
+window.toggleCryptoRowDropdown = function() {
+  var menu = document.getElementById('crypto-row-dropdown-menu');
+  var arrow = document.getElementById('crypto-row-arrow');
+  if (menu.style.display === 'block') { menu.style.display = 'none'; arrow.style.transform = 'rotate(0deg)'; }
+  else { menu.style.display = 'block'; arrow.style.transform = 'rotate(180deg)'; }
+};
 
 /* EBOOK TOGGLE */
-
-window.toggleEbookRowDropdown =
-function(){
-
-const menu =
-document.getElementById(
-'ebook-row-dropdown-menu'
-);
-
-const arrow =
-document.getElementById(
-'ebook-row-arrow'
-);
-
-if(menu.style.display === 'block'){
-
-menu.style.display='none';
-
-arrow.style.transform='rotate(0deg)';
-
-}else{
-
-menu.style.display='block';
-
-arrow.style.transform='rotate(180deg)';
-
-}
-
-}
-
-/* IMAGE MODAL */
-
-window.openModal = function(src){
-
-document.getElementById(
-'imageModal'
-).style.display='flex';
-
-document.getElementById(
-'expandedImg'
-).src = src;
-
-}
-
-window.closeModal = function(){
-
-document.getElementById(
-'imageModal'
-).style.display='none';
-
-}
-
- </script>
- <script>
-
-/* PRODUCT SELECTION */
-
-window.getSelectedProductDetails =
-function(){
-
-const radios =
-document.getElementsByName('product');
-
-let selected = {
-
-price:200,
-name:'AI Video Editing Masterclass'
-
+window.toggleEbookRowDropdown = function() {
+  var menu = document.getElementById('ebook-row-dropdown-menu');
+  var arrow = document.getElementById('ebook-row-arrow');
+  if (menu.style.display === 'block') { menu.style.display = 'none'; arrow.style.transform = 'rotate(0deg)'; }
+  else { menu.style.display = 'block'; arrow.style.transform = 'rotate(180deg)'; }
 };
 
-for(const radio of radios){
-
-if(radio.checked){
-
-selected.price =
-radio.value;
-
-selected.name =
-radio.getAttribute('data-name');
-
-}
-
-}
-
-return selected;
-
-}
-
-/* MPESA PAYMENT */
-
-window.submitMpesaPayment =
-async function(){
- const now = Date.now();
-
-if(!window.lastSubmit){
-window.lastSubmit = 0;
-}
-
-if(now - window.lastSubmit < 15000){
-
-alert("Please wait 15 seconds before submitting again.");
-
-return;
-
-}
-
-window.lastSubmit = now;
-
-const code =
-document.getElementById(
-'mpesa-code'
-).value.trim();
-
-if(!code){
-
-alert(
-'Please enter your M-Pesa transaction code.'
-);
-
-return;
-
-}
-
-const product =
-window.getSelectedProductDetails();
-
-try{
-
-await addDoc(
-collection(db, "orders"),
-{
-
-productName:
-product.name,
-
-amount:
-product.price,
-
-mpesaCode:
-code,
-
-referralCode:
-referralCode,
-
-affiliateCommission:"20%",
-
-status:"pending",
-
-createdAt:
-serverTimestamp()
-
-});
-
-alert(
-'Payment submitted successfully. Verification in progress.'
-);
-
-document.getElementById(
-'mpesa-code'
-).value='';
-
-}
-catch(error){
-
-alert(
-'Error saving order: ' +
-error.message
-);
-
-}
-
-}
-
-/* DONATION */
-
-window.submitDonation =
-async function(){
-
-const code =
-document.getElementById(
-'donation-code'
-).value.trim();
-
-if(!code){
-
-alert(
-'Please enter donation transaction code.'
-);
-
-return;
-
-}
-
-try{
-
-await addDoc(
-collection(db, "donations"),
-{
-
-mpesaCode:
-code,
-
-referralCode:
-referralCode,
-
-createdAt:
-serverTimestamp()
-
-});
-
-alert(
-'Thank you for supporting Cozycabin 🙌'
-);
-
-document.getElementById(
-'donation-code'
-).value='';
-
-}
-catch(error){
-
-alert(
-'Donation error: ' +
-error.message
-);
-
-}
-
-}
-
- </script>
- <script>
-
-/* =========================================
-   COZYCABIN ANTI-THEFT PROTECTION
-========================================= */
-
-/* DISABLE RIGHT CLICK */
-
-document.addEventListener(
-'contextmenu',
-function(e){
-
-e.preventDefault();
-
-}
-);
-
-/* DISABLE IMAGE DRAG */
-
-document.addEventListener(
-'dragstart',
-function(e){
-
-e.preventDefault();
-
-}
-);
-
-/* DISABLE TEXT COPY */
-
-document.addEventListener(
-'copy',
-function(e){
-
-e.preventDefault();
-
-}
-);
-
-/* DISABLE CUT */
-
-document.addEventListener(
-'cut',
-function(e){
-
-e.preventDefault();
-
-}
-);
-
-/* DISABLE CERTAIN KEYS */
-
-document.addEventListener(
-'keydown',
-function(e){
-
-if(e.key === "F12"){
-
-e.preventDefault();
-
-}
-
-if(
-e.ctrlKey &&
-e.shiftKey &&
-e.key === "I"
-){
-
-e.preventDefault();
-
-}
-
-if(
-e.ctrlKey &&
-e.shiftKey &&
-e.key === "J"
-){
-
-e.preventDefault();
-
-}
-
-if(
-e.ctrlKey &&
-e.key === "u"
-){
-
-e.preventDefault();
-
-}
-
-if(
-e.ctrlKey &&
-e.key === "s"
-){
-
-e.preventDefault();
-
-}
-
-}
-);
-
-/* DISABLE LONG PRESS SAVE ON MOBILE */
-
-document.querySelectorAll('img')
-.forEach(img=>{
-
-img.setAttribute(
-'draggable',
-'false'
-);
-
-});
-
-/* CONSOLE WARNING */
-
-console.log(
-"%cSTOP!",
-"color:red;font-size:40px;font-weight:bold;"
-);
-
-console.log(
-"%cCozycabin Protected System",
-"color:gold;font-size:18px;"
-);
-
- </script>
- <script>
-
-document.addEventListener(
-'touchstart',
-function(){},
-{passive:true}
-);
-
-/* DISABLE VIEW SOURCE SHORTCUT */
-
-document.onkeydown = function(e){
-
-if(e.ctrlKey &&
-e.keyCode == 85){
-
-return false;
-
-}
-
-};
-</script>
-<script>
-
-function handleCurrencySelection(){
-
-const currency =
-document.getElementById(
-'currencySelector'
-).value;
-
-const paymentArea =
-document.getElementById(
-'paymentButtonArea'
-);
-
-/* KES OPTIONS */
-
-if(currency === 'kes'){
-
-paymentArea.style.display='block';
-
-paymentArea.innerHTML = `
-
-<a
-href="mpesa-payment.html"
-style="
-display:block;
-background:#25d366;
-color:#fff;
-text-decoration:none;
-padding:16px;
-border-radius:14px;
-font-weight:bold;
-text-align:center;
-font-size:16px;
-margin-bottom:12px;
-">
-
-🛒 Pay for Local Products
-
-</a>
-
-<a
-href="https://selar.co/z6wn6j11g1"
-target="_blank"
-style="
-display:block;
-background:#ffd700;
-color:#000;
-text-decoration:none;
-padding:16px;
-border-radius:14px;
-font-weight:bold;
-text-align:center;
-font-size:16px;
-">
-
-📘 Pay for Ebook/Course
-
-</a>
-
-`;
-
-}
-
-/* USD */
-
-else if(currency === 'usd'){
-
-paymentArea.style.display='block';
-
-paymentArea.innerHTML = `
-
-<a
-href="international-payment.html"
-style="
-display:block;
-background:#ffd700;
-color:#000;
-text-decoration:none;
-padding:16px;
-border-radius:14px;
-font-weight:bold;
-text-align:center;
-font-size:16px;
-">
-
-🇺🇸 International Payment
-
-</a>
-
-`;
-
-}
-
-/* EURO */
-
-else if(currency === 'euro'){
-
-paymentArea.style.display='block';
-
-paymentArea.innerHTML = `
-
-<a
-href="international-payment.html"
-style="
-display:block;
-background:#ffd700;
-color:#000;
-text-decoration:none;
-padding:16px;
-border-radius:14px;
-font-weight:bold;
-text-align:center;
-font-size:16px;
-">
-
-🇪🇺 International Payment
-
-</a>
-
-`;
-
-}
-
-/* GBP */
-
-else if(currency === 'gbp'){
-
-paymentArea.style.display='block';
-
-paymentArea.innerHTML = `
-
-<a
-href="international-payment.html"
-style="
-display:block;
-background:#ffd700;
-color:#000;
-text-decoration:none;
-padding:16px;
-border-radius:14px;
-font-weight:bold;
-text-align:center;
-font-size:16px;
-">
-
-🇬🇧 International Payment
-
-</a>
-
-`;
-
-}
-
-/* CRYPTO */
-
-else if(currency === 'crypto'){
-
-paymentArea.style.display='block';
-
-paymentArea.innerHTML = `
-
-<a
-href="binance-cryptopayment.html"
-style="
-display:block;
-background:#f3ba2f;
-color:#000;
-text-decoration:none;
-padding:16px;
-border-radius:14px;
-font-weight:bold;
-text-align:center;
-font-size:16px;
-">
-
-🪙 Pay with Binance
-
-</a>
-
-`;
-}
-
-/* EMPTY */
-
-else{
-
-paymentArea.style.display='none';
-
-paymentArea.innerHTML = '';
-
-}
-}
- </script>
- <script type="module">
-
-import {
-initializeApp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-initializeAppCheck,
-ReCaptchaV3Provider
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
-
-const app = initializeApp(firebaseConfig);
-
-initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider('6LdgJfwsAAAAAIz_zUXCxXmTLZDc_UAUsfk4acgm'),
-  isTokenAutoRefreshEnabled: true
-});
-</script>
-<script>
- /* Standardized Menu Toggle */
-window.openSubmenu = function(menuId) {
-    // Hide all submenus first
-    document.querySelectorAll('.minor-menu').forEach(menu => {
-        menu.style.display = 'none';
-    });
-    
-    // Show the selected one
-    const target = document.getElementById(menuId);
-    if (target) {
-        target.style.display = 'block';
-    }
+/* MODAL */
+window.openModal = function(src) { document.getElementById('imageModal').style.display = 'flex'; document.getElementById('expandedImg').src = src; };
+window.closeModal = function() { document.getElementById('imageModal').style.display = 'none'; };
+
+/* CURRENCY SELECTOR */
+window.handleCurrencySelection = function() {
+  var currency = document.getElementById('currencySelector').value;
+  var area = document.getElementById('paymentButtonArea');
+  if (!currency) { area.style.display = 'none'; area.innerHTML = ''; return; }
+  area.style.display = 'block';
+  var links = {
+    kes: '<a href="mpesa-payment.html" style="display:block;background:#25d366;color:#fff;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;margin-bottom:12px;">🛒 Pay for Local Products</a><a href="https://selar.co/z6wn6j11g1" target="_blank" style="display:block;background:#ffd700;color:#000;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;">📘 Pay for Ebook/Course</a>',
+    usd: '<a href="international-payment.html" style="display:block;background:#ffd700;color:#000;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;">🇺🇸 International Payment</a>',
+    euro: '<a href="international-payment.html" style="display:block;background:#ffd700;color:#000;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;">🇪🇺 International Payment</a>',
+    gbp: '<a href="international-payment.html" style="display:block;background:#ffd700;color:#000;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;">🇬🇧 International Payment</a>',
+    crypto: '<a href="binance-cryptopayment.html" style="display:block;background:#f3ba2f;color:#000;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;">🪙 Pay with Binance</a>'
+  };
+  area.innerHTML = links[currency] || '';
 };
 
- </script>
-<script>
-
-/* PAYMENT ACCESS CHECK */
-
-if(!localStorage.getItem("paymentAccess")){
-console.log("No premium access detected");
-}
-
-</script>
-
-<!-- FOOTER -->
-
-<footer style="background:#0b0b0b; border-top:1px solid #222; padding:40px 20px 25px; margin-top:50px; color:#fff;">
-
-<div style="max-width:1200px; margin:auto; display:flex; flex-wrap:wrap; gap:40px; justify-content:space-between;">
-
-<!-- BRAND -->
-<div style="flex:1; min-width:220px;">
-
-<img src="Image/cozycabin-logo-1.webp"
-alt="Cozycabin Logo"
-style="width:160px; margin-bottom:15px;">
-
-<p style="color:#aaa; font-size:14px; line-height:1.7;">
-
-Smart Living Solutions for modern homes, digital products, crypto tools & global affiliate opportunities.
-
-</p>
-
-</div>
-
-<!-- QUICK LINKS -->
-
-<div style="flex:1; min-width:180px;">
-
-<h3 style="color:#d4a017; margin-bottom:15px;">
-
-Quick Links
-
-</h3>
-
-<a href="index.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">
-
-Home
-
-</a>
-
-<a href="products.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">
-
-Products
-
-</a>
-
-<a href="affiliate.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">
-
-Affiliate
-
-</a>
-
-<a href="ebooks.html" style="display:block; color:#bbb; text-decoration:none; margin-bottom:10px;">
-
-Digital Library
-
-</a>
-
-</div>
-
-<!-- CONTACT -->
-
-<div style="flex:1; min-width:220px;">
-
-<h3 style="color:#d4a017; margin-bottom:15px;">
-
-Contact
-
-</h3>
-
-<p style="color:#bbb; margin-bottom:10px;">
-
-🌍 Nairobi, Kenya
-
-</p>
-
-<p style="color:#bbb; margin-bottom:10px;">
-
-📞 +254 702 468 460
-
-</p>
-
-<p style="color:#bbb; margin-bottom:10px;">
-
-📧 support@cozycabin.co.ke
-
-</p>
-
-<a href="https://wa.me/254702468460"
-style="display:inline-block; margin-top:10px; background:#25D366; color:#fff; padding:10px 18px; border-radius:10px; text-decoration:none; font-weight:bold;">
-
-Chat on WhatsApp
-
-</a>
-
-</div>
-
-</div>
- <<!-- CONTACT SECTION -->
-
-<section class="contact-section">
-
-<h2 class="contact-title">
-📩 Contact Cozycabin
-</h2>
-
-<p class="contact-subtitle">
-Need help, product inquiry or support?
-Send us a message below.
-</p>
-
-<form
-action="https://formspree.io/f/your-form-id"
-method="POST"
-class="contact-form"
->
-
-<input
-type="text"
-name="name"
-placeholder="Your Name"
-required
->
-
-<input
-type="email"
-name="email"
-placeholder="Your Email"
-required
->
-
-<textarea
-name="message"
-placeholder="Write your message..."
-required
-></textarea>
-
-<button type="submit">
-Send Message
-</button>
-
-</form>
-
-</section>
-
-<!-- COPYRIGHT -->
-
-<div style="text-align:center; margin-top:35px; border-top:1px solid #1f1f1f; padding-top:20px; color:#666; font-size:12px;">
-
-© 2026 Cozycabin • Smart Living Solutions • All Rights Reserved
-
-</div>
-
-</footer>
-<script src="products.js?v=1000"></script>
- <script>
  
-</body>
+/* ANTI-THEFT */
+document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+document.addEventListener('copy', function(e) { e.preventDefault(); });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || (e.ctrlKey && (e.key === 'u' || e.key === 's'))) { e.preventDefault(); }
+});
+document.addEventListener('touchstart', function(){}, {passive:true});
+</script>
 
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyDToZQ-f31ZA2RmPWNKZ4DTtVjyj-toMW0",
+  authDomain: "cozycabin-affiliate.firebaseapp.com",
+  projectId: "cozycabin-affiliate",
+  storageBucket: "cozycabin-affiliate.appspot.com",
+  messagingSenderId: "765281276271",
+  appId: "1:765281276271:web:1368fb340b1fb68a01189a"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+window.submitMpesaPayment = async function() {
+  var now = Date.now();
+  if (!window.lastSubmit) window.lastSubmit = 0;
+  if (now - window.lastSubmit < 15000) { alert('Please wait 15 seconds before submitting again.'); return; }
+  window.lastSubmit = now;
+  var code = document.getElementById('mpesa-code').value.trim();
+  if (!code) { alert('Please enter your M-Pesa transaction code.'); return; }
+  try {
+    await addDoc(collection(db, 'orders'), { mpesaCode: code, referralCode: referralCode, status: 'pending', createdAt: serverTimestamp() });
+    alert('Payment submitted successfully. Verification in progress.');
+    document.getElementById('mpesa-code').value = '';
+  } catch(e) { alert('Error: ' + e.message); }
+};
+window.submitDonation = async function() {
+  var code = document.getElementById('donation-code').value.trim();
+  if (!code) { alert('Please enter donation transaction code.'); return; }
+  try {
+    await addDoc(collection(db, 'donations'), { mpesaCode: code, referralCode: referralCode, createdAt: serverTimestamp() });
+    alert('Thank you for supporting Cozycabin 🙌');
+    document.getElementById('donation-code').value = '';
+  } catch(e) { alert('Donation error: ' + e.message); }
+};
+</script>
+
+<script src="products.js?v=999"></script>
+</body>
 </html>
+HTMLEOF
+echo "Lines: $(wc -l < /mnt/user-data
+ 
+ 
+
+
