@@ -678,7 +678,6 @@ border-radius:24px;
 }
 
 #products-container{
-#products-container{
 
 display:none;
 
@@ -703,9 +702,11 @@ box-sizing:border-box;
 
 position:relative;
 
-z-index:5;
+z-index:9999;
 
-   }
+min-height:200px;
+
+}
 #products-container{
 
 display:none;
