@@ -1,4 +1,5 @@
 alert("products.js loaded");
+
 /* =========================
    REFERRAL SYSTEM
 ========================= */
@@ -26,10 +27,6 @@ referralCode
 
 const products = {
 
-/* =========================
-   FASHION
-========================= */
-
 shoes: [
 
 {
@@ -41,10 +38,6 @@ company: "Fashion",
 price: 1999,
 
 oldPrice: 2500,
-
-sizes: [41,42,43,44],
-
-colors: ["Black","Gray","Gold"],
 
 description:
 "Comfortable lightweight sneakers for daily wear.",
@@ -71,10 +64,6 @@ price: 1999,
 
 oldPrice: 2500,
 
-sizes: [41,42,43,44],
-
-colors: ["White","Black"],
-
 description:
 "Stylish ladies sneakers with soft inner comfort.",
 
@@ -97,10 +86,6 @@ company: "Calvin Klein",
 price: 3200,
 
 oldPrice: 4000,
-
-sizes: [40,41,42,43,44,45],
-
-colors: ["Brown","Blue","Tan"],
 
 description:
 "Premium Calvin Klein casual sneakers.",
@@ -126,10 +111,6 @@ company: "Timberland",
 price: 3200,
 
 oldPrice: 4000,
-
-sizes: [40,41,42,43,44,45],
-
-colors: ["Black","White"],
 
 description:
 "Elegant Timberland casual shoes.",
@@ -163,7 +144,9 @@ jackets: []
 window.showProducts = function(category){
 
 const container =
-document.getElementById("products-container");
+document.getElementById(
+"products-container"
+);
 
 if(!container){
 
@@ -173,7 +156,7 @@ return;
 
 }
 
-/* SHOW CONTAINER */
+/* SHOW BOX */
 
 container.style.display = "grid";
 
@@ -181,7 +164,7 @@ container.style.display = "grid";
 
 container.innerHTML = "";
 
-/* CHECK PRODUCTS */
+/* CHECK CATEGORY */
 
 if(
 !products[category] ||
@@ -237,25 +220,35 @@ onclick="changeImage(${index}, '${img}')"
 </div>
 
 <h2 class="product-title">
+
 ${product.title}
+
 </h2>
 
 <p class="company-name">
+
 ${product.company}
+
 </p>
 
 <p class="product-description">
+
 ${product.description}
+
 </p>
 
 <div class="price-box">
 
 <span class="new-price">
+
 KES ${product.price}
+
 </span>
 
 <span class="old-price">
+
 KES ${product.oldPrice}
+
 </span>
 
 </div>
@@ -274,13 +267,16 @@ Buy Now
 
 });
 
-/* SCROLL */
+/* AUTO SCROLL */
 
 container.scrollIntoView({
+
 behavior:"smooth"
+
 });
 
 };
+
 /* =========================
    CHANGE IMAGE
 ========================= */
@@ -304,22 +300,12 @@ function(productName){
 const referral =
 localStorage.getItem(
 "referralCode"
-);
-
-if(referral){
+) || "Direct";
 
 alert(
 `Buying: ${productName}
 Referral: ${referral}`
 );
-
-}else{
-
-alert(
-`Buying: ${productName}`
-);
-
-}
 
 };
 
