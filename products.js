@@ -19,8 +19,6 @@ referralCode
 
 }
 
-
-
 /* =========================
    PRODUCTS DATABASE
 ========================= */
@@ -143,83 +141,6 @@ images: [
 
 ]
 
-},
-
-{
-
-title: "Adidas Casual",
-
-company: "Adidas",
-
-price: 3200,
-
-oldPrice: 4000,
-
-sizes: [40,41,42,43,44,45],
-
-colors: ["Black","Gray"],
-
-description:
-"Modern Adidas casual sneakers with lightweight comfort and premium finishing.",
-
-images: [
-
-"Images/adidas-black.webp",
-
-"Images/adidas-gray.webp"
-
-]
-
-},
-
-{
-
-title: "Lacoste Casual",
-
-company: "Lacoste",
-
-price: 3200,
-
-oldPrice: 4000,
-
-sizes: [40,41,42,43,44,45],
-
-colors: ["Blue"],
-
-description:
-"Stylish Lacoste casual shoes suitable for both casual and official outfits.",
-
-images: [
-
-"Images/lacoste-blue.webp"
-
-]
-
-},
-
-{
-
-title: "Tommy Casual",
-
-company: "Tommy",
-
-price: 3200,
-
-oldPrice: 4000,
-
-sizes: [40,41,42,43,44,45],
-
-colors: ["Brown"],
-
-description:
-"Stylish Tommy casual shoes suitable for both casual and official outfits.",
-
-images: [
-
-"Images/tommy-brown.webp"
-
-]
-
 }
 
 ],
@@ -259,71 +180,6 @@ chargers: [],
 fans: [],
 
 /* =========================
-   DECOR
-========================= */
-
-wallart: [],
-mirrors: [],
-flowers: [],
-lamps: [],
-carpets: [],
-curtains: [],
-frames: [],
-vases: [],
-
-/* =========================
-   BEDDINGS
-========================= */
-
-duvets: [],
-bedsheets: [],
-blankets: [],
-pillows: [],
-mattress: [],
-covers: [],
-nets: [],
-towels: [],
-
-/* =========================
-   SECURITY
-========================= */
-
-cameras: [],
-alarms: [],
-locks: [],
-doorbells: [],
-trackers: [],
-sensors: [],
-safes: [],
-recorders: [],
-
-/* =========================
-   ELECTRONICS
-========================= */
-
-speakers: [],
-radios: [],
-earbuds: [],
-tvbox: [],
-powerbanks: [],
-flashdisks: [],
-smartwatch: [],
-gaming: [],
-
-/* =========================
-   SMARTTECH
-========================= */
-
-phones: [],
-laptops: [],
-tablets: [],
-routers: [],
-keyboards: [],
-mouse: [],
-printers: [],
-storage: [],
-
-/* =========================
    APPLIANCES
 ========================= */
 
@@ -338,15 +194,11 @@ fansapp: []
 
 };
 
-
-
 /* =========================
    SHOW PRODUCTS
 ========================= */
 
 function showProducts(category){
-
-closeAllSubmenus();
 
 const container =
 document.getElementById(
@@ -354,10 +206,16 @@ document.getElementById(
 );
 
 if(!container) return;
- // Reset content and ensure it's visible
-    container.innerHTML = "";
-    container.style.display = "grid"; // Explicitly set to grid to force visibility
 
+/* CLEAR OLD PRODUCTS */
+
+container.innerHTML = "";
+
+/* SHOW CONTAINER */
+
+container.style.display = "grid";
+
+/* EMPTY CATEGORY */
 
 if(
 !products[category] ||
@@ -380,14 +238,14 @@ will appear here soon.
 `;
 
 container.scrollIntoView({
-
 behavior:"smooth"
-
 });
 
 return;
 
 }
+
+/* LOOP PRODUCTS */
 
 products[category].forEach((product,index)=>{
 
@@ -547,6 +405,8 @@ coming soon.
 
 });
 
+/* SCROLL */
+
 container.scrollIntoView({
 
 behavior:"smooth"
@@ -554,8 +414,6 @@ behavior:"smooth"
 });
 
 }
-
-
 
 /* =========================
    CHANGE PRODUCT IMAGE
@@ -568,8 +426,6 @@ document.getElementById(
 ).src = image;
 
 }
-
-
 
 /* =========================
    BUY NOW
@@ -599,13 +455,11 @@ alert(
 
 }
 
-
-
 /* =========================
    CLOSE ALL SUBMENUS
 ========================= */
 
-function closeAllSubmenus() {
+function closeAllSubmenus(){
 
 const menus =
 document.querySelectorAll('.minor-menu');
@@ -617,7 +471,6 @@ menu.style.display = 'none';
 });
 
 }
-
 
 /* =========================
    BACK BUTTON
@@ -639,4 +492,4 @@ behavior:"smooth"
 
 });
 
-   }
+}
