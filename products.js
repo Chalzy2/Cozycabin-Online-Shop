@@ -1,3 +1,4 @@
+alert("products.js connected");
 /* =========================
    REFERRAL SYSTEM
 ========================= */
@@ -128,7 +129,7 @@ function hideProducts() {
 ========================= */
 
 window.showProducts = function(category) {
-        
+        alert("Opening " + category);
   var container = document.getElementById('products-container');
 
   if (!container) {
