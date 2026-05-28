@@ -162,15 +162,11 @@ jackets: []
 window.showProducts = function(category){
 
 const container =
-document.getElementById(
-"products-container"
-);
+document.getElementById("products-container");
 
 if(!container){
 
-console.log(
-"products-container missing"
-);
+alert("products-container missing");
 
 return;
 
@@ -184,33 +180,10 @@ container.style.display = "grid";
 
 container.innerHTML = "";
 
-/* CHECK CATEGORY */
+/* CHECK PRODUCTS */
 
 if(
-!products[category]
-){
-
-container.innerHTML = `
-
-<div class="empty-products">
-
-<h2>Category Missing</h2>
-
-<p>
-This category does not exist.
-</p>
-
-</div>
-
-`;
-
-return;
-
-}
-
-/* EMPTY */
-
-if(
+!products[category] ||
 products[category].length === 0
 ){
 
@@ -220,9 +193,7 @@ container.innerHTML = `
 
 <h2>No Products Yet</h2>
 
-<p>
-Products coming soon.
-</p>
+<p>Products coming soon.</p>
 
 </div>
 
@@ -232,7 +203,7 @@ return;
 
 }
 
-/* LOOP PRODUCTS */
+/* BUILD PRODUCTS */
 
 products[category].forEach((product,index)=>{
 
@@ -243,23 +214,21 @@ container.innerHTML += `
 <div class="product-gallery">
 
 <img
-id="mainImage-${index}"
 src="${product.images[0]}"
 class="main-product-image"
-loading="lazy"
+id="mainImage-${index}"
 >
 
 </div>
 
 <div class="thumbnail-row">
 
-${product.images.map((img)=>`
+${product.images.map(img => `
 
 <img
 src="${img}"
 class="thumb-image"
 onclick="changeImage(${index}, '${img}')"
-loading="lazy"
 >
 
 `).join("")}
@@ -267,76 +236,26 @@ loading="lazy"
 </div>
 
 <h2 class="product-title">
-
 ${product.title}
-
 </h2>
 
 <p class="company-name">
-
 ${product.company}
-
 </p>
 
 <p class="product-description">
-
 ${product.description}
-
 </p>
 
 <div class="price-box">
 
 <span class="new-price">
-
 KES ${product.price}
-
 </span>
 
 <span class="old-price">
-
 KES ${product.oldPrice}
-
 </span>
-
-</div>
-
-<div class="sizes-box">
-
-<h4>Available Sizes</h4>
-
-<div class="sizes-row">
-
-${product.sizes.map(size => `
-
-<button class="size-btn">
-
-${size}
-
-</button>
-
-`).join("")}
-
-</div>
-
-</div>
-
-<div class="colors-box">
-
-<h4>Colors</h4>
-
-<div class="colors-row">
-
-${product.colors.map(color => `
-
-<button class="color-btn">
-
-${color}
-
-</button>
-
-`).join("")}
-
-</div>
 
 </div>
 
@@ -345,12 +264,6 @@ class="buy-btn"
 onclick="buyNow('${product.title}')">
 
 Buy Now
-
-</button>
-
-<button class="cart-btn">
-
-Add to Cart
 
 </button>
 
@@ -363,13 +276,10 @@ Add to Cart
 /* SCROLL */
 
 container.scrollIntoView({
-
 behavior:"smooth"
-
 });
 
 };
-
 /* =========================
    CHANGE IMAGE
 ========================= */
