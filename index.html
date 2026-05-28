@@ -3,18 +3,17 @@
  <head>
  <link rel="icon" href="Images/Cozycabin log .webp" type="image/png">
   <link rel="stylesheet" href="fix.css"> 
-  <meta
- http-equiv="Content-Security-Policy"
+
+<meta http-equiv="Content-Security-Policy"
 content="
-default-src 'self';
-img-src 'self' https: data:;
-script-src 'self' https://www.gstatic.com https://www.googletagmanager.com 'unsafe-inline';
-style-src 'self' 'unsafe-inline' https:;
-connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com;
-frame-ancestors 'none';
-base-uri 'self';
-form-action 'self';
-upgrade-insecure-requests;
+  default-src 'self';
+  img-src 'self' https: data:;
+  script-src 'self' https://www.gstatic.com https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval';
+  style-src 'self' 'unsafe-inline' https:;
+  connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://www.google-analytics.com;
+  frame-ancestors 'none';
+  base-uri 'self';
+  form-action 'self';
 ">
 
 <meta charset="UTF-8">
