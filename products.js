@@ -128,7 +128,7 @@ function hideProducts() {
 ========================= */
 
 window.showProducts = function(category) {
-
+        alert("SHOW PRODUCTS WORKING");
   var container = document.getElementById('products-container');
 
   if (!container) {
