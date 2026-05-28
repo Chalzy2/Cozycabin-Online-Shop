@@ -1,0 +1,214 @@
+cat > /mnt/user-data/outputs/fix.css << 'EOF'
+/* =============================================
+   COZYCABIN FIX — paste this as fix.css
+   on GitHub, same folder as index.html
+   ============================================= */
+
+/* Close the broken contact-form button hover */
+.contact-form button:hover {
+  transform: scale(1.02);
+  background: #ffcc00;
+}
+
+/* Products container */
+#products-container {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  background: #020817;
+  border: 2px solid #ffd700;
+  border-radius: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Product card */
+.product-card {
+  background: #1e293b;
+  border-radius: 15px;
+  padding: 15px;
+  color: white;
+  text-align: left;
+}
+
+/* Gallery */
+.product-gallery {
+  width: 100%;
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.main-product-image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  background: #000;
+  border-radius: 14px;
+  display: block;
+}
+
+/* Thumbnails */
+.thumbnail-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.thumbnail-row::-webkit-scrollbar { display: none; }
+
+.thumb-image {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.thumb-active {
+  border-color: #ffd700 !important;
+}
+
+/* Text */
+.product-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.company-name {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+.product-description {
+  font-size: 14px;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+/* Price */
+.price-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.new-price {
+  color: #ffd700;
+  font-size: 24px;
+  font-weight: 800;
+}
+.old-price {
+  color: #64748b;
+  text-decoration: line-through;
+  font-size: 14px;
+}
+
+/* Size & color */
+.sizes-box, .colors-box {
+  margin-bottom: 14px;
+}
+.sizes-box h4, .colors-box h4 {
+  font-size: 13px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.sizes-row, .colors-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.size-btn, .color-btn {
+  background: #0f172a;
+  color: #fff;
+  border: 1px solid #334155;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.option-active {
+  background: #ffd700 !important;
+  color: #000 !important;
+  border-color: #ffd700 !important;
+  font-weight: 700 !important;
+}
+
+/* Hint */
+.selection-hint {
+  font-size: 12px;
+  min-height: 18px;
+  margin-bottom: 12px;
+  color: #f59e0b;
+}
+
+/* Buttons */
+.buy-btn {
+  width: 100%;
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.cart-btn {
+  width: 100%;
+  background: #0f172a;
+  color: #fff;
+  border: 1px solid #334155;
+  padding: 13px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+/* Details */
+.details-box {
+  background: #0f172a;
+  padding: 14px;
+  border-radius: 12px;
+  color: #cbd5e1;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.details-box summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* Empty state */
+.empty-products {
+  text-align: center;
+  padding: 50px 20px;
+  grid-column: 1 / -1;
+}
+.empty-products h2 { color: #ffd700; margin-bottom: 10px; }
+.empty-products p  { color: #cbd5e1; }
+
+/* Mobile */
+@media (max-width: 600px) {
+  #products-container {
+    grid-template-columns: 1fr;
+    padding: 14px;
+    gap: 14px;
+  }
+}
+EOF
+echo "Done"
