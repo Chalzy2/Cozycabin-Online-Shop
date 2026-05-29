@@ -219,3 +219,36 @@ document.addEventListener('click', function(e) {
     return;
   }
 });
+// ROTATING PROMO BANNER
+(function() {
+  var slides = document.querySelectorAll('.promo-slide');
+  var dots   = document.querySelectorAll('.promo-dot');
+  if (!slides.length) return;
+  var current = 0;
+
+  function showSlide(n) {
+    slides[current].style.display = 'none';
+    dots[current].style.background = '#444';
+    current = (n + slides.length) % slides.length;
+    slides[current].style.display = 'flex';
+    dots[current].style.background = '#ffd700';
+  }
+
+  // Auto-rotate every 3 seconds
+  setInterval(function() { showSlide(current + 1); }, 3000);
+
+  // Tap banner → open submenu + show products
+  var banner = document.getElementById('promo-banner');
+  if (banner) {
+    banner.addEventListener('click', function() {
+      var slide    = slides[current];
+      var submenu  = slide.getAttribute('data-submenu');
+      var category = slide.getAttribute('data-category');
+      if (submenu) window.toggleSub(submenu);
+      setTimeout(function() {
+        if (category) window.showProducts(category);
+      }, 300);
+    });
+  }
+})();
+
