@@ -299,139 +299,152 @@ body,.container,.main-grid{overflow-x:hidden;}
 </script>
   
 <h3 style="text-align:center;color:#ffd700;margin-bottom:15px;">🇰🇪 LOCAL & ONLINE SHOP (KENYA)</h3>
+
 <!-- MAIN CATEGORY GRID -->
 <div class="main-grid">
-<div class="grid-btn" onclick="toggleSub('kitchen-sub')"><span>👨‍🍳</span><small>KITCHEN ▼</small></div>
-<div class="grid-btn" onclick="toggleSub('solar-sub')"><span>☀️</span><small>SOLAR ▼</small></div>
-<div class="grid-btn" onclick="toggleSub('decor-sub')"><span>🛋️</span><small>DECOR ▼</small></div>
-<div class="grid-btn" onclick="toggleSub('beddings-sub')"><span>🛏️</span><small>BEDDINGS ▼</small></div>
-<div class="grid-btn" onclick="toggleSub('security-sub')"><span>📷</span><small>SECURITY ▼</small></div>
-<div class="grid-btn" onclick="toggleSub('electronics-sub')"><span>📻</span><small>ELECTRONICS ▼</small></div>
-<div class="grid-btn" onclick="toggleSub('smarttech-sub')"><span>📱</span><small>SMARTTECH ▼</small></div>
-<div class="grid-btn" onclick="toggleSub('fashion-sub')"><span>👟</span><small>FASHION ▼</small></div>
-<div class="grid-btn" onclick="toggleSub('appliances-sub')"><span>⚙️</span><small>APPLIANCES ▼</small></div>
+  <div class="grid-btn" data-submenu="kitchen-sub"><span>👨‍🍳</span><small>KITCHEN ▼</small></div>
+  <div class="grid-btn" data-submenu="solar-sub"><span>☀️</span><small>SOLAR ▼</small></div>
+  <div class="grid-btn" data-submenu="decor-sub"><span>🛋️</span><small>DECOR ▼</small></div>
+  <div class="grid-btn" data-submenu="beddings-sub"><span>🛏️</span><small>BEDDINGS ▼</small></div>
+  <div class="grid-btn" data-submenu="security-sub"><span>📷</span><small>SECURITY ▼</small></div>
+  <div class="grid-btn" data-submenu="electronics-sub"><span>📻</span><small>ELECTRONICS ▼</small></div>
+  <div class="grid-btn" data-submenu="smarttech-sub"><span>📱</span><small>SMARTTECH ▼</small></div>
+  <div class="grid-btn" data-submenu="fashion-sub"><span>👟</span><small>FASHION ▼</small></div>
+  <div class="grid-btn" data-submenu="appliances-sub"><span>⚙️</span><small>APPLIANCES ▼</small></div>
 </div>
-  
 
-<!-- KITCHEN -->
-<div id="kitchen-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
-<div class="minor-grid">
-<button type="button" onclick="showProducts('cutlery')" class="minor-btn">🍴 Cutlery</button>
-<button type="button" onclick="showProducts('dispenser')" class="minor-btn">💧 Dispensers</button>
-<button type="button" onclick="showProducts('hotpots')" class="minor-btn">🥘 Hotpots</button>
-<button type="button" onclick="showProducts('racks')" class="minor-btn">🍽️ Dishracks</button>
-<button type="button" onclick="showProducts('flasks')" class="minor-btn">☕ Flasks</button>
-<button type="button" onclick="showProducts('bottles')" class="minor-btn">🍼 Bottles</button>
-<button type="button" onclick="showProducts('cookers')" class="minor-btn">🍳 Cookers</button>
-<button type="button" onclick="showProducts('blenders')" class="minor-btn">🌪️ Blenders</button>
+  
+  <!-- KITCHEN -->
+<div id="kitchen-sub" class="minor-menu"><div class="minor-top">
+<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
+</div><div class="minor-grid">
+<button type="button" class="minor-btn" data-category="cutlery">🍴 Cutlery</button>
+<button type="button" class="minor-btn" data-category="dispenser">💧 Dispensers</button>
+<button type="button" class="minor-btn" data-category="hotpots">🥘 Hotpots</button>
+<button type="button" class="minor-btn" data-category="racks">🍽️ Dishracks</button>
+<button type="button" class="minor-btn" data-category="flasks">☕ Flasks</button>
+<button type="button" class="minor-btn" data-category="bottles">🍼 Bottles</button>
+<button type="button" class="minor-btn" data-category="cookers">🍳 Cookers</button>
+<button type="button" class="minor-btn" data-category="blenders">🌪️ Blenders</button>
 </div></div>
 
 <!-- SOLAR -->
-<div id="solar-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
-<div class="minor-grid">
-<button type="button" onclick="showProducts('solarlights')" class="minor-btn">💡 Solar Lights</button>
-<button type="button" onclick="showProducts('panels')" class="minor-btn">🔋 Panels</button>
-<button type="button" onclick="showProducts('inverters')" class="minor-btn">⚡ Inverters</button>
-<button type="button" onclick="showProducts('batteries')" class="minor-btn">🔋 Batteries</button>
-<button type="button" onclick="showProducts('streetlights')" class="minor-btn">🏮 Street Lights</button>
-<button type="button" onclick="showProducts('floodlights')" class="minor-btn">🔦 Flood Lights</button>
-<button type="button" onclick="showProducts('chargers')" class="minor-btn">🔌 Chargers</button>
-<button type="button" onclick="showProducts('fans')" class="minor-btn">🌀 Solar Fans</button>
+<div id="solar-sub" class="minor-menu"><div class="minor-top">
+<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
+</div><div class="minor-grid">
+<button type="button" class="minor-btn" data-category="solarlights">💡 Solar Lights</button>
+<button type="button" class="minor-btn" data-category="panels">🔋 Panels</button>
+<button type="button" class="minor-btn" data-category="inverters">⚡ Inverters</button>
+<button type="button" class="minor-btn" data-category="batteries">🔋 Batteries</button>
+<button type="button" class="minor-btn" data-category="streetlights">🏮 Street Lights</button>
+<button type="button" class="minor-btn" data-category="floodlights">🔦 Flood Lights</button>
+<button type="button" class="minor-btn" data-category="chargers">🔌 Chargers</button>
+<button type="button" class="minor-btn" data-category="fans">🌀 Solar Fans</button>
 </div></div>
 
 <!-- DECOR -->
-<div id="decor-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
-<div class="minor-grid">
-<button type="button" onclick="showProducts('wallart')" class="minor-btn">🖼️ Wall Art</button>
-<button type="button" onclick="showProducts('mirrors')" class="minor-btn">🪞 Mirrors</button>
-<button type="button" onclick="showProducts('flowers')" class="minor-btn">🌸 Flowers</button>
-<button type="button" onclick="showProducts('lamps')" class="minor-btn">💡 Lamps</button>
-<button type="button" onclick="showProducts('carpets')" class="minor-btn">🧶 Carpets</button>
-<button type="button" onclick="showProducts('curtains')" class="minor-btn">🪟 Curtains</button>
-<button type="button" onclick="showProducts('frames')" class="minor-btn">🖼️ Frames</button>
-<button type="button" onclick="showProducts('vases')" class="minor-btn">🏺 Vases</button>
+<div id="decor-sub" class="minor-menu"><div class="minor-top">
+<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
+</div><div class="minor-grid">
+<button type="button" class="minor-btn" data-category="wallart">🖼️ Wall Art</button>
+<button type="button" class="minor-btn" data-category="mirrors">🪞 Mirrors</button>
+<button type="button" class="minor-btn" data-category="flowers">🌸 Flowers</button>
+<button type="button" class="minor-btn" data-category="lamps">💡 Lamps</button>
+<button type="button" class="minor-btn" data-category="carpets">🧶 Carpets</button>
+<button type="button" class="minor-btn" data-category="curtains">🪟 Curtains</button>
+<button type="button" class="minor-btn" data-category="frames">🖼️ Frames</button>
+<button type="button" class="minor-btn" data-category="vases">🏺 Vases</button>
 </div></div>
 
 <!-- BEDDINGS -->
-<div id="beddings-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
-<div class="minor-grid">
-<button type="button" onclick="showProducts('duvets')" class="minor-btn">🛏️ Duvets</button>
-<button type="button" onclick="showProducts('bedsheets')" class="minor-btn">🧺 Bedsheets</button>
-<button type="button" onclick="showProducts('blankets')" class="minor-btn">🧸 Blankets</button>
-<button type="button" onclick="showProducts('pillows')" class="minor-btn">🛌 Pillows</button>
-<button type="button" onclick="showProducts('mattress')" class="minor-btn">🛏️ Mattress</button>
-<button type="button" onclick="showProducts('covers')" class="minor-btn">🧥 Covers</button>
-<button type="button" onclick="showProducts('nets')" class="minor-btn">🦟 Nets</button>
-<button type="button" onclick="showProducts('towels')" class="minor-btn">🧻 Towels</button>
+<div id="beddings-sub" class="minor-menu"><div class="minor-top">
+<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
+</div><div class="minor-grid">
+<button type="button" class="minor-btn" data-category="duvets">🛏️ Duvets</button>
+<button type="button" class="minor-btn" data-category="bedsheets">🧺 Bedsheets</button>
+<button type="button" class="minor-btn" data-category="blankets">🧸 Blankets</button>
+<button type="button" class="minor-btn" data-category="pillows">🛌 Pillows</button>
+<button type="button" class="minor-btn" data-category="mattress">🛏️ Mattress</button>
+<button type="button" class="minor-btn" data-category="covers">🧥 Covers</button>
+<button type="button" class="minor-btn" data-category="nets">🦟 Nets</button>
+<button type="button" class="minor-btn" data-category="towels">🧻 Towels</button>
 </div></div>
 
 <!-- SECURITY -->
-<div id="security-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
-<div class="minor-grid">
-<button type="button" onclick="showProducts('cameras')" class="minor-btn">📷 Cameras</button>
-<button type="button" onclick="showProducts('alarms')" class="minor-btn">🚨 Alarms</button>
-<button type="button" onclick="showProducts('locks')" class="minor-btn">🔒 Locks</button>
-<button type="button" onclick="showProducts('doorbells')" class="minor-btn">🔔 Doorbells</button>
-<button type="button" onclick="showProducts('trackers')" class="minor-btn">📍 Trackers</button>
-<button type="button" onclick="showProducts('sensors')" class="minor-btn">📡 Sensors</button>
-<button type="button" onclick="showProducts('safes')" class="minor-btn">🗄️ Safes</button>
-<button type="button" onclick="showProducts('recorders')" class="minor-btn">💾 Recorders</button>
+<div id="security-sub" class="minor-menu"><div class="minor-top">
+<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
+</div><div class="minor-grid">
+<button type="button" class="minor-btn" data-category="cameras">📷 Cameras</button>
+<button type="button" class="minor-btn" data-category="alarms">🚨 Alarms</button>
+<button type="button" class="minor-btn" data-category="locks">🔒 Locks</button>
+<button type="button" class="minor-btn" data-category="doorbells">🔔 Doorbells</button>
+<button type="button" class="minor-btn" data-category="trackers">📍 Trackers</button>
+<button type="button" class="minor-btn" data-category="sensors">📡 Sensors</button>
+<button type="button" class="minor-btn" data-category="safes">🗄️ Safes</button>
+<button type="button" class="minor-btn" data-category="recorders">💾 Recorders</button>
 </div></div>
 
 <!-- ELECTRONICS -->
-<div id="electronics-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
-<div class="minor-grid">
-<button type="button" onclick="showProducts('speakers')" class="minor-btn">🔊 Speakers</button>
-<button type="button" onclick="showProducts('radios')" class="minor-btn">📻 Radios</button>
-<button type="button" onclick="showProducts('earbuds')" class="minor-btn">🎧 Earbuds</button>
-<button type="button" onclick="showProducts('tvbox')" class="minor-btn">📺 TV Box</button>
-<button type="button" onclick="showProducts('powerbanks')" class="minor-btn">🔋 Powerbanks</button>
-<button type="button" onclick="showProducts('flashdisks')" class="minor-btn">💾 Flash Disks</button>
-<button type="button" onclick="showProducts('smartwatch')" class="minor-btn">⌚ Smartwatch</button>
-<button type="button" onclick="showProducts('gaming')" class="minor-btn">🎮 Gaming</button>
+<div id="electronics-sub" class="minor-menu"><div class="minor-top">
+<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
+</div><div class="minor-grid">
+<button type="button" class="minor-btn" data-category="speakers">🔊 Speakers</button>
+<button type="button" class="minor-btn" data-category="radios">📻 Radios</button>
+<button type="button" class="minor-btn" data-category="earbuds">🎧 Earbuds</button>
+<button type="button" class="minor-btn" data-category="tvbox">📺 TV Box</button>
+<button type="button" class="minor-btn" data-category="powerbanks">🔋 Powerbanks</button>
+<button type="button" class="minor-btn" data-category="flashdisks">💾 Flash Disks</button>
+<button type="button" class="minor-btn" data-category="smartwatch">⌚ Smartwatch</button>
+<button type="button" class="minor-btn" data-category="gaming">🎮 Gaming</button>
 </div></div>
 
 <!-- SMARTTECH -->
-<div id="smarttech-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
-<div class="minor-grid">
-<button type="button" onclick="showProducts('phones')" class="minor-btn">📱 Phones</button>
-<button type="button" onclick="showProducts('laptops')" class="minor-btn">💻 Laptops</button>
-<button type="button" onclick="showProducts('tablets')" class="minor-btn">📲 Tablets</button>
-<button type="button" onclick="showProducts('routers')" class="minor-btn">📡 Routers</button>
-<button type="button" onclick="showProducts('keyboards')" class="minor-btn">⌨️ Keyboards</button>
-<button type="button" onclick="showProducts('mouse')" class="minor-btn">🖱️ Mouse</button>
-<button type="button" onclick="showProducts('printers')" class="minor-btn">🖨️ Printers</button>
-<button type="button" onclick="showProducts('storage')" class="minor-btn">💽 Storage</button>
+<div id="smarttech-sub" class="minor-menu"><div class="minor-top">
+<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
+</div><div class="minor-grid">
+<button type="button" class="minor-btn" data-category="phones">📱 Phones</button>
+<button type="button" class="minor-btn" data-category="laptops">💻 Laptops</button>
+<button type="button" class="minor-btn" data-category="tablets">📲 Tablets</button>
+<button type="button" class="minor-btn" data-category="routers">📡 Routers</button>
+<button type="button" class="minor-btn" data-category="keyboards">⌨️ Keyboards</button>
+<button type="button" class="minor-btn" data-category="mouse">🖱️ Mouse</button>
+<button type="button" class="minor-btn" data-category="printers">🖨️ Printers</button>
+<button type="button" class="minor-btn" data-category="storage">💽 Storage</button>
 </div></div>
 
 <!-- FASHION -->
-<div id="fashion-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
-<div class="minor-grid">
-<button type="button" onclick="showProducts('shoes')" class="minor-btn">👟 Shoes</button>
-<button type="button" onclick="showProducts('shirts')" class="minor-btn">👕 Shirts</button>
-<button type="button" onclick="showProducts('hoodies')" class="minor-btn">🧥 Hoodies</button>
-<button type="button" onclick="showProducts('watches')" class="minor-btn">⌚ Watches</button>
-<button type="button" onclick="showProducts('bags')" class="minor-btn">👜 Bags</button>
-<button type="button" onclick="showProducts('caps')" class="minor-btn">🧢 Caps</button>
-<button type="button" onclick="showProducts('jeans')" class="minor-btn">👖 Jeans</button>
-<button type="button" onclick="showProducts('jackets')" class="minor-btn">🥼 Jackets</button>
+<div id="fashion-sub" class="minor-menu"><div class="minor-top">
+<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
+</div><div class="minor-grid">
+<button type="button" class="minor-btn" data-category="shoes">👟 Shoes</button>
+<button type="button" class="minor-btn" data-category="shirts">👕 Shirts</button>
+<button type="button" class="minor-btn" data-category="hoodies">🧥 Hoodies</button>
+<button type="button" class="minor-btn" data-category="watches">⌚ Watches</button>
+<button type="button" class="minor-btn" data-category="bags">👜 Bags</button>
+<button type="button" class="minor-btn" data-category="caps">🧢 Caps</button>
+<button type="button" class="minor-btn" data-category="jeans">👖 Jeans</button>
+<button type="button" class="minor-btn" data-category="jackets">🥼 Jackets</button>
 </div></div>
 
-<!-- PRODUCTS CONTAINER — renders here on same page -->
-<div id="products-container" style="display:none;"></div>
+<!-- PRODUCTS CONTAINER — ONLY ONE ON ENTIRE PAGE -->
+<div id="products-container"></div>
 
 <!-- APPLIANCES -->
-<div id="appliances-sub" class="minor-menu"><div class="minor-top"><button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button></div>
-<div class="minor-grid">
-<button type="button" onclick="showProducts('fridges')" class="minor-btn">🧊 Fridges</button>
-<button type="button" onclick="showProducts('microwaves')" class="minor-btn">📡 Microwaves</button>
-<button type="button" onclick="showProducts('washing')" class="minor-btn">🧺 Washing Machines</button>
-<button type="button" onclick="showProducts('cookersapp')" class="minor-btn">🍳 Cookers</button>
-<button type="button" onclick="showProducts('kettles')" class="minor-btn">☕ Kettles</button>
-<button type="button" onclick="showProducts('irons')" class="minor-btn">🧲 Irons</button>
-<button type="button" onclick="showProducts('heaters')" class="minor-btn">🔥 Heaters</button>
-<button type="button" onclick="showProducts('fansapp')" class="minor-btn">🌀 Fans</button>
+<div id="appliances-sub" class="minor-menu"><div class="minor-top">
+<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
+</div><div class="minor-grid">
+<button type="button" class="minor-btn" data-category="fridges">🧊 Fridges</button>
+<button type="button" class="minor-btn" data-category="microwaves">📡 Microwaves</button>
+<button type="button" class="minor-btn" data-category="washing">🧺 Washing Machines</button>
+<button type="button" class="minor-btn" data-category="cookersapp">🍳 Cookers</button>
+<button type="button" class="minor-btn" data-category="kettles">☕ Kettles</button>
+<button type="button" class="minor-btn" data-category="irons">🧲 Irons</button>
+<button type="button" class="minor-btn" data-category="heaters">🔥 Heaters</button>
+<button type="button" class="minor-btn" data-category="fansapp">🌀 Fans</button>
 </div></div>
+  
+
+
 
  <!-- PREMIUM CHECKOUT -->
 <div id="premium-checkout-wrapper" style="width:100%;max-width:1200px;margin:50px auto;padding:0 18px;box-sizing:border-box;">
