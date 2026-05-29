@@ -39,8 +39,8 @@ var products = {
       colors: ["Black","White"],
       description: "Elegant Timberland casual shoes for smart everyday fashion.",
       images: ["Images/timber-black.webp","Images/timber-white.webp"]
-    },
-    ].
+    }
+  ],
   
 cutlery: [
     {  
@@ -61,7 +61,7 @@ cutlery: [
       description: "Elegant silicone spoons for everyday use.",
       images: ["Images/24silvercutlery-set.webp","Images/24goldcutlery-set.webp"]
     }
-    ],
+  ],
   shirts:[], hoodies:[], watches:[], bags:[], caps:[], jeans:[], jackets:[],
   cutlery:[], dispenser:[], hotpots:[], racks:[], flasks:[], bottles:[], cookers:[], blenders:[],
   solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], floodlights:[], chargers:[], fans:[],
