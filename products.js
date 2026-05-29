@@ -671,3 +671,60 @@ window.buyNow = function(index, productName, price) {
     '_blank'
   );
 };
+cat >> /mnt/user-data/outputs/products.js << 'EOF'
+
+/* =========================
+   EVENT DELEGATION FIX
+   Catches clicks even if onclick
+   attributes are blocked by CSP
+========================= */
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('button');
+  if (!btn) return;
+
+  /* minor-btn → showProducts */
+  if (btn.classList.contains('minor-btn')) {
+    var onclick = btn.getAttribute('onclick');
+    if (onclick) {
+      var match = onclick.match(/showProducts\('([^']+)'\)/);
+      if (match) {
+        e.preventDefault();
+        window.showProducts(match[1]);
+        return;
+      }
+    }
+  }
+
+  /* grid-btn → toggleSub */
+  if (btn.closest('.grid-btn') || btn.classList.contains('grid-btn')) {
+    var parent = btn.closest('[onclick]') || btn;
+    var oc = parent.getAttribute('onclick');
+    if (oc) {
+      var m = oc.match(/toggleSub\('([^']+)'\)/);
+      if (m) {
+        e.preventDefault();
+        window.toggleSub(m[1]);
+        return;
+      }
+    }
+  }
+
+  /* back-btn → closeAllSubmenus */
+  if (btn.classList.contains('back-btn')) {
+    e.preventDefault();
+    window.closeAllSubmenus();
+  }
+});
+
+/* Same for divs with onclick (grid-btn is a div) */
+document.addEventListener('click', function(e) {
+  var div = e.target.closest('.grid-btn');
+  if (!div) return;
+  var oc = div.getAttribute('onclick');
+  if (oc) {
+    var m = oc.match(/toggleSub\('([^']+)'\)/);
+    if (m) window.toggleSub(m[1]);
+  }
+});
+EOF
+echo "Done"
