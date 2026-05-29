@@ -41,22 +41,26 @@ var products = {
       images: ["Images/timber-black.webp","Images/timber-white.webp"]
     },
     ],
- cutlery: [
-    { 
-      title: "24psc gold cutlery set",
-      price: 2500, oldPrice: 3500,
-      colors: ["Gold","Silver"],
-      description: "Elegant 24-piece gold stainless steel cutlery set with stand.",
-      images: ["Images/24goldcutlery set.webp","Images/silver cutlery.webp"]
+  
+cutlery: [
+    {  
+      title: "Silicone Spoons",
+      company: "Kitchen",
+      price: 1499, oldPrice: 2000,
+      sizes: [],
+      colors: ["Black","Grey"],
+      description: "Elegant silicone spoons for everyday use.",
+      images: ["Images/blcksilicn.webp"]
     },
     {
-      title: "Silicone Spoons",
-      price: 1499, oldPrice: 2000,
-      colors: ["Black","grey"],
-      description: "Elegant Timberland casual shoes for smart everyday fashion.",
-      images: ["Images/blcksilicn.webp","Images/Silcn12psc1499.webp"]
+      title: "24 Psc gold cutlery set",
+      company: "Kitchen",
+      price: 2500, oldPrice: 3500,
+      sizes: [],
+      colors: ["gold","silver"],
+      description: "Elegant silicone spoons for everyday use.",
+      images: ["24silvercutlery-set.webp","24goldcutlery-set.webp"]
     }
-  
   shirts:[], hoodies:[], watches:[], bags:[], caps:[], jeans:[], jackets:[],
   cutlery:[], dispenser:[], hotpots:[], racks:[], flasks:[], bottles:[], cookers:[], blenders:[],
   solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], floodlights:[], chargers:[], fans:[],
