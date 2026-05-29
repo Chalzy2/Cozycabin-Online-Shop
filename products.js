@@ -61,6 +61,7 @@ cutlery: [
       description: "Elegant silicone spoons for everyday use.",
       images: ["24silvercutlery-set.webp","24goldcutlery-set.webp"]
     }
+    ],
   shirts:[], hoodies:[], watches:[], bags:[], caps:[], jeans:[], jackets:[],
   cutlery:[], dispenser:[], hotpots:[], racks:[], flasks:[], bottles:[], cookers:[], blenders:[],
   solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], floodlights:[], chargers:[], fans:[],
