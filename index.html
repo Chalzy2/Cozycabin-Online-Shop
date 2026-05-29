@@ -104,10 +104,11 @@ body,.container,.main-grid{overflow-x:hidden;}
 </head>
 <body>
 
-<<!-- 
-  COZYCABIN HERO BANNER
-  Replace the currency selector div with this
-  Auto-rotates every 4 seconds
+ <!-- 
+  COZYCABIN HERO BANNER v2
+  - 7 Cozycabin slides (permanent)
+  - AD SLOTS: add advertiser slides easily at the bottom
+  - Each slide auto-rotates every 8 seconds
 -->
 
 <div id="hero-banner" style="
@@ -118,172 +119,145 @@ body,.container,.main-grid{overflow-x:hidden;}
   box-shadow: 0 0 25px rgba(255,215,0,0.15);
 ">
 
+  <!-- ==========================================
+       COZYCABIN SLIDES (DO NOT REMOVE)
+       ========================================== -->
+
   <!-- SLIDE 1 — Affiliate -->
   <div class="hero-slide active" style="
-    display:flex; flex-direction:column; justify-content:center;
-    background: linear-gradient(135deg, #071129, #0f172a);
-    border: 2px solid #2db742;
-    border-radius: 22px;
-    padding: 28px 22px;
-    min-height: 140px;
-    position: relative;
-    overflow: hidden;
+    display:flex;flex-direction:column;justify-content:center;
+    background:linear-gradient(135deg,#071129,#0f172a);
+    border:2px solid #2db742;border-radius:22px;
+    padding:28px 22px;min-height:150px;position:relative;overflow:hidden;
   ">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.15;">💰</div>
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">💰</div>
     <div style="background:#2db742;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">EARN ONLINE</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">💰 Earn with Cozycabin</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.5;">Share products & earn commissions.<br>No capital needed.</div>
-    <a href="/affiliate.html" style="
-      display:inline-block;margin-top:14px;background:#2db742;color:#fff;
-      text-decoration:none;padding:10px 20px;border-radius:10px;
-      font-size:13px;font-weight:700;width:fit-content;
-    ">Join Affiliate Program →</a>
+    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">💰 Earn with Cozycabin Affiliate</div>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Share products & earn commissions.<br>No capital needed to start.</div>
+    <a href="/affiliate.html" style="display:inline-block;margin-top:14px;background:#2db742;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Join Affiliate Program →</a>
   </div>
 
   <!-- SLIDE 2 — Learn -->
   <div class="hero-slide" style="
-    display:none; flex-direction:column; justify-content:center;
-    background: linear-gradient(135deg, #0d1b2a, #1a2744);
-    border: 2px solid #0d84ff;
-    border-radius: 22px;
-    padding: 28px 22px;
-    min-height: 140px;
-    position: relative;
-    overflow: hidden;
+    display:none;flex-direction:column;justify-content:center;
+    background:linear-gradient(135deg,#0d1b2a,#1a2744);
+    border:2px solid #0d84ff;border-radius:22px;
+    padding:28px 22px;min-height:150px;position:relative;overflow:hidden;
   ">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.15;">📚</div>
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">📚</div>
     <div style="background:#0d84ff;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">ACADEMY</div>
     <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">📚 Learn New Skills</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.5;">Video editing, website setup<br>& digital marketing.</div>
-    <a href="#" onclick="window.toggleSub('video-courses')" style="
-      display:inline-block;margin-top:14px;background:#0d84ff;color:#fff;
-      text-decoration:none;padding:10px 20px;border-radius:10px;
-      font-size:13px;font-weight:700;width:fit-content;
-    ">View Courses →</a>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Video editing, website setup<br>& digital marketing courses.</div>
+    <a href="#" onclick="window.toggleSub('video-courses');return false;" style="display:inline-block;margin-top:14px;background:#0d84ff;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">View Courses →</a>
   </div>
 
   <!-- SLIDE 3 — Shop -->
   <div class="hero-slide" style="
-    display:none; flex-direction:column; justify-content:center;
-    background: linear-gradient(135deg, #1a0a00, #2d1800);
-    border: 2px solid #ffd700;
-    border-radius: 22px;
-    padding: 28px 22px;
-    min-height: 140px;
-    position: relative;
-    overflow: hidden;
+    display:none;flex-direction:column;justify-content:center;
+    background:linear-gradient(135deg,#1a0a00,#2d1800);
+    border:2px solid #ffd700;border-radius:22px;
+    padding:28px 22px;min-height:150px;position:relative;overflow:hidden;
   ">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.15;">🛒</div>
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🛒</div>
     <div style="background:#ffd700;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">ONLINE SHOP</div>
     <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🛒 Shop Quality Products</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.5;">Fashion, Solar, Kitchen,<br>Electronics and more.</div>
-    <a href="#" onclick="document.querySelector('.main-grid').scrollIntoView({behavior:'smooth'})" style="
-      display:inline-block;margin-top:14px;background:#ffd700;color:#000;
-      text-decoration:none;padding:10px 20px;border-radius:10px;
-      font-size:13px;font-weight:700;width:fit-content;
-    ">Shop Now →</a>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Fashion, Solar, Kitchen,<br>Electronics and more.</div>
+    <a href="#" onclick="document.querySelector('.main-grid').scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;margin-top:14px;background:#ffd700;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Shop Now →</a>
   </div>
 
   <!-- SLIDE 4 — Delivery -->
   <div class="hero-slide" style="
-    display:none; flex-direction:column; justify-content:center;
-    background: linear-gradient(135deg, #0a1a0a, #102010);
-    border: 2px solid #22c55e;
-    border-radius: 22px;
-    padding: 28px 22px;
-    min-height: 140px;
-    position: relative;
-    overflow: hidden;
+    display:none;flex-direction:column;justify-content:center;
+    background:linear-gradient(135deg,#0a1a0a,#102010);
+    border:2px solid #22c55e;border-radius:22px;
+    padding:28px 22px;min-height:150px;position:relative;overflow:hidden;
   ">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.15;">🚚</div>
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🚚</div>
     <div style="background:#22c55e;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">DELIVERY</div>
     <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🚚 Nationwide Delivery</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.5;">Delivered across Kenya via G4S,<br>Simba Coach & more.</div>
-    <a href="https://wa.me/254702468460" style="
-      display:inline-block;margin-top:14px;background:#22c55e;color:#fff;
-      text-decoration:none;padding:10px 20px;border-radius:10px;
-      font-size:13px;font-weight:700;width:fit-content;
-    ">Ask Delivery Info →</a>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Delivered across Kenya via G4S,<br>Simba Coach, Tahmeed & more.</div>
+    <a href="https://wa.me/254702468460" style="display:inline-block;margin-top:14px;background:#22c55e;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Ask Delivery Info →</a>
   </div>
 
   <!-- SLIDE 5 — Crypto -->
   <div class="hero-slide" style="
-    display:none; flex-direction:column; justify-content:center;
-    background: linear-gradient(135deg, #0d0d1a, #1a1a30);
-    border: 2px solid #f2c94c;
-    border-radius: 22px;
-    padding: 28px 22px;
-    min-height: 140px;
-    position: relative;
-    overflow: hidden;
+    display:none;flex-direction:column;justify-content:center;
+    background:linear-gradient(135deg,#0d0d1a,#1a1a30);
+    border:2px solid #f2c94c;border-radius:22px;
+    padding:28px 22px;min-height:150px;position:relative;overflow:hidden;
   ">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.15;">💎</div>
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">💎</div>
     <div style="background:#f2c94c;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">CRYPTO</div>
     <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">💎 Crypto & Digital Assets</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.5;">Exchanges, tools<br>& beginner guides.</div>
-    <a href="#" onclick="window.toggleCryptoRowDropdown()" style="
-      display:inline-block;margin-top:14px;background:#f2c94c;color:#000;
-      text-decoration:none;padding:10px 20px;border-radius:10px;
-      font-size:13px;font-weight:700;width:fit-content;
-    ">Explore Crypto →</a>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Top exchanges, tools<br>& beginner guides.</div>
+    <a href="#" onclick="window.toggleCryptoRowDropdown();return false;" style="display:inline-block;margin-top:14px;background:#f2c94c;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Explore Crypto →</a>
   </div>
 
   <!-- SLIDE 6 — Best Sellers -->
   <div class="hero-slide" style="
-    display:none; flex-direction:column; justify-content:center;
-    background: linear-gradient(135deg, #1a0a1a, #2d0d2d);
-    border: 2px solid #ff6bff;
-    border-radius: 22px;
-    padding: 28px 22px;
-    min-height: 140px;
-    position: relative;
-    overflow: hidden;
+    display:none;flex-direction:column;justify-content:center;
+    background:linear-gradient(135deg,#1a0a1a,#2d0d2d);
+    border:2px solid #ff6bff;border-radius:22px;
+    padding:28px 22px;min-height:150px;position:relative;overflow:hidden;
   ">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.15;">⭐</div>
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">⭐</div>
     <div style="background:#ff6bff;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">BEST SELLERS</div>
     <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">⭐ Best Sellers This Week</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.5;">See what customers<br>are buying most.</div>
-    <a href="#" onclick="window.showProducts('shoes')" style="
-      display:inline-block;margin-top:14px;background:#ff6bff;color:#000;
-      text-decoration:none;padding:10px 20px;border-radius:10px;
-      font-size:13px;font-weight:700;width:fit-content;
-    ">Shop Best Sellers →</a>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">See what customers<br>are buying most right now.</div>
+    <a href="#" onclick="window.showProducts('shoes');return false;" style="display:inline-block;margin-top:14px;background:#ff6bff;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Shop Best Sellers →</a>
   </div>
 
   <!-- SLIDE 7 — New Arrivals -->
   <div class="hero-slide" style="
-    display:none; flex-direction:column; justify-content:center;
-    background: linear-gradient(135deg, #1a0500, #2d0d00);
-    border: 2px solid #ff4500;
-    border-radius: 22px;
-    padding: 28px 22px;
-    min-height: 140px;
-    position: relative;
-    overflow: hidden;
+    display:none;flex-direction:column;justify-content:center;
+    background:linear-gradient(135deg,#1a0500,#2d0d00);
+    border:2px solid #ff4500;border-radius:22px;
+    padding:28px 22px;min-height:150px;position:relative;overflow:hidden;
   ">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.15;">🔥</div>
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🔥</div>
     <div style="background:#ff4500;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">NEW ARRIVALS</div>
     <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🔥 New Arrivals</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.5;">Fresh products<br>added regularly.</div>
-    <a href="#" onclick="window.showProducts('shoes')" style="
-      display:inline-block;margin-top:14px;background:#ff4500;color:#fff;
-      text-decoration:none;padding:10px 20px;border-radius:10px;
-      font-size:13px;font-weight:700;width:fit-content;
-    ">See New Arrivals →</a>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Fresh products added regularly.<br>Be first to grab them.</div>
+    <a href="#" onclick="window.showProducts('shoes');return false;" style="display:inline-block;margin-top:14px;background:#ff4500;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">See New Arrivals →</a>
   </div>
 
-  <!-- DOTS -->
-  <div style="display:flex;justify-content:center;gap:6px;padding:12px 0 6px;">
-    <span class="hero-dot active" style="width:24px;height:6px;border-radius:3px;background:#2db742;display:inline-block;transition:.3s;"></span>
-    <span class="hero-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
-    <span class="hero-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
-    <span class="hero-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
-    <span class="hero-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
-    <span class="hero-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
-    <span class="hero-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
+  <!-- ==========================================
+       AD SLOTS — ADVERTISERS ADD HERE
+       To add an ad: copy one AD SLOT block,
+       change the colors, text, and link.
+       The banner will auto-include it.
+       ========================================== -->
+
+  <!-- AD SLOT 1 — Available (uncomment to activate)
+  <div class="hero-slide ad-slide" style="
+    display:none;flex-direction:column;justify-content:center;
+    background:linear-gradient(135deg,#0a0a0a,#1a1a1a);
+    border:2px solid #YOUR_BRAND_COLOR;border-radius:22px;
+    padding:28px 22px;min-height:150px;position:relative;overflow:hidden;
+  ">
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">YOUR_EMOJI</div>
+    <div style="background:#YOUR_COLOR;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">SPONSORED</div>
+    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">YOUR_HEADLINE</div>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">YOUR_DESCRIPTION</div>
+    <a href="YOUR_LINK" style="display:inline-block;margin-top:14px;background:#YOUR_COLOR;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">YOUR_CTA →</a>
   </div>
+  -->
+
+  <!-- AD SLOT 2 — Available -->
+  <!-- AD SLOT 3 — Available -->
+  <!-- AD SLOT 4 — Available -->
+  <!-- AD SLOT 5 — Available -->
+
+  <!-- ==========================================
+       DOTS — auto-generated by JS, don't edit
+       ========================================== -->
+  <div id="hero-dots" style="display:flex;justify-content:center;gap:6px;padding:12px 0 6px;"></div>
 
 </div>
+  
+  
+              
+
 
 
 <!-- BRAND HEADER -->
@@ -436,187 +410,262 @@ body,.container,.main-grid{overflow-x:hidden;}
 </div>
 
 <!-- LOCAL SHOP TITLE -->
+<script>
   <!-- 
-  ADD THIS temporarily just above your main-grid div in index.html
-  It will show a red test button on your page
-  If tapping it shows products = showProducts works fine
-  If not = products.js is not executing at all
+  COZYCABIN PROMO ROTATING BANNER v2
+  Place just above main-grid div
+  Rotates every 8 seconds
+  Tap → shows Action Modal (Inquire OR Pay)
 -->
 
-<div style="padding:10px;">
-  <button 
-    id="test-shoes-btn"
-    style="width:100%;background:red;color:white;padding:15px;font-size:16px;font-weight:bold;border:none;border-radius:10px;cursor:pointer;">
-    🧪 TEST: Show Shoes
-  </button>
+<!-- ACTION MODAL -->
+<div id="promo-action-modal" style="
+  display:none;position:fixed;z-index:99999;
+  left:0;top:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.92);
+  justify-content:center;align-items:flex-end;
+">
+  <div style="
+    background:#0f172a;
+    border:2px solid #ffd700;
+    border-radius:28px 28px 0 0;
+    padding:24px 20px 44px;
+    width:100%;max-width:520px;
+    max-height:92vh;overflow-y:auto;
+  ">
+    <!-- Handle -->
+    <div style="width:40px;height:4px;background:#333;border-radius:2px;margin:0 auto 18px;"></div>
+
+    <!-- Close -->
+    <div id="promo-modal-close" style="
+      position:absolute;top:18px;right:20px;
+      color:#94a3b8;font-size:24px;cursor:pointer;
+    ">✕</div>
+
+    <!-- Product name from banner -->
+    <div id="promo-modal-label" style="
+      color:#ffd700;font-size:11px;font-weight:700;
+      letter-spacing:1px;text-align:center;margin-bottom:6px;
+    "></div>
+    <h3 id="promo-modal-title" style="
+      color:#fff;font-size:17px;font-weight:800;
+      text-align:center;margin-bottom:20px;
+    "></h3>
+
+    <!-- STEP 1 — Choose action -->
+    <div id="promo-step-1">
+      <p style="color:#94a3b8;font-size:13px;text-align:center;margin-bottom:20px;">What would you like to do?</p>
+
+      <!-- INQUIRE -->
+      <button id="promo-btn-inquire" style="
+        width:100%;background:linear-gradient(135deg,#071129,#0f172a);
+        border:2px solid #25d366;border-radius:16px;
+        padding:18px;margin-bottom:12px;cursor:pointer;
+        display:flex;align-items:center;gap:14px;text-align:left;
+      ">
+        <span style="font-size:32px;">💬</span>
+        <div>
+          <div style="color:#fff;font-size:15px;font-weight:700;">Inquire / Ask Question</div>
+          <div style="color:#94a3b8;font-size:12px;">Chat with us on WhatsApp</div>
+        </div>
+        <span style="color:#25d366;margin-left:auto;font-size:18px;">→</span>
+      </button>
+
+      <!-- PAY -->
+      <button id="promo-btn-pay" style="
+        width:100%;background:linear-gradient(135deg,#071a07,#0f2a0f);
+        border:2px solid #ffd700;border-radius:16px;
+        padding:18px;cursor:pointer;
+        display:flex;align-items:center;gap:14px;text-align:left;
+      ">
+        <span style="font-size:32px;">💳</span>
+        <div>
+          <div style="color:#fff;font-size:15px;font-weight:700;">Pay for Product / Service</div>
+          <div style="color:#94a3b8;font-size:12px;">M-Pesa, Pochi, Crypto & more</div>
+        </div>
+        <span style="color:#ffd700;margin-left:auto;font-size:18px;">→</span>
+      </button>
+    </div>
+
+    <!-- STEP 2A — INQUIRE via WhatsApp -->
+    <div id="promo-step-inquire" style="display:none;">
+      <button class="promo-back" style="background:none;border:none;color:#94a3b8;cursor:pointer;margin-bottom:16px;font-size:13px;">← Back</button>
+      <h4 style="color:#ffd700;font-size:16px;font-weight:800;margin-bottom:16px;">💬 Send Your Inquiry</h4>
+
+      <a id="promo-wa-inquire" href="#" style="
+        display:flex;align-items:center;gap:14px;
+        background:#075e54;border:1px solid #25d366;
+        border-radius:16px;padding:18px;margin-bottom:12px;
+        text-decoration:none;
+      ">
+        <span style="font-size:32px;">📲</span>
+        <div>
+          <div style="color:#fff;font-size:15px;font-weight:700;">WhatsApp Inquiry</div>
+          <div style="color:#94a3b8;font-size:12px;">Get instant reply from Cozycabin</div>
+        </div>
+        <span style="color:#25d366;margin-left:auto;font-size:18px;">→</span>
+      </a>
+
+      <a href="tel:+254702468460" style="
+        display:flex;align-items:center;gap:14px;
+        background:#0d1f2d;border:1px solid #0d84ff;
+        border-radius:16px;padding:18px;
+        text-decoration:none;
+      ">
+        <span style="font-size:32px;">📞</span>
+        <div>
+          <div style="color:#fff;font-size:15px;font-weight:700;">Call Us Directly</div>
+          <div style="color:#94a3b8;font-size:12px;">+254 702 468 460</div>
+        </div>
+        <span style="color:#0d84ff;margin-left:auto;font-size:18px;">→</span>
+      </a>
+    </div>
+
+    <!-- STEP 2B — PAY -->
+    <div id="promo-step-pay" style="display:none;">
+      <button class="promo-back" style="background:none;border:none;color:#94a3b8;cursor:pointer;margin-bottom:16px;font-size:13px;">← Back</button>
+      <h4 style="color:#ffd700;font-size:16px;font-weight:800;margin-bottom:16px;">💳 Choose Payment Method</h4>
+
+      <!-- KENYA PAYMENTS -->
+      <div style="color:#22c55e;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:10px;">🇰🇪 KENYA PAYMENTS</div>
+
+      <!-- Paybill -->
+      <div style="background:#0d1f0d;border:1px solid #22c55e;border-radius:14px;padding:16px;margin-bottom:10px;">
+        <div style="color:#22c55e;font-size:11px;font-weight:700;margin-bottom:10px;">M-PESA PAYBILL</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <div>
+            <div style="color:#94a3b8;font-size:11px;">Paybill Number</div>
+            <div style="color:#fff;font-size:22px;font-weight:800;letter-spacing:2px;">542542</div>
+          </div>
+          <button onclick="cozyyCopy('542542','cp1')" id="cp1" style="background:#22c55e;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Copy</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="color:#94a3b8;font-size:11px;">Account Number</div>
+            <div style="color:#fff;font-size:22px;font-weight:800;letter-spacing:2px;">702468</div>
+          </div>
+          <button onclick="cozyyCopy('702468','cp2')" id="cp2" style="background:#22c55e;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Copy</button>
+        </div>
+      </div>
+
+      <!-- Pochi -->
+      <div style="background:#0d1f0d;border:1px solid #22c55e;border-radius:14px;padding:16px;margin-bottom:16px;">
+        <div style="color:#22c55e;font-size:11px;font-weight:700;margin-bottom:10px;">LIPA NA POCHI LA BIASHARA</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="color:#94a3b8;font-size:11px;">Pochi Number</div>
+            <div style="color:#fff;font-size:20px;font-weight:800;letter-spacing:2px;">0702468460</div>
+          </div>
+          <button onclick="cozyyCopy('0702468460','cp3')" id="cp3" style="background:#22c55e;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Copy</button>
+        </div>
+      </div>
+
+      <!-- INTERNATIONAL PAYMENTS -->
+      <div style="color:#f2c94c;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:10px;">🌍 INTERNATIONAL PAYMENTS</div>
+
+      <a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ" style="display:flex;align-items:center;gap:12px;background:#0d1f0d;border:1px solid #12b347;border-radius:12px;padding:14px;margin-bottom:8px;text-decoration:none;">
+        <span style="font-size:24px;">💚</span>
+        <div><div style="color:#fff;font-size:13px;font-weight:700;">MiniPay</div><div style="color:#94a3b8;font-size:11px;">Fast crypto payments</div></div>
+        <span style="color:#12b347;margin-left:auto;">→</span>
+      </a>
+
+      <a href="binance-cryptopayment.html" style="display:flex;align-items:center;gap:12px;background:#1a1200;border:1px solid #e0b400;border-radius:12px;padding:14px;margin-bottom:8px;text-decoration:none;">
+        <span style="font-size:24px;">₿</span>
+        <div><div style="color:#fff;font-size:13px;font-weight:700;">Bitcoin / Binance</div><div style="color:#94a3b8;font-size:11px;">Crypto payment</div></div>
+        <span style="color:#e0b400;margin-left:auto;">→</span>
+      </a>
+
+      <a href="https://paypal.me/cozycabin" style="display:flex;align-items:center;gap:12px;background:#001a3d;border:1px solid #0070ba;border-radius:12px;padding:14px;margin-bottom:16px;text-decoration:none;">
+        <span style="font-size:24px;">🅿️</span>
+        <div><div style="color:#fff;font-size:13px;font-weight:700;">PayPal</div><div style="color:#94a3b8;font-size:11px;">Secure international payment</div></div>
+        <span style="color:#0070ba;margin-left:auto;">→</span>
+      </a>
+
+      <!-- Confirm on WhatsApp -->
+      <a id="promo-wa-confirm" href="#" style="
+        display:block;background:#25d366;color:#fff;
+        text-decoration:none;padding:16px;border-radius:14px;
+        font-weight:700;text-align:center;font-size:15px;
+      ">📲 Confirm Payment on WhatsApp</a>
+    </div>
+
+  </div>
 </div>
 
-<script>
-  document.getElementById('test-shoes-btn').addEventListener('click', function() {
-    if (typeof window.showProducts === 'function') {
-      // First open the fashion submenu so container moves correctly
-      var menu = document.getElementById('fashion-sub');
-      if (menu) menu.style.display = 'block';
-      window.showProducts('shoes');
-    } else {
-      alert('showProducts is NOT defined - products.js failed to load');
-    }
-  });
-</script>
-  <!-- 
-  ROTATING MARKETING BANNER
-  Place this just above your main-grid div
-  Rotates every 3 seconds, tapping opens that category
--->
+<!-- PROMO BANNER -->
+<div id="promo-banner" style="margin:15px 0;border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:0 0 18px rgba(255,215,0,0.12);">
 
-<div id="promo-banner" style="
-  margin: 15px 0;
-  cursor: pointer;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 0 18px rgba(255,215,0,0.15);
-">
-
-  <!-- SLIDES -->
-  <div class="promo-slide active" data-category="shoes" data-submenu="fashion-sub" style="
-    display:flex; align-items:center; justify-content:space-between;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    border: 2px solid #ffd700;
-    border-radius: 16px;
-    padding: 16px 20px;
-    gap: 12px;
-  ">
+  <div class="promo-slide active" data-label="NEW ARRIVALS" data-title="👟 Fresh Shoes Just Dropped" style="display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1a1a2e,#16213e);border:2px solid #ffd700;border-radius:16px;padding:16px 20px;gap:12px;">
     <div>
-      <div style="color:#ffd700;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">NEW ARRIVALS</div>
-      <div style="color:#fff;font-size:17px;font-weight:800;">👟 Fresh Shoes Just Dropped</div>
-      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to shop latest styles →</div>
+      <div style="color:#ffd700;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">NEW ARRIVALS</div>
+      <div style="color:#fff;font-size:16px;font-weight:800;">👟 Fresh Shoes Just Dropped</div>
+      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
     </div>
-    <div style="font-size:40px;flex-shrink:0;">👟</div>
+    <div style="font-size:38px;flex-shrink:0;">👟</div>
   </div>
 
-  <div class="promo-slide" data-category="solarlights" data-submenu="solar-sub" style="
-    display:none; align-items:center; justify-content:space-between;
-    background: linear-gradient(135deg, #0d2137, #0a3d1f);
-    border: 2px solid #22c55e;
-    border-radius: 16px;
-    padding: 16px 20px;
-    gap: 12px;
-  ">
+  <div class="promo-slide" data-label="SOLAR DEALS" data-title="☀️ Save With Solar Today" style="display:none;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#0d2137,#0a3d1f);border:2px solid #22c55e;border-radius:16px;padding:16px 20px;gap:12px;">
     <div>
-      <div style="color:#22c55e;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">SOLAR DEALS</div>
-      <div style="color:#fff;font-size:17px;font-weight:800;">☀️ Save With Solar Today</div>
-      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to explore solar products →</div>
+      <div style="color:#22c55e;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">SOLAR DEALS</div>
+      <div style="color:#fff;font-size:16px;font-weight:800;">☀️ Save With Solar Today</div>
+      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
     </div>
-    <div style="font-size:40px;flex-shrink:0;">☀️</div>
+    <div style="font-size:38px;flex-shrink:0;">☀️</div>
   </div>
 
-  <div class="promo-slide" data-category="cookers" data-submenu="kitchen-sub" style="
-    display:none; align-items:center; justify-content:space-between;
-    background: linear-gradient(135deg, #1a0a00, #2d1200);
-    border: 2px solid #ff8a00;
-    border-radius: 16px;
-    padding: 16px 20px;
-    gap: 12px;
-  ">
+  <div class="promo-slide" data-label="KITCHEN SPECIALS" data-title="🍳 Cook Like a Pro" style="display:none;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1a0a00,#2d1200);border:2px solid #ff8a00;border-radius:16px;padding:16px 20px;gap:12px;">
     <div>
-      <div style="color:#ff8a00;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">KITCHEN SPECIALS</div>
-      <div style="color:#fff;font-size:17px;font-weight:800;">🍳 Cook Like a Pro</div>
-      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to see kitchen deals →</div>
+      <div style="color:#ff8a00;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">KITCHEN SPECIALS</div>
+      <div style="color:#fff;font-size:16px;font-weight:800;">🍳 Cook Like a Pro</div>
+      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
     </div>
-    <div style="font-size:40px;flex-shrink:0;">🍳</div>
+    <div style="font-size:38px;flex-shrink:0;">🍳</div>
   </div>
 
-  <div class="promo-slide" data-category="phones" data-submenu="smarttech-sub" style="
-    display:none; align-items:center; justify-content:space-between;
-    background: linear-gradient(135deg, #0d0d2b, #1a1a4e);
-    border: 2px solid #0d84ff;
-    border-radius: 16px;
-    padding: 16px 20px;
-    gap: 12px;
-  ">
+  <div class="promo-slide" data-label="SMARTTECH OFFERS" data-title="📱 Latest Phones & Gadgets" style="display:none;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#0d0d2b,#1a1a4e);border:2px solid #0d84ff;border-radius:16px;padding:16px 20px;gap:12px;">
     <div>
-      <div style="color:#0d84ff;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">SMARTTECH OFFERS</div>
-      <div style="color:#fff;font-size:17px;font-weight:800;">📱 Latest Phones & Gadgets</div>
-      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to browse SmartTech →</div>
+      <div style="color:#0d84ff;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">SMARTTECH OFFERS</div>
+      <div style="color:#fff;font-size:16px;font-weight:800;">📱 Latest Phones & Gadgets</div>
+      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
     </div>
-    <div style="font-size:40px;flex-shrink:0;">📱</div>
+    <div style="font-size:38px;flex-shrink:0;">📱</div>
   </div>
 
-  <div class="promo-slide" data-category="shoes" data-submenu="fashion-sub" style="
-    display:none; align-items:center; justify-content:space-between;
-    background: linear-gradient(135deg, #1a0a1a, #2d002d);
-    border: 2px solid #ff00ff;
-    border-radius: 16px;
-    padding: 16px 20px;
-    gap: 12px;
-  ">
+  <div class="promo-slide" data-label="FASHION PICKS" data-title="👗 Top Fashion Styles" style="display:none;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1a0a1a,#2d002d);border:2px solid #ff6bff;border-radius:16px;padding:16px 20px;gap:12px;">
     <div>
-      <div style="color:#ff00ff;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">FASHION PICKS</div>
-      <div style="color:#fff;font-size:17px;font-weight:800;">👗 Top Fashion Styles</div>
-      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to shop fashion →</div>
+      <div style="color:#ff6bff;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">FASHION PICKS</div>
+      <div style="color:#fff;font-size:16px;font-weight:800;">👗 Top Fashion Styles</div>
+      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
     </div>
-    <div style="font-size:40px;flex-shrink:0;">👗</div>
+    <div style="font-size:38px;flex-shrink:0;">👗</div>
   </div>
 
-  <div class="promo-slide" data-category="fridges" data-submenu="appliances-sub" style="
-    display:none; align-items:center; justify-content:space-between;
-    background: linear-gradient(135deg, #0a1a0a, #0d2d0d);
-    border: 2px solid #ff4444;
-    border-radius: 16px;
-    padding: 16px 20px;
-    gap: 12px;
-  ">
+  <div class="promo-slide" data-label="LIMITED STOCK" data-title="🎁 Grab Deals Before Gone!" style="display:none;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1a0000,#2d0000);border:2px solid #ff4444;border-radius:16px;padding:16px 20px;gap:12px;">
     <div>
-      <div style="color:#ff4444;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">LIMITED STOCK</div>
-      <div style="color:#fff;font-size:17px;font-weight:800;">🎁 Grab Deals Before Gone!</div>
-      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to see limited offers →</div>
+      <div style="color:#ff4444;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">LIMITED STOCK</div>
+      <div style="color:#fff;font-size:16px;font-weight:800;">🎁 Grab Deals Before Gone!</div>
+      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
     </div>
-    <div style="font-size:40px;flex-shrink:0;">🎁</div>
+    <div style="font-size:38px;flex-shrink:0;">🎁</div>
   </div>
 
   <!-- DOTS -->
   <div style="display:flex;justify-content:center;gap:6px;padding:10px 0 4px;">
-    <span class="promo-dot active" style="width:8px;height:8px;border-radius:50%;background:#ffd700;display:inline-block;transition:.3s;"></span>
-    <span class="promo-dot" style="width:8px;height:8px;border-radius:50%;background:#444;display:inline-block;transition:.3s;"></span>
-    <span class="promo-dot" style="width:8px;height:8px;border-radius:50%;background:#444;display:inline-block;transition:.3s;"></span>
-    <span class="promo-dot" style="width:8px;height:8px;border-radius:50%;background:#444;display:inline-block;transition:.3s;"></span>
-    <span class="promo-dot" style="width:8px;height:8px;border-radius:50%;background:#444;display:inline-block;transition:.3s;"></span>
-    <span class="promo-dot" style="width:8px;height:8px;border-radius:50%;background:#444;display:inline-block;transition:.3s;"></span>
+    <span class="promo-dot" style="width:24px;height:6px;border-radius:3px;background:#ffd700;display:inline-block;transition:.3s;"></span>
+    <span class="promo-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
+    <span class="promo-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
+    <span class="promo-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
+    <span class="promo-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
+    <span class="promo-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
   </div>
 
 </div>
-<script>
-
-(function() {
-  var slides = document.querySelectorAll('.promo-slide');
-  var dots   = document.querySelectorAll('.promo-dot');
-  var current = 0;
-
-  function showSlide(n) {
-    slides[current].style.display = 'none';
-    dots[current].style.background = '#444';
-    current = (n + slides.length) % slides.length;
-    slides[current].style.display = 'flex';
-    dots[current].style.background = '#ffd700';
-  }
-
-  // Auto-rotate every 3 seconds
-  setInterval(function() { showSlide(current + 1); }, 3000);
-
-  // Tap to open category
-  document.getElementById('promo-banner').addEventListener('click', function() {
-    var slide = slides[current];
-    var submenu = slide.getAttribute('data-submenu');
-    var category = slide.getAttribute('data-category');
-    if (submenu) window.toggleSub(submenu);
-    setTimeout(function() {
-      if (category) window.showProducts(category);
-    }, 300);
-  });
-})();
--->
-  </script>
   
+ </script>
+
+
+
+ 
 <h3 style="text-align:center;color:#ffd700;margin-bottom:15px;">🇰🇪 LOCAL & ONLINE SHOP (KENYA)</h3>
 
 <!-- MAIN CATEGORY GRID -->
