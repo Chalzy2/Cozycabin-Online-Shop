@@ -40,7 +40,7 @@ var products = {
       description: "Elegant Timberland casual shoes for smart everyday fashion.",
       images: ["Images/timber-black.webp","Images/timber-white.webp"]
     },
-    ],
+    ].
   
 cutlery: [
     {  
@@ -50,7 +50,7 @@ cutlery: [
       sizes: [],
       colors: ["Black","Grey"],
       description: "Elegant silicone spoons for everyday use.",
-      images: ["Images/blcksilicn.webp"]
+      images: ["Images/blcksilicn.webp","Images/Silcn12psc1499.webp"]
     },
     {
       title: "24 Psc gold cutlery set",
@@ -59,7 +59,7 @@ cutlery: [
       sizes: [],
       colors: ["gold","silver"],
       description: "Elegant silicone spoons for everyday use.",
-      images: ["24silvercutlery-set.webp","24goldcutlery-set.webp"]
+      images: ["Images/24silvercutlery-set.webp","Images/24goldcutlery-set.webp"]
     }
     ],
   shirts:[], hoodies:[], watches:[], bags:[], caps:[], jeans:[], jackets:[],
