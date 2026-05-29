@@ -252,3 +252,99 @@ document.addEventListener('click', function(e) {
   }
 })();
 
+// =============================================
+// HERO BANNER — auto-rotate 7 slides
+// =============================================
+(function() {
+  var slides  = document.querySelectorAll('.hero-slide');
+  var dots    = document.querySelectorAll('.hero-dot');
+  var colors  = ['#2db742','#0d84ff','#ffd700','#22c55e','#f2c94c','#ff6bff','#ff4500'];
+  if (!slides.length) return;
+  var current = 0;
+
+  function showSlide(n) {
+    slides[current].style.display = 'none';
+    dots[current].style.background = '#333';
+    dots[current].style.width = '8px';
+    current = (n + slides.length) % slides.length;
+    slides[current].style.display = 'flex';
+    dots[current].style.background = colors[current];
+    dots[current].style.width = '24px';
+  }
+
+  setInterval(function() { showSlide(current + 1); }, 4000);
+})();
+
+// =============================================
+// SMART PAYMENT MODAL
+// =============================================
+window.openPaymentModal = function() {
+  var modal = document.getElementById('smart-payment-modal');
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    // Reset to step 1
+    backToStep1();
+  }
+};
+
+window.closePaymentModal = function() {
+  var modal = document.getElementById('smart-payment-modal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+};
+
+// Close when tapping backdrop
+document.addEventListener('click', function(e) {
+  var modal = document.getElementById('smart-payment-modal');
+  if (modal && e.target === modal) {
+    window.closePaymentModal();
+  }
+});
+
+window.chooseProductType = function(type) {
+  document.getElementById('payment-step-1').style.display = 'none';
+  document.getElementById('payment-step-kenya').style.display = 'none';
+  document.getElementById('payment-step-international').style.display = 'none';
+  document.getElementById('payment-step-digital').style.display = 'none';
+
+  if (type === 'local-kenya')   document.getElementById('payment-step-kenya').style.display = 'block';
+  if (type === 'international') document.getElementById('payment-step-international').style.display = 'block';
+  if (type === 'digital')       document.getElementById('payment-step-digital').style.display = 'block';
+};
+
+window.backToStep1 = function() {
+  document.getElementById('payment-step-kenya').style.display = 'none';
+  document.getElementById('payment-step-international').style.display = 'none';
+  document.getElementById('payment-step-digital').style.display = 'none';
+  document.getElementById('payment-step-1').style.display = 'block';
+};
+
+window.copyText = function(text, btnId) {
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.getElementById(btnId);
+    if (btn) {
+      btn.textContent = '✅ Copied!';
+      btn.style.background = '#166534';
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.style.background = '#22c55e';
+      }, 2000);
+    }
+  }).catch(function() {
+    // Fallback for older Android
+    var el = document.createElement('textarea');
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    var btn = document.getElementById(btnId);
+    if (btn) {
+      btn.textContent = '✅ Copied!';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+    }
+  });
+};
