@@ -594,19 +594,22 @@ window.submitMpesaPayment = async function() {
     document.getElementById('mpesa-code').value = '';
   } catch(e) { alert('Error: ' + e.message); }
 };
-window.submitDonation = async function() {
-  var code = document.getElementById('donation-code').value.trim();
-  if (!code) { alert('Please enter donation transaction code.'); return; }
-  try {
-    await addDoc(collection(db, 'donations'), { mpesaCode: code, referralCode: referralCode, createdAt: serverTimestamp() });
-    alert('Thank you for supporting Cozycabin 🙌');
-    document.getElementById('donation-code').value = '';
-  } catch(e) { alert('Donation error: ' + e.message); }
-};
-https://www.cozycabin.co.ke/products.js?v=1026
+<script>
+  window.submitDonation = async function() {
+    var code = document.getElementById('donation-code').value.trim();
+    if (!code) { alert('Please enter donation transaction code.'); return; }
+    try {
+      await addDoc(collection(db, 'donations'), { mpesaCode: code, referralCode: referralCode, createdAt: serverTimestamp() });
+      alert('Thank you for supporting Cozycabin 🙌');
+      document.getElementById('donation-code').value = '';
+    } catch(e) { alert('Donation error: ' + e.message); }
+  };
 </script>
+
+<script src="products.js?v=2"></script>
 </body>
 </html>
+
 
  
 
