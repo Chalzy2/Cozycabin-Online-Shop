@@ -270,6 +270,34 @@ body,.container,.main-grid{overflow-x:hidden;}
 </div>
 
 <!-- LOCAL SHOP TITLE -->
+  <!-- 
+  ADD THIS temporarily just above your main-grid div in index.html
+  It will show a red test button on your page
+  If tapping it shows products = showProducts works fine
+  If not = products.js is not executing at all
+-->
+
+<div style="padding:10px;">
+  <button 
+    id="test-shoes-btn"
+    style="width:100%;background:red;color:white;padding:15px;font-size:16px;font-weight:bold;border:none;border-radius:10px;cursor:pointer;">
+    🧪 TEST: Show Shoes
+  </button>
+</div>
+
+<script>
+  document.getElementById('test-shoes-btn').addEventListener('click', function() {
+    if (typeof window.showProducts === 'function') {
+      // First open the fashion submenu so container moves correctly
+      var menu = document.getElementById('fashion-sub');
+      if (menu) menu.style.display = 'block';
+      window.showProducts('shoes');
+    } else {
+      alert('showProducts is NOT defined - products.js failed to load');
+    }
+  });
+</script>
+  
 <h3 style="text-align:center;color:#ffd700;margin-bottom:15px;">🇰🇪 LOCAL & ONLINE SHOP (KENYA)</h3>
 <!-- MAIN CATEGORY GRID -->
 <div class="main-grid">
