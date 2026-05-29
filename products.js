@@ -15,7 +15,7 @@ var products = {
     {
       title: "Classic Black Sneakers", company: "Fashion",
       price: 1999, oldPrice: 2500, sizes: [41,42,43,44],
-      colors: ["Black","Gray","Gold"],
+      colors: ["Black","Grey","Gold"],
       description: "Comfortable lightweight sneakers for daily wear.",
       images: ["Images/black-shoes.webp","Images/greyshoes.webp","Images/gold-shoes.webp"]
     },
@@ -39,8 +39,24 @@ var products = {
       colors: ["Black","White"],
       description: "Elegant Timberland casual shoes for smart everyday fashion.",
       images: ["Images/timber-black.webp","Images/timber-white.webp"]
+    },
+    ],
+ cutlery: [
+    { 
+      title: "24psc gold cutlery set",
+      price: 2500, oldPrice: 3500,
+      colors: ["Gold","Silver"],
+      description: "Elegant 24-piece gold stainless steel cutlery set with stand.",
+      images: ["Images/24goldcutlery set.webp","Images/silver cutlery.webp"]
+    },
+    {
+      title: "Silicone Spoons",
+      price: 1499, oldPrice: 2000,
+      colors: ["Black","grey"],
+      description: "Elegant Timberland casual shoes for smart everyday fashion.",
+      images: ["Images/blcksilicn.webp","Images/Silcn12psc1499.webp"]
     }
-  ],
+  
   shirts:[], hoodies:[], watches:[], bags:[], caps:[], jeans:[], jackets:[],
   cutlery:[], dispenser:[], hotpots:[], racks:[], flasks:[], bottles:[], cookers:[], blenders:[],
   solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], floodlights:[], chargers:[], fans:[],
