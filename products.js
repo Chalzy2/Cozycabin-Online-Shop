@@ -201,7 +201,7 @@ document.addEventListener('click', function(e) {
   }
 
   // BUY BTN
-  if (el.classList.contains('buy-btn')) {
+if (el.classList.contains('buy-btn')) {
     var idx4 = el.getAttribute('data-index');
     var hint = document.getElementById('selection-hint-' + idx4);
     var s2 = selectedOptions[idx4] ? selectedOptions[idx4].size : null;
@@ -210,29 +210,146 @@ document.addEventListener('click', function(e) {
       if (hint) { hint.textContent = '⚠️ Please select size and color first'; hint.style.color = '#ef4444'; }
       return;
     }
+
+    // Save order details for payment modal
     var ref = localStorage.getItem('referralCode');
-    var msg = '👋 Hello Cozycabin!\n\nI\'d like to order:\n\n🛍️ ' + el.getAttribute('data-title') +
-      '\n📏 Size: ' + s2 + '\n🎨 Color: ' + c2 +
-      '\n💰 KES ' + parseInt(el.getAttribute('data-price')).toLocaleString() +
-      (ref ? '\n🔗 Ref: ' + ref : '') + '\n\nPlease confirm. Thank you!';
-    window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
+    window._pendingOrder = {
+      title: el.getAttribute('data-title'),
+      size: s2,
+      color: c2,
+      price: parseInt(el.getAttribute('data-price')),
+      ref: ref
+    };
+
+    // Open smart payment modal
+    window.openPaymentModal();
     return;
-  }
-});
-// ROTATING PROMO BANNER
+}
+// =============================================
+// PROMO BANNER v2 — Rotate + Action Modal
+// =============================================
 (function() {
-  var slides = document.querySelectorAll('.promo-slide');
-  var dots   = document.querySelectorAll('.promo-dot');
+  var slides  = document.querySelectorAll('.promo-slide');
+  var dots    = document.querySelectorAll('.promo-dot');
+  var colors  = ['#ffd700','#22c55e','#ff8a00','#0d84ff','#ff6bff','#ff4444'];
   if (!slides.length) return;
   var current = 0;
 
   function showSlide(n) {
     slides[current].style.display = 'none';
-    dots[current].style.background = '#444';
+    dots[current].style.background = '#333';
+    dots[current].style.width = '8px';
     current = (n + slides.length) % slides.length;
     slides[current].style.display = 'flex';
-    dots[current].style.background = '#ffd700';
+    dots[current].style.background = colors[current] || '#ffd700';
+    dots[current].style.width = '24px';
   }
+
+  // Rotate every 8 seconds
+  setInterval(function() { showSlide(current + 1); }, 8000);
+
+  // Swipe support
+  var startX = 0;
+  var banner = document.getElementById('promo-banner');
+  if (banner) {
+    banner.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+    banner.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) showSlide(diff > 0 ? current + 1 : current - 1);
+    }, { passive: true });
+
+    // TAP → open action modal
+    banner.addEventListener('click', function() {
+      var slide = slides[current];
+      var label = slide.getAttribute('data-label') || 'COZYCABIN';
+      var title = slide.getAttribute('data-title') || 'Shop with Cozycabin';
+
+      // Set modal content
+      document.getElementById('promo-modal-label').textContent = label;
+      document.getElementById('promo-modal-title').textContent = title;
+
+      // Set WhatsApp links with slide context
+      var waMsg = encodeURIComponent(
+        '👋 Hello Cozycabin!\n\nI saw your banner: "' + title + '"\n\nI would like to know more. Please assist. 🙏'
+      );
+      var waConfirm = encodeURIComponent(
+        '👋 Hello Cozycabin!\n\nI have made payment for: "' + title + '"\n\nPlease confirm my order. 🛒'
+      );
+      document.getElementById('promo-wa-inquire').href = 'https://wa.me/254702468460?text=' + waMsg;
+      document.getElementById('promo-wa-confirm').href = 'https://wa.me/254702468460?text=' + waConfirm;
+
+      // Show modal
+      var modal = document.getElementById('promo-action-modal');
+      if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        promoBackToStep1();
+      }
+    });
+  }
+
+  // Close modal
+  var closeBtn = document.getElementById('promo-modal-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+      document.getElementById('promo-action-modal').style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  }
+
+  // Close on backdrop tap
+  document.getElementById('promo-action-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      this.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Inquire button
+  document.getElementById('promo-btn-inquire').addEventListener('click', function() {
+    document.getElementById('promo-step-1').style.display = 'none';
+    document.getElementById('promo-step-inquire').style.display = 'block';
+    document.getElementById('promo-step-pay').style.display = 'none';
+  });
+
+  // Pay button
+  document.getElementById('promo-btn-pay').addEventListener('click', function() {
+    document.getElementById('promo-step-1').style.display = 'none';
+    document.getElementById('promo-step-inquire').style.display = 'none';
+    document.getElementById('promo-step-pay').style.display = 'block';
+  });
+
+  // Back buttons
+  document.querySelectorAll('.promo-back').forEach(function(btn) {
+    btn.addEventListener('click', promoBackToStep1);
+  });
+})();
+
+function promoBackToStep1() {
+  document.getElementById('promo-step-1').style.display = 'block';
+  document.getElementById('promo-step-inquire').style.display = 'none';
+  document.getElementById('promo-step-pay').style.display = 'none';
+}
+
+function cozyyCopy(text, btnId) {
+  var btn = document.getElementById(btnId);
+  navigator.clipboard.writeText(text).then(function() {
+    if (btn) { btn.textContent = '✅ Copied!'; btn.style.background = '#166534'; }
+    setTimeout(function() {
+      if (btn) { btn.textContent = 'Copy'; btn.style.background = '#22c55e'; }
+    }, 2000);
+  }).catch(function() {
+    var el = document.createElement('textarea');
+    el.value = text; document.body.appendChild(el);
+    el.select(); document.execCommand('copy');
+    document.body.removeChild(el);
+    if (btn) { btn.textContent = '✅ Copied!'; }
+    setTimeout(function() { if (btn) btn.textContent = 'Copy'; }, 2000);
+  });
+}
+
 
   // Auto-rotate every 3 seconds
   setInterval(function() { showSlide(current + 1); }, 3000);
@@ -253,13 +370,32 @@ document.addEventListener('click', function(e) {
 })();
 
 // =============================================
-// HERO BANNER — auto-rotate 7 slides
+// HERO BANNER v2 — Auto-counts all slides
+// including advertiser AD SLOTS
+// Just add a slide with class "hero-slide"
+// and it gets included automatically
 // =============================================
 (function() {
-  var slides  = document.querySelectorAll('.hero-slide');
-  var dots    = document.querySelectorAll('.hero-dot');
-  var colors  = ['#2db742','#0d84ff','#ffd700','#22c55e','#f2c94c','#ff6bff','#ff4500'];
-  if (!slides.length) return;
+  var slides = document.querySelectorAll('.hero-slide');
+  var dotsContainer = document.getElementById('hero-dots');
+  if (!slides.length || !dotsContainer) return;
+
+  var dotColors = [
+    '#2db742','#0d84ff','#ffd700','#22c55e',
+    '#f2c94c','#ff6bff','#ff4500',
+    // Ad slot colors — add more as needed
+    '#ff0099','#00ccff','#ff6600','#9900ff','#00ff99'
+  ];
+
+  // Auto-generate dots based on slide count
+  slides.forEach(function(_, i) {
+    var dot = document.createElement('span');
+    dot.style.cssText = 'width:' + (i===0?'24':'8') + 'px;height:6px;border-radius:3px;' +
+      'background:' + (i===0 ? dotColors[0] : '#333') + ';display:inline-block;transition:.3s;';
+    dotsContainer.appendChild(dot);
+  });
+
+  var dots = dotsContainer.querySelectorAll('span');
   var current = 0;
 
   function showSlide(n) {
@@ -268,12 +404,29 @@ document.addEventListener('click', function(e) {
     dots[current].style.width = '8px';
     current = (n + slides.length) % slides.length;
     slides[current].style.display = 'flex';
-    dots[current].style.background = colors[current];
+    dots[current].style.background = dotColors[current] || '#ffd700';
     dots[current].style.width = '24px';
   }
 
-  setInterval(function() { showSlide(current + 1); }, 4000);
+  // 8 seconds per slide
+  setInterval(function() { showSlide(current + 1); }, 8000);
+
+  // Swipe support for mobile
+  var startX = 0;
+  var banner = document.getElementById('hero-banner');
+  if (banner) {
+    banner.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+    banner.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        showSlide(diff > 0 ? current + 1 : current - 1);
+      }
+    }, { passive: true });
+  }
 })();
+
 
 // =============================================
 // SMART PAYMENT MODAL
