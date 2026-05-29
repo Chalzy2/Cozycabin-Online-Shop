@@ -524,68 +524,9 @@ body,.container,.main-grid{overflow-x:hidden;}
 </footer>
 
 <!-- ALL JAVASCRIPT -->
-<script>
-/* REFERRAL */
-var urlParams = new URLSearchParams(window.location.search);
-var urlRef = urlParams.get('ref');
-if (urlRef) { localStorage.setItem('referralCode', urlRef); }
-var referralCode = localStorage.getItem('referralCode') || 'Direct';
 
-/* TOGGLE SUBMENU */
-window.toggleSub = function(id) {
-  document.querySelectorAll('.minor-menu').forEach(function(m) {
-    if (m.id !== id) m.style.display = 'none';
-  });
-  var menu = document.getElementById(id);
-  if (!menu) return;
-  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-};
-
-/* CLOSE ALL */
-window.closeAllSubmenus = function() {
-  document.querySelectorAll('.minor-menu').forEach(function(m) { m.style.display = 'none'; });
-  var c = document.getElementById('products-container');
-  if (c) { c.innerHTML = ''; c.style.display = 'none'; }
-};
-
-/* CRYPTO TOGGLE */
-window.toggleCryptoRowDropdown = function() {
-  var menu = document.getElementById('crypto-row-dropdown-menu');
-  var arrow = document.getElementById('crypto-row-arrow');
-  if (menu.style.display === 'block') { menu.style.display = 'none'; arrow.style.transform = 'rotate(0deg)'; }
-  else { menu.style.display = 'block'; arrow.style.transform = 'rotate(180deg)'; }
-};
-
-/* EBOOK TOGGLE */
-window.toggleEbookRowDropdown = function() {
-  var menu = document.getElementById('ebook-row-dropdown-menu');
-  var arrow = document.getElementById('ebook-row-arrow');
-  if (menu.style.display === 'block') { menu.style.display = 'none'; arrow.style.transform = 'rotate(0deg)'; }
-  else { menu.style.display = 'block'; arrow.style.transform = 'rotate(180deg)'; }
-};
-
-/* MODAL */
-window.openModal = function(src) { document.getElementById('imageModal').style.display = 'flex'; document.getElementById('expandedImg').src = src; };
-window.closeModal = function() { document.getElementById('imageModal').style.display = 'none'; };
-
-/* CURRENCY SELECTOR */
-window.handleCurrencySelection = function() {
-  var currency = document.getElementById('currencySelector').value;
-  var area = document.getElementById('paymentButtonArea');
-  if (!currency) { area.style.display = 'none'; area.innerHTML = ''; return; }
-  area.style.display = 'block';
-  var links = {
-    kes: '<a href="mpesa-payment.html" style="display:block;background:#25d366;color:#fff;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;margin-bottom:12px;">🛒 Pay for Local Products</a><a href="https://selar.co/z6wn6j11g1" target="_blank" style="display:block;background:#ffd700;color:#000;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;">📘 Pay for Ebook/Course</a>',
-    usd: '<a href="international-payment.html" style="display:block;background:#ffd700;color:#000;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;">🇺🇸 International Payment</a>',
-    euro: '<a href="international-payment.html" style="display:block;background:#ffd700;color:#000;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;">🇪🇺 International Payment</a>',
-    gbp: '<a href="international-payment.html" style="display:block;background:#ffd700;color:#000;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;">🇬🇧 International Payment</a>',
-    crypto: '<a href="binance-cryptopayment.html" style="display:block;background:#f3ba2f;color:#000;text-decoration:none;padding:16px;border-radius:14px;font-weight:bold;text-align:center;font-size:16px;">🪙 Pay with Binance</a>'
-  };
-  area.innerHTML = links[currency] || '';
-};
-
- 
 /* ANTI-THEFT */
+  <script
 document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
 document.addEventListener('dragstart', function(e) { e.preventDefault(); });
 document.addEventListener('copy', function(e) { e.preventDefault(); });
@@ -622,16 +563,7 @@ window.submitMpesaPayment = async function() {
     document.getElementById('mpesa-code').value = '';
   } catch(e) { alert('Error: ' + e.message); }
 };
-<script>
-  window.submitDonation = async function() {
-    var code = document.getElementById('donation-code').value.trim();
-    if (!code) { alert('Please enter donation transaction code.'); return; }
-    try {
-      await addDoc(collection(db, 'donations'), { mpesaCode: code, referralCode: referralCode, createdAt: serverTimestamp() });
-      alert('Thank you for supporting Cozycabin 🙌');
-      document.getElementById('donation-code').value = '';
-    } catch(e) { alert('Donation error: ' + e.message); }
-  };
+  </script>
   <script>
     // v5
 /* =========================
