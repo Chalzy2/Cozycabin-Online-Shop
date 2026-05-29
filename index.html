@@ -297,6 +297,159 @@ body,.container,.main-grid{overflow-x:hidden;}
     }
   });
 </script>
+  <!-- 
+  ROTATING MARKETING BANNER
+  Place this just above your main-grid div
+  Rotates every 3 seconds, tapping opens that category
+-->
+
+<div id="promo-banner" style="
+  margin: 15px 0;
+  cursor: pointer;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 18px rgba(255,215,0,0.15);
+">
+
+  <!-- SLIDES -->
+  <div class="promo-slide active" data-category="shoes" data-submenu="fashion-sub" style="
+    display:flex; align-items:center; justify-content:space-between;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border: 2px solid #ffd700;
+    border-radius: 16px;
+    padding: 16px 20px;
+    gap: 12px;
+  ">
+    <div>
+      <div style="color:#ffd700;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">NEW ARRIVALS</div>
+      <div style="color:#fff;font-size:17px;font-weight:800;">👟 Fresh Shoes Just Dropped</div>
+      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to shop latest styles →</div>
+    </div>
+    <div style="font-size:40px;flex-shrink:0;">👟</div>
+  </div>
+
+  <div class="promo-slide" data-category="solarlights" data-submenu="solar-sub" style="
+    display:none; align-items:center; justify-content:space-between;
+    background: linear-gradient(135deg, #0d2137, #0a3d1f);
+    border: 2px solid #22c55e;
+    border-radius: 16px;
+    padding: 16px 20px;
+    gap: 12px;
+  ">
+    <div>
+      <div style="color:#22c55e;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">SOLAR DEALS</div>
+      <div style="color:#fff;font-size:17px;font-weight:800;">☀️ Save With Solar Today</div>
+      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to explore solar products →</div>
+    </div>
+    <div style="font-size:40px;flex-shrink:0;">☀️</div>
+  </div>
+
+  <div class="promo-slide" data-category="cookers" data-submenu="kitchen-sub" style="
+    display:none; align-items:center; justify-content:space-between;
+    background: linear-gradient(135deg, #1a0a00, #2d1200);
+    border: 2px solid #ff8a00;
+    border-radius: 16px;
+    padding: 16px 20px;
+    gap: 12px;
+  ">
+    <div>
+      <div style="color:#ff8a00;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">KITCHEN SPECIALS</div>
+      <div style="color:#fff;font-size:17px;font-weight:800;">🍳 Cook Like a Pro</div>
+      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to see kitchen deals →</div>
+    </div>
+    <div style="font-size:40px;flex-shrink:0;">🍳</div>
+  </div>
+
+  <div class="promo-slide" data-category="phones" data-submenu="smarttech-sub" style="
+    display:none; align-items:center; justify-content:space-between;
+    background: linear-gradient(135deg, #0d0d2b, #1a1a4e);
+    border: 2px solid #0d84ff;
+    border-radius: 16px;
+    padding: 16px 20px;
+    gap: 12px;
+  ">
+    <div>
+      <div style="color:#0d84ff;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">SMARTTECH OFFERS</div>
+      <div style="color:#fff;font-size:17px;font-weight:800;">📱 Latest Phones & Gadgets</div>
+      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to browse SmartTech →</div>
+    </div>
+    <div style="font-size:40px;flex-shrink:0;">📱</div>
+  </div>
+
+  <div class="promo-slide" data-category="shoes" data-submenu="fashion-sub" style="
+    display:none; align-items:center; justify-content:space-between;
+    background: linear-gradient(135deg, #1a0a1a, #2d002d);
+    border: 2px solid #ff00ff;
+    border-radius: 16px;
+    padding: 16px 20px;
+    gap: 12px;
+  ">
+    <div>
+      <div style="color:#ff00ff;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">FASHION PICKS</div>
+      <div style="color:#fff;font-size:17px;font-weight:800;">👗 Top Fashion Styles</div>
+      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to shop fashion →</div>
+    </div>
+    <div style="font-size:40px;flex-shrink:0;">👗</div>
+  </div>
+
+  <div class="promo-slide" data-category="fridges" data-submenu="appliances-sub" style="
+    display:none; align-items:center; justify-content:space-between;
+    background: linear-gradient(135deg, #0a1a0a, #0d2d0d);
+    border: 2px solid #ff4444;
+    border-radius: 16px;
+    padding: 16px 20px;
+    gap: 12px;
+  ">
+    <div>
+      <div style="color:#ff4444;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">LIMITED STOCK</div>
+      <div style="color:#fff;font-size:17px;font-weight:800;">🎁 Grab Deals Before Gone!</div>
+      <div style="color:#94a3b8;font-size:12px;margin-top:4px;">Tap to see limited offers →</div>
+    </div>
+    <div style="font-size:40px;flex-shrink:0;">🎁</div>
+  </div>
+
+  <!-- DOTS -->
+  <div style="display:flex;justify-content:center;gap:6px;padding:10px 0 4px;">
+    <span class="promo-dot active" style="width:8px;height:8px;border-radius:50%;background:#ffd700;display:inline-block;transition:.3s;"></span>
+    <span class="promo-dot" style="width:8px;height:8px;border-radius:50%;background:#444;display:inline-block;transition:.3s;"></span>
+    <span class="promo-dot" style="width:8px;height:8px;border-radius:50%;background:#444;display:inline-block;transition:.3s;"></span>
+    <span class="promo-dot" style="width:8px;height:8px;border-radius:50%;background:#444;display:inline-block;transition:.3s;"></span>
+    <span class="promo-dot" style="width:8px;height:8px;border-radius:50%;background:#444;display:inline-block;transition:.3s;"></span>
+    <span class="promo-dot" style="width:8px;height:8px;border-radius:50%;background:#444;display:inline-block;transition:.3s;"></span>
+  </div>
+
+</div>
+<script>
+
+(function() {
+  var slides = document.querySelectorAll('.promo-slide');
+  var dots   = document.querySelectorAll('.promo-dot');
+  var current = 0;
+
+  function showSlide(n) {
+    slides[current].style.display = 'none';
+    dots[current].style.background = '#444';
+    current = (n + slides.length) % slides.length;
+    slides[current].style.display = 'flex';
+    dots[current].style.background = '#ffd700';
+  }
+
+  // Auto-rotate every 3 seconds
+  setInterval(function() { showSlide(current + 1); }, 3000);
+
+  // Tap to open category
+  document.getElementById('promo-banner').addEventListener('click', function() {
+    var slide = slides[current];
+    var submenu = slide.getAttribute('data-submenu');
+    var category = slide.getAttribute('data-category');
+    if (submenu) window.toggleSub(submenu);
+    setTimeout(function() {
+      if (category) window.showProducts(category);
+    }, 300);
+  });
+})();
+-->
+  </script>
   
 <h3 style="text-align:center;color:#ffd700;margin-bottom:15px;">🇰🇪 LOCAL & ONLINE SHOP (KENYA)</h3>
 
