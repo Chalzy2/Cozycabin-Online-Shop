@@ -1,4 +1,67 @@
 // ============================================================
+//  COZYCABIN SECURITY — client-side protections
+//  Does NOT affect image uploads, product display, or modals
+// ============================================================
+(function cozySecurity() {
+
+  // 1. Block right-click (prevents casual image stealing)
+  document.addEventListener('contextmenu', function(e) {
+    var tag = e.target.tagName;
+    if (tag === 'IMG' || tag === 'VIDEO') {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // 2. Block drag-save of images & videos
+  document.addEventListener('dragstart', function(e) {
+    var tag = e.target.tagName;
+    if (tag === 'IMG' || tag === 'VIDEO') { e.preventDefault(); }
+  });
+
+  // 3. Disable long-press save on iOS/Android (pointer hold)
+  document.addEventListener('touchstart', function(e) {
+    var tag = e.target.tagName;
+    if (tag === 'IMG' || tag === 'VIDEO') {
+      e.target.setAttribute('draggable', 'false');
+    }
+  }, { passive: true });
+
+  // 4. Block keyboard shortcuts for save/print/view-source (F12, Ctrl+S, Ctrl+P, Ctrl+U)
+  document.addEventListener('keydown', function(e) {
+    // F12 — DevTools
+    if (e.key === 'F12') { e.preventDefault(); return false; }
+    // Ctrl/Cmd + S (save), P (print), U (view-source)
+    if ((e.ctrlKey || e.metaKey) && ['s','S','p','P','u','U'].indexOf(e.key) !== -1) {
+      e.preventDefault(); return false;
+    }
+  });
+
+  // 5. Detect DevTools open (width/height gap trick) — just logs, no disruption
+  var devToolsOpen = false;
+  setInterval(function() {
+    var w = window.outerWidth - window.innerWidth;
+    var h = window.outerHeight - window.innerHeight;
+    if (!devToolsOpen && (w > 160 || h > 160)) {
+      devToolsOpen = true;
+      console.clear();
+      console.log('%c⚠ COZYCABIN — Authorised access only', 'color:#ffd700;font-size:14px;font-weight:bold;');
+    } else if (devToolsOpen && w < 160 && h < 160) {
+      devToolsOpen = false;
+    }
+  }, 1500);
+
+  // 6. CSS: prevent text selection on product cards (images, titles)
+  var noSelectStyle = document.createElement('style');
+  noSelectStyle.textContent =
+    '.product-card img,.product-card video,.cc-gallery{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}' +
+    '.cc-gallery img,.cc-gallery video{pointer-events:none;}' + // disable tap-hold image save
+    '.cc-play-overlay{pointer-events:auto;}'; // but keep play button tappable
+  document.head.appendChild(noSelectStyle);
+
+})();
+
+// ============================================================
 //  COZYCABIN PRODUCTS.JS — v4 VIDEO GALLERY
 //  CHANGES FROM v3:
 //  - showProducts card now has swipeable gallery: video first → images
@@ -153,10 +216,11 @@ function buildGalleryHTML(product, index) {
       trackHTML +=
         '<div class="cc-slide">' +
           '<video class="cc-video" id="ccvid-' + index + '" src="' + slide.src + '" ' +
-                 'loop muted autoplay playsinline preload="auto" ' +
+                 'muted autoplay playsinline preload="auto" ' +
                  'oncanplay="ccOnCanPlay(' + index + ')" ' +
                  'onerror="ccOnVideoError(' + index + ')" ' +
                  'style="width:100%;height:100%;object-fit:cover;display:block;"></video>' +
+          '<div class="cc-vid-progress" id="cc-prog-' + index + '"></div>' +
           '<div class="cc-play-overlay" id="cc-play-' + index + '" onclick="ccToggleVideo(' + index + ')" style="opacity:0;pointer-events:none;">' +
             '<div class="cc-play-btn"><svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#000;margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div>' +
           '</div>' +
@@ -272,12 +336,45 @@ window.ccToggleVideo = function(pidx) {
   }
 };
 
-// Called when video loads OK — update badge, hide overlay
+// Called when video loads OK — autoplay, show progress bar, advance after 20s
 window.ccOnCanPlay = function(pidx) {
   var badge   = document.getElementById('cc-badge-' + pidx);
   var overlay = document.getElementById('cc-play-' + pidx);
+  var prog    = document.getElementById('cc-prog-' + pidx);
+  var vid     = document.getElementById('ccvid-' + pidx);
   if (badge)   { badge.textContent = '▶ VIDEO'; }
   if (overlay) { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; }
+
+  // Start gold progress bar over 20 seconds
+  if (prog) {
+    prog.style.transition = 'none';
+    prog.style.width = '0%';
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        prog.style.transition = 'width 20s linear';
+        prog.style.width = '100%';
+      });
+    });
+  }
+
+  // After 20s, advance to slide 1 (first image)
+  var galId = 'gal-' + pidx;
+  var gal   = document.getElementById(galId);
+  if (gal && parseInt(gal.getAttribute('data-total')) > 1) {
+    // Clear any previous timer
+    if (window._vidTimer && window._vidTimer[pidx]) {
+      clearTimeout(window._vidTimer[pidx]);
+    }
+    if (!window._vidTimer) window._vidTimer = {};
+    window._vidTimer[pidx] = setTimeout(function() {
+      // Only advance if still on slide 0
+      if (parseInt(gal.getAttribute('data-current')) === 0) {
+        window.ccGoTo(galId, 1, pidx);
+        // Stop video to save bandwidth
+        if (vid) vid.pause();
+      }
+    }, 20000);
+  }
 };
 
 // Called if video fails (Drive CORS, bad URL) — show tap-to-play fallback
@@ -288,18 +385,45 @@ window.ccOnVideoError = function(pidx) {
   if (overlay) { overlay.style.opacity = '1'; overlay.style.pointerEvents = 'auto'; }
 };
 
-// Also re-autoplay when user swipes BACK to slide 0
+// Re-autoplay + reset progress bar when user swipes BACK to slide 0
 var _origCcGoTo = window.ccGoTo;
 window.ccGoTo = function(galId, si, pidx) {
   _origCcGoTo(galId, si, pidx);
   if (si === 0) {
     var vid     = document.getElementById('ccvid-' + pidx);
     var overlay = document.getElementById('cc-play-' + pidx);
-    if (vid && vid.paused) {
+    var prog    = document.getElementById('cc-prog-' + pidx);
+    // Reset progress bar
+    if (prog) {
+      prog.style.transition = 'none';
+      prog.style.width = '0%';
+    }
+    if (vid) {
+      vid.currentTime = 0;
       vid.play().then(function() {
         if (overlay) { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; }
+        // Restart progress bar
+        if (prog) {
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              prog.style.transition = 'width 20s linear';
+              prog.style.width = '100%';
+            });
+          });
+        }
+        // Restart 20s advance timer
+        var gal = document.getElementById(galId);
+        if (gal && parseInt(gal.getAttribute('data-total')) > 1) {
+          if (window._vidTimer && window._vidTimer[pidx]) clearTimeout(window._vidTimer[pidx]);
+          if (!window._vidTimer) window._vidTimer = {};
+          window._vidTimer[pidx] = setTimeout(function() {
+            if (parseInt(gal.getAttribute('data-current')) === 0) {
+              window.ccGoTo(galId, 1, pidx);
+              if (vid) vid.pause();
+            }
+          }, 20000);
+        }
       }).catch(function() {
-        // autoplay blocked — show tap-to-play
         if (overlay) { overlay.style.opacity = '1'; overlay.style.pointerEvents = 'auto'; }
       });
     }
@@ -334,37 +458,26 @@ function attachSwipe(galId, pidx) {
   var s = document.createElement('style');
   s.id = 'cc-gallery-style';
   s.textContent = [
-    /* Gallery container */
-    '.cc-gallery{width:100%;border-radius:var(--radius-md);overflow:hidden;margin-bottom:10px;background:#000;}',
-
-    /* Viewport clips everything */
-    '.cc-viewport{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;background:#000;}',
-
-    /* Sliding track */
+    '.cc-gallery{width:100%;border-radius:12px;overflow:hidden;margin-bottom:10px;background:#000;}',
+    /* 3:4 portrait — fills screen cleanly for shoes/fashion, no black bars */
+    '.cc-viewport{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:#0a0f1e;}',
     '.cc-track{display:flex;width:100%;height:100%;transition:transform 0.32s cubic-bezier(.4,0,.2,1);}',
     '.cc-slide{flex:0 0 100%;width:100%;height:100%;position:relative;overflow:hidden;}',
-
-    /* Video play overlay */
-    '.cc-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.28);cursor:pointer;transition:opacity 0.2s;}',
-    '.cc-play-btn{width:50px;height:50px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(255,215,0,0.45);}',
-
-    /* VIDEO badge */
-    '.cc-vid-badge{position:absolute;top:8px;left:8px;background:var(--gold);color:#000;font-size:9px;font-weight:800;letter-spacing:0.1em;padding:3px 7px;border-radius:5px;text-transform:uppercase;pointer-events:none;}',
-
-    /* Counter */
-    '.cc-counter{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.55);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:0.04em;pointer-events:none;}',
-
-    /* Dots */
-    '.cc-dots{position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:5px;pointer-events:none;}',
-    '.cc-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.3);transition:background .2s,transform .2s,width .2s;}',
-    '.cc-dot-active{background:var(--gold);transform:scale(1.3);width:16px;border-radius:3px;}',
-
-    /* Thumbnail row */
-    '.cc-thumbrow{display:flex;gap:7px;padding:8px 10px;overflow-x:auto;background:rgba(0,0,0,0.22);scrollbar-width:none;}',
+    '.cc-slide img,.cc-slide video{width:100%;height:100%;object-fit:cover;display:block;}',
+       /* Gold progress bar — 20s video countdown */
+    '.cc-vid-progress{position:absolute;bottom:0;left:0;height:3px;background:#ffd700;width:0%;z-index:5;border-radius:0 2px 2px 0;}',
+    '.cc-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.28);cursor:pointer;transition:opacity 0.2s;z-index:4;}',
+    '.cc-play-btn{width:54px;height:54px;background:#ffd700;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(255,215,0,0.5);}',
+    '.cc-vid-badge{position:absolute;top:8px;left:8px;background:#ffd700;color:#000;font-size:9px;font-weight:800;letter-spacing:0.1em;padding:3px 8px;border-radius:5px;text-transform:uppercase;pointer-events:none;z-index:5;}',
+    '.cc-counter{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:0.04em;pointer-events:none;z-index:5;}',
+    '.cc-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:5px;pointer-events:none;z-index:5;}',
+    '.cc-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.35);transition:background .2s,width .2s;}',
+    '.cc-dot-active{background:#ffd700;width:16px;border-radius:3px;}',
+    '.cc-thumbrow{display:flex;gap:7px;padding:8px 10px;overflow-x:auto;background:rgba(0,0,0,0.25);scrollbar-width:none;}',
     '.cc-thumbrow::-webkit-scrollbar{display:none;}',
-    '.cc-thumb{flex:0 0 52px;height:52px;border-radius:8px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:border-color .15s;position:relative;}',
-    '.cc-th-active{border-color:var(--gold)!important;}',
-    '.cc-thumb:hover{border-color:rgba(255,215,0,0.5);}'
+    '.cc-thumb{flex:0 0 56px;height:56px;border-radius:8px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:border-color .15s;position:relative;}',
+    '.cc-th-active{border-color:#ffd700!important;}',
+    '.cc-thumb img,.cc-thumb video{width:100%;height:100%;object-fit:cover;display:block;}'
   ].join('');
   document.head.appendChild(s);
 })();
@@ -714,7 +827,7 @@ document.addEventListener('click', function(e) {
     document.addEventListener('DOMContentLoaded', initPromoBanner);
   } else { initPromoBanner(); }
 })();
-
+      
 // ============================================================
 //  SMART PAYMENT MODAL
 // ============================================================
@@ -820,10 +933,16 @@ function cozyyCopy(text, btnId) {
 
 window.copyText = cozyyCopy;
 window.cozyyCopy = cozyyCopy;
+    
 
 
 
 
 
 
-  
+
+
+
+
+
+    
