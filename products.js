@@ -534,4 +534,61 @@ function cozyyCopy(text, btnId) {
 window.copyText = function (text, btnId) {
   cozyyCopy(text, btnId); /* same logic, different name */
 };
+
+  cat >> /mnt/user-data/outputs/products.js << 'ENDOFFILE'
+
+
+/* ════════════════════════════════════════
+   6. LOCAL PRODUCTS GRID
+   ════════════════════════════════════════ */
+(function () {
+  function initLocalGrid() {
+
+    /* ── Grid buttons → open submenu ── */
+    document.querySelectorAll('.grid-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var submenuId = btn.getAttribute('data-submenu');
+        if (!submenuId) return;
+        closeAllSubmenus();
+        var sub = document.getElementById(submenuId);
+        if (sub) {
+          sub.style.display = 'block';
+          sub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* ── Minor buttons → show products ── */
+    document.querySelectorAll('.minor-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var category = btn.getAttribute('data-category');
+        if (category && window.showProducts) {
+          window.showProducts(category);
+        }
+      });
+    });
+  }
+
+  /* ── Close all submenus (used by Back buttons too) ── */
+  window.closeAllSubmenus = function () {
+    document.querySelectorAll('.minor-menu').forEach(function (el) {
+      el.style.display = 'none';
+    });
+  };
+
+  /* ── toggleSub (called from hero banner Academy slide) ── */
+  window.toggleSub = function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var isOpen = el.style.display === 'block';
+    closeAllSubmenus();
+    el.style.display = isOpen ? 'none' : 'block';
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLocalGrid);
+  } else {
+    initLocalGrid();
+  }
+})();
   
