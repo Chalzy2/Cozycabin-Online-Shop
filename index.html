@@ -245,7 +245,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
   <div id="hero-banner">
 
     <!-- SLIDE 1 -->
-    <div class="hero-slide active" style="background:linear-gradient(135deg,#0d1a2a,#0f2030);border:2px solid #ffd700;" onclick="window.toggleSub&&window.toggleSub('fashion-sub')">
+    <div class="hero-slide active" style="background:linear-gradient(135deg,#0d1a2a,#0f2030);border:2px solid #ffd700;" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleSub&&window.toggleSub('fashion-sub');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">👟</div>
       <div style="background:#ffd700;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">FASHION</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">👟 Fashion & Shoes</div>
@@ -253,7 +253,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#ffd700;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Fashion →</div>
     </div>
     <!-- SLIDE 2 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0d00,#2d1500);border:2px solid #f97316;" onclick="window.toggleSub&&window.toggleSub('kitchen-sub')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0d00,#2d1500);border:2px solid #f97316;" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleSub&&window.toggleSub('kitchen-sub');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🍳</div>
       <div style="background:#f97316;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">KITCHEN</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🍳 Kitchen Essentials</div>
@@ -261,7 +261,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#f97316;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Kitchen →</div>
     </div>
     <!-- SLIDE 3 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1a0a,#162510);border:2px solid #f2c94c;" onclick="window.toggleSub&&window.toggleSub('solar-sub')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1a0a,#162510);border:2px solid #f2c94c;" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleSub&&window.toggleSub('solar-sub');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">☀️</div>
       <div style="background:#f2c94c;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">SOLAR</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">☀️ Solar Solutions</div>
@@ -269,7 +269,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#f2c94c;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Solar →</div>
     </div>
     <!-- SLIDE 4 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0a0d1f,#111830);border:2px solid #60a5fa;" onclick="window.toggleSub&&window.toggleSub('appliances-sub')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0a0d1f,#111830);border:2px solid #60a5fa;" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleSub&&window.toggleSub('appliances-sub');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🏠</div>
       <div style="background:#60a5fa;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">APPLIANCES</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🏠 Home Appliances</div>
@@ -277,7 +277,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#60a5fa;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Appliances →</div>
     </div>
     <!-- SLIDE 5 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a1a,#2a102a);border:2px solid #e879f9;" onclick="window.toggleSub&&window.toggleSub('decor-sub')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a1a,#2a102a);border:2px solid #e879f9;" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleSub&&window.toggleSub('decor-sub');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🎨</div>
       <div style="background:#e879f9;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">DÉCOR</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🎨 Home Décor</div>
@@ -285,7 +285,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#e879f9;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Décor →</div>
     </div>
     <!-- SLIDE 6 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1020,#141830);border:2px solid #818cf8;" onclick="window.toggleSub&&window.toggleSub('bedding-sub')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1020,#141830);border:2px solid #818cf8;" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleSub&&window.toggleSub('bedding-sub');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🛏️</div>
       <div style="background:#818cf8;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">BEDDING</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🛏️ Bedding &amp; Comfort</div>
@@ -293,7 +293,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#818cf8;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Bedding →</div>
     </div>
     <!-- SLIDE 7 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a00,#251500);border:2px solid #fb923c;" onclick="window.toggleSub&&window.toggleSub('security-sub')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a00,#251500);border:2px solid #fb923c;" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleSub&&window.toggleSub('security-sub');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🔐</div>
       <div style="background:#fb923c;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">SECURITY</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🔐 Home Security</div>
@@ -301,14 +301,14 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#fb923c;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Security →</div>
     </div>
     <!-- SLIDE 8 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1a10,#102015);border:2px solid #34d399;" onclick="window.toggleSub&&window.toggleSub('electronics-sub')">
+      <div class="hero-slide" style="background:linear-gradient(135deg,#0d1a10,#102015);border:2px solid #34d399;" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleSub&&window.toggleSub('electronics-sub');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">📱</div>
       <div style="background:#34d399;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ELECTRONICS</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">📱 Electronics</div>
       <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Speakers, earbuds, power banks &amp; more.<br>Latest tech at best prices.</div>
      </div>
     <!-- SLIDE 9 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0a0f1a,#101525);border:2px solid #38bdf8;" onclick="window.toggleSub&&window.toggleSub('computers-sub')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0a0f1a,#101525);border:2px solid #38bdf8;" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleSub&&window.toggleSub('computers-sub');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">💻</div>
       <div style="background:#38bdf8;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">COMPUTERS</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">💻 Computers &amp; Phones</div>
@@ -316,7 +316,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#38bdf8;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Computers →</div>
     </div>
     <!-- SLIDE 10 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1b2a,#1a2744);border:2px solid #3b82f6;" onclick="window.toggleDigital&&window.toggleDigital('video-courses')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1b2a,#1a2744);border:2px solid #3b82f6;" onclick="document.getElementById('digital').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleDigital&&window.toggleDigital('video-courses');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">📚</div>
       <div style="background:#3b82f6;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ACADEMY</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">📚 Academy Courses</div>
@@ -324,7 +324,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#3b82f6;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">View Courses →</div>
     </div>
     <!-- SLIDE 11 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0e00,#2d1800);border:2px solid #d97706;" onclick="window.toggleDigital&&window.toggleDigital('ebooks-menu')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0e00,#2d1800);border:2px solid #d97706;" onclick="document.getElementById('digital').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleDigital&&window.toggleDigital('ebooks-menu');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">📖</div>
       <div style="background:#d97706;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">E-BOOK</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">📖 Digital Library</div>
@@ -332,7 +332,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#d97706;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Browse E-Books →</div>
     </div>
     <!-- SLIDE 12 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0d0d1a,#1a1a30);border:2px solid #f2c94c;" onclick="window.toggleDigital&&window.toggleDigital('crypto-menu')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d0d1a,#1a1a30);border:2px solid #f2c94c;" onclick="document.getElementById('digital').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleDigital&&window.toggleDigital('crypto-menu');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">₿</div>
       <div style="background:#f2c94c;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">CRYPTO</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">₿ Crypto Mastery</div>
@@ -340,7 +340,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#f2c94c;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Explore Crypto →</div>
     </div>
     <!-- SLIDE 13 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0f0820,#1a1035);border:2px solid #a78bfa;" onclick="window.toggleDigital&&window.toggleDigital('affiliate-menu')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0f0820,#1a1035);border:2px solid #a78bfa;" onclick="document.getElementById('digital').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleDigital&&window.toggleDigital('affiliate-menu');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">💰</div>
       <div style="background:#a78bfa;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">AFFILIATE</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">💰 Affiliate Hub</div>
@@ -348,7 +348,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#a78bfa;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Start Earning →</div>
     </div>
     <!-- SLIDE 14 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#051510,#0a2018);border:2px solid #10b981;" onclick="window.toggleDigital&&window.toggleDigital('problem-menu')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#051510,#0a2018);border:2px solid #10b981;" onclick="document.getElementById('digital').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleDigital&&window.toggleDigital('problem-menu');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🛠️</div>
       <div style="background:#10b981;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">SOLUTIONS</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🛠️ Problem Solving</div>
@@ -356,7 +356,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="display:inline-block;margin-top:14px;background:#10b981;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Get Help →</div>
     </div>
     <!-- SLIDE 15 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0515,#2d0a22);border:2px solid #ec4899;" onclick="window.toggleDigital&&window.toggleDigital('entertainment-menu')">
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0515,#2d0a22);border:2px solid #ec4899;" onclick="document.getElementById('digital').scrollIntoView({behavior:'smooth'});setTimeout(function(){window.toggleDigital&&window.toggleDigital('entertainment-menu');},400);">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🎬</div>
       <div style="background:#ec4899;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ENTERTAINMENT</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🎬 Entertainment</div>
@@ -633,7 +633,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
 
     <!-- 6 DIGITAL GRID CARDS -->
     <div class="digital-6grid">
-
+      
       <!-- 1. Academy Courses -->
       <div class="dig-card" onclick="window.toggleDigital('video-courses')">
         <div class="dig-glow" style="background:radial-gradient(circle at 30% 40%,rgba(59,130,246,0.18),transparent 70%);"></div>
@@ -813,6 +813,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       🚀 Join Affiliate Program
     </button>
   </div>
+  
 
   <!-- ══════════════════════════════════════════════
        CONTACT SECTION
@@ -979,7 +980,8 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
 
     </div>
   </div>
-</div>
+        </div>
+  
 
 <!-- ══════════════════════════════════════════════
      PROMO ACTION MODAL
@@ -1034,26 +1036,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
 <script src="products.js"></script>
 
 <script>
-// ── DIGITAL GRID DROPDOWN TOGGLE ──
-window.toggleDigital = function(id) {
-  var allDigital = ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu'];
-  allDigital.forEach(function(mid) {
-    var el = document.getElementById(mid);
-    if (el && mid !== id) el.style.display = 'none';
-  });
-  var target = document.getElementById(id);
-  if (!target) return;
-  var isOpen = target.style.display === 'block';
-  target.style.display = isOpen ? 'none' : 'block';
-  if (!isOpen) setTimeout(function(){ target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
-};
-window.closeAllDigital = function() {
-  ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu']
-    .forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
-};
+// toggleDigital & closeAllDigital are defined in products.js
 
 // ══════════════════════════════════════════════
 //  COZYCABIN SECURITY — Anti-Theft · Anti-Hack · Anti-Screenshot
@@ -1162,4 +1145,7 @@ imgObserver.observe(document.body, { childList: true, subtree: true });
 </body>
 </html>
 
-     
+
+
+
+      
