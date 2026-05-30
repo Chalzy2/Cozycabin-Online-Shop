@@ -246,62 +246,133 @@ if (el.classList.contains('buy-btn')) {
     window.openPaymentModal();
     return;
 }
-// =============================================
-// PROMO BANNER v2 — Rotate + Action Modal
-// =============================================
-(function() {
-  var slides  = document.querySelectorAll('.promo-slide');
-  var dots    = document.querySelectorAll('.promo-dot');
-  var colors  = ['#ffd700','#22c55e','#ff8a00','#0d84ff','#ff6bff','#ff4444'];
-  if (!slides.length) return;
-  var current = 0;
 
-  function showSlide(n) {
-    slides[current].style.display = 'none';
-    dots[current].style.background = '#333';
-    dots[current].style.width = '8px';
-    current = (n + slides.length) % slides.length;
-    slides[current].style.display = 'flex';
-    dots[current].style.background = colors[current] || '#ffd700';
-    dots[current].style.width = '24px';
+  /* ============================================================
+   COZYCABIN — products.js
+   ─────────────────────────────────────────────────────────
+   1. Hero Banner slider      (#hero-banner)   — 2 sec rotate
+   2. Promo Banner slider     (#promo-banner)  — 2 sec rotate
+      + swipe support
+      + tap → payment action modal
+   ============================================================ */
+
+
+/* ════════════════════════════════════════
+   1. HERO BANNER
+   ════════════════════════════════════════ */
+(function () {
+  function initHeroBanner() {
+    var banner = document.getElementById('hero-banner');
+    if (!banner) return;
+
+    var slides  = banner.querySelectorAll('.hero-slide');
+    var dotsEl  = document.getElementById('hero-dots');
+    var current = 0;
+    var timer;
+
+    /* Build dots */
+    slides.forEach(function (_, i) {
+      var dot = document.createElement('button');
+      dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', function () { goTo(i); resetTimer(); });
+      dotsEl.appendChild(dot);
+    });
+
+    function goTo(n) {
+      slides[current].classList.remove('active');
+      slides[current].style.display = 'none';
+      dotsEl.children[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      slides[current].style.display = 'flex';
+      dotsEl.children[current].classList.add('active');
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(function () { goTo(current + 1); }, 2000);
+    }
+
+    resetTimer();
   }
 
-  // Rotate every 8 seconds
-  setInterval(function() { showSlide(current + 1); }, 8000);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroBanner);
+  } else {
+    initHeroBanner();
+  }
+})();
 
-  // Swipe support
-  var startX = 0;
-  var banner = document.getElementById('promo-banner');
-  if (banner) {
-    banner.addEventListener('touchstart', function(e) {
+
+/* ════════════════════════════════════════
+   2. PROMO BANNER + PAYMENT MODAL
+   ════════════════════════════════════════ */
+(function () {
+  function initPromoBanner() {
+    var banner = document.getElementById('promo-banner');
+    if (!banner) return;
+
+    var slides  = banner.querySelectorAll('.promo-slide');
+    var dots    = banner.querySelectorAll('.promo-dot');
+    var current = 0;
+    var timer;
+
+    /* ── Show slide n ── */
+    function showSlide(n) {
+      slides[current].classList.remove('active');
+      if (dots[current]) dots[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      if (dots[current]) dots[current].classList.add('active');
+    }
+
+    /* ── Auto-rotate every 2 seconds ── */
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(function () { showSlide(current + 1); }, 2000);
+    }
+
+    resetTimer();
+
+    /* ── Swipe support ── */
+    var startX = 0;
+    banner.addEventListener('touchstart', function (e) {
       startX = e.touches[0].clientX;
     }, { passive: true });
-    banner.addEventListener('touchend', function(e) {
+    banner.addEventListener('touchend', function (e) {
       var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) showSlide(diff > 0 ? current + 1 : current - 1);
+      if (Math.abs(diff) > 50) {
+        showSlide(diff > 0 ? current + 1 : current - 1);
+        resetTimer();
+      }
     }, { passive: true });
 
-    // TAP → open action modal
-    banner.addEventListener('click', function() {
+    /* ── TAP → open payment action modal ── */
+    banner.addEventListener('click', function () {
       var slide = slides[current];
       var label = slide.getAttribute('data-label') || 'COZYCABIN';
       var title = slide.getAttribute('data-title') || 'Shop with Cozycabin';
 
-      // Set modal content
-      document.getElementById('promo-modal-label').textContent = label;
-      document.getElementById('promo-modal-title').textContent = title;
+      /* Set modal content */
+      var modalLabel = document.getElementById('promo-modal-label');
+      var modalTitle = document.getElementById('promo-modal-title');
+      if (modalLabel) modalLabel.textContent = label;
+      if (modalTitle) modalTitle.textContent = title;
 
-      // Set WhatsApp links with slide context
+      /* WhatsApp links with slide context */
       var waMsg = encodeURIComponent(
         '👋 Hello Cozycabin!\n\nI saw your banner: "' + title + '"\n\nI would like to know more. Please assist. 🙏'
       );
       var waConfirm = encodeURIComponent(
         '👋 Hello Cozycabin!\n\nI have made payment for: "' + title + '"\n\nPlease confirm my order. 🛒'
       );
-      document.getElementById('promo-wa-inquire').href = 'https://wa.me/254702468460?text=' + waMsg;
-      document.getElementById('promo-wa-confirm').href = 'https://wa.me/254702468460?text=' + waConfirm;
+      var inquireEl = document.getElementById('promo-wa-inquire');
+      var confirmEl = document.getElementById('promo-wa-confirm');
+      if (inquireEl) inquireEl.href = 'https://wa.me/254702468460?text=' + waMsg;
+      if (confirmEl) confirmEl.href = 'https://wa.me/254702468460?text=' + waConfirm;
 
-      // Show modal
+      /* Show modal */
       var modal = document.getElementById('promo-action-modal');
       if (modal) {
         modal.style.display = 'flex';
@@ -309,216 +380,94 @@ if (el.classList.contains('buy-btn')) {
         promoBackToStep1();
       }
     });
-  }
 
-  // Close modal
-  var closeBtn = document.getElementById('promo-modal-close');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', function() {
-      document.getElementById('promo-action-modal').style.display = 'none';
-      document.body.style.overflow = '';
+    /* ── Close modal — X button ── */
+    var closeBtn = document.getElementById('promo-modal-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        document.getElementById('promo-action-modal').style.display = 'none';
+        document.body.style.overflow = '';
+      });
+    }
+
+    /* ── Close modal — backdrop tap ── */
+    var modal = document.getElementById('promo-action-modal');
+    if (modal) {
+      modal.addEventListener('click', function (e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    /* ── Modal step buttons ── */
+    var inquireBtn = document.getElementById('promo-btn-inquire');
+    if (inquireBtn) {
+      inquireBtn.addEventListener('click', function () {
+        document.getElementById('promo-step-1').style.display       = 'none';
+        document.getElementById('promo-step-inquire').style.display = 'block';
+        document.getElementById('promo-step-pay').style.display     = 'none';
+      });
+    }
+
+    var payBtn = document.getElementById('promo-btn-pay');
+    if (payBtn) {
+      payBtn.addEventListener('click', function () {
+        document.getElementById('promo-step-1').style.display       = 'none';
+        document.getElementById('promo-step-inquire').style.display = 'none';
+        document.getElementById('promo-step-pay').style.display     = 'block';
+      });
+    }
+
+    /* ── Back buttons ── */
+    document.querySelectorAll('.promo-back').forEach(function (btn) {
+      btn.addEventListener('click', promoBackToStep1);
     });
   }
 
-  // Close on backdrop tap
-  document.getElementById('promo-action-modal').addEventListener('click', function(e) {
-    if (e.target === this) {
-      this.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-  });
-
-  // Inquire button
-  document.getElementById('promo-btn-inquire').addEventListener('click', function() {
-    document.getElementById('promo-step-1').style.display = 'none';
-    document.getElementById('promo-step-inquire').style.display = 'block';
-    document.getElementById('promo-step-pay').style.display = 'none';
-  });
-
-  // Pay button
-  document.getElementById('promo-btn-pay').addEventListener('click', function() {
-    document.getElementById('promo-step-1').style.display = 'none';
-    document.getElementById('promo-step-inquire').style.display = 'none';
-    document.getElementById('promo-step-pay').style.display = 'block';
-  });
-
-  // Back buttons
-  document.querySelectorAll('.promo-back').forEach(function(btn) {
-    btn.addEventListener('click', promoBackToStep1);
-  });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPromoBanner);
+  } else {
+    initPromoBanner();
+  }
 })();
 
+
+/* ════════════════════════════════════════
+   HELPERS (global — called from HTML)
+   ════════════════════════════════════════ */
+
+/* Reset promo modal back to step 1 */
 function promoBackToStep1() {
-  document.getElementById('promo-step-1').style.display = 'block';
+  document.getElementById('promo-step-1').style.display       = 'block';
   document.getElementById('promo-step-inquire').style.display = 'none';
-  document.getElementById('promo-step-pay').style.display = 'none';
+  document.getElementById('promo-step-pay').style.display     = 'none';
 }
 
+/* Copy to clipboard — used by payment modal copy buttons */
 function cozyyCopy(text, btnId) {
   var btn = document.getElementById(btnId);
-  navigator.clipboard.writeText(text).then(function() {
+  navigator.clipboard.writeText(text).then(function () {
     if (btn) { btn.textContent = '✅ Copied!'; btn.style.background = '#166534'; }
-    setTimeout(function() {
+    setTimeout(function () {
       if (btn) { btn.textContent = 'Copy'; btn.style.background = '#22c55e'; }
     }, 2000);
-  }).catch(function() {
-    var el = document.createElement('textarea');
-    el.value = text; document.body.appendChild(el);
-    el.select(); document.execCommand('copy');
-    document.body.removeChild(el);
-    if (btn) { btn.textContent = '✅ Copied!'; }
-    setTimeout(function() { if (btn) btn.textContent = 'Copy'; }, 2000);
-  });
-}
-
-
-  // Auto-rotate every 3 seconds
-  setInterval(function() { showSlide(current + 1); }, 3000);
-
-  // Tap banner → open submenu + show products
-  var banner = document.getElementById('promo-banner');
-  if (banner) {
-    banner.addEventListener('click', function() {
-      var slide    = slides[current];
-      var submenu  = slide.getAttribute('data-submenu');
-      var category = slide.getAttribute('data-category');
-      if (submenu) window.toggleSub(submenu);
-      setTimeout(function() {
-        if (category) window.showProducts(category);
-      }, 300);
-    });
-  }
-})();
-
-// =============================================
-// HERO BANNER v2 — Auto-counts all slides
-// including advertiser AD SLOTS
-// Just add a slide with class "hero-slide"
-// and it gets included automatically
-// =============================================
-(function() {
-  var slides = document.querySelectorAll('.hero-slide');
-  var dotsContainer = document.getElementById('hero-dots');
-  if (!slides.length || !dotsContainer) return;
-
-  var dotColors = [
-    '#2db742','#0d84ff','#ffd700','#22c55e',
-    '#f2c94c','#ff6bff','#ff4500',
-    // Ad slot colors — add more as needed
-    '#ff0099','#00ccff','#ff6600','#9900ff','#00ff99'
-  ];
-
-  // Auto-generate dots based on slide count
-  slides.forEach(function(_, i) {
-    var dot = document.createElement('span');
-    dot.style.cssText = 'width:' + (i===0?'24':'8') + 'px;height:6px;border-radius:3px;' +
-      'background:' + (i===0 ? dotColors[0] : '#333') + ';display:inline-block;transition:.3s;';
-    dotsContainer.appendChild(dot);
-  });
-
-  var dots = dotsContainer.querySelectorAll('span');
-  var current = 0;
-
-  function showSlide(n) {
-    slides[current].style.display = 'none';
-    dots[current].style.background = '#333';
-    dots[current].style.width = '8px';
-    current = (n + slides.length) % slides.length;
-    slides[current].style.display = 'flex';
-    dots[current].style.background = dotColors[current] || '#ffd700';
-    dots[current].style.width = '24px';
-  }
-
-  // 8 seconds per slide
-  setInterval(function() { showSlide(current + 1); }, 8000);
-
-  // Swipe support for mobile
-  var startX = 0;
-  var banner = document.getElementById('hero-banner');
-  if (banner) {
-    banner.addEventListener('touchstart', function(e) {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
-    banner.addEventListener('touchend', function(e) {
-      var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        showSlide(diff > 0 ? current + 1 : current - 1);
-      }
-    }, { passive: true });
-  }
-})();
-
-
-// =============================================
-// SMART PAYMENT MODAL
-// =============================================
-window.openPaymentModal = function() {
-  var modal = document.getElementById('smart-payment-modal');
-  if (modal) {
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    // Reset to step 1
-    backToStep1();
-  }
-};
-
-window.closePaymentModal = function() {
-  var modal = document.getElementById('smart-payment-modal');
-  if (modal) {
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-};
-
-// Close when tapping backdrop
-document.addEventListener('click', function(e) {
-  var modal = document.getElementById('smart-payment-modal');
-  if (modal && e.target === modal) {
-    window.closePaymentModal();
-  }
-});
-
-window.chooseProductType = function(type) {
-  document.getElementById('payment-step-1').style.display = 'none';
-  document.getElementById('payment-step-kenya').style.display = 'none';
-  document.getElementById('payment-step-international').style.display = 'none';
-  document.getElementById('payment-step-digital').style.display = 'none';
-
-  if (type === 'local-kenya')   document.getElementById('payment-step-kenya').style.display = 'block';
-  if (type === 'international') document.getElementById('payment-step-international').style.display = 'block';
-  if (type === 'digital')       document.getElementById('payment-step-digital').style.display = 'block';
-};
-
-window.backToStep1 = function() {
-  document.getElementById('payment-step-kenya').style.display = 'none';
-  document.getElementById('payment-step-international').style.display = 'none';
-  document.getElementById('payment-step-digital').style.display = 'none';
-  document.getElementById('payment-step-1').style.display = 'block';
-};
-
-window.copyText = function(text, btnId) {
-  navigator.clipboard.writeText(text).then(function() {
-    var btn = document.getElementById(btnId);
-    if (btn) {
-      btn.textContent = '✅ Copied!';
-      btn.style.background = '#166534';
-      setTimeout(function() {
-        btn.textContent = 'Copy';
-        btn.style.background = '#22c55e';
-      }, 2000);
-    }
-  }).catch(function() {
-    // Fallback for older Android
+  }).catch(function () {
+    /* Fallback for older browsers */
     var el = document.createElement('textarea');
     el.value = text;
     document.body.appendChild(el);
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    var btn = document.getElementById(btnId);
-    if (btn) {
-      btn.textContent = '✅ Copied!';
-      setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
-    }
+    if (btn) { btn.textContent = '✅ Copied!'; }
+    setTimeout(function () { if (btn) btn.textContent = 'Copy'; }, 2000);
   });
-};
+        }
+                            
+  
+  
+  
+  
+  
