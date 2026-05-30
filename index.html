@@ -276,7 +276,110 @@ body,.container,.main-grid{overflow-x:hidden;}
 <h3 style="text-align:center;color:#ffd700;margin-bottom:15px;">💎 COZYCABIN DIGITAL ASSETS</h3>
 <p class="brand-tagline">Courses, Crypto & Masterclasses</p>
 </div>
+<!--
+  COZYCABIN DIGITAL ASSETS GRID
+  ════════════════════════════════════════
+  Paste this section just after your logo/header area
+  BEFORE the promo banner / local shop grid
+  Matches Picture 1 layout — 6 cards
+-->
 
+<!-- ── Section Title ── -->
+<div style="text-align:center;padding:10px 14px 8px;position:relative;z-index:1;">
+  <div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:#556677;text-transform:uppercase;display:flex;align-items:center;gap:8px;justify-content:center;">
+    <span style="flex:1;height:1px;background:rgba(255,255,255,.07);display:inline-block;max-width:60px;"></span>
+    💎 DIGITAL ASSETS
+    <span style="flex:1;height:1px;background:rgba(255,255,255,.07);display:inline-block;max-width:60px;"></span>
+  </div>
+</div>
+
+<!-- ── 6-Card Digital Grid ── -->
+<div class="digital-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 14px 14px;position:relative;z-index:1;">
+
+  <!-- 1. COURSE -->
+  <div class="dcard dcard-course" onclick="toggle('card-course')">
+    <div class="dcard-icon" style="background:#2563eb;">COURSE</div>
+    <div class="dcard-title">COURSE</div>
+    <div class="dcard-sub">Academy Courses <span class="dcard-arrow">▼</span></div>
+  </div>
+
+  <!-- 2. E-BOOK -->
+  <div class="dcard dcard-ebook" onclick="toggle('card-ebook')">
+    <div class="dcard-icon" style="background:#d97706;">E-BOOK</div>
+    <div class="dcard-title">E-BOOK</div>
+    <div class="dcard-sub">Digital Library <span class="dcard-arrow">▼</span></div>
+  </div>
+
+  <!-- 3. CRYPTO MASTERY -->
+  <div class="dcard dcard-crypto" onclick="toggleCryptoRowDropdown()">
+    <div class="dcard-icon" style="background:#ca8a04;">Crypto</div>
+    <div class="dcard-title">CRYPTO MASTERY</div>
+    <div class="dcard-sub">Top Global Exchanges &amp; Tools <span class="dcard-arrow">▼</span></div>
+  </div>
+
+  <!-- 4. AFFILIATE -->
+  <div class="dcard dcard-affiliate" onclick="toggle('card-affiliate')">
+    <div class="dcard-icon" style="background:#7c3aed;">AFFILIATE</div>
+    <div class="dcard-title">AFFILIATE</div>
+    <div class="dcard-sub">Shop Local &amp; Global <span class="dcard-arrow">▼</span></div>
+  </div>
+
+  <!-- 5. PROBLEM SOLVING -->
+  <div class="dcard dcard-problem" onclick="toggle('card-problem')">
+    <div class="dcard-icon" style="background:#059669;font-size:8px;">PROBLEM SOLVING</div>
+    <div class="dcard-title">PROBLEM SOLVING</div>
+    <div class="dcard-sub">Our Solutions <span class="dcard-arrow">▼</span></div>
+  </div>
+
+  <!-- 6. MEMBER OPPORTUNITY — full width feel, spans col -->
+  <div class="dcard dcard-member" onclick="document.getElementById('card-member')&&document.getElementById('card-member').scrollIntoView({behavior:'smooth'})">
+    <div style="background:linear-gradient(90deg,#10b981,#059669);color:#fff;font-size:9px;font-weight:700;letter-spacing:.08em;padding:5px 10px;border-radius:16px;text-align:center;margin-bottom:6px;">MEMBER OPPORTUNITY 💡</div>
+    <div class="dcard-title" style="font-size:13px;">Earn Online 💡</div>
+    <div class="dcard-sub" style="color:#34d399;">Start Earning →</div>
+  </div>
+
+</div>
+
+<!-- ── Dropdown panels (hidden, toggled by cards) ── -->
+
+<!-- COURSE dropdown -->
+<div id="card-course-drop" style="display:none;margin:-4px 14px 10px;background:#131825;border:1.5px solid rgba(59,130,246,.45);border-radius:0 0 14px 14px;padding:12px;">
+  <div style="color:#445566;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">📚 Available Courses</div>
+  <a class="ddrop-tile" href="#" target="_blank">🎬 <span>CapCut / Video Editing</span></a>
+  <a class="ddrop-tile" href="#" target="_blank">📱 <span>TikTok Growth</span></a>
+  <a class="ddrop-tile" href="#" target="_blank">💻 <span>Website Setup</span></a>
+  <a class="ddrop-tile" href="#" target="_blank">📢 <span>Digital Marketing</span></a>
+  <a class="ddrop-tile" href="#" target="_blank">🌐 <span>Online Business Setup</span></a>
+</div>
+
+<!-- EBOOK dropdown -->
+<div id="card-ebook-drop" style="display:none;margin:-4px 14px 10px;background:#131825;border:1.5px solid rgba(217,119,6,.45);border-radius:0 0 14px 14px;padding:12px;">
+  <div style="color:#445566;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">📖 Digital Library</div>
+  <a class="ddrop-tile" href="https://selar.com/z6wn6j11g1" target="_blank">📘 <span>Facebook Profit Formula</span></a>
+  <a class="ddrop-tile" href="https://selar.com/dy79oz7112" target="_blank">📗 <span>Selling Daily</span></a>
+  <a class="ddrop-tile" href="https://selar.com/378373r336" target="_blank">📙 <span>Crypto Mastery Guide</span></a>
+</div>
+
+<!-- AFFILIATE dropdown -->
+<div id="card-affiliate-drop" style="display:none;margin:-4px 14px 10px;background:#131825;border:1.5px solid rgba(139,92,246,.45);border-radius:0 0 14px 14px;padding:12px;">
+  <div style="color:#445566;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">🛒 Shop Local &amp; Global</div>
+  <a class="ddrop-tile" href="https://jumia.com" target="_blank">🛍️ <span>Jumia</span></a>
+  <a class="ddrop-tile" href="https://temu.com" target="_blank">🛍️ <span>Temu</span></a>
+  <a class="ddrop-tile" href="https://amazon.com" target="_blank">🛍️ <span>Amazon</span></a>
+  <a class="ddrop-tile" href="https://alibaba.com" target="_blank">🛍️ <span>Alibaba</span></a>
+  <a class="ddrop-tile" href="https://aliexpress.com" target="_blank">🛍️ <span>AliExpress</span></a>
+  <a class="ddrop-tile" href="https://jiji.co.ke" target="_blank">🛍️ <span>Jiji</span></a>
+</div>
+
+<!-- PROBLEM SOLVING dropdown -->
+<div id="card-problem-drop" style="display:none;margin:-4px 14px 10px;background:#131825;border:1.5px solid rgba(16,185,129,.45);border-radius:0 0 14px 14px;padding:12px;">
+  <div style="color:#445566;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">🛠️ Our Solutions</div>
+  <div style="color:#94a3b8;font-size:12px;line-height:1.8;">
+    Website Support • Computer Repair • Solar Installation • CCTV Installation • Home Repairs • Digital Marketing • Online Business Setup • Graphic Design • Other Services
+  </div>
+  <a href="https://wa.me/254702468460" style="display:block;margin-top:10px;background:#059669;color:#fff;text-decoration:none;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-align:center;">💬 WhatsApp Us →</a>
+  </div>
+  
 
 
   
