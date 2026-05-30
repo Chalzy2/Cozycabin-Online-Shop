@@ -247,13 +247,17 @@ if (el.classList.contains('buy-btn')) {
     return;
 }
 
-  /* ============================================================
-   COZYCABIN — products.js
+
+
+/* ============================================================
+   COZYCABIN — products.js  (Universal)
    ─────────────────────────────────────────────────────────
-   1. Hero Banner slider      (#hero-banner)   — 2 sec rotate
-   2. Promo Banner slider     (#promo-banner)  — 2 sec rotate
+   1. Hero Banner     (#hero-banner)   — 2 sec, round dots
+   2. Promo Banner    (#promo-banner)  — 2 sec, pill dots
       + swipe support
-      + tap → payment action modal
+      + tap → payment action modal (Inquire / Pay)
+   3. Smart Payment Modal (#smart-payment-modal)
+   4. Helpers: promoBackToStep1(), cozyyCopy(), copyText()
    ============================================================ */
 
 
@@ -270,7 +274,7 @@ if (el.classList.contains('buy-btn')) {
     var current = 0;
     var timer;
 
-    /* Build dots */
+    /* Build round dots */
     slides.forEach(function (_, i) {
       var dot = document.createElement('button');
       dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
@@ -320,11 +324,25 @@ if (el.classList.contains('buy-btn')) {
 
     /* ── Show slide n ── */
     function showSlide(n) {
+      /* Hide current */
+      slides[current].style.display = 'none';
       slides[current].classList.remove('active');
-      if (dots[current]) dots[current].classList.remove('active');
+      /* Pill dot — shrink back */
+      if (dots[current]) {
+        dots[current].style.width      = '8px';
+        dots[current].style.background = '#333';
+      }
+
       current = (n + slides.length) % slides.length;
+
+      /* Show next */
+      slides[current].style.display = 'flex';
       slides[current].classList.add('active');
-      if (dots[current]) dots[current].classList.add('active');
+      /* Pill dot — expand active */
+      if (dots[current]) {
+        dots[current].style.width      = '24px';
+        dots[current].style.background = '#ffd700';
+      }
     }
 
     /* ── Auto-rotate every 2 seconds ── */
@@ -435,17 +453,64 @@ if (el.classList.contains('buy-btn')) {
 
 
 /* ════════════════════════════════════════
-   HELPERS (global — called from HTML)
+   3. SMART PAYMENT MODAL (#smart-payment-modal)
+   ════════════════════════════════════════ */
+window.openPaymentModal = function () {
+  var modal = document.getElementById('smart-payment-modal');
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    window.backToStep1();
+  }
+};
+
+window.closePaymentModal = function () {
+  var modal = document.getElementById('smart-payment-modal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+};
+
+/* Close smart modal on backdrop tap */
+document.addEventListener('click', function (e) {
+  var modal = document.getElementById('smart-payment-modal');
+  if (modal && e.target === modal) {
+    window.closePaymentModal();
+  }
+});
+
+window.chooseProductType = function (type) {
+  document.getElementById('payment-step-1').style.display            = 'none';
+  document.getElementById('payment-step-kenya').style.display        = 'none';
+  document.getElementById('payment-step-international').style.display = 'none';
+  document.getElementById('payment-step-digital').style.display      = 'none';
+
+  if (type === 'local-kenya')   document.getElementById('payment-step-kenya').style.display        = 'block';
+  if (type === 'international') document.getElementById('payment-step-international').style.display = 'block';
+  if (type === 'digital')       document.getElementById('payment-step-digital').style.display      = 'block';
+};
+
+window.backToStep1 = function () {
+  document.getElementById('payment-step-kenya').style.display        = 'none';
+  document.getElementById('payment-step-international').style.display = 'none';
+  document.getElementById('payment-step-digital').style.display      = 'none';
+  document.getElementById('payment-step-1').style.display            = 'block';
+};
+
+
+/* ════════════════════════════════════════
+   4. HELPERS (global)
    ════════════════════════════════════════ */
 
-/* Reset promo modal back to step 1 */
+/* Reset promo modal to step 1 */
 function promoBackToStep1() {
   document.getElementById('promo-step-1').style.display       = 'block';
   document.getElementById('promo-step-inquire').style.display = 'none';
   document.getElementById('promo-step-pay').style.display     = 'none';
 }
 
-/* Copy to clipboard — used by payment modal copy buttons */
+/* Copy to clipboard — promo modal copy buttons (cozyyCopy) */
 function cozyyCopy(text, btnId) {
   var btn = document.getElementById(btnId);
   navigator.clipboard.writeText(text).then(function () {
@@ -454,7 +519,6 @@ function cozyyCopy(text, btnId) {
       if (btn) { btn.textContent = 'Copy'; btn.style.background = '#22c55e'; }
     }, 2000);
   }).catch(function () {
-    /* Fallback for older browsers */
     var el = document.createElement('textarea');
     el.value = text;
     document.body.appendChild(el);
@@ -464,10 +528,10 @@ function cozyyCopy(text, btnId) {
     if (btn) { btn.textContent = '✅ Copied!'; }
     setTimeout(function () { if (btn) btn.textContent = 'Copy'; }, 2000);
   });
-        }
-                            
-  
-  
-  
-  
+}
+
+/* Copy to clipboard — smart payment modal (copyText) */
+window.copyText = function (text, btnId) {
+  cozyyCopy(text, btnId); /* same logic, different name */
+};
   
