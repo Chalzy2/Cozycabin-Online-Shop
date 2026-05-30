@@ -467,28 +467,130 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
   ══════════════════════════════════════════════ -->
   <div id="digital" style="margin-top:40px;">
     <h2 class="section-title">💎 Digital Assets</h2>
-    <p class="section-subtitle">Courses, Crypto &amp; Masterclasses</p>
+    <p class="section-subtitle">Courses, Crypto, Affiliate, Problem Solving &amp; Entertainment</p>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
-      <div class="dcard dcard-course" onclick="window.toggleSub&&window.toggleSub('video-courses')">
+    <!-- ROW 1: Courses · E-Books · Crypto -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;">
+      <div class="dcard dcard-course" onclick="window.toggleDigital('video-courses')">
         <div class="dcard-icon" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);">📚<br>COURSE</div>
         <div class="dcard-title">Academy Courses</div>
         <div class="dcard-sub">Video Editing · Marketing</div>
         <div class="dcard-arrow">→</div>
       </div>
-      <div class="dcard dcard-ebook" onclick="window.toggleSub&&window.toggleSub('ebooks-menu')">
+      <div class="dcard dcard-ebook" onclick="window.toggleDigital('ebooks-menu')">
         <div class="dcard-icon" style="background:linear-gradient(135deg,#92400e,#d97706);">📖<br>E-BOOK</div>
         <div class="dcard-title">Digital Library</div>
-        <div class="dcard-sub">Business · Finance · Growth</div>
+        <div class="dcard-sub">Finance · Masterclasses</div>
         <div class="dcard-arrow">→</div>
       </div>
-      <div class="dcard dcard-crypto" onclick="window.toggleSub&&window.toggleSub('crypto-menu')">
+      <div class="dcard dcard-crypto" onclick="window.toggleDigital('crypto-menu')">
         <div class="dcard-icon" style="background:linear-gradient(135deg,#78350f,#f59e0b);">₿<br>CRYPTO</div>
-        <div class="dcard-title">Crypto Tools</div>
-        <div class="dcard-sub">Exchanges · Guides</div>
+        <div class="dcard-title">Crypto Mastery</div>
+        <div class="dcard-sub">Top Global Exchanges</div>
         <div class="dcard-arrow">→</div>
       </div>
     </div>
+
+    <!-- ROW 2: Affiliate · Problem Solving · Entertainment -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+      <div class="dcard dcard-affiliate" onclick="window.toggleDigital('affiliate-menu')">
+        <div class="dcard-icon" style="background:linear-gradient(135deg,#5b21b6,#8b5cf6);">💰<br>EARN</div>
+        <div class="dcard-title">Affiliate Hub</div>
+        <div class="dcard-sub">Earn · Refer · Grow</div>
+        <div class="dcard-arrow">→</div>
+      </div>
+      <div class="dcard dcard-problem" onclick="window.toggleDigital('problem-menu')">
+        <div class="dcard-icon" style="background:linear-gradient(135deg,#065f46,#10b981);">🛠️<br>SOLVE</div>
+        <div class="dcard-title">Problem Solving</div>
+        <div class="dcard-sub">Tech · Setup · Support</div>
+        <div class="dcard-arrow">→</div>
+      </div>
+      <div class="dcard" style="border-color:rgba(236,72,153,.45);" onclick="window.toggleDigital('entertainment-menu')">
+        <div class="dcard-icon" style="background:linear-gradient(135deg,#831843,#ec4899);">🎬<br>FUN</div>
+        <div class="dcard-title">Entertainment</div>
+        <div class="dcard-sub">Movies · Music · Games</div>
+        <div class="dcard-arrow" style="color:#ec4899;">→</div>
+      </div>
+    </div>
+
+    <!-- ── DROPDOWN: Academy Courses ── -->
+    <div class="minor-menu" id="video-courses">
+      <div class="minor-top"><button class="back-btn" onclick="window.closeAllDigital()">← Back</button></div>
+      <p style="color:#60a5fa;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">📚 Academy Courses</p>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Video%20Editing%20Course" target="_blank" class="ddrop-tile">🎬 Video Editing Masterclass</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Digital%20Marketing%20Course" target="_blank" class="ddrop-tile">📣 Digital Marketing Course</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Website%20Setup%20Course" target="_blank" class="ddrop-tile">🌐 Website Setup Course</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20TikTok%20Growth%20Course" target="_blank" class="ddrop-tile">🎵 TikTok Growth Strategy</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20YouTube%20Course" target="_blank" class="ddrop-tile">▶️ YouTube Content Creation</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Social%20Media%20Course" target="_blank" class="ddrop-tile">📱 Social Media Growth</a>
+    </div>
+
+    <!-- ── DROPDOWN: E-Books ── -->
+    <div class="minor-menu" id="ebooks-menu">
+      <div class="minor-top"><button class="back-btn" onclick="window.closeAllDigital()">← Back</button></div>
+      <p style="color:#fbbf24;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">📖 Digital Library — E-Books</p>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Facebook%20Profit%20Formula%20eBook" target="_blank" class="ddrop-tile">
+        <img src="Images/facebook-profit-formula.webp" onerror="this.style.display='none'" style="width:38px;height:38px;border-radius:8px;object-fit:cover;flex-shrink:0;">
+        <div><div style="font-weight:700;font-size:13px;">Facebook Profit Formula</div><div style="font-size:11px;color:#94a3b8;">Master Meta monetization in 30 days</div></div>
+      </a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Crypto%20Mastery%20Guide%20eBook" target="_blank" class="ddrop-tile">
+        <img src="Images/crypto-mastery-guide.webp" onerror="this.style.display='none'" style="width:38px;height:38px;border-radius:8px;object-fit:cover;flex-shrink:0;">
+        <div><div style="font-weight:700;font-size:13px;">Crypto Mastery Guide</div><div style="font-size:11px;color:#94a3b8;">Ultimate blueprint for global exchanges &amp; mining</div></div>
+      </a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Financial%20Freedom%20eBook" target="_blank" class="ddrop-tile">📘 Financial Freedom Blueprint</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Online%20Business%20eBook" target="_blank" class="ddrop-tile">💼 Online Business Starter Guide</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Real%20Estate%20eBook" target="_blank" class="ddrop-tile">🏠 Real Estate Investing Basics</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Mindset%20eBook" target="_blank" class="ddrop-tile">🧠 Millionaire Mindset</a>
+    </div>
+
+    <!-- ── DROPDOWN: Crypto ── -->
+    <div class="minor-menu" id="crypto-menu">
+      <div class="minor-top"><button class="back-btn" onclick="window.closeAllDigital()">← Back</button></div>
+      <p style="color:#facc15;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">₿ Crypto Mastery — Top Global Exchanges</p>
+      <a href="https://wa.me/254702468460?text=I%20want%20to%20learn%20about%20Binance" target="_blank" class="ddrop-tile">🟡 Binance — World's Largest Exchange</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20to%20learn%20about%20Coinbase" target="_blank" class="ddrop-tile">🔵 Coinbase — Beginner Friendly</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20to%20learn%20about%20Bybit" target="_blank" class="ddrop-tile">🟠 Bybit — Advanced Trading</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20to%20learn%20about%20KuCoin" target="_blank" class="ddrop-tile">🟢 KuCoin — Altcoin Hub</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Crypto%20Beginner%20Guide" target="_blank" class="ddrop-tile">📗 Crypto Beginner's Full Guide</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20to%20learn%20about%20P2P%20Trading" target="_blank" class="ddrop-tile">🔄 P2P Trading — Buy &amp; Sell Locally</a>
+    </div>
+
+    <!-- ── DROPDOWN: Affiliate ── -->
+    <div class="minor-menu" id="affiliate-menu">
+      <div class="minor-top"><button class="back-btn" onclick="window.closeAllDigital()">← Back</button></div>
+      <p style="color:#a78bfa;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">💰 Affiliate Hub — Earn &amp; Grow</p>
+      <a href="/affiliate.html" class="ddrop-tile">🚀 Join Cozycabin Affiliate Program</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20to%20know%20about%20Amazon%20Affiliate" target="_blank" class="ddrop-tile">📦 Amazon Associates Guide</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20to%20know%20about%20Jumia%20Affiliate" target="_blank" class="ddrop-tile">🛒 Jumia KOL Affiliate</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20to%20learn%20ClickBank%20affiliate" target="_blank" class="ddrop-tile">💸 ClickBank Digital Products</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20to%20learn%20about%20referral%20programs" target="_blank" class="ddrop-tile">🤝 Referral &amp; Commission Programs</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20the%20Affiliate%20Marketing%20eBook" target="_blank" class="ddrop-tile">📖 Affiliate Marketing Starter eBook</a>
+    </div>
+
+    <!-- ── DROPDOWN: Problem Solving ── -->
+    <div class="minor-menu" id="problem-menu">
+      <div class="minor-top"><button class="back-btn" onclick="window.closeAllDigital()">← Back</button></div>
+      <p style="color:#34d399;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">🛠️ Problem Solving Services</p>
+      <a href="https://wa.me/254702468460?text=I%20need%20help%20with%20Website%20Setup" target="_blank" class="ddrop-tile">🌐 Website Setup &amp; Hosting</a>
+      <a href="https://wa.me/254702468460?text=I%20need%20help%20with%20my%20Phone%20or%20Laptop" target="_blank" class="ddrop-tile">📱 Phone &amp; Laptop Troubleshooting</a>
+      <a href="https://wa.me/254702468460?text=I%20need%20help%20with%20Social%20Media%20Setup" target="_blank" class="ddrop-tile">📣 Social Media Account Setup</a>
+      <a href="https://wa.me/254702468460?text=I%20need%20help%20with%20M-Pesa%20or%20Payment%20Issues" target="_blank" class="ddrop-tile">💳 M-Pesa &amp; Payment Issues</a>
+      <a href="https://wa.me/254702468460?text=I%20need%20help%20with%20Online%20Business%20Setup" target="_blank" class="ddrop-tile">💼 Online Business Setup</a>
+      <a href="https://wa.me/254702468460?text=I%20need%20general%20tech%20help" target="_blank" class="ddrop-tile">🔧 General Tech Support</a>
+    </div>
+
+    <!-- ── DROPDOWN: Entertainment ── -->
+    <div class="minor-menu" id="entertainment-menu">
+      <div class="minor-top"><button class="back-btn" onclick="window.closeAllDigital()">← Back</button></div>
+      <p style="color:#f472b6;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">🎬 Entertainment</p>
+      <a href="https://wa.me/254702468460?text=I%20want%20Movie%20Recommendations" target="_blank" class="ddrop-tile">🎥 Latest Movies &amp; Series</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20Music%20Downloads" target="_blank" class="ddrop-tile">🎵 Music &amp; Playlists</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20Mobile%20Games" target="_blank" class="ddrop-tile">🎮 Mobile Games &amp; Apps</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20Streaming%20Setup%20help" target="_blank" class="ddrop-tile">📺 Streaming Setup (Netflix · Prime)</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20Podcast%20Recommendations" target="_blank" class="ddrop-tile">🎙️ Top Podcasts &amp; Audiobooks</a>
+      <a href="https://wa.me/254702468460?text=I%20want%20Ebook%20Entertainment" target="_blank" class="ddrop-tile">📚 Fiction &amp; Lifestyle eBooks</a>
+    </div>
+
   </div>
 
   <!-- ══════════════════════════════════════════════
@@ -674,45 +776,6 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
 </div>
 
 <!-- ══════════════════════════════════════════════
-     PROMO ACTION MODAL
-══════════════════════════════════════════════ -->
-<div id="promo-action-modal">
-  <div class="pam-box">
-    <div class="pam-header">
-      <div>
-        <div class="label" id="promo-modal-label">COZYCABIN</div>
-        <div class="title" id="promo-modal-title">Special Offer</div>
-      </div>
-      <button id="promo-modal-close">✕</button>
-    </div>
-    <div class="pam-body">
-      <!-- Step 1 -->
-      <div id="promo-step-1" style="display:block;">
-        <p style="color:#94a3b8;font-size:13px;margin-bottom:16px;">What would you like to do?</p>
-        <button id="promo-btn-inquire" class="pam-btn pam-btn-inquire">🔍 Inquire / Ask a Question</button>
-        <button id="promo-btn-pay" class="pam-btn pam-btn-pay">💳 I've Paid — Confirm Order</button>
-      </div>
-      <!-- Step Inquire -->
-      <div id="promo-step-inquire" style="display:none;">
-        <p style="color:#94a3b8;font-size:13px;margin-bottom:14px;">Ask us anything about this offer.</p>
-        <a id="promo-wa-inquire" href="https://wa.me/254702468460" target="_blank" class="spm-wa-btn">
-          <span>💬</span><span>Chat on WhatsApp</span>
-        </a>
-        <button class="spm-back-btn promo-back" style="margin-top:8px;">← Back</button>
-      </div>
-      <!-- Step Pay -->
-      <div id="promo-step-pay" style="display:none;">
-        <p style="color:#94a3b8;font-size:13px;margin-bottom:14px;">Send your payment confirmation on WhatsApp.</p>
-        <a id="promo-wa-confirm" href="https://wa.me/254702468460" target="_blank" class="spm-wa-btn">
-          <span>✅</span><span>Confirm Payment on WhatsApp</span>
-        </a>
-        <button class="spm-back-btn promo-back" style="margin-top:8px;">← Back</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════
      FLOATING WHATSAPP
 ══════════════════════════════════════════════ -->
 <a href="https://wa.me/254702468460" class="float-wa" target="_blank" rel="noopener" title="Chat on WhatsApp">
@@ -725,15 +788,128 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
 ══════════════════════════════════════════════ -->
 <script src="products.js"></script>
 
+<script>
+// ── DIGITAL GRID DROPDOWN TOGGLE ──
+window.toggleDigital = function(id) {
+  var allDigital = ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu'];
+  allDigital.forEach(function(mid) {
+    var el = document.getElementById(mid);
+    if (el && mid !== id) el.style.display = 'none';
+  });
+  var target = document.getElementById(id);
+  if (!target) return;
+  var isOpen = target.style.display === 'block';
+  target.style.display = isOpen ? 'none' : 'block';
+  if (!isOpen) setTimeout(function(){ target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
+};
+window.closeAllDigital = function() {
+  ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu']
+    .forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+};
+
+// ══════════════════════════════════════════════
+//  COZYCABIN SECURITY — Anti-Theft · Anti-Hack · Anti-Screenshot
+// ══════════════════════════════════════════════
+
+// ── 1. DISABLE RIGHT-CLICK ──
+document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+// ── 2. DISABLE TEXT SELECTION ──
+document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+
+// ── 3. DISABLE COPY / CUT / PASTE ──
+document.addEventListener('copy',  function(e) { e.preventDefault(); });
+document.addEventListener('cut',   function(e) { e.preventDefault(); });
+
+// ── 4. DISABLE DRAG ON IMAGES & LINKS ──
+document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+
+// ── 5. BLOCK DEVTOOLS / INSPECT KEYBOARD SHORTCUTS ──
+document.addEventListener('keydown', function(e) {
+  // F12
+  if (e.key === 'F12') { e.preventDefault(); return false; }
+  // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (DevTools)
+  if (e.ctrlKey && e.shiftKey && ['I','i','J','j','C','c'].indexOf(e.key) !== -1) { e.preventDefault(); return false; }
+  // Ctrl+U (View Source)
+  if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) { e.preventDefault(); return false; }
+  // Ctrl+S (Save page)
+  if (e.ctrlKey && (e.key === 's' || e.key === 'S')) { e.preventDefault(); return false; }
+  // Ctrl+A (Select All)
+  if (e.ctrlKey && (e.key === 'a' || e.key === 'A')) { e.preventDefault(); return false; }
+  // PrintScreen — blur page to block screenshot content
+  if (e.key === 'PrintScreen') {
+    document.body.style.filter = 'blur(20px)';
+    setTimeout(function() { document.body.style.filter = ''; }, 300);
+    navigator.clipboard && navigator.clipboard.writeText('');
+    return false;
+  }
+});
+
+// ── 6. ANTI-SCREENSHOT — blur on visibility change (phone screenshot / app switch) ──
+document.addEventListener('visibilitychange', function() {
+  if (document.hidden) {
+    document.body.style.filter = 'blur(20px)';
+  } else {
+    setTimeout(function() { document.body.style.filter = ''; }, 400);
+  }
+});
+
+// ── 7. DEVTOOLS OPEN DETECTION — redirect or warn ──
+(function() {
+  var threshold = 160;
+  var devOpen = false;
+  setInterval(function() {
+    var widthDiff  = window.outerWidth  - window.innerWidth  > threshold;
+    var heightDiff = window.outerHeight - window.innerHeight > threshold;
+    if ((widthDiff || heightDiff) && !devOpen) {
+      devOpen = true;
+      document.body.innerHTML =
+        '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;background:#000;color:#ffd700;font-family:sans-serif;text-align:center;padding:20px;">' +
+        '<div style="font-size:60px;margin-bottom:20px;">🔒</div>' +
+        '<h1 style="font-size:24px;margin-bottom:10px;">Access Restricted</h1>' +
+        '<p style="color:#94a3b8;font-size:14px;">Developer tools are not permitted on this site.</p>' +
+        '<p style="color:#94a3b8;font-size:14px;margin-top:8px;">Please close DevTools and refresh the page.</p>' +
+        '</div>';
+    }
+    if (!widthDiff && !heightDiff && devOpen) {
+      devOpen = false;
+      location.reload();
+    }
+  }, 1000);
+})();
+
+// ── 8. DISABLE LONG-PRESS IMAGE SAVE (iOS / Android) ──
+document.querySelectorAll('img').forEach(function(img) {
+  img.setAttribute('oncontextmenu', 'return false');
+  img.setAttribute('draggable', 'false');
+  img.style.webkitUserSelect = 'none';
+  img.style.userSelect = 'none';
+  img.style.pointerEvents = 'none'; // blocks long-press save on mobile
+});
+
+// Re-apply pointer-events block to new images added dynamically
+var imgObserver = new MutationObserver(function(mutations) {
+  mutations.forEach(function(m) {
+    m.addedNodes.forEach(function(node) {
+      if (node.nodeType === 1) {
+        node.querySelectorAll && node.querySelectorAll('img').forEach(function(img) {
+          img.setAttribute('oncontextmenu', 'return false');
+          img.setAttribute('draggable', 'false');
+          img.style.pointerEvents = 'none';
+        });
+      }
+    });
+  });
+});
+imgObserver.observe(document.body, { childList: true, subtree: true });
+
+</script>
+
 </body>
   </html>
 
 
-
-
-
-
-
-
-
-  
+           
