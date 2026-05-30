@@ -194,12 +194,71 @@ body,.container,.main-grid{overflow-x:hidden;}
   </div>
 
   <!-- SLIDE 6 — Best Sellers -->
-  <div class="hero-slide" style="
-    display:none;flex-direction:column;justify-content:center;
-    background:linear-gradient(135deg,#1a0a1a,#2d0d2d);
-    border:2px solid #ff6bff;border-radius:22px;
-    padding:28px 22px;min-height:150px;position:relative;overflow:hidden;
-  ">
+<!-- 
+  COZYCABIN HERO BANNER v3
+  - 7 Cozycabin slides (permanent)
+  - AD SLOTS: add advertiser slides easily at the bottom
+  - Auto-rotates every 2 seconds
+-->
+
+<style>
+  #hero-banner { margin:0 0 20px 0;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 0 25px rgba(255,215,0,0.15); }
+  .hero-slide { display:none;flex-direction:column;justify-content:center;border-radius:22px;padding:28px 22px;min-height:150px;position:relative;overflow:hidden;animation:heroFade 0.4s ease; }
+  .hero-slide.active { display:flex; }
+  @keyframes heroFade { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+  .hero-dot { width:8px;height:8px;border-radius:50%;background:#444;border:none;cursor:pointer;padding:0;transition:background 0.3s,transform 0.3s; }
+  .hero-dot.active { background:#ffd700;transform:scale(1.3); }
+</style>
+
+<div id="hero-banner">
+
+  <!-- SLIDE 1 — Affiliate -->
+  <div class="hero-slide active" style="background:linear-gradient(135deg,#071129,#0f172a);border:2px solid #2db742;">
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">💰</div>
+    <div style="background:#2db742;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">EARN ONLINE</div>
+    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">💰 Earn with Cozycabin Affiliate</div>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Share products & earn commissions.<br>No capital needed to start.</div>
+    <a href="/affiliate.html" style="display:inline-block;margin-top:14px;background:#2db742;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Join Affiliate Program →</a>
+  </div>
+
+  <!-- SLIDE 2 — Learn -->
+  <div class="hero-slide" style="background:linear-gradient(135deg,#0d1b2a,#1a2744);border:2px solid #0d84ff;">
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">📚</div>
+    <div style="background:#0d84ff;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">ACADEMY</div>
+    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">📚 Learn New Skills</div>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Video editing, website setup<br>& digital marketing courses.</div>
+    <a href="#" onclick="window.toggleSub('video-courses');return false;" style="display:inline-block;margin-top:14px;background:#0d84ff;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">View Courses →</a>
+  </div>
+
+  <!-- SLIDE 3 — Shop -->
+  <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a00,#2d1800);border:2px solid #ffd700;">
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🛒</div>
+    <div style="background:#ffd700;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">ONLINE SHOP</div>
+    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🛒 Shop Quality Products</div>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Fashion, Solar, Kitchen,<br>Electronics and more.</div>
+    <a href="#" onclick="document.querySelector('.main-grid').scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;margin-top:14px;background:#ffd700;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Shop Now →</a>
+  </div>
+
+  <!-- SLIDE 4 — Delivery -->
+  <div class="hero-slide" style="background:linear-gradient(135deg,#0a1a0a,#102010);border:2px solid #22c55e;">
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🚚</div>
+    <div style="background:#22c55e;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">DELIVERY</div>
+    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🚚 Nationwide Delivery</div>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Delivered across Kenya via G4S,<br>Simba Coach, Tahmeed & more.</div>
+    <a href="https://wa.me/254702468460" style="display:inline-block;margin-top:14px;background:#22c55e;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Ask Delivery Info →</a>
+  </div>
+
+  <!-- SLIDE 5 — Crypto -->
+  <div class="hero-slide" style="background:linear-gradient(135deg,#0d0d1a,#1a1a30);border:2px solid #f2c94c;">
+    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">💎</div>
+    <div style="background:#f2c94c;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">CRYPTO</div>
+    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">💎 Crypto & Digital Assets</div>
+    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Top exchanges, tools<br>& beginner guides.</div>
+    <a href="#" onclick="window.toggleCryptoRowDropdown();return false;" style="display:inline-block;margin-top:14px;background:#f2c94c;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Explore Crypto →</a>
+  </div>
+
+  <!-- SLIDE 6 — Best Sellers -->
+  <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a1a,#2d0d2d);border:2px solid #ff6bff;">
     <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">⭐</div>
     <div style="background:#ff6bff;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">BEST SELLERS</div>
     <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">⭐ Best Sellers This Week</div>
@@ -208,12 +267,7 @@ body,.container,.main-grid{overflow-x:hidden;}
   </div>
 
   <!-- SLIDE 7 — New Arrivals -->
-  <div class="hero-slide" style="
-    display:none;flex-direction:column;justify-content:center;
-    background:linear-gradient(135deg,#1a0500,#2d0d00);
-    border:2px solid #ff4500;border-radius:22px;
-    padding:28px 22px;min-height:150px;position:relative;overflow:hidden;
-  ">
+  <div class="hero-slide" style="background:linear-gradient(135deg,#1a0500,#2d0d00);border:2px solid #ff4500;">
     <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🔥</div>
     <div style="background:#ff4500;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">NEW ARRIVALS</div>
     <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🔥 New Arrivals</div>
@@ -223,18 +277,11 @@ body,.container,.main-grid{overflow-x:hidden;}
 
   <!-- ==========================================
        AD SLOTS — ADVERTISERS ADD HERE
-       To add an ad: copy one AD SLOT block,
-       change the colors, text, and link.
-       The banner will auto-include it.
+       Copy one block, change colors/text/link.
        ========================================== -->
 
   <!-- AD SLOT 1 — Available (uncomment to activate)
-  <div class="hero-slide ad-slide" style="
-    display:none;flex-direction:column;justify-content:center;
-    background:linear-gradient(135deg,#0a0a0a,#1a1a1a);
-    border:2px solid #YOUR_BRAND_COLOR;border-radius:22px;
-    padding:28px 22px;min-height:150px;position:relative;overflow:hidden;
-  ">
+  <div class="hero-slide ad-slide" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a);border:2px solid #YOUR_COLOR;">
     <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">YOUR_EMOJI</div>
     <div style="background:#YOUR_COLOR;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">SPONSORED</div>
     <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">YOUR_HEADLINE</div>
@@ -248,17 +295,47 @@ body,.container,.main-grid{overflow-x:hidden;}
   <!-- AD SLOT 4 — Available -->
   <!-- AD SLOT 5 — Available -->
 
-  <!-- ==========================================
-       DOTS — auto-generated by JS, don't edit
-       ========================================== -->
+  <!-- DOTS -->
   <div id="hero-dots" style="display:flex;justify-content:center;gap:6px;padding:12px 0 6px;"></div>
 
 </div>
-  
-  
-              
 
+<script>
+(function() {
+  var slides = document.querySelectorAll('.hero-slide');
+  var dotsContainer = document.getElementById('hero-dots');
+  var current = 0;
+  var timer;
 
+  // Build dots
+  slides.forEach(function(_, i) {
+    var dot = document.createElement('button');
+    dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.addEventListener('click', function() { goTo(i); resetTimer(); });
+    dotsContainer.appendChild(dot);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    slides[current].style.display = 'none';
+    dotsContainer.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    slides[current].style.display = 'flex';
+    dotsContainer.children[current].classList.add('active');
+  }
+
+  function next() { goTo(current + 1); }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, 2000);
+  }
+
+  resetTimer();
+})();
+</script>
 
 <!-- BRAND HEADER -->
 <div class="brand-header">
