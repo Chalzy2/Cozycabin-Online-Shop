@@ -63,7 +63,7 @@ cutlery: [
     }
   ],
   shirts:[], hoodies:[], watches:[], bags:[], caps:[], jeans:[], jackets:[],
-  cutlery:[], dispenser:[], hotpots:[], racks:[], flasks:[], bottles:[], cookers:[], blenders:[],
+  dispenser:[], hotpots:[], racks:[], flasks:[], bottles:[], cookers:[], blenders:[],
   solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], floodlights:[], chargers:[], fans:[],
   fridges:[], microwaves:[], washing:[], cookersapp:[], kettles:[], irons:[], heaters:[], fansapp:[],
   wallart:[], mirrors:[], flowers:[], lamps:[], carpets:[], curtains:[], frames:[], vases:[],
