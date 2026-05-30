@@ -596,6 +596,26 @@ function cozyyCopy(text, btnId) {
 
 // Alias used in some pages
 window.copyText = cozyyCopy;
-window.cozyyCopy = cozyyCopy;
+window.cozyyCopy = cozyyCopy;// ── DIGITAL GRID DROPDOWN TOGGLE ──
+window.toggleDigital = function(id) {
+  var allDigital = ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu'];
+  allDigital.forEach(function(mid) {
+    var el = document.getElementById(mid);
+    if (el && mid !== id) el.style.display = 'none';
+  });
+  var target = document.getElementById(id);
+  if (!target) return;
+  var isOpen = target.style.display === 'block';
+  target.style.display = isOpen ? 'none' : 'block';
+  if (!isOpen) setTimeout(function(){ target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
+};
+
+window.closeAllDigital = function() {
+  ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu']
+    .forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+};
 
   
