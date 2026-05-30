@@ -59,7 +59,7 @@ cutlery: [
       sizes: [],
       colors: ["Gold","Silver"],
       description: "Elegant 24-pieces stainless steel spoons cutlery set with stand.",
-      images: ["Images/24silvercutlery-set.webp","Images/24goldcutlery-set.webp"]
+      images: ["Images/24goldcutlery-set.webp","Images/24goldcutlery-set.webp"]
     }
   ],
   shirts:[], hoodies:[], watches:[], bags:[], caps:[], jeans:[], jackets:[],
