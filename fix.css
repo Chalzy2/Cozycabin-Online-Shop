@@ -590,3 +590,97 @@ input, select, textarea { width: 100%; max-width: 100%; }
   transform: scale(1.3);
 }
 
+/* ============================================================
+   DIGITAL ASSETS GRID — matches Picture 1
+   ============================================================ */
+
+/* Card */
+.dcard {
+  background: #131825;
+  border-radius: 16px;
+  border: 1.5px solid rgba(255,255,255,.08);
+  padding: 12px 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  transition: border-color .2s, box-shadow .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.dcard:hover { box-shadow: 0 4px 20px rgba(0,0,0,.4); }
+
+/* Icon box */
+.dcard-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: .03em;
+  margin-bottom: 2px;
+}
+
+/* Text */
+.dcard-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: .88rem;
+  font-weight: 700;
+  color: #eef2ff;
+  line-height: 1.2;
+}
+.dcard-sub {
+  font-size: .65rem;
+  font-weight: 600;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+.dcard-arrow { font-size: .55rem; }
+
+/* Per-card border colours */
+.dcard-course   { border-color: rgba(59,130,246,.45);  }
+.dcard-course:hover  { border-color: rgba(59,130,246,.8);  box-shadow: 0 4px 20px rgba(59,130,246,.12); }
+.dcard-course   .dcard-sub { color: #60a5fa; }
+
+.dcard-ebook    { border-color: rgba(217,119,6,.45);   }
+.dcard-ebook:hover   { border-color: rgba(217,119,6,.8);   box-shadow: 0 4px 20px rgba(217,119,6,.12); }
+.dcard-ebook    .dcard-sub { color: #fbbf24; }
+
+.dcard-crypto   { border-color: rgba(234,179,8,.45);   }
+.dcard-crypto:hover  { border-color: rgba(234,179,8,.8);   box-shadow: 0 4px 20px rgba(234,179,8,.15); }
+.dcard-crypto   .dcard-sub { color: #facc15; }
+
+.dcard-affiliate { border-color: rgba(139,92,246,.45); }
+.dcard-affiliate:hover { border-color: rgba(139,92,246,.8); box-shadow: 0 4px 20px rgba(139,92,246,.15); }
+.dcard-affiliate .dcard-sub { color: #a78bfa; }
+
+.dcard-problem  { border-color: rgba(16,185,129,.45);  }
+.dcard-problem:hover { border-color: rgba(16,185,129,.8); box-shadow: 0 4px 20px rgba(16,185,129,.12); }
+.dcard-problem  .dcard-sub { color: #34d399; }
+
+.dcard-member   { border-color: rgba(16,185,129,.35);  background: linear-gradient(135deg,#0d1f1a 0%,#131825 100%); }
+.dcard-member:hover  { border-color: rgba(16,185,129,.7); }
+
+/* Dropdown tiles */
+.ddrop-tile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1a2030;
+  border-radius: 10px;
+  padding: 9px 10px;
+  margin-bottom: 7px;
+  text-decoration: none;
+  color: #eef2ff;
+  font-size: .82rem;
+  font-weight: 600;
+  transition: background .2s;
+}
+.ddrop-tile:last-child { margin-bottom: 0; }
+.ddrop-tile:hover { background: #1f2840; }
