@@ -43,12 +43,46 @@ var products = {
       images: ["Images/calvin-brown.webp","Images/calvin-blue.webp","Images/calvin-tan.webp"]
     },
     {
-      title: "Timberland Casual", company: "Timberland",
+      title: "Premium Timberland Casual", company: "Timberland",
       price: 3200, oldPrice: 4000, sizes: [40,41,42,43,44,45],
-      colors: ["Black","White"],
-      description: "Elegant Timberland casual shoes for smart everyday fashion.",
-      images: ["Images/timber-black.webp","Images/timber-white.webp"]
-    }
+      colors: ["Black","White","Brown", "Dark Brown","Grey White","Navy Blue"],
+      description: "Premium Timberland casual sneakers crafted for comfort and style. Durable construction, cushioned sole and versatile design make them ideal for everyday wear, office casual outfits and weekend outings.",
+      images: ["Images/timber-black.webp","Images/timber-white.webp","Images/timber-white1.webp","Images/timber-tan.webp","Images/timber-greywhite.webp","Images/timber-darkblue.webp","Images/timber-navy.webp"]
+    },
+    {
+      title: "Timberland Casual Sneakers",
+      company: "cartoon",
+      price: 3200,
+      oldPrice: 4500,
+      sizes: [40,41,42,43,44,45],
+       colors: [""],
+                  
+  description: "Premium Timberland casual sneakers crafted for comfort and style. Durable construction, cushioned sole and versatile design make them ideal for everyday wear, office casual outfits and weekend outings.",
+  images: [
+    "Images/timber-navy.webp",
+    "Images/timber-black.webp",
+    "Images/timber-white.webp",
+    "Images/timber-brown.webp",
+    "Images/timber-darkbrown.webp",
+    "Images/timber-greywhite.webp"
+  ]
+},
+  {
+  title: "Women's Comfort Slip-On Sneakers",
+  company: "Fashion",
+  price: 1499,
+  oldPrice: 2200,
+  sizes: [37,38,39,40,41,42],
+  colors: ["Khaki","Red","Grey","Navy Blue","Black"],
+  description: "Lightweight breathable slip-on sneakers designed for everyday comfort, walking and casual wear.",
+  images: [
+    "Images/womenredwalker.webp",
+    "Images/womendarkblue.webp",
+    "Images/womenlightbrown.webp",
+    "Images/womenblackwalker.webp",
+    "Images/womegreywalker.webp"
+  ]
+}
   ],
 
   cutlery: [
