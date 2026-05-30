@@ -101,7 +101,12 @@ window.toggleSub = function(id) {
   if (!t) return;
   var isOpen = t.style.display === 'block';
   t.style.display = isOpen ? 'none' : 'block';
-  if (isOpen) hideProducts();
+  if (isOpen) {
+    hideProducts();
+  } else {
+    // Scroll to the submenu so user sees it open
+    setTimeout(function() { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
+  }
 };
 
 window.closeAllSubmenus = function() {
@@ -118,8 +123,12 @@ window.showProducts = function(category) {
   container.innerHTML = '';
   Object.keys(selectedOptions).forEach(function(k) { delete selectedOptions[k]; });
 
-  // Insert container right below the open submenu
-  var openMenu = document.querySelector('.minor-menu[style*="block"]');
+  // Find the currently open submenu reliably
+  var openMenu = null;
+  document.querySelectorAll('.minor-menu').forEach(function(m) {
+    if (m.style.display === 'block') openMenu = m;
+  });
+  // Move container to right below the open submenu
   if (openMenu && openMenu.parentNode) {
     openMenu.parentNode.insertBefore(container, openMenu.nextSibling);
   }
@@ -133,7 +142,7 @@ window.showProducts = function(category) {
         '<p>Products in this category are being stocked.<br>Check back soon or ask us on WhatsApp.</p>' +
         '<a href="https://wa.me/' + WHATSAPP_NUMBER + '" style="display:inline-block;margin-top:20px;background:#25d366;color:#fff;padding:12px 24px;border-radius:12px;text-decoration:none;font-weight:700;font-size:14px;">📲 Ask on WhatsApp</a>' +
       '</div>';
-    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(function() { container.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
     return;
   }
 
@@ -201,7 +210,7 @@ window.showProducts = function(category) {
   });
 
   container.style.display = 'grid';
-  container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  setTimeout(function() { container.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
 };
 
 // ============================================================
@@ -363,8 +372,13 @@ document.addEventListener('click', function(e) {
 
     function resetTimer() {
       clearInterval(timer);
-      timer = setInterval(function() { goTo(current + 1); }, 3000);
+      timer = setInterval(function() { goTo(current + 1); }, 2000);
     }
+
+    // Explicitly show first slide on mobile (some browsers ignore CSS active state)
+    slides.forEach(function(s, i) {
+      s.style.display = i === 0 ? 'flex' : 'none';
+    });
 
     // Swipe support
     var startX = 0;
@@ -373,6 +387,11 @@ document.addEventListener('click', function(e) {
       var diff = startX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetTimer(); }
     }, { passive: true });
+
+    // Restart timer when user comes back to the page/tab
+    document.addEventListener('visibilitychange', function() {
+      if (!document.hidden) { resetTimer(); }
+    });
 
     resetTimer();
   }
@@ -413,8 +432,20 @@ document.addEventListener('click', function(e) {
 
     function resetTimer() {
       clearInterval(timer);
-      timer = setInterval(function() { showSlide(current + 1); }, 2500);
+      timer = setInterval(function() { showSlide(current + 1); }, 2000);
     }
+
+    // Explicitly show first slide on mobile
+    slides.forEach(function(s, i) {
+      s.style.display = i === 0 ? 'flex' : 'none';
+      if (i === 0) s.classList.add('active');
+    });
+    if (dots[0]) { dots[0].style.width = '24px'; dots[0].style.background = '#ffd700'; dots[0].style.borderRadius = '4px'; }
+
+    // Restart timer when user comes back to the page/tab
+    document.addEventListener('visibilitychange', function() {
+      if (!document.hidden) { resetTimer(); }
+    });
 
     resetTimer();
 
@@ -468,8 +499,7 @@ document.addEventListener('click', function(e) {
         if (e.target === this) { this.style.display = 'none'; document.body.style.overflow = ''; }
       });
     }
-
-    // Step buttons
+// Step buttons
     var inquireBtn = document.getElementById('promo-btn-inquire');
     if (inquireBtn) {
       inquireBtn.addEventListener('click', function() {
@@ -596,26 +626,6 @@ function cozyyCopy(text, btnId) {
 
 // Alias used in some pages
 window.copyText = cozyyCopy;
-window.cozyyCopy = cozyyCopy;// ── DIGITAL GRID DROPDOWN TOGGLE ──
-window.toggleDigital = function(id) {
-  var allDigital = ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu'];
-  allDigital.forEach(function(mid) {
-    var el = document.getElementById(mid);
-    if (el && mid !== id) el.style.display = 'none';
-  });
-  var target = document.getElementById(id);
-  if (!target) return;
-  var isOpen = target.style.display === 'block';
-  target.style.display = isOpen ? 'none' : 'block';
-  if (!isOpen) setTimeout(function(){ target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
-};
-
-window.closeAllDigital = function() {
-  ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu']
-    .forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
-};
+window.cozyyCopy = cozyyCopy;
 
   
