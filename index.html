@@ -25,7 +25,114 @@ gtag('config', 'G-4JVT3X5J5D');
 </script>
 
 <style>
-/* Page-specific overrides */
+/* ── DIGITAL 6-GRID ── */
+.digital-6grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.dig-card {
+  position: relative;
+  background: linear-gradient(145deg,#0d1120,#111827);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 14px 10px 12px;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+  -webkit-tap-highlight-color: transparent;
+}
+.dig-card:hover, .dig-card:active {
+  transform: translateY(-4px);
+  border-color: rgba(255,215,0,0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.dig-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.dig-icon-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex-shrink: 0;
+  position: relative;
+}
+.dig-emoji {
+  font-size: 22px;
+  line-height: 1;
+}
+.dig-badge {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.9);
+  text-transform: uppercase;
+}
+.dig-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+.dig-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: .3px;
+  line-height: 1.2;
+}
+.dig-sub {
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.dig-tag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+/* Tablet */
+@media(min-width:600px) and (max-width:1024px) {
+  .digital-6grid { gap: 14px; }
+  .dig-icon-wrap { width: 66px; height: 66px; border-radius: 18px; }
+  .dig-emoji { font-size: 26px; }
+  .dig-badge { font-size: 9px; }
+  .dig-title { font-size: 14px; }
+  .dig-sub { font-size: 10px; }
+  .dig-tag { font-size: 9px; }
+}
+/* Desktop */
+@media(min-width:1025px) {
+  .digital-6grid { gap: 18px; }
+  .dig-card { padding: 20px 14px 16px; border-radius: 24px; }
+  .dig-icon-wrap { width: 76px; height: 76px; border-radius: 20px; }
+  .dig-emoji { font-size: 30px; }
+  .dig-badge { font-size: 10px; }
+  .dig-title { font-size: 16px; }
+  .dig-sub { font-size: 11px; }
+  .dig-tag { font-size: 10px; padding: 4px 12px; }
+}
 *{box-sizing:border-box;margin:0;padding:0;max-width:100%;}
 html,body{width:100%;overflow-x:hidden;background:#000;color:#fff;font-family:'Outfit',Arial,sans-serif;-webkit-user-select:none;user-select:none;scroll-behavior:smooth;}
 img{max-width:100%;display:block;-webkit-user-drag:none;}
@@ -137,102 +244,157 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
   ══════════════════════════════════════════════ -->
   <div id="hero-banner">
 
-    <!-- SLIDE 1 — Affiliate -->
-    <div class="hero-slide active" style="background:linear-gradient(135deg,#071129,#0f172a);border:2px solid #2db742;">
-      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">💰</div>
-      <div style="background:#2db742;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">EARN ONLINE</div>
-      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">💰 Earn with Cozycabin Affiliate</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Share products &amp; earn commissions.<br>No capital needed to start.</div>
-      <a href="/affiliate.html" style="display:inline-block;margin-top:14px;background:#2db742;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Join Affiliate Program →</a>
+    <!-- SLIDE 1 -->
+    <div class="hero-slide active" style="background:linear-gradient(135deg,#0d1a2a,#0f2030);border:2px solid #ffd700;" onclick="window.toggleSub&&window.toggleSub('fashion-sub')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">👟</div>
+      <div style="background:#ffd700;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">FASHION</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">👟 Fashion & Shoes</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Sneakers, bags, watches &amp; belts.<br>Premium styles at great prices.</div>
+      <div style="display:inline-block;margin-top:14px;background:#ffd700;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Fashion →</div>
     </div>
-
-    <!-- SLIDE 2 — Academy -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1b2a,#1a2744);border:2px solid #0d84ff;">
+    <!-- SLIDE 2 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0d00,#2d1500);border:2px solid #f97316;" onclick="window.toggleSub&&window.toggleSub('kitchen-sub')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🍳</div>
+      <div style="background:#f97316;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">KITCHEN</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🍳 Kitchen Essentials</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Cutlery, dispensers, blenders &amp; more.<br>Upgrade your kitchen today.</div>
+      <div style="display:inline-block;margin-top:14px;background:#f97316;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Kitchen →</div>
+    </div>
+    <!-- SLIDE 3 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1a0a,#162510);border:2px solid #f2c94c;" onclick="window.toggleSub&&window.toggleSub('solar-sub')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">☀️</div>
+      <div style="background:#f2c94c;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">SOLAR</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">☀️ Solar Solutions</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Lights, panels, inverters &amp; batteries.<br>Power your home sustainably.</div>
+      <div style="display:inline-block;margin-top:14px;background:#f2c94c;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Solar →</div>
+    </div>
+    <!-- SLIDE 4 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0a0d1f,#111830);border:2px solid #60a5fa;" onclick="window.toggleSub&&window.toggleSub('appliances-sub')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🏠</div>
+      <div style="background:#60a5fa;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">APPLIANCES</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🏠 Home Appliances</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Fridges, microwaves, irons &amp; more.<br>Top brands. Best prices.</div>
+      <div style="display:inline-block;margin-top:14px;background:#60a5fa;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Appliances →</div>
+    </div>
+    <!-- SLIDE 5 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a1a,#2a102a);border:2px solid #e879f9;" onclick="window.toggleSub&&window.toggleSub('decor-sub')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🎨</div>
+      <div style="background:#e879f9;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">DÉCOR</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🎨 Home Décor</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Wall art, mirrors, lamps &amp; vases.<br>Transform your living space.</div>
+      <div style="display:inline-block;margin-top:14px;background:#e879f9;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Décor →</div>
+    </div>
+    <!-- SLIDE 6 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1020,#141830);border:2px solid #818cf8;" onclick="window.toggleSub&&window.toggleSub('bedding-sub')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🛏️</div>
+      <div style="background:#818cf8;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">BEDDING</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🛏️ Bedding &amp; Comfort</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Duvets, bedsheets, pillows &amp; more.<br>Sleep better every night.</div>
+      <div style="display:inline-block;margin-top:14px;background:#818cf8;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Bedding →</div>
+    </div>
+    <!-- SLIDE 7 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a00,#251500);border:2px solid #fb923c;" onclick="window.toggleSub&&window.toggleSub('security-sub')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🔐</div>
+      <div style="background:#fb923c;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">SECURITY</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🔐 Home Security</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Cameras, alarms, smart locks &amp; more.<br>Protect what matters most.</div>
+      <div style="display:inline-block;margin-top:14px;background:#fb923c;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Security →</div>
+    </div>
+    <!-- SLIDE 8 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1a10,#102015);border:2px solid #34d399;" onclick="window.toggleSub&&window.toggleSub('electronics-sub')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">📱</div>
+      <div style="background:#34d399;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ELECTRONICS</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">📱 Electronics</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Speakers, earbuds, power banks &amp; more.<br>Latest tech at best prices.</div>
+     </div>
+    <!-- SLIDE 9 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0a0f1a,#101525);border:2px solid #38bdf8;" onclick="window.toggleSub&&window.toggleSub('computers-sub')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">💻</div>
+      <div style="background:#38bdf8;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">COMPUTERS</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">💻 Computers &amp; Phones</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Laptops, phones, tablets &amp; routers.<br>Work smarter. Stay connected.</div>
+      <div style="display:inline-block;margin-top:14px;background:#38bdf8;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Computers →</div>
+    </div>
+    <!-- SLIDE 10 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1b2a,#1a2744);border:2px solid #3b82f6;" onclick="window.toggleDigital&&window.toggleDigital('video-courses')">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">📚</div>
-      <div style="background:#0d84ff;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ACADEMY</div>
-      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">📚 Learn New Skills</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Video editing, website setup<br>&amp; digital marketing courses.</div>
-      <a href="#" onclick="window.toggleSub&&window.toggleSub('video-courses');return false;" style="display:inline-block;margin-top:14px;background:#0d84ff;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">View Courses →</a>
+      <div style="background:#3b82f6;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ACADEMY</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">📚 Academy Courses</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Video editing, marketing &amp; website setup.<br>Learn skills that earn money.</div>
+      <div style="display:inline-block;margin-top:14px;background:#3b82f6;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">View Courses →</div>
     </div>
-
-    <!-- SLIDE 3 — Shop -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a00,#2d1800);border:2px solid #ffd700;">
-      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🛒</div>
-      <div style="background:#ffd700;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ONLINE SHOP</div>
-      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🛒 Shop Quality Products</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Fashion, Solar, Kitchen,<br>Electronics and more.</div>
-      <a href="#categories" style="display:inline-block;margin-top:14px;background:#ffd700;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Shop Now →</a>
+    <!-- SLIDE 11 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0e00,#2d1800);border:2px solid #d97706;" onclick="window.toggleDigital&&window.toggleDigital('ebooks-menu')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">📖</div>
+      <div style="background:#d97706;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">E-BOOK</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">📖 Digital Library</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Facebook Profit Formula, Crypto Guide<br>&amp; more finance masterclasses.</div>
+      <div style="display:inline-block;margin-top:14px;background:#d97706;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Browse E-Books →</div>
     </div>
-
-    <!-- SLIDE 4 — Delivery -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0a1a0a,#102010);border:2px solid #22c55e;">
-      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🚚</div>
-      <div style="background:#22c55e;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">DELIVERY</div>
-      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🚚 Nationwide Delivery</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Delivered across Kenya via G4S,<br>Simba Coach, Tahmeed &amp; more.</div>
-      <a href="https://wa.me/254702468460" style="display:inline-block;margin-top:14px;background:#22c55e;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Ask Delivery Info →</a>
-    </div>
-
-    <!-- SLIDE 5 — Crypto -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0d0d1a,#1a1a30);border:2px solid #f2c94c;">
-      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">💎</div>
+    <!-- SLIDE 12 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d0d1a,#1a1a30);border:2px solid #f2c94c;" onclick="window.toggleDigital&&window.toggleDigital('crypto-menu')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">₿</div>
       <div style="background:#f2c94c;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">CRYPTO</div>
-      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">💎 Crypto &amp; Digital Assets</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Top exchanges, tools<br>&amp; beginner guides.</div>
-      <a href="#digital" style="display:inline-block;margin-top:14px;background:#f2c94c;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Explore Crypto →</a>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">₿ Crypto Mastery</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Top global exchanges — Binance, Bybit,<br>Coinbase &amp; beginner guides.</div>
+      <div style="display:inline-block;margin-top:14px;background:#f2c94c;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Explore Crypto →</div>
     </div>
-
-    <!-- SLIDE 6 — Best Sellers -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a1a,#2d0d2d);border:2px solid #ff6bff;">
-      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">⭐</div>
-      <div style="background:#ff6bff;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">BEST SELLERS</div>
-      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">⭐ Best Sellers This Week</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">See what customers<br>are buying most right now.</div>
-      <a href="#" onclick="window.showProducts&&window.showProducts('shoes');return false;" style="display:inline-block;margin-top:14px;background:#ff6bff;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Shop Best Sellers →</a>
+    <!-- SLIDE 13 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0f0820,#1a1035);border:2px solid #a78bfa;" onclick="window.toggleDigital&&window.toggleDigital('affiliate-menu')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">💰</div>
+      <div style="background:#a78bfa;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">AFFILIATE</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">💰 Affiliate Hub</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Earn commissions sharing products.<br>No capital needed to start.</div>
+      <div style="display:inline-block;margin-top:14px;background:#a78bfa;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Start Earning →</div>
     </div>
-
-    <!-- SLIDE 7 — New Arrivals -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0500,#2d0d00);border:2px solid #ff4500;">
+    <!-- SLIDE 14 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#051510,#0a2018);border:2px solid #10b981;" onclick="window.toggleDigital&&window.toggleDigital('problem-menu')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🛠️</div>
+      <div style="background:#10b981;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">SOLUTIONS</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🛠️ Problem Solving</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Website, phone, social media &amp; tech<br>problems solved fast &amp; affordable.</div>
+      <div style="display:inline-block;margin-top:14px;background:#10b981;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Get Help →</div>
+    </div>
+    <!-- SLIDE 15 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0515,#2d0a22);border:2px solid #ec4899;" onclick="window.toggleDigital&&window.toggleDigital('entertainment-menu')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🎬</div>
+      <div style="background:#ec4899;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ENTERTAINMENT</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🎬 Entertainment</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Movies, music, games, streaming &amp;<br>lifestyle ebooks — all in one place.</div>
+      <div style="display:inline-block;margin-top:14px;background:#ec4899;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Explore →</div>
+    </div>
+    <!-- SLIDE 16 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0500,#2d0d00);border:2px solid #ff4500;" onclick="document.getElementById('categories')&&document.getElementById('categories').scrollIntoView({behavior:'smooth'})">
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🔥</div>
       <div style="background:#ff4500;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">NEW ARRIVALS</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🔥 New Arrivals</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Fresh products added regularly.<br>Be first to grab them.</div>
-      <a href="#" onclick="window.showProducts&&window.showProducts('shoes');return false;" style="display:inline-block;margin-top:14px;background:#ff4500;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">See New Arrivals →</a>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Fresh products added regularly.<br>Be the first to grab them!</div>
+      <div style="display:inline-block;margin-top:14px;background:#ff4500;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">See New Arrivals →</div>
     </div>
-
-    <!-- SLIDE 8 — Content Creation -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0a0d1f,#111a35);border:2px solid #60a5fa;">
-      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🎬</div>
-      <div style="background:#60a5fa;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">COURSES</div>
-      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🎬 Content Creation Academy</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">TikTok, Reels, YouTube &amp;<br>Social Media Growth strategies.</div>
-      <a href="#" onclick="window.toggleSub&&window.toggleSub('video-courses');return false;" style="display:inline-block;margin-top:14px;background:#60a5fa;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">View Courses →</a>
+    <!-- SLIDE 17 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0a0a0a,#141414);border:2px solid #ffd700;" onclick="window.open('https://wa.me/254702468460','_blank')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">📣</div>
+      <div style="background:#ffd700;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ADVERTISE HERE</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">📣 Your Ad Here</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Reach thousands of shoppers daily.<br>Contact us to advertise.</div>
+      <div style="display:inline-block;margin-top:14px;background:#ffd700;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Advertise with Us →</div>
     </div>
-
-    <!-- SLIDE 9 — Membership -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1a0d,#0f2a1a);border:2px solid #34d399;">
-      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🚀</div>
-      <div style="background:#34d399;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">MEMBERSHIP</div>
-      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🚀 Start Earning Today</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Join the Cozycabin member network.<br>Earn commissions on every referral.</div>
-      <a href="#card-member" style="display:inline-block;margin-top:14px;background:#34d399;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Become a Member →</a>
+    <!-- SLIDE 18 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0a0a0a,#141414);border:2px solid #ffd700;" onclick="window.open('https://wa.me/254702468460','_blank')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">📣</div>
+      <div style="background:#ffd700;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ADVERTISE HERE</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">📣 Ad Slot 2 — Available</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Premium banner placement.<br>Your brand in front of our audience.</div>
+      <div style="display:inline-block;margin-top:14px;background:#ffd700;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Book This Slot →</div>
     </div>
-
-    <!-- SLIDE 10 — Services -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#0f0a1a,#1a1030);border:2px solid #a78bfa;">
-      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🛠️</div>
-      <div style="background:#a78bfa;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">SERVICES</div>
-      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🛠️ Problem Solving Service</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Tech setup, website help, digital<br>problems solved — fast &amp; affordable.</div>
-      <a href="https://wa.me/254702468460" style="display:inline-block;margin-top:14px;background:#a78bfa;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Get Help Now →</a>
+    <!-- SLIDE 19 -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0a0a0a,#141414);border:2px solid #ffd700;" onclick="window.open('https://wa.me/254702468460','_blank')">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">📣</div>
+      <div style="background:#ffd700;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ADVERTISE HERE</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">📣 Ad Slot 3 — Available</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Sponsor a slide &amp; drive traffic.<br>WhatsApp us for pricing.</div>
+      <div style="display:inline-block;margin-top:14px;background:#ffd700;color:#000;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Get Pricing →</div>
     </div>
-
-    <!-- AD SLOTS — uncomment when advertiser pays
-    <div class="hero-slide" data-label="AD" data-title="Advertiser Name" style="background:linear-gradient(135deg,#...,#...);border:2px solid #...;">
-      ...ad content...
-    </div>
-    -->
-
     <div id="hero-dots"></div>
   </div><!-- /hero-banner -->
 
@@ -316,9 +478,9 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
     <div class="grid-btn" data-submenu="electronics-sub">
       <span>📱</span>
       <small>Electronics</small>
-    </div>
+           </div>
 
-    <!-- COMPUTERS -->
+<!-- COMPUTERS -->
     <div class="grid-btn" data-submenu="computers-sub">
       <span>💻</span>
       <small>Computers</small>
@@ -469,51 +631,95 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
     <h2 class="section-title">💎 Digital Assets</h2>
     <p class="section-subtitle">Courses, Crypto, Affiliate, Problem Solving &amp; Entertainment</p>
 
-    <!-- ROW 1: Courses · E-Books · Crypto -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;">
-      <div class="dcard dcard-course" onclick="window.toggleDigital('video-courses')">
-        <div class="dcard-icon" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);">📚<br>COURSE</div>
-        <div class="dcard-title">Academy Courses</div>
-        <div class="dcard-sub">Video Editing · Marketing</div>
-        <div class="dcard-arrow">→</div>
-      </div>
-      <div class="dcard dcard-ebook" onclick="window.toggleDigital('ebooks-menu')">
-        <div class="dcard-icon" style="background:linear-gradient(135deg,#92400e,#d97706);">📖<br>E-BOOK</div>
-        <div class="dcard-title">Digital Library</div>
-        <div class="dcard-sub">Finance · Masterclasses</div>
-        <div class="dcard-arrow">→</div>
-      </div>
-      <div class="dcard dcard-crypto" onclick="window.toggleDigital('crypto-menu')">
-        <div class="dcard-icon" style="background:linear-gradient(135deg,#78350f,#f59e0b);">₿<br>CRYPTO</div>
-        <div class="dcard-title">Crypto Mastery</div>
-        <div class="dcard-sub">Top Global Exchanges</div>
-        <div class="dcard-arrow">→</div>
-      </div>
-    </div>
+    <!-- 6 DIGITAL GRID CARDS -->
+    <div class="digital-6grid">
 
-    <!-- ROW 2: Affiliate · Problem Solving · Entertainment -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
-      <div class="dcard dcard-affiliate" onclick="window.toggleDigital('affiliate-menu')">
-        <div class="dcard-icon" style="background:linear-gradient(135deg,#5b21b6,#8b5cf6);">💰<br>EARN</div>
-        <div class="dcard-title">Affiliate Hub</div>
-        <div class="dcard-sub">Earn · Refer · Grow</div>
-        <div class="dcard-arrow">→</div>
+      <!-- 1. Academy Courses -->
+      <div class="dig-card" onclick="window.toggleDigital('video-courses')">
+        <div class="dig-glow" style="background:radial-gradient(circle at 30% 40%,rgba(59,130,246,0.18),transparent 70%);"></div>
+        <div class="dig-icon-wrap" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);box-shadow:0 6px 20px rgba(59,130,246,0.35);">
+          <span class="dig-emoji">📚</span>
+          <span class="dig-badge">COURSE</span>
+        </div>
+        <div class="dig-body">
+          <div class="dig-title">Academy</div>
+          <div class="dig-sub" style="color:#60a5fa;">Video · Marketing</div>
+          <div class="dig-tag" style="background:rgba(59,130,246,0.12);color:#60a5fa;">Tap to Open ↓</div>
+        </div>
       </div>
-      <div class="dcard dcard-problem" onclick="window.toggleDigital('problem-menu')">
-        <div class="dcard-icon" style="background:linear-gradient(135deg,#065f46,#10b981);">🛠️<br>SOLVE</div>
-        <div class="dcard-title">Problem Solving</div>
-        <div class="dcard-sub">Tech · Setup · Support</div>
-        <div class="dcard-arrow">→</div>
-      </div>
-      <div class="dcard" style="border-color:rgba(236,72,153,.45);" onclick="window.toggleDigital('entertainment-menu')">
-        <div class="dcard-icon" style="background:linear-gradient(135deg,#831843,#ec4899);">🎬<br>FUN</div>
-        <div class="dcard-title">Entertainment</div>
-        <div class="dcard-sub">Movies · Music · Games</div>
-        <div class="dcard-arrow" style="color:#ec4899;">→</div>
-      </div>
-    </div>
 
-    <!-- ── DROPDOWN: Academy Courses ── -->
+      <!-- 2. Digital Library -->
+      <div class="dig-card" onclick="window.toggleDigital('ebooks-menu')">
+        <div class="dig-glow" style="background:radial-gradient(circle at 30% 40%,rgba(217,119,6,0.18),transparent 70%);"></div>
+        <div class="dig-icon-wrap" style="background:linear-gradient(135deg,#92400e,#d97706);box-shadow:0 6px 20px rgba(217,119,6,0.35);">
+          <span class="dig-emoji">📖</span>
+          <span class="dig-badge">E-BOOK</span>
+        </div>
+        <div class="dig-body">
+          <div class="dig-title">Digital Library</div>
+          <div class="dig-sub" style="color:#fbbf24;">Finance · Masterclasses</div>
+          <div class="dig-tag" style="background:rgba(217,119,6,0.12);color:#fbbf24;">Tap to Open ↓</div>
+        </div>
+      </div>
+
+      <!-- 3. Crypto Mastery -->
+      <div class="dig-card" onclick="window.toggleDigital('crypto-menu')">
+        <div class="dig-glow" style="background:radial-gradient(circle at 30% 40%,rgba(234,179,8,0.18),transparent 70%);"></div>
+        <div class="dig-icon-wrap" style="background:linear-gradient(135deg,#78350f,#f59e0b);box-shadow:0 6px 20px rgba(234,179,8,0.35);">
+          <span class="dig-emoji">₿</span>
+          <span class="dig-badge">CRYPTO</span>
+        </div>
+        <div class="dig-body">
+          <div class="dig-title">Crypto Mastery</div>
+          <div class="dig-sub" style="color:#facc15;">Top Global Exchanges</div>
+          <div class="dig-tag" style="background:rgba(234,179,8,0.12);color:#facc15;">Tap to Open ↓</div>
+        </div>
+      </div>
+
+      <!-- 4. Affiliate Hub -->
+      <div class="dig-card" onclick="window.toggleDigital('affiliate-menu')">
+        <div class="dig-glow" style="background:radial-gradient(circle at 30% 40%,rgba(139,92,246,0.18),transparent 70%);"></div>
+        <div class="dig-icon-wrap" style="background:linear-gradient(135deg,#5b21b6,#8b5cf6);box-shadow:0 6px 20px rgba(139,92,246,0.35);">
+          <span class="dig-emoji">💰</span>
+          <span class="dig-badge">EARN</span>
+        </div>
+        <div class="dig-body">
+          <div class="dig-title">Affiliate Hub</div>
+          <div class="dig-sub" style="color:#a78bfa;">Earn · Refer · Grow</div>
+          <div class="dig-tag" style="background:rgba(139,92,246,0.12);color:#a78bfa;">Tap to Open ↓</div>
+        </div>
+      </div>
+
+      <!-- 5. Problem Solving -->
+      <div class="dig-card" onclick="window.toggleDigital('problem-menu')">
+        <div class="dig-glow" style="background:radial-gradient(circle at 30% 40%,rgba(16,185,129,0.18),transparent 70%);"></div>
+        <div class="dig-icon-wrap" style="background:linear-gradient(135deg,#065f46,#10b981);box-shadow:0 6px 20px rgba(16,185,129,0.35);">
+          <span class="dig-emoji">🛠️</span>
+          <span class="dig-badge">SOLVE</span>
+        </div>
+        <div class="dig-body">
+          <div class="dig-title">Problem Solving</div>
+          <div class="dig-sub" style="color:#34d399;">Tech · Setup · Support</div>
+          <div class="dig-tag" style="background:rgba(16,185,129,0.12);color:#34d399;">Tap to Open ↓</div>
+        </div>
+      </div>
+
+      <!-- 6. Entertainment -->
+      <div class="dig-card" onclick="window.toggleDigital('entertainment-menu')">
+        <div class="dig-glow" style="background:radial-gradient(circle at 30% 40%,rgba(236,72,153,0.18),transparent 70%);"></div>
+        <div class="dig-icon-wrap" style="background:linear-gradient(135deg,#831843,#ec4899);box-shadow:0 6px 20px rgba(236,72,153,0.35);">
+          <span class="dig-emoji">🎬</span>
+          <span class="dig-badge">FUN</span>
+        </div>
+        <div class="dig-body">
+          <div class="dig-title">Entertainment</div>
+          <div class="dig-sub" style="color:#f472b6;">Movies · Music · Games</div>
+          <div class="dig-tag" style="background:rgba(236,72,153,0.12);color:#f472b6;">Tap to Open ↓</div>
+        </div>
+      </div>
+
+    </div><!-- /digital-6grid -->
+       <!-- ── DROPDOWN: Academy Courses ── -->
     <div class="minor-menu" id="video-courses">
       <div class="minor-top"><button class="back-btn" onclick="window.closeAllDigital()">← Back</button></div>
       <p style="color:#60a5fa;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">📚 Academy Courses</p>
@@ -653,8 +859,8 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
         <a href="https://wa.me/254702468460" title="WhatsApp">💬</a>
       </div>
     </div>
-
-    <!-- Quick Links -->
+       
+<!-- Quick Links -->
     <div class="footer-col">
       <div class="footer-col-title">Quick Links</div>
       <ul>
@@ -776,6 +982,45 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
 </div>
 
 <!-- ══════════════════════════════════════════════
+     PROMO ACTION MODAL
+══════════════════════════════════════════════ -->
+<div id="promo-action-modal">
+  <div class="pam-box">
+    <div class="pam-header">
+      <div>
+        <div class="label" id="promo-modal-label">COZYCABIN</div>
+        <div class="title" id="promo-modal-title">Special Offer</div>
+      </div>
+      <button id="promo-modal-close">✕</button>
+    </div>
+    <div class="pam-body">
+      <!-- Step 1 -->
+      <div id="promo-step-1" style="display:block;">
+        <p style="color:#94a3b8;font-size:13px;margin-bottom:16px;">What would you like to do?</p>
+        <button id="promo-btn-inquire" class="pam-btn pam-btn-inquire">🔍 Inquire / Ask a Question</button>
+        <button id="promo-btn-pay" class="pam-btn pam-btn-pay">💳 I've Paid — Confirm Order</button>
+      </div>
+      <!-- Step Inquire -->
+      <div id="promo-step-inquire" style="display:none;">
+        <p style="color:#94a3b8;font-size:13px;margin-bottom:14px;">Ask us anything about this offer.</p>
+        <a id="promo-wa-inquire" href="https://wa.me/254702468460" target="_blank" class="spm-wa-btn">
+          <span>💬</span><span>Chat on WhatsApp</span>
+        </a>
+        <button class="spm-back-btn promo-back" style="margin-top:8px;">← Back</button>
+      </div>
+      <!-- Step Pay -->
+      <div id="promo-step-pay" style="display:none;">
+        <p style="color:#94a3b8;font-size:13px;margin-bottom:14px;">Send your payment confirmation on WhatsApp.</p>
+        <a id="promo-wa-confirm" href="https://wa.me/254702468460" target="_blank" class="spm-wa-btn">
+          <span>✅</span><span>Confirm Payment on WhatsApp</span>
+        </a>
+        <button class="spm-back-btn promo-back" style="margin-top:8px;">← Back</button>
+      </div>
+    </div>
+  </div>
+     </div>
+     
+<!-- ══════════════════════════════════════════════
      FLOATING WHATSAPP
 ══════════════════════════════════════════════ -->
 <a href="https://wa.me/254702468460" class="float-wa" target="_blank" rel="noopener" title="Chat on WhatsApp">
@@ -848,11 +1093,12 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// ── 6. ANTI-SCREENSHOT — blur on visibility change (phone screenshot / app switch) ──
+// ── 6. ANTI-SCREENSHOT — blur briefly when switching apps (does NOT stop banner timers) ──
 document.addEventListener('visibilitychange', function() {
   if (document.hidden) {
     document.body.style.filter = 'blur(20px)';
   } else {
+    // Short blur on return, then clear — banners restart via their own visibilitychange listeners
     setTimeout(function() { document.body.style.filter = ''; }, 400);
   }
 });
@@ -887,7 +1133,10 @@ document.querySelectorAll('img').forEach(function(img) {
   img.setAttribute('draggable', 'false');
   img.style.webkitUserSelect = 'none';
   img.style.userSelect = 'none';
-  img.style.pointerEvents = 'none'; // blocks long-press save on mobile
+  // Only block pointer-events on images OUTSIDE product cards (thumbnails need to be clickable)
+  if (!img.closest('.product-card') && !img.closest('.ddrop-tile')) {
+    img.style.pointerEvents = 'none';
+  }
 });
 
 // Re-apply pointer-events block to new images added dynamically
@@ -898,7 +1147,9 @@ var imgObserver = new MutationObserver(function(mutations) {
         node.querySelectorAll && node.querySelectorAll('img').forEach(function(img) {
           img.setAttribute('oncontextmenu', 'return false');
           img.setAttribute('draggable', 'false');
-          img.style.pointerEvents = 'none';
+          if (!img.closest('.product-card') && !img.closest('.ddrop-tile')) {
+            img.style.pointerEvents = 'none';
+          }
         });
       }
     });
@@ -909,7 +1160,6 @@ imgObserver.observe(document.body, { childList: true, subtree: true });
 </script>
 
 </body>
-  </html>
+</html>
 
-
-           
+     
