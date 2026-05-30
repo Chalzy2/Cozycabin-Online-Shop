@@ -3,13 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cozycabin Premium</title>
+<title>Cozycabin — Smart Living Solutions</title>
 <link rel="icon" href="Images/Cozycabin log .webp" type="image/png">
 <link rel="apple-touch-icon" href="Images/Cozycabin log .webp">
 <link rel="stylesheet" href="fix.css">
 
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; script-src 'self' https://www.gstatic.com https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://www.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; script-src 'self' https://www.gstatic.com https://www.googletagmanager.com https://fonts.googleapis.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://www.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JVT3X5J5D"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -19,1205 +25,715 @@ gtag('config', 'G-4JVT3X5J5D');
 </script>
 
 <style>
+/* Page-specific overrides */
 *{box-sizing:border-box;margin:0;padding:0;max-width:100%;}
-html,body{width:100%;overflow-x:hidden;background:#000;color:#fff;font-family:Arial,sans-serif;-webkit-user-select:none;user-select:none;scroll-behavior:smooth;}
+html,body{width:100%;overflow-x:hidden;background:#000;color:#fff;font-family:'Outfit',Arial,sans-serif;-webkit-user-select:none;user-select:none;scroll-behavior:smooth;}
 img{max-width:100%;display:block;-webkit-user-drag:none;}
 button,a{touch-action:manipulation;}
 input,select,textarea{width:100%;max-width:100%;}
-.container{width:100%;max-width:1200px;margin:auto;padding:10px 14px 100px;overflow:hidden;}
-.brand-header{text-align:center;padding:10px 0 20px;}
-.brand-logo{width:150px;margin:auto;border:2px solid #ffd700;border-radius:18px;padding:5px;background:#0d0d0d;box-shadow:0 0 12px rgba(255,215,0,.3);}
-.brand-tagline{font-size:11px;color:#888;margin-top:5px;}
-.academy-card{background:#1a1a1a;border:1px solid #0007ff;border-radius:28px;padding:18px;display:flex;align-items:center;gap:18px;margin:18px auto;max-width:520px;}
-.academy-icon{width:85px;height:85px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;flex-shrink:0;}
-.bg-blue{background:#007bff;color:#fff;}
-.bg-yellow{background:#ffd700;color:#000;}
-.academy-info h2{font-size:24px;margin-bottom:8px;}
-.academy-info p{font-size:15px;cursor:pointer;line-height:1.5;}
-.main-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;}
-.grid-btn{background:#232d3f;border:1px solid #3b4758;border-radius:24px;padding:24px 8px;text-align:center;cursor:pointer;transition:.3s;}
-.grid-btn:hover{border-color:#ffd700;transform:translateY(-2px);}
-.grid-btn span{font-size:28px;display:block;margin-bottom:10px;}
-.grid-btn small{font-size:12px;font-weight:bold;}
-.minor-menu{display:none;background:#0f172a;border:2px solid #ffcc00;border-radius:24px;padding:20px 15px;margin:15px 0;width:100%;box-sizing:border-box;}
-.minor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-.minor-btn{background:#232d3f;border:none;color:#fff;border-radius:16px;padding:16px 8px;font-size:12px;font-weight:bold;cursor:pointer;transition:.3s;}
-.minor-btn:hover{background:#ffd700;color:#000;}
-.minor-top{width:100%;display:flex;justify-content:flex-start;margin-bottom:15px;box-sizing:border-box;}
-.back-btn{background:rgba(255,255,255,0.07);color:#cbd5e1;border:1px solid rgba(255,255,255,0.15);padding:10px 18px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s ease-in-out;outline:none;-webkit-tap-highlight-color:transparent;}
-.back-btn:active{background:rgba(255,204,0,0.3);color:#ffcc00;border-color:#ffcc00;transform:scale(0.97);}
-.section-title{text-align:center;color:#ffd700;font-size:24px;margin-bottom:20px;font-weight:bold;}
-.cozy-affiliate-box{background:linear-gradient(135deg,#071129 0%,#0f172a 100%);border:1px solid rgba(45,183,66,0.25);border-radius:28px;padding:35px 22px;margin:30px auto;text-align:center;position:relative;overflow:hidden;box-shadow:0 10px 35px rgba(0,0,0,0.45);}
-.cozy-affiliate-badge{display:inline-block;background:linear-gradient(90deg,#2db742,#24a63c);color:white;padding:8px 18px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:22px;}
-.cozy-affiliate-title{color:white;font-size:34px;line-height:1.35;font-weight:800;margin-bottom:18px;}
-.cozy-affiliate-title span{color:#2db742;}
-.cozy-affiliate-text{color:#d1d5db;font-size:16px;line-height:1.9;margin-bottom:30px;}
-.cozy-affiliate-btn{background:linear-gradient(90deg,#2db742,#24a63c);color:white;border:none;border-radius:16px;padding:18px 28px;width:100%;max-width:320px;font-size:17px;font-weight:800;cursor:pointer;transition:.3s ease;}
-.float-wa{position:fixed;width:65px;height:65px;right:18px;bottom:18px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(0,0,0,.5);z-index:99999;}
-.float-wa img{width:36px;}
-.modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.95);justify-content:center;align-items:center;padding:20px;}
-.modal-content{width:90%;max-width:500px;border-radius:18px;border:2px solid #ffd700;}
-.close-modal{position:absolute;top:15px;right:25px;font-size:45px;color:#fff;cursor:pointer;}
-.crypto-box{background:linear-gradient(145deg,#181818,#101010);border:1px solid #2d2d2d;border-radius:22px;padding:16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:15px;box-shadow:0 0 14px rgba(0,0,0,0.45);}
-.crypto-left{display:flex;align-items:center;gap:16px;flex:1;}
-.crypto-logo-box{width:74px;height:74px;border-radius:18px;background:#111;border:1px solid #303030;display:flex;justify-content:center;align-items:center;flex-shrink:0;}
-.crypto-logo{width:46px;height:46px;object-fit:contain;}
-.crypto-info{display:flex;flex-direction:column;}
-.crypto-title{color:#f2c94c;font-size:15px;font-weight:700;margin:0 0 8px;line-height:1.4;}
-.crypto-desc{color:#a1a1a1;font-size:11px;line-height:1.5;margin:0;}
-.crypto-btn{padding:13px 22px;border-radius:14px;font-size:13px;font-weight:700;text-decoration:none;color:#fff;white-space:nowrap;transition:0.3s ease;}
-.contact-section{background:#071129;border:2px solid #ffd700;border-radius:25px;padding:25px;margin-top:40px;box-shadow:0 0 20px rgba(255,215,0,0.15);}
-.contact-title{color:#ffd700;font-size:28px;text-align:center;margin-bottom:10px;}
-.contact-subtitle{color:#cbd5e1;text-align:center;margin-bottom:25px;font-size:15px;line-height:1.6;}
-.contact-form{display:flex;flex-direction:column;gap:18px;}
-.contact-form input,.contact-form textarea{background:#111827;border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:16px;color:white;font-size:15px;outline:none;}
-.contact-form textarea{min-height:140px;resize:none;}
-.contact-form input:focus,.contact-form textarea:focus{border:1px solid #ffd700;box-shadow:0 0 10px rgba(255,215,0,0.2);}
-.contact-form button{background:#ffd700;color:#000;font-weight:700;padding:16px;border:none;border-radius:14px;font-size:16px;cursor:pointer;transition:0.3s;}
-.contact-form button:hover{transform:scale(1.02);background:#ffcc00;}
-.ebook-box{border:2px solid #CD853F;border-radius:15px;padding:15px;margin-bottom:15px;}
-#premium-checkout-box{width:100%;max-width:520px;margin:auto;}
-body,.container,.main-grid{overflow-x:hidden;}
-@media(max-width:768px){
-  .container{padding:10px 10px 100px;}
-  .main-grid{grid-template-columns:repeat(3,1fr);gap:10px;}
-  .minor-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
-  .grid-btn{padding:16px 6px;border-radius:18px;}
-  .grid-btn span{font-size:22px;}
-  .grid-btn small{font-size:10px;}
-  .academy-card{padding:14px;gap:12px;}
-  .academy-icon{width:65px;height:65px;font-size:10px;}
-  .academy-info h2{font-size:18px;}
-  .cozy-affiliate-title{font-size:26px;}
-  .brand-logo{width:120px;}
-  .float-wa{width:58px;height:58px;right:14px;bottom:14px;}
-  .float-wa img{width:32px;}
-  .crypto-box{padding:14px;gap:12px;}
-  .crypto-logo-box{width:65px;height:65px;}
-  .crypto-logo{width:40px;height:40px;}
-  .crypto-title{font-size:14px;}
-  .crypto-desc{font-size:10px;}
-  .crypto-btn{padding:11px 18px;font-size:12px;}
-  img{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none;}
-}
+
+/* ── HERO BANNER STYLES (duplicated inline for safety) ── */
+#hero-banner{margin:0 0 18px;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 0 25px rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.18);}
+.hero-slide{display:none;flex-direction:column;justify-content:center;border-radius:22px;padding:28px 22px;min-height:160px;position:relative;overflow:hidden;animation:heroFade .4s ease;}
+.hero-slide.active{display:flex;}
+@keyframes heroFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+#hero-dots{display:flex;justify-content:center;gap:6px;padding:12px 0 8px;background:transparent;}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:#444;border:none;cursor:pointer;padding:0;transition:background .3s,transform .3s,width .3s;}
+.hero-dot.active{background:#ffd700;transform:scale(1.2);width:22px;border-radius:4px;}
+
+/* ── SMART PAYMENT MODAL ── */
+#smart-payment-modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.95);justify-content:center;align-items:center;padding:16px;}
+.spm-box{width:100%;max-width:480px;background:linear-gradient(180deg,#0d1117,#111827);border:2px solid #ffd700;border-radius:22px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.8),0 0 30px rgba(255,215,0,.12);animation:modalSlide .3s ease;max-height:92vh;overflow-y:auto;}
+@keyframes modalSlide{from{opacity:0;transform:translateY(28px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.spm-header{background:linear-gradient(135deg,#0a1128,#111827);padding:18px 20px 14px;border-bottom:1px solid rgba(255,215,0,.15);display:flex;justify-content:space-between;align-items:center;}
+.spm-header h3{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#ffd700;letter-spacing:.5px;}
+.spm-close{background:none;border:none;color:#94a3b8;font-size:24px;cursor:pointer;line-height:1;padding:0;transition:color .2s;}
+.spm-close:hover{color:#ffd700;}
+.spm-body{padding:20px;}
+.spm-step{display:none;}
+.spm-step.active{display:block;}
+.spm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.spm-option{background:#0f172a;border:2px solid rgba(255,255,255,.08);border-radius:14px;padding:16px 12px;text-align:center;cursor:pointer;transition:.2s;-webkit-tap-highlight-color:transparent;}
+.spm-option:hover,.spm-option:active{border-color:#ffd700;background:rgba(255,215,0,.05);}
+.spm-option-icon{font-size:28px;margin-bottom:8px;}
+.spm-option-label{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:#fff;letter-spacing:.3px;}
+.spm-option-sub{font-size:11px;color:#64748b;margin-top:3px;}
+.spm-wa-btn{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;text-decoration:none;padding:14px 18px;border-radius:12px;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;margin-bottom:10px;transition:.2s;}
+.spm-wa-btn:hover{opacity:.9;transform:scale(1.01);}
+.spm-back-btn{background:none;border:1px solid rgba(255,255,255,.12);color:#94a3b8;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;margin-top:8px;transition:.2s;font-family:'Outfit',sans-serif;}
+.spm-back-btn:hover{border-color:#ffd700;color:#ffd700;}
+.spm-mpesa-box{background:#0a1128;border:1px solid rgba(0,182,122,.3);border-radius:12px;padding:14px;margin-bottom:14px;}
+.spm-mpesa-box .label{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.spm-mpesa-box .value{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:#00b67a;letter-spacing:1px;}
+.copy-btn{background:#0f172a;border:1px solid rgba(255,255,255,.1);color:#94a3b8;padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;margin-top:8px;transition:.2s;font-family:'Outfit',sans-serif;}
+.copy-btn:hover{border-color:#ffd700;color:#ffd700;}
+.spm-divider{text-align:center;color:#334155;font-size:12px;margin:12px 0;}
+
+/* ── PROMO ACTION MODAL ── */
+#promo-action-modal{display:none;position:fixed;z-index:9998;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.9);justify-content:center;align-items:center;padding:16px;}
+.pam-box{width:100%;max-width:420px;background:#0d1117;border:2px solid #ffd700;border-radius:22px;overflow:hidden;animation:modalSlide .3s ease;}
+.pam-header{padding:18px 20px 14px;background:#060e1e;border-bottom:1px solid rgba(255,215,0,.15);display:flex;justify-content:space-between;align-items:center;}
+.pam-header .label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#94a3b8;}
+.pam-header .title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-top:3px;}
+#promo-modal-close{background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer;line-height:1;}
+.pam-body{padding:20px;}
+.pam-btn{display:block;padding:14px 18px;border-radius:12px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;text-align:center;text-decoration:none;margin-bottom:10px;cursor:pointer;border:none;width:100%;transition:.2s;}
+.pam-btn-inquire{background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;}
+.pam-btn-pay{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;}
+.pam-step{display:none;}
 </style>
 </head>
 <body>
 
-  <!--
-  COZYCABIN HERO BANNER — FINAL v5
-  ════════════════════════════════════════
-  • 10 PERMANENT slides (DO NOT REMOVE)
-  • 3 AD SLOTS — uncomment when advertiser pays
-  • JS lives in products.js — link that file and it auto-runs
-  ════════════════════════════════════════
-  PASTE <style> in <head>
-  PASTE <div id="hero-banner"> where banner goes
-  Make sure products.js is linked in your page
--->
+<!-- ══════════════════════════════════════════════
+     SITE HEADER
+══════════════════════════════════════════════ -->
+<header class="site-header">
+  <a href="/" class="header-logo">
+    <img src="Images/Cozycabin log .webp" alt="Cozycabin Logo">
+    <div class="header-logo-text">
+      <span class="header-logo-brand">CozyCabin</span>
+      <span class="header-logo-tagline">Smart Living Solutions</span>
+    </div>
+  </a>
 
-<!-- ── STEP 1: paste in <head> ── -->
-<style>
-  #hero-banner{margin:0 0 20px 0;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 0 25px rgba(255,215,0,0.15);}
-  .hero-slide{display:none;flex-direction:column;justify-content:center;border-radius:22px;padding:28px 22px;min-height:150px;position:relative;overflow:hidden;animation:heroFade 0.4s ease;}
-  .hero-slide.active{display:flex;}
-  @keyframes heroFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-  #hero-dots{display:flex;justify-content:center;gap:6px;padding:12px 0 6px;background:transparent;}
-  .hero-dot{width:8px;height:8px;border-radius:50%;background:#444;border:none;cursor:pointer;padding:0;transition:background 0.3s,transform 0.3s;}
-  .hero-dot.active{background:#ffd700;transform:scale(1.3);}
-</style>
+  <!-- Desktop Nav -->
+  <nav class="header-nav">
+    <a href="/">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#digital">Digital Assets</a>
+    <a href="/affiliate.html">Affiliate</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-<!-- ── STEP 2: paste where banner goes ── -->
-<div id="hero-banner">
-
-  <!-- ════════════════════════════════════
-       10 PERMANENT SLIDES — DO NOT REMOVE
-       ════════════════════════════════════ -->
-
-  <!-- SLIDE 1 — Affiliate -->
-  <div class="hero-slide active" style="background:linear-gradient(135deg,#071129,#0f172a);border:2px solid #2db742;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">💰</div>
-    <div style="background:#2db742;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">EARN ONLINE</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">💰 Earn with Cozycabin Affiliate</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Share products &amp; earn commissions.<br>No capital needed to start.</div>
-    <a href="/affiliate.html" style="display:inline-block;margin-top:14px;background:#2db742;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Join Affiliate Program →</a>
+  <!-- Icons -->
+  <div class="header-icons">
+    <button class="header-icon-btn" title="Search">🔍</button>
+    <a href="https://wa.me/254702468460" class="header-icon-btn" title="Cart">🛒</a>
+    <!-- Mobile menu toggle -->
+    <button class="header-menu-btn" onclick="document.getElementById('mobile-nav').classList.toggle('open')">☰</button>
   </div>
+</header>
 
-  <!-- SLIDE 2 — Academy -->
-  <div class="hero-slide" style="background:linear-gradient(135deg,#0d1b2a,#1a2744);border:2px solid #0d84ff;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">📚</div>
-    <div style="background:#0d84ff;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">ACADEMY</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">📚 Learn New Skills</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Video editing, website setup<br>&amp; digital marketing courses.</div>
-    <a href="#" onclick="window.toggleSub&&window.toggleSub('video-courses');return false;" style="display:inline-block;margin-top:14px;background:#0d84ff;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">View Courses →</a>
-  </div>
+<!-- Mobile Nav Drawer -->
+<nav id="mobile-nav" style="display:none;background:#0d1117;border-bottom:1px solid rgba(255,215,0,.18);padding:12px 16px;gap:4px;flex-direction:column;">
+  <a href="/" style="color:#fff;text-decoration:none;padding:10px;border-radius:10px;font-weight:600;display:block;">🏠 Home</a>
+  <a href="#categories" style="color:#fff;text-decoration:none;padding:10px;border-radius:10px;font-weight:600;display:block;">🛍️ Categories</a>
+  <a href="#digital" style="color:#fff;text-decoration:none;padding:10px;border-radius:10px;font-weight:600;display:block;">💎 Digital Assets</a>
+  <a href="/affiliate.html" style="color:#fff;text-decoration:none;padding:10px;border-radius:10px;font-weight:600;display:block;">💰 Affiliate</a>
+  <a href="#contact" style="color:#fff;text-decoration:none;padding:10px;border-radius:10px;font-weight:600;display:block;">📞 Contact</a>
+</nav>
+<script>
+document.querySelector('.header-menu-btn').addEventListener('click', function() {
+  var nav = document.getElementById('mobile-nav');
+  nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+});
+</script>
 
-  <!-- SLIDE 3 — Shop -->
-  <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a00,#2d1800);border:2px solid #ffd700;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🛒</div>
-    <div style="background:#ffd700;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">ONLINE SHOP</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🛒 Shop Quality Products</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Fashion, Solar, Kitchen,<br>Electronics and more.</div>
-    <a href="#" onclick="document.querySelector('.main-grid')&&document.querySelector('.main-grid').scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;margin-top:14px;background:#ffd700;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Shop Now →</a>
-  </div>
+<div class="container">
 
-  <!-- SLIDE 4 — Delivery -->
-  <div class="hero-slide" style="background:linear-gradient(135deg,#0a1a0a,#102010);border:2px solid #22c55e;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🚚</div>
-    <div style="background:#22c55e;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">DELIVERY</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🚚 Nationwide Delivery</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Delivered across Kenya via G4S,<br>Simba Coach, Tahmeed &amp; more.</div>
-    <a href="https://wa.me/254702468460" style="display:inline-block;margin-top:14px;background:#22c55e;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Ask Delivery Info →</a>
-  </div>
+  <!-- ══════════════════════════════════════════════
+       HERO BANNER
+  ══════════════════════════════════════════════ -->
+  <div id="hero-banner">
 
-  <!-- SLIDE 5 — Crypto -->
-  <div class="hero-slide" style="background:linear-gradient(135deg,#0d0d1a,#1a1a30);border:2px solid #f2c94c;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">💎</div>
-    <div style="background:#f2c94c;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">CRYPTO</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">💎 Crypto &amp; Digital Assets</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Top exchanges, tools<br>&amp; beginner guides.</div>
-    <a href="#" onclick="window.toggleCryptoRowDropdown&&window.toggleCryptoRowDropdown();return false;" style="display:inline-block;margin-top:14px;background:#f2c94c;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Explore Crypto →</a>
-  </div>
-
-  <!-- SLIDE 6 — Best Sellers -->
-  <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a1a,#2d0d2d);border:2px solid #ff6bff;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">⭐</div>
-    <div style="background:#ff6bff;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">BEST SELLERS</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">⭐ Best Sellers This Week</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">See what customers<br>are buying most right now.</div>
-    <a href="#" onclick="window.showProducts&&window.showProducts('shoes');return false;" style="display:inline-block;margin-top:14px;background:#ff6bff;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Shop Best Sellers →</a>
-  </div>
-
-  <!-- SLIDE 7 — New Arrivals -->
-  <div class="hero-slide" style="background:linear-gradient(135deg,#1a0500,#2d0d00);border:2px solid #ff4500;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🔥</div>
-    <div style="background:#ff4500;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">NEW ARRIVALS</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🔥 New Arrivals</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Fresh products added regularly.<br>Be first to grab them.</div>
-    <a href="#" onclick="window.showProducts&&window.showProducts('shoes');return false;" style="display:inline-block;margin-top:14px;background:#ff4500;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">See New Arrivals →</a>
-  </div>
-
-  <!-- SLIDE 8 — Content Creation Courses -->
-  <div class="hero-slide" style="background:linear-gradient(135deg,#0a0d1f,#111a35);border:2px solid #60a5fa;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🎬</div>
-    <div style="background:#60a5fa;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">COURSES</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🎬 Content Creation Academy</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">TikTok, Reels, YouTube &amp;<br>Social Media Growth strategies.</div>
-    <a href="#" onclick="window.toggleSub&&window.toggleSub('video-courses');return false;" style="display:inline-block;margin-top:14px;background:#60a5fa;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">View Courses →</a>
-  </div>
-
-  <!-- SLIDE 9 — Membership / Earn -->
-  <div class="hero-slide" style="background:linear-gradient(135deg,#0d1a0d,#0f2a1a);border:2px solid #34d399;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🚀</div>
-    <div style="background:#34d399;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">MEMBERSHIP</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🚀 Start Earning Today</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Join the Cozycabin member network.<br>Earn commissions on every referral.</div>
-    <a href="#card-member" style="display:inline-block;margin-top:14px;background:#34d399;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Become a Member →</a>
-  </div>
-
-  <!-- SLIDE 10 — Problem Solving Service -->
-  <div class="hero-slide" style="background:linear-gradient(135deg,#0f0a1a,#1a1030);border:2px solid #a78bfa;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">🛠️</div>
-    <div style="background:#a78bfa;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">SERVICES</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">🛠️ Problem Solving Service</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Tech setup, website help, digital<br>problems solved — fast &amp; affordable.</div>
-    <a href="https://wa.me/254702468460" style="display:inline-block;margin-top:14px;background:#a78bfa;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Get Help Now →</a>
-  </div>
-
-  <!-- ════════════════════════════════════
-       3 AD SLOTS — PAID ADVERTISERS ONLY
-       When a client pays, copy one block,
-       fill in details & remove the comments.
-       ════════════════════════════════════ -->
-
-  <!-- AD SLOT 1 — Available (uncomment to activate)
-  <div class="hero-slide" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a);border:2px solid YOUR_COLOR;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">YOUR_EMOJI</div>
-    <div style="background:YOUR_COLOR;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">SPONSORED</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">YOUR_HEADLINE</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">YOUR_DESCRIPTION_LINE1<br>YOUR_DESCRIPTION_LINE2</div>
-    <a href="YOUR_LINK" style="display:inline-block;margin-top:14px;background:YOUR_COLOR;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">YOUR_CTA →</a>
-  </div>
-  -->
-
-  <!-- AD SLOT 2 — Available (uncomment to activate)
-  <div class="hero-slide" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a);border:2px solid YOUR_COLOR;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">YOUR_EMOJI</div>
-    <div style="background:YOUR_COLOR;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">SPONSORED</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">YOUR_HEADLINE</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">YOUR_DESCRIPTION_LINE1<br>YOUR_DESCRIPTION_LINE2</div>
-    <a href="YOUR_LINK" style="display:inline-block;margin-top:14px;background:YOUR_COLOR;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">YOUR_CTA →</a>
-  </div>
-  -->
-
-  <!-- AD SLOT 3 — Available (uncomment to activate)
-  <div class="hero-slide" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a);border:2px solid YOUR_COLOR;">
-    <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.12;">YOUR_EMOJI</div>
-    <div style="background:YOUR_COLOR;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:10px;width:fit-content;">SPONSORED</div>
-    <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">YOUR_HEADLINE</div>
-    <div style="color:#94a3b8;font-size:13px;line-height:1.6;">YOUR_DESCRIPTION_LINE1<br>YOUR_DESCRIPTION_LINE2</div>
-    <a href="YOUR_LINK" style="display:inline-block;margin-top:14px;background:YOUR_COLOR;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">YOUR_CTA →</a>
-  </div>
-  -->
-
-  <!-- Dots — built automatically by hero banner JS in products.js -->
-  <div id="hero-dots"></div>
-
-</div><!-- /#hero-banner -->
-  
-
-
-
-
-
-<!-- BRAND HEADER -->
-<div class="brand-header">
-<img src="Images/Cozycabin log .webp" alt="Cozycabin Logo" class="brand-logo">
-<h3 style="text-align:center;color:#ffd700;margin-bottom:15px;">💎 COZYCABIN DIGITAL ASSETS</h3>
-<p class="brand-tagline">Courses, Crypto & Masterclasses</p>
-</div>
-<!--
-  COZYCABIN DIGITAL ASSETS GRID
-  ════════════════════════════════════════
-  Paste this section just after your logo/header area
-  BEFORE the promo banner / local shop grid
-  Matches Picture 1 layout — 6 cards
--->
-
-<!-- ── Section Title ── -->
-<div style="text-align:center;padding:10px 14px 8px;position:relative;z-index:1;">
-  <div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:#556677;text-transform:uppercase;display:flex;align-items:center;gap:8px;justify-content:center;">
-    <span style="flex:1;height:1px;background:rgba(255,255,255,.07);display:inline-block;max-width:60px;"></span>
-    💎 DIGITAL ASSETS
-    <span style="flex:1;height:1px;background:rgba(255,255,255,.07);display:inline-block;max-width:60px;"></span>
-  </div>
-</div>
-
-<!-- ── 6-Card Digital Grid ── -->
-<div class="digital-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 14px 14px;position:relative;z-index:1;">
-
-  <!-- 1. COURSE -->
-  <div class="dcard dcard-course" onclick="toggle('card-course')">
-    <div class="dcard-icon" style="background:#2563eb;">COURSE</div>
-    <div class="dcard-title">COURSE</div>
-    <div class="dcard-sub">Academy Courses <span class="dcard-arrow">▼</span></div>
-  </div>
-
-  <!-- 2. E-BOOK -->
-  <div class="dcard dcard-ebook" onclick="toggle('card-ebook')">
-    <div class="dcard-icon" style="background:#d97706;">E-BOOK</div>
-    <div class="dcard-title">E-BOOK</div>
-    <div class="dcard-sub">Digital Library <span class="dcard-arrow">▼</span></div>
-  </div>
-
-  <!-- 3. CRYPTO MASTERY -->
-  <div class="dcard dcard-crypto" onclick="toggleCryptoRowDropdown()">
-    <div class="dcard-icon" style="background:#ca8a04;">Crypto</div>
-    <div class="dcard-title">CRYPTO MASTERY</div>
-    <div class="dcard-sub">Top Global Exchanges &amp; Tools <span class="dcard-arrow">▼</span></div>
-  </div>
-
-  <!-- 4. AFFILIATE -->
-  <div class="dcard dcard-affiliate" onclick="toggle('card-affiliate')">
-    <div class="dcard-icon" style="background:#7c3aed;">AFFILIATE</div>
-    <div class="dcard-title">AFFILIATE</div>
-    <div class="dcard-sub">Shop Local &amp; Global <span class="dcard-arrow">▼</span></div>
-  </div>
-
-  <!-- 5. PROBLEM SOLVING -->
-  <div class="dcard dcard-problem" onclick="toggle('card-problem')">
-    <div class="dcard-icon" style="background:#059669;font-size:8px;">PROBLEM SOLVING</div>
-    <div class="dcard-title">PROBLEM SOLVING</div>
-    <div class="dcard-sub">Our Solutions <span class="dcard-arrow">▼</span></div>
-  </div>
-
-  <!-- 6. MEMBER OPPORTUNITY — full width feel, spans col -->
-  <div class="dcard dcard-member" onclick="document.getElementById('card-member')&&document.getElementById('card-member').scrollIntoView({behavior:'smooth'})">
-    <div style="background:linear-gradient(90deg,#10b981,#059669);color:#fff;font-size:9px;font-weight:700;letter-spacing:.08em;padding:5px 10px;border-radius:16px;text-align:center;margin-bottom:6px;">MEMBER OPPORTUNITY 💡</div>
-    <div class="dcard-title" style="font-size:13px;">Earn Online 💡</div>
-    <div class="dcard-sub" style="color:#34d399;">Start Earning →</div>
-  </div>
-
-</div>
-
-<!-- ── Dropdown panels (hidden, toggled by cards) ── -->
-
-<!-- COURSE dropdown -->
-<div id="card-course-drop" style="display:none;margin:-4px 14px 10px;background:#131825;border:1.5px solid rgba(59,130,246,.45);border-radius:0 0 14px 14px;padding:12px;">
-  <div style="color:#445566;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">📚 Available Courses</div>
-  <a class="ddrop-tile" href="#" target="_blank">🎬 <span>CapCut / Video Editing</span></a>
-  <a class="ddrop-tile" href="#" target="_blank">📱 <span>TikTok Growth</span></a>
-  <a class="ddrop-tile" href="#" target="_blank">💻 <span>Website Setup</span></a>
-  <a class="ddrop-tile" href="#" target="_blank">📢 <span>Digital Marketing</span></a>
-  <a class="ddrop-tile" href="#" target="_blank">🌐 <span>Online Business Setup</span></a>
-</div>
-
-<!-- EBOOK dropdown -->
-<div id="card-ebook-drop" style="display:none;margin:-4px 14px 10px;background:#131825;border:1.5px solid rgba(217,119,6,.45);border-radius:0 0 14px 14px;padding:12px;">
-  <div style="color:#445566;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">📖 Digital Library</div>
-  <a class="ddrop-tile" href="https://selar.com/z6wn6j11g1" target="_blank">📘 <span>Facebook Profit Formula</span></a>
-  <a class="ddrop-tile" href="https://selar.com/dy79oz7112" target="_blank">📗 <span>Selling Daily</span></a>
-  <a class="ddrop-tile" href="https://selar.com/378373r336" target="_blank">📙 <span>Crypto Mastery Guide</span></a>
-</div>
-
-<!-- AFFILIATE dropdown -->
-<div id="card-affiliate-drop" style="display:none;margin:-4px 14px 10px;background:#131825;border:1.5px solid rgba(139,92,246,.45);border-radius:0 0 14px 14px;padding:12px;">
-  <div style="color:#445566;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">🛒 Shop Local &amp; Global</div>
-  <a class="ddrop-tile" href="https://jumia.com" target="_blank">🛍️ <span>Jumia</span></a>
-  <a class="ddrop-tile" href="https://temu.com" target="_blank">🛍️ <span>Temu</span></a>
-  <a class="ddrop-tile" href="https://amazon.com" target="_blank">🛍️ <span>Amazon</span></a>
-  <a class="ddrop-tile" href="https://alibaba.com" target="_blank">🛍️ <span>Alibaba</span></a>
-  <a class="ddrop-tile" href="https://aliexpress.com" target="_blank">🛍️ <span>AliExpress</span></a>
-  <a class="ddrop-tile" href="https://jiji.co.ke" target="_blank">🛍️ <span>Jiji</span></a>
-</div>
-
-<!-- PROBLEM SOLVING dropdown -->
-<div id="card-problem-drop" style="display:none;margin:-4px 14px 10px;background:#131825;border:1.5px solid rgba(16,185,129,.45);border-radius:0 0 14px 14px;padding:12px;">
-  <div style="color:#445566;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">🛠️ Our Solutions</div>
-  <div style="color:#94a3b8;font-size:12px;line-height:1.8;">
-    Website Support • Computer Repair • Solar Installation • CCTV Installation • Home Repairs • Digital Marketing • Online Business Setup • Graphic Design • Other Services
-  </div>
-  <a href="https://wa.me/254702468460" style="display:block;margin-top:10px;background:#059669;color:#fff;text-decoration:none;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-align:center;">💬 WhatsApp Us →</a>
-  </div>
-  
-
-
-  
-
-<!-- DELIVERY BAR -->
-<div style="background:#ffd700;color:black;padding:10px 0;font-weight:bold;margin:25px 0;overflow:hidden;">
-<marquee>🚚 COUNTRYWIDE DELIVERY VIA G4S, SIMBA COACH, TAHMEED, BUSCAR, MODERN COACH & PARCEL BUS | 📍 LOCAL DELIVERY IN KENYA, TANZANIA & UGANDA | 🇰🇪🇹🇿🇺🇬 BEST QUALITY BY COZYCABIN</marquee>
-</div>
-
-<!-- LOCAL SHOP TITLE -->
-  <!-- 
-  COZYCABIN PROMO ROTATING BANNER v2
-  Place just above main-grid div
-  Rotates every 8 seconds
-  Tap → shows Action Modal (Inquire OR Pay)
--->
-
-<!-- ACTION MODAL -->
-<div id="promo-action-modal" style="
-  display:none;position:fixed;z-index:99999;
-  left:0;top:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.92);
-  justify-content:center;align-items:flex-end;
-">
-  <div style="
-    background:#0f172a;
-    border:2px solid #ffd700;
-    border-radius:28px 28px 0 0;
-    padding:24px 20px 44px;
-    width:100%;max-width:520px;
-    max-height:92vh;overflow-y:auto;
-  ">
-    <!-- Handle -->
-    <div style="width:40px;height:4px;background:#333;border-radius:2px;margin:0 auto 18px;"></div>
-
-    <!-- Close -->
-    <div id="promo-modal-close" style="
-      position:absolute;top:18px;right:20px;
-      color:#94a3b8;font-size:24px;cursor:pointer;
-    ">✕</div>
-
-    <!-- Product name from banner -->
-    <div id="promo-modal-label" style="
-      color:#ffd700;font-size:11px;font-weight:700;
-      letter-spacing:1px;text-align:center;margin-bottom:6px;
-    "></div>
-    <h3 id="promo-modal-title" style="
-      color:#fff;font-size:17px;font-weight:800;
-      text-align:center;margin-bottom:20px;
-    "></h3>
-
-    <!-- STEP 1 — Choose action -->
-    <div id="promo-step-1">
-      <p style="color:#94a3b8;font-size:13px;text-align:center;margin-bottom:20px;">What would you like to do?</p>
-
-      <!-- INQUIRE -->
-      <button id="promo-btn-inquire" style="
-        width:100%;background:linear-gradient(135deg,#071129,#0f172a);
-        border:2px solid #25d366;border-radius:16px;
-        padding:18px;margin-bottom:12px;cursor:pointer;
-        display:flex;align-items:center;gap:14px;text-align:left;
-      ">
-        <span style="font-size:32px;">💬</span>
-        <div>
-          <div style="color:#fff;font-size:15px;font-weight:700;">Inquire / Ask Question</div>
-          <div style="color:#94a3b8;font-size:12px;">Chat with us on WhatsApp</div>
-        </div>
-        <span style="color:#25d366;margin-left:auto;font-size:18px;">→</span>
-      </button>
-
-      <!-- PAY -->
-      <button id="promo-btn-pay" style="
-        width:100%;background:linear-gradient(135deg,#071a07,#0f2a0f);
-        border:2px solid #ffd700;border-radius:16px;
-        padding:18px;cursor:pointer;
-        display:flex;align-items:center;gap:14px;text-align:left;
-      ">
-        <span style="font-size:32px;">💳</span>
-        <div>
-          <div style="color:#fff;font-size:15px;font-weight:700;">Pay for Product / Service</div>
-          <div style="color:#94a3b8;font-size:12px;">M-Pesa, Pochi, Crypto & more</div>
-        </div>
-        <span style="color:#ffd700;margin-left:auto;font-size:18px;">→</span>
-      </button>
+    <!-- SLIDE 1 — Affiliate -->
+    <div class="hero-slide active" style="background:linear-gradient(135deg,#071129,#0f172a);border:2px solid #2db742;">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">💰</div>
+      <div style="background:#2db742;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">EARN ONLINE</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">💰 Earn with Cozycabin Affiliate</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Share products &amp; earn commissions.<br>No capital needed to start.</div>
+      <a href="/affiliate.html" style="display:inline-block;margin-top:14px;background:#2db742;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Join Affiliate Program →</a>
     </div>
 
-    <!-- STEP 2A — INQUIRE via WhatsApp -->
-    <div id="promo-step-inquire" style="display:none;">
-      <button class="promo-back" style="background:none;border:none;color:#94a3b8;cursor:pointer;margin-bottom:16px;font-size:13px;">← Back</button>
-      <h4 style="color:#ffd700;font-size:16px;font-weight:800;margin-bottom:16px;">💬 Send Your Inquiry</h4>
-
-      <a id="promo-wa-inquire" href="#" style="
-        display:flex;align-items:center;gap:14px;
-        background:#075e54;border:1px solid #25d366;
-        border-radius:16px;padding:18px;margin-bottom:12px;
-        text-decoration:none;
-      ">
-        <span style="font-size:32px;">📲</span>
-        <div>
-          <div style="color:#fff;font-size:15px;font-weight:700;">WhatsApp Inquiry</div>
-          <div style="color:#94a3b8;font-size:12px;">Get instant reply from Cozycabin</div>
-        </div>
-        <span style="color:#25d366;margin-left:auto;font-size:18px;">→</span>
-      </a>
-
-      <a href="tel:+254702468460" style="
-        display:flex;align-items:center;gap:14px;
-        background:#0d1f2d;border:1px solid #0d84ff;
-        border-radius:16px;padding:18px;
-        text-decoration:none;
-      ">
-        <span style="font-size:32px;">📞</span>
-        <div>
-          <div style="color:#fff;font-size:15px;font-weight:700;">Call Us Directly</div>
-          <div style="color:#94a3b8;font-size:12px;">+254 702 468 460</div>
-        </div>
-        <span style="color:#0d84ff;margin-left:auto;font-size:18px;">→</span>
-      </a>
+    <!-- SLIDE 2 — Academy -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1b2a,#1a2744);border:2px solid #0d84ff;">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">📚</div>
+      <div style="background:#0d84ff;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ACADEMY</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">📚 Learn New Skills</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Video editing, website setup<br>&amp; digital marketing courses.</div>
+      <a href="#" onclick="window.toggleSub&&window.toggleSub('video-courses');return false;" style="display:inline-block;margin-top:14px;background:#0d84ff;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">View Courses →</a>
     </div>
 
-    <!-- STEP 2B — PAY -->
-    <div id="promo-step-pay" style="display:none;">
-      <button class="promo-back" style="background:none;border:none;color:#94a3b8;cursor:pointer;margin-bottom:16px;font-size:13px;">← Back</button>
-      <h4 style="color:#ffd700;font-size:16px;font-weight:800;margin-bottom:16px;">💳 Choose Payment Method</h4>
-
-      <!-- KENYA PAYMENTS -->
-      <div style="color:#22c55e;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:10px;">🇰🇪 KENYA PAYMENTS</div>
-
-      <!-- Paybill -->
-      <div style="background:#0d1f0d;border:1px solid #22c55e;border-radius:14px;padding:16px;margin-bottom:10px;">
-        <div style="color:#22c55e;font-size:11px;font-weight:700;margin-bottom:10px;">M-PESA PAYBILL</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <div style="color:#94a3b8;font-size:11px;">Paybill Number</div>
-            <div style="color:#fff;font-size:22px;font-weight:800;letter-spacing:2px;">542542</div>
-          </div>
-          <button onclick="cozyyCopy('542542','cp1')" id="cp1" style="background:#22c55e;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Copy</button>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div>
-            <div style="color:#94a3b8;font-size:11px;">Account Number</div>
-            <div style="color:#fff;font-size:22px;font-weight:800;letter-spacing:2px;">702468</div>
-          </div>
-          <button onclick="cozyyCopy('702468','cp2')" id="cp2" style="background:#22c55e;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Copy</button>
-        </div>
-      </div>
-
-      <!-- Pochi -->
-      <div style="background:#0d1f0d;border:1px solid #22c55e;border-radius:14px;padding:16px;margin-bottom:16px;">
-        <div style="color:#22c55e;font-size:11px;font-weight:700;margin-bottom:10px;">LIPA NA POCHI LA BIASHARA</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div>
-            <div style="color:#94a3b8;font-size:11px;">Pochi Number</div>
-            <div style="color:#fff;font-size:20px;font-weight:800;letter-spacing:2px;">0702468460</div>
-          </div>
-          <button onclick="cozyyCopy('0702468460','cp3')" id="cp3" style="background:#22c55e;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">Copy</button>
-        </div>
-      </div>
-
-      <!-- INTERNATIONAL PAYMENTS -->
-      <div style="color:#f2c94c;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:10px;">🌍 INTERNATIONAL PAYMENTS</div>
-
-      <a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ" style="display:flex;align-items:center;gap:12px;background:#0d1f0d;border:1px solid #12b347;border-radius:12px;padding:14px;margin-bottom:8px;text-decoration:none;">
-        <span style="font-size:24px;">💚</span>
-        <div><div style="color:#fff;font-size:13px;font-weight:700;">MiniPay</div><div style="color:#94a3b8;font-size:11px;">Fast crypto payments</div></div>
-        <span style="color:#12b347;margin-left:auto;">→</span>
-      </a>
-
-      <a href="binance-cryptopayment.html" style="display:flex;align-items:center;gap:12px;background:#1a1200;border:1px solid #e0b400;border-radius:12px;padding:14px;margin-bottom:8px;text-decoration:none;">
-        <span style="font-size:24px;">₿</span>
-        <div><div style="color:#fff;font-size:13px;font-weight:700;">Bitcoin / Binance</div><div style="color:#94a3b8;font-size:11px;">Crypto payment</div></div>
-        <span style="color:#e0b400;margin-left:auto;">→</span>
-      </a>
-
-      <a href="https://paypal.me/cozycabin" style="display:flex;align-items:center;gap:12px;background:#001a3d;border:1px solid #0070ba;border-radius:12px;padding:14px;margin-bottom:16px;text-decoration:none;">
-        <span style="font-size:24px;">🅿️</span>
-        <div><div style="color:#fff;font-size:13px;font-weight:700;">PayPal</div><div style="color:#94a3b8;font-size:11px;">Secure international payment</div></div>
-        <span style="color:#0070ba;margin-left:auto;">→</span>
-      </a>
-
-      <!-- Confirm on WhatsApp -->
-      <a id="promo-wa-confirm" href="#" style="
-        display:block;background:#25d366;color:#fff;
-        text-decoration:none;padding:16px;border-radius:14px;
-        font-weight:700;text-align:center;font-size:15px;
-      ">📲 Confirm Payment on WhatsApp</a>
+    <!-- SLIDE 3 — Shop -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a00,#2d1800);border:2px solid #ffd700;">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🛒</div>
+      <div style="background:#ffd700;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">ONLINE SHOP</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🛒 Shop Quality Products</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Fashion, Solar, Kitchen,<br>Electronics and more.</div>
+      <a href="#categories" style="display:inline-block;margin-top:14px;background:#ffd700;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Shop Now →</a>
     </div>
 
-  </div>
-</div>
-
-<!-- PROMO BANNER -->
-<div id="promo-banner" style="margin:15px 0;border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:0 0 18px rgba(255,215,0,0.12);">
-
-  <div class="promo-slide active" data-label="NEW ARRIVALS" data-title="👟 Fresh Shoes Just Dropped" style="display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1a1a2e,#16213e);border:2px solid #ffd700;border-radius:16px;padding:16px 20px;gap:12px;">
-    <div>
-      <div style="color:#ffd700;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">NEW ARRIVALS</div>
-      <div style="color:#fff;font-size:16px;font-weight:800;">👟 Fresh Shoes Just Dropped</div>
-      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
+    <!-- SLIDE 4 — Delivery -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0a1a0a,#102010);border:2px solid #22c55e;">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🚚</div>
+      <div style="background:#22c55e;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">DELIVERY</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🚚 Nationwide Delivery</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Delivered across Kenya via G4S,<br>Simba Coach, Tahmeed &amp; more.</div>
+      <a href="https://wa.me/254702468460" style="display:inline-block;margin-top:14px;background:#22c55e;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Ask Delivery Info →</a>
     </div>
-    <div style="font-size:38px;flex-shrink:0;">👟</div>
-  </div>
 
-  <div class="promo-slide" data-label="SOLAR DEALS" data-title="☀️ Save With Solar Today" style="display:none;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#0d2137,#0a3d1f);border:2px solid #22c55e;border-radius:16px;padding:16px 20px;gap:12px;">
-    <div>
-      <div style="color:#22c55e;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">SOLAR DEALS</div>
-      <div style="color:#fff;font-size:16px;font-weight:800;">☀️ Save With Solar Today</div>
-      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
+    <!-- SLIDE 5 — Crypto -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d0d1a,#1a1a30);border:2px solid #f2c94c;">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">💎</div>
+      <div style="background:#f2c94c;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">CRYPTO</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">💎 Crypto &amp; Digital Assets</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Top exchanges, tools<br>&amp; beginner guides.</div>
+      <a href="#digital" style="display:inline-block;margin-top:14px;background:#f2c94c;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Explore Crypto →</a>
     </div>
-    <div style="font-size:38px;flex-shrink:0;">☀️</div>
-  </div>
 
-  <div class="promo-slide" data-label="KITCHEN SPECIALS" data-title="🍳 Cook Like a Pro" style="display:none;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1a0a00,#2d1200);border:2px solid #ff8a00;border-radius:16px;padding:16px 20px;gap:12px;">
-    <div>
-      <div style="color:#ff8a00;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">KITCHEN SPECIALS</div>
-      <div style="color:#fff;font-size:16px;font-weight:800;">🍳 Cook Like a Pro</div>
-      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
+    <!-- SLIDE 6 — Best Sellers -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a1a,#2d0d2d);border:2px solid #ff6bff;">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">⭐</div>
+      <div style="background:#ff6bff;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">BEST SELLERS</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">⭐ Best Sellers This Week</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">See what customers<br>are buying most right now.</div>
+      <a href="#" onclick="window.showProducts&&window.showProducts('shoes');return false;" style="display:inline-block;margin-top:14px;background:#ff6bff;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Shop Best Sellers →</a>
     </div>
-    <div style="font-size:38px;flex-shrink:0;">🍳</div>
-  </div>
 
-  <div class="promo-slide" data-label="SMARTTECH OFFERS" data-title="📱 Latest Phones & Gadgets" style="display:none;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#0d0d2b,#1a1a4e);border:2px solid #0d84ff;border-radius:16px;padding:16px 20px;gap:12px;">
-    <div>
-      <div style="color:#0d84ff;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">SMARTTECH OFFERS</div>
-      <div style="color:#fff;font-size:16px;font-weight:800;">📱 Latest Phones & Gadgets</div>
-      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
+    <!-- SLIDE 7 — New Arrivals -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0500,#2d0d00);border:2px solid #ff4500;">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🔥</div>
+      <div style="background:#ff4500;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">NEW ARRIVALS</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🔥 New Arrivals</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Fresh products added regularly.<br>Be first to grab them.</div>
+      <a href="#" onclick="window.showProducts&&window.showProducts('shoes');return false;" style="display:inline-block;margin-top:14px;background:#ff4500;color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">See New Arrivals →</a>
     </div>
-    <div style="font-size:38px;flex-shrink:0;">📱</div>
-  </div>
 
-  <div class="promo-slide" data-label="FASHION PICKS" data-title="👗 Top Fashion Styles" style="display:none;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1a0a1a,#2d002d);border:2px solid #ff6bff;border-radius:16px;padding:16px 20px;gap:12px;">
-    <div>
-      <div style="color:#ff6bff;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">FASHION PICKS</div>
-      <div style="color:#fff;font-size:16px;font-weight:800;">👗 Top Fashion Styles</div>
-      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
+    <!-- SLIDE 8 — Content Creation -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0a0d1f,#111a35);border:2px solid #60a5fa;">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🎬</div>
+      <div style="background:#60a5fa;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">COURSES</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🎬 Content Creation Academy</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">TikTok, Reels, YouTube &amp;<br>Social Media Growth strategies.</div>
+      <a href="#" onclick="window.toggleSub&&window.toggleSub('video-courses');return false;" style="display:inline-block;margin-top:14px;background:#60a5fa;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">View Courses →</a>
     </div>
-    <div style="font-size:38px;flex-shrink:0;">👗</div>
-  </div>
 
-  <div class="promo-slide" data-label="LIMITED STOCK" data-title="🎁 Grab Deals Before Gone!" style="display:none;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1a0000,#2d0000);border:2px solid #ff4444;border-radius:16px;padding:16px 20px;gap:12px;">
-    <div>
-      <div style="color:#ff4444;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:4px;">LIMITED STOCK</div>
-      <div style="color:#fff;font-size:16px;font-weight:800;">🎁 Grab Deals Before Gone!</div>
-      <div style="color:#94a3b8;font-size:11px;margin-top:4px;">Tap to inquire or buy →</div>
+    <!-- SLIDE 9 — Membership -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0d1a0d,#0f2a1a);border:2px solid #34d399;">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🚀</div>
+      <div style="background:#34d399;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">MEMBERSHIP</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🚀 Start Earning Today</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Join the Cozycabin member network.<br>Earn commissions on every referral.</div>
+      <a href="#card-member" style="display:inline-block;margin-top:14px;background:#34d399;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Become a Member →</a>
     </div>
-    <div style="font-size:38px;flex-shrink:0;">🎁</div>
+
+    <!-- SLIDE 10 — Services -->
+    <div class="hero-slide" style="background:linear-gradient(135deg,#0f0a1a,#1a1030);border:2px solid #a78bfa;">
+      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🛠️</div>
+      <div style="background:#a78bfa;color:#000;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">SERVICES</div>
+      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🛠️ Problem Solving Service</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Tech setup, website help, digital<br>problems solved — fast &amp; affordable.</div>
+      <a href="https://wa.me/254702468460" style="display:inline-block;margin-top:14px;background:#a78bfa;color:#000;text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;width:fit-content;">Get Help Now →</a>
+    </div>
+
+    <!-- AD SLOTS — uncomment when advertiser pays
+    <div class="hero-slide" data-label="AD" data-title="Advertiser Name" style="background:linear-gradient(135deg,#...,#...);border:2px solid #...;">
+      ...ad content...
+    </div>
+    -->
+
+    <div id="hero-dots"></div>
+  </div><!-- /hero-banner -->
+
+  <!-- ══════════════════════════════════════════════
+       TRUST BAR
+  ══════════════════════════════════════════════ -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <span class="trust-icon">✅</span>
+      <span class="trust-label">Quality Products</span>
+      <span class="trust-sub">Trusted &amp; Reliable</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">🚚</span>
+      <span class="trust-label">Fast Delivery</span>
+      <span class="trust-sub">Countrywide</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">🔒</span>
+      <span class="trust-label">Secure Payments</span>
+      <span class="trust-sub">Safe &amp; Encrypted</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">💬</span>
+      <span class="trust-label">24/7 Support</span>
+      <span class="trust-sub">We're Here For You</span>
+    </div>
   </div>
 
-  <!-- DOTS -->
-  <div style="display:flex;justify-content:center;gap:6px;padding:10px 0 4px;">
-    <span class="promo-dot" style="width:24px;height:6px;border-radius:3px;background:#ffd700;display:inline-block;transition:.3s;"></span>
-    <span class="promo-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
-    <span class="promo-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
-    <span class="promo-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
-    <span class="promo-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
-    <span class="promo-dot" style="width:8px;height:6px;border-radius:3px;background:#333;display:inline-block;transition:.3s;"></span>
+  <!-- ══════════════════════════════════════════════
+       MAIN CATEGORY GRID
+  ══════════════════════════════════════════════ -->
+  <div id="categories"></div>
+  <h2 class="section-title">🛍️ Shop by Category</h2>
+
+  <div class="main-grid">
+
+    <!-- FASHION & SHOES -->
+    <div class="grid-btn" data-submenu="fashion-sub">
+      <span>👟</span>
+      <small>Fashion</small>
+    </div>
+
+    <!-- KITCHEN -->
+    <div class="grid-btn" data-submenu="kitchen-sub">
+      <span>🍳</span>
+      <small>Kitchen</small>
+    </div>
+
+    <!-- SOLAR -->
+    <div class="grid-btn" data-submenu="solar-sub">
+      <span>☀️</span>
+      <small>Solar</small>
+    </div>
+
+    <!-- HOME APPLIANCES -->
+    <div class="grid-btn" data-submenu="appliances-sub">
+      <span>🏠</span>
+      <small>Appliances</small>
+    </div>
+
+    <!-- HOME DECOR -->
+    <div class="grid-btn" data-submenu="decor-sub">
+      <span>🎨</span>
+      <small>Décor</small>
+    </div>
+
+    <!-- BEDDING -->
+    <div class="grid-btn" data-submenu="bedding-sub">
+      <span>🛏️</span>
+      <small>Bedding</small>
+    </div>
+
+    <!-- SECURITY -->
+    <div class="grid-btn" data-submenu="security-sub">
+      <span>🔐</span>
+      <small>Security</small>
+    </div>
+
+    <!-- ELECTRONICS -->
+    <div class="grid-btn" data-submenu="electronics-sub">
+      <span>📱</span>
+      <small>Electronics</small>
+    </div>
+
+    <!-- COMPUTERS -->
+    <div class="grid-btn" data-submenu="computers-sub">
+      <span>💻</span>
+      <small>Computers</small>
+    </div>
+
+  </div><!-- /main-grid -->
+
+  <!-- ── SUBMENUS ── -->
+
+  <!-- FASHION -->
+  <div class="minor-menu" id="fashion-sub">
+    <div class="minor-top"><button class="back-btn">← Back</button></div>
+    <div class="minor-grid">
+      <button class="minor-btn" data-category="shoes">👟 Shoes</button>
+      <button class="minor-btn" data-category="bags">👜 Bags</button>
+      <button class="minor-btn" data-category="watches">⌚ Watches</button>
+      <button class="minor-btn" data-category="belts">🎽 Belts</button>
+    </div>
   </div>
 
-</div>
-  
-
-
-
- 
-<h3 style="text-align:center;color:#ffd700;margin-bottom:15px;">🇰🇪 LOCAL & ONLINE SHOP (KENYA)</h3>
-
-<!-- MAIN CATEGORY GRID -->
-<div class="main-grid">
-  <div class="grid-btn" data-submenu="kitchen-sub"><span>👨‍🍳</span><small>KITCHEN ▼</small></div>
-  <div class="grid-btn" data-submenu="solar-sub"><span>☀️</span><small>SOLAR ▼</small></div>
-  <div class="grid-btn" data-submenu="decor-sub"><span>🛋️</span><small>DECOR ▼</small></div>
-  <div class="grid-btn" data-submenu="beddings-sub"><span>🛏️</span><small>BEDDINGS ▼</small></div>
-  <div class="grid-btn" data-submenu="security-sub"><span>📷</span><small>SECURITY ▼</small></div>
-  <div class="grid-btn" data-submenu="electronics-sub"><span>📻</span><small>ELECTRONICS ▼</small></div>
-  <div class="grid-btn" data-submenu="smarttech-sub"><span>📱</span><small>SMARTTECH ▼</small></div>
-  <div class="grid-btn" data-submenu="fashion-sub"><span>👟</span><small>FASHION ▼</small></div>
-  <div class="grid-btn" data-submenu="appliances-sub"><span>⚙️</span><small>APPLIANCES ▼</small></div>
-</div>
-
-  
   <!-- KITCHEN -->
-<div id="kitchen-sub" class="minor-menu"><div class="minor-top">
-<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
-</div><div class="minor-grid">
-<button type="button" class="minor-btn" data-category="cutlery">🍴 Cutlery</button>
-<button type="button" class="minor-btn" data-category="dispenser">💧 Dispensers</button>
-<button type="button" class="minor-btn" data-category="hotpots">🥘 Hotpots</button>
-<button type="button" class="minor-btn" data-category="racks">🍽️ Dishracks</button>
-<button type="button" class="minor-btn" data-category="flasks">☕ Flasks</button>
-<button type="button" class="minor-btn" data-category="bottles">🍼 Bottles</button>
-<button type="button" class="minor-btn" data-category="cookers">🍳 Cookers</button>
-<button type="button" class="minor-btn" data-category="blenders">🌪️ Blenders</button>
-</div></div>
+  <div class="minor-menu" id="kitchen-sub">
+    <div class="minor-top"><button class="back-btn">← Back</button></div>
+    <div class="minor-grid">
+      <button class="minor-btn" data-category="cutlery">🍴 Cutlery</button>
+      <button class="minor-btn" data-category="dispenser">💧 Dispensers</button>
+      <button class="minor-btn" data-category="hotpots">🫙 Hotpots</button>
+      <button class="minor-btn" data-category="racks">🗄️ Racks</button>
+      <button class="minor-btn" data-category="flasks">🧃 Flasks</button>
+      <button class="minor-btn" data-category="bottles">🍶 Bottles</button>
+      <button class="minor-btn" data-category="cookers">🍲 Cookers</button>
+      <button class="minor-btn" data-category="blenders">🥤 Blenders</button>
+    </div>
+  </div>
 
-<!-- SOLAR -->
-<div id="solar-sub" class="minor-menu"><div class="minor-top">
-<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
-</div><div class="minor-grid">
-<button type="button" class="minor-btn" data-category="solarlights">💡 Solar Lights</button>
-<button type="button" class="minor-btn" data-category="panels">🔋 Panels</button>
-<button type="button" class="minor-btn" data-category="inverters">⚡ Inverters</button>
-<button type="button" class="minor-btn" data-category="batteries">🔋 Batteries</button>
-<button type="button" class="minor-btn" data-category="streetlights">🏮 Street Lights</button>
-<button type="button" class="minor-btn" data-category="floodlights">🔦 Flood Lights</button>
-<button type="button" class="minor-btn" data-category="chargers">🔌 Chargers</button>
-<button type="button" class="minor-btn" data-category="fans">🌀 Solar Fans</button>
-</div></div>
+  <!-- SOLAR -->
+  <div class="minor-menu" id="solar-sub">
+    <div class="minor-top"><button class="back-btn">← Back</button></div>
+    <div class="minor-grid">
+      <button class="minor-btn" data-category="solarlights">💡 Solar Lights</button>
+      <button class="minor-btn" data-category="panels">☀️ Panels</button>
+      <button class="minor-btn" data-category="inverters">⚡ Inverters</button>
+      <button class="minor-btn" data-category="batteries">🔋 Batteries</button>
+      <button class="minor-btn" data-category="streetlights">🌟 Street Lights</button>
+      <button class="minor-btn" data-category="floodlights">🔦 Flood Lights</button>
+      <button class="minor-btn" data-category="chargers">🔌 Chargers</button>
+      <button class="minor-btn" data-category="fans">🌀 Solar Fans</button>
+    </div>
+  </div>
 
-<!-- DECOR -->
-<div id="decor-sub" class="minor-menu"><div class="minor-top">
-<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
-</div><div class="minor-grid">
-<button type="button" class="minor-btn" data-category="wallart">🖼️ Wall Art</button>
-<button type="button" class="minor-btn" data-category="mirrors">🪞 Mirrors</button>
-<button type="button" class="minor-btn" data-category="flowers">🌸 Flowers</button>
-<button type="button" class="minor-btn" data-category="lamps">💡 Lamps</button>
-<button type="button" class="minor-btn" data-category="carpets">🧶 Carpets</button>
-<button type="button" class="minor-btn" data-category="curtains">🪟 Curtains</button>
-<button type="button" class="minor-btn" data-category="frames">🖼️ Frames</button>
-<button type="button" class="minor-btn" data-category="vases">🏺 Vases</button>
-</div></div>
+  <!-- APPLIANCES -->
+  <div class="minor-menu" id="appliances-sub">
+    <div class="minor-top"><button class="back-btn">← Back</button></div>
+    <div class="minor-grid">
+      <button class="minor-btn" data-category="fridges">❄️ Fridges</button>
+      <button class="minor-btn" data-category="microwaves">📡 Microwaves</button>
+      <button class="minor-btn" data-category="washing">🫧 Washing</button>
+      <button class="minor-btn" data-category="cookersapp">🍳 Cookers</button>
+      <button class="minor-btn" data-category="kettles">☕ Kettles</button>
+      <button class="minor-btn" data-category="irons">👔 Irons</button>
+      <button class="minor-btn" data-category="heaters">🌡️ Heaters</button>
+      <button class="minor-btn" data-category="fansapp">💨 Fans</button>
+    </div>
+  </div>
 
-<!-- BEDDINGS -->
-<div id="beddings-sub" class="minor-menu"><div class="minor-top">
-<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
-</div><div class="minor-grid">
-<button type="button" class="minor-btn" data-category="duvets">🛏️ Duvets</button>
-<button type="button" class="minor-btn" data-category="bedsheets">🧺 Bedsheets</button>
-<button type="button" class="minor-btn" data-category="blankets">🧸 Blankets</button>
-<button type="button" class="minor-btn" data-category="pillows">🛌 Pillows</button>
-<button type="button" class="minor-btn" data-category="mattress">🛏️ Mattress</button>
-<button type="button" class="minor-btn" data-category="covers">🧥 Covers</button>
-<button type="button" class="minor-btn" data-category="nets">🦟 Nets</button>
-<button type="button" class="minor-btn" data-category="towels">🧻 Towels</button>
-</div></div>
+  <!-- DECOR -->
+  <div class="minor-menu" id="decor-sub">
+    <div class="minor-top"><button class="back-btn">← Back</button></div>
+    <div class="minor-grid">
+      <button class="minor-btn" data-category="wallart">🖼️ Wall Art</button>
+      <button class="minor-btn" data-category="mirrors">🪞 Mirrors</button>
+      <button class="minor-btn" data-category="flowers">🌸 Flowers</button>
+      <button class="minor-btn" data-category="lamps">🪔 Lamps</button>
+      <button class="minor-btn" data-category="carpets">🏠 Carpets</button>
+      <button class="minor-btn" data-category="curtains">🪟 Curtains</button>
+      <button class="minor-btn" data-category="frames">🖼️ Frames</button>
+      <button class="minor-btn" data-category="vases">🫙 Vases</button>
+    </div>
+  </div>
 
-<!-- SECURITY -->
-<div id="security-sub" class="minor-menu"><div class="minor-top">
-<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
-</div><div class="minor-grid">
-<button type="button" class="minor-btn" data-category="cameras">📷 Cameras</button>
-<button type="button" class="minor-btn" data-category="alarms">🚨 Alarms</button>
-<button type="button" class="minor-btn" data-category="locks">🔒 Locks</button>
-<button type="button" class="minor-btn" data-category="doorbells">🔔 Doorbells</button>
-<button type="button" class="minor-btn" data-category="trackers">📍 Trackers</button>
-<button type="button" class="minor-btn" data-category="sensors">📡 Sensors</button>
-<button type="button" class="minor-btn" data-category="safes">🗄️ Safes</button>
-<button type="button" class="minor-btn" data-category="recorders">💾 Recorders</button>
-</div></div>
+  <!-- BEDDING -->
+  <div class="minor-menu" id="bedding-sub">
+    <div class="minor-top"><button class="back-btn">← Back</button></div>
+    <div class="minor-grid">
+      <button class="minor-btn" data-category="duvets">🛏️ Duvets</button>
+      <button class="minor-btn" data-category="bedsheets">📋 Bed Sheets</button>
+      <button class="minor-btn" data-category="blankets">🧣 Blankets</button>
+      <button class="minor-btn" data-category="pillows">💤 Pillows</button>
+      <button class="minor-btn" data-category="mattress">🛌 Mattress</button>
+      <button class="minor-btn" data-category="covers">🔲 Covers</button>
+      <button class="minor-btn" data-category="nets">🕸️ Nets</button>
+      <button class="minor-btn" data-category="towels">🧺 Towels</button>
+    </div>
+  </div>
 
-<!-- ELECTRONICS -->
-<div id="electronics-sub" class="minor-menu"><div class="minor-top">
-<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
-</div><div class="minor-grid">
-<button type="button" class="minor-btn" data-category="speakers">🔊 Speakers</button>
-<button type="button" class="minor-btn" data-category="radios">📻 Radios</button>
-<button type="button" class="minor-btn" data-category="earbuds">🎧 Earbuds</button>
-<button type="button" class="minor-btn" data-category="tvbox">📺 TV Box</button>
-<button type="button" class="minor-btn" data-category="powerbanks">🔋 Powerbanks</button>
-<button type="button" class="minor-btn" data-category="flashdisks">💾 Flash Disks</button>
-<button type="button" class="minor-btn" data-category="smartwatch">⌚ Smartwatch</button>
-<button type="button" class="minor-btn" data-category="gaming">🎮 Gaming</button>
-</div></div>
+  <!-- SECURITY -->
+  <div class="minor-menu" id="security-sub">
+    <div class="minor-top"><button class="back-btn">← Back</button></div>
+    <div class="minor-grid">
+      <button class="minor-btn" data-category="cameras">📷 Cameras</button>
+      <button class="minor-btn" data-category="alarms">🚨 Alarms</button>
+      <button class="minor-btn" data-category="locks">🔒 Smart Locks</button>
+      <button class="minor-btn" data-category="doorbells">🔔 Doorbells</button>
+      <button class="minor-btn" data-category="trackers">📡 Trackers</button>
+      <button class="minor-btn" data-category="sensors">🌡️ Sensors</button>
+      <button class="minor-btn" data-category="safes">🗄️ Safes</button>
+      <button class="minor-btn" data-category="recorders">📼 Recorders</button>
+    </div>
+  </div>
 
-<!-- SMARTTECH -->
-<div id="smarttech-sub" class="minor-menu"><div class="minor-top">
-<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
-</div><div class="minor-grid">
-<button type="button" class="minor-btn" data-category="phones">📱 Phones</button>
-<button type="button" class="minor-btn" data-category="laptops">💻 Laptops</button>
-<button type="button" class="minor-btn" data-category="tablets">📲 Tablets</button>
-<button type="button" class="minor-btn" data-category="routers">📡 Routers</button>
-<button type="button" class="minor-btn" data-category="keyboards">⌨️ Keyboards</button>
-<button type="button" class="minor-btn" data-category="mouse">🖱️ Mouse</button>
-<button type="button" class="minor-btn" data-category="printers">🖨️ Printers</button>
-<button type="button" class="minor-btn" data-category="storage">💽 Storage</button>
-</div></div>
+  <!-- ELECTRONICS -->
+  <div class="minor-menu" id="electronics-sub">
+    <div class="minor-top"><button class="back-btn">← Back</button></div>
+    <div class="minor-grid">
+      <button class="minor-btn" data-category="speakers">🔊 Speakers</button>
+      <button class="minor-btn" data-category="radios">📻 Radios</button>
+      <button class="minor-btn" data-category="earbuds">🎧 Earbuds</button>
+      <button class="minor-btn" data-category="tvbox">📺 TV Box</button>
+      <button class="minor-btn" data-category="powerbanks">🔋 Power Banks</button>
+      <button class="minor-btn" data-category="flashdisks">💾 Flash Disks</button>
+      <button class="minor-btn" data-category="smartwatch">⌚ Smart Watch</button>
+      <button class="minor-btn" data-category="gaming">🎮 Gaming</button>
+    </div>
+  </div>
 
-<!-- FASHION -->
-<div id="fashion-sub" class="minor-menu"><div class="minor-top">
-<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
-</div><div class="minor-grid">
-<button type="button" class="minor-btn" data-category="shoes">👟 Shoes</button>
-<button type="button" class="minor-btn" data-category="shirts">👕 Shirts</button>
-<button type="button" class="minor-btn" data-category="hoodies">🧥 Hoodies</button>
-<button type="button" class="minor-btn" data-category="watches">⌚ Watches</button>
-<button type="button" class="minor-btn" data-category="bags">👜 Bags</button>
-<button type="button" class="minor-btn" data-category="caps">🧢 Caps</button>
-<button type="button" class="minor-btn" data-category="jeans">👖 Jeans</button>
-<button type="button" class="minor-btn" data-category="jackets">🥼 Jackets</button>
-</div></div>
+  <!-- COMPUTERS -->
+  <div class="minor-menu" id="computers-sub">
+    <div class="minor-top"><button class="back-btn">← Back</button></div>
+    <div class="minor-grid">
+      <button class="minor-btn" data-category="phones">📱 Phones</button>
+      <button class="minor-btn" data-category="laptops">💻 Laptops</button>
+      <button class="minor-btn" data-category="tablets">📲 Tablets</button>
+      <button class="minor-btn" data-category="routers">📶 Routers</button>
+      <button class="minor-btn" data-category="keyboards">⌨️ Keyboards</button>
+      <button class="minor-btn" data-category="mouse">🖱️ Mouse</button>
+      <button class="minor-btn" data-category="printers">🖨️ Printers</button>
+      <button class="minor-btn" data-category="storage">💿 Storage</button>
+    </div>
+  </div>
 
-<!-- PRODUCTS CONTAINER — ONLY ONE ON ENTIRE PAGE -->
-<div id="products-container"></div>
+  <!-- ── PRODUCTS CONTAINER ── -->
+  <div id="products-container"></div>
 
-<!-- APPLIANCES -->
-<div id="appliances-sub" class="minor-menu"><div class="minor-top">
-<button type="button" onclick="closeAllSubmenus()" class="back-btn">⬅️ Back</button>
-</div><div class="minor-grid">
-<button type="button" class="minor-btn" data-category="fridges">🧊 Fridges</button>
-<button type="button" class="minor-btn" data-category="microwaves">📡 Microwaves</button>
-<button type="button" class="minor-btn" data-category="washing">🧺 Washing Machines</button>
-<button type="button" class="minor-btn" data-category="cookersapp">🍳 Cookers</button>
-<button type="button" class="minor-btn" data-category="kettles">☕ Kettles</button>
-<button type="button" class="minor-btn" data-category="irons">🧲 Irons</button>
-<button type="button" class="minor-btn" data-category="heaters">🔥 Heaters</button>
-<button type="button" class="minor-btn" data-category="fansapp">🌀 Fans</button>
-</div></div>
-  
+  <!-- ══════════════════════════════════════════════
+       DIGITAL ASSETS SECTION
+  ══════════════════════════════════════════════ -->
+  <div id="digital" style="margin-top:40px;">
+    <h2 class="section-title">💎 Digital Assets</h2>
+    <p class="section-subtitle">Courses, Crypto &amp; Masterclasses</p>
 
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+      <div class="dcard dcard-course" onclick="window.toggleSub&&window.toggleSub('video-courses')">
+        <div class="dcard-icon" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);">📚<br>COURSE</div>
+        <div class="dcard-title">Academy Courses</div>
+        <div class="dcard-sub">Video Editing · Marketing</div>
+        <div class="dcard-arrow">→</div>
+      </div>
+      <div class="dcard dcard-ebook" onclick="window.toggleSub&&window.toggleSub('ebooks-menu')">
+        <div class="dcard-icon" style="background:linear-gradient(135deg,#92400e,#d97706);">📖<br>E-BOOK</div>
+        <div class="dcard-title">Digital Library</div>
+        <div class="dcard-sub">Business · Finance · Growth</div>
+        <div class="dcard-arrow">→</div>
+      </div>
+      <div class="dcard dcard-crypto" onclick="window.toggleSub&&window.toggleSub('crypto-menu')">
+        <div class="dcard-icon" style="background:linear-gradient(135deg,#78350f,#f59e0b);">₿<br>CRYPTO</div>
+        <div class="dcard-title">Crypto Tools</div>
+        <div class="dcard-sub">Exchanges · Guides</div>
+        <div class="dcard-arrow">→</div>
+      </div>
+    </div>
+  </div>
 
+  <!-- ══════════════════════════════════════════════
+       AFFILIATE SECTION
+  ══════════════════════════════════════════════ -->
+  <div class="cozy-affiliate-box">
+    <div class="cozy-affiliate-badge">💰 EARN ONLINE</div>
+    <h2 class="cozy-affiliate-title">Join the <span>Cozycabin</span><br>Affiliate Program</h2>
+    <p class="cozy-affiliate-text">
+      Share our products with your friends, family and followers.<br>
+      Earn commissions on every sale — no capital needed to start.
+    </p>
+    <button class="cozy-affiliate-btn" onclick="window.location.href='/affiliate.html'">
+      🚀 Join Affiliate Program
+    </button>
+  </div>
 
- <!-- PREMIUM CHECKOUT -->
-<div id="premium-checkout-wrapper" style="width:100%;max-width:1200px;margin:50px auto;padding:0 18px;box-sizing:border-box;">
-<div id="premium-checkout-box" style="width:100%;max-width:520px;margin:auto;background:#000;border:2px solid #ffd700;border-radius:28px;padding:26px;box-sizing:border-box;box-shadow:0 0 25px rgba(255,215,0,0.12);overflow:hidden;">
-<div style="text-align:center;margin-bottom:22px;">
-<p style="font-size:18px;font-weight:900;color:#ffd700;margin:0;text-transform:uppercase;letter-spacing:2px;">💎 COZYCABIN PREMIUM CHECKOUT</p>
-<p style="font-size:11px;color:#777;margin-top:6px;text-transform:uppercase;letter-spacing:1px;">Instant Digital Delivery</p>
-</div>
-<div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
-<a href="https://paypal.me/charlesowuor" target="_blank" style="background:#ffc439;color:#003087;text-decoration:none;padding:18px;border-radius:40px;font-size:17px;font-weight:900;text-align:center;display:block;">PayPal</a>
-<a href="https://paypal.me/charlesowuor" target="_blank" style="background:#2d2d2d;color:#fff;text-decoration:none;padding:18px;border-radius:40px;font-size:16px;text-align:center;display:block;border:1px solid #444;">💳 Debit or Credit Card</a>
-<a href="binance-cryptopayment.html" style="background:#f3ba2f;color:#000;text-decoration:none;padding:18px;border-radius:40px;font-size:17px;font-weight:700;text-align:center;display:block;">Pay with Binance</a>
-<a href="https://selar.com/m/charles-owuor1" target="_blank" style="background:#6126c6;color:#fff;text-decoration:none;padding:18px;border-radius:40px;font-size:17px;font-weight:700;text-align:center;display:block;">Buy on Selar</a>
-</div>
-<div style="background:#2db742;border-radius:18px;padding:20px;color:#fff;margin-bottom:24px;">
-<p style="margin-bottom:12px;font-size:18px;font-weight:800;text-align:center;">🟢 LIPA NA M-PESA</p>
-<p style="line-height:1.8;font-size:16px;text-align:center;">Paybill: <b>542542</b><br>Account No: <b>702468</b></p>
-<div style="margin-top:18px;display:flex;flex-direction:column;gap:12px;">
-<input type="text" id="mpesa-code" placeholder="Enter M-Pesa Ref Code" style="width:100%;padding:14px;border:none;border-radius:10px;outline:none;font-size:14px;">
-<button onclick="submitMpesaPayment()" style="background:#000;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:13px;letter-spacing:1px;text-transform:uppercase;">Verify Payment & Claim Access</button>
-</div>
-</div>
-<div style="margin-top:30px;border-top:1px dashed #222;padding-top:22px;">
-<p style="font-size:16px;font-weight:900;color:#ffd700;text-align:center;margin-bottom:10px;text-transform:uppercase;">❤️ Support My Work</p>
-<p style="font-size:12px;color:#777;text-align:center;line-height:1.6;margin-bottom:18px;">If you like my work you can tip me via any payment method. Feel free to support Cozycabin.</p>
-<div style="background:#0a0a0a;border:1px solid #2db742;padding:16px;border-radius:14px;margin-bottom:14px;">
-<p style="margin-bottom:8px;font-size:13px;font-weight:800;color:#2db742;">🟢 LIPA NA M-PESA (Donation)</p>
-<p style="font-size:12px;color:#25D366;font-weight:bold;margin-bottom:10px;">🪙 PAY WITH MINIPAY</p>
-<img src="Images/Minipay image.webp" alt="MiniPay QR" style="width:170px;margin:auto;border-radius:14px;background:white;padding:8px;display:block;">
-<p style="font-size:12px;color:#ccc;margin-top:12px;line-height:1.7;">Scan QR or send to: <br><br><b style="font-size:18px;color:#fff;letter-spacing:1px;">0702468460</b></p>
-</div>
-<div style="margin-top:14px;display:flex;flex-direction:column;gap:10px;">
-<input type="text" id="donation-code" placeholder="Enter Donation M-Pesa Code" style="width:100%;padding:12px;border:none;border-radius:8px;outline:none;">
-<button onclick="submitDonation()" style="background:#2db742;color:#fff;border:none;padding:12px;border-radius:8px;font-weight:700;cursor:pointer;">SUBMIT DONATION CODE</button>
-</div>
-</div>
-<div style="display:flex;flex-direction:column;gap:12px;">
-<a href="https://selar.com/m/charles-owuor1" target="_blank" style="background:#e91e63;color:#fff;text-decoration:none;padding:14px;border-radius:40px;font-weight:700;text-align:center;display:block;">💝 Tip Me via Selar</a>
-<a href="binance-cryptopayment.html?intent=donation" style="background:#f3ba2f;color:#000;text-decoration:none;padding:14px;border-radius:40px;font-weight:700;text-align:center;display:block;">Send Crypto Tip (Binance)</a>
-</div>
-<div style="border-top:1px solid #111;padding-top:18px;margin-top:28px;text-align:center;">
-<p style="font-size:11px;color:#444;letter-spacing:1px;">© Cozycabin Online Shop 2026</p>
-</div>
-</div>
-</div>
+  <!-- ══════════════════════════════════════════════
+       CONTACT SECTION
+  ══════════════════════════════════════════════ -->
+  <div class="contact-section" id="contact">
+    <h2 class="contact-title">📞 Contact Cozycabin</h2>
+    <p class="contact-subtitle">Need help, product inquiry or support?<br>We respond fast — usually within minutes.</p>
+    <div class="contact-form">
+      <input type="text" placeholder="Your Name" autocomplete="name">
+      <input type="tel" placeholder="Your Phone / Email" autocomplete="tel">
+      <textarea placeholder="Write your message here..."></textarea>
+      <button onclick="
+        var name = this.closest('.contact-form').querySelector('input[autocomplete=name]').value;
+        var contact = this.closest('.contact-form').querySelector('input[autocomplete=tel]').value;
+        var msg = this.closest('.contact-form').querySelector('textarea').value;
+        if(!name||!msg){alert('Please fill in your name and message.');return;}
+        var waMsg = encodeURIComponent('👋 Hello Cozycabin!\n\nName: ' + name + '\nContact: ' + contact + '\n\nMessage:\n' + msg);
+        window.open('https://wa.me/254702468460?text=' + waMsg, '_blank');
+      ">📲 Send via WhatsApp</button>
+    </div>
+  </div>
 
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/254702468460" target="_blank" class="float-wa">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</a>
+</div><!-- /container -->
 
-<!-- IMAGE MODAL -->
-<div id="imageModal" class="modal">
-<span class="close-modal" onclick="closeModal()">&times;</span>
-<img class="modal-content" id="expandedImg">
-</div>
+<!-- ══════════════════════════════════════════════
+     SITE FOOTER
+══════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <!-- Brand -->
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <img src="Images/Cozycabin log .webp" alt="Cozycabin">
+        <div>
+          <span class="footer-brand-name">CozyCabin</span>
+          <span class="footer-brand-tagline">Smart Living Solutions</span>
+        </div>
+      </div>
+      <p class="footer-desc">Smart Living Solutions for modern homes, digital products, crypto tools &amp; global affiliate opportunities.</p>
+      <div class="footer-social">
+        <a href="#" title="Facebook">f</a>
+        <a href="#" title="Instagram">📷</a>
+        <a href="#" title="YouTube">▶</a>
+        <a href="https://wa.me/254702468460" title="WhatsApp">💬</a>
+      </div>
+    </div>
 
- <!-- FOOTER -->
-<footer style="background:#0b0b0b;border-top:1px solid #222;padding:40px 20px 25px;margin-top:50px;color:#fff;">
-<div style="max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;">
-<div style="flex:1;min-width:220px;">
-<img src="Images/Cozycabin log .webp" alt="Cozycabin Logo" style="width:160px;margin-bottom:15px;">
-<p style="color:#aaa;font-size:14px;line-height:1.7;">Smart Living Solutions for modern homes, digital products, crypto tools & global affiliate opportunities.</p>
-</div>
-<div style="flex:1;min-width:180px;">
-<h3 style="color:#d4a017;margin-bottom:15px;">Quick Links</h3>
-<a href="index.html" style="display:block;color:#bbb;text-decoration:none;margin-bottom:10px;">Home</a>
-<a href="affiliate.html" style="display:block;color:#bbb;text-decoration:none;margin-bottom:10px;">Affiliate</a>
-<a href="ebooks.html" style="display:block;color:#bbb;text-decoration:none;margin-bottom:10px;">Digital Library</a>
-</div>
-<div style="flex:1;min-width:220px;">
-<h3 style="color:#d4a017;margin-bottom:15px;">Contact</h3>
-<p style="color:#bbb;margin-bottom:10px;">🌍 Nairobi, Kenya</p>
-<p style="color:#bbb;margin-bottom:10px;">📞 +254 702 468 460</p>
-<p style="color:#bbb;margin-bottom:10px;">📧 support@cozycabin.co.ke</p>
-<a href="https://wa.me/254702468460" style="display:inline-block;margin-top:10px;background:#25D366;color:#fff;padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:bold;">Chat on WhatsApp</a>
-</div>
-</div>
-<section class="contact-section">
-<h2 class="contact-title">📩 Contact Cozycabin</h2>
-<p class="contact-subtitle">Need help, product inquiry or support? Send us a message below.</p>
-<form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form">
-<input type="text" name="name" placeholder="Your Name" required>
-<input type="email" name="email" placeholder="Your Email" required>
-<textarea name="message" placeholder="Write your message..." required></textarea>
-<button type="submit">Send Message</button>
-</form>
-</section>
-<div style="text-align:center;margin-top:35px;border-top:1px solid #1f1f1f;padding-top:20px;color:#666;font-size:12px;">© 2026 Cozycabin • Smart Living Solutions • All Rights Reserved</div>
+    <!-- Quick Links -->
+    <div class="footer-col">
+      <div class="footer-col-title">Quick Links</div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#categories">Shop</a></li>
+        <li><a href="#digital">Digital Assets</a></li>
+        <li><a href="/affiliate.html">Affiliate</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Support -->
+    <div class="footer-col">
+      <div class="footer-col-title">Support</div>
+      <ul>
+        <li><a href="https://wa.me/254702468460">Help Center</a></li>
+        <li><a href="https://wa.me/254702468460">Track Order</a></li>
+        <li><a href="#">Shipping &amp; Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Cozycabin · Smart Living Solutions · All Rights Reserved</p>
+    <p style="color:#334155;font-size:11px;">🇰🇪 Kenya · Nationwide Delivery</p>
+  </div>
 </footer>
 
-<!-- ALL JAVASCRIPT -->
-
-/* ANTI-THEFT */
-  <script
-document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-document.addEventListener('dragstart', function(e) { e.preventDefault(); });
-document.addEventListener('copy', function(e) { e.preventDefault(); });
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || (e.ctrlKey && (e.key === 'u' || e.key === 's'))) { e.preventDefault(); }
-});
-document.addEventListener('touchstart', function(){}, {passive:true});
-</script>
-
-<!-- FIREBASE -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-const firebaseConfig = {
-  apiKey: "AIzaSyDToZQ-f31ZA2RmPWNKZ4DTtVjyj-toMW0",
-  authDomain: "cozycabin-affiliate.firebaseapp.com",
-  projectId: "cozycabin-affiliate",
-  storageBucket: "cozycabin-affiliate.appspot.com",
-  messagingSenderId: "765281276271",
-  appId: "1:765281276271:web:1368fb340b1fb68a01189a"
-};
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-window.submitMpesaPayment = async function() {
-  var now = Date.now();
-  if (!window.lastSubmit) window.lastSubmit = 0;
-  if (now - window.lastSubmit < 15000) { alert('Please wait 15 seconds before submitting again.'); return; }
-  window.lastSubmit = now;
-  var code = document.getElementById('mpesa-code').value.trim();
-  if (!code) { alert('Please enter your M-Pesa transaction code.'); return; }
-  try {
-    await addDoc(collection(db, 'orders'), { mpesaCode: code, referralCode: referralCode, status: 'pending', createdAt: serverTimestamp() });
-    alert('Payment submitted successfully. Verification in progress.');
-    document.getElementById('mpesa-code').value = '';
-  } catch(e) { alert('Error: ' + e.message); }
-};
-  </script>
-  <!-- 
-  SMART PAYMENT MODAL
-  This popup appears when customer clicks Order via WhatsApp
-  Replace your currency selector div with this
--->
-
-<!-- PAYMENT MODAL -->
-<div id="smart-payment-modal" style="
-  display:none; position:fixed; z-index:99999;
-  left:0; top:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.92);
-  justify-content:center; align-items:flex-end;
-  padding:0;
-">
-  <div style="
-    background:#0f172a;
-    border:2px solid #ffd700;
-    border-radius:28px 28px 0 0;
-    padding:24px 20px 40px;
-    width:100%;
-    max-width:520px;
-    max-height:90vh;
-    overflow-y:auto;
-  ">
-    <!-- Handle bar -->
-    <div style="width:40px;height:4px;background:#333;border-radius:2px;margin:0 auto 20px;"></div>
-
-    <!-- Close -->
-    <div onclick="closePaymentModal()" style="
-      position:absolute;top:20px;right:20px;
-      color:#94a3b8;font-size:24px;cursor:pointer;
-    ">✕</div>
-
-    <!-- STEP 1 — Choose product type -->
-    <div id="payment-step-1">
-      <h3 style="color:#ffd700;font-size:18px;font-weight:800;margin-bottom:6px;text-align:center;">🛒 Complete Your Order</h3>
-      <p style="color:#94a3b8;font-size:13px;text-align:center;margin-bottom:24px;">What are you buying today?</p>
-
-      <button onclick="chooseProductType('digital')" style="
-        width:100%;background:linear-gradient(135deg,#071129,#0f172a);
-        border:2px solid #0d84ff;border-radius:16px;
-        padding:18px;margin-bottom:12px;cursor:pointer;
-        display:flex;align-items:center;gap:14px;text-align:left;
-      ">
-        <span style="font-size:32px;">💎</span>
-        <div>
-          <div style="color:#fff;font-size:15px;font-weight:700;">Digital Products</div>
-          <div style="color:#94a3b8;font-size:12px;">Courses, Ebooks, Crypto Guides</div>
-        </div>
-      </button>
-
-      <button onclick="chooseProductType('local-kenya')" style="
-        width:100%;background:linear-gradient(135deg,#071a07,#0f2a0f);
-        border:2px solid #22c55e;border-radius:16px;
-        padding:18px;margin-bottom:12px;cursor:pointer;
-        display:flex;align-items:center;gap:14px;text-align:left;
-      ">
-        <span style="font-size:32px;">🇰🇪</span>
-        <div>
-          <div style="color:#fff;font-size:15px;font-weight:700;">Local Products — Kenya</div>
-          <div style="color:#94a3b8;font-size:12px;">Fashion, Kitchen, Solar, Electronics</div>
-        </div>
-      </button>
-
-      <button onclick="chooseProductType('international')" style="
-        width:100%;background:linear-gradient(135deg,#1a0a00,#2d1500);
-        border:2px solid #ffd700;border-radius:16px;
-        padding:18px;cursor:pointer;
-        display:flex;align-items:center;gap:14px;text-align:left;
-      ">
-        <span style="font-size:32px;">🌍</span>
-        <div>
-          <div style="color:#fff;font-size:15px;font-weight:700;">International — Outside East Africa</div>
-          <div style="color:#94a3b8;font-size:12px;">Crypto, PayPal, or order via Jumia/Amazon</div>
-        </div>
-      </button>
+<!-- ══════════════════════════════════════════════
+     SMART PAYMENT MODAL
+══════════════════════════════════════════════ -->
+<div id="smart-payment-modal">
+  <div class="spm-box">
+    <div class="spm-header">
+      <h3>💳 Complete Your Order</h3>
+      <button class="spm-close" onclick="window.closePaymentModal()">✕</button>
     </div>
+    <div class="spm-body">
 
-    <!-- STEP 2A — Kenya Payment -->
-    <div id="payment-step-kenya" style="display:none;">
-      <button onclick="backToStep1()" style="background:none;border:none;color:#94a3b8;cursor:pointer;margin-bottom:16px;font-size:13px;">← Back</button>
-      <h3 style="color:#ffd700;font-size:17px;font-weight:800;margin-bottom:18px;">🇰🇪 Pay From Kenya</h3>
+      <!-- Order summary injected by JS -->
+      <div id="order-summary"></div>
 
-      <!-- Mpesa Paybill -->
-      <div style="background:#0d1f0d;border:1px solid #22c55e;border-radius:16px;padding:18px;margin-bottom:14px;">
-        <div style="color:#22c55e;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:10px;">M-PESA PAYBILL</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <div style="color:#94a3b8;font-size:11px;">Paybill Number</div>
-            <div style="color:#fff;font-size:20px;font-weight:800;">542542</div>
+      <!-- STEP 1 — Choose type -->
+      <div id="payment-step-1" class="spm-step active" style="display:block;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:13px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">How are you paying?</div>
+        <div class="spm-grid">
+          <div class="spm-option" onclick="window.chooseProductType('local-kenya')">
+            <div class="spm-option-icon">🇰🇪</div>
+            <div class="spm-option-label">Kenya M-Pesa</div>
+            <div class="spm-option-sub">Pay on delivery or M-Pesa</div>
           </div>
-          <button onclick="copyText('542542','copy-paybill')" id="copy-paybill" style="
-            background:#22c55e;color:#fff;border:none;
-            padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;
-          ">Copy</button>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div>
-            <div style="color:#94a3b8;font-size:11px;">Account Number</div>
-            <div style="color:#fff;font-size:20px;font-weight:800;">702468</div>
+          <div class="spm-option" onclick="window.chooseProductType('international')">
+            <div class="spm-option-icon">🌍</div>
+            <div class="spm-option-label">International</div>
+            <div class="spm-option-sub">Card · Crypto · Wise</div>
           </div>
-          <button onclick="copyText('702468','copy-account')" id="copy-account" style="
-            background:#22c55e;color:#fff;border:none;
-            padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;
-          ">Copy</button>
+          <div class="spm-option" onclick="window.chooseProductType('digital')">
+            <div class="spm-option-icon">📲</div>
+            <div class="spm-option-label">Digital Product</div>
+            <div class="spm-option-sub">Instant delivery</div>
+          </div>
+          <div class="spm-option" onclick="window.closePaymentModal();window.open('https://wa.me/254702468460','_blank')">
+            <div class="spm-option-icon">💬</div>
+            <div class="spm-option-label">Ask First</div>
+            <div class="spm-option-sub">Chat on WhatsApp</div>
+          </div>
         </div>
       </div>
 
-      <!-- Pochi -->
-      <div style="background:#0d1f0d;border:1px solid #22c55e;border-radius:16px;padding:18px;margin-bottom:14px;">
-        <div style="color:#22c55e;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:10px;">LIPA NA POCHI LA BIASHARA</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div>
-            <div style="color:#94a3b8;font-size:11px;">Pochi Number</div>
-            <div style="color:#fff;font-size:20px;font-weight:800;">0702468460</div>
-          </div>
-          <button onclick="copyText('0702468460','copy-pochi')" id="copy-pochi" style="
-            background:#22c55e;color:#fff;border:none;
-            padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;
-          ">Copy</button>
+      <!-- STEP — Kenya -->
+      <div id="payment-step-kenya" class="spm-step" style="display:none;">
+        <div class="spm-mpesa-box">
+          <div class="label">M-Pesa Till / Paybill</div>
+          <div class="value">0702 468 460</div>
+          <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Business Name: COZYCABIN</div>
+          <button class="copy-btn" id="mpesa-copy-btn" onclick="cozyyCopy('0702468460','mpesa-copy-btn')">Copy Number</button>
         </div>
+        <div style="font-size:12px;color:#94a3b8;margin-bottom:14px;line-height:1.6;">
+          1. Send M-Pesa to the number above<br>
+          2. Take a screenshot of confirmation<br>
+          3. Click confirm order below
+        </div>
+        <a id="wa-order-link" href="https://wa.me/254702468460" target="_blank" class="spm-wa-btn">
+          <span style="font-size:20px;">💬</span>
+          <span>Confirm Order on WhatsApp</span>
+        </a>
+        <button class="spm-back-btn" onclick="window.backToStep1()">← Back</button>
       </div>
 
-      <!-- WhatsApp confirm -->
-      <a href="https://wa.me/254702468460?text=Hello%20Cozycabin!%20I%20have%20made%20payment%20and%20want%20to%20confirm%20my%20order%20%F0%9F%9B%92" 
-         style="
-           display:block;background:#25d366;color:#fff;
-           text-decoration:none;padding:16px;border-radius:14px;
-           font-weight:700;text-align:center;font-size:15px;margin-top:6px;
-         ">
-        📲 Confirm Order on WhatsApp
-      </a>
-    </div>
-
-    <!-- STEP 2B — International Payment -->
-    <div id="payment-step-international" style="display:none;">
-      <button onclick="backToStep1()" style="background:none;border:none;color:#94a3b8;cursor:pointer;margin-bottom:16px;font-size:13px;">← Back</button>
-      <h3 style="color:#ffd700;font-size:17px;font-weight:800;margin-bottom:18px;">🌍 International Payment</h3>
-
-      <!-- MiniPay -->
-      <a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ" style="
-        display:flex;align-items:center;gap:12px;
-        background:#0d1f0d;border:1px solid #12b347;border-radius:14px;
-        padding:14px;margin-bottom:10px;text-decoration:none;
-      ">
-        <span style="font-size:28px;">💚</span>
-        <div>
-          <div style="color:#fff;font-size:14px;font-weight:700;">MiniPay</div>
-          <div style="color:#94a3b8;font-size:11px;">Fast crypto payments worldwide</div>
+      <!-- STEP — International -->
+      <div id="payment-step-international" class="spm-step" style="display:none;">
+        <div style="font-size:13px;color:#94a3b8;margin-bottom:14px;line-height:1.6;">
+          We accept international payments via:<br>
+          💳 Card · 💸 Wise · ₿ Crypto · 📲 PayPal
         </div>
-        <span style="color:#12b347;margin-left:auto;">→</span>
-      </a>
-
-      <!-- PayPal -->
-      <a href="https://paypal.me/cozycabin" style="
-        display:flex;align-items:center;gap:12px;
-        background:#001a3d;border:1px solid #0070ba;border-radius:14px;
-        padding:14px;margin-bottom:10px;text-decoration:none;
-      ">
-        <span style="font-size:28px;">🅿️</span>
-        <div>
-          <div style="color:#fff;font-size:14px;font-weight:700;">PayPal</div>
-          <div style="color:#94a3b8;font-size:11px;">Pay securely with PayPal</div>
-        </div>
-        <span style="color:#0070ba;margin-left:auto;">→</span>
-      </a>
-
-      <!-- Bitcoin/Binance -->
-      <a href="binance-cryptopayment.html" style="
-        display:flex;align-items:center;gap:12px;
-        background:#1a1200;border:1px solid #e0b400;border-radius:14px;
-        padding:14px;margin-bottom:10px;text-decoration:none;
-      ">
-        <span style="font-size:28px;">₿</span>
-        <div>
-          <div style="color:#fff;font-size:14px;font-weight:700;">Bitcoin / Binance</div>
-          <div style="color:#94a3b8;font-size:11px;">Pay with crypto</div>
-        </div>
-        <span style="color:#e0b400;margin-left:auto;">→</span>
-      </a>
-
-      <div style="
-        background:#1a1a1a;border:1px solid #333;border-radius:14px;
-        padding:14px;margin-bottom:10px;
-      ">
-        <div style="color:#ffd700;font-size:13px;font-weight:700;margin-bottom:10px;">🛍️ Order via Partner Stores</div>
-        <a href="https://jumia.com" style="
-          display:flex;align-items:center;gap:10px;
-          text-decoration:none;margin-bottom:10px;
-        ">
-          <span style="font-size:22px;">🟠</span>
-          <div>
-            <div style="color:#fff;font-size:13px;font-weight:700;">Jumia Kenya</div>
-            <div style="color:#94a3b8;font-size:11px;">Order & pay on Jumia</div>
-          </div>
-          <span style="color:#ff6b00;margin-left:auto;">→</span>
+        <a href="https://wa.me/254702468460" target="_blank" class="spm-wa-btn">
+          <span style="font-size:20px;">💬</span>
+          <span>Get Payment Details on WhatsApp</span>
         </a>
-        <a href="https://aliexpress.com" style="
-          display:flex;align-items:center;gap:10px;
-          text-decoration:none;margin-bottom:10px;
-        ">
-          <span style="font-size:22px;">🔴</span>
-          <div>
-            <div style="color:#fff;font-size:13px;font-weight:700;">AliExpress</div>
-            <div style="color:#94a3b8;font-size:11px;">Global products, fast shipping</div>
-          </div>
-          <span style="color:#ff0000;margin-left:auto;">→</span>
-        </a>
-        <a href="https://amazon.com" style="
-          display:flex;align-items:center;gap:10px;
-          text-decoration:none;
-        ">
-          <span style="font-size:22px;">📦</span>
-          <div>
-            <div style="color:#fff;font-size:13px;font-weight:700;">Amazon</div>
-            <div style="color:#94a3b8;font-size:11px;">World's largest store</div>
-          </div>
-          <span style="color:#ff9900;margin-left:auto;">→</span>
-        </a>
+        <button class="spm-back-btn" onclick="window.backToStep1()">← Back</button>
       </div>
 
-      <a href="https://wa.me/254702468460?text=Hello%20Cozycabin!%20I%20am%20outside%20East%20Africa%20and%20want%20to%20order%20%F0%9F%8C%8D"
-         style="
-           display:block;background:#25d366;color:#fff;
-           text-decoration:none;padding:16px;border-radius:14px;
-           font-weight:700;text-align:center;font-size:15px;
-         ">
-        📲 Chat With Us on WhatsApp
-      </a>
+      <!-- STEP — Digital -->
+      <div id="payment-step-digital" class="spm-step" style="display:none;">
+        <div style="font-size:13px;color:#94a3b8;margin-bottom:14px;line-height:1.6;">
+          Digital products are delivered instantly after payment confirmation.
+        </div>
+        <a href="https://wa.me/254702468460" target="_blank" class="spm-wa-btn">
+          <span style="font-size:20px;">💬</span>
+          <span>Order Digital Product via WhatsApp</span>
+        </a>
+        <button class="spm-back-btn" onclick="window.backToStep1()">← Back</button>
+      </div>
+
     </div>
-
-    <!-- STEP 2C — Digital Products -->
-    <div id="payment-step-digital" style="display:none;">
-      <button onclick="backToStep1()" style="background:none;border:none;color:#94a3b8;cursor:pointer;margin-bottom:16px;font-size:13px;">← Back</button>
-      <h3 style="color:#ffd700;font-size:17px;font-weight:800;margin-bottom:18px;">💎 Buy Digital Products</h3>
-
-      <a href="https://selar.com/z6wn6j11g1" style="
-        display:flex;align-items:center;gap:12px;
-        background:#1a1200;border:1px solid #ffd700;border-radius:14px;
-        padding:14px;margin-bottom:10px;text-decoration:none;
-      ">
-        <span style="font-size:28px;">📘</span>
-        <div>
-          <div style="color:#fff;font-size:14px;font-weight:700;">Facebook Profit Formula</div>
-          <div style="color:#94a3b8;font-size:11px;">Master Meta monetization</div>
-        </div>
-        <span style="color:#ffd700;margin-left:auto;">→</span>
-      </a>
-
-      <a href="https://selar.com/dy79oz7112" style="
-        display:flex;align-items:center;gap:12px;
-        background:#1a1200;border:1px solid #ffd700;border-radius:14px;
-        padding:14px;margin-bottom:10px;text-decoration:none;
-      ">
-        <span style="font-size:28px;">💰</span>
-        <div>
-          <div style="color:#fff;font-size:14px;font-weight:700;">Selling Daily Guide</div>
-          <div style="color:#94a3b8;font-size:11px;">Sell every single day</div>
-        </div>
-        <span style="color:#ffd700;margin-left:auto;">→</span>
-      </a>
-
-      <a href="https://selar.com/378373r336" style="
-        display:flex;align-items:center;gap:12px;
-        background:#1a1200;border:1px solid #ffd700;border-radius:14px;
-        padding:14px;margin-bottom:10px;text-decoration:none;
-      ">
-        <span style="font-size:28px;">₿</span>
-        <div>
-          <div style="color:#fff;font-size:14px;font-weight:700;">Crypto Mastery Guide</div>
-          <div style="color:#94a3b8;font-size:11px;">Blueprint for exchanges & mining</div>
-        </div>
-        <span style="color:#ffd700;margin-left:auto;">→</span>
-      </a>
-
-      <a href="https://wa.me/254702468460?text=Hello!%20I%20want%20to%20buy%20a%20digital%20product%20from%20Cozycabin%20%F0%9F%92%8E"
-         style="
-           display:block;background:#25d366;color:#fff;
-           text-decoration:none;padding:16px;border-radius:14px;
-           font-weight:700;text-align:center;font-size:15px;margin-top:6px;
-         ">
-        📲 Ask About Digital Products
-      </a>
-    </div>
-
   </div>
-        </div>
-  
-    
-<script src="products.js?v=6"></script>
-</script>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PROMO ACTION MODAL
+══════════════════════════════════════════════ -->
+<div id="promo-action-modal">
+  <div class="pam-box">
+    <div class="pam-header">
+      <div>
+        <div class="label" id="promo-modal-label">COZYCABIN</div>
+        <div class="title" id="promo-modal-title">Special Offer</div>
+      </div>
+      <button id="promo-modal-close">✕</button>
+    </div>
+    <div class="pam-body">
+      <!-- Step 1 -->
+      <div id="promo-step-1" style="display:block;">
+        <p style="color:#94a3b8;font-size:13px;margin-bottom:16px;">What would you like to do?</p>
+        <button id="promo-btn-inquire" class="pam-btn pam-btn-inquire">🔍 Inquire / Ask a Question</button>
+        <button id="promo-btn-pay" class="pam-btn pam-btn-pay">💳 I've Paid — Confirm Order</button>
+      </div>
+      <!-- Step Inquire -->
+      <div id="promo-step-inquire" style="display:none;">
+        <p style="color:#94a3b8;font-size:13px;margin-bottom:14px;">Ask us anything about this offer.</p>
+        <a id="promo-wa-inquire" href="https://wa.me/254702468460" target="_blank" class="spm-wa-btn">
+          <span>💬</span><span>Chat on WhatsApp</span>
+        </a>
+        <button class="spm-back-btn promo-back" style="margin-top:8px;">← Back</button>
+      </div>
+      <!-- Step Pay -->
+      <div id="promo-step-pay" style="display:none;">
+        <p style="color:#94a3b8;font-size:13px;margin-bottom:14px;">Send your payment confirmation on WhatsApp.</p>
+        <a id="promo-wa-confirm" href="https://wa.me/254702468460" target="_blank" class="spm-wa-btn">
+          <span>✅</span><span>Confirm Payment on WhatsApp</span>
+        </a>
+        <button class="spm-back-btn promo-back" style="margin-top:8px;">← Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FLOATING WHATSAPP
+══════════════════════════════════════════════ -->
+<a href="https://wa.me/254702468460" class="float-wa" target="_blank" rel="noopener" title="Chat on WhatsApp">
+  <img src="Images/whatsapp-icon.webp" alt="WhatsApp"
+       onerror="this.style.display='none';this.parentNode.style.fontSize='28px';this.parentNode.innerHTML='💬';">
+</a>
+
+<!-- ══════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════ -->
+<script src="products.js"></script>
+
 </body>
-</html>
+  </html>
 
 
- 
 
 
+
+
+
+
+
+  
