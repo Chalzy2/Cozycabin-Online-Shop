@@ -49,7 +49,7 @@ cutlery: [
       price: 1499, oldPrice: 2000,
       sizes: [],
       colors: ["Black","Grey"],
-      description: "Elegant silicone spoons for everyday use.",
+      description: "Elegant Silicone spoons for everyday use.",
       images: ["Images/blcksilicn.webp","Images/Silcn12psc1499.webp"]
     },
     {
@@ -57,8 +57,8 @@ cutlery: [
       company: "Kitchen",
       price: 2500, oldPrice: 3500,
       sizes: [],
-      colors: ["gold","silver"],
-      description: "Elegant silicone spoons for everyday use.",
+      colors: ["Gold","Silver"],
+      description: "Elegant 24-pieces stainless steel spoons cutlery set with stand.",
       images: ["Images/24silvercutlery-set.webp","Images/24goldcutlery-set.webp"]
     }
   ],
