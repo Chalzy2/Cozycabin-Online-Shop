@@ -62,7 +62,7 @@ cutlery: [
       images: ["Images/24goldcutlery-set.webp","Images/24goldcutlery-set.webp"]
     }
   ],
-  shirts:[], hoodies:[], watches:[], bags:[], caps:[], jeans:[], jackets:[],
+  
   dispenser:[], hotpots:[], racks:[], flasks:[], bottles:[], cookers:[], blenders:[],
   solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], floodlights:[], chargers:[], fans:[],
   fridges:[], microwaves:[], washing:[], cookersapp:[], kettles:[], irons:[], heaters:[], fansapp:[],
