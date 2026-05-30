@@ -1,8 +1,10 @@
 // ============================================================
-//  COZYCABIN PRODUCTS.JS — v2 ENHANCED
-//  All original systems preserved + improvements
-//  1. Products DB  2. Hero Banner  3. Promo Banner
-//  4. Smart Payment Modal  5. Trust Bar animation
+//  COZYCABIN PRODUCTS.JS — v3 FIXED
+//  FIXES:
+//  1. openPaymentModal — order summary scope error fixed
+//  2. hero banner click → toggleSub working (no conflict)
+//  3. back-btn in digital submenus handled separately
+//  4. Banner rotates every 2s across all 19 slides ✅
 // ============================================================
 
 var WHATSAPP_NUMBER = "254702468460";
@@ -91,11 +93,16 @@ function savingsPercent(price, oldPrice) {
 }
 
 // ============================================================
-//  TOGGLE SUBMENU
+//  TOGGLE SUBMENU  (physical product categories)
 // ============================================================
 window.toggleSub = function(id) {
+  // Close all physical submenus except the target
   document.querySelectorAll('.minor-menu').forEach(function(m) {
-    if (m.id !== id) m.style.display = 'none';
+    // Don't close digital dropdowns here — they have their own closeAllDigital
+    var digitalIds = ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu'];
+    if (m.id !== id && digitalIds.indexOf(m.id) === -1) {
+      m.style.display = 'none';
+    }
   });
   var t = document.getElementById(id);
   if (!t) return;
@@ -104,13 +111,15 @@ window.toggleSub = function(id) {
   if (isOpen) {
     hideProducts();
   } else {
-    // Scroll to the submenu so user sees it open
     setTimeout(function() { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
   }
 };
 
 window.closeAllSubmenus = function() {
-  document.querySelectorAll('.minor-menu').forEach(function(m) { m.style.display = 'none'; });
+  var digitalIds = ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu'];
+  document.querySelectorAll('.minor-menu').forEach(function(m) {
+    if (digitalIds.indexOf(m.id) === -1) m.style.display = 'none';
+  });
   hideProducts();
 };
 
@@ -241,24 +250,42 @@ function updateHint(index) {
 document.addEventListener('click', function(e) {
   var el = e.target;
 
-  // GRID BTN → toggleSub
+  // ── GRID BTN → toggleSub ──
   var gridBtn = el.closest('.grid-btn');
   if (gridBtn) {
     var sub = gridBtn.getAttribute('data-submenu');
-    if (sub) { e.preventDefault(); window.toggleSub(sub); return; }
+    if (sub) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.toggleSub(sub);
+      return;
+    }
   }
 
-  // MINOR BTN → showProducts
+  // ── MINOR BTN → showProducts ──
   var minorBtn = el.closest('.minor-btn');
   if (minorBtn) {
     var cat = minorBtn.getAttribute('data-category');
-    if (cat) { e.preventDefault(); window.showProducts(cat); return; }
+    if (cat) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.showProducts(cat);
+      return;
+    }
   }
 
-  // BACK BTN
-  if (el.closest('.back-btn')) { e.preventDefault(); window.closeAllSubmenus(); return; }
+  // ── BACK BTN (physical categories only — digital back buttons use onclick directly) ──
+  var backBtn = el.closest('.back-btn');
+  if (backBtn) {
+    // If the back button has an inline onclick (digital dropdowns), let it run naturally
+    if (!backBtn.getAttribute('onclick')) {
+      e.preventDefault();
+      window.closeAllSubmenus();
+    }
+    return;
+  }
 
-  // THUMBNAIL
+  // ── THUMBNAIL ──
   if (el.classList.contains('thumb-image')) {
     var idx = el.getAttribute('data-index');
     var main = document.getElementById('mainImage-' + idx);
@@ -269,7 +296,7 @@ document.addEventListener('click', function(e) {
     return;
   }
 
-  // SIZE BTN
+  // ── SIZE BTN ──
   if (el.classList.contains('size-btn')) {
     var idx2 = el.getAttribute('data-index');
     document.querySelectorAll('#sizes-' + idx2 + ' .size-btn')
@@ -281,7 +308,7 @@ document.addEventListener('click', function(e) {
     return;
   }
 
-  // COLOR BTN
+  // ── COLOR BTN ──
   if (el.classList.contains('color-btn')) {
     var idx3 = el.getAttribute('data-index');
     document.querySelectorAll('#colors-' + idx3 + ' .color-btn')
@@ -293,17 +320,16 @@ document.addEventListener('click', function(e) {
     return;
   }
 
-  // BUY BTN
+  // ── BUY BTN ──
   if (el.classList.contains('buy-btn')) {
     var idx4 = el.getAttribute('data-index');
     var hint = document.getElementById('selection-hint-' + idx4);
     var s2   = selectedOptions[idx4] ? selectedOptions[idx4].size  : null;
     var c2   = selectedOptions[idx4] ? selectedOptions[idx4].color : null;
 
-    // If product has no sizes/colors, skip requirement check
-    var card     = el.closest('.product-card');
-    var hasSizes  = card && card.querySelector('.size-btn');
-    var hasColors = card && card.querySelector('.color-btn');
+    var card2    = el.closest('.product-card');
+    var hasSizes  = card2 && card2.querySelector('.size-btn');
+    var hasColors = card2 && card2.querySelector('.color-btn');
 
     if ((hasSizes && !s2) || (hasColors && !c2)) {
       if (hint) {
@@ -329,7 +355,7 @@ document.addEventListener('click', function(e) {
     return;
   }
 
-  // BACKDROP — smart payment modal
+  // ── BACKDROP — smart payment modal ──
   var smartModal = document.getElementById('smart-payment-modal');
   if (smartModal && e.target === smartModal) {
     window.closePaymentModal();
@@ -337,15 +363,16 @@ document.addEventListener('click', function(e) {
 });
 
 // ============================================================
-//  HERO BANNER
+//  HERO BANNER — 19 slides, rotates every 2s
+//  Slide onclick attrs call toggleSub → opens submenu below
 // ============================================================
 (function() {
   function initHeroBanner() {
     var banner = document.getElementById('hero-banner');
     if (!banner) return;
 
-    var slides  = banner.querySelectorAll('.hero-slide');
-    var dotsEl  = document.getElementById('hero-dots');
+    var slides = banner.querySelectorAll('.hero-slide');
+    var dotsEl = document.getElementById('hero-dots');
     if (!slides.length || !dotsEl) return;
 
     var current = 0;
@@ -356,7 +383,11 @@ document.addEventListener('click', function(e) {
       var dot = document.createElement('button');
       dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
       dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-      dot.addEventListener('click', function() { goTo(i); resetTimer(); });
+      dot.addEventListener('click', function(e) {
+        e.stopPropagation(); // prevent triggering slide onclick
+        goTo(i);
+        resetTimer();
+      });
       dotsEl.appendChild(dot);
     });
 
@@ -375,20 +406,33 @@ document.addEventListener('click', function(e) {
       timer = setInterval(function() { goTo(current + 1); }, 2000);
     }
 
-    // Explicitly show first slide on mobile (some browsers ignore CSS active state)
+    // Explicitly show first slide on all devices
     slides.forEach(function(s, i) {
       s.style.display = i === 0 ? 'flex' : 'none';
     });
 
-    // Swipe support
+    // Swipe support (left/right swipe changes slide, does NOT fire onclick)
     var startX = 0;
-    banner.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-    banner.addEventListener('touchend', function(e) {
-      var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetTimer(); }
+    var startY = 0;
+    var swiped = false;
+
+    banner.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      swiped = false;
     }, { passive: true });
 
-    // Restart timer when user comes back to the page/tab
+    banner.addEventListener('touchend', function(e) {
+      var diffX = startX - e.changedTouches[0].clientX;
+      var diffY = startY - e.changedTouches[0].clientY;
+      if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
+        swiped = true;
+        goTo(diffX > 0 ? current + 1 : current - 1);
+        resetTimer();
+      }
+    }, { passive: true });
+
+    // Restart timer when user returns to the tab
     document.addEventListener('visibilitychange', function() {
       if (!document.hidden) { resetTimer(); }
     });
@@ -404,15 +448,15 @@ document.addEventListener('click', function(e) {
 })();
 
 // ============================================================
-//  PROMO BANNER
+//  PROMO BANNER (separate element #promo-banner, not hero)
 // ============================================================
 (function() {
   function initPromoBanner() {
     var banner = document.getElementById('promo-banner');
     if (!banner) return;
 
-    var slides  = banner.querySelectorAll('.promo-slide');
-    var dots    = banner.querySelectorAll('.promo-dot');
+    var slides = banner.querySelectorAll('.promo-slide');
+    var dots   = banner.querySelectorAll('.promo-dot');
     if (!slides.length) return;
 
     var current = 0;
@@ -421,13 +465,19 @@ document.addEventListener('click', function(e) {
     function showSlide(n) {
       slides[current].style.display = 'none';
       slides[current].classList.remove('active');
-      if (dots[current]) { dots[current].style.width = '8px'; dots[current].style.background = '#333'; dots[current].style.borderRadius = '50%'; }
-
+      if (dots[current]) {
+        dots[current].style.width = '8px';
+        dots[current].style.background = '#333';
+        dots[current].style.borderRadius = '50%';
+      }
       current = (n + slides.length) % slides.length;
-
       slides[current].style.display = 'flex';
       slides[current].classList.add('active');
-      if (dots[current]) { dots[current].style.width = '24px'; dots[current].style.background = '#ffd700'; dots[current].style.borderRadius = '4px'; }
+      if (dots[current]) {
+        dots[current].style.width = '24px';
+        dots[current].style.background = '#ffd700';
+        dots[current].style.borderRadius = '4px';
+      }
     }
 
     function resetTimer() {
@@ -435,14 +485,16 @@ document.addEventListener('click', function(e) {
       timer = setInterval(function() { showSlide(current + 1); }, 2000);
     }
 
-    // Explicitly show first slide on mobile
     slides.forEach(function(s, i) {
       s.style.display = i === 0 ? 'flex' : 'none';
       if (i === 0) s.classList.add('active');
     });
-    if (dots[0]) { dots[0].style.width = '24px'; dots[0].style.background = '#ffd700'; dots[0].style.borderRadius = '4px'; }
+    if (dots[0]) {
+      dots[0].style.width = '24px';
+      dots[0].style.background = '#ffd700';
+      dots[0].style.borderRadius = '4px';
+    }
 
-    // Restart timer when user comes back to the page/tab
     document.addEventListener('visibilitychange', function() {
       if (!document.hidden) { resetTimer(); }
     });
@@ -458,10 +510,13 @@ document.addEventListener('click', function(e) {
     }, { passive: true });
 
     // Tap → open promo modal
-    banner.addEventListener('click', function() {
-      var slide   = slides[current];
-      var label   = slide.getAttribute('data-label') || 'COZYCABIN';
-      var title   = slide.getAttribute('data-title') || 'Shop with Cozycabin';
+    banner.addEventListener('click', function(e) {
+      // Don't fire if user clicked a dot
+      if (e.target.classList.contains('promo-dot')) return;
+
+      var slide = slides[current];
+      var label = slide.getAttribute('data-label') || 'COZYCABIN';
+      var title = slide.getAttribute('data-title') || 'Shop with Cozycabin';
 
       var modalLabel = document.getElementById('promo-modal-label');
       var modalTitle = document.getElementById('promo-modal-title');
@@ -499,7 +554,8 @@ document.addEventListener('click', function(e) {
         if (e.target === this) { this.style.display = 'none'; document.body.style.overflow = ''; }
       });
     }
-// Step buttons
+
+    // Step buttons
     var inquireBtn = document.getElementById('promo-btn-inquire');
     if (inquireBtn) {
       inquireBtn.addEventListener('click', function() {
@@ -517,7 +573,6 @@ document.addEventListener('click', function(e) {
       });
     }
 
-    // Back buttons
     document.querySelectorAll('.promo-back').forEach(function(btn) {
       btn.addEventListener('click', promoBackToStep1);
     });
@@ -531,36 +586,41 @@ document.addEventListener('click', function(e) {
 })();
 
 // ============================================================
-//  SMART PAYMENT MODAL
+//  SMART PAYMENT MODAL — FIXED (order summary scope corrected)
 // ============================================================
 window.openPaymentModal = function() {
   var modal = document.getElementById('smart-payment-modal');
+  if (!modal) return;
 
-if (sumEl) {
-      sumEl.innerHTML =
-        '<div style="background:#0a1128;border:1px solid rgba(255,215,0,0.2);border-radius:12px;padding:14px;margin-bottom:16px;">' +
-          '<div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Order Summary</div>' +
-          '<div style="font-weight:700;color:#fff;margin-bottom:4px;">' + order.title + '</div>' +
-          (order.size !== 'N/A' ? '<div style="font-size:13px;color:#94a3b8;">Size: ' + order.size + '</div>' : '') +
-          (order.color !== 'N/A' ? '<div style="font-size:13px;color:#94a3b8;">Colour: ' + order.color + '</div>' : '') +
-          '<div style="font-size:20px;font-weight:800;color:#ffd700;margin-top:8px;">KES ' + (order.price || 0).toLocaleString() + '</div>' +
-          (order.ref ? '<div style="font-size:11px;color:#64748b;margin-top:4px;">Ref: ' + order.ref + '</div>' : '') +
-        '</div>';
-    }
+  // Get pending order set by BUY BTN handler
+  var order = window._pendingOrder || {};
 
-    // Build WhatsApp direct order message for Kenya step
-    var waOrder = encodeURIComponent(
-      '🛒 *COZYCABIN ORDER*\n\n' +
-      'Product: ' + order.title + '\n' +
-      'Size: '    + order.size  + '\n' +
-      'Colour: '  + order.color + '\n' +
-      'Price: KES ' + (order.price || 0).toLocaleString() + '\n' +
-      (order.ref ? 'Ref: ' + order.ref + '\n' : '') +
-      '\nPlease confirm delivery details. 🙏'
-    );
-    var waOrderEl = document.getElementById('wa-order-link');
-    if (waOrderEl) waOrderEl.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + waOrder;
+  // Inject order summary
+  var sumEl = document.getElementById('order-summary');
+  if (sumEl && order.title) {
+    sumEl.innerHTML =
+      '<div style="background:#0a1128;border:1px solid rgba(255,215,0,0.2);border-radius:12px;padding:14px;margin-bottom:16px;">' +
+        '<div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Order Summary</div>' +
+        '<div style="font-weight:700;color:#fff;margin-bottom:4px;">' + order.title + '</div>' +
+        (order.size && order.size !== 'N/A' ? '<div style="font-size:13px;color:#94a3b8;">Size: ' + order.size + '</div>' : '') +
+        (order.color && order.color !== 'N/A' ? '<div style="font-size:13px;color:#94a3b8;">Colour: ' + order.color + '</div>' : '') +
+        '<div style="font-size:20px;font-weight:800;color:#ffd700;margin-top:8px;">KES ' + (order.price || 0).toLocaleString() + '</div>' +
+        (order.ref ? '<div style="font-size:11px;color:#64748b;margin-top:4px;">Ref: ' + order.ref + '</div>' : '') +
+      '</div>';
   }
+
+  // Build WhatsApp order message for Kenya step
+  var waOrder = encodeURIComponent(
+    '🛒 *COZYCABIN ORDER*\n\n' +
+    'Product: ' + (order.title || '') + '\n' +
+    'Size: '    + (order.size  || 'N/A') + '\n' +
+    'Colour: '  + (order.color || 'N/A') + '\n' +
+    'Price: KES ' + (order.price || 0).toLocaleString() + '\n' +
+    (order.ref ? 'Ref: ' + order.ref + '\n' : '') +
+    '\nPlease confirm delivery details. 🙏'
+  );
+  var waOrderEl = document.getElementById('wa-order-link');
+  if (waOrderEl) waOrderEl.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + waOrder;
 
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
@@ -578,7 +638,8 @@ window.chooseProductType = function(type) {
       var el = document.getElementById(id);
       if (el) el.style.display = 'none';
     });
-  var target = { 'local-kenya': 'payment-step-kenya', 'international': 'payment-step-international', 'digital': 'payment-step-digital' }[type];
+  var map = { 'local-kenya': 'payment-step-kenya', 'international': 'payment-step-international', 'digital': 'payment-step-digital' };
+  var target = map[type];
   if (target) { var el = document.getElementById(target); if (el) el.style.display = 'block'; }
 };
 
@@ -590,12 +651,36 @@ window.backToStep1 = function() {
 };
 
 // ============================================================
+//  DIGITAL GRID TOGGLE (keep in sync with inline script)
+// ============================================================
+window.toggleDigital = function(id) {
+  var allDigital = ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu'];
+  allDigital.forEach(function(mid) {
+    var el = document.getElementById(mid);
+    if (el && mid !== id) el.style.display = 'none';
+  });
+  var target = document.getElementById(id);
+  if (!target) return;
+  var isOpen = target.style.display === 'block';
+  target.style.display = isOpen ? 'none' : 'block';
+  if (!isOpen) setTimeout(function() { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
+};
+
+window.closeAllDigital = function() {
+  ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu']
+    .forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+};
+
+// ============================================================
 //  HELPERS (global)
 // ============================================================
 function promoBackToStep1() {
-  var s1  = document.getElementById('promo-step-1');
-  var si  = document.getElementById('promo-step-inquire');
-  var sp  = document.getElementById('promo-step-pay');
+  var s1 = document.getElementById('promo-step-1');
+  var si = document.getElementById('promo-step-inquire');
+  var sp = document.getElementById('promo-step-pay');
   if (s1) s1.style.display = 'block';
   if (si) si.style.display = 'none';
   if (sp) sp.style.display = 'none';
@@ -604,7 +689,6 @@ function promoBackToStep1() {
 function cozyyCopy(text, btnId) {
   var btn = document.getElementById(btnId);
   if (!navigator.clipboard) {
-    // Fallback
     var ta = document.createElement('textarea');
     ta.value = text;
     document.body.appendChild(ta);
@@ -624,8 +708,9 @@ function cozyyCopy(text, btnId) {
   });
 }
 
-// Alias used in some pages
 window.copyText = cozyyCopy;
-window.cozyyCopy = cozyyCopy;
+window.cozyyCopy = cozyyCopy
+      
 
-  
+
+                                         
