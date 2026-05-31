@@ -164,23 +164,20 @@ var products = {
     }
   ],
   hotpots: [
-
-  {
-      title: "Jumbo Star Hot Pot Set",
-      company: "Jumbo Star",
-      price: 5500,
-      oldPrice: 6500,
-      sizes: ["Set of 3"],
-      colors: ["White", "Pink", "Black", "Cream"],
-      description: "Elegant insulated hot pot set of 3 pieces. Keeps food warm for longer and adds a modern touch to your dining table.",
+    {
+      title: "Jumbo Star Hot Pot Set", company: "Jumbo Star",
+      price: 5500, oldPrice: 7000, sizes: ["Set of 3"],
+      colors: ["White","Pink","Black","Cream"],
+      description: "Premium insulated hot pot set of 3 pieces. Keeps food warm for longer and adds elegance to your dining table.",
+      video: "",
       images: [
-      "Images/511574.webp",
-      "Images/511587.webp",
-      "Images/jumboblck.webp",
-      "Images/jumbocream.webp"
-    ]
-  }
-],
+     "Images/511574.webp",
+     "Images/511587.webp",
+     "Images/jumboblck.webp",
+     "Images/jumbocream.webp"
+     ]
+   },
+ ],
   
 
   // ── Placeholders — add products + video fields later ──
