@@ -184,11 +184,10 @@ var products = {
       description: "Premium insulated Turkish hot pot set with elegant marble finish and gold accents. Ideal for serving and keeping food warm during family meals and special occasions.",
       video: "",
       images: [
-      "Images/turkish-hotpot-white-1.webp",
-      "Images/turkish-hotpot-white-2.webp",
-      "Images/turkish-hotpot-brown-1.webp",
-      "Images/turkish-hotpot-box.webp"
-  ]
+      "Images/turkeyg.webp",
+      "Images/turkeyhopts.webp",
+      "Images/turkeywhite (1).webp"
+     ]
   }
 ],  
 
