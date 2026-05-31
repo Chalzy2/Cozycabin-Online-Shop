@@ -176,9 +176,21 @@ var products = {
      "Images/jumboblck.webp",
      "Images/jumbocream.webp"
      ]
-   }
- ],
-  
+   },
+   {
+      title: "Turkish Hot Pot Set", company: "Turkish",
+      price: 4000, oldPrice: 5000, sizes: ["4 Pieces Set"],
+      colors: ["White Marble","Brown Marble"],
+      description: "Premium insulated Turkish hot pot set with elegant marble finish and gold accents. Ideal for serving and keeping food warm during family meals and special occasions.",
+      video: "",
+      images: [
+      "Images/turkish-hotpot-white-1.webp",
+      "Images/turkish-hotpot-white-2.webp",
+      "Images/turkish-hotpot-brown-1.webp",
+      "Images/turkish-hotpot-box.webp"
+  ]
+  }
+],  
 
   // ── Placeholders — add products + video fields later ──
    solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], floodlights:[], chargers:[], fans:[],
