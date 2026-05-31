@@ -176,7 +176,7 @@ var products = {
      "Images/jumboblck.webp",
      "Images/jumbocream.webp"
      ]
-   },
+   }
  ],
   
 
