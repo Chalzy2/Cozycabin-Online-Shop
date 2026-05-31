@@ -162,18 +162,18 @@ var products = {
       video: "Images/video-gold-cutlery.mp4",
       images: ["Images/24goldcutlery-set.webp","Images/24goldcutlery-set.webp"]
     }
- ],
-    hotpots: [
+  ],
+  hotpots: [
 
   {
-    title: "Jumbo Star Hot Pot Set",
-    company: "Jumbo Star",
-    price: 5500,
-    oldPrice: 6500,
-    sizes: ["Set of 3"],
-    colors: ["White", "Pink", "Black", "Cream"],
-    description: "Elegant insulated hot pot set of 3 pieces. Keeps food warm for longer and adds a modern touch to your dining table.",
-    images: [
+      title: "Jumbo Star Hot Pot Set",
+      company: "Jumbo Star",
+      price: 5500,
+      oldPrice: 6500,
+      sizes: ["Set of 3"],
+      colors: ["White", "Pink", "Black", "Cream"],
+      description: "Elegant insulated hot pot set of 3 pieces. Keeps food warm for longer and adds a modern touch to your dining table.",
+      images: [
       "Images/511574.webp",
       "Images/511587.webp",
       "Images/jumboblck.webp",
