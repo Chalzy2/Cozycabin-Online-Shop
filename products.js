@@ -163,7 +163,7 @@ var products = {
       images: ["Images/24goldcutlery-set.webp","Images/24goldcutlery-set.webp"]
     }
  ],
-    kitchen: [
+    hotpots: [
 
   {
     title: "Jumbo Star Hot Pot Set",
