@@ -186,7 +186,7 @@ var products = {
       images: [
       "Images/turkeyg.webp",
       "Images/turkeyhopts.webp",
-      "Images/turkeywhite (1).webp"
+      "Images/turkeywhite(1).webp"
      ]
   }
 ],  
