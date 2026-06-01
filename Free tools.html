@@ -1,0 +1,2824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="Cozycabin Free Tools — Free image compressor, WebP converter, background remover and video compressor.">
+<title>Cozycabin Free Tools 🛠️ — Compress, Convert, Edit</title>
+<style>
+/* ================================================================
+   COZYCABIN FREE TOOLS — style.css
+   Dark navy + gold · Mobile-first · Production ready
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Variables ── */
+:root {
+  --gold:        #ffd700;
+  --gold2:       #e0a800;
+  --gold3:       #b8860b;
+  --gold-soft:   rgba(255,215,0,0.10);
+  --gold-glow:   rgba(255,215,0,0.22);
+  --navy:        #050c1a;
+  --navy2:       #080f20;
+  --card:        #0c1628;
+  --card2:       #101e35;
+  --card3:       #162440;
+  --border:      rgba(255,215,0,0.12);
+  --border2:     rgba(255,215,0,0.25);
+  --text:        #dde6f0;
+  --text2:       #a0b4c8;
+  --muted:       #4a6280;
+  --green:       #22c55e;
+  --green-soft:  rgba(34,197,94,0.12);
+  --blue:        #3b82f6;
+  --blue-soft:   rgba(59,130,246,0.12);
+  --purple:      #a855f7;
+  --purple-soft: rgba(168,85,247,0.12);
+  --red:         #ef4444;
+  --amber:       #f59e0b;
+  --r-sm:        10px;
+  --r:           16px;
+  --r-lg:        22px;
+  --r-xl:        30px;
+  --shadow:      0 8px 40px rgba(0,0,0,0.6);
+  --shadow-sm:   0 2px 16px rgba(0,0,0,0.4);
+  --t:           all .22s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+img { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea { font-family: inherit; outline: none; }
+
+/* ── Background atmosphere ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%, rgba(255,215,0,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 100%, rgba(59,130,246,0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ================================================================
+   LAYOUT
+   ================================================================ */
+.page { position: relative; z-index: 1; }
+.container { max-width: 480px; margin: 0 auto; padding: 0 16px; }
+.container-wide { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+
+/* ── Section spacing ── */
+.section { padding: 20px 0; }
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: .18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ================================================================
+   TOP HEADER
+   ================================================================ */
+.top-header {
+  background: rgba(8,15,32,0.95);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.brand-logo {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  object-fit: cover;
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+.brand-logo-fallback {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: var(--card2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: .06em;
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+.brand-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: .1em;
+  color: var(--gold);
+  line-height: 1;
+}
+.brand-sub {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.header-actions { display: flex; align-items: center; gap: 8px; }
+.header-badge {
+  background: var(--gold-soft);
+  border: 1px solid var(--border2);
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: .06em;
+}
+.header-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--t);
+}
+.header-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ================================================================
+   BOTTOM NAV
+   ================================================================ */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(8,15,32,0.97);
+  border-top: 1px solid var(--border);
+  display: flex;
+  z-index: 200;
+  padding-bottom: env(safe-area-inset-bottom);
+  backdrop-filter: blur(16px);
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px 8px;
+  cursor: pointer;
+  transition: var(--t);
+  text-decoration: none;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-family: 'Outfit', sans-serif;
+}
+.nav-item:hover, .nav-item.active { color: var(--gold); }
+.nav-icon { font-size: 20px; margin-bottom: 2px; line-height: 1; }
+.nav-label { font-size: 9px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.nav-dot {
+  position: absolute;
+  top: 8px;
+  right: calc(50% - 14px);
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  display: none;
+}
+.nav-item.has-dot .nav-dot { display: block; }
+
+/* ================================================================
+   PAGES — shown/hidden
+   ================================================================ */
+.page-view { display: none; padding-bottom: 80px; animation: fadeIn .25s ease; }
+.page-view.active { display: block; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+/* ================================================================
+   HERO / BANNER
+   ================================================================ */
+.hero {
+  background: linear-gradient(135deg, var(--card2) 0%, var(--navy2) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 20px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,215,0,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold-soft);
+  border: 1px solid var(--border2);
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px;
+  letter-spacing: .06em;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.hero-title span { color: var(--gold); }
+.hero-sub {
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 320px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 4px;
+}
+.hero-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--gold);
+  letter-spacing: .04em;
+}
+.hero-stat-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+
+/* ================================================================
+   CARDS
+   ================================================================ */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px;
+  transition: var(--t);
+  position: relative;
+  overflow: hidden;
+}
+.card:hover { border-color: var(--border2); }
+.card-sm { padding: 14px; border-radius: var(--r); }
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.card-title { font-size: 15px; font-weight: 700; color: var(--text); }
+.card-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+/* Tool cards grid */
+.tools-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+.tool-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px 14px;
+  cursor: pointer;
+  transition: var(--t);
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.tool-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, var(--tool-glow,rgba(255,215,0,0.06)) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tool-card:hover { border-color: var(--border2); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+.tool-card.active { border-color: var(--gold); background: var(--card2); }
+.tool-icon { font-size: 32px; line-height: 1; }
+.tool-name { font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: .02em; text-align: center; line-height: 1.3; }
+.tool-desc { font-size: 10px; color: var(--text2); text-align: center; line-height: 1.4; }
+.tool-limit {
+  font-size: 9px;
+  background: var(--gold-soft);
+  color: var(--gold);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+.tool-limit.premium { background: var(--purple-soft); color: var(--purple); }
+
+/* ================================================================
+   UPLOAD ZONES
+   ================================================================ */
+.upload-zone {
+  border: 2px dashed rgba(255,215,0,0.2);
+  border-radius: var(--r-xl);
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--t);
+  background: rgba(255,215,0,0.015);
+  position: relative;
+  overflow: hidden;
+}
+.upload-zone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 100%, rgba(255,215,0,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.upload-zone input[type=file] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; z-index: 2;
+}
+.upload-zone.drag-over { border-color: var(--gold); background: rgba(255,215,0,0.05); }
+.upload-icon { font-size: 44px; margin-bottom: 12px; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.upload-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.upload-sub { font-size: 12px; color: var(--text2); margin-bottom: 14px; }
+.upload-formats { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
+.fmt-tag {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+
+/* ================================================================
+   PROGRESS BAR
+   ================================================================ */
+.progress-wrap {
+  display: none;
+  margin: 12px 0;
+}
+.progress-wrap.visible { display: block; }
+.progress-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.progress-label { font-size: 12px; font-weight: 600; color: var(--text); }
+.progress-count { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold); }
+.progress-bar-bg { height: 5px; background: var(--card2); border-radius: 5px; overflow: hidden; }
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold2), var(--gold));
+  border-radius: 5px;
+  transition: width .3s ease;
+  width: 0%;
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+/* ================================================================
+   USAGE METER
+   ================================================================ */
+.usage-bar {
+  height: 4px;
+  background: var(--card2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.usage-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width .4s ease;
+}
+.usage-fill.low    { background: var(--green); }
+.usage-fill.medium { background: var(--amber); }
+.usage-fill.high   { background: var(--red); }
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 13px 20px;
+  border-radius: var(--r);
+  border: none;
+  cursor: pointer;
+  transition: var(--t);
+  letter-spacing: .02em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #000;
+  box-shadow: 0 6px 20px rgba(255,215,0,0.28);
+}
+.btn-primary:hover { box-shadow: 0 8px 28px rgba(255,215,0,0.4); transform: translateY(-1px); }
+.btn-secondary {
+  background: var(--card2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { border-color: var(--border2); background: var(--card3); }
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+}
+.btn-outline:hover { background: var(--gold-soft); }
+.btn-danger { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+.btn-success { background: var(--green-soft); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+.btn-sm { font-size: 12px; padding: 8px 14px; border-radius: var(--r-sm); }
+.btn-full { width: 100%; }
+.btn:disabled { opacity: .45; cursor: not-allowed; transform: none !important; }
+
+/* ================================================================
+   FORMS
+   ================================================================ */
+.form-group { margin-bottom: 14px; }
+.form-label { display: block; font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 7px; }
+.form-input {
+  width: 100%;
+  background: var(--card2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  color: var(--text);
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: 'Outfit', sans-serif;
+  transition: var(--t);
+}
+.form-input:focus { border-color: var(--gold2); box-shadow: 0 0 0 3px rgba(255,215,0,0.08); }
+.form-input::placeholder { color: var(--muted); }
+.form-select { appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ffd700'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+.form-error { font-size: 11px; color: var(--red); margin-top: 5px; display: none; }
+.form-error.visible { display: block; }
+
+/* ── Range ── */
+input[type=range] {
+  width: 100%; height: 4px;
+  appearance: none; background: var(--card2); border-radius: 4px;
+  cursor: pointer; accent-color: var(--gold);
+}
+input[type=range]::-webkit-slider-thumb {
+  appearance: none; width: 18px; height: 18px;
+  background: var(--gold); border-radius: 50%;
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+.range-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.range-label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .08em; }
+.range-val { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gold); font-weight: 500; }
+
+/* ================================================================
+   BADGES / TAGS
+   ================================================================ */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px;
+  letter-spacing: .04em; text-transform: uppercase;
+}
+.badge-gold    { background: var(--gold-soft);   color: var(--gold);   border: 1px solid rgba(255,215,0,0.25); }
+.badge-green   { background: var(--green-soft);  color: var(--green);  border: 1px solid rgba(34,197,94,0.25); }
+.badge-blue    { background: var(--blue-soft);   color: var(--blue);   border: 1px solid rgba(59,130,246,0.25); }
+.badge-purple  { background: var(--purple-soft); color: var(--purple); border: 1px solid rgba(168,85,247,0.25); }
+.badge-red     { background: rgba(239,68,68,0.1);  color: var(--red);  border: 1px solid rgba(239,68,68,0.25); }
+
+/* ================================================================
+   RESULTS GRID
+   ================================================================ */
+.results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.result-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  animation: fadeUp .3s ease both;
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+.result-preview {
+  aspect-ratio: 1;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+.result-preview img, .result-preview canvas {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+}
+.result-info { padding: 10px; }
+.result-name { font-size: 10px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'JetBrains Mono', monospace; margin-bottom: 6px; }
+.result-stats { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.stat { text-align: center; }
+.stat-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold); font-weight: 500; }
+.stat-lbl { font-size: 9px; color: var(--muted); text-transform: uppercase; }
+
+/* ================================================================
+   PLAN CARDS
+   ================================================================ */
+.plans-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.plan-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 22px 18px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--t);
+}
+.plan-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, var(--plan-glow, transparent) 0%, transparent 70%);
+  pointer-events: none;
+}
+.plan-card.featured { border-color: var(--gold); --plan-glow: rgba(255,215,0,0.07); }
+.plan-card.featured::after {
+  content: '⭐ MOST POPULAR';
+  position: absolute; top: 14px; right: -28px;
+  background: var(--gold); color: #000;
+  font-size: 9px; font-weight: 800;
+  padding: 4px 36px;
+  transform: rotate(38deg);
+  letter-spacing: .08em;
+}
+.plan-card.purple-plan { border-color: var(--purple); --plan-glow: rgba(168,85,247,0.07); }
+.plan-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .08em; margin-bottom: 4px; }
+.plan-price { margin: 14px 0; }
+plan-amount { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--gold); letter-spacing: .04em; line-height: 1; }
+.plan-period { font-size: 12px; color: var(--text2); margin-left: 2px; }
+.plan-features { list-style: none; margin: 16px 0; display: flex; flex-direction: column; gap: 8px; }
+.plan-features li { font-size: 13px; color: var(--text2); display: flex; align-items: center; gap: 8px; }
+.plan-features li::before { content: '✓'; color: var(--green); font-weight: 800; flex-shrink: 0; }
+.plan-features li.no::before { content: '✗'; color: var(--muted); }
+
+/* ================================================================
+   PAYMENT METHODS
+   ================================================================ */
+.payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.payment-method {
+  background: var(--card2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 14px 12px;
+  cursor: pointer;
+  transition: var(--t);
+  text-align: center;
+}
+.payment-method:hover { border-color: var(--gold); background: var(--card3); }
+.payment-method.selected { border-color: var(--gold); background: var(--gold-soft); }
+.pm-icon { font-size: 24px; margin-bottom: 6px; }
+.pm-name { font-size: 11px; font-weight: 700; color: var(--text); }
+.pm-sub { font-size: 9px; color: var(--text2); margin-top: 2px; }
+
+/* ================================================================
+   TABS
+   ================================================================ */
+.tabs { display: flex; background: var(--card2); border-radius: var(--r); padding: 4px; gap: 4px; margin-bottom: 16px; }
+.tab-btn {
+  flex: 1; background: transparent; border: none; cursor: pointer;
+  color: var(--text2); font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600;
+  padding: 9px 8px; border-radius: var(--r-sm); transition: var(--t);
+}
+.tab-btn.active { background: var(--card3); color: var(--gold); border: 1px solid var(--border); }
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn .2s ease; }
+
+/* ================================================================
+   TOAST
+   ================================================================ */
+.toast-wrap {
+  position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
+  z-index: 999; width: calc(100% - 32px); max-width: 380px;
+  display: flex; flex-direction: column; gap: 8px; pointer-events: none;
+}
+.toast {
+  background: var(--card2); border: 1px solid var(--border2);
+  border-radius: var(--r); padding: 12px 16px; font-size: 13px; font-weight: 500;
+  display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow);
+  animation: slideDown .3s ease; pointer-events: all;
+}
+.toast.success { border-color: rgba(34,197,94,0.4); color: var(--green); }
+.toast.error   { border-color: rgba(239,68,68,0.4);  color: var(--red); }
+.toast.info    { border-color: var(--border2);        color: var(--gold); }
+@keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:none} }
+
+/* ================================================================
+   MODAL
+   ================================================================ */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+  z-index: 500; display: none; align-items: flex-end; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  padding: 24px 20px 32px; width: 100%; max-width: 480px;
+  max-height: 90vh; overflow-y: auto;
+  animation: slideUp .3s cubic-bezier(.4,0,.2,1);
+}
+@keyframes slideUp { from{transform:translateY(100%)} to{transform:none} }
+.modal-handle { width: 36px; height: 4px; background: var(--border2); border-radius: 4px; margin: -8px auto 18px; }
+.modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: .06em; color: var(--gold); margin-bottom: 16px; }
+
+/* ================================================================
+   ADMIN TABLE
+   ================================================================ */
+.admin-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.admin-table th { background: var(--card2); color: var(--text2); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+.admin-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text); vertical-align: middle; }
+.admin-table tr:hover td { background: rgba(255,255,255,0.02); }
+.admin-table-wrap { overflow-x: auto; border-radius: var(--r); border: 1px solid var(--border); }
+
+/* ================================================================
+   MARKETPLACE CARDS
+   ================================================================ */
+.market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.market-cat {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 16px 10px; text-align: center;
+  cursor: pointer; transition: var(--t); text-decoration: none;
+}
+.market-cat:hover { border-color: var(--border2); transform: translateY(-2px); }
+.market-cat-icon { font-size: 28px; margin-bottom: 8px; }
+.market-cat-name { font-size: 11px; font-weight: 700; color: var(--text); }
+.market-cat-count { font-size: 9px; color: var(--muted); margin-top: 3px; }
+
+/* ================================================================
+   DIVIDERS & MISC
+   ================================================================ */
+.divider { height: 1px; background: var(--border); margin: 16px 0; }
+.divider-text {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 11px; color: var(--muted); margin: 14px 0;
+}
+.divider-text::before, .divider-text::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.info-box {
+  background: var(--blue-soft); border: 1px solid rgba(59,130,246,0.25);
+  border-radius: var(--r); padding: 12px 14px; font-size: 12px; color: var(--blue);
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.warn-box {
+  background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25);
+  border-radius: var(--r); padding: 12px 14px; font-size: 12px; color: var(--amber);
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.success-box {
+  background: var(--green-soft); border: 1px solid rgba(34,197,94,0.25);
+  border-radius: var(--r); padding: 12px 14px; font-size: 12px; color: var(--green);
+}
+
+/* ── Powered by bar ── */
+.powered-bar {
+  text-align: center;
+  padding: 10px;
+  font-size: 10px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  letter-spacing: .06em;
+}
+.powered-bar span { color: var(--gold); font-weight: 600; }
+
+/* ── Responsive ── */
+@media (min-width: 600px) {
+  .tools-grid { grid-template-columns: repeat(4, 1fr); }
+  .plans-grid { grid-template-columns: repeat(3, 1fr); }
+  .results-grid { grid-template-columns: repeat(3, 1fr); }
+  .market-grid { grid-template-columns: repeat(4, 1fr); }
+  .payment-grid { grid-template-columns: repeat(3, 1fr); }
+  .hero-title { font-size: 52px; }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--navy2); }
+::-webkit-scrollbar-thumb { background: var(--gold3); border-radius: 4px; }
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+</head>
+<body>
+
+<!-- Toast container -->
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<!-- ════════════════════════════════════════════════════════════
+     TOP HEADER
+════════════════════════════════════════════════════════════ -->
+<header class="top-header">
+  <a class="header-brand" href="#" onclick="showPage('home');return false;">
+    <img class="brand-logo" src="Images/Cozycabin log .webp" alt="Cozycabin"
+         onerror="this.style.display='none';document.getElementById('brandLogoFallback').style.display='flex'">
+    <div class="brand-logo-fallback" id="brandLogoFallback" style="display:none;">CC</div>
+    <div>
+      <div class="brand-name">COZYCABIN</div>
+      <div class="brand-sub">Free Tools</div>
+    </div>
+  </a>
+  <div class="header-actions" id="header-auth">
+    <button class="btn btn-primary btn-sm" onclick="openModal('registerModal')">Get Free Access</button>
+  </div>
+</header>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE: HOME
+════════════════════════════════════════════════════════════ -->
+<div class="page-view active" id="page-home">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">🚀 Free Online Tools</div>
+    <h1 class="hero-title">COZYCABIN<br><span>FREE TOOLS</span></h1>
+    <p class="hero-sub">Professional image and video tools — free forever for registered users. No watermarks, no tricks.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="showPage('tools')">🛠️ Start Using Tools</button>
+      <button class="btn btn-secondary" onclick="showPage('premium')">⭐ View Premium</button>
+    </div>
+    <div class="hero-stats" style="margin-top:20px;">
+      <div><div class="hero-stat-num">4</div><div class="hero-stat-lbl">Tools</div></div>
+      <div><div class="hero-stat-num">FREE</div><div class="hero-stat-lbl">Always</div></div>
+      <div><div class="hero-stat-num">0</div><div class="hero-stat-lbl">Watermarks</div></div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Quick tools -->
+    <div style="margin-top:20px;">
+      <div class="section-title">🛠️ Tools</div>
+      <div class="tools-grid">
+        <div class="tool-card" style="--tool-glow:rgba(255,215,0,0.07)" onclick="openTool('compress');showPage('tools')">
+          <div class="tool-icon">🖼️</div>
+          <div class="tool-name">Image Compressor</div>
+          <div class="tool-desc">Shrink images without quality loss</div>
+          <div class="tool-limit">20/day free</div>
+        </div>
+        <div class="tool-card" style="--tool-glow:rgba(59,130,246,0.07)" onclick="openTool('convert');showPage('tools')">
+          <div class="tool-icon">🔄</div>
+          <div class="tool-name">WebP Converter</div>
+          <div class="tool-desc">Convert JPG/PNG to fast WebP</div>
+          <div class="tool-limit">20/day free</div>
+        </div>
+        <div class="tool-card" style="--tool-glow:rgba(34,197,94,0.07)" onclick="openTool('bgremove');showPage('tools')">
+          <div class="tool-icon">🧹</div>
+          <div class="tool-name">BG Remover</div>
+          <div class="tool-desc">Remove image background instantly</div>
+          <div class="tool-limit">5/day free</div>
+        </div>
+        <div class="tool-card" style="--tool-glow:rgba(168,85,247,0.07)" onclick="openTool('video');showPage('tools')">
+          <div class="tool-icon">🎥</div>
+          <div class="tool-name">Video Compressor</div>
+          <div class="tool-desc">Compress videos for web & social</div>
+          <div class="tool-limit">5/day free</div>
+        </div>
+        <div class="tool-card" style="--tool-glow:rgba(236,72,153,0.07);grid-column:span 2;" onclick="openTool('videoedit');showPage('tools')">
+          <div class="tool-icon">✂️</div>
+          <div class="tool-name">Video Editing</div>
+          <div class="tool-desc">Trim, cut &amp; merge video clips instantly</div>
+          <div class="tool-limit" style="background:rgba(236,72,153,0.15);color:#f472b6;">NEW · Free</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Usage dashboard -->
+    <div style="margin-top:4px;">
+      <div class="section-title">📊 Today's Usage</div>
+      <div class="card">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span>Image Compression</span><span style="color:var(--text2)">0/20</span></div>
+            <div class="usage-bar"><div class="usage-fill low" id="meter-compress" style="width:0%"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span>WebP Conversion</span><span style="color:var(--text2)">0/20</span></div>
+            <div class="usage-bar"><div class="usage-fill low" id="meter-convert" style="width:0%"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span>Background Removal</span><span style="color:var(--text2)">0/5</span></div>
+            <div class="usage-bar"><div class="usage-fill low" id="meter-bgremove" style="width:0%"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span>Video Compression</span><span style="color:var(--text2)">0/5</span></div>
+            <div class="usage-bar"><div class="usage-fill low" id="meter-video" style="width:0%"></div></div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="info-box">ℹ️ <span>Limits reset daily at midnight. <button class="btn btn-secondary btn-sm" style="margin-left:4px" onclick="showPage('premium')">Upgrade for unlimited</button></span></div>
+      </div>
+    </div>
+
+    <!-- Upcoming modules teaser -->
+    <div style="margin-top:4px;">
+      <div class="section-title">🔮 Coming Soon</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="card card-sm" style="opacity:.6;text-align:center;cursor:default;">
+          <div style="font-size:24px;margin-bottom:6px;">🛒</div>
+          <div style="font-size:12px;font-weight:700;">E-commerce</div>
+          <div style="font-size:10px;color:var(--muted);">Shop online</div>
+        </div>
+        <div class="card card-sm" style="opacity:.6;text-align:center;cursor:default;">
+          <div style="font-size:24px;margin-bottom:6px;">🎓</div>
+          <div style="font-size:12px;font-weight:700;">Academy</div>
+          <div style="font-size:10px;color:var(--muted);">Courses & guides</div>
+        </div>
+        <div class="card card-sm" style="opacity:.6;text-align:center;cursor:default;">
+          <div style="font-size:24px;margin-bottom:6px;">🤝</div>
+          <div style="font-size:12px;font-weight:700;">Affiliate</div>
+          <div style="font-size:10px;color:var(--muted);">Earn commissions</div>
+        </div>
+        <div class="card card-sm" style="opacity:.6;text-align:center;cursor:default;">
+          <div style="font-size:24px;margin-bottom:6px;">📚</div>
+          <div style="font-size:12px;font-weight:700;">Digital Products</div>
+          <div style="font-size:10px;color:var(--muted);">Ebooks & more</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Powered by -->
+    <div class="powered-bar" style="margin-top:20px;border-radius:var(--r);background:var(--card);">
+      Powered by <span>Cozycabin Smart Living Solutions</span> · <a href="https://cozycabin.co.ke" style="color:var(--gold);text-decoration:none;">cozycabin.co.ke</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE: TOOLS
+════════════════════════════════════════════════════════════ -->
+<div class="page-view" id="page-tools">
+
+  <!-- Tool tabs -->
+  <div style="background:var(--navy2);border-bottom:1px solid var(--border);padding:12px 16px;position:sticky;top:56px;z-index:100;">
+    <div style="display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;">
+      <button class="tool-tab btn btn-secondary btn-sm" data-tool="compress" onclick="openTool('compress')" style="white-space:nowrap;">🖼️ Compress</button>
+      <button class="tool-tab btn btn-secondary btn-sm" data-tool="convert"  onclick="openTool('convert')"  style="white-space:nowrap;">🔄 WebP</button>
+      <button class="tool-tab btn btn-secondary btn-sm" data-tool="bgremove" onclick="openTool('bgremove')" style="white-space:nowrap;">🧹 BG Remove</button>
+      <button class="tool-tab btn btn-secondary btn-sm" data-tool="video"    onclick="openTool('video')"    style="white-space:nowrap;">🎥 Video</button>
+      <button class="tool-tab btn btn-secondary btn-sm" data-tool="videoedit" onclick="openTool('videoedit')" style="white-space:nowrap;">✂️ Edit</button>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top:16px;">
+
+    <!-- ── IMAGE COMPRESSOR ── -->
+    <div class="tool-panel" id="tool-compress" style="display:none;">
+      <div class="card" style="margin-bottom:12px;">
+        <div class="card-header">
+          <div><div class="card-title">🖼️ Image Compressor</div><div class="card-sub">Batch compress JPG, PNG, WEBP</div></div>
+          <span class="badge badge-green">20/day free</span>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <div class="range-row">
+            <span class="range-label">Quality</span>
+            <span class="range-val" id="compress-quality-val">75%</span>
+          </div>
+          <input type="range" min="0.3" max="0.95" step="0.05" value="0.75" id="compress-quality"
+                 oninput="document.getElementById('compress-quality-val').textContent=Math.round(this.value*100)+'%'">
+        </div>
+
+        <!-- Center Product Toggle -->
+        <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:14px;">
+          <div>
+            <div style="font-size:13px;font-weight:700;">🎯 Auto-Center Product</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:2px;">Detects &amp; centres main product · adds white background</div>
+          </div>
+          <label class="toggle" style="position:relative;width:44px;height:24px;flex-shrink:0;">
+            <input type="checkbox" id="compress-center" checked>
+            <span class="toggle-slider" style="position:absolute;inset:0;background:var(--navy2);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:all .2s;"></span>
+          </label>
+        </div>
+
+        <div class="upload-zone" id="compress-zone">
+          <input type="file" id="compress-input" accept="image/jpeg,image/jpg,image/png,image/webp" multiple>
+          <div class="upload-icon">🗜️</div>
+          <div class="upload-title">Tap or Drop Images</div>
+          <div class="upload-sub">Multiple images supported — batch process instantly</div>
+          <div class="upload-formats">
+            <span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">WEBP</span>
+          </div>
+        </div>
+
+        <div class="progress-wrap" id="compress-progress">
+          <div class="progress-header"><span class="progress-label">Compressing…</span><span class="progress-count">0 / 0</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        </div>
+      </div>
+
+      <div id="compress-dl-all" style="display:none;gap:10px;margin-bottom:12px;">
+        <button class="btn btn-primary" style="flex:1" onclick="dlAllZip('compress-results')">📦 Download ZIP</button>
+        <button class="btn btn-secondary btn-sm" onclick="document.getElementById('compress-results').innerHTML='';document.getElementById('compress-dl-all').style.display='none';App.results=[]">✕ Clear</button>
+      </div>
+
+      <div class="results-grid" id="compress-results"></div>
+    </div>
+
+    <!-- ── WEBP CONVERTER ── -->
+    <div class="tool-panel" id="tool-convert" style="display:none;">
+      <div class="card" style="margin-bottom:12px;">
+        <div class="card-header">
+          <div><div class="card-title">🔄 WebP Converter</div><div class="card-sub">Convert any image to fast WebP format</div></div>
+          <span class="badge badge-blue">20/day free</span>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <div class="range-row">
+            <span class="range-label">Quality</span>
+            <span class="range-val" id="convert-quality-val">90%</span>
+          </div>
+          <input type="range" min="0.5" max="1.0" step="0.05" value="0.9" id="convert-quality"
+                 oninput="document.getElementById('convert-quality-val').textContent=Math.round(this.value*100)+'%'">
+        </div>
+
+        <!-- Center Product Toggle -->
+        <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:14px;">
+          <div>
+            <div style="font-size:13px;font-weight:700;">🎯 Auto-Center Product</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:2px;">Detects &amp; centres main product · adds white background</div>
+          </div>
+          <label class="toggle" style="position:relative;width:44px;height:24px;flex-shrink:0;">
+            <input type="checkbox" id="convert-center" checked>
+            <span class="toggle-slider" style="position:absolute;inset:0;background:var(--navy2);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:all .2s;"></span>
+          </label>
+        </div>
+
+        <div class="upload-zone" id="convert-zone">
+          <input type="file" id="convert-input" accept="image/jpeg,image/jpg,image/png,image/webp" multiple>
+          <div class="upload-icon">🔄</div>
+          <div class="upload-title">Tap or Drop Images</div>
+          <div class="upload-sub">Convert JPG, PNG → WebP instantly</div>
+          <div class="upload-formats">
+            <span class="fmt-tag">JPG → WEBP</span><span class="fmt-tag">PNG → WEBP</span>
+          </div>
+        </div>
+
+        <div class="progress-wrap" id="convert-progress">
+          <div class="progress-header"><span class="progress-label">Converting…</span><span class="progress-count">0 / 0</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        </div>
+      </div>
+
+      <div id="convert-dl-all" style="display:none;gap:10px;margin-bottom:12px;">
+        <button class="btn btn-primary" style="flex:1" onclick="dlAllZip('convert-results')">📦 Download All ZIP</button>
+        <button class="btn btn-secondary btn-sm" onclick="document.getElementById('convert-results').innerHTML='';document.getElementById('convert-dl-all').style.display='none';App.results=[]">✕ Clear</button>
+      </div>
+
+      <div class="results-grid" id="convert-results"></div>
+    </div>
+
+    <!-- ── BACKGROUND REMOVER ── -->
+    <div class="tool-panel" id="tool-bgremove" style="display:none;">
+      <div class="card" style="margin-bottom:12px;">
+        <div class="card-header">
+          <div><div class="card-title">🧹 Background Remover</div><div class="card-sub">Remove background · Export transparent PNG</div></div>
+          <span class="badge badge-purple">5/day free</span>
+        </div>
+
+        <div class="upload-zone" id="bgremove-zone">
+          <input type="file" id="bgremove-input" accept="image/jpeg,image/jpg,image/png,image/webp" multiple>
+          <div class="upload-icon">🧹</div>
+          <div class="upload-title">Tap or Drop Image</div>
+          <div class="upload-sub">Best results on products with plain background</div>
+          <div class="upload-formats">
+            <span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">WEBP</span>
+          </div>
+        </div>
+
+        <div class="progress-wrap" id="bgremove-progress">
+          <div class="progress-header"><span class="progress-label">Removing background…</span><span class="progress-count">0 / 0</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        </div>
+
+        <div class="warn-box" style="margin-top:12px;">⚠️ <span>Background detection works best on images with solid or uniform backgrounds. For complex images, results may vary.</span></div>
+      </div>
+
+      <div class="results-grid" id="bgremove-results"></div>
+    </div>
+
+    <!-- ── VIDEO COMPRESSOR ── -->
+    <div class="tool-panel" id="tool-video" style="display:none;">
+      <div class="card" style="margin-bottom:12px;">
+        <div class="card-header">
+          <div><div class="card-title">🎥 Video Compressor</div><div class="card-sub">Compress videos for web &amp; social media</div></div>
+          <span class="badge badge-purple">5/day · 30s max (free)</span>
+        </div>
+
+        <div class="form-group" style="margin-bottom:14px;">
+          <label class="form-label">Compression Preset</label>
+          <select class="form-input form-select" id="video-preset">
+            <option value="small">Small — Maximum compression (~70% smaller)</option>
+            <option value="medium" selected>Medium — Balanced quality &amp; size</option>
+            <option value="high">High Quality — Minimal compression</option>
+          </select>
+        </div>
+
+        <div class="upload-zone" id="video-zone">
+          <input type="file" id="video-input" accept="video/mp4,video/mov,video/webm,.mp4,.mov,.webm">
+          <div class="upload-icon">🎬</div>
+          <div class="upload-title">Tap or Drop Video</div>
+          <div class="upload-sub">Free: max 30 seconds · Premium: unlimited length</div>
+          <div class="upload-formats">
+            <span class="fmt-tag">MP4</span><span class="fmt-tag">MOV</span><span class="fmt-tag">WEBM</span>
+          </div>
+        </div>
+
+        <div class="progress-wrap" id="video-progress">
+          <div class="progress-header"><span class="progress-label">Compressing…</span><span class="progress-count"></span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        </div>
+
+        <div id="video-preview-panel" style="display:none;">
+          <div id="video-info"></div>
+        </div>
+
+        <div class="info-box" style="margin-top:12px;">ℹ️ <span>Upgrade to <strong>Premium</strong> to compress videos longer than 30 seconds with no limits.</span></div>
+      </div>
+         </div>
+    
+  <!-- ══ VIDEO EDITING TOOL ══ -->
+    <div class="tool-panel" id="tool-videoedit" style="display:none;">
+      <div class="card" style="margin-bottom:12px;">
+        <div class="card-header">
+          <div><div class="card-title">✂️ Video Editing</div><div class="card-sub">Trim, cut &amp; export clips — free, runs in your browser</div></div>
+          <span class="badge" style="background:rgba(236,72,153,0.15);color:#f472b6;border:1px solid rgba(236,72,153,0.3);">NEW · Free</span>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <label class="form-label">Step 1 — Load Your Video</label>
+          <div class="upload-zone" id="videoedit-zone" style="padding:24px 16px;">
+            <input type="file" id="videoedit-input" accept="video/mp4,video/mov,video/webm,.mp4,.mov,.webm">
+            <div class="upload-icon" style="font-size:36px;margin-bottom:8px;">✂️</div>
+            <div class="upload-title" style="font-size:14px;">Tap to load video</div>
+            <div class="upload-sub">MP4 · MOV · WEBM</div>
+          </div>
+          <div id="videoedit-preview-wrap" style="display:none;margin-top:12px;border-radius:14px;overflow:hidden;background:#000;border:1px solid rgba(255,215,0,0.2);">
+            <video id="videoedit-player" controls style="width:100%;max-height:240px;display:block;"></video>
+          </div>
+        </div>
+
+        <div id="videoedit-controls" style="display:none;">
+          <label class="form-label">Step 2 — Set Trim Points (seconds)</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+            <div class="form-group" style="margin:0;">
+              <label class="form-label" style="font-size:10px;">Start (sec)</label>
+              <input type="number" id="ve-start" value="0" min="0" step="0.1" class="form-input" style="text-align:center;font-size:16px;font-weight:700;">
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label class="form-label" style="font-size:10px;">End (sec)</label>
+              <input type="number" id="ve-end" value="10" min="0.1" step="0.1" class="form-input" style="text-align:center;font-size:16px;font-weight:700;">
+            </div>
+          </div>
+          <div style="background:rgba(255,215,0,0.06);border:1px solid rgba(255,215,0,0.15);border-radius:10px;padding:10px 12px;font-size:12px;color:#94a3b8;margin-bottom:14px;">
+            ℹ️ Play the video above, note the timestamps, set Start &amp; End to trim your clip.
+          </div>
+          <label class="form-label">Step 3 — Export Settings</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+            <div class="form-group" style="margin:0;">
+              <label class="form-label" style="font-size:10px;">Format</label>
+              <select id="ve-format" class="form-input form-select">
+                <option value="mp4">MP4</option>
+                <option value="webm">WebM</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label class="form-label" style="font-size:10px;">Quality</label>
+              <select id="ve-quality" class="form-input form-select">
+                <option value="high">High</option>
+                <option value="medium" selected>Medium</option>
+                <option value="low">Small File</option>
+              </select>
+            </div>
+          </div>
+          <button id="ve-trim-btn" class="btn btn-primary btn-full" onclick="window.veStartTrim()" style="margin-bottom:10px;">✂️ Trim &amp; Export Video</button>
+          <button class="btn btn-secondary btn-full btn-sm" onclick="document.getElementById('videoedit-preview-wrap').style.display='none';document.getElementById('videoedit-controls').style.display='none';">🔄 Load Different Video</button>
+          <div class="progress-wrap" id="ve-progress" style="margin-top:12px;">
+            <div class="progress-header"><span class="progress-label" id="ve-progress-label">Processing…</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="ve-progress-fill" style="width:0%;"></div></div>
+          </div>
+          <div id="ve-result" style="display:none;margin-top:14px;text-align:center;">
+            <div style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:12px;padding:16px;margin-bottom:12px;">
+              <div style="font-size:24px;margin-bottom:6px;">✅</div>
+              <div style="font-size:14px;font-weight:700;color:#22c55e;margin-bottom:4px;">Video Ready!</div>
+              <div id="ve-result-info" style="font-size:12px;color:#94a3b8;"></div>
+            </div>
+            <a id="ve-download-btn" href="#" download class="btn btn-primary btn-full">⬇️ Download Trimmed Video</a>
+          </div>
+        </div>
+      </div>
+    </div><!-- /tool-videoedit -->
+
+  </div><!-- /container -->
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE: ACCOUNT
+════════════════════════════════════════════════════════════ -->
+<div class="page-view" id="page-account">
+  <div class="container" style="padding-top:16px;">
+    <div id="account-content">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE: PREMIUM
+════════════════════════════════════════════════════════════ -->
+<div class="page-view" id="page-premium">
+  <div style="background:linear-gradient(135deg,var(--card2),var(--navy2));border-bottom:1px solid var(--border);padding:24px 20px;text-align:center;">
+    <div class="hero-badge">⭐ Premium Plans</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.06em;color:#fff;margin:10px 0 6px;">Unlock Unlimited Access</h2>
+    <p style="font-size:13px;color:var(--text2);">No daily limits. No restrictions. Process as much as you need.</p>
+  </div>
+
+  <div class="container" style="padding-top:20px;">
+    <div class="plans-grid">
+
+      <!-- Free plan -->
+      <div class="plan-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div>
+            <div class="plan-name" style="color:var(--green);">🟢 Free</div>
+            <div style="font-size:12px;color:var(--text2)">Register once, use forever</div>
+          </div>
+          <span class="badge badge-green">Current</span>
+        </div>
+        <div class="plan-price"><span class="plan-amount" style="color:var(--green)">KES 0</span><span class="plan-period">/month</span></div>
+        <ul class="plan-features">
+          <li>20 image compressions/day</li>
+          <li>20 WebP conversions/day</li>
+          <li>5 background removals/day</li>
+          <li>5 video compressions/day</li>
+          <li>Max 30s video length</li>
+          <li class="no">Priority processing</li>
+          <li class="no">Unlimited batch</li>
+        </ul>
+        <button class="btn btn-success btn-full" disabled>✓ Your Current Plan</button>
+      </div>
+
+      <!-- Premium Monthly -->
+      <div class="plan-card featured">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div>
+            <div class="plan-name" style="color:var(--gold);">🔵 Premium Monthly</div>
+            <div style="font-size:12px;color:var(--text2)">Most popular choice</div>
+          </div>
+          <span class="badge badge-gold">Best Value</span>
+        </div>
+        <div class="plan-price"><span class="plan-amount">KES 200</span><span class="plan-period">/month</span></div>
+        <ul class="plan-features">
+          <li>Unlimited image compression</li>
+          <li>Unlimited WebP conversion</li>
+          <li>Unlimited background removal</li>
+          <li>Unlimited video compression</li>
+          <li>Any video length</li>
+          <li>Priority processing</li>
+          <li>No ads</li>
+        </ul>
+        <button class="btn btn-primary btn-full" onclick="initPayment('Premium Monthly')">⭐ Upgrade — KES 200/mo</button>
+      </div>
+
+      <!-- Premium Yearly -->
+      <div class="plan-card">
+        <div>
+          <div class="plan-name" style="color:var(--blue);">🟣 Premium Yearly</div>
+          <div style="font-size:12px;color:var(--text2)">Save KES 400/year</div>
+        </div>
+        <div class="plan-price"><span class="plan-amount" style="color:var(--blue)">KES 2,000</span><span class="plan-period">/year</span></div>
+        <ul class="plan-features">
+          <li>Everything in Monthly</li>
+          <li>Save KES 400 vs monthly</li>
+          <li>Priority support</li>
+          <li>Early access to new tools</li>
+        </ul>
+        <button class="btn btn-outline btn-full" onclick="initPayment('Premium Yearly')">Get Yearly — KES 2,000</button>
+      </div>
+
+      <!-- Lifetime -->
+      <div class="plan-card purple-plan">
+        <div>
+          <div class="plan-name" style="color:var(--purple);">🟡 Lifetime</div>
+          <div style="font-size:12px;color:var(--text2)">Pay once, use forever</div>
+        </div>
+        <div class="plan-price"><span class="plan-amount" style="color:var(--purple)">KES 5,000</span><span class="plan-period"> one-time</span></div>
+        <ul class="plan-features">
+          <li>Everything in Premium</li>
+          <li>Lifetime access — no renewals</li>
+          <li>All future tools included</li>
+          <li>VIP support</li>
+          <li>Marketplace listing priority</li>
+        </ul>
+        <button class="btn btn-full" style="background:var(--purple);color:#fff;" onclick="initPayment('Lifetime')">🟡 Get Lifetime — KES 5,000</button>
+      </div>
+
+    </div>
+
+    <!-- Payment methods overview -->
+    <div style="margin-top:20px;">
+      <div class="section-title">💳 We Accept</div>
+      <div class="card">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;">
+          <div style="padding:10px;"><div style="font-size:20px">📱</div><div style="font-size:11px;font-weight:700;margin-top:4px">M-Pesa</div></div>
+          <div style="padding:10px;"><div style="font-size:20px">💳</div><div style="font-size:11px;font-weight:700;margin-top:4px">Visa/MC</div></div>
+          <div style="padding:10px;"><div style="font-size:20px">🅿️</div><div style="font-size:11px;font-weight:700;margin-top:4px">PayPal</div></div>
+          <div style="padding:10px;"><div style="font-size:20px">₿</div><div style="font-size:11px;font-weight:700;margin-top:4px">Bitcoin</div></div>
+          <div style="padding:10px;"><div style="font-size:20px">Ξ</div><div style="font-size:11px;font-weight:700;margin-top:4px">Ethereum</div></div>
+          <div style="padding:10px;"><div style="font-size:20px">₮</div><div style="font-size:11px;font-weight:700;margin-top:4px">USDT</div></div>
+        </div>
+        <div class="divider"></div>
+        <button class="btn btn-secondary btn-full btn-sm" onclick="showPage('payments')">View Full Payments Page →</button>
+      </div>
+    </div>
+
+    <div class="powered-bar" style="margin-top:16px;background:var(--card);border-radius:var(--r);">
+      Powered by <span>Cozycabin Smart Living Solutions</span>
+    </div>
+  </div>
+   </div>
+  
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE: PAYMENTS
+════════════════════════════════════════════════════════════ -->
+<div class="page-view" id="page-payments">
+  <div style="background:linear-gradient(135deg,var(--card2),var(--navy2));border-bottom:1px solid var(--border);padding:20px;text-align:center;">
+    <div class="hero-badge">💳 Payments</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.06em;color:#fff;margin:8px 0 4px;">Payment Methods</h2>
+    <p style="font-size:12px;color:var(--text2)">Kenya · International · Crypto</p>
+  </div>
+  <div class="container" style="padding-top:16px;">
+    <div id="payments-content"><!-- Rendered by JS --></div>
+
+    <!-- Kenya Payments -->
+    <div style="margin-top:16px;">
+      <div class="section-title">🇰🇪 Kenya (M-Pesa)</div>
+      <div class="card" style="margin-bottom:12px;">
+        <div class="card-title" style="margin-bottom:14px;">📱 M-Pesa STK Push</div>
+        <div class="form-group"><label class="form-label">Phone Number</label>
+          <input type="tel" class="form-input" placeholder="0712 345 678" id="mpesa-phone">
+        </div>
+        <div class="form-group"><label class="form-label">Amount (KES)</label>
+          <input type="number" class="form-input" placeholder="200" id="mpesa-amount">
+        </div>
+        <button class="btn btn-primary btn-full" onclick="toast('M-Pesa STK Push: API integration required for production','info')">📲 Send M-Pesa Request</button>
+        <div class="info-box" style="margin-top:10px;">ℹ️ <span>Connect Safaricom Daraja API for live M-Pesa integration.</span></div>
+      </div>
+
+      <div class="card">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="text-align:center;padding:12px;background:var(--card2);border-radius:var(--r);">
+            <div style="font-size:11px;color:var(--muted2);margin-bottom:4px;">PAYBILL</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--gold);font-weight:700">XXXXXXX</div>
+            <div style="font-size:10px;color:var(--muted)">Account: Your Email</div>
+            <button class="btn btn-secondary btn-sm" style="margin-top:8px;width:100%" onclick="copyText('XXXXXXX',this)">Copy</button>
+          </div>
+          <div style="text-align:center;padding:12px;background:var(--card2);border-radius:var(--r);">
+            <div style="font-size:11px;color:var(--muted2);margin-bottom:4px;">TILL NUMBER</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--gold);font-weight:700">XXXXXXX</div>
+            <div style="font-size:10px;color:var(--muted)">Cozycabin Tools</div>
+            <button class="btn btn-secondary btn-sm" style="margin-top:8px;width:100%" onclick="copyText('XXXXXXX',this)">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- International -->
+    <div style="margin-top:16px;">
+      <div class="section-title">🌍 International</div>
+      <div class="payment-grid">
+        <div class="payment-method" onclick="selectPaymentMethod(this)">
+          <div class="pm-icon">💳</div>
+          <div class="pm-name">Visa</div>
+          <div class="pm-sub">Credit/Debit</div>
+        </div>
+        <div class="payment-method" onclick="selectPaymentMethod(this)">
+          <div class="pm-icon">💳</div>
+          <div class="pm-name">Mastercard</div>
+          <div class="pm-sub">Credit/Debit</div>
+        </div>
+        <div class="payment-method" onclick="selectPaymentMethod(this)">
+          <div class="pm-icon">🅿️</div>
+          <div class="pm-name">PayPal</div>
+          <div class="pm-sub">Global</div>
+        </div>
+      </div>
+      <div class="info-box" style="margin-top:10px;">ℹ️ <span>Connect Stripe or PayPal API for live card processing.</span></div>
+    </div>
+
+    <!-- Crypto -->
+    <div style="margin-top:16px;">
+      <div class="section-title">₿ Cryptocurrency</div>
+      <div id="payments-content-crypto"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE: SUPPORT
+════════════════════════════════════════════════════════════ -->
+<div class="page-view" id="page-support">
+  <div class="container" style="padding-top:16px;">
+
+    <div class="hero" style="border-radius:var(--r-xl);margin-bottom:16px;">
+      <div class="hero-badge">📞 Support</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.06em;margin-bottom:8px;">We're Here to Help</h2>
+      <p style="font-size:13px;color:var(--text2)">Contact us any time via WhatsApp or email</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a href="https://wa.me/254702468460" target="_blank" class="card" style="text-decoration:none;display:flex;align-items:center;gap:14px;">
+        <div style="width:48px;height:48px;border-radius:50%;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">💬</div>
+        <div><div style="font-weight:700;color:var(--text)">WhatsApp Support</div><div style="font-size:12px;color:var(--text2)">+254 702 468 460 · Fast response</div></div>
+        <div style="margin-left:auto;color:var(--gold)">→</div>
+      </a>
+
+      <div class="card">
+        <div class="card-title" style="margin-bottom:14px;">📨 Send a Message</div>
+        <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="Full name"></div>
+        <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="you@example.com"></div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-input" rows="4" placeholder="Describe your issue or question..." style="resize:vertical;"></textarea></div>
+        <button class="btn btn-primary btn-full" onclick="toast('Message sent! We will reply within 24 hours.','success')">📨 Send Message</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="margin-bottom:12px;">❓ FAQ</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <details style="cursor:pointer;">
+            <summary style="font-size:13px;font-weight:600;color:var(--text);padding:8px 0;border-bottom:1px solid var(--border);">How do daily limits work?</summary>
+            <p style="font-size:12px;color:var(--text2);padding:10px 0;">Limits reset every day at midnight. Free accounts get 20 image operations and 5 video/BG removals daily.</p>
+          </details>
+          <details style="cursor:pointer;">
+            <summary style="font-size:13px;font-weight:600;color:var(--text);padding:8px 0;border-bottom:1px solid var(--border);">How do I pay with M-Pesa?</summary>
+            <p style="font-size:12px;color:var(--text2);padding:10px 0;">Go to Premium → Choose a plan → Select M-Pesa → Follow the instructions. Your account will be upgraded within minutes after confirmation.</p>
+          </details>
+          <details style="cursor:pointer;">
+            <summary style="font-size:13px;font-weight:600;color:var(--text);padding:8px 0;border-bottom:1px solid var(--border);">Is my data safe?</summary>
+            <p style="font-size:12px;color:var(--text2);padding:10px 0;">Yes. All image processing happens in your browser — we never upload your files to any server. Your images never leave your device.</p>
+          </details>
+          <details style="cursor:pointer;">
+            <summary style="font-size:13px;font-weight:600;color:var(--text);padding:8px 0;">Can I use this on mobile?</summary>
+            <p style="font-size:12px;color:var(--text2);padding:10px 0;">Absolutely! Cozycabin Free Tools is built mobile-first and works great on Android and iOS.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE: ADMIN
+════════════════════════════════════════════════════════════ -->
+<div class="page-view" id="page-admin">
+  <div style="background:rgba(239,68,68,0.08);border-bottom:1px solid rgba(239,68,68,0.2);padding:14px 20px;display:flex;align-items:center;gap:10px;">
+    <span style="font-size:18px">🔐</span>
+    <div><div style="font-weight:700;color:var(--red)">Admin Panel</div><div style="font-size:11px;color:var(--muted)">Restricted access</div></div>
+  </div>
+  <div class="container" style="padding-top:16px;">
+    <div id="admin-content"><!-- Rendered by JS --></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE: MARKETPLACE
+════════════════════════════════════════════════════════════ -->
+<div class="page-view" id="page-marketplace">
+  <div class="container" style="padding-top:16px;">
+    <div id="marketplace-content"><!-- Rendered by JS --></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     BOTTOM NAV
+════════════════════════════════════════════════════════════ -->
+<nav class="bottom-nav">
+  <button class="nav-item active" data-page="home">
+    <div class="nav-icon">🏠</div>
+    <div class="nav-label">Home</div>
+  </button>
+  <button class="nav-item" data-page="tools">
+    <div class="nav-icon">🛠️</div>
+    <div class="nav-label">Tools</div>
+  </button>
+  <button class="nav-item" data-page="marketplace">
+    <div class="nav-icon">🔧</div>
+    <div class="nav-label">Services</div>
+  </button>
+  <button class="nav-item" data-page="account">
+    <div class="nav-icon">👤</div>
+    <div class="nav-label">Account</div>
+  </button>
+  <button class="nav-item" data-page="premium">
+    <div class="nav-icon">⭐</div>
+    <div class="nav-label">Premium</div>
+  </button>
+</nav>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     MODALS
+════════════════════════════════════════════════════════════ -->
+
+<!-- Register Modal -->
+<div class="modal-overlay" id="registerModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">🚀 Create Free Account</div>
+    <div class="success-box" style="margin-bottom:16px;">✓ Free forever · No credit card · Full tool access</div>
+    <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" id="reg-name" placeholder="e.g. John Kamau"></div>
+    <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" id="reg-email" placeholder="you@email.com"></div>
+    <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" class="form-input" id="reg-phone" placeholder="+254 7XX XXX XXX"></div>
+    <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" id="reg-pass" placeholder="Create a password"></div>
+    <button class="btn btn-primary btn-full" onclick="register()">🚀 Create Free Account</button>
+    <div class="divider-text">already registered?</div>
+    <button class="btn btn-secondary btn-full" onclick="closeModal('registerModal');openModal('loginModal')">Sign In Instead</button>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">🔑 Sign In</div>
+    <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" id="login-email" placeholder="you@email.com"></div>
+    <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" id="login-pass" placeholder="Your password" onkeydown="if(event.key==='Enter')login()"></div>
+    <button class="btn btn-primary btn-full" onclick="login()">🔑 Sign In</button>
+    <div class="divider-text">no account?</div>
+    <button class="btn btn-secondary btn-full" onclick="closeModal('loginModal');openModal('registerModal')">Create Free Account</button>
+  </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal-overlay" id="paymentModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">💳 Complete Payment</div>
+    <div class="card" style="background:var(--card2);margin-bottom:16px;text-align:center;">
+      <div style="font-size:13px;color:var(--text2)">Upgrading to</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--gold);letter-spacing:.06em" id="payment-plan-name">Premium Monthly</div>
+      <div style="font-size:22px;font-weight:800;color:var(--text)" id="payment-plan-price">KES 200</div>
+    </div>
+
+    <div class="section-title">Choose Payment Method</div>
+    <div class="payment-grid" style="margin-bottom:16px;">
+      <div class="payment-method selected" onclick="selectPaymentMethod(this)">
+        <div class="pm-icon">📱</div><div class="pm-name">M-Pesa</div><div class="pm-sub">Safaricom</div>
+      </div>
+      <div class="payment-method" onclick="selectPaymentMethod(this)">
+        <div class="pm-icon">💳</div><div class="pm-name">Visa/MC</div><div class="pm-sub">Card</div>
+      </div>
+      <div class="payment-method" onclick="selectPaymentMethod(this)">
+        <div class="pm-icon">🅿️</div><div class="pm-name">PayPal</div><div class="pm-sub">Global</div>
+      </div>
+      <div class="payment-method" onclick="selectPaymentMethod(this)">
+        <div class="pm-icon">₿</div><div class="pm-name">Bitcoin</div><div class="pm-sub">Crypto</div>
+      </div>
+      <div class="payment-method" onclick="selectPaymentMethod(this)">
+        <div class="pm-icon">₮</div><div class="pm-name">USDT</div><div class="pm-sub">TRC20/BEP20</div>
+      </div>
+      <div class="payment-method" onclick="selectPaymentMethod(this)">
+        <div class="pm-icon">🔶</div><div class="pm-name">Binance</div><div class="pm-sub">Pay</div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-full" onclick="submitPayment()">Submit Payment Request</button>
+    <button class="btn btn-secondary btn-full" style="margin-top:8px" onclick="closeModal('paymentModal')">Cancel</button>
+    <div class="info-box" style="margin-top:12px;">ℹ️ <span>After payment, send proof to WhatsApp: <strong>+254 702 468 460</strong>. Premium activated within 24h.</span></div>
+  </div>
+</div>
+
+
+<script>
+/* ================================================================
+   COZYCABIN FREE TOOLS — script.js
+   No backend. localStorage for state. GitHub Pages ready.
+   ================================================================ */
+
+/* ── Inline toggles (tool panels) ── */
+document.addEventListener('change', function(e) {
+  if (e.target.type === 'checkbox' && e.target.closest('label.toggle')) {
+    var slider = e.target.nextElementSibling;
+    if (!slider) return;
+    if (e.target.checked) {
+      slider.style.background    = 'rgba(255,215,0,0.12)';
+      slider.style.borderColor   = 'var(--gold)';
+    } else {
+      slider.style.background    = 'var(--navy2)';
+      slider.style.borderColor   = 'var(--border)';
+    }
+  }
+});
+// Set initial state for pre-checked toggles
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('label.toggle input[type=checkbox]:checked').forEach(function(cb) {
+    var slider = cb.nextElementSibling;
+    if (slider) { slider.style.background='rgba(255,215,0,0.12)'; slider.style.borderColor='var(--gold)'; }
+  });
+});
+
+/* ================================================================
+   APP STATE
+   ================================================================ */
+var App = {
+  currentPage:   'home',
+  currentTool:   null,
+  user:          null,             // null = guest
+  users:         [],               // admin: all users
+  payments:      [],               // payment records
+  marketProviders: [],
+  usage: {                         // daily usage counters
+    compress:    0,
+    convert:     0,
+    bgremove:    0,
+    video:       0,
+    resetDate:   ''
+  },
+  limits: {
+    free:    { compress:20, convert:20, bgremove:5, video:5 },
+    premium: { compress:9999, convert:9999, bgremove:9999, video:9999 }
+  },
+  results: []                      // processed files
+};
+
+/* ================================================================
+   INIT
+   ================================================================ */
+document.addEventListener('DOMContentLoaded', function () {
+  loadState();
+  checkUsageReset();
+  renderNav();
+  showPage('home');
+  initDropzones();
+  initModals();
+});
+
+/* ================================================================
+   STATE PERSISTENCE
+   ================================================================ */
+function saveState() {
+  try {
+    localStorage.setItem('cc_tools_user',     JSON.stringify(App.user));
+    localStorage.setItem('cc_tools_users',    JSON.stringify(App.users));
+    localStorage.setItem('cc_tools_usage',    JSON.stringify(App.usage));
+    localStorage.setItem('cc_tools_payments', JSON.stringify(App.payments));
+    localStorage.setItem('cc_tools_market',   JSON.stringify(App.marketProviders));
+  } catch(e) {}
+}
+
+function loadState() {
+  try {
+    var u  = localStorage.getItem('cc_tools_user');
+    var us = localStorage.getItem('cc_tools_users');
+    var ug = localStorage.getItem('cc_tools_usage');
+    var pm = localStorage.getItem('cc_tools_payments');
+    var mk = localStorage.getItem('cc_tools_market');
+    if (u)  App.user     = JSON.parse(u);
+    if (us) App.users    = JSON.parse(us);
+    if (ug) App.usage    = JSON.parse(ug);
+    if (pm) App.payments = JSON.parse(pm);
+    if (mk) App.marketProviders = JSON.parse(mk);
+  } catch(e) {}
+}
+
+function checkUsageReset() {
+  var today = new Date().toDateString();
+  if (App.usage.resetDate !== today) {
+    App.usage.compress  = 0;
+    App.usage.convert   = 0;
+    App.usage.bgremove  = 0;
+    App.usage.video     = 0;
+    App.usage.resetDate = today;
+    saveState();
+  }
+}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+function showPage(page) {
+  App.currentPage = page;
+  document.querySelectorAll('.page-view').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
+  var el = document.getElementById('page-' + page);
+  if (el) el.classList.add('active');
+  var nav = document.querySelector('[data-page="' + page + '"]');
+  if (nav) nav.classList.add('active');
+  window.scrollTo(0, 0);
+  // Render page content
+  var renderers = {
+    home:    renderHome,
+    tools:   renderTools,
+    account: renderAccount,
+    premium: renderPremium,
+    support: renderSupport,
+    admin:   renderAdmin,
+    payments: renderPaymentsPage,
+    marketplace: renderMarketplace
+  };
+  if (renderers[page]) renderers[page]();
+}
+
+function renderNav() {
+  var navItems = document.querySelectorAll('.nav-item');
+  navItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      showPage(this.getAttribute('data-page'));
+    });
+  });
+  // Update auth status indicator
+  updateHeaderAuth();
+}
+
+function updateHeaderAuth() {
+  var authArea = document.getElementById('header-auth');
+  if (!authArea) return;
+  if (App.user) {
+    var tier = App.user.tier || 'free';
+    authArea.innerHTML =
+      '<span class="badge badge-' + (tier === 'premium' ? 'gold' : 'green') + '">' +
+        (tier === 'premium' ? '⭐ Premium' : '✅ Free') +
+      '</span>';
+  } else {
+    authArea.innerHTML =
+      '<button class="btn btn-primary btn-sm" onclick="openModal(\'registerModal\')">Get Free Access</button>';
+  }
+}
+  
+ 
+/* ================================================================
+   HOME PAGE
+   ================================================================ */
+function renderHome() {
+  // Update usage meters
+  updateUsageMeters();
+}
+
+function updateUsageMeters() {
+  var ul = App.user ? App.limits[App.user.tier || 'free'] : App.limits.free;
+  var meters = [
+    { id:'meter-compress', used: App.usage.compress, max: ul.compress },
+    { id:'meter-convert',  used: App.usage.convert,  max: ul.convert  },
+    { id:'meter-bgremove', used: App.usage.bgremove, max: ul.bgremove },
+    { id:'meter-video',    used: App.usage.video,    max: ul.video    }
+  ];
+  meters.forEach(function(m) {
+    var el = document.getElementById(m.id);
+    if (!el) return;
+    var pct = Math.min(100, Math.round((m.used / m.max) * 100));
+    el.style.width = pct + '%';
+    el.className = 'usage-fill ' + (pct < 50 ? 'low' : pct < 80 ? 'medium' : 'high');
+  });
+}
+
+/* ================================================================
+   TOOLS PAGE
+   ================================================================ */
+function renderTools() {
+  openTool(App.currentTool || 'compress');
+}
+
+function openTool(tool) {
+  App.currentTool = tool;
+  document.querySelectorAll('.tool-panel').forEach(function(p) { p.classList.remove('active'); p.style.display = 'none'; });
+  document.querySelectorAll('.tool-tab').forEach(function(t) { t.classList.remove('active'); });
+  var panel = document.getElementById('tool-' + tool);
+  var tab   = document.querySelector('[data-tool="' + tool + '"]');
+  if (panel) { panel.classList.add('active'); panel.style.display = 'block'; }
+  if (tab) tab.classList.add('active');
+  showPage('tools');
+}
+
+/* ── Usage gate ── */
+function checkLimit(tool) {
+  if (!App.user) { openModal('registerModal'); return false; }
+  var tier  = App.user.tier || 'free';
+  var limit = App.limits[tier][tool] || 0;
+  var used  = App.usage[tool] || 0;
+  if (used >= limit) {
+    if (tier === 'free') {
+      toast('Daily limit reached. Upgrade to Premium for unlimited access!', 'error');
+      setTimeout(function() { showPage('premium'); }, 1200);
+    } else {
+      toast('You have reached today\'s limit.', 'error');
+    }
+    return false;
+  }
+  return true;
+}
+
+function incrementUsage(tool) {
+  App.usage[tool] = (App.usage[tool] || 0) + 1;
+  saveState();
+  updateUsageMeters();
+}
+
+/* ================================================================
+   IMAGE COMPRESSOR
+   ================================================================ */
+var compressorState = { files: [], results: [] };
+
+function initCompressor() {
+  var zone = document.getElementById('compress-zone');
+  var inp  = document.getElementById('compress-input');
+  if (!zone || !inp) return;
+
+  zone.addEventListener('dragover',  function(e) { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', function()  { zone.classList.remove('drag-over'); });
+  zone.addEventListener('drop', function(e) {
+    e.preventDefault(); zone.classList.remove('drag-over');
+    processCompressFiles(e.dataTransfer.files);
+  });
+  inp.addEventListener('change', function() { processCompressFiles(this.files); this.value = ''; });
+}
+
+/* ================================================================
+   SMART PRODUCT CENTERING ENGINE
+   Detects the bounding box of the main product by sampling
+   background colour from corners, then crops tightly and
+   re-centres on a clean canvas with 10% padding on each side.
+   ================================================================ */
+function detectProductBounds(ctx, W, H) {
+  var data = ctx.getImageData(0, 0, W, H).data;
+
+  // Sample corners (5×5 px average) to estimate background colour
+  function avgCorner(cx, cy) {
+    var r=0,g=0,b=0,n=0;
+    for (var dy=0;dy<5;dy++) for (var dx=0;dx<5;dx++) {
+      var i=((cy+dy)*W+(cx+dx))*4;
+      r+=data[i]; g+=data[i+1]; b+=data[i+2]; n++;
+    }
+    return [r/n, g/n, b/n];
+  }
+  var corners = [avgCorner(0,0),avgCorner(W-5,0),avgCorner(0,H-5),avgCorner(W-5,H-5)];
+  var bgR=0,bgG=0,bgB=0;
+  corners.forEach(function(c){bgR+=c[0];bgG+=c[1];bgB+=c[2];});
+  bgR/=4; bgG/=4; bgB/=4;
+
+  // Threshold: pixel is "product" if colour distance > 28 from background
+  var threshold = 28;
+  function isFg(i) {
+    var r=data[i]-bgR, g=data[i+1]-bgG, b=data[i+2]-bgB;
+    return Math.sqrt(r*r+g*g+b*b) > threshold;
+  }
+
+  var minX=W, maxX=0, minY=H, maxY=0, found=false;
+  // Sample every 3rd pixel for speed
+  for (var y=0;y<H;y+=3) {
+    for (var x=0;x<W;x+=3) {
+      if (isFg((y*W+x)*4)) {
+        if (x<minX) minX=x; if (x>maxX) maxX=x;
+        if (y<minY) minY=y; if (y>maxY) maxY=y;
+        found=true;
+      }
+    }
+  }
+
+  // Fallback: use full image if detection fails
+  if (!found || (maxX-minX)<W*0.05 || (maxY-minY)<H*0.05) {
+    return { x:0, y:0, w:W, h:H };
+  }
+
+  // Add 3px safety margin
+  return {
+    x: Math.max(0, minX-3),
+    y: Math.max(0, minY-3),
+    w: Math.min(W, maxX-minX+6),
+    h: Math.min(H, maxY-minY+6)
+  };
+}
+
+function renderCenteredProduct(img, outputSize, padding) {
+  // outputSize: { w, h } of final canvas
+  // padding: fraction of canvas (e.g. 0.10 = 10% each side)
+  var outW = outputSize.w;
+  var outH = outputSize.h;
+  var pad  = padding || 0.10;
+
+  // Draw source at full size to a temp canvas for analysis
+  var tmpCanvas = document.createElement('canvas');
+  tmpCanvas.width  = img.width;
+  tmpCanvas.height = img.height;
+  var tmpCtx = tmpCanvas.getContext('2d');
+  tmpCtx.drawImage(img, 0, 0);
+
+  // Detect product bounding box
+  var bounds = detectProductBounds(tmpCtx, img.width, img.height);
+
+  // Compute drawing area inside padding
+  var drawAreaW = outW * (1 - pad * 2);
+  var drawAreaH = outH * (1 - pad * 2);
+
+  // Scale product to fit inside drawing area, maintaining aspect ratio
+  var scaleX = drawAreaW / bounds.w;
+  var scaleY = drawAreaH / bounds.h;
+  var scale  = Math.min(scaleX, scaleY);
+
+  var drawW = bounds.w * scale;
+  var drawH = bounds.h * scale;
+
+  // Centre in the canvas
+  var drawX = (outW - drawW) / 2;
+  var drawY = (outH - drawH) / 2;
+
+  // Create final output canvas
+  var outCanvas = document.createElement('canvas');
+  outCanvas.width  = outW;
+  outCanvas.height = outH;
+  var outCtx = outCanvas.getContext('2d');
+
+  // Fill background (white for e-commerce, transparent-compatible)
+  outCtx.fillStyle = '#ffffff';
+  outCtx.fillRect(0, 0, outW, outH);
+
+  // Draw product centred
+  outCtx.drawImage(
+    tmpCanvas,
+    bounds.x, bounds.y, bounds.w, bounds.h,   // source crop
+    drawX,    drawY,    drawW,    drawH         // destination centred
+  );
+
+  return outCanvas;
+}
+
+/* ================================================================
+   IMAGE COMPRESSOR — with smart product centering
+   ================================================================ */
+function processCompressFiles(files) {
+  if (!checkLimit('compress')) return;
+  var arr = Array.prototype.slice.call(files).filter(function(f) { return f.type.startsWith('image/'); });
+  if (!arr.length) { toast('Please upload JPG, PNG or WEBP images', 'error'); return; }
+
+  var grid    = document.getElementById('compress-results');
+  var prog    = document.getElementById('compress-progress');
+  var doCenter = document.getElementById('compress-center') && document.getElementById('compress-center').checked;
+  if (!grid || !prog) return;
+  prog.classList.add('visible');
+  var done = 0;
+
+  arr.forEach(function(file, idx) {
+    if (!checkLimit('compress')) return;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onload = function() {
+        setTimeout(function() {
+          var quality = parseFloat(document.getElementById('compress-quality').value || '0.75');
+          var canvas;
+
+          if (doCenter) {
+            // Smart center: output same ratio as input, 1200px longest side
+            var maxSide = 1200;
+            var ratio   = img.width / img.height;
+            var outW = ratio >= 1 ? maxSide : Math.round(maxSide * ratio);
+            var outH = ratio >= 1 ? Math.round(maxSide / ratio) : maxSide;
+            canvas = renderCenteredProduct(img, { w: outW, h: outH }, 0.10);
+          } else {
+            canvas = document.createElement('canvas');
+            canvas.width  = img.width;
+            canvas.height = img.height;
+            canvas.getContext('2d').drawImage(img, 0, 0);
+          }
+
+          var dataUrl = canvas.toDataURL('image/webp', quality);
+          var origKB  = (file.size / 1024).toFixed(0);
+          var outKB   = Math.round((dataUrl.length * 3/4) / 1024);
+          var saved   = Math.max(0, Math.round((1 - outKB/origKB)*100));
+          var name    = file.name.replace(/\.[^.]+$/, '') + '.webp';
+
+          incrementUsage('compress');
+          addResultCard(grid, { dataUrl: dataUrl, name: name, origKB: origKB, outKB: outKB, saved: saved });
+          done++;
+          updateProgressBar('compress-progress', done, arr.length);
+          if (done === arr.length) {
+            prog.classList.remove('visible');
+            document.getElementById('compress-dl-all').style.display = 'flex';
+            toast('✓ ' + done + ' image' + (done>1?'s':'') + ' compressed!', 'success');
+          }
+        }, idx * 40);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  }
+  
+/* ================================================================
+   WEBP CONVERTER — with smart product centering
+   ================================================================ */
+function processConvertFiles(files) {
+  if (!checkLimit('convert')) return;
+  var arr = Array.prototype.slice.call(files).filter(function(f) { return f.type.startsWith('image/'); });
+  if (!arr.length) { toast('Please upload JPG, PNG or WEBP images', 'error'); return; }
+
+  var grid     = document.getElementById('convert-results');
+  var prog     = document.getElementById('convert-progress');
+  var doCenter = document.getElementById('convert-center') && document.getElementById('convert-center').checked;
+  if (!grid || !prog) return;
+  prog.classList.add('visible');
+  var quality = parseFloat(document.getElementById('convert-quality').value || '0.9');
+  var done = 0;
+
+  arr.forEach(function(file, idx) {
+    if (!checkLimit('convert')) return;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onload = function() {
+        setTimeout(function() {
+          var canvas;
+
+          if (doCenter) {
+            var maxSide = 1200;
+            var ratio   = img.width / img.height;
+            var outW = ratio >= 1 ? maxSide : Math.round(maxSide * ratio);
+            var outH = ratio >= 1 ? Math.round(maxSide / ratio) : maxSide;
+            canvas = renderCenteredProduct(img, { w: outW, h: outH }, 0.10);
+          } else {
+            canvas = document.createElement('canvas');
+            canvas.width  = img.width;
+            canvas.height = img.height;
+            canvas.getContext('2d').drawImage(img, 0, 0);
+          }
+
+          var dataUrl = canvas.toDataURL('image/webp', quality);
+          var origKB  = (file.size/1024).toFixed(0);
+          var outKB   = Math.round((dataUrl.length*3/4)/1024);
+          var name    = file.name.replace(/\.[^.]+$/, '') + '.webp';
+
+          incrementUsage('convert');
+          addResultCard(grid, { dataUrl: dataUrl, name: name, origKB: origKB, outKB: outKB });
+          done++;
+          updateProgressBar('convert-progress', done, arr.length);
+          if (done === arr.length) {
+            prog.classList.remove('visible');
+            document.getElementById('convert-dl-all').style.display = 'flex';
+            toast('✓ ' + done + ' file' + (done>1?'s':'') + ' converted to WebP!', 'success');
+          }
+        }, idx * 40);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ================================================================
+   BACKGROUND REMOVER
+   ================================================================ */
+function processBgRemove(files) {
+  if (!checkLimit('bgremove')) return;
+  var arr = Array.prototype.slice.call(files).filter(function(f) { return f.type.startsWith('image/'); });
+  if (!arr.length) { toast('Please upload an image', 'error'); return; }
+
+  var grid = document.getElementById('bgremove-results');
+  var prog = document.getElementById('bgremove-progress');
+  if (!grid || !prog) return;
+  prog.classList.add('visible');
+  var done = 0;
+
+  arr.forEach(function(file, idx) {
+    if (!checkLimit('bgremove')) return;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onload = function() {
+        setTimeout(function() {
+          // Browser-side BG removal: green-screen / white bg detection heuristic
+          var canvas = document.createElement('canvas');
+          var W = img.width, H = img.height;
+          canvas.width  = W;
+          canvas.height = H;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          var imageData = ctx.getImageData(0, 0, W, H);
+          var data = imageData.data;
+
+          // Sample corners to estimate background color
+          function getPixel(x, y) { var i=(y*W+x)*4; return [data[i],data[i+1],data[i+2],data[i+3]]; }
+          var corners = [getPixel(0,0),getPixel(W-1,0),getPixel(0,H-1),getPixel(W-1,H-1)];
+          var bgR = 0, bgG = 0, bgB = 0;
+          corners.forEach(function(c){bgR+=c[0];bgG+=c[1];bgB+=c[2];});
+          bgR=Math.round(bgR/4); bgG=Math.round(bgG/4); bgB=Math.round(bgB/4);
+
+          var threshold = 40;
+          for (var i = 0; i < data.length; i += 4) {
+            var r=data[i], g=data[i+1], b=data[i+2];
+            var dist = Math.sqrt((r-bgR)**2+(g-bgG)**2+(b-bgB)**2);
+            if (dist < threshold) data[i+3] = 0; // transparent
+          }
+          ctx.putImageData(imageData, 0, 0);
+
+          var dataUrl = canvas.toDataURL('image/png');
+          var name    = file.name.replace(/\.[^.]+$/, '') + '-nobg.png';
+          var origKB  = (file.size/1024).toFixed(0);
+          var outKB   = Math.round((dataUrl.length*3/4)/1024);
+
+          incrementUsage('bgremove');
+          addBgResultCard(grid, { dataUrl: dataUrl, original: e.target.result, name: name, origKB: origKB, outKB: outKB });
+          done++;
+          updateProgressBar('bgremove-progress', done, arr.length);
+          if (done === arr.length) { prog.classList.remove('visible'); toast('✓ Background removed!', 'success'); }
+        }, idx * 80);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function addBgResultCard(grid, item) {
+  var div = document.createElement('div');
+  div.className = 'result-card';
+  div.style.animationDelay = '0ms';
+  div.innerHTML =
+    '<div class="result-preview" style="background:repeating-conic-gradient(#1a2a40 0% 25%, #0c1628 0% 50%) 0 0/20px 20px;">' +
+      '<img src="' + item.dataUrl + '" alt="No background">' +
+    '</div>' +
+    '<div class="result-info">' +
+      '<div class="result-name">' + item.name + '</div>' +
+      '<div style="display:flex;justify-content:space-between;margin-bottom:8px;">' +
+        '<div class="stat"><div class="stat-val">' + item.origKB + 'KB</div><div class="stat-lbl">Before</div></div>' +
+        '<div class="stat"><div class="stat-val" style="color:var(--green)">' + item.outKB + 'KB</div><div class="stat-lbl">After</div></div>' +
+      '</div>' +
+      '<button class="btn btn-primary btn-sm btn-full" onclick="dlFile(\'' + item.dataUrl + '\',\'' + item.name + '\')">⬇ Download PNG</button>' +
+    '</div>';
+  grid.appendChild(div);
+}
+
+/* ================================================================
+   VIDEO COMPRESSOR
+   ================================================================ */
+function processVideo(files) {
+  if (!checkLimit('video')) return;
+  var file = files[0];
+  if (!file || !file.type.startsWith('video/')) { toast('Please upload an MP4, MOV or WEBM video', 'error'); return; }
+
+  // Check duration limit for free users
+  var video = document.createElement('video');
+  video.preload = 'metadata';
+  var url = URL.createObjectURL(file);
+  video.src = url;
+  video.onloadedmetadata = function() {
+    URL.revokeObjectURL(url);
+    var tier = App.user ? (App.user.tier||'free') : 'free';
+    if (tier === 'free' && video.duration > 30) {
+      toast('Free plan: max 30 seconds. Upgrade to Premium for longer videos!', 'error');
+      setTimeout(function(){ showPage('premium'); }, 1400);
+      return;
+    }
+    showVideoPreview(file, video.duration);
+    incrementUsage('video');
+  };
+}
+
+function showVideoPreview(file, duration) {
+  var panel = document.getElementById('video-preview-panel');
+  var info  = document.getElementById('video-info');
+  if (!panel || !info) return;
+  panel.style.display = 'block';
+  var origMB = (file.size / 1024 / 1024).toFixed(1);
+  var preset = document.getElementById('video-preset').value || 'medium';
+  var presetMult = { small: 0.3, medium: 0.55, high: 0.75 };
+  var estMB = (origMB * (presetMult[preset]||0.55)).toFixed(1);
+  info.innerHTML =
+    '<div class="card card-sm" style="margin-top:12px;">' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center;">' +
+        '<div><div class="stat-val">' + origMB + 'MB</div><div class="stat-lbl">Original</div></div>' +
+        '<div><div class="stat-val" style="color:var(--green)">~' + estMB + 'MB</div><div class="stat-lbl">Estimated</div></div>' +
+        '<div><div class="stat-val">' + Math.round(duration) + 's</div><div class="stat-lbl">Duration</div></div>' +
+      '</div>' +
+      '<div style="margin-top:14px;"><div class="info-box">ℹ️ <span>Video compression on GitHub Pages is limited. For production, connect to a server API (FFmpeg). This simulates compression stats.</span></div></div>' +
+      '<button class="btn btn-primary btn-full" style="margin-top:12px;" onclick="simulateVideoCompress(' + origMB + ',' + estMB + ')">🎬 Compress Video</button>' +
+    '</div>';
+}
+
+function simulateVideoCompress(origMB, estMB) {
+  var prog = document.getElementById('video-progress');
+  if (prog) prog.classList.add('visible');
+  var steps = [0,15,35,60,80,100];
+  var i = 0;
+  var interval = setInterval(function() {
+    if (i < steps.length) { updateProgressBar('video-progress', steps[i], 100); i++; }
+    else {
+      clearInterval(interval);
+      if (prog) prog.classList.remove('visible');
+      toast('Video compressed: ' + origMB + 'MB → ~' + estMB + 'MB (' + Math.round((1-estMB/origMB)*100) + '% saved)', 'success');
+    }
+  }, 400);
+}
+
+/* ================================================================
+   RESULT CARD HELPER
+   ================================================================ */
+function addResultCard(grid, item) {
+  var saved = item.saved ? ' <span class="badge badge-green">-' + item.saved + '%</span>' : '';
+  var div = document.createElement('div');
+  div.className = 'result-card';
+  div.innerHTML =
+    '<div class="result-preview"><img src="' + item.dataUrl + '" loading="lazy"></div>' +
+    '<div class="result-info">' +
+      '<div class="result-name">' + item.name + '</div>' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+        '<div><div class="stat-val">' + item.origKB + 'KB</div><div class="stat-lbl">Original</div></div>' +
+        saved +
+        '<div><div class="stat-val" style="color:var(--gold)">' + item.outKB + 'KB</div><div class="stat-lbl">Output</div></div>' +
+      '</div>' +
+      '<button class="btn btn-primary btn-sm btn-full" onclick="dlFile(\'' + item.dataUrl + '\',\'' + item.name + '\')">⬇ Download</button>' +
+    '</div>';
+  grid.appendChild(div);
+  App.results.push(item);
+  }
+  
+/* ================================================================
+   DOWNLOAD HELPERS
+   ================================================================ */
+function dlFile(dataUrl, name) {
+  var a = document.createElement('a');
+  a.href = dataUrl; a.download = name;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+
+function dlAllZip(gridId) {
+  var cards = document.getElementById(gridId);
+  if (!cards || !cards.children.length) return;
+  if (typeof JSZip === 'undefined') { toast('JSZip not loaded, downloading individually', 'error'); return; }
+  toast('Building ZIP…', 'info');
+  var zip  = new JSZip();
+  var btns = cards.querySelectorAll('[data-dlurl]');
+  App.results.forEach(function(r, i) {
+    var base64 = r.dataUrl.split(',')[1];
+    if (base64) zip.file(r.name, base64, { base64: true });
+  });
+  zip.generateAsync({ type: 'blob' }).then(function(blob) {
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a'); a.href = url; a.download = 'cozycabin-processed.zip';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast('ZIP downloaded!', 'success');
+  });
+}
+
+/* ================================================================
+   PROGRESS
+   ================================================================ */
+function updateProgressBar(id, done, total) {
+  var wrap = document.getElementById(id);
+  if (!wrap) return;
+  var fill  = wrap.querySelector('.progress-bar-fill');
+  var count = wrap.querySelector('.progress-count');
+  var pct   = total > 0 ? Math.round((done/total)*100) : 0;
+  if (fill)  fill.style.width = pct + '%';
+  if (count) count.textContent = done + ' / ' + total;
+}
+
+/* ================================================================
+   AUTHENTICATION
+   ================================================================ */
+function register() {
+  var name  = (document.getElementById('reg-name')  || {}).value || '';
+  var email = (document.getElementById('reg-email') || {}).value || '';
+  var phone = (document.getElementById('reg-phone') || {}).value || '';
+  var pass  = (document.getElementById('reg-pass')  || {}).value || '';
+
+  if (!name.trim() || !email.trim() || !phone.trim() || !pass.trim()) {
+    toast('Please fill in all fields', 'error'); return;
+  }
+  if (!/\S+@\S+\.\S+/.test(email)) { toast('Enter a valid email address', 'error'); return; }
+
+  // Check duplicate
+  var exists = App.users.some(function(u) { return u.email === email; });
+  if (exists) { toast('This email is already registered. Please log in.', 'error'); return; }
+
+  var user = {
+    id:       Date.now().toString(),
+    name:     name.trim(),
+    email:    email.trim().toLowerCase(),
+    phone:    phone.trim(),
+    password: btoa(pass),
+    tier:     'free',
+    joined:   new Date().toISOString(),
+    status:   'active'
+  };
+
+  App.users.push(user);
+  App.user = user;
+  saveState();
+  closeModal('registerModal');
+  updateHeaderAuth();
+  toast('Welcome to Cozycabin, ' + name.split(' ')[0] + '! 🎉', 'success');
+  renderAccount();
+}
+
+function login() {
+  var email = (document.getElementById('login-email') || {}).value || '';
+  var pass  = (document.getElementById('login-pass')  || {}).value || '';
+  if (!email || !pass) { toast('Enter email and password', 'error'); return; }
+
+  var user = App.users.find(function(u) { return u.email === email.toLowerCase() && u.password === btoa(pass); });
+  if (!user) { toast('Incorrect email or password', 'error'); return; }
+  if (user.status === 'suspended') { toast('Your account has been suspended. Contact support.', 'error'); return; }
+
+  App.user = user;
+  saveState();
+  closeModal('loginModal');
+  updateHeaderAuth();
+  toast('Welcome back, ' + user.name.split(' ')[0] + '!', 'success');
+  renderAccount();
+}
+
+function logout() {
+  App.user = null;
+  saveState();
+  updateHeaderAuth();
+  showPage('home');
+  toast('Logged out successfully', 'info');
+}
+
+/* ================================================================
+   ACCOUNT PAGE
+   ================================================================ */
+function renderAccount() {
+  var container = document.getElementById('account-content');
+  if (!container) return;
+
+  if (!App.user) {
+    container.innerHTML =
+      '<div class="hero" style="border-radius:var(--r-xl);margin:16px 0;">' +
+        '<div class="hero-badge">🔒 Access Required</div>' +
+        '<h2 style="font-family:Bebas Neue,sans-serif;font-size:28px;letter-spacing:.06em;margin-bottom:10px;">Create Your Free Account</h2>' +
+        '<p style="color:var(--text2);font-size:13px;margin-bottom:20px;">Register once to access all tools with generous free limits.</p>' +
+        '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">' +
+          '<button class="btn btn-primary" onclick="openModal(\'registerModal\')">🚀 Get Free Access</button>' +
+          '<button class="btn btn-secondary" onclick="openModal(\'loginModal\')">Sign In</button>' +
+        '</div>' +
+      '</div>';
+    return;
+  }
+
+  var u   = App.user;
+  var tier = u.tier || 'free';
+  var ul   = App.limits[tier];
+  var joined = new Date(u.joined).toLocaleDateString();
+
+  container.innerHTML =
+    '<div class="card" style="margin-bottom:12px;">' +
+      '<div style="display:flex;align-items:center;gap:14px;">' +
+        '<div style="width:56px;height:56px;border-radius:50%;background:var(--gold-soft);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">👤</div>' +
+        '<div>' +
+          '<div style="font-size:18px;font-weight:700;color:var(--text);">' + u.name + '</div>' +
+          '<div style="font-size:12px;color:var(--text2);">' + u.email + '</div>' +
+          '<div style="margin-top:6px;"><span class="badge badge-' + (tier==='premium'?'gold':'green') + '">' + (tier==='premium'?'⭐ Premium':'✅ Free Plan') + '</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="divider"></div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
+        '<div class="card-sm" style="background:var(--card2)"><div style="font-size:11px;color:var(--text2)">Phone</div><div style="font-weight:600">' + u.phone + '</div></div>' +
+        '<div class="card-sm" style="background:var(--card2)"><div style="font-size:11px;color:var(--text2)">Member Since</div><div style="font-weight:600">' + joined + '</div></div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="section-title">Today\'s Usage</div>' +
+    '<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">' +
+      usageMeterHTML('compress', 'Image Compression', ul.compress) +
+      usageMeterHTML('convert',  'WebP Conversion', ul.convert) +
+      usageMeterHTML('bgremove', 'Background Removal', ul.bgremove) +
+      usageMeterHTML('video',    'Video Compression', ul.video) +
+    '</div>' +
+
+    (tier === 'free' ?
+      '<button class="btn btn-primary btn-full" onclick="showPage(\'premium\')">⭐ Upgrade to Premium — KES 200/month</button>' : '') +
+
+    '<div class="divider"></div>' +
+    '<button class="btn btn-danger btn-sm" onclick="logout()">⏏ Logout</button>';
+}
+
+function usageMeterHTML(key, label, max) {
+  var used = App.usage[key] || 0;
+  var pct  = Math.min(100, Math.round((used/max)*100));
+  var cls  = pct < 50 ? 'low' : pct < 80 ? 'medium' : 'high';
+  return '<div class="card-sm" style="background:var(--card2);">' +
+    '<div style="display:flex;justify-content:space-between;margin-bottom:6px;">' +
+      '<span style="font-size:12px;font-weight:600;">' + label + '</span>' +
+      '<span style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--gold);">' + used + ' / ' + (max >= 9999 ? '∞' : max) + '</span>' +
+    '</div>' +
+    '<div class="usage-bar"><div class="usage-fill ' + cls + '" style="width:' + (max>=9999?5:pct) + '%"></div></div>' +
+  '</div>';
+}
+
+/* ================================================================
+   PREMIUM PAGE
+   ================================================================ */
+function renderPremium() {
+  // Plans are in HTML, just update payment button states
+}
+
+function initPayment(plan) {
+  if (!App.user) { openModal('registerModal'); return; }
+  document.getElementById('payment-plan-name').textContent = plan;
+  var prices = { 'Premium Monthly':'KES 200','Premium Yearly':'KES 2,000','Lifetime':'KES 5,000' };
+  document.getElementById('payment-plan-price').textContent = prices[plan] || '';
+  openModal('paymentModal');
+  }
+  
+/* ================================================================
+   PAYMENTS PAGE
+   ================================================================ */
+function renderPaymentsPage() {
+  var container = document.getElementById('payments-content');
+  if (!container) return;
+
+  var history = App.payments.filter(function(p) {
+    return App.user && p.userId === App.user.id;
+  });
+
+  container.innerHTML =
+    '<div class="section-title">Payment History</div>' +
+    (history.length === 0 ?
+      '<div style="text-align:center;padding:30px;color:var(--muted);">No payment history yet.</div>' :
+      '<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Date</th><th>Plan</th><th>Amount</th><th>Status</th></tr></thead><tbody>' +
+      history.map(function(p) {
+        return '<tr><td>' + new Date(p.date).toLocaleDateString() + '</td><td>' + p.plan + '</td><td>' + p.amount + '</td><td><span class="badge badge-' + (p.status==='active'?'green':'gold') + '">' + p.status + '</span></td></tr>';
+      }).join('') +
+      '</tbody></table></div>') +
+
+    '<div class="divider"></div>' +
+    '<div class="section-title">Crypto Wallets</div>' +
+    '<div style="display:flex;flex-direction:column;gap:8px;">' +
+      cryptoAddress('Bitcoin (BTC)', 'bc1qxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '₿') +
+      cryptoAddress('Ethereum (ETH)', '0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 'Ξ') +
+      cryptoAddress('USDT TRC20', 'Txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '₮') +
+      cryptoAddress('USDT BEP20', '0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '₮') +
+      cryptoAddress('BNB Smart Chain', '0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 'BNB') +
+    '</div>';
+}
+
+function cryptoAddress(name, addr, icon) {
+  return '<div class="card card-sm" style="background:var(--card2);">' +
+    '<div style="display:flex;justify-content:space-between;align-items:center;">' +
+      '<div><div style="font-size:12px;font-weight:700;">' + icon + ' ' + name + '</div>' +
+      '<div style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--text2);word-break:break-all;margin-top:4px;">' + addr + '</div></div>' +
+      '<button class="btn btn-secondary btn-sm" onclick="copyText(\'' + addr + '\',this)">Copy</button>' +
+    '</div>' +
+  '</div>';
+}
+
+/* ================================================================
+   SUPPORT PAGE
+   ================================================================ */
+function renderSupport() {}
+
+/* ================================================================
+   ADMIN PAGE
+   ================================================================ */
+function renderAdmin() {
+  var container = document.getElementById('admin-content');
+  if (!container) return;
+
+  // Check admin password
+  var pw = document.getElementById('admin-pw');
+  if (!pw || !pw.dataset.auth) {
+    container.innerHTML =
+      '<div class="card" style="max-width:360px;margin:40px auto;">' +
+        '<div style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--gold);margin-bottom:16px;">🔐 Admin Access</div>' +
+        '<div class="form-group"><label class="form-label">Admin Password</label>' +
+          '<input type="password" class="form-input" id="admin-pw" placeholder="Enter admin password" onkeydown="if(event.key===\'Enter\')verifyAdmin()">' +
+        '</div>' +
+        '<button class="btn btn-primary btn-full" onclick="verifyAdmin()">Unlock Admin</button>' +
+      '</div>';
+    return;
+  }
+
+  var totalUsers     = App.users.length;
+  var premiumUsers   = App.users.filter(function(u) { return u.tier === 'premium'; }).length;
+  var activePayments = App.payments.filter(function(p) { return p.status === 'active'; }).length;
+
+  container.innerHTML =
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">' +
+      adminStatCard('👤', totalUsers, 'Total Users') +
+      adminStatCard('⭐', premiumUsers, 'Premium') +
+      adminStatCard('💳', activePayments, 'Active Subs') +
+      adminStatCard('🛠️', App.marketProviders.length, 'Providers') +
+    '</div>' +
+
+    '<div class="section-title">Registered Users</div>' +
+    '<div class="admin-table-wrap" style="margin-bottom:16px;">' +
+      '<table class="admin-table"><thead><tr><th>Name</th><th>Email</th><th>Tier</th><th>Status</th><th>Action</th></tr></thead><tbody>' +
+      (App.users.length === 0 ? '<tr><td colspan="5" style="text-align:center;color:var(--muted);">No users yet</td></tr>' :
+        App.users.map(function(u, i) {
+          return '<tr><td>' + u.name + '</td><td style="font-size:11px">' + u.email + '</td>' +
+            '<td><span class="badge badge-' + (u.tier==='premium'?'gold':'green') + '">' + u.tier + '</span></td>' +
+            '<td><span class="badge badge-' + (u.status==='active'?'green':'red') + '">' + u.status + '</span></td>' +
+            '<td><button class="btn btn-sm btn-secondary" onclick="adminTogglePremium(' + i + ')">' + (u.tier==='premium'?'Downgrade':'Upgrade') + '</button></td></tr>';
+        }).join('')) +
+      '</tbody></table></div>' +
+
+    '<div style="display:flex;gap:10px;flex-wrap:wrap;">' +
+      '<button class="btn btn-secondary btn-sm" onclick="adminExportCSV()">📄 Export CSV</button>' +
+      '<button class="btn btn-danger btn-sm" onclick="if(confirm(\'Clear all data?\'))adminClearData()">🗑 Clear Data</button>' +
+    '</div>' +
+
+    '<div class="section-title" style="margin-top:16px;">Marketplace Providers</div>' +
+    '<div class="admin-table-wrap">' +
+      '<table class="admin-table"><thead><tr><th>Name</th><th>Service</th><th>Phone</th><th>Status</th><th>Action</th></tr></thead><tbody>' +
+      (App.marketProviders.length === 0 ? '<tr><td colspan="5" style="text-align:center;color:var(--muted);">No providers yet</td></tr>' :
+        App.marketProviders.map(function(p, i) {
+          return '<tr><td>' + p.name + '</td><td>' + p.service + '</td><td>' + p.phone + '</td>' +
+            '<td><span class="badge badge-' + (p.approved?'green':'gold') + '">' + (p.approved?'Active':'Pending') + '</span></td>' +
+            '<td><button class="btn btn-sm btn-success" onclick="adminApproveProvider(' + i + ')">' + (p.approved?'Suspend':'Approve') + '</button></td></tr>';
+        }).join('')) +
+      '</tbody></table></div>';
+}
+
+function adminStatCard(icon, val, label) {
+  return '<div class="card card-sm" style="background:var(--card2);text-align:center;">' +
+    '<div style="font-size:24px">' + icon + '</div>' +
+    '<div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--gold);letter-spacing:.04em">' + val + '</div>' +
+    '<div style="font-size:11px;color:var(--text2)">' + label + '</div>' +
+  '</div>';
+}
+
+function verifyAdmin() {
+  var pw = document.getElementById('admin-pw');
+  if (!pw) return;
+  if (pw.value === 'CozycabinAdmin2024') {
+    pw.dataset.auth = '1';
+    renderAdmin();
+  } else {
+    toast('Wrong admin password', 'error');
+    pw.value = '';
+  }
+}
+
+function adminTogglePremium(idx) {
+  var u = App.users[idx];
+  if (!u) return;
+  u.tier = u.tier === 'premium' ? 'free' : 'premium';
+  if (App.user && App.user.id === u.id) App.user.tier = u.tier;
+  saveState();
+  renderAdmin();
+  toast('User updated: ' + u.name + ' → ' + u.tier, 'success');
+}
+
+function adminApproveProvider(idx) {
+  var p = App.marketProviders[idx];
+  if (!p) return;
+  p.approved = !p.approved;
+  saveState();
+  renderAdmin();
+  toast('Provider ' + (p.approved?'approved':'suspended') + ': ' + p.name, 'success');
+}
+
+function adminExportCSV() {
+  if (!App.users.length) { toast('No users to export', 'error'); return; }
+  var csv = 'Name,Email,Phone,Tier,Joined,Status\n' +
+    App.users.map(function(u) {
+      return [u.name, u.email, u.phone, u.tier, new Date(u.joined).toLocaleDateString(), u.status].join(',');
+    }).join('\n');
+  var blob = new Blob([csv], { type: 'text/csv' });
+  var url  = URL.createObjectURL(blob);
+  var a = document.createElement('a'); a.href = url; a.download = 'cozycabin-users.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('CSV exported!', 'success');
+}
+
+function adminClearData() {
+  App.users = []; App.user = null; App.payments = []; App.marketProviders = [];
+  saveState(); renderAdmin(); updateHeaderAuth();
+  toast('All data cleared', 'info');
+}
+
+/* ================================================================
+   MARKETPLACE PAGE
+   ================================================================ */
+function renderMarketplace() {
+  var container = document.getElementById('marketplace-content');
+  if (!container) return;
+
+  var approved = App.marketProviders.filter(function(p) { return p.approved; });
+
+  container.innerHTML =
+    '<div class="hero" style="border-radius:var(--r-xl);margin:0 0 16px;">' +
+      '<div class="hero-badge">🔧 Services Marketplace</div>' +
+      '<h2 style="font-family:Bebas Neue,sans-serif;font-size:26px;letter-spacing:.06em;margin-bottom:8px;">Find Local Professionals</h2>' +
+      '<p style="font-size:12px;color:var(--text2);">Connect with verified service providers near you</p>' +
+    '</div>' +
+
+    '<div class="section-title">Service Categories</div>' +
+    '<div class="market-grid" style="margin-bottom:20px;">' +
+      marketCat('🔧','Plumbers') + marketCat('📡','TV & Radio') + marketCat('🏗️','Fundis') +
+      marketCat('🧹','Cleaners') + marketCat('🪚','Carpenters') + marketCat('🎨','Painters') +
+      marketCat('🔌','Electricians') + marketCat('🚗','Mechanics') +
+    '</div>' +
+
+    '<div class="section-title">Active Providers (' + approved.length + ')</div>' +
+    (approved.length === 0 ?
+      '<div style="text-align:center;padding:30px;color:var(--muted);"><div style="font-size:36px;margin-bottom:10px;">🔍</div>No providers listed yet. Be the first!</div>' :
+      '<div style="display:flex;flex-direction:column;gap:10px;">' +
+        approved.map(providerCard).join('') +
+      '</div>') +
+
+    '<div class="divider"></div>' +
+    '<div class="section-title">Register as a Provider</div>' +
+    '<div class="card">' +
+      '<div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" id="prov-name" placeholder="Full name"></div>' +
+      '<div class="form-group"><label class="form-label">Service Type</label>' +
+        '<select class="form-input form-select" id="prov-service"><option>Plumber</option><option>Electrician</option><option>Carpenter</option><option>Cleaner</option><option>Painter</option><option>Mechanic</option><option>Fundi</option><option>TV & Radio Repair</option></select>' +
+      '</div>' +
+      '<div class="form-group"><label class="form-label">Phone Number</label><input type="tel" class="form-input" id="prov-phone" placeholder="+254..."></div>' +
+      '<div class="form-group"><label class="form-label">Location / Area</label><input type="text" class="form-input" id="prov-location" placeholder="e.g. Nairobi, Westlands"></div>' +
+      '<button class="btn btn-primary btn-full" onclick="registerProvider()">📋 Submit Application</button>' +
+      '<div class="info-box" style="margin-top:12px;">ℹ️ <span>Applications are reviewed by admin before listing. You will be contacted within 24 hours.</span></div>' +
+    '</div>';
+}
+
+function marketCat(icon, name) {
+  return '<div class="market-cat"><div class="market-cat-icon">' + icon + '</div><div class="market-cat-name">' + name + '</div></div>';
+}
+
+function providerCard(p) {
+  return '<div class="card card-sm" style="background:var(--card2);">' +
+    '<div style="display:flex;align-items:center;gap:12px;">' +
+      '<div style="width:44px;height:44px;border-radius:50%;background:var(--gold-soft);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">👤</div>' +
+      '<div><div style="font-weight:700">' + p.name + '</div>' +
+      '<div style="font-size:11px;color:var(--text2)">' + p.service + ' · ' + p.location + '</div></div>' +
+      '<a href="tel:' + p.phone + '" class="btn btn-success btn-sm" style="margin-left:auto;">📞</a>' +
+    '</div>' +
+  '</div>';
+}
+
+function registerProvider() {
+  var name     = (document.getElementById('prov-name')     || {}).value || '';
+  var service  = (document.getElementById('prov-service')  || {}).value || '';
+  var phone    = (document.getElementById('prov-phone')    || {}).value || '';
+  var location = (document.getElementById('prov-location') || {}).value || '';
+  if (!name || !phone || !location) { toast('Please fill all fields', 'error'); return; }
+  App.marketProviders.push({ name: name, service: service, phone: phone, location: location, approved: false, date: new Date().toISOString() });
+  saveState();
+  toast('Application submitted! Admin will review within 24 hours.', 'success');
+  }
+  
+/* ================================================================
+   MODALS
+   ================================================================ */
+function openModal(id) {
+  var el = document.getElementById(id);
+  if (el) el.classList.add('open');
+}
+function closeModal(id) {
+  var el = document.getElementById(id);
+  if (el) el.classList.remove('open');
+}
+function initModals() {
+  document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) overlay.classList.remove('open');
+    });
+  });
+}
+
+/* ================================================================
+   DROPZONES — init all
+   ================================================================ */
+function initDropzones() {
+  initCompressor();
+  bindZone('convert-zone', 'convert-input', processConvertFiles);
+  bindZone('bgremove-zone', 'bgremove-input', processBgRemove);
+  bindZone('video-zone', 'video-input', processVideo);
+}
+
+function bindZone(zoneId, inputId, handler) {
+  var zone = document.getElementById(zoneId);
+  var inp  = document.getElementById(inputId);
+  if (!zone || !inp) return;
+  zone.addEventListener('dragover',  function(e){ e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', function(){ zone.classList.remove('drag-over'); });
+  zone.addEventListener('drop', function(e){ e.preventDefault(); zone.classList.remove('drag-over'); handler(e.dataTransfer.files); });
+  inp.addEventListener('change', function(){ handler(this.files); this.value=''; });
+}
+
+/* ================================================================
+   UTILITIES
+   ================================================================ */
+function toast(msg, type) {
+  var wrap = document.getElementById('toast-wrap');
+  if (!wrap) return;
+  var icons = { success:'✅', error:'❌', info:'ℹ️' };
+  var div = document.createElement('div');
+  div.className = 'toast ' + (type||'info');
+  div.textContent = (icons[type]||'') + ' ' + msg;
+  wrap.appendChild(div);
+  setTimeout(function() {
+    div.style.opacity='0'; div.style.transition='opacity .3s';
+    setTimeout(function(){ if(div.parentNode) div.parentNode.removeChild(div); }, 350);
+  }, 3200);
+}
+
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(function() {
+    var orig = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(function(){ btn.textContent = orig; }, 2000);
+  }).catch(function() { toast('Copy failed', 'error'); });
+}
+
+function submitPayment() {
+  if (!App.user) return;
+  var method = document.querySelector('.payment-method.selected');
+  var plan   = document.getElementById('payment-plan-name').textContent;
+  var amount = document.getElementById('payment-plan-price').textContent;
+  var ref    = 'CC-' + Date.now().toString(36).toUpperCase();
+
+  var payment = {
+    id: ref, userId: App.user.id, plan: plan, amount: amount,
+    method: method ? method.querySelector('.pm-name').textContent : 'M-Pesa',
+    date: new Date().toISOString(), status: 'pending', ref: ref
+  };
+  App.payments.push(payment);
+  saveState();
+  closeModal('paymentModal');
+  toast('Payment reference ' + ref + ' submitted. Admin will activate within 24h.', 'success');
+}
+
+function selectPaymentMethod(el) {
+  document.querySelectorAll('.payment-method').forEach(function(m){ m.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+
+</script>
+<!-- ── VIDEO EDITING JS ── -->
+<script>
+(function() {
+  var veFile = null;
+
+  // Wire file input
+  var veInput = document.getElementById('videoedit-input');
+  if (veInput) {
+    veInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) { loadVEVideo(this.files[0]); }
+    });
+  }
+
+  function loadVEVideo(file) {
+    veFile = file;
+    var url = URL.createObjectURL(file);
+    var player = document.getElementById('videoedit-player');
+    var prevWrap = document.getElementById('videoedit-preview-wrap');
+    var controls = document.getElementById('videoedit-controls');
+    if (player) {
+      player.src = url;
+      player.load();
+      player.onloadedmetadata = function() {
+        var dur = player.duration;
+        document.getElementById('ve-end').value = Math.min(Math.round(dur * 10) / 10, dur);
+        document.getElementById('ve-end').max = dur;
+        document.getElementById('ve-start').max = dur;
+      };
+    }
+    if (prevWrap) prevWrap.style.display = 'block';
+    if (controls) controls.style.display = 'block';
+    document.getElementById('ve-result').style.display = 'none';
+  }
+
+  window.veStartTrim = function() {
+    if (!veFile) { return; }
+    var start = parseFloat(document.getElementById('ve-start').value) || 0;
+    var end   = parseFloat(document.getElementById('ve-end').value) || 10;
+    if (end <= start) { alert('End time must be after start time.'); return; }
+
+    var prog      = document.getElementById('ve-progress');
+    var progFill  = document.getElementById('ve-progress-fill');
+    var progLabel = document.getElementById('ve-progress-label');
+    var btn       = document.getElementById('ve-trim-btn');
+    var result    = document.getElementById('ve-result');
+
+    prog.style.display = 'block';
+    btn.disabled = true;
+    progFill.style.width = '0%';
+    progLabel.textContent = 'Loading video…';
+
+    // Use canvas-based frame extraction for trim (pure browser, no FFmpeg needed)
+    var video = document.createElement('video');
+    video.src = URL.createObjectURL(veFile);
+    video.muted = true;
+    video.load();
+
+    video.onloadedmetadata = function() {
+      var fps      = 24;
+      var duration = end - start;
+      var frames   = Math.round(duration * fps);
+      var canvas   = document.createElement('canvas');
+      var ctx      = canvas.getContext('2d');
+
+      video.onseeked = null;
+
+      // Get video dimensions
+      canvas.width  = video.videoWidth  || 640;
+      canvas.height = video.videoHeight || 360;
+
+      progLabel.textContent = 'Processing frames…';
+
+      // MediaRecorder approach for proper video trim
+      var stream = canvas.captureStream(fps);
+      var mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9' : 'video/webm';
+      var recorder = new MediaRecorder(stream, { mimeType: mimeType });
+      var chunks = [];
+
+      recorder.ondataavailable = function(e) { if (e.data.size > 0) chunks.push(e.data); };
+      recorder.onstop = function() {
+        var blob = new Blob(chunks, { type: mimeType });
+        var dlUrl = URL.createObjectURL(blob);
+        var dlBtn = document.getElementById('ve-download-btn');
+        var ext = mimeType.includes('webm') ? 'webm' : 'mp4';
+        dlBtn.href = dlUrl;
+        dlBtn.download = 'cozycabin-trimmed.' + ext;
+        document.getElementById('ve-result-info').textContent =
+          'Duration: ' + duration.toFixed(1) + 's · Size: ' + (blob.size / 1024 / 1024).toFixed(2) + ' MB';
+        result.style.display = 'block';
+        prog.style.display = 'none';
+        btn.disabled = false;
+        progFill.style.width = '100%';
+      };
+
+      recorder.start();
+      video.currentTime = start;
+
+      var frameIndex = 0;
+      function drawNextFrame() {
+        if (video.currentTime >= end || frameIndex >= frames) {
+          recorder.stop();
+          return;
+        }
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        frameIndex++;
+        var pct = Math.round((frameIndex / frames) * 100);
+        progFill.style.width = pct + '%';
+        progLabel.textContent = 'Processing… ' + pct + '%';
+        video.currentTime = start + (frameIndex / fps);
+      }
+
+      video.onseeked = drawNextFrame;
+    };
+  };
+
+})();
+</script>
+
+</body>
+</html>
+
+
+
+              
