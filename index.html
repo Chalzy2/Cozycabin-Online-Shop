@@ -188,6 +188,38 @@ input,select,textarea{width:100%;max-width:100%;}
 .pam-btn-inquire{background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;}
 .pam-btn-pay{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;}
 .pam-step{display:none;}
+
+/* ── FIX: minor-menu — stop yellow border bleeding into product images ── */
+.minor-menu {
+  overflow: hidden !important;    /* clip inner content to rounded border */
+  contain: layout !important;     /* prevent margin/border bleed-through   */
+  margin-bottom: 20px !important; /* clear gap before next section         */
+}
+
+/* Ensure products-container sits fully outside the yellow frame */
+#products-container {
+  position: relative !important;
+  z-index: 1 !important;
+  clear: both !important;
+  margin-top: 4px !important;
+}
+
+/* ── FIX: fashion product image aspect ratios ── */
+/* All product images default 1:1 square (1200×1200) */
+.main-product-image {
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Fashion categories — override to portrait 3:4 */
+.product-card[data-cat="shoes"]   .main-product-image,
+.product-card[data-cat="bags"]    .main-product-image,
+.product-card[data-cat="watches"] .main-product-image,
+.product-card[data-cat="belts"]   .main-product-image {
+  aspect-ratio: 3 / 4 !important;
+}
 </style>
 
   <style id="crypto-box-css">
@@ -300,16 +332,8 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🛏️</div>
       <div style="background:#818cf8;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">BEDDING</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🛏️ Bedding &amp; Comfort</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Duvets, bedsheets, pillows &amp; more.<br>Sleep better every night.</div>
-      <div style="display:inline-block;margin-top:14px;background:#818cf8;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Bedding →</div>
-    </div>
-    <!-- SLIDE 7 -->
-    <div class="hero-slide" style="background:linear-gradient(135deg,#1a0a00,#251500);border:2px solid #fb923c;" onclick="window.toggleSub&&window.toggleSub('security-sub')">
-      <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🔐</div>
-      <div style="background:#fb923c;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">SECURITY</div>
-      <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🔐 Home Security</div>
-      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Cameras, alarms, smart locks &amp; more.<br>Protect what matters most.</div>
-<div style="display:inline-block;margin-top:14px;background:#fb923c;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Security →</div>
+ <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Cameras, alarms, smart locks &amp; more.<br>Protect what matters most.</div>
+      <div style="display:inline-block;margin-top:14px;background:#fb923c;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Security →</div>
     </div>
     <!-- SLIDE 8 -->
     <div class="hero-slide" style="background:linear-gradient(135deg,#0d1a10,#102015);border:2px solid #34d399;" onclick="window.toggleSub&&window.toggleSub('electronics-sub')">
@@ -885,7 +909,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
 
       <!-- Amazon + Alibaba side by side -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;">
-        <a href="https://amzn.to/4tDZaKV" target="_blank" style="background:#2a3547;color:#fff;text-decoration:none;padding:14px 8px;border-radius:12px;font-size:12px;font-weight:700;text-align:center;border:1px solid rgba(255,165,0,0.3);display:flex;flex-direction:column;align-items:center;gap:6px;">
+       <a href="https://amzn.to/4tDZaKV" target="_blank" style="background:#2a3547;color:#fff;text-decoration:none;padding:14px 8px;border-radius:12px;font-size:12px;font-weight:700;text-align:center;border:1px solid rgba(255,165,0,0.3);display:flex;flex-direction:column;align-items:center;gap:6px;">
           <span style="font-size:22px;">📦</span>
           <span>Amazon</span>
           <span style="font-size:10px;color:#94a3b8;font-weight:400;">Shop &amp; Earn</span>
@@ -1176,8 +1200,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
         <a href="https://wa.me/254702468460?text=💛%20I%20just%20donated%20via%20Pochi%20la%20Biashara%20to%20Cozycabin!%20Please%20confirm.%20Thank%20you!" target="_blank" class="don-wa">💬 Confirm on WhatsApp</a>
       </div>
     </div>
-
-    <!-- ══ PAYPAL / CARD ══ -->
+         <--══ PAYPAL / CARD ══ -->
     <div id="don-paypal" class="don-panel" style="display:none;">
       <div class="don-card">
         <div class="don-icon">💳</div>
@@ -1563,7 +1586,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
   }, { passive: true });
   banner.addEventListener('touchend', function(e) {
     var diff = touchStartX - e.changedTouches[0].screenX;
-    if (Math.abs(diff) > 40) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
+     if (Math.abs(diff) > 40) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
     paused = false;
     resetTimer();
   }, { passive: true });
@@ -1938,7 +1961,7 @@ function runCompressor(input) {
       canvas.width  = img.width;
       canvas.height = img.height;
       canvas.getContext('2d').drawImage(img, 0, 0);
-      canvas.toBlob(function(blob) {
+       canvas.toBlob(function(blob) {
         var url = URL.createObjectURL(blob);
         var saved = Math.round((1 - blob.size / origSize) * 100);
         document.getElementById('comp-orig-size').textContent = fmtSize(origSize);
@@ -1981,7 +2004,7 @@ function runWebP(input) {
         document.getElementById('webp-result').style.display = 'block';
       }, 'image/webp', quality);
     };
-img.src = e.target.result;
+    img.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
@@ -2115,19 +2138,5 @@ function runVideoComp(input) {
      
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
 
         
