@@ -308,8 +308,8 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:0.1;">🔐</div>
       <div style="background:#fb923c;color:#fff;display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;width:fit-content;">SECURITY</div>
       <div style="color:#fff;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;">🔐 Home Security</div>
-   <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Cameras, alarms, smart locks &amp; more.<br>Protect what matters most.</div>
-      <div style="display:inline-block;margin-top:14px;background:#fb923c;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Security →</div>
+      <div style="color:#94a3b8;font-size:13px;line-height:1.6;">Cameras, alarms, smart locks &amp; more.<br>Protect what matters most.</div>
+<div style="display:inline-block;margin-top:14px;background:#fb923c;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">Shop Security →</div>
     </div>
     <!-- SLIDE 8 -->
     <div class="hero-slide" style="background:linear-gradient(135deg,#0d1a10,#102015);border:2px solid #34d399;" onclick="window.toggleSub&&window.toggleSub('electronics-sub')">
@@ -590,7 +590,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
   <!-- SECURITY -->
   <div class="minor-menu" id="security-sub">
     <div class="minor-top"><button class="back-btn">← Back</button></div>
-  <div class="minor-grid">
+    <div class="minor-grid">
       <button class="minor-btn" data-category="cameras">📷 Cameras</button>
       <button class="minor-btn" data-category="alarms">🚨 Alarms</button>
       <button class="minor-btn" data-category="locks">🔒 Smart Locks</button>
@@ -901,7 +901,6 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
       <a href="https://wa.me/254702468460?text=I%20want%20to%20learn%20ClickBank%20affiliate" target="_blank" class="ddrop-tile">💸 ClickBank Digital Products</a>
       <a href="https://wa.me/254702468460?text=I%20want%20to%20learn%20about%20referral%20programs" target="_blank" class="ddrop-tile">🤝 Referral &amp; Commission Programs</a>
 
-      
       <!-- Payment / Buy section -->
       <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);">
         <p style="color:#a78bfa;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">💳 Purchase &amp; Payment Options</p>
@@ -1506,6 +1505,85 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
 ══════════════════════════════════════════════ -->
 <script src="products.js"></script>
 
+<!-- ══════════════════════════════════════════════
+     HERO BANNER AUTO-ROTATION
+══════════════════════════════════════════════ -->
+<script>
+(function() {
+  var slides = document.querySelectorAll('.hero-slide');
+  var dotsContainer = document.getElementById('hero-dots');
+  var current = 0;
+  var total = slides.length;
+  var timer = null;
+  var paused = false;
+
+  if (!total) return;
+
+  // ── Build dots ──
+  dotsContainer.innerHTML = '';
+  for (var i = 0; i < total; i++) {
+    var dot = document.createElement('button');
+    dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.setAttribute('data-idx', i);
+    dot.addEventListener('click', function() {
+      goTo(parseInt(this.getAttribute('data-idx')));
+      resetTimer();
+    });
+    dotsContainer.appendChild(dot);
+  }
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsContainer.querySelectorAll('.hero-dot')[current].classList.remove('active');
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    dotsContainer.querySelectorAll('.hero-dot')[current].classList.add('active');
+  }
+
+  function next() { goTo(current + 1); }
+
+  function startTimer() {
+    timer = setInterval(function() {
+      if (!paused) next();
+    }, 3500);
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    startTimer();
+  }
+
+  // ── Swipe support ──
+  var touchStartX = 0;
+  var banner = document.getElementById('hero-banner');
+  banner.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+    paused = true;
+  }, { passive: true });
+  banner.addEventListener('touchend', function(e) {
+    var diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 40) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
+    paused = false;
+    resetTimer();
+  }, { passive: true });
+
+  // ── Pause on hover (desktop) ──
+  banner.addEventListener('mouseenter', function() { paused = true; });
+  banner.addEventListener('mouseleave', function() { paused = false; });
+
+  // ── Restart after tab switch ──
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) resetTimer();
+  });
+
+  // ── Ensure first slide is active and start ──
+  slides.forEach(function(s) { s.classList.remove('active'); });
+  slides[0].classList.add('active');
+  startTimer();
+})();
+</script>
+
 <script>
 // ── DIGITAL GRID DROPDOWN TOGGLE ──
 window.toggleDigital = function(id) {
@@ -1903,7 +1981,7 @@ function runWebP(input) {
         document.getElementById('webp-result').style.display = 'block';
       }, 'image/webp', quality);
     };
-    img.src = e.target.result;
+img.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
@@ -1967,7 +2045,7 @@ function runVideoComp(input) {
   var url    = URL.createObjectURL(file);
   var video  = document.createElement('video');
   video.src  = url;
-video.muted = true;
+  video.muted = true;
   video.playbackRate = 16; // fast-forward during recording
 
   video.onloadedmetadata = function() {
@@ -2035,3 +2113,21 @@ video.muted = true;
 </html>
 
      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+        
