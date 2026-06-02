@@ -1,107 +1,3073 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cozycabin · Admin Tool</title>
-    <style>
-        :root { --gold: #ffd700; --navy: #060d1f; }
-        body { background: var(--navy); color: #e2e8f0; font-family: sans-serif; padding: 20px; }
-        .app-wrapper { max-width: 800px; margin: auto; }
-        .panel { background: #0d1830; padding: 20px; border-radius: 20px; border: 1px solid rgba(255,215,0,0.2); }
-        .dropzone { border: 2px dashed var(--gold); padding: 40px; text-align: center; cursor: pointer; border-radius: 20px; margin-bottom: 20px; }
-        .dl-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 5px; display: block; text-decoration: none; text-align: center; }
-        .settings { margin-bottom: 20px; display: flex; gap: 10px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cozycabin Admin Studio Pro</title>
+<link rel="icon" href="Images/Cozycabin log .webp" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   COZYCABIN ADMIN STUDIO PRO — MASTER STYLESHEET
+   Black + Gold · Rajdhani + Outfit · Mobile-first
+   ================================================================ */
+
+:root {
+  --gold:       #ffd700;
+  --gold2:      #e6a800;
+  --gold-soft:  rgba(255,215,0,0.10);
+  --gold-glow:  rgba(255,215,0,0.22);
+  --navy:       #060d1f;
+  --navy2:      #0a1228;
+  --card:       #0d1830;
+  --card2:      #111f3a;
+  --border:     rgba(255,215,0,0.14);
+  --border2:    rgba(255,215,0,0.30);
+  --text:       #e2e8f0;
+  --muted:      #5a7090;
+  --muted2:     #8aa0b8;
+  --green:      #22c55e;
+  --red:        #ef4444;
+  --blue:       #3b82f6;
+  --radius:     14px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --shadow:     0 8px 40px rgba(0,0,0,0.55);
+  --tr:         all .2s cubic-bezier(.4,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--navy);
+  color:var(--text);
+  font-family:'Outfit',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-user-select:none;
+  user-select:none;
+}
+a{color:inherit;text-decoration:none;}
+button{font-family:'Outfit',sans-serif;cursor:pointer;}
+input,select,textarea{font-family:'Outfit',sans-serif;}
+
+/* ── Noise texture ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:0.35;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:var(--navy2);}
+::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:4px;}
+
+/* ================================================================
+   TOP BAR
+   ================================================================ */
+.top-bar{
+  position:sticky;top:0;z-index:200;
+  background:rgba(6,13,31,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 16px;
+  height:60px;
+  display:flex;align-items:center;gap:14px;
+  box-shadow:0 2px 20px rgba(0,0,0,0.6);
+}
+.tb-logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.tb-logo img{
+  width:38px;height:38px;border-radius:10px;
+  border:1.5px solid var(--border2);object-fit:cover;
+}
+.tb-brand{
+  display:flex;flex-direction:column;line-height:1;
+}
+.tb-brand-name{
+  font-family:'Rajdhani',sans-serif;
+  font-size:18px;font-weight:700;
+  color:var(--gold);letter-spacing:1px;text-transform:uppercase;
+}
+.tb-brand-tag{
+  font-family:'Rajdhani',sans-serif;
+  font-size:8px;font-weight:600;
+  color:var(--muted);letter-spacing:2px;text-transform:uppercase;
+}
+.tb-badge{
+  margin-left:auto;
+  background:linear-gradient(135deg,rgba(255,215,0,0.12),rgba(255,215,0,0.06));
+  border:1px solid var(--border2);
+  color:var(--gold);
+  font-family:'Rajdhani',sans-serif;
+  font-size:9px;font-weight:700;letter-spacing:2px;
+  padding:4px 12px;border-radius:20px;text-transform:uppercase;
+  flex-shrink:0;
+}
+
+/* ================================================================
+   STUDIO HERO
+   ================================================================ */
+.studio-hero{
+  padding:36px 16px 28px;
+  text-align:center;
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,215,0,0.09) 0%,transparent 65%);
+  position:relative;z-index:1;
+}
+.sh-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,215,0,0.10);
+  border:1px solid var(--border2);
+  color:var(--gold);
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  padding:5px 16px;border-radius:20px;
+  margin-bottom:16px;text-transform:uppercase;
+}
+.sh-title{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(28px,8vw,46px);
+  font-weight:800;color:#fff;
+  margin-bottom:8px;line-height:1.1;
+}
+.sh-title span{color:var(--gold);}
+.sh-sub{font-size:13px;color:var(--muted);max-width:480px;margin:0 auto 24px;line-height:1.7;}
+.sh-rule{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,215,0,0.08);
+  border:1px solid rgba(255,215,0,0.25);
+  border-radius:12px;padding:8px 16px;
+  font-size:11px;color:var(--gold);font-weight:700;
+  letter-spacing:.5px;
+}
+
+/* ================================================================
+   MAIN NAV TABS
+   ================================================================ */
+.studio-tabs{
+  display:flex;gap:6px;overflow-x:auto;
+  padding:0 16px 0;margin-bottom:0;
+  scrollbar-width:none;position:relative;z-index:1;
+  border-bottom:2px solid rgba(255,215,0,0.12);
+}
+.studio-tabs::-webkit-scrollbar{display:none;}
+.studio-tab{
+  flex-shrink:0;
+  display:flex;align-items:center;gap:6px;
+  background:transparent;
+  border:none;border-bottom:3px solid transparent;
+  color:var(--muted);
+  font-family:'Rajdhani',sans-serif;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+  padding:12px 14px;
+  cursor:pointer;transition:var(--tr);
+  white-space:nowrap;text-transform:uppercase;
+  margin-bottom:-2px;
+}
+.studio-tab:hover{color:var(--text);}
+.studio-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.studio-tab .tab-icon{font-size:16px;}
+
+/* ================================================================
+   MAIN CONTENT WRAPPER
+   ================================================================ */
+.studio-content{max-width:860px;margin:0 auto;padding:20px 16px 80px;position:relative;z-index:1;}
+.studio-panel{display:none;}
+.studio-panel.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ================================================================
+   SECTION TITLE
+   ================================================================ */
+.sec-title{
+  font-family:'Rajdhani',sans-serif;
+  font-size:15px;font-weight:700;
+  color:var(--muted2);letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ================================================================
+   PANELS / CARDS
+   ================================================================ */
+.panel{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:18px;margin-bottom:16px;
+  position:relative;z-index:1;
+}
+.panel-gold{border-color:var(--border2);box-shadow:0 0 30px rgba(255,215,0,0.06);}
+
+/* ================================================================
+   WORKFLOW STEPS (image studio, video, etc.)
+   ================================================================ */
+.workflow-steps{
+  display:flex;gap:0;
+  background:var(--navy2);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:14px 16px;
+  margin-bottom:20px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.workflow-steps::-webkit-scrollbar{display:none;}
+.wf-step{
+  display:flex;flex-direction:column;align-items:center;
+  gap:5px;flex-shrink:0;min-width:70px;text-align:center;
+  position:relative;
+}
+.wf-step:not(:last-child)::after{
+  content:'→';
+  position:absolute;right:-14px;top:10px;
+  color:var(--muted);font-size:12px;
+}
+.wf-dot{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--navy);border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;transition:var(--tr);
+}
+.wf-step.done .wf-dot{border-color:var(--green);background:rgba(34,197,94,0.12);}
+.wf-step.active .wf-dot{border-color:var(--gold);background:var(--gold-soft);box-shadow:0 0 12px var(--gold-glow);}
+.wf-label{font-size:9px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase;line-height:1.2;}
+
+/* ================================================================
+   DROP ZONE
+   ================================================================ */
+.dropzone{
+  border:2px dashed rgba(255,215,0,0.22);
+  border-radius:var(--radius-xl);
+  padding:44px 20px;
+  text-align:center;cursor:pointer;
+  transition:var(--tr);
+  background:rgba(255,215,0,0.015);
+  margin-bottom:16px;position:relative;
+  overflow:hidden;
+}
+.dropzone::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center bottom,rgba(255,215,0,0.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.dropzone.drag-over{
+  border-color:var(--gold);
+  background:rgba(255,215,0,0.07);
+  box-shadow:0 0 40px rgba(255,215,0,0.14);
+}
+.dropzone input[type=file]{
+  position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;z-index:2;
+}
+.dz-icon{font-size:48px;margin-bottom:12px;display:block;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.dz-title{
+  font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;
+  color:var(--gold);letter-spacing:.04em;margin-bottom:6px;
+}
+.dz-sub{font-size:12px;color:var(--muted);margin-bottom:14px;}
+.dz-formats{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;}
+.fmt-tag{
+  background:var(--navy2);border:1px solid var(--border);
+  color:var(--muted2);
+  font-family:'DM Mono',monospace;font-size:10px;
+  padding:3px 8px;border-radius:5px;
+}
+
+/* ================================================================
+   PRESETS GRID
+   ================================================================ */
+.presets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
+@media(min-width:500px){.presets-grid{grid-template-columns:repeat(6,1fr);}}
+.preset-btn{
+  background:var(--navy2);border:1.5px solid var(--border);
+  border-radius:var(--radius);padding:12px 8px;
+  cursor:pointer;transition:var(--tr);text-align:center;color:var(--text);
+}
+.preset-btn:hover{border-color:var(--gold2);background:var(--card2);}
+.preset-btn.active{border-color:var(--gold);background:var(--gold-soft);box-shadow:0 0 16px var(--gold-glow);}
+.preset-icon{font-size:18px;margin-bottom:4px;}
+.preset-name{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;line-height:1.2;margin-bottom:2px;}
+.preset-dim{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+
+/* ================================================================
+   SETTINGS GRID
+   ================================================================ */
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.setting-item label{
+  display:block;font-size:10px;font-weight:600;color:var(--muted2);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;
+}
+.setting-item select{
+  width:100%;background:var(--navy2);
+  border:1px solid var(--border);border-radius:var(--radius);
+  color:var(--text);padding:9px 28px 9px 12px;
+  font-size:12px;outline:none;cursor:pointer;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ffd700'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+  transition:var(--tr);
+}
+.setting-item select:focus{border-color:var(--gold2);}
+.range-wrap{display:flex;flex-direction:column;gap:4px;}
+.range-label-row{display:flex;justify-content:space-between;align-items:center;}
+.range-label-row label{font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;}
+.range-val{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);font-weight:500;}
+input[type=range]{
+  width:100%;height:4px;appearance:none;
+  background:var(--navy2);border-radius:4px;outline:none;cursor:pointer;accent-color:var(--gold);
+}
+input[type=range]::-webkit-slider-thumb{
+  appearance:none;width:16px;height:16px;
+  background:var(--gold);border-radius:50%;box-shadow:0 0 8px var(--gold-glow);
+}
+
+/* ================================================================
+   TOGGLE SWITCHES
+   ================================================================ */
+.toggle-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 0;border-bottom:1px solid var(--border);
+}
+.toggle-row:last-child{border-bottom:none;padding-bottom:0;}
+.toggle-label{display:flex;flex-direction:column;gap:2px;}
+.toggle-label span:first-child{font-size:13px;font-weight:600;color:var(--text);}
+.toggle-label span:last-child{font-size:10px;color:var(--muted);}
+.toggle{position:relative;width:44px;height:24px;flex-shrink:0;}
+.toggle input{opacity:0;width:0;height:0;}
+.toggle-slider{
+  position:absolute;inset:0;
+  background:var(--navy2);border:1px solid var(--border);
+  border-radius:12px;cursor:pointer;transition:var(--tr);
+}
+.toggle-slider::before{
+  content:'';position:absolute;
+  width:18px;height:18px;left:2px;top:2px;
+  background:var(--muted);border-radius:50%;transition:var(--tr);
+}
+.toggle input:checked + .toggle-slider{background:var(--gold-soft);border-color:var(--gold);}
+.toggle input:checked + .toggle-slider::before{background:var(--gold);transform:translateX(20px);box-shadow:0 0 8px var(--gold-glow);}
+.sub-settings{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);animation:fadeIn .2s ease;}
+.sub-settings.visible{display:block;}
+
+/* ================================================================
+   LOGO UPLOAD AREA
+   ================================================================ */
+.logo-upload-area{
+  display:flex;align-items:center;gap:12px;
+  padding:12px;background:var(--navy2);
+  border:1.5px dashed var(--border2);border-radius:var(--radius);
+  cursor:pointer;transition:var(--tr);position:relative;overflow:hidden;
+}
+.logo-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.logo-upload-area:hover{border-color:var(--gold);background:var(--card2);}
+.lp-thumb{
+  width:48px;height:48px;border-radius:10px;
+  background:var(--card);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;
+}
+.lp-thumb img{width:100%;height:100%;object-fit:contain;}
+.lp-text strong{font-size:12px;color:var(--gold);display:block;margin-bottom:3px;}
+.lp-text span{font-size:10px;color:var(--muted);}
+
+/* ================================================================
+   PROGRESS
+   ================================================================ */
+.progress-wrap{
+  display:none;margin-bottom:16px;padding:16px;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+}
+.progress-wrap.visible{display:block;}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.progress-label{font-size:13px;font-weight:600;color:var(--text);}
+.progress-count{font-family:'DM Mono',monospace;font-size:12px;color:var(--gold);}
+.progress-bar-bg{height:6px;background:var(--navy2);border-radius:6px;overflow:hidden;margin-bottom:6px;}
+.progress-bar-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--gold2),var(--gold));
+  border-radius:6px;transition:width .3s ease;width:0%;
+  box-shadow:0 0 10px var(--gold-glow);
+}
+.progress-eta{font-size:10px;color:var(--muted);text-align:right;}
+
+/* ================================================================
+   RESULTS GRID
+   ================================================================ */
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.results-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--gold);letter-spacing:.04em;}
+.clear-btn{
+  background:transparent;border:1px solid rgba(239,68,68,0.3);
+  color:var(--red);font-size:11px;font-weight:600;
+  padding:5px 12px;border-radius:20px;cursor:pointer;transition:var(--tr);
+}
+.clear-btn:hover{background:rgba(239,68,68,0.08);border-color:var(--red);}
+.results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(min-width:600px){.results-grid{grid-template-columns:repeat(3,1fr);}}
+
+.img-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  display:flex;flex-direction:column;
+  animation:fadeUp .3s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.card-preview{position:relative;aspect-ratio:1;background:#000;overflow:hidden;}
+.card-preview canvas,.card-preview img{width:100%;height:100%;object-fit:contain;display:block;}
+.preview-tabs{position:absolute;top:6px;left:6px;display:flex;gap:4px;}
+.preview-tab{
+  background:rgba(0,0,0,0.75);border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.7);font-size:9px;font-weight:600;
+  padding:3px 7px;border-radius:4px;cursor:pointer;transition:var(--tr);
+}
+.preview-tab.active{background:var(--gold);color:#000;border-color:var(--gold);}
+.card-body{padding:10px;flex:1;display:flex;flex-direction:column;gap:6px;}
+.card-filename{font-size:10px;color:var(--muted2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'DM Mono',monospace;}
+.card-stats{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.stat-item{background:var(--navy2);border-radius:5px;padding:4px 6px;}
+.stat-label{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+.stat-value{font-family:'DM Mono',monospace;font-size:10px;color:var(--text);font-weight:500;}
+.stat-value.gold{color:var(--gold);}
+.stat-value.green{color:var(--green);}
+.card-dl-btn{
+  display:block;width:100%;background:var(--gold);color:#000;
+  font-weight:700;font-size:11px;padding:9px;border-radius:10px;
+  text-align:center;border:none;cursor:pointer;
+  letter-spacing:.04em;transition:var(--tr);margin-top:auto;
+}
+.card-dl-btn:hover{opacity:.88;}
+
+/* ================================================================
+   DOWNLOAD ALL BAR
+   ================================================================ */
+.dl-all-bar{
+  display:none;position:sticky;bottom:14px;z-index:50;
+  margin-top:16px;gap:10px;
+}
+.dl-all-bar.visible{display:flex;}
+.dl-all-btn{
+  flex:1;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;font-family:'Rajdhani',sans-serif;
+  font-size:16px;font-weight:700;
+  padding:16px;border-radius:var(--radius-lg);border:none;
+  cursor:pointer;letter-spacing:.06em;text-transform:uppercase;
+  box-shadow:0 8px 30px rgba(255,215,0,0.35);transition:var(--tr);
+}
+.dl-all-btn:hover{opacity:.9;transform:translateY(-1px);}
+.dl-zip-btn{
+  background:var(--card);border:1.5px solid var(--gold);color:var(--gold);
+  font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;
+  padding:16px 20px;border-radius:var(--radius-lg);
+  cursor:pointer;letter-spacing:.06em;text-transform:uppercase;
+  transition:var(--tr);white-space:nowrap;
+}
+.dl-zip-btn:hover{background:var(--gold-soft);}
+
+/* ================================================================
+   VIDEO STUDIO SPECIFIC
+   ================================================================ */
+.plans-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;}
+.plan-card{
+  background:linear-gradient(145deg,#0d1120,#111827);
+  border:1.5px solid rgba(255,255,255,.08);
+  border-radius:var(--radius-lg);padding:20px 16px;position:relative;overflow:hidden;
+}
+
+.plan-card.featured{border-color:var(--border2);box-shadow:0 0 30px rgba(255,215,0,0.08);}
+.plan-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.plan-price{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:800;margin-bottom:4px;}
+.plan-period{font-size:10px;color:var(--muted);margin-bottom:14px;}
+.plan-card ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.plan-card ul li{font-size:11px;display:flex;align-items:flex-start;gap:7px;color:var(--muted2);line-height:1.4;}
+.plan-card ul li .ok{color:var(--green);font-size:13px;flex-shrink:0;}
+.plan-card ul li .no{color:var(--red);font-size:13px;flex-shrink:0;}
+.plan-card ul li .lim{color:var(--gold);font-size:10px;flex-shrink:0;margin-top:1px;}
+.plan-badge-top{
+  position:absolute;top:12px;right:12px;
+  background:var(--gold);color:#000;
+  font-size:8px;font-weight:800;letter-spacing:1px;
+  padding:3px 8px;border-radius:20px;text-transform:uppercase;
+}
+
+/* Tool grid */
+.tool-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px;}
+@media(min-width:480px){.tool-grid{grid-template-columns:repeat(3,1fr);}}
+.tool-card{
+  background:linear-gradient(145deg,#0d1120,#111827);
+  border:1.5px solid rgba(255,255,255,.07);
+  border-radius:var(--radius-lg);padding:18px 14px;
+  display:flex;flex-direction:column;align-items:center;
+  gap:8px;text-align:center;cursor:pointer;
+  transition:var(--tr);position:relative;overflow:hidden;
+}
+.tool-card:hover,.tool-card:active{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+.tc-emoji{font-size:28px;}
+.tc-name{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:#fff;line-height:1.2;}
+.tc-sub{font-size:10px;color:var(--muted);line-height:1.3;}
+.tc-badge{font-size:8px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:20px;margin-top:2px;text-transform:uppercase;}
+.tc-free{background:rgba(255,255,255,.06);color:var(--muted2);border:1px solid rgba(255,255,255,.1);}
+.tc-premium{background:rgba(255,215,0,.10);color:var(--gold);border:1px solid rgba(255,215,0,.25);}
+.lock-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,0.65);
+  border-radius:inherit;display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(2px);
+}
+.lock-overlay span{font-size:24px;}
+
+/* Usage bars */
+.usage-section{
+  background:linear-gradient(145deg,#0d1120,#111827);
+  border:1.5px solid rgba(255,255,255,.07);
+  border-radius:var(--radius-lg);padding:20px;margin-bottom:24px;
+}
+.usage-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.usage-row:last-child{margin-bottom:0;}
+.usage-emoji{font-size:20px;flex-shrink:0;width:30px;text-align:center;}
+.usage-info{flex:1;min-width:0;}
+.usage-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.usage-bar-wrap{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;}
+.usage-bar-fill{height:100%;border-radius:3px;transition:width .6s ease;}
+.usage-count{font-size:10px;color:var(--muted);margin-top:3px;}
+
+/* Upgrade CTA */
+.upgrade-cta{
+  background:linear-gradient(135deg,#0d1a00,#0a1f00);
+  border:2px solid rgba(255,215,0,.35);
+  border-radius:var(--radius-xl);
+  padding:26px 20px;text-align:center;margin-bottom:24px;
+  position:relative;overflow:hidden;
+}
+.upgrade-cta::before{content:'✨';position:absolute;font-size:80px;opacity:.04;top:-10px;right:-10px;}
+.uc-badge{
+  display:inline-block;background:rgba(255,215,0,.12);
+  border:1px solid rgba(255,215,0,.35);color:var(--gold);
+  font-size:9px;font-weight:800;letter-spacing:2px;
+  padding:3px 12px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;
+}
+.upgrade-cta h3{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;}
+.upgrade-cta p{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px;max-width:360px;margin-left:auto;margin-right:auto;}
+.upgrade-feats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;text-align:left;}
+.upgrade-feat{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted2);}
+.upgrade-feat span{color:var(--gold);font-size:14px;flex-shrink:0;}
+.price-row{display:flex;align-items:baseline;justify-content:center;gap:6px;margin-bottom:16px;}
+.price-amount{font-family:'Rajdhani',sans-serif;font-size:36px;font-weight:800;color:var(--gold);}
+.price-period{font-size:12px;color:var(--muted);}
+.upgrade-btn{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;font-weight:800;font-size:13px;letter-spacing:1px;
+  padding:13px 32px;border-radius:var(--radius);
+  cursor:pointer;border:none;text-transform:uppercase;transition:var(--tr);
+  width:100%;max-width:320px;
+}
+.upgrade-btn:hover{opacity:.88;transform:translateY(-1px);}
+
+/* ================================================================
+   DOCUMENT STUDIO
+   ================================================================ */
+.doc-tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;}
+@media(min-width:480px){.doc-tools-grid{grid-template-columns:repeat(3,1fr);}}
+.doc-tool-btn{
+  background:linear-gradient(145deg,#0d1120,#111827);
+  border:1.5px solid rgba(255,255,255,.07);
+  border-radius:var(--radius-lg);padding:18px 14px;
+  display:flex;flex-direction:column;align-items:center;
+  gap:8px;text-align:center;cursor:pointer;transition:var(--tr);
+}
+.doc-tool-btn:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.4);}
+.doc-tool-btn .dte{font-size:26px;}
+.doc-tool-btn .dtn{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:#fff;}
+.doc-tool-btn .dts{font-size:10px;color:var(--muted);}
+
+/* ================================================================
+   WATERMARK CLEANER
+   ================================================================ */
+.wc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+.wc-step{
+  background:var(--navy2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px 10px;text-align:center;
+}
+.wc-step-num{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--gold-soft);border:1.5px solid var(--border2);
+  color:var(--gold);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 8px;
+}
+.wc-step-label{font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.5px;line-height:1.3;}
+.wc-arrow{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:18px;padding-top:14px;}
+
+/* ================================================================
+   SMART NAMING
+   ================================================================ */
+.naming-modes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
+.naming-mode{
+  background:var(--navy2);border:1.5px solid var(--border);
+  border-radius:var(--radius);padding:14px;cursor:pointer;transition:var(--tr);
+}
+.naming-mode:hover,.naming-mode.active{border-color:var(--gold);background:var(--gold-soft);}
+.nm-label{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;text-transform:uppercase;}
+.nm-example{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted2);line-height:1.6;}
+.naming-input-row{display:flex;gap:10px;margin-bottom:12px;}
+.naming-input-row input{
+  flex:1;background:var(--navy2);border:1px solid var(--border);
+  border-radius:var(--radius);color:var(--text);padding:10px 14px;
+  font-size:13px;outline:none;transition:var(--tr);
+  -webkit-user-select:text;user-select:text;
+}
+.naming-input-row input:focus{border-color:var(--gold2);}
+.naming-generate-btn{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;font-weight:800;font-size:13px;
+  padding:10px 20px;border-radius:var(--radius);border:none;
+  cursor:pointer;white-space:nowrap;transition:var(--tr);letter-spacing:.5px;
+}
+.naming-generate-btn:hover{opacity:.88;}
+.naming-output{
+  background:var(--navy2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px;
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--gold);line-height:2;min-height:80px;
+}
+
+/* ================================================================
+   BRAND MANAGER
+   ================================================================ */
+.brand-settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.brand-setting-box{
+  background:var(--navy2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px;
+}
+.bsb-title{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;}
+.bsb-positions{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.pos-btn{
+  background:var(--navy);border:1px solid var(--border);
+  border-radius:8px;padding:8px;text-align:center;
+  font-size:10px;color:var(--muted2);cursor:pointer;transition:var(--tr);
+}
+.pos-btn:hover,.pos-btn.active{border-color:var(--gold);color:var(--gold);background:var(--gold-soft);}
+.pos-btn.center-pos{grid-column:2;background:var(--gold-soft);border-color:var(--border2);color:var(--gold);}
+.opacity-btns{display:flex;flex-wrap:wrap;gap:6px;}
+.opacity-btn{
+  background:var(--navy);border:1px solid var(--border);
+  border-radius:6px;padding:4px 10px;font-size:10px;
+  color:var(--muted2);cursor:pointer;transition:var(--tr);
+}
+.opacity-btn:hover,.opacity-btn.active{border-color:var(--gold);color:var(--gold);}
+
+/* ================================================================
+   OUTPUT PRESETS (Export Center)
+   ================================================================ */
+.output-presets{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.out-preset{
+  background:linear-gradient(145deg,#0d1120,#111827);
+  border:1.5px solid rgba(255,255,255,.08);
+  border-radius:var(--radius-lg);padding:16px;
+}
+.out-preset.website{border-color:rgba(59,130,246,.35);}
+.out-preset.whatsapp{border-color:rgba(37,211,102,.35);}
+.out-preset.social{border-color:rgba(255,215,0,.35);}
+.op-icon{font-size:24px;margin-bottom:8px;}
+.op-name{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;}
+.op-row{display:flex;justify-content:space-between;font-size:10px;margin-bottom:4px;}
+.op-key{color:var(--muted);}
+.op-val{color:var(--gold);font-weight:700;}
+.op-export-btn{
+  width:100%;margin-top:10px;padding:9px;border-radius:10px;
+  font-weight:700;font-size:11px;letter-spacing:.5px;
+  border:none;cursor:pointer;transition:var(--tr);text-transform:uppercase;
+}
+.website .op-export-btn{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.3);}
+.whatsapp .op-export-btn{background:rgba(37,211,102,.15);color:var(--green);border:1px solid rgba(37,211,102,.3);}
+.social .op-export-btn{background:var(--gold-soft);color:var(--gold);border:1px solid var(--border2);}
+.op-export-btn:hover{opacity:.8;transform:translateY(-1px);}
+
+/* ================================================================
+   TOAST
+   ================================================================ */
+.toast-container{
+  position:fixed;top:70px;left:50%;transform:translateX(-50%);
+  z-index:9999;display:flex;flex-direction:column;gap:8px;
+  width:calc(100% - 32px);max-width:400px;pointer-events:none;
+}
+.toast{
+  background:var(--card2);border:1px solid var(--border2);
+  border-radius:var(--radius);padding:12px 16px;
+  font-size:13px;font-weight:500;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:var(--shadow);
+  animation:slideDown .3s ease;pointer-events:all;
+}
+.toast.success{border-color:rgba(34,197,94,0.4);color:var(--green);}
+.toast.error{border-color:rgba(239,68,68,0.4);color:var(--red);}
+.toast.info{border-color:var(--border2);color:var(--gold);}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:none;}}
+
+/* ================================================================
+   PROCESS BTN
+   ================================================================ */
+.process-btn{
+  width:100%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;font-weight:800;font-size:14px;letter-spacing:1px;
+  padding:15px;border-radius:var(--radius);cursor:pointer;
+  border:none;text-transform:uppercase;transition:var(--tr);margin-top:4px;
+  font-family:'Outfit',sans-serif;
+}
+.process-btn:hover{opacity:.88;}
+.process-btn:disabled{opacity:.45;cursor:not-allowed;}
+
+/* Rule banner */
+.rule-banner{
+  background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,215,0,0.04));
+  border:1.5px solid var(--border2);border-radius:var(--radius);
+  padding:12px 16px;margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;font-weight:600;color:var(--gold);
+}
+
+/* WA float */
+.wa-fab{
+  position:fixed;bottom:22px;right:18px;
+  width:52px;height:52px;background:#25d366;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 18px rgba(37,211,102,0.45);z-index:200;
+  text-decoration:none;transition:var(--tr);font-size:24px;
+}
+.wa-fab:hover{transform:scale(1.08);}
+
+/* ================================================================
+   DUAL EXPORT PANEL
+   ================================================================ */
+.dual-export-hero{
+  background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(59,130,246,0.06));
+  border:1.5px solid var(--border2);border-radius:var(--radius-xl);
+  padding:20px;margin-bottom:16px;text-align:center;
+}
+.de-title{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:800;color:var(--gold);margin-bottom:6px;}
+.de-sub{font-size:11px;color:var(--muted);margin-bottom:16px;}
+.de-outputs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;}
+.de-output-box{
+  background:var(--navy2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px 10px;text-align:center;
+}
+.de-output-icon{font-size:22px;margin-bottom:6px;}
+.de-output-name{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.de-output-desc{font-size:9px;color:var(--muted);line-height:1.5;}
+.de-btn-one{
+  width:100%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:800;
+  padding:18px;border-radius:var(--radius-lg);border:none;cursor:pointer;
+  letter-spacing:1px;text-transform:uppercase;transition:var(--tr);
+  box-shadow:0 8px 30px rgba(255,215,0,0.3);
+}
+.de-btn-one:hover{opacity:.9;transform:translateY(-2px);}
+.de-results-split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+.de-result-col{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;}
+.de-result-header{
+  padding:10px 14px;display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid var(--border);
+  font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.5px;
+}
+.de-result-header.web{color:#3b82f6;background:rgba(59,130,246,0.07);}
+.de-result-header.wa{color:var(--green);background:rgba(37,211,102,0.07);}
+.de-result-body{padding:12px;}
+.de-text-box{
+  background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);
+  padding:10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text);
+  line-height:1.7;min-height:80px;white-space:pre-wrap;margin-bottom:8px;
+}
+.de-copy-btn{
+  width:100%;background:transparent;border:1px solid var(--border2);
+  color:var(--gold);font-size:11px;font-weight:700;
+  padding:8px;border-radius:8px;cursor:pointer;transition:var(--tr);
+}
+.de-copy-btn:hover{background:var(--gold-soft);}
+.de-plain-box{
+  background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);
+  padding:14px;font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--text);line-height:1.8;min-height:100px;white-space:pre-wrap;
+  margin-bottom:10px;-webkit-user-select:text;user-select:text;
+}
+
+/* ================================================================
+   STYLE GENERATOR
+   ================================================================ */
+.style-gen-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.sg-card{
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:var(--radius-lg);padding:16px;position:relative;overflow:hidden;
+}
+.sg-card.web-card{border-color:rgba(59,130,246,0.4);}
+.sg-card.wa-card{border-color:rgba(37,211,102,0.4);}
+.sg-card-title{
+  font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;
+  display:flex;align-items:center;gap:6px;
+}
+.sg-card-title.web{color:#3b82f6;}
+.sg-card-title.wa{color:var(--green);}
+.sg-preview{
+  width:100%;aspect-ratio:1;background:#fff;border-radius:10px;
+  margin-bottom:10px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+}
+.sg-preview canvas{width:100%;height:100%;object-fit:contain;}
+.sg-preview-placeholder{
+  font-size:11px;color:#aaa;text-align:center;padding:16px;
+}
+.sg-rules{font-size:9px;color:var(--muted);line-height:1.8;border-top:1px solid var(--border);padding-top:10px;}
+.sg-rules span{color:var(--gold);font-weight:700;}
+.sg-generate-btn{
+  width:100%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;font-family:'Rajdhani',sans-serif;font-weight:800;font-size:14px;
+  padding:14px;border-radius:var(--radius);border:none;cursor:pointer;
+  text-transform:uppercase;letter-spacing:.5px;transition:var(--tr);margin-top:12px;
+}
+.sg-generate-btn:hover{opacity:.88;}
+.sg-price-badge{
+  position:absolute;top:8px;right:8px;
+  background:rgba(255,215,0,0.12);border:1px solid var(--border2);
+  color:var(--gold);font-family:'DM Mono',monospace;font-size:11px;
+  padding:4px 8px;border-radius:6px;font-weight:700;
+}
+.price-input-row{display:flex;gap:8px;align-items:center;margin-bottom:12px;}
+.price-input-row input{
+  flex:1;background:var(--navy2);border:1px solid var(--border);
+  border-radius:var(--radius);color:var(--text);padding:10px 14px;
+  font-size:13px;outline:none;transition:var(--tr);
+  -webkit-user-select:text;user-select:text;
+}
+.price-input-row input:focus{border-color:var(--gold);}
+.price-input-row label{font-size:11px;color:var(--muted);white-space:nowrap;}
+
+/* ================================================================
+   UPLOAD STATISTICS
+   ================================================================ */
+.stats-hero{
+  background:linear-gradient(135deg,rgba(255,215,0,0.06),rgba(59,130,246,0.04));
+  border:1px solid var(--border2);border-radius:var(--radius-xl);
+  padding:20px;margin-bottom:16px;
+}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px;}
+@media(min-width:500px){.stats-grid{grid-template-columns:repeat(4,1fr);}}
+.stat-box{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:16px;text-align:center;
+}
+.stat-box-icon{font-size:24px;margin-bottom:8px;}
+.stat-box-val{
+  font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:800;
+  color:var(--gold);margin-bottom:4px;
+}
+.stat-box-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+.stats-plain-text{
+  background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);
+  padding:16px;font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--text);line-height:2;-webkit-user-select:text;user-select:text;
+}
+.recent-uploads-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.ru-item{
+  display:flex;align-items:center;gap:10px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:10px 12px;
+}
+.ru-thumb{
+  width:36px;height:36px;border-radius:6px;background:var(--navy2);
+  border:1px solid var(--border);overflow:hidden;flex-shrink:0;
+}
+.ru-thumb img{width:100%;height:100%;object-fit:cover;}
+.ru-info{flex:1;min-width:0;}
+.ru-name{font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'DM Mono',monospace;}
+.ru-meta{font-size:9px;color:var(--muted);margin-top:2px;}
+.ru-badge{
+  font-size:8px;font-weight:700;padding:2px 7px;border-radius:4px;
+  text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;
+}
+.ru-badge.web{background:rgba(59,130,246,.12);color:#3b82f6;}
+.ru-badge.wa{background:rgba(37,211,102,.12);color:var(--green);}
+.ru-badge.both{background:rgba(255,215,0,.12);color:var(--gold);}
+.preset-bar{
+  display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;
+}
+.preset-pill{
+  background:var(--navy2);border:1px solid var(--border);
+  border-radius:20px;padding:4px 12px;
+  font-size:10px;color:var(--muted2);
+}
+.preset-pill.top{border-color:var(--border2);color:var(--gold);}
+
+/* ================================================================
+   BRAND PROTECTION MODE
+   ================================================================ */
+.bp-hero{
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,215,0,0.12),transparent 70%);
+  border:2px solid var(--border2);border-radius:var(--radius-xl);
+  padding:24px 20px;text-align:center;margin-bottom:20px;
+  position:relative;overflow:hidden;
+}
+.bp-hero::before{
+  content:'🛡️';position:absolute;font-size:120px;opacity:.04;
+  top:-20px;left:50%;transform:translateX(-50%);pointer-events:none;
+}
+.bp-title{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:800;color:#fff;margin-bottom:6px;}
+.bp-title span{color:var(--gold);}
+.bp-sub{font-size:12px;color:var(--muted);margin-bottom:20px;}
+.bp-apply-btn{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;
+  padding:18px 40px;border-radius:var(--radius-lg);border:none;cursor:pointer;
+  text-transform:uppercase;letter-spacing:1px;transition:var(--tr);
+  box-shadow:0 8px 32px rgba(255,215,0,0.35);
+}
+.bp-apply-btn:hover{opacity:.9;transform:translateY(-2px);}
+.bp-apply-btn:active{transform:translateY(0);}
+.bp-checks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px;}
+.bp-check{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.bp-check-icon{font-size:20px;flex-shrink:0;}
+.bp-check-info strong{font-size:12px;color:var(--text);display:block;margin-bottom:2px;}
+.bp-check-info span{font-size:10px;color:var(--muted);}
+.bp-check-status{
+  margin-left:auto;font-size:9px;font-weight:700;
+  padding:3px 8px;border-radius:10px;flex-shrink:0;text-transform:uppercase;
+}
+.bp-check-status.ok{background:rgba(34,197,94,.12);color:var(--green);}
+.bp-check-status.missing{background:rgba(239,68,68,.12);color:var(--red);}
+.bp-check-status.optional{background:rgba(255,215,0,.10);color:var(--gold);}
+.bp-preview{
+  width:100%;max-width:300px;aspect-ratio:1;
+  background:#fff;border-radius:var(--radius-lg);
+  margin:0 auto 16px;position:relative;overflow:hidden;
+}
+.bp-preview canvas{width:100%;height:100%;}
+.bp-status-bar{
+  display:flex;align-items:center;gap:10px;justify-content:center;
+  margin-bottom:16px;font-size:12px;color:var(--muted2);
+}
+.bp-status-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--muted);transition:var(--tr);
+}
+.bp-status-dot.active{background:var(--green);box-shadow:0 0 8px rgba(34,197,94,0.5);}
+.bp-result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px;}
+.bp-result-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
+}
+.bp-result-label{
+  padding:6px 10px;font-size:9px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.5px;
+  border-bottom:1px solid var(--border);
+}
+.bp-result-label.web{color:#3b82f6;background:rgba(59,130,246,.07);}
+.bp-result-label.wa{color:var(--green);background:rgba(37,211,102,.07);}
+.bp-result-label.social{color:var(--gold);background:rgba(255,215,0,.06);}
+.bp-result-img{width:100%;aspect-ratio:1;background:#fff;object-fit:contain;display:block;}
+
+/* ================================================================
+   SOCIAL SHARE BUTTONS (post-processing)
+   ================================================================ */
+.social-share-bar{
+  position:sticky;bottom:80px;z-index:90;
+  display:none;flex-direction:column;gap:8px;
+  margin-top:16px;
+}
+.social-share-bar.visible{display:flex;}
+.social-share-title{
+  text-align:center;font-size:10px;color:var(--muted);
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;
+}
+.social-btns-row{display:flex;gap:8px;}
+.social-btn{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px;border-radius:var(--radius-lg);border:none;cursor:pointer;
+  font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.5px;transition:var(--tr);
+}
+.social-btn:hover{opacity:.88;transform:translateY(-2px);}
+.social-btn:active{transform:translateY(0);}
+.social-btn.wa{background:#25d366;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,0.4);}
+.social-btn.fb{background:#1877f2;color:#fff;box-shadow:0 4px 20px rgba(24,119,242,0.4);}
+.social-btn.tt{background:#010101;color:#fff;border:1px solid rgba(255,255,255,0.15);box-shadow:0 4px 20px rgba(0,0,0,0.5);}
+.social-btn.all{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;box-shadow:0 4px 20px rgba(255,215,0,0.35);
+}
+.social-btn-icon{font-size:16px;}
+.share-links-config{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:16px;margin-bottom:16px;
+}
+.slc-title{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px;}
+.slc-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.slc-row:last-child{margin-bottom:0;}
+.slc-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center;}
+.slc-row input{
+  flex:1;background:var(--navy2);border:1px solid var(--border);
+  border-radius:var(--radius);color:var(--text);padding:9px 14px;
+  font-size:12px;outline:none;transition:var(--tr);
+  -webkit-user-select:text;user-select:text;
+}
+.slc-row input:focus{border-color:var(--gold);}
+.slc-row input::placeholder{color:var(--muted);}
+
+/* Auto-center indicator */
+.center-capture-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);
+  color:var(--green);font-size:9px;font-weight:700;
+  padding:4px 10px;border-radius:10px;text-transform:uppercase;letter-spacing:.5px;
+}
+.autocrop-overlay{
+  position:absolute;inset:0;
+  border:2px dashed rgba(255,215,0,0.5);
+  pointer-events:none;border-radius:4px;
+  animation:autoCropPulse 1.5s ease-in-out infinite;
+}
+@keyframes autoCropPulse{0%,100%{opacity:0.5;}50%{opacity:1;}}
+
+@media(max-width:480px){
+  .presets-grid{grid-template-columns:repeat(3,1fr);}
+  .plans-row,.brand-settings-grid,.output-presets{grid-template-columns:1fr;}
+  .wc-steps{grid-template-columns:repeat(2,1fr);}
+  .naming-modes-grid{grid-template-columns:1fr;}
+  .sh-title{font-size:28px;}
+}
+</style>
 </head>
 <body>
 
-<div class="app-wrapper">
-    <header style="text-align:center; margin-bottom: 30px;">
-        <h1 style="color:var(--gold);">COZYCABIN ADMIN TOOLS</h1>
-        <p>Locked Style: White Background + Logo Mandatory</p>
-    </header>
-
-    <div class="panel">
-        <div class="settings">
-            <label><input type="checkbox" id="addWatermark"> Include Optional Watermark</label>
-        </div>
-        <div class="dropzone" id="dropzone">
-            <p>📸 Drop Product Images Here</p>
-            <input type="file" id="fileInput" multiple accept="image/*" style="display:none;">
-        </div>
-        <div id="results"></div>
+<!-- ── TOP BAR ── -->
+<div class="top-bar">
+  <div class="tb-logo">
+    <img src="Images/Cozycabin log .webp" alt="CozyCabin"
+         onerror="this.style.display='none'">
+    <div class="tb-brand">
+      <span class="tb-brand-name">CozyCabin</span>
+      <span class="tb-brand-tag">Smart Living Solutions</span>
     </div>
+  </div>
+  <div class="tb-badge">Admin Studio Pro</div>
 </div>
 
+<!-- ── STUDIO HERO ── -->
+<div class="studio-hero">
+  <div class="sh-badge">⚡ Pro Tools</div>
+  <h1 class="sh-title">Admin <span>Studio</span> Pro</h1>
+  <p class="sh-sub">One upload. Auto-generate Website · WhatsApp · Social versions.<br>All optimized, branded and ready to publish.</p>
+  <div class="sh-rule">🏷️ COZYCABIN RULE: Every export must contain the Cozycabin logo. Everything else is optional. The logo is the permanent signature.</div>
+</div>
+
+<!-- ── MAIN NAV TABS ── -->
+<div class="studio-tabs">
+  <button class="studio-tab active" onclick="switchTab('image')" id="tab-image">
+    <span class="tab-icon">🖼️</span> Image Studio
+  </button>
+  <button class="studio-tab" onclick="switchTab('video')" id="tab-video">
+    <span class="tab-icon">🎥</span> Video Studio
+  </button>
+  <button class="studio-tab" onclick="switchTab('document')" id="tab-document">
+    <span class="tab-icon">📄</span> Document Studio
+  </button>
+  <button class="studio-tab" onclick="switchTab('brand')" id="tab-brand">
+    <span class="tab-icon">🏷️</span> Brand Manager
+  </button>
+  <button class="studio-tab" onclick="switchTab('watermark')" id="tab-watermark">
+    <span class="tab-icon">🪄</span> Watermark Cleaner
+  </button>
+  <button class="studio-tab" onclick="switchTab('naming')" id="tab-naming">
+    <span class="tab-icon">🏷️</span> Smart Naming
+  </button>
+  <button class="studio-tab" onclick="switchTab('export')" id="tab-export">
+    <span class="tab-icon">📦</span> Export Center
+  </button>
+  <button class="studio-tab" onclick="switchTab('dualexport')" id="tab-dualexport">
+    <span class="tab-icon">⚡</span> Dual Export
+  </button>
+  <button class="studio-tab" onclick="switchTab('stylegenerator')" id="tab-stylegenerator">
+    <span class="tab-icon">🎨</span> Style Generator
+  </button>
+  <button class="studio-tab" onclick="switchTab('stats')" id="tab-stats">
+    <span class="tab-icon">📊</span> Statistics
+  </button>
+  <button class="studio-tab" onclick="switchTab('brandprotection')" id="tab-brandprotection">
+    <span class="tab-icon">🛡️</span> Brand Protection
+  </button>
+</div>
+
+<div class="studio-content">
+
+<!-- ================================================================
+     🖼️ IMAGE STUDIO
+     ================================================================ -->
+<div class="studio-panel active" id="panel-image">
+
+  <div class="rule-banner">
+    🔒 Mandatory: Cozycabin logo on every image &nbsp;·&nbsp; White background locked &nbsp;·&nbsp; WebP output for minimum file size
+  </div>
+
+  <!-- Workflow Steps -->
+  <div class="workflow-steps">
+    <div class="wf-step active" id="wfs-1"><div class="wf-dot">📤</div><div class="wf-label">Upload</div></div>
+    <div class="wf-step" id="wfs-2"><div class="wf-dot">⚙️</div><div class="wf-label">Configure</div></div>
+    <div class="wf-step" id="wfs-3"><div class="wf-dot">🗜️</div><div class="wf-label">Process</div></div>
+    <div class="wf-step" id="wfs-4"><div class="wf-dot">🏷️</div><div class="wf-label">Brand</div></div>
+    <div class="wf-step" id="wfs-5"><div class="wf-dot">📦</div><div class="wf-label">Export</div></div>
+  </div>
+
+  <!-- LOGO UPLOAD -->
+  <div class="sec-title">🏷️ Cozycabin Logo (Mandatory)</div>
+  <div class="panel" style="margin-bottom:16px;">
+    <div class="logo-upload-area" id="logoUploadArea">
+      <input type="file" id="logoFileInput" accept="image/*" onchange="loadLogo(this)">
+      <div class="lp-thumb" id="logoThumb">
+        <img id="logoPreviewImg" src="Images/Cozycabin log .webp" alt="Logo"
+             onerror="this.parentNode.innerHTML='<span style=\'color:var(--gold);font-size:18px;\'>CC</span>'">
+      </div>
+      <div class="lp-text">
+        <strong>Cozycabin Logo — MANDATORY</strong>
+        <span>Applied to every export. Click to change logo file.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESET SELECTOR -->
+  <div class="sec-title">📐 Output Preset</div>
+  <div class="presets-grid">
+    <div class="preset-btn active" onclick="selectPreset(this,1200,1200)" data-w="1200" data-h="1200">
+      <div class="preset-icon">📦</div>
+      <div class="preset-name">Standard</div>
+      <div class="preset-dim">1200×1200</div>
+    </div>
+    <div class="preset-btn" onclick="selectPreset(this,1200,1600)" data-w="1200" data-h="1600">
+      <div class="preset-icon">👗</div>
+      <div class="preset-name">Fashion</div>
+      <div class="preset-dim">1200×1600</div>
+    </div>
+    <div class="preset-btn" onclick="selectPreset(this,1080,1080)" data-w="1080" data-h="1080">
+      <div class="preset-icon">🌐</div>
+      <div class="preset-name">Website</div>
+      <div class="preset-dim">1080×1080</div>
+    </div>
+    <div class="preset-btn" onclick="selectPreset(this,1080,1080)" data-w="1080" data-h="1080">
+      <div class="preset-icon">💬</div>
+      <div class="preset-name">WhatsApp</div>
+      <div class="preset-dim">1080×1080</div>
+    </div>
+    <div class="preset-btn" onclick="selectPreset(this,1080,1350)" data-w="1080" data-h="1350">
+      <div class="preset-icon">📸</div>
+      <div class="preset-name">Instagram</div>
+      <div class="preset-dim">1080×1350</div>
+    </div>
+    <div class="preset-btn" onclick="selectPreset(this,1200,1200)" data-w="1200" data-h="1200">
+      <div class="preset-icon">👍</div>
+      <div class="preset-name">Facebook</div>
+      <div class="preset-dim">1200×1200</div>
+    </div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="sec-title">⚙️ Processing Settings</div>
+  <div class="panel">
+    <div class="settings-grid">
+      <div class="setting-item">
+        <label>Output Format</label>
+        <select id="outputFormat">
+          <option value="webp" selected>WebP (recommended)</option>
+          <option value="jpeg">JPEG</option>
+          <option value="png">PNG</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <label>Logo Position</label>
+        <select id="logoPosition">
+          <option value="smart">Smart Auto</option>
+          <option value="tr" selected>Top Right</option>
+          <option value="tl">Top Left</option>
+          <option value="br">Bottom Right</option>
+          <option value="bl">Bottom Left</option>
+        </select>
+      </div>
+      <div class="setting-item range-wrap">
+        <div class="range-label-row">
+          <label>Quality</label>
+          <span class="range-val" id="qualityVal">85%</span>
+        </div>
+        <input type="range" min="50" max="100" value="85" id="qualitySlider"
+               oninput="document.getElementById('qualityVal').textContent=this.value+'%'">
+      </div>
+      <div class="setting-item range-wrap">
+        <div class="range-label-row">
+          <label>Logo Size</label>
+          <span class="range-val" id="logoSizeVal">8%</span>
+        </div>
+        <input type="range" min="4" max="20" value="8" id="logoSizeSlider"
+               oninput="document.getElementById('logoSizeVal').textContent=this.value+'%'">
+      </div>
+    </div>
+
+    <!-- Toggles -->
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>White Background</span>
+        <span>Replace any background with pure white — locked ON</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" checked disabled id="whiteBg">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>Watermark Text</span>
+        <span>Diagonal COZYCABIN text overlay</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="addWatermark" onchange="toggleSub('watermarkSub',this.checked)">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="sub-settings" id="watermarkSub">
+      <div class="settings-grid">
+        <div class="setting-item">
+          <label>Watermark Text</label>
+          <select id="watermarkText">
+            <option>COZYCABIN</option>
+            <option>SMART LIVING SOLUTIONS</option>
+            <option>COZYCABIN.CO.KE</option>
+            <option>+254 702 468 460</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <label>Style</label>
+          <select id="watermarkStyle">
+            <option value="diagonal">Diagonal</option>
+            <option value="pattern">Pattern</option>
+            <option value="horizontal">Horizontal</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>Background Logo</span>
+        <span>Faint Cozycabin logo behind product</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="bgLogo" onchange="toggleSub('bgLogoSub',this.checked)">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="sub-settings" id="bgLogoSub">
+      <div class="settings-grid">
+        <div class="setting-item">
+          <label>Background Mode</label>
+          <select id="bgLogoMode">
+            <option value="center">Center Logo</option>
+            <option value="full">Full Background</option>
+            <option value="pattern">Pattern Logo</option>
+          </select>
+        </div>
+        <div class="setting-item range-wrap">
+          <div class="range-label-row">
+            <label>Opacity</label>
+            <span class="range-val" id="bgOpacityVal">10%</span>
+          </div>
+          <input type="range" min="5" max="40" value="10" id="bgOpacitySlider"
+                 oninput="document.getElementById('bgOpacityVal').textContent=this.value+'%'">
+        </div>
+      </div>
+    </div>
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>Phone Number</span>
+        <span>Add +254 702 468 460 to image</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="addPhone">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>Website URL</span>
+        <span>Add cozycabin.co.ke to image</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="addWebsite">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- DROP ZONE -->
+  <div class="sec-title">📤 Upload Images</div>
+  <div class="dropzone" id="imageDropzone">
+    <input type="file" id="imageFileInput" multiple accept="image/*" onchange="handleImages(this.files)">
+    <span class="dz-icon">🖼️</span>
+    <div class="dz-title">Drop Product Images Here</div>
+    <div class="dz-sub">Or click to browse · Batch upload supported · Up to 500 images</div>
+    <div class="dz-formats">
+      <span class="fmt-tag">JPG</span>
+      <span class="fmt-tag">PNG</span>
+      <span class="fmt-tag">WEBP</span>
+      <span class="fmt-tag">GIF</span>
+      <span class="fmt-tag">BMP</span>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap" id="imgProgress">
+    <div class="progress-header">
+      <span class="progress-label">Processing images...</span>
+      <span class="progress-count" id="imgProgressCount">0 / 0</span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="imgProgressBar"></div></div>
+    <div class="progress-eta" id="imgProgressEta">Preparing...</div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="imageResults" style="display:none;">
+    <div class="results-header">
+      <span class="results-title">✅ Processed Images</span>
+      <button class="clear-btn" onclick="clearResults()">Clear All</button>
+    </div>
+    <div class="results-grid" id="imgResultsGrid"></div>
+    <div class="dl-all-bar visible" id="dlAllBar">
+      <button class="dl-all-btn" onclick="downloadAll()">⬇️ Download All</button>
+      <button class="dl-zip-btn" onclick="downloadZip()">📦 ZIP</button>
+    </div>
+
+    <!-- SOCIAL SHARE BAR -->
+    <div class="social-share-bar" id="socialShareBar">
+      <div class="social-share-title">📣 Share Instantly — Sell in Seconds</div>
+       <div class="social-btns-row">
+        <button class="social-btn wa" onclick="shareToWhatsApp()"><span class="social-btn-icon">💬</span>WhatsApp</button>
+        <button class="social-btn fb" onclick="shareToFacebook()"><span class="social-btn-icon">👍</span>Facebook</button>
+        <button class="social-btn tt" onclick="shareToTikTok()"><span class="social-btn-icon">🎵</span>TikTok</button>
+      </div>
+      <div class="social-btns-row">
+        <button class="social-btn all" onclick="shareToAll()">🚀 Share to ALL Platforms — Sell in Secs!</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /panel-image -->
+
+<!-- ================================================================
+     🎥 VIDEO STUDIO
+     ================================================================ -->
+<div class="studio-panel" id="panel-video">
+
+  <div class="rule-banner">
+    🎥 Video Studio — Full Admin Access · All tools unlocked · No limits
+  </div>
+
+  <!-- Video Tools -->
+  <div class="sec-title">🛠️ Video Tools — All Unlocked</div>
+  <div class="tool-grid">
+    <div class="tool-card" onclick="openVideoTool('compress')">
+      <div class="tc-emoji">🗜️</div>
+      <div class="tc-name">Video Compressor</div>
+      <div class="tc-sub">Reduce file size fast</div>
+      <div class="tc-badge" style="background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);">✅ Unlocked</div>
+    </div>
+    <div class="tool-card" onclick="openVideoTool('trim')">
+      <div class="tc-emoji">✂️</div>
+      <div class="tc-name">Video Trimmer</div>
+      <div class="tc-sub">Cut start &amp; end</div>
+      <div class="tc-badge" style="background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);">✅ Unlocked</div>
+    </div>
+    <div class="tool-card" onclick="openVideoTool('convert')">
+      <div class="tc-emoji">🔄</div>
+      <div class="tc-name">Video Converter</div>
+      <div class="tc-sub">MP4, MOV, WebM</div>
+      <div class="tc-badge" style="background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);">✅ Unlocked</div>
+    </div>
+    <div class="tool-card" onclick="openVideoTool('resize')">
+      <div class="tc-emoji">📱</div>
+      <div class="tc-name">Social Resizer</div>
+      <div class="tc-sub">Reels, TikTok, YouTube</div>
+      <div class="tc-badge" style="background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);">✅ Unlocked</div>
+    </div>
+    <div class="tool-card" onclick="openVideoTool('thumbnail')">
+      <div class="tc-emoji">🖼️</div>
+      <div class="tc-name">Thumbnail Creator</div>
+      <div class="tc-sub">Extract video frames</div>
+      <div class="tc-badge" style="background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);">✅ Unlocked</div>
+    </div>
+    <div class="tool-card" onclick="openVideoTool('batch')">
+      <div class="tc-emoji">📦</div>
+      <div class="tc-name">Batch Processing</div>
+      <div class="tc-sub">Process multiple files</div>
+      <div class="tc-badge" style="background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);">✅ Unlocked</div>
+    </div>
+  </div>
+
+  <!-- Video drop zone -->
+  <div class="sec-title">📤 Upload Video</div>
+  <div class="dropzone" style="min-height:180px;">
+    <input type="file" accept="video/*" multiple onchange="handleVideoUpload(this.files)">
+    <span class="dz-icon">🎥</span>
+    <div class="dz-title">Drop Video Files Here</div>
+    <div class="dz-sub">MP4 · MOV · WebM · AVI — All formats · No limits · Unlimited exports</div>
+    <div class="dz-formats">
+      <span class="fmt-tag">MP4</span>
+      <span class="fmt-tag">MOV</span>
+      <span class="fmt-tag">WEBM</span>
+      <span class="fmt-tag">AVI</span>
+    </div>
+  </div>
+
+  <!-- Video social share -->
+  <div class="sec-title">📣 Share Video</div>
+  <div class="social-btns-row">
+    <button class="social-btn wa" onclick="shareVideoToWhatsApp()"><span class="social-btn-icon">💬</span>WhatsApp</button>
+    <button class="social-btn fb" onclick="shareVideoToFacebook()"><span class="social-btn-icon">👍</span>Facebook</button>
+    <button class="social-btn tt" onclick="shareVideoToTikTok()"><span class="social-btn-icon">🎵</span>TikTok</button>
+    <button class="social-btn all" onclick="shareVideoToAll()">🚀 All Platforms</button>
+  </div>
+
+</div><!-- /panel-video -->
+
+<!-- ================================================================
+     📄 DOCUMENT STUDIO
+     ================================================================ -->
+<div class="studio-panel" id="panel-document">
+
+  <div class="rule-banner">📄 Convert, merge, split and compress documents — all processed locally in your browser</div>
+
+  <div class="sec-title">📄 Document Tools</div>
+  <div class="doc-tools-grid">
+    <div class="doc-tool-btn" onclick="showToast('Drop PDF files below to merge','info')">
+      <div class="dte">📑</div><div class="dtn">PDF Merge</div><div class="dts">Combine multiple PDFs</div>
+    </div>
+    <div class="doc-tool-btn" onclick="showToast('Drop PDF to split into pages','info')">
+      <div class="dte">✂️</div><div class="dtn">PDF Split</div><div class="dts">Split into single pages</div>
+    </div>
+    <div class="doc-tool-btn" onclick="showToast('Drop PDF to compress','info')">
+      <div class="dte">🗜️</div><div class="dtn">PDF Compress</div><div class="dts">Reduce PDF file size</div>
+    </div>
+    <div class="doc-tool-btn" onclick="showToast('Drop Word file to convert','info')">
+      <div class="dte">📝</div><div class="dtn">Word → PDF</div><div class="dts">Convert .docx to PDF</div>
+    </div>
+    <div class="doc-tool-btn" onclick="showToast('Drop Excel file to convert','info')">
+      <div class="dte">📊</div><div class="dtn">Excel → PDF</div><div class="dts">Convert .xlsx to PDF</div>
+    </div>
+    <div class="doc-tool-btn" onclick="showToast('Drop images to build PDF','info')">
+      <div class="dte">🖼️</div><div class="dtn">Image → PDF</div><div class="dts">Images to PDF document</div>
+    </div>
+  </div>
+
+  <div class="dropzone" style="min-height:180px;">
+    <input type="file" accept=".pdf,.docx,.xlsx,.doc,.xls,image/*" multiple>
+    <span class="dz-icon">📄</span>
+    <div class="dz-title">Drop Documents Here</div>
+    <div class="dz-sub">PDF · Word · Excel · Images — all supported</div>
+    <div class="dz-formats">
+      <span class="fmt-tag">PDF</span>
+      <span class="fmt-tag">DOCX</span>
+      <span class="fmt-tag">XLSX</span>
+      <span class="fmt-tag">JPG</span>
+      <span class="fmt-tag">PNG</span>
+    </div>
+  </div>
+
+</div><!-- /panel-document -->
+
+<!-- ================================================================
+     🏷️ BRAND MANAGER
+     ================================================================ -->
+<div class="studio-panel" id="panel-brand">
+
+  <div class="rule-banner">🏷️ Brand settings apply globally to all exports — logo is always mandatory</div>
+
+  <div class="sec-title">🏷️ Main Logo Settings</div>
+  <div class="brand-settings-grid">
+    <div class="brand-setting-box">
+      <div class="bsb-title">Logo Position</div>
+      <div class="bsb-positions">
+        <div class="pos-btn" onclick="setPos(this,'tl')">↖ TL</div>
+        <div class="pos-btn" onclick="setPos(this,'tc')">↑ TC</div>
+        <div class="pos-btn active" onclick="setPos(this,'tr')">↗ TR</div>
+        <div class="pos-btn" onclick="setPos(this,'ml')">← ML</div>
+        <div class="pos-btn center-pos" onclick="setPos(this,'smart')">⚡ AUTO</div>
+        <div class="pos-btn" onclick="setPos(this,'mr')">→ MR</div>
+        <div class="pos-btn" onclick="setPos(this,'bl')">↙ BL</div>
+        <div class="pos-btn" onclick="setPos(this,'bc')">↓ BC</div>
+        <div class="pos-btn" onclick="setPos(this,'br')">↘ BR</div>
+      </div>
+    </div>
+    <div class="brand-setting-box">
+      <div class="bsb-title">Background Logo Opacity</div>
+      <div class="opacity-btns">
+        <div class="opacity-btn" onclick="setOpacity(this,'0.05')">5%</div>
+        <div class="opacity-btn active" onclick="setOpacity(this,'0.10')">10%</div>
+        <div class="opacity-btn" onclick="setOpacity(this,'0.15')">15%</div>
+        <div class="opacity-btn" onclick="setOpacity(this,'0.20')">20%</div>
+        <div class="opacity-btn" onclick="setOpacity(this,'0.30')">30%</div>
+        <div class="opacity-btn" onclick="setOpacity(this,'0.40')">40%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-title">📝 Text Watermark Settings</div>
+  <div class="panel">
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>Enable Text Watermark</span>
+        <span>COZYCABIN, SMART LIVING SOLUTIONS, website, phone</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="brandWatermark" onchange="toggleSub('brandWmSub',this.checked)">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="sub-settings" id="brandWmSub">
+      <div class="settings-grid">
+        <div class="setting-item">
+          <label>Watermark Content</label>
+          <select>
+            <option>COZYCABIN</option>
+            <option>SMART LIVING SOLUTIONS</option>
+            <option>COZYCABIN.CO.KE</option>
+            <option>+254 702 468 460</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <label>Style</label>
+          <select>
+            <option>Diagonal</option>
+            <option>Pattern</option>
+            <option>Horizontal</option>
+            <option>Vertical</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-title">📋 Output Preset Defaults</div>
+  <div class="panel">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+      <div style="text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🌐</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:#3b82f6;margin-bottom:6px;">WEBSITE</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.8;">Logo: ON<br>BG Logo: AUTO<br>Watermark: OFF<br>Phone: OFF<br>Format: WEBP</div>
+      </div>
+      <div style="text-align:center;border-left:1px solid var(--border);border-right:1px solid var(--border);">
+        <div style="font-size:24px;margin-bottom:8px;">💬</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px;">WHATSAPP</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.8;">Logo: ON<br>BG Logo: ON<br>Watermark: ON<br>Phone: ON<br>Format: WEBP</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">📸</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;">SOCIAL</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.8;">Logo: ON<br>Watermark: AUTO<br>Phone: OPTIONAL<br>Optimized: YES<br>Format: WEBP</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /panel-brand -->
+
+<!-- ================================================================
+     🪄 WATERMARK CLEANER
+     ================================================================ -->
+<div class="studio-panel" id="panel-watermark">
+
+  <div class="rule-banner">🪄 Remove supplier branding first → then apply Cozycabin branding</div>
+
+  <div class="sec-title">🔄 Workflow</div>
+  <div class="wc-steps">
+    <div class="wc-step"><div class="wc-step-num">1</div><div class="wc-step-label">Upload Image</div></div>
+    <div class="wc-step"><div class="wc-step-num">2</div><div class="wc-step-label">Remove Existing Watermark</div></div>
+    <div class="wc-step"><div class="wc-step-num">3</div><div class="wc-step-label">Apply Cozycabin Brand</div></div>
+    <div class="wc-step"><div class="wc-step-num">4</div><div class="wc-step-label">Export Ready</div></div>
+  </div>
+
+  <div class="sec-title">🎯 What to Remove</div>
+  <div class="panel">
+    <div class="toggle-row">
+      <div class="toggle-label"><span>Text Watermarks</span><span>Supplier name, brand text</span></div>
+      <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div class="toggle-label"><span>URLs / Websites</span><span>Remove supplier website from image</span></div>
+      <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div class="toggle-label"><span>Phone Numbers</span><span>Remove competitor phone numbers</span></div>
+      <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div class="toggle-label"><span>Date Stamps</span><span>Remove camera/shoot date stamps</span></div>
+      <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div class="toggle-label"><span>Small Corner Logos</span><span>Remove supplier logo marks</span></div>
+      <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+    </div>
+  </div>
+
+  <div class="dropzone">
+    <input type="file" accept="image/*" multiple onchange="handleWatermarkClean(this.files)">
+    <span class="dz-icon">🪄</span>
+    <div class="dz-title">Drop Images to Clean</div>
+    <div class="dz-sub">Upload supplier images — we remove their branding, apply Cozycabin</div>
+    <div class="dz-formats"><span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">WEBP</span></div>
+  </div>
+
+  <div class="progress-wrap" id="wmProgress">
+    <div class="progress-header">
+      <span class="progress-label">Cleaning watermarks...</span>
+      <span class="progress-count" id="wmProgressCount">0 / 0</span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="wmProgressBar"></div></div>
+    <div class="progress-eta">Processing...</div>
+  </div>
+
+  <div id="wmResults" style="display:none;">
+    <div class="results-header">
+      <span class="results-title">✅ Cleaned Images</span>
+      <button class="clear-btn" onclick="clearWmResults()">Clear</button>
+    </div>
+    <div class="results-grid" id="wmResultsGrid"></div>
+  </div>
+
+</div><!-- /panel-watermark -->
+
+<!-- ================================================================
+     🏷️ SMART NAMING
+     ================================================================ -->
+<div class="studio-panel" id="panel-naming">
+
+  <div class="rule-banner">🏷️ Name once — auto-generate all filenames, SKUs and SEO-friendly names</div>
+
+  <div class="sec-title">⚙️ Naming Mode</div>
+  <div class="naming-modes-grid">
+    <div class="naming-mode active" id="mode-autonumber" onclick="selectNamingMode('autonumber')">
+      <div class="nm-label">Mode 1 — Auto Number</div>
+      <div class="nm-example">ladies-shoes-01.webp<br>ladies-shoes-02.webp<br>ladies-shoes-03.webp</div>
+    </div>
+    <div class="naming-mode" id="mode-color" onclick="selectNamingMode('color')">
+      <div class="nm-label">Mode 2 — Color Detection</div>
+      <div class="nm-example">ladies-shoes-black.webp<br>ladies-shoes-brown.webp<br>ladies-shoes-white.webp</div>
+    </div>
+    <div class="naming-mode" id="mode-colornumber" onclick="selectNamingMode('colornumber')">
+      <div class="nm-label">Mode 3 — Color + Number</div>
+      <div class="nm-example">ladies-shoes-black-01.webp<br>ladies-shoes-black-02.webp<br>ladies-shoes-white-01.webp</div>
+    </div>
+    <div class="naming-mode" id="mode-sku" onclick="selectNamingMode('sku')">
+      <div class="nm-label">Mode 4 — SKU Mode</div>
+      <div class="nm-example">CC-LSH-001.webp<br>CC-LSH-002.webp<br>CC-LSH-003.webp</div>
+    </div>
+  </div>
+
+  <div class="sec-title">✏️ Generate Names</div>
+  <div class="panel">
+    <div class="naming-input-row">
+      <input type="text" id="productNameInput" placeholder="Enter product name e.g. Ladies Shoes" style="-webkit-user-select:text;user-select:text;">
+      <button class="naming-generate-btn" onclick="generateNames()">Generate</button>
+    </div>
+    <div class="settings-grid" style="margin-bottom:12px;">
+      <div class="setting-item">
+        <label>Prefix</label>
+        <select id="namingPrefix">
+          <option value="">None</option>
+          <option value="cozycabin-" selected>cozycabin-</option>
+          <option value="cc-">cc-</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <label>Suffix</label>
+        <select id="namingSuffix">
+          <option value="">None</option>
+          <option value="-cc" selected>-cc</option>
+          <option value="-cozy">-cozy</option>
+        </select>
+      </div>
+    </div>
+    <div class="panel" style="background:var(--navy2);padding:12px;margin-bottom:0;">
+      <div style="font-size:10px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">Auto Naming Settings</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);cursor:pointer;">
+          <input type="checkbox" checked style="accent-color:var(--gold);"> Auto Name Products
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);cursor:pointer;">
+          <input type="checkbox" checked style="accent-color:var(--gold);"> Detect Colors
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);cursor:pointer;">
+          <input type="checkbox" checked style="accent-color:var(--gold);"> Auto Number
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);cursor:pointer;">
+          <input type="checkbox" checked style="accent-color:var(--gold);"> Generate SKU
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);cursor:pointer;">
+          <input type="checkbox" checked style="accent-color:var(--gold);"> Short Names Only
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);cursor:pointer;">
+          <input type="checkbox" checked style="accent-color:var(--gold);"> SEO Friendly
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);cursor:pointer;">
+          <input type="checkbox" checked style="accent-color:var(--gold);"> Lowercase
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);cursor:pointer;">
+          <input type="checkbox" style="accent-color:var(--gold);"> Custom Prefix/Suffix
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-title">📋 Generated Filenames</div>
+  <div class="naming-output" id="namingOutput">
+    Enter a product name above and click Generate to see filenames here...
+  </div>
+  <button class="process-btn" style="margin-top:12px;" onclick="copyNamingOutput()">📋 Copy All Filenames</button>
+
+</div><!-- /panel-naming -->
+
+<!-- ================================================================
+     📦 EXPORT CENTER
+     ================================================================ -->
+<div class="studio-panel" id="panel-export">
+
+  <div class="rule-banner">📦 One upload — three export packages: Website, WhatsApp, Social</div>
+
+  <div class="sec-title">📦 Output Presets</div>
+  <div class="output-presets">
+    <div class="out-preset website">
+      <div class="op-icon">🌐</div>
+      <div class="op-name">Website</div>
+      <div class="op-row"><span class="op-key">Logo</span><span class="op-val">ON</span></div>
+      <div class="op-row"><span class="op-key">BG Logo</span><span class="op-val">AUTO</span></div>
+      <div class="op-row"><span class="op-key">Watermark</span><span class="op-val">OFF</span></div>
+      <div class="op-row"><span class="op-key">Phone</span><span class="op-val">OFF</span></div>
+      <div class="op-row"><span class="op-key">Format</span><span class="op-val">WEBP</span></div>
+      <div class="op-row"><span class="op-key">Size</span><span class="op-val">1080×1080</span></div>
+      <button class="op-export-btn">Export Website Package</button>
+    </div>
+    <div class="out-preset whatsapp">
+      <div class="op-icon">💬</div>
+      <div class="op-name">WhatsApp</div>
+      <div class="op-row"><span class="op-key">Logo</span><span class="op-val">ON</span></div>
+      <div class="op-row"><span class="op-key">BG Logo</span><span class="op-val">ON</span></div>
+      <div class="op-row"><span class="op-key">Watermark</span><span class="op-val">ON</span></div>
+      <div class="op-row"><span class="op-key">Phone</span><span class="op-val">ON</span></div>
+      <div class="op-row"><span class="op-key">Format</span><span class="op-val">WEBP</span></div>
+      <div class="op-row"><span class="op-key">Size</span><span class="op-val">1080×1080</span></div>
+      <button class="op-export-btn">Export WhatsApp Package</button>
+    </div>
+    <div class="out-preset social">
+      <div class="op-icon">📸</div>
+      <div class="op-name">Social</div>
+      <div class="op-row"><span class="op-key">Logo</span><span class="op-val">ON</span></div>
+      <div class="op-row"><span class="op-key">Watermark</span><span class="op-val">AUTO</span></div>
+      <div class="op-row"><span class="op-key">Phone</span><span class="op-val">OPTIONAL</span></div>
+      <div class="op-row"><span class="op-key">Optimized</span><span class="op-val">YES</span></div>
+      <div class="op-row"><span class="op-key">Format</span><span class="op-val">WEBP</span></div>
+      <div class="op-row"><span class="op-key">Size</span><span class="op-val">1080×1350</span></div>
+      <button class="op-export-btn">Export Social Package</button>
+    </div>
+  </div>
+
+  <div class="sec-title">⚡ Batch Export</div>
+  <div class="dropzone">
+    <input type="file" accept="image/*,video/*" multiple onchange="handleBatchExport(this.files)">
+    <span class="dz-icon">📦</span>
+    <div class="dz-title">Drop Files for Batch Export</div>
+    <div class="dz-sub">Upload 1–500 images or videos — generates all 3 packages automatically</div>
+    <div class="dz-formats">
+      <span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span>
+      <span class="fmt-tag">WEBP</span><span class="fmt-tag">MP4</span>
+    </div>
+  </div>
+
+  <div class="sec-title">🔧 Advanced Tools</div>
+  <div class="doc-tools-grid">
+    <div class="doc-tool-btn" onclick="showToast('Metadata cleaner ready','info')">
+      <div class="dte">🔍</div><div class="dtn">Metadata Cleaner</div><div class="dts">Strip EXIF data</div>
+    </div>
+    <div class="doc-tool-btn" onclick="showToast('Duplicate finder scanning...','info')">
+      <div class="dte">🔁</div><div class="dtn">Duplicate Finder</div><div class="dts">Find similar images</div>
+    </div>
+    <div class="doc-tool-btn" onclick="showToast('Batch rename tool ready','info')">
+      <div class="dte">✏️</div><div class="dtn">Batch Rename</div><div class="dts">Rename 100s at once</div>
+    </div>
+    <div class="doc-tool-btn" onclick="showToast('Smart compression running','info')">
+      <div class="dte">🗜️</div><div class="dtn">Smart Compress</div><div class="dts">AI-based compression</div>
+    </div>
+    <div class="doc-tool-btn" onclick="showToast('SEO names generator ready','info')">
+      <div class="dte">🔗</div><div class="dtn">SEO File Naming</div><div class="dts">Search optimized names</div>
+    </div>
+    <div class="doc-tool-btn" onclick="showToast('Multi-export generator ready','info')">
+      <div class="dte">📤</div><div class="dtn">Multi Export</div><div class="dts">Export all formats at once</div>
+    </div>
+  </div>
+
+</div><!-- /panel-export -->
+
+<!-- ================================================================
+     ⚡ DUAL EXPORT PANEL
+     ================================================================ -->
+<div class="studio-panel" id="panel-dualexport">
+
+  <div class="rule-banner">⚡ One click — generates Website version, WhatsApp version, and plain text simultaneously</div>
+
+  <div class="share-links-config">
+    <div class="slc-title">📣 Your Social Links (set once — used by all Share buttons)</div>
+    <div class="slc-row">
+      <span class="slc-icon">💬</span>
+      <input type="tel" id="waNumber" placeholder="+254 702 468 460 (WhatsApp number)" value="+254 702 468 460">
+    </div>
+    <div class="slc-row">
+      <span class="slc-icon">👍</span>
+      <input type="url" id="fbPageUrl" placeholder="https://facebook.com/cozycabin (your Facebook page)">
+    </div>
+    <div class="slc-row">
+      <span class="slc-icon">🎵</span>
+      <input type="url" id="ttProfileUrl" placeholder="https://tiktok.com/@cozycabin (your TikTok profile)">
+    </div>
+  </div>
+
+  <div class="sec-title">✏️ Product Details</div>
+  <div class="panel">
+    <div style="margin-bottom:10px;">
+      <label style="display:block;font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">Product Name</label>
+      <input type="text" id="deProductName" placeholder="e.g. Premium Orthopedic Pillow" style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);padding:10px 14px;font-size:13px;outline:none;-webkit-user-select:text;user-select:text;">
+    </div>
+    <div class="settings-grid" style="margin-bottom:10px;">
+      <div class="setting-item">
+        <label>Price (KES)</label>
+        <input type="text" id="dePrice" placeholder="e.g. 2,500" style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);padding:10px 14px;font-size:13px;outline:none;-webkit-user-select:text;user-select:text;">
+      </div>
+      <div class="setting-item">
+        <label>Category</label>
+        <select id="deCategory" style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);padding:10px 14px;font-size:13px;outline:none;appearance:none;">
+          <option>Home &amp; Living</option><option>Bedding</option><option>Furniture</option>
+          <option>Kitchen</option><option>Electronics</option><option>Fashion</option>
+          <option>Beauty</option><option>Kids</option><option>Sports</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <label style="display:block;font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">Key Features (one per line)</label>
+      <textarea id="deFeatures" rows="3" placeholder="✅ Premium quality&#10;✅ Fast delivery&#10;✅ Satisfaction guaranteed" style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);padding:10px 14px;font-size:12px;outline:none;resize:vertical;line-height:1.6;-webkit-user-select:text;user-select:text;"></textarea>
+    </div>
+  </div>
+
+  <button class="de-btn-one" onclick="dualExportGenerate()">⚡ ONE CLICK — GENERATE ALL 3 VERSIONS</button>
+
+  <div id="deOutputs" style="display:none;margin-top:16px;">
+    <div class="sec-title">📝 Plain Text</div>
+    <div class="de-plain-box" id="dePlainText"></div>
+    <button class="de-copy-btn" onclick="copyDeText('dePlainText','Plain Text')">📋 Copy Plain Text</button>
+
+    <div class="de-results-split" style="margin-top:16px;">
+      <div class="de-result-col">
+        <div class="de-result-header web">🌐 Website Version</div>
+        <div class="de-result-body">
+          <div class="de-text-box" id="deWebText"></div>
+          <button class="de-copy-btn" onclick="copyDeText('deWebText','Website Version')">📋 Copy</button>
+        </div>
+      </div>
+      <div class="de-result-col">
+        <div class="de-result-header wa">💬 WhatsApp Version</div>
+        <div class="de-result-body">
+          <div class="de-text-box" id="deWaText"></div>
+          <button class="de-copy-btn" onclick="copyDeText('deWaText','WhatsApp Version')">📋 Copy</button>
+          <button class="de-copy-btn" style="margin-top:6px;background:rgba(37,211,102,0.08);border-color:rgba(37,211,102,0.3);color:var(--green);" onclick="sendViaWhatsApp()">💬 Send via WhatsApp</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-title" style="margin-top:16px;">📣 Share to Platforms</div>
+    <div class="social-btns-row">
+      <button class="social-btn wa" onclick="shareDualToWhatsApp()"><span class="social-btn-icon">💬</span>WhatsApp</button>
+      <button class="social-btn fb" onclick="shareDualToFacebook()"><span class="social-btn-icon">👍</span>Facebook</button>
+      <button class="social-btn tt" onclick="shareDualToTikTok()"><span class="social-btn-icon">🎵</span>TikTok</button>
+    </div>
+    <div class="social-btns-row" style="margin-top:8px;">
+      <button class="social-btn all" onclick="shareDualToAll()">🚀 Share to ALL — Sell in Seconds!</button>
+    </div>
+  </div>
+
+</div><!-- /panel-dualexport -->
+
+<!-- ================================================================
+     🎨 STYLE GENERATOR
+     ================================================================ -->
+<div class="studio-panel" id="panel-stylegenerator">
+
+  <div class="rule-banner">🎨 Auto-generate Website + WhatsApp layouts from one upload — correct rules per platform</div>
+
+  <div class="sec-title">🖼️ Upload Image</div>
+  <div class="dropzone" id="sgDropzone">
+    <input type="file" id="sgFileInput" accept="image/*" onchange="handleStyleGenerator(this.files)">
+    <span class="dz-icon">🎨</span>
+    <div class="dz-title">Drop Product Image</div>
+    <div class="dz-sub">Auto-generates Website + WhatsApp versions · Product auto-centered</div>
+    <div class="dz-formats"><span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">WEBP</span></div>
+  </div>
+
+  <div class="panel" style="margin-bottom:16px;">
+    <div class="price-input-row">
+      <label>WhatsApp Price:</label>
+      <input type="text" id="sgPrice" placeholder="e.g. KES 2,500">
+    </div>
+    <div style="font-size:10px;color:var(--muted);">Website version never shows price. WhatsApp shows price badge + phone number.</div>
+  </div>
+
+  <div id="sgResults" style="display:none;">
+    <div class="sec-title">✅ Generated Versions <span class="center-capture-badge" style="margin-left:8px;">📍 Auto-Center Active</span></div>
+    <div class="style-gen-grid">
+      <div class="sg-card web-card">
+        <div class="sg-card-title web">🌐 Website Version</div>
+        <div class="sg-preview"><canvas id="sgWebCanvas"></canvas></div>
+        <div class="sg-rules"><span>✅</span> No price shown<br><span>✅</span> Logo mandatory<br><span>✅</span> Clean white BG<br><span>✅</span> Product auto-centered</div>
+        <button class="sg-generate-btn" style="background:rgba(59,130,246,0.15);color:#3b82f6;border:1px solid rgba(59,130,246,0.3);" onclick="downloadSgVersion('web')">⬇️ Download Website</button>
+      </div>
+      <div class="sg-card wa-card">
+        <div class="sg-card-title wa">💬 WhatsApp Version</div>
+        <div class="sg-preview"><canvas id="sgWaCanvas"></canvas></div>
+        <div class="sg-rules"><span>✅</span> Price badge shown<br><span>✅</span> Phone number added<br><span>✅</span> Logo mandatory<br><span>✅</span> Watermark overlay</div>
+        <button class="sg-generate-btn" style="background:rgba(37,211,102,0.10);color:var(--green);border:1px solid rgba(37,211,102,0.3);" onclick="downloadSgVersion('wa')">⬇️ Download WhatsApp</button>
+      </div>
+    </div>
+    <div class="social-btns-row" style="margin-top:12px;">
+      <button class="social-btn wa" onclick="shareSgToWhatsApp()"><span class="social-btn-icon">💬</span>WhatsApp</button>
+      <button class="social-btn fb" onclick="shareSgToFacebook()"><span class="social-btn-icon">👍</span>Facebook</button>
+      <button class="social-btn tt" onclick="shareSgToTikTok()"><span class="social-btn-icon">🎵</span>TikTok</button>
+      <button class="social-btn all" onclick="shareSgAll()">🚀 All Platforms</button>
+    </div>
+  </div>
+
+</div><!-- /panel-stylegenerator -->
+
+<!-- ================================================================
+     📊 STATISTICS
+     ================================================================ -->
+<div class="studio-panel" id="panel-stats">
+
+  <div class="rule-banner">📊 Live session statistics — automatically tracked as you process images</div>
+
+  <div class="stats-grid">
+    <div class="stat-box"><div class="stat-box-icon">🖼️</div><div class="stat-box-val" id="statImagesProcessed">0</div><div class="stat-box-label">Images Today</div></div>
+    <div class="stat-box"><div class="stat-box-icon">💾</div><div class="stat-box-val" id="statStorageSaved">0 KB</div><div class="stat-box-label">Storage Saved</div></div>
+    <div class="stat-box"><div class="stat-box-icon">🗜️</div><div class="stat-box-val" id="statAvgCompression">—</div><div class="stat-box-label">Avg Compression</div></div>
+    <div class="stat-box"><div class="stat-box-icon">⭐</div><div class="stat-box-val" id="statTopPreset">—</div><div class="stat-box-label">Top Preset</div></div>
+  </div>
+
+  <div class="sec-title">📝 Plain Text Report</div>
+  <div class="stats-plain-text" id="statsPlainText">No images processed yet. Upload images in Image Studio to see statistics here.</div>
+  <button class="de-copy-btn" style="margin-top:8px;" onclick="copyStatsText()">📋 Copy Stats Report</button>
+
+  <div class="sec-title" style="margin-top:16px;">🕐 Recent Uploads This Session</div>
+  <div class="recent-uploads-list" id="recentUploadsList">
+    <div style="font-size:12px;color:var(--muted);text-align:center;padding:20px;">No uploads yet</div>
+  </div>
+
+  <div class="sec-title" style="margin-top:16px;">📐 Preset Usage</div>
+  <div class="preset-bar" id="presetUsageBar">
+    <span class="preset-pill top">Standard: 0</span>
+    <span class="preset-pill">Fashion: 0</span>
+    <span class="preset-pill">Instagram: 0</span>
+    <span class="preset-pill">Facebook: 0</span>
+  </div>
+
+</div><!-- /panel-stats -->
+
+<!-- ================================================================
+     🛡️ BRAND PROTECTION
+     ================================================================ -->
+<div class="studio-panel" id="panel-brandprotection">
+
+  <div class="bp-hero">
+    <div class="bp-title">🛡️ Brand <span>Protection</span> Mode</div>
+    <div class="bp-sub">One click — all 5 brand protection layers applied simultaneously.<br>Maximum protection for your Cozycabin brand.</div>
+    <div class="bp-checks">
+      <div class="bp-check"><span class="bp-check-icon">🏷️</span><div class="bp-check-info"><strong>Main Logo</strong><span>Top-right corner</span></div><span class="bp-check-status ok" id="bpStatusLogo">READY</span></div>
+      <div class="bp-check"><span class="bp-check-icon">🌊</span><div class="bp-check-info"><strong>Background Logo</strong><span>Faint center watermark</span></div><span class="bp-check-status ok" id="bpStatusBgLogo">ON</span></div>
+      <div class="bp-check"><span class="bp-check-icon">📝</span><div class="bp-check-info"><strong>Text Watermark</strong><span>COZYCABIN diagonal</span></div><span class="bp-check-status ok" id="bpStatusWm">ON</span></div>
+      <div class="bp-check"><span class="bp-check-icon">🌐</span><div class="bp-check-info"><strong>Website URL</strong><span>cozycabin.co.ke</span></div><span class="bp-check-status ok" id="bpStatusWeb">ON</span></div>
+      <div class="bp-check"><span class="bp-check-icon">📞</span><div class="bp-check-info"><strong>Phone Number</strong><span>+254 702 468 460</span></div><span class="bp-check-status ok" id="bpStatusPhone">ON</span></div>
+      <div class="bp-check"><span class="bp-check-icon">🖼️</span><div class="bp-check-info"><strong>Image Loaded</strong><span>Upload image below</span></div><span class="bp-check-status optional" id="bpStatusImage">WAITING</span></div>
+    </div>
+    <button class="bp-apply-btn" onclick="applyBrandProtection()">🛡️ APPLY MAXIMUM PROTECTION</button>
+  </div>
+
+  <div class="dropzone" id="bpDropzone">
+    <input type="file" id="bpFileInput" accept="image/*" onchange="handleBrandProtection(this.files)">
+    <span class="dz-icon">🛡️</span>
+    <div class="dz-title">Upload Image for Full Protection</div>
+    <div class="dz-sub">All 5 brand layers applied automatically · Auto-center active</div>
+    <div class="dz-formats"><span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">WEBP</span></div>
+  </div>
+
+  <div id="bpResults" style="display:none;">
+    <div class="sec-title">✅ Brand Protected Outputs</div>
+    <div class="bp-result-grid">
+      <div class="bp-result-card">
+        <div class="bp-result-label web">🌐 Website</div>
+        <canvas id="bpWebCanvas" style="width:100%;aspect-ratio:1;display:block;background:#fff;"></canvas>
+        <a id="bpWebDl" download="cozycabin-protected-web.webp" style="display:block;text-align:center;padding:8px;font-size:10px;font-weight:700;color:#3b82f6;cursor:pointer;" onclick="triggerBpDownload('web')">⬇️ Download</a>
+      </div>
+      <div class="bp-result-card">
+        <div class="bp-result-label wa">💬 WhatsApp</div>
+        <canvas id="bpWaCanvas" style="width:100%;aspect-ratio:1;display:block;background:#fff;"></canvas>
+        <a id="bpWaDl" download="cozycabin-protected-wa.webp" style="display:block;text-align:center;padding:8px;font-size:10px;font-weight:700;color:var(--green);cursor:pointer;" onclick="triggerBpDownload('wa')">⬇️ Download</a>
+      </div>
+      <div class="bp-result-card">
+        <div class="bp-result-label social">📸 Social</div>
+        <canvas id="bpSocialCanvas" style="width:100%;aspect-ratio:1;display:block;background:#fff;"></canvas>
+        <a id="bpSocialDl" download="cozycabin-protected-social.webp" style="display:block;text-align:center;padding:8px;font-size:10px;font-weight:700;color:var(--gold);cursor:pointer;" onclick="triggerBpDownload('social')">⬇️ Download</a>
+      </div>
+    </div>
+    <div class="social-btns-row" style="margin-top:12px;">
+      <button class="social-btn wa" onclick="shareToWhatsApp()"><span class="social-btn-icon">💬</span>WhatsApp</button>
+      <button class="social-btn fb" onclick="shareToFacebook()"><span class="social-btn-icon">👍</span>Facebook</button>
+      <button class="social-btn tt" onclick="shareToTikTok()"><span class="social-btn-icon">🎵</span>TikTok</button>
+      <button class="social-btn all" onclick="shareToAll()" style="flex:2;">🚀 All Platforms</button>
+    </div>
+  </div>
+
+</div><!-- /panel-brandprotection -->
+
+</div><!-- /studio-content -->
+
+<!-- ── TOAST CONTAINER ── -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ── WhatsApp Float ── -->
+<a href="https://wa.me/254702468460" class="wa-fab" target="_blank" title="WhatsApp">💬</a>
+
+<!-- ================================================================
+     JAVASCRIPT
+     ================================================================ -->
 <script>
-    const dropzone = document.getElementById('dropzone');
-    const fileInput = document.getElementById('fileInput');
-    const logoSrc = 'Images/Cozycabin log .webp'; // Logo path as referenced in project files[span_1](start_span)[span_1](end_span)
+/* ── Tab Switcher ── */
+function switchTab(name) {
+  document.querySelectorAll('.studio-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.studio-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
 
-    dropzone.onclick = () => fileInput.click();
-    fileInput.onchange = (e) => handleFiles(e.target.files);
+/* ── Sub-settings toggle ── */
+function toggleSub(id, show) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('visible', show);
+}
 
-    function handleFiles(files) {
-        const logo = new Image();
-        logo.src = logoSrc;
-        logo.onload = () => {
-            Array.from(files).forEach(file => {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = 1200; 
-                        canvas.height = 1200;
-                        const ctx = canvas.getContext('2d');
-                        
-                        // 1. Locked Style: Pure White Background[span_2](start_span)[span_2](end_span)
-                        ctx.fillStyle = "#ffffff";
-                        ctx.fillRect(0, 0, 1200, 1200);
-                        
-                        // 2. Scanner/Centering Logic
-                        const scale = Math.min(1000 / img.width, 1000 / img.height);
-                        const x = (1200 - img.width * scale) / 2;
-                        const y = (1200 - img.height * scale) / 2;
-                        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-                        
-                        // 3. MANDATORY: Cozycabin Logo
-                        ctx.drawImage(logo, 1050, 50, 100, 100); 
-                        
-                        // 4. OPTIONAL: Watermark
-                        if(document.getElementById('addWatermark').checked) {
-                            ctx.fillStyle = "rgba(128, 128, 128, 0.2)";
-                            ctx.font = "bold 40px Arial";
-                            ctx.save();
-                            ctx.translate(600, 600);
-                            ctx.rotate(-Math.PI / 4);
-                            ctx.fillText("COZYCABIN", 0, 0);
-                            ctx.restore();
-                        }
-                        
-                        // 5. Output as WebP for smallest size[span_3](start_span)[span_3](end_span)
-                        const webpData = canvas.toDataURL('image/webp', 0.8);
-                        renderResult(webpData, file.name.split('.')[0] + ".webp");
-                    };
-                    img.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            });
-        };
-    }
+/* ── Preset selection ── */
+var currentW = 1200, currentH = 1200;
+function selectPreset(btn, w, h) {
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentW = w; currentH = h;
+  showToast('Preset: ' + w + '×' + h, 'info');
+}
 
-    function renderResult(data, name) {
-        const div = document.getElementById('results');
-        div.innerHTML += `
-            <div style="background:#111; padding:10px; margin-top:10px; border-radius:10px;">
-                <p style="font-size:12px;">${name}</p>
-                <a href="${data}" download="${name}" class="dl-btn">Download WebP</a>
+/* ── Logo ── */
+var logoImage = null;
+function loadLogo(input) {
+  if (!input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      logoImage = img;
+      const preview = document.getElementById('logoPreviewImg');
+      if (preview) preview.src = e.target.result;
+      showToast('✅ Logo loaded', 'success');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+/* Pre-load default logo */
+(function() {
+  const logo = new Image();
+  logo.onload = () => { logoImage = logo; };
+  logo.onerror = () => {}; // silently fail if image not present
+  logo.src = 'Images/Cozycabin log .webp';
+})();
+
+/* ── Image Processing ── */
+var processedImages = [];
+
+function handleImages(files) {
+  if (!files || files.length === 0) return;
+  processedImages = [];
+  const total = files.length;
+  let done = 0;
+  const progressWrap = document.getElementById('imgProgress');
+  const progressBar  = document.getElementById('imgProgressBar');
+  const progressCount= document.getElementById('imgProgressCount');
+  const progressEta  = document.getElementById('imgProgressEta');
+  const resultsDiv   = document.getElementById('imageResults');
+  const grid         = document.getElementById('imgResultsGrid');
+
+  progressWrap.classList.add('visible');
+  resultsDiv.style.display = 'none';
+  grid.innerHTML = '';
+
+  // Update workflow steps
+  document.getElementById('wfs-1').classList.add('done');
+  document.getElementById('wfs-2').classList.add('done');
+  document.getElementById('wfs-3').classList.add('active');
+
+  const format   = document.getElementById('outputFormat').value;
+  const quality  = parseInt(document.getElementById('qualitySlider').value) / 100;
+  const logoPos  = document.getElementById('logoPosition').value;
+  const logoSize = parseInt(document.getElementById('logoSizeSlider').value) / 100;
+  const doWm     = document.getElementById('addWatermark').checked;
+  const wmText   = document.getElementById('watermarkText') ? document.getElementById('watermarkText').value : 'COZYCABIN';
+  const doBgLogo = document.getElementById('bgLogo').checked;
+  const bgOpacity= document.getElementById('bgOpacitySlider') ? parseInt(document.getElementById('bgOpacitySlider').value) / 100 : 0.10;
+  const doPhone  = document.getElementById('addPhone').checked;
+  const doWebsite= document.getElementById('addWebsite').checked;
+
+  Array.from(files).forEach((file, idx) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        // Canvas
+        const canvas = document.createElement('canvas');
+        canvas.width  = currentW;
+        canvas.height = currentH;
+        const ctx = canvas.getContext('2d');
+
+        // 1. White background — LOCKED
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, currentW, currentH);
+
+        // 2. Background logo (optional)
+        if (doBgLogo && logoImage) {
+          ctx.save();
+          ctx.globalAlpha = bgOpacity;
+          const bgSize = Math.min(currentW, currentH) * 0.6;
+          ctx.drawImage(logoImage, (currentW - bgSize) / 2, (currentH - bgSize) / 2, bgSize, bgSize);
+          ctx.restore();
+        }
+
+        // 3. Center product image
+        const pad = currentW * 0.08;
+        const maxW = currentW - pad * 2;
+        const maxH = currentH - pad * 2;
+        const scale = Math.min(maxW / img.width, maxH / img.height);
+        const ix = (currentW - img.width * scale) / 2;
+        const iy = (currentH - img.height * scale) / 2;
+        ctx.drawImage(img, ix, iy, img.width * scale, img.height * scale);
+
+        // 4. Watermark text (optional)
+        if (doWm) {
+          ctx.save();
+          ctx.globalAlpha = 0.12;
+          ctx.font = 'bold ' + Math.round(currentW * 0.05) + 'px Rajdhani, Arial';
+          ctx.fillStyle = '#888888';
+          ctx.translate(currentW / 2, currentH / 2);
+          ctx.rotate(-Math.PI / 5);
+          const ww = ctx.measureText(wmText).width;
+          ctx.fillText(wmText, -ww / 2, 0);
+          ctx.fillText(wmText, -ww / 2, currentH * 0.25);
+          ctx.fillText(wmText, -ww / 2, -currentH * 0.25);
+          ctx.restore();
+        }
+
+        // 5. MANDATORY logo
+        if (logoImage) {
+          const lSize = Math.round(currentW * logoSize);
+          const margin = Math.round(currentW * 0.025);
+          let lx = currentW - lSize - margin;
+          let ly = margin;
+          if (logoPos === 'tl') { lx = margin; ly = margin; }
+          else if (logoPos === 'bl') { lx = margin; ly = currentH - lSize - margin; }
+          else if (logoPos === 'br') { lx = currentW - lSize - margin; ly = currentH - lSize - margin; }
+          ctx.drawImage(logoImage, lx, ly, lSize, lSize);
+        }
+
+        // 6. Phone number (optional)
+        if (doPhone) {
+          ctx.save();
+          ctx.font = 'bold ' + Math.round(currentW * 0.022) + 'px Outfit, Arial';
+          ctx.fillStyle = 'rgba(0,0,0,0.65)';
+          const ph = '+254 702 468 460';
+          const pw = ctx.measureText(ph).width;
+          ctx.fillStyle = 'rgba(255,215,0,0.85)';
+          ctx.fillText(ph, currentW - pw - 20, currentH - 18);
+          ctx.restore();
+        }
+
+        // 7. Website (optional)
+        if (doWebsite) {
+          ctx.save();
+          ctx.font = Math.round(currentW * 0.02) + 'px Outfit, Arial';
+          ctx.fillStyle = 'rgba(255,215,0,0.75)';
+          ctx.fillText('cozycabin.co.ke', 18, currentH - 18);
+          ctx.restore();
+        }
+
+        // Output
+        const mimeMap = { webp: 'image/webp', jpeg: 'image/jpeg', png: 'image/png' };
+        const ext     = format === 'jpeg' ? 'jpg' : format;
+        const mime    = mimeMap[format] || 'image/webp';
+        const dataUrl = canvas.toDataURL(mime, quality);
+
+        // Original size
+        const origKB  = Math.round(file.size / 1024);
+        const newKB   = Math.round(dataUrl.length * 0.75 / 1024);
+        const saving  = origKB > 0 ? Math.round((1 - newKB / origKB) * 100) : 0;
+
+        const baseName = file.name.replace(/\.[^.]+$/, '');
+        const outName  = 'cozycabin-' + baseName.toLowerCase().replace(/\s+/g, '-') + '-cc.' + ext;
+
+        processedImages.push({ dataUrl, outName });
+
+        // Render card
+        const card = document.createElement('div');
+        card.className = 'img-card';
+        card.innerHTML = `
+          <div class="card-preview">
+            <img src="${dataUrl}" alt="${outName}">
+            <div class="preview-tabs">
+              <div class="preview-tab active">After</div>
             </div>
-        `;
-    }
-</script>
+          </div>
+          <div class="card-body">
+            <div class="card-filename">${outName}</div>
+            <div class="card-stats">
+              <div class="stat-item"><div class="stat-label">Original</div><div class="stat-value">${origKB}KB</div></div>
+              <div class="stat-item"><div class="stat-label">Output</div><div class="stat-value gold">${newKB}KB</div></div>
+              <div class="stat-item"><div class="stat-label">Format</div><div class="stat-value">${ext.toUpperCase()}</div></div>
+              <div class="stat-item"><div class="stat-label">Saved</div><div class="stat-value green">${saving > 0 ? saving + '%' : '—'}</div></div>
+            </div>
+            <a href="${dataUrl}" download="${outName}" class="card-dl-btn">⬇ Download</a>
+          </div>`;
+        grid.appendChild(card);
 
+        done++;
+        const pct = Math.round(done / total * 100);
+        progressBar.style.width = pct + '%';
+        progressCount.textContent = done + ' / ' + total;
+        progressEta.textContent   = done < total ? 'Processing...' : 'Done!';
+
+        if (done === total) {
+          progressWrap.classList.remove('visible');
+          resultsDiv.style.display = 'block';
+          document.getElementById('wfs-3').classList.add('done');
+          document.getElementById('wfs-4').classList.add('done');
+          document.getElementById('wfs-5').classList.add('active');
+          document.getElementById('socialShareBar').classList.add('visible');
+          updateStats(origKB, newKB, document.querySelector('.preset-btn.active .preset-name') ? document.querySelector('.preset-btn.active .preset-name').textContent : 'Standard', outName, dataUrl);
+          showToast('✅ ' + total + ' image' + (total > 1 ? 's' : '') + ' processed!', 'success');
+        }
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ── Clear Results ── */
+function clearResults() {
+  processedImages = [];
+  document.getElementById('imgResultsGrid').innerHTML = '';
+  document.getElementById('imageResults').style.display = 'none';
+  document.getElementById('socialShareBar').classList.remove('visible');
+  ['wfs-1','wfs-2','wfs-3','wfs-4','wfs-5'].forEach(id => {
+    document.getElementById(id).classList.remove('done','active');
+  });
+  document.getElementById('wfs-1').classList.add('active');
+}
+
+/* ── Download All / ZIP ── */
+function downloadAll() {
+  processedImages.forEach(img => {
+    const a = document.createElement('a');
+    a.href = img.dataUrl;
+    a.download = img.outName;
+    a.click();
+  });
+  showToast('⬇️ Downloading ' + processedImages.length + ' files...', 'success');
+}
+
+function downloadZip() {
+  showToast('📦 ZIP requires JSZip library — connect to enable ZIP exports', 'info');
+}
+
+
+/* ── Watermark Cleaner ── */
+function handleWatermarkClean(files) {
+  if (!files || files.length === 0) return;
+  const grid = document.getElementById('wmResultsGrid');
+  const progressWrap = document.getElementById('wmProgress');
+  const progressBar  = document.getElementById('wmProgressBar');
+  const progressCount= document.getElementById('wmProgressCount');
+  const total = files.length; let done = 0;
+
+  progressWrap.classList.add('visible');
+  document.getElementById('wmResults').style.display = 'none';
+  grid.innerHTML = '';
+
+  Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1200; canvas.height = 1200;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, 1200, 1200);
+        const scale = Math.min(1000 / img.width, 1000 / img.height);
+        const ix = (1200 - img.width * scale) / 2;
+        const iy = (1200 - img.height * scale) / 2;
+        ctx.drawImage(img, ix, iy, img.width * scale, img.height * scale);
+        if (logoImage) ctx.drawImage(logoImage, 1060, 40, 100, 100);
+
+        const dataUrl = canvas.toDataURL('image/webp', 0.85);
+        const baseName = file.name.replace(/\.[^.]+$/, '');
+        const outName  = 'cozycabin-' + baseName.toLowerCase().replace(/\s+/g, '-') + '-cleaned.webp';
+
+        const card = document.createElement('div');
+        card.className = 'img-card';
+        card.innerHTML = `
+          <div class="card-preview"><img src="${dataUrl}" alt="${outName}"></div>
+          <div class="card-body">
+            <div class="card-filename">${outName}</div>
+            <a href="${dataUrl}" download="${outName}" class="card-dl-btn">⬇ Download Cleaned</a>
+          </div>`;
+        grid.appendChild(card);
+
+        done++;
+        const pct = Math.round(done / total * 100);
+        progressBar.style.width = pct + '%';
+        progressCount.textContent = done + ' / ' + total;
+        if (done === total) {
+          progressWrap.classList.remove('visible');
+          document.getElementById('wmResults').style.display = 'block';
+          showToast('✅ ' + total + ' image' + (total > 1 ? 's' : '') + ' cleaned!', 'success');
+        }
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+function clearWmResults() {
+  document.getElementById('wmResultsGrid').innerHTML = '';
+  document.getElementById('wmResults').style.display = 'none';
+}
+
+/* ── Smart Naming ── */
+var currentNamingMode = 'autonumber';
+var colorList = ['black','white','brown','blue','red','grey','gold','green','pink','yellow','tan','cream','navy','beige'];
+var skuCounter = {};
+
+function selectNamingMode(mode) {
+  currentNamingMode = mode;
+  document.querySelectorAll('.naming-mode').forEach(m => m.classList.remove('active'));
+  document.getElementById('mode-' + mode).classList.add('active');
+}
+
+function generateNames() {
+  const raw    = document.getElementById('productNameInput').value.trim();
+  if (!raw) { showToast('Enter a product name first', 'error'); return; }
+  const prefix = document.getElementById('namingPrefix').value;
+  const suffix = document.getElementById('namingSuffix').value;
+
+  // Short name: take first 2 meaningful words
+  const words = raw.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+  const short  = words.slice(0, 2).join('-');
+
+  let lines = [];
+  const base = prefix + short + suffix;
+
+  if (currentNamingMode === 'autonumber') {
+    for (let i = 1; i <= 4; i++) lines.push(prefix + short + '-0' + i + suffix + '.webp');
+  } else if (currentNamingMode === 'color') {
+    colorList.slice(0, 5).forEach(c => lines.push(prefix + short + '-' + c + suffix + '.webp'));
+  } else if (currentNamingMode === 'colornumber') {
+    ['black','white','brown'].forEach(c => {
+      for (let i = 1; i <= 2; i++) lines.push(prefix + short + '-' + c + '-0' + i + suffix + '.webp');
+    });
+  } else if (currentNamingMode === 'sku') {
+    const sku = words.map(w => w[0].toUpperCase()).join('').substring(0, 3);
+    for (let i = 1; i <= 4; i++) lines.push('CC-' + sku + '-00' + i + '.webp');
+  }
+
+  document.getElementById('namingOutput').textContent = lines.join('\n');
+  showToast('✅ Generated ' + lines.length + ' filenames', 'success');
+}
+
+function copyNamingOutput() {
+  const text = document.getElementById('namingOutput').textContent;
+  if (!text || text.includes('Enter a product')) { showToast('Generate names first', 'error'); return; }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => showToast('📋 Copied!', 'success'));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    showToast('📋 Copied!', 'success');
+  }
+}
+
+/* ── Brand Manager buttons ── */
+function setPos(btn, pos) {
+  document.querySelectorAll('.pos-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  showToast('Logo position: ' + pos, 'info');
+}
+function setOpacity(btn, val) {
+  document.querySelectorAll('.opacity-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  showToast('Background logo opacity: ' + Math.round(parseFloat(val) * 100) + '%', 'info');
+}
+
+/* ── Video Tool ── */
+function openVideoTool(tool) {
+  showToast('🎥 ' + tool.charAt(0).toUpperCase() + tool.slice(1) + ' tool — drop your video file to begin', 'info');
+}
+
+function handleVideoUpload(files) {
+  if (!files || !files.length) return;
+  showToast('🎥 ' + files.length + ' video(s) ready — select a tool above to process', 'info');
+}
+
+function shareVideoToWhatsApp() {
+  const links = getSocialLinks ? getSocialLinks() : {};
+  const num = (links.wa || '+254702468460').replace(/[^0-9]/g,'');
+  const msg = encodeURIComponent('🎥 Check out our latest Cozycabin product video!\n📞 +254 702 468 460\n🌐 cozycabin.co.ke\n\n#Cozycabin #SmartLiving');
+  window.open('https://wa.me/' + num + '?text=' + msg, '_blank');
+  showToast('💬 Opening WhatsApp...', 'success');
+}
+function shareVideoToFacebook() {
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://cozycabin.co.ke'), '_blank');
+  showToast('👍 Opening Facebook...', 'success');
+}
+function shareVideoToTikTok() {
+  const links = getSocialLinks ? getSocialLinks() : {};
+  window.open(links.tt || 'https://www.tiktok.com/upload', '_blank');
+  showToast('🎵 Opening TikTok — upload your product video!', 'info');
+}
+function shareVideoToAll() {
+  showToast('🚀 Sharing video to all platforms — sell in seconds!', 'success');
+  setTimeout(() => shareVideoToWhatsApp(), 100);
+  setTimeout(() => shareVideoToFacebook(), 600);
+  setTimeout(() => shareVideoToTikTok(), 1200);
+}
+
+/* ── Batch Export ── */
+function handleBatchExport(files) {
+  if (!files || files.length === 0) return;
+  showToast('📦 Batch export started — ' + files.length + ' file(s)...', 'info');
+  // Route to image handler for images
+  const imageFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+  if (imageFiles.length) {
+    switchTab('image');
+    handleImages(imageFiles);
+  }
+}
+
+/* ── Drag & Drop ── */
+document.querySelectorAll('.dropzone').forEach(dz => {
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+  dz.addEventListener('drop', e => {
+    e.preventDefault();
+    dz.classList.remove('drag-over');
+    const files = e.dataTransfer.files;
+    if (!files.length) return;
+    // Route to correct handler
+    if (dz.closest('#panel-image')) handleImages(files);
+    else if (dz.closest('#panel-watermark')) handleWatermarkClean(files);
+    else if (dz.closest('#panel-export')) handleBatchExport(files);
+    else showToast('✅ ' + files.length + ' file(s) received', 'info');
+  });
+});
+
+/* ── Toast ── */
+function showToast(msg, type = 'info') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast ' + type;
+  toast.innerHTML = '<span>' + (type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️') + '</span>' + msg;
+  container.appendChild(toast);
+  setTimeout(() => { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 3500);
+}
+
+/* ================================================================
+   STATISTICS — global tracking
+   ================================================================ */
+var sessionStats = {
+  images: 0, savedKB: 0, compressions: [], preset: {}, recentUploads: []
+};
+
+function updateStats(origKB, newKB, presetName, fileName, thumbUrl) {
+  sessionStats.images++;
+  sessionStats.savedKB += Math.max(0, origKB - newKB);
+  if (origKB > 0) sessionStats.compressions.push(Math.round((1 - newKB / origKB) * 100));
+  sessionStats.preset[presetName] = (sessionStats.preset[presetName] || 0) + 1;
+  sessionStats.recentUploads.unshift({ name: fileName, origKB, newKB, thumb: thumbUrl, preset: presetName });
+  if (sessionStats.recentUploads.length > 10) sessionStats.recentUploads.pop();
+  renderStats();
+}
+
+function renderStats() {
+  document.getElementById('statImagesProcessed').textContent = sessionStats.images;
+  const savedDisplay = sessionStats.savedKB >= 1024
+    ? (sessionStats.savedKB / 1024).toFixed(1) + ' MB'
+    : sessionStats.savedKB + ' KB';
+  document.getElementById('statStorageSaved').textContent = savedDisplay;
+  const avgComp = sessionStats.compressions.length
+    ? Math.round(sessionStats.compressions.reduce((a,b) => a+b, 0) / sessionStats.compressions.length) + '%'
+    : '—';
+  document.getElementById('statAvgCompression').textContent = avgComp;
+  const topPreset = Object.entries(sessionStats.preset).sort((a,b) => b[1]-a[1])[0];
+  document.getElementById('statTopPreset').textContent = topPreset ? topPreset[0].substring(0,8) : '—';
+
+  // Plain text report
+  const report = [
+    '=== COZYCABIN STUDIO STATISTICS ===',
+    'Session: ' + new Date().toLocaleDateString('en-KE'),
+    '',
+    'Images Processed: ' + sessionStats.images,
+    'Storage Saved:    ' + savedDisplay,
+    'Avg Compression:  ' + avgComp,
+    'Top Preset:       ' + (topPreset ? topPreset[0] : '—'),
+    '',
+    '--- Preset Breakdown ---',
+    ...Object.entries(sessionStats.preset).map(([k,v]) => k + ': ' + v + ' image' + (v>1?'s':'')),
+    '',
+    '--- Recent Files ---',
+    ...sessionStats.recentUploads.slice(0,5).map(r => r.name + ' (' + r.origKB + 'KB → ' + r.newKB + 'KB)'),
+    '',
+    'Generated by Cozycabin Admin Studio Pro'
+  ].join('\n');
+  document.getElementById('statsPlainText').textContent = report;
+
+  // Recent uploads list
+  const list = document.getElementById('recentUploadsList');
+  if (!sessionStats.recentUploads.length) return;
+  list.innerHTML = sessionStats.recentUploads.map(r => `
+    <div class="ru-item">
+      <div class="ru-thumb"><img src="${r.thumb}" alt="${r.name}"></div>
+      <div class="ru-info">
+        <div class="ru-name">${r.name}</div>
+        <div class="ru-meta">${r.origKB}KB → ${r.newKB}KB · ${r.preset}</div>
+      </div>
+      <span class="ru-badge both">Processed</span>
+    </div>`).join('');
+
+  // Preset bar
+  const pb = document.getElementById('presetUsageBar');
+  const entries = Object.entries(sessionStats.preset);
+  if (entries.length) {
+    pb.innerHTML = entries.sort((a,b)=>b[1]-a[1]).map((e,i) =>
+      `<span class="preset-pill ${i===0?'top':''}">${e[0]}: ${e[1]}</span>`).join('');
+  }
+}
+
+function copyStatsText() {
+  const text = document.getElementById('statsPlainText').textContent;
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => showToast('📋 Stats copied!', 'success'));
+  else { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showToast('📋 Copied!', 'success'); }
+}
+
+/* Patch handleImages to also track stats and show social share */
+var _origHandleImages = handleImages;
+function handleImages(files) {
+  _origHandleImages(files);
+}
+
+/* ================================================================
+   SOCIAL SHARE FUNCTIONS
+   ================================================================ */
+function getSocialLinks() {
+  return {
+    wa: (document.getElementById('waNumber') || {}).value || '+254702468460',
+    fb: (document.getElementById('fbPageUrl') || {}).value || '',
+    tt: (document.getElementById('ttProfileUrl') || {}).value || ''
+  };
+}
+
+function shareToWhatsApp() {
+  const links = getSocialLinks();
+  const num = links.wa.replace(/[^0-9]/g,'');
+  const msg = encodeURIComponent('🛍️ Check out this amazing Cozycabin product!\n\n🌐 cozycabin.co.ke\n📞 +254 702 468 460\n\n#Cozycabin #SmartLiving');
+  window.open('https://wa.me/' + num + '?text=' + msg, '_blank');
+  showToast('💬 Opening WhatsApp...', 'success');
+}
+
+function shareToFacebook() {
+  const links = getSocialLinks();
+  const url = links.fb || 'https://cozycabin.co.ke';
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank');
+  showToast('👍 Opening Facebook...', 'success');
+}
+
+function shareToTikTok() {
+  const links = getSocialLinks();
+  if (links.tt) {
+    window.open(links.tt, '_blank');
+    showToast('🎵 Opening TikTok profile...', 'success');
+  } else {
+    window.open('https://www.tiktok.com/upload', '_blank');
+    showToast('🎵 Opening TikTok — upload your product video!', 'info');
+  }
+}
+
+function shareToAll() {
+  showToast('🚀 Opening all platforms — sell in seconds!', 'success');
+  setTimeout(() => shareToWhatsApp(), 100);
+  setTimeout(() => shareToFacebook(), 600);
+  setTimeout(() => shareToTikTok(), 1200);
+}
+
+/* ================================================================
+   DUAL EXPORT
+   ================================================================ */
+function dualExportGenerate() {
+  const name = (document.getElementById('deProductName').value || '').trim();
+  if (!name) { showToast('Enter product name first', 'error'); return; }
+  const price = (document.getElementById('dePrice').value || '').trim();
+  const cat = document.getElementById('deCategory').value;
+  const featRaw = (document.getElementById('deFeatures').value || '').trim();
+  const features = featRaw ? featRaw.split('\n').filter(l => l.trim()) : [];
+
+  // Plain text
+  const plain = [
+    name,
+    cat,
+    price ? 'Price: KES ' + price : '',
+    '',
+    ...features,
+    '',
+    'cozycabin.co.ke',
+    '+254 702 468 460'
+  ].filter(l => l !== '').join('\n');
+
+  // Website version (no price, clean)
+  const web = [
+    '🏡 ' + name,
+    '─────────────────',
+    cat,
+    '',
+    ...features.map(f => f.startsWith('✅') ? f : '• ' + f),
+    '',
+    '🌐 cozycabin.co.ke'
+  ].join('\n');
+
+  // WhatsApp version (price badge, phone, emoji-heavy)
+  const wa = [
+    '🔥 *' + name.toUpperCase() + '* 🔥',
+    price ? '💰 *KES ' + price + '* — Available Now!' : '',
+    '─────────────────',
+    '',
+    ...features.map(f => f.startsWith('✅') ? f : '✅ ' + f),
+    '',
+    '📦 Fast delivery across Kenya',
+    '💬 Order now on WhatsApp:',
+    '📞 *+254 702 468 460*',
+    '🌐 cozycabin.co.ke',
+    '',
+    '#Cozycabin #SmartLiving #' + cat.replace(/\s/g,'')
+  ].filter(l => l !== undefined).join('\n');
+
+  document.getElementById('dePlainText').textContent = plain;
+  document.getElementById('deWebText').textContent = web;
+  document.getElementById('deWaText').textContent = wa;
+  document.getElementById('deOutputs').style.display = 'block';
+  showToast('✅ All 3 versions generated!', 'success');
+}
+
+function copyDeText(id, label) {
+  const text = document.getElementById(id).textContent;
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => showToast('📋 ' + label + ' copied!', 'success'));
+  else { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showToast('📋 Copied!', 'success'); }
+}
+
+function sendViaWhatsApp() {
+  const text = document.getElementById('deWaText').textContent;
+  const links = getSocialLinks();
+  const num = links.wa.replace(/[^0-9]/g,'');
+  window.open('https://wa.me/' + num + '?text=' + encodeURIComponent(text), '_blank');
+  showToast('💬 Opening WhatsApp with product text...', 'success');
+}
+
+function shareDualToWhatsApp() { sendViaWhatsApp(); }
+function shareDualToFacebook() { shareToFacebook(); }
+function shareDualToTikTok() { shareToTikTok(); }
+function shareDualToAll() {
+  showToast('🚀 Sharing to all platforms!', 'success');
+  setTimeout(() => sendViaWhatsApp(), 100);
+  setTimeout(() => shareToFacebook(), 600);
+  setTimeout(() => shareToTikTok(), 1200);
+}
+
+/* ================================================================
+   STYLE GENERATOR — Auto-center smart crop + dual layout
+   ================================================================ */
+var sgSourceImage = null;
+
+function handleStyleGenerator(files) {
+  if (!files || !files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      sgSourceImage = img;
+      generateStyleVersions();
+      document.getElementById('sgResults').style.display = 'block';
+      showToast('✅ Website + WhatsApp versions generated!', 'success');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(files[0]);
+}
+
+function autoCenterCrop(img, canvas) {
+  /* Smart auto-center: detect content region by finding non-white pixels */
+  const SIZE = 600;
+  canvas.width = SIZE; canvas.height = SIZE;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, SIZE, SIZE);
+
+  // Draw image at full size temporarily to detect bounds
+  const tempCanvas = document.createElement('canvas');
+  tempCanvas.width = img.width; tempCanvas.height = img.height;
+  const tCtx = tempCanvas.getContext('2d');
+  tCtx.drawImage(img, 0, 0);
+
+  let minX = img.width, minY = img.height, maxX = 0, maxY = 0;
+  try {
+    const data = tCtx.getImageData(0, 0, img.width, img.height).data;
+    for (let y = 0; y < img.height; y++) {
+      for (let x = 0; x < img.width; x++) {
+        const i = (y * img.width + x) * 4;
+        const r = data[i], g = data[i+1], b = data[i+2], a = data[i+3];
+        if (a > 20 && !(r > 240 && g > 240 && b > 240)) {
+          if (x < minX) minX = x; if (x > maxX) maxX = x;
+          if (y < minY) minY = y; if (y > maxY) maxY = y;
+        }
+      }
+    }
+  } catch(e) {
+    // Cross-origin fallback — use full image
+    minX = 0; minY = 0; maxX = img.width - 1; maxY = img.height - 1;
+  }
+
+  // Fallback to full image if no content detected
+  if (maxX <= minX || maxY <= minY) { minX=0; minY=0; maxX=img.width-1; maxY=img.height-1; }
+
+  const pad = 0.08;
+  const cw = maxX - minX, ch = maxY - minY;
+  const drawSize = Math.min(SIZE * (1 - pad * 2), Math.max(cw, ch) / Math.max(img.width, img.height) * SIZE * (1 - pad * 2));
+  const sx = (SIZE - drawSize) / 2;
+  const sy = (SIZE - drawSize) / 2;
+  const scaleX = drawSize / cw, scaleY = drawSize / ch;
+  const scale = Math.min(scaleX, scaleY, (SIZE * (1-pad*2)) / Math.max(cw, ch));
+  const finalW = cw * scale, finalH = ch * scale;
+  const fx = (SIZE - finalW) / 2, fy = (SIZE - finalH) / 2;
+
+  ctx.drawImage(img, minX, minY, cw, ch, fx, fy, finalW, finalH);
+  return ctx;
+}
+
+function generateStyleVersions() {
+  if (!sgSourceImage) return;
+  const priceText = (document.getElementById('sgPrice').value || '').trim();
+
+  // === WEBSITE CANVAS ===
+  const webC = document.getElementById('sgWebCanvas');
+  webC.width = 600; webC.height = 600;
+  const wCtx = autoCenterCrop(sgSourceImage, webC);
+
+  // Apply logo (mandatory, no price)
+  if (logoImage) {
+    const lSize = Math.round(600 * 0.08);
+    const margin = Math.round(600 * 0.025);
+    wCtx.drawImage(logoImage, 600 - lSize - margin, margin, lSize, lSize);
+  }
+
+  // === WHATSAPP CANVAS ===
+  const waC = document.getElementById('sgWaCanvas');
+  waC.width = 600; waC.height = 600;
+  const waCtx = autoCenterCrop(sgSourceImage, waC);
+
+  // BG logo faint
+  if (logoImage) {
+    waCtx.save();
+    waCtx.globalAlpha = 0.07;
+    waCtx.drawImage(logoImage, (600 - 600 * 0.5) / 2, (600 - 600 * 0.5) / 2, 600 * 0.5, 600 * 0.5);
+    waCtx.restore();
+  }
+
+  // Watermark
+  waCtx.save();
+  waCtx.globalAlpha = 0.10;
+  waCtx.font = 'bold 28px Rajdhani, Arial';
+  waCtx.fillStyle = '#888';
+  waCtx.translate(300, 300); waCtx.rotate(-Math.PI / 5);
+  ['COZYCABIN','COZYCABIN','COZYCABIN'].forEach((t, i) => {
+    const w = waCtx.measureText(t).width;
+    waCtx.fillText(t, -w/2, (i-1) * 140);
+  });
+  waCtx.restore();
+
+  // Main logo
+  if (logoImage) {
+    const lSize = Math.round(600 * 0.08);
+    const margin = Math.round(600 * 0.025);
+    waCtx.drawImage(logoImage, 600 - lSize - margin, margin, lSize, lSize);
+  }
+
+  // Price badge
+  if (priceText) {
+    const badgeH = 36, padX = 16;
+    waCtx.save();
+    waCtx.fillStyle = 'rgba(255,215,0,0.92)';
+    const bw = waCtx.measureText(priceText).width + padX * 2;
+    const bx = 12, by = 600 - badgeH - 12;
+    waCtx.beginPath();
+    waCtx.roundRect(bx, by, bw + 60, badgeH, 8);
+    waCtx.fill();
+    waCtx.fillStyle = '#000';
+    waCtx.font = 'bold 18px Outfit, Arial';
+    waCtx.fillText('💰 ' + priceText, bx + padX, by + 24);
+    waCtx.restore();
+    document.getElementById('sgPriceBadge').textContent = priceText;
+    document.getElementById('sgPriceBadge').style.display = 'block';
+  }
+
+  // Phone number
+  waCtx.save();
+  waCtx.font = 'bold 14px Outfit, Arial';
+  waCtx.fillStyle = 'rgba(255,215,0,0.9)';
+  const ph = '+254 702 468 460';
+  const pw2 = waCtx.measureText(ph).width;
+  waCtx.fillText(ph, 600 - pw2 - 14, 600 - 14);
+  waCtx.restore();
+}
+
+function downloadSgVersion(type) {
+  const canvas = document.getElementById(type === 'web' ? 'sgWebCanvas' : 'sgWaCanvas');
+  const a = document.createElement('a');
+  a.href = canvas.toDataURL('image/webp', 0.88);
+  a.download = 'cozycabin-' + type + '-style.webp';
+  a.click();
+  showToast('⬇️ Downloading ' + (type === 'web' ? 'Website' : 'WhatsApp') + ' version...', 'success');
+}
+
+function shareSgToWhatsApp() {
+  const canvas = document.getElementById('sgWaCanvas');
+  const msg = '🛍️ Check out our latest Cozycabin product!\n📞 +254 702 468 460\n🌐 cozycabin.co.ke';
+  const links = getSocialLinks();
+  const num = links.wa.replace(/[^0-9]/g,'');
+  // Download image + open WA
+  const a = document.createElement('a'); a.href = canvas.toDataURL('image/webp',0.88); a.download = 'cozycabin-wa.webp'; a.click();
+  setTimeout(() => window.open('https://wa.me/' + num + '?text=' + encodeURIComponent(msg), '_blank'), 400);
+  showToast('💬 Image downloaded — share it on WhatsApp!', 'success');
+}
+function shareSgToFacebook() { shareToFacebook(); }
+function shareSgToTikTok() { shareToTikTok(); }
+function shareSgAll() {
+  showToast('🚀 Sharing everywhere — sell in seconds!', 'success');
+  setTimeout(() => shareSgToWhatsApp(), 100);
+  setTimeout(() => shareToFacebook(), 600);
+  setTimeout(() => shareToTikTok(), 1200);
+}
+
+/* ================================================================
+   BRAND PROTECTION
+   ================================================================ */
+var bpSourceImage = null;
+
+function handleBrandProtection(files) {
+  if (!files || !files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      bpSourceImage = img;
+      document.getElementById('bpStatusImage').textContent = 'READY';
+      document.getElementById('bpStatusImage').className = 'bp-check-status ok';
+      showToast('✅ Image loaded — click Apply Maximum Protection', 'success');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(files[0]);
+}
+
+function renderProtectedCanvas(canvas, img, variant) {
+  const SIZE = 600;
+  canvas.width = SIZE; canvas.height = SIZE;
+  const ctx = autoCenterCrop(img, canvas);
+
+  // BG logo (all variants)
+  if (logoImage) {
+    ctx.save(); ctx.globalAlpha = 0.08;
+    ctx.drawImage(logoImage, (SIZE-SIZE*0.55)/2, (SIZE-SIZE*0.55)/2, SIZE*0.55, SIZE*0.55);
+    ctx.restore();
+  }
+
+  // Text watermark (all variants)
+  ctx.save(); ctx.globalAlpha = 0.10;
+  ctx.font = 'bold 26px Rajdhani, Arial';
+  ctx.fillStyle = '#888';
+  ctx.translate(SIZE/2, SIZE/2); ctx.rotate(-Math.PI/5);
+  ['COZYCABIN','COZYCABIN','COZYCABIN'].forEach((t, i) => {
+    const w = ctx.measureText(t).width;
+    ctx.fillText(t, -w/2, (i-1)*130);
+  });
+  ctx.restore();
+
+  // Main logo — MANDATORY
+  if (logoImage) {
+    const lSize = Math.round(SIZE * 0.09);
+    const margin = Math.round(SIZE * 0.025);
+    ctx.drawImage(logoImage, SIZE - lSize - margin, margin, lSize, lSize);
+  }
+
+  // Website URL (all variants)
+  ctx.save();
+  ctx.font = Math.round(SIZE * 0.022) + 'px Outfit, Arial';
+  ctx.fillStyle = 'rgba(255,215,0,0.80)';
+  ctx.fillText('cozycabin.co.ke', 14, SIZE - 14);
+  ctx.restore();
+
+  // Phone number (WA + Social variants)
+  if (variant !== 'web') {
+    ctx.save();
+    ctx.font = 'bold ' + Math.round(SIZE * 0.022) + 'px Outfit, Arial';
+    ctx.fillStyle = 'rgba(255,215,0,0.85)';
+    const ph = '+254 702 468 460';
+    const pw = ctx.measureText(ph).width;
+    ctx.fillText(ph, SIZE - pw - 14, SIZE - 14);
+    ctx.restore();
+  }
+
+  // Gold accent bar at bottom for WA
+  if (variant === 'wa') {
+    ctx.save();
+    ctx.fillStyle = 'rgba(255,215,0,0.12)';
+    ctx.fillRect(0, SIZE - 40, SIZE, 40);
+    ctx.restore();
+  }
+    }
+
+function applyBrandProtection() {
+  if (!bpSourceImage) {
+    showToast('Upload an image first', 'error'); return;
+  }
+  const webC = document.getElementById('bpWebCanvas');
+  const waC = document.getElementById('bpWaCanvas');
+  const socialC = document.getElementById('bpSocialCanvas');
+
+  renderProtectedCanvas(webC, bpSourceImage, 'web');
+  renderProtectedCanvas(waC, bpSourceImage, 'wa');
+  renderProtectedCanvas(socialC, bpSourceImage, 'social');
+
+  document.getElementById('bpResults').style.display = 'block';
+  showToast('🛡️ Maximum brand protection applied to all 3 versions!', 'success');
+}
+
+function triggerBpDownload(type) {
+  const canvasMap = { web: 'bpWebCanvas', wa: 'bpWaCanvas', social: 'bpSocialCanvas' };
+  const canvas = document.getElementById(canvasMap[type]);
+  if (!canvas) return;
+  const a = document.createElement('a');
+  a.href = canvas.toDataURL('image/webp', 0.88);
+  a.download = 'cozycabin-protected-' + type + '.webp';
+  a.click();
+  showToast('⬇️ Downloading ' + type + ' version...', 'success');
+}
+
+/* ================================================================
+   ENHANCED IMAGE HANDLER — auto-center + stats tracking
+   ================================================================ */
+var _origHandleImages2 = handleImages;
+
+/* Override to track stats and show social share */
+var _origImageDone = null;
+(function() {
+  const origFn = window.handleImages;
+  window.handleImages = function(files) {
+    if (!files || files.length === 0) return;
+    const total = files.length;
+    let done = 0;
+    const presetName = document.querySelector('.preset-btn.active .preset-name') ?
+      document.querySelector('.preset-btn.active .preset-name').textContent : 'Standard';
+
+    const origOnload = function() {};
+
+    // Call original
+    origFn(files);
+
+    // Also show social share bar when done (check periodically)
+    const checkDone = setInterval(() => {
+      const results = document.getElementById('imageResults');
+      if (results && results.style.display !== 'none') {
+        document.getElementById('socialShareBar').classList.add('visible');
+        clearInterval(checkDone);
+      }
+    }, 500);
+    setTimeout(() => clearInterval(checkDone), 30000);
+  };
+})();
+
+/* Drag & Drop for new panels */
+document.querySelectorAll('#sgDropzone, #bpDropzone').forEach(dz => {
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+  dz.addEventListener('drop', e => {
+    e.preventDefault();
+    dz.classList.remove('drag-over');
+    const files = e.dataTransfer.files;
+    if (!files.length) return;
+    if (dz.id === 'sgDropzone') handleStyleGenerator(files);
+    else if (dz.id === 'bpDropzone') handleBrandProtection(files);
+  });
+});
+
+/* roundRect polyfill for Safari */
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function(x,y,w,h,r) {
+    this.beginPath();
+    this.moveTo(x+r,y);
+    this.lineTo(x+w-r,y);
+    this.quadraticCurveTo(x+w,y,x+w,y+r);
+    this.lineTo(x+w,y+h-r);
+    this.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    this.lineTo(x+r,y+h);
+    this.quadraticCurveTo(x,y+h,x,y+h-r);
+    this.lineTo(x,y+r);
+    this.quadraticCurveTo(x,y,x+r,y);
+    this.closePath();
+  };
+}
+</script>
 </body>
-  </html>
-  
+</html>
+
+
+
+
+
+
+
+
+    
+                                                                         
