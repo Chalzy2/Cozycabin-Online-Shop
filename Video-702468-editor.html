@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Editor — CozyCabin Free Tools</title>
+<link rel="icon" href="Images/Cozycabin log .webp" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;background:#000;color:#fff;font-family:'Outfit',Arial,sans-serif;scroll-behavior:smooth;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* ── HEADER ── */
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(0,0,0,.9);border-bottom:1px solid rgba(255,215,0,.18);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.top-bar-logo{display:flex;align-items:center;gap:10px}
+.top-bar-logo img{width:36px;height:36px;border-radius:10px;object-fit:cover}
+.top-bar-brand{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#ffd700;letter-spacing:1px}
+.top-bar-back{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#94a3b8;padding:7px 14px;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s}
+.top-bar-back:hover{border-color:#ffd700;color:#ffd700}
+
+/* ── HERO ── */
+.page-hero{padding:40px 20px 32px;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(255,215,0,.1) 0%,transparent 65%)}
+.page-hero-badge{display:inline-block;background:rgba(255,215,0,.12);border:1px solid rgba(255,215,0,.3);color:#ffd700;font-size:10px;font-weight:700;letter-spacing:2px;padding:4px 14px;border-radius:20px;margin-bottom:14px;text-transform:uppercase}
+.page-hero h1{font-family:'Rajdhani',sans-serif;font-size:clamp(28px,7vw,42px);font-weight:800;color:#fff;margin-bottom:10px}
+.page-hero h1 span{color:#ffd700}
+.page-hero p{font-size:14px;color:#64748b;max-width:500px;margin:0 auto 24px;line-height:1.6}
+.plan-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.plan-pill{padding:6px 16px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px}
+.pill-free{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#94a3b8}
+.pill-premium{background:rgba(255,215,0,.12);border:1px solid rgba(255,215,0,.3);color:#ffd700}
+
+/* ── CONTAINER ── */
+.container{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── PLAN CARDS ── */
+.plans-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+.plan-card{background:linear-gradient(145deg,#0d1120,#111827);border:1.5px solid rgba(255,255,255,.08);border-radius:20px;padding:20px 16px;position:relative;overflow:hidden}
+.plan-card.featured{border-color:rgba(255,215,0,.4);box-shadow:0 0 30px rgba(255,215,0,.08)}
+.plan-card .plan-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.plan-card .plan-price{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:800;margin-bottom:4px}
+.plan-card .plan-period{font-size:10px;color:#64748b;margin-bottom:14px}
+.plan-card ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.plan-card ul li{font-size:11px;display:flex;align-items:flex-start;gap:7px;color:#94a3b8;line-height:1.4}
+.plan-card ul li span.ok{color:#22c55e;font-size:13px;flex-shrink:0}
+.plan-card ul li span.no{color:#ef4444;font-size:13px;flex-shrink:0}
+.plan-card ul li span.lim{color:#ffd700;font-size:10px;flex-shrink:0;margin-top:1px}
+.plan-badge-top{position:absolute;top:12px;right:12px;background:#ffd700;color:#000;font-size:8px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:20px;text-transform:uppercase}
+
+/* ── SECTION TITLE ── */
+.section-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:.5px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06)}
+
+/* ── TOOL GRID ── */
+.tool-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:32px}
+@media(min-width:480px){.tool-grid{grid-template-columns:repeat(3,1fr)}}
+.tool-card{background:linear-gradient(145deg,#0d1120,#111827);border:1.5px solid rgba(255,255,255,.07);border-radius:18px;padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;cursor:pointer;transition:.25s;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent}
+.tool-card:hover,.tool-card:active{transform:translateY(-4px);border-color:rgba(255,215,0,.3);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.tool-card .tc-emoji{font-size:28px}
+.tool-card .tc-name{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:#fff;line-height:1.2}
+.tool-card .tc-sub{font-size:10px;color:#64748b;line-height:1.3}
+.tool-card .tc-badge{font-size:8px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:20px;margin-top:2px;text-transform:uppercase}
+.tc-free{background:rgba(255,255,255,.06);color:#94a3b8;border:1px solid rgba(255,255,255,.1)}
+.tc-premium{background:rgba(255,215,0,.1);color:#ffd700;border:1px solid rgba(255,215,0,.25)}
+.tc-lock{position:absolute;top:10px;right:10px;font-size:12px;opacity:.5}
+
+/* ── USAGE BAR ── */
+.usage-section{background:linear-gradient(145deg,#0d1120,#111827);border:1.5px solid rgba(255,255,255,.07);border-radius:20px;padding:20px;margin-bottom:28px}
+.usage-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.usage-row:last-child{margin-bottom:0}
+.usage-emoji{font-size:20px;flex-shrink:0;width:30px;text-align:center}
+.usage-info{flex:1;min-width:0}
+.usage-name{font-size:12px;font-weight:700;color:#e2e8f0;margin-bottom:4px}
+.usage-bar-wrap{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.usage-bar-fill{height:100%;border-radius:3px;transition:width .6s ease}
+.usage-count{font-size:10px;color:#64748b;margin-top:3px}
+.usage-premium-note{font-size:9px;color:#ffd700;margin-top:3px}
+
+/* ── UPGRADE CTA ── */
+.upgrade-cta{background:linear-gradient(135deg,#0d1a00,#0a1f00);border:2px solid rgba(255,215,0,.35);border-radius:22px;padding:24px 20px;text-align:center;margin-bottom:28px;position:relative;overflow:hidden}
+.upgrade-cta::before{content:'✨';position:absolute;font-size:80px;opacity:.04;top:-10px;right:-10px}
+.upgrade-cta .uc-badge{display:inline-block;background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.35);color:#ffd700;font-size:9px;font-weight:800;letter-spacing:2px;padding:3px 12px;border-radius:20px;margin-bottom:12px;text-transform:uppercase}
+.upgrade-cta h3{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px}
+.upgrade-cta p{font-size:12px;color:#64748b;line-height:1.6;margin-bottom:18px;max-width:360px;margin-left:auto;margin-right:auto}
+.upgrade-cta .price-row{display:flex;align-items:baseline;justify-content:center;gap:6px;margin-bottom:18px}
+.upgrade-cta .price-amount{font-family:'Rajdhani',sans-serif;font-size:36px;font-weight:800;color:#ffd700}
+.upgrade-cta .price-period{font-size:12px;color:#64748b}
+.upgrade-btn{display:inline-block;background:linear-gradient(135deg,#ffd700,#e0a800);color:#000;font-weight:800;font-size:13px;letter-spacing:1px;padding:13px 32px;border-radius:14px;cursor:pointer;border:none;font-family:'Outfit',sans-serif;text-transform:uppercase;transition:.2s;width:100%;max-width:320px}
+.upgrade-btn:hover{opacity:.88;transform:translateY(-1px)}
+.upgrade-feats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;text-align:left}
+.upgrade-feat{display:flex;align-items:center;gap:7px;font-size:11px;color:#94a3b8}
+.upgrade-feat span{color:#ffd700;font-size:14px;flex-shrink:0}
+
+/* ── MODAL ── */
+#tool-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);justify-content:center;align-items:flex-end;padding:0}
+#tool-modal.open{display:flex}
+.tool-modal-box{width:100%;max-width:560px;background:linear-gradient(180deg,#0d1117,#111827);border:2px solid rgba(255,215,0,.2);border-radius:28px 28px 0 0;padding:24px 20px 40px;max-height:90vh;overflow-y:auto;animation:slideUp .3s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.tmo-handle{width:40px;height:4px;background:rgba(255,255,255,.15);border-radius:2px;margin:0 auto 20px}
+.tmo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.tmo-title{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#fff}
+.tmo-close{background:none;border:none;color:#64748b;font-size:24px;cursor:pointer;line-height:1;padding:0}
+.tmo-close:hover{color:#fff}
+.upload-area{border:2px dashed rgba(255,215,0,.25);border-radius:16px;padding:32px 20px;text-align:center;cursor:pointer;transition:.2s;margin-bottom:16px;background:rgba(255,215,0,.02)}
+.upload-area:hover{border-color:rgba(255,215,0,.5);background:rgba(255,215,0,.04)}
+.upload-area .ua-emoji{font-size:36px;margin-bottom:10px}
+.upload-area .ua-text{font-size:13px;color:#94a3b8;margin-bottom:4px}
+.upload-area .ua-sub{font-size:10px;color:#475569}
+.upload-area input[type=file]{display:none}
+.tool-option-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.tool-option{background:#0f172a;border:1.5px solid rgba(255,255,255,.07);border-radius:12px;padding:12px 10px;text-align:center;cursor:pointer;transition:.2s;-webkit-tap-highlight-color:transparent}
+.tool-option:hover,.tool-option.selected{border-color:rgba(255,215,0,.4);background:rgba(255,215,0,.05)}
+.tool-option .to-emoji{font-size:20px;margin-bottom:4px}
+.tool-option .to-label{font-size:11px;font-weight:700;color:#e2e8f0}
+.tool-option .to-sub{font-size:9px;color:#64748b;margin-top:2px}
+.process-btn{width:100%;background:linear-gradient(135deg,#ffd700,#e0a800);color:#000;font-weight:800;font-size:13px;letter-spacing:1px;padding:14px;border-radius:14px;cursor:pointer;border:none;font-family:'Outfit',sans-serif;text-transform:uppercase;transition:.2s;margin-top:4px}
+.process-btn:hover{opacity:.88}
+.process-btn:disabled{opacity:.5;cursor:not-allowed}
+.progress-wrap{display:none;margin-top:14px}
+.progress-bar-bg{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:8px}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,#ffd700,#22c55e);border-radius:3px;transition:width .3s ease;width:0%}
+.progress-text{font-size:11px;color:#64748b;text-align:center}
+.result-area{display:none;margin-top:16px;background:#0f172a;border:1px solid rgba(34,197,94,.2);border-radius:14px;padding:16px;text-align:center}
+.result-area .ra-success{font-size:32px;margin-bottom:8px}
+.result-area .ra-title{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:#22c55e;margin-bottom:6px}
+.result-area .ra-sub{font-size:11px;color:#64748b;margin-bottom:14px}
+.download-btn{display:inline-block;background:#22c55e;color:#000;font-weight:800;font-size:12px;letter-spacing:1px;padding:10px 24px;border-radius:10px;cursor:pointer;border:none;font-family:'Outfit',sans-serif;text-transform:uppercase;transition:.2s}
+.download-btn:hover{opacity:.88}
+.watermark-note{font-size:9px;color:#ffd700;margin-top:8px;background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.15);border-radius:8px;padding:6px 10px}
+
+/* ── REGISTER GATE ── */
+#reg-gate{display:none;position:fixed;z-index:10000;inset:0;background:rgba(0,0,0,.97);justify-content:center;align-items:center;padding:20px}
+#reg-gate.open{display:flex}
+.rg-box{width:100%;max-width:420px;background:linear-gradient(180deg,#0d1117,#111827);border:2px solid #ffd700;border-radius:24px;padding:28px 22px;text-align:center;animation:modalSlide .3s ease}
+@keyframes modalSlide{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.rg-emoji{font-size:48px;margin-bottom:12px}
+.rg-title{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:8px}
+.rg-desc{font-size:12px;color:#64748b;line-height:1.6;margin-bottom:22px}
+.rg-btn{display:block;width:100%;padding:13px;border-radius:14px;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;font-family:'Outfit',sans-serif;cursor:pointer;border:none;margin-bottom:10px;transition:.2s}
+.rg-btn-primary{background:linear-gradient(135deg,#ffd700,#e0a800);color:#000}
+.rg-btn-secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)!important;color:#94a3b8}
+.rg-btn:hover{opacity:.88}
+.rg-close{position:absolute;top:14px;right:16px;background:none;border:none;color:#64748b;font-size:22px;cursor:pointer}
+
+/* ── LOCK OVERLAY ── */
+.lock-overlay{position:absolute;inset:0;background:rgba(0,0,0,.65);border-radius:inherit;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.lock-overlay span{font-size:24px}
+
+/* ── WA FLOAT ── */
+.wa-fab{position:fixed;bottom:22px;right:18px;width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.45);z-index:200;text-decoration:none;transition:.2s}
+.wa-fab:hover{transform:scale(1.08)}
+.wa-fab svg{width:26px;height:26px;fill:#fff}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-logo">
+    <img src="Images/Cozycabin log .webp" alt="CozyCabin" onerror="this.style.display='none'">
+    <div class="top-bar-brand">CozyCabin</div>
+  </div>
+  <a href="free-tools.html" class="top-bar-back">← Back to Tools</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-badge">🎬 Video Editor Suite</div>
+  <h1>🎥 Video <span>Editor</span></h1>
+  <p>Compress, trim, convert and resize your videos — free plan with 3 exports/day. Upgrade for unlimited HD exports.</p>
+  <div class="plan-pills">
+    <div class="plan-pill pill-free">Free · 3 exports/day · 30s max</div>
+    <div class="plan-pill pill-premium">Premium · Unlimited · HD · No watermark</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- PLAN COMPARISON -->
+  <div class="section-title">📋 Choose Your Plan</div>
+  <div class="plans-row">
+    <div class="plan-card">
+      <div class="plan-label" style="color:#94a3b8">Free Plan</div>
+      <div class="plan-price" style="color:#fff">KES 0</div>
+      <div class="plan-period">Always free</div>
+      <ul>
+        <li><span class="ok">✓</span>3 video exports/day</li>
+        <li><span class="ok">✓</span>Max 30 seconds</li>
+        <li><span class="ok">✓</span>Compress, trim, convert</li>
+        <li><span class="no">✗</span>HD quality</li>
+        <li><span class="no">✗</span>No watermark</li>
+        <li><span class="no">✗</span>Batch processing</li>
+        <li><span class="lim">⚡</span>Registration required</li>
+      </ul>
+    </div>
+    <div class="plan-card featured">
+      <div class="plan-badge-top">BEST</div>
+      <div class="plan-label" style="color:#ffd700">Premium Plan</div>
+      <div class="plan-price" style="color:#ffd700">KES 200</div>
+      <div class="plan-period">per month</div>
+      <ul>
+        <li><span class="ok">✓</span>Unlimited exports</li>
+        <li><span class="ok">✓</span>No time limit</li>
+        <li><span class="ok">✓</span>All tools included</li>
+        <li><span class="ok">✓</span>HD quality output</li>
+        <li><span class="ok">✓</span>No watermark</li>
+        <li><span class="ok">✓</span>Batch processing</li>
+        <li><span class="ok">✓</span>Priority processing</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="section-title">🛠️ Video Tools</div>
+  <div class="tool-grid">
+
+    <div class="tool-card" onclick="openTool('compress')">
+      <div class="tc-emoji">🗜️</div>
+      <div class="tc-name">Video Compressor</div>
+      <div class="tc-sub">Reduce file size fast</div>
+      <div class="tc-badge tc-free">Free · 3/day</div>
+    </div>
+
+    <div class="tool-card" onclick="openTool('trim')">
+      <div class="tc-emoji">✂️</div>
+      <div class="tc-name">Video Trimmer</div>
+      <div class="tc-sub">Cut start &amp; end</div>
+      <div class="tc-badge tc-free">Free · 3/day</div>
+    </div>
+
+    <div class="tool-card" onclick="openTool('convert')">
+      <div class="tc-emoji">🔄</div>
+      <div class="tc-name">Video Converter</div>
+      <div class="tc-sub">MP4, MOV, WebM</div>
+      <div class="tc-badge tc-free">Free · 3/day</div>
+    </div>
+
+    <div class="tool-card" onclick="openTool('resize')">
+      <div class="tc-emoji">📱</div>
+      <div class="tc-name">Social Resizer</div>
+      <div class="tc-sub">Reels, TikTok, YouTube</div>
+      <div class="tc-badge tc-free">Free · 3/day</div>
+    </div>
+
+    <div class="tool-card" onclick="openTool('thumbnail')">
+      <div class="tc-emoji">🖼️</div>
+      <div class="tc-name">Thumbnail Creator</div>
+      <div class="tc-sub">Extract video frames</div>
+      <div class="tc-badge tc-premium">Premium</div>
+      <div class="lock-overlay"><span>🔒</span></div>
+    </div>
+
+    <div class="tool-card" onclick="openTool('batch')">
+      <div class="tc-emoji">📦</div>
+      <div class="tc-name">Batch Processing</div>
+      <div class="tc-sub">Process multiple files</div>
+      <div class="tc-badge tc-premium">Premium</div>
+      <div class="lock-overlay"><span>🔒</span></div>
+    </div>
+
+  </div>
+
+  <!-- USAGE TRACKER -->
+  <div class="section-title">📊 Your Usage Today</div>
+  <div class="usage-section">
+    <div class="usage-row">
+      <div class="usage-emoji">🗜️</div>
+      <div class="usage-info">
+        <div class="usage-name">Video Compression</div>
+        <div class="usage-bar-wrap"><div class="usage-bar-fill" style="width:33%;background:linear-gradient(90deg,#ffd700,#e0a800)"></div></div>
+        <div class="usage-count" id="compress-count">1 / 3 used today</div>
+      </div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-emoji">✂️</div>
+      <div class="usage-info">
+        <div class="usage-name">Video Trimming</div>
+        <div class="usage-bar-wrap"><div class="usage-bar-fill" style="width:0%;background:linear-gradient(90deg,#60a5fa,#3b82f6)"></div></div>
+        <div class="usage-count" id="trim-count">0 / 3 used today</div>
+      </div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-emoji">🔄</div>
+      <div class="usage-info">
+        <div class="usage-name">Video Conversion</div>
+        <div class="usage-bar-wrap"><div class="usage-bar-fill" style="width:0%;background:linear-gradient(90deg,#a78bfa,#7c3aed)"></div></div>
+        <div class="usage-count" id="convert-count">0 / 3 used today</div>
+      </div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-emoji">📱</div>
+      <div class="usage-info">
+        <div class="usage-name">Social Resizing</div>
+        <div class="usage-bar-wrap"><div class="usage-bar-fill" style="width:0%;background:linear-gradient(90deg,#34d399,#059669)"></div></div>
+        <div class="usage-count" id="resize-count">0 / 3 used today</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);text-align:center">
+      <div style="font-size:10px;color:#64748b;margin-bottom:6px">Usage resets at midnight EAT</div>
+      <div class="usage-premium-note">⚡ Upgrade to Premium for unlimited usage — KES 200/month</div>
+    </div>
+  </div>
+
+  <!-- UPGRADE CTA -->
+  <div class="upgrade-cta">
+    <div class="uc-badge">✨ Premium Plan</div>
+    <h3>Go Unlimited</h3>
+    <p>Remove all limits, watermarks and restrictions. Process HD videos with no daily caps.</p>
+    <div class="upgrade-feats">
+      <div class="upgrade-feat"><span>✓</span>Unlimited exports</div>
+      <div class="upgrade-feat"><span>✓</span>HD quality output</div>
+      <div class="upgrade-feat"><span>✓</span>No Cozycabin watermark</div>
+       <div class="upgrade-feat"><span>✓</span>Batch processing</div>
+      <div class="upgrade-feat"><span>✓</span>All 6 video tools</div>
+      <div class="upgrade-feat"><span>✓</span>Priority processing</div>
+    </div>
+    <div class="price-row">
+      <div class="price-amount">KES 200</div>
+      <div class="price-period">/ month</div>
+    </div>
+    <button class="upgrade-btn" onclick="openUpgrade()">Upgrade via M-Pesa →</button>
+    <div style="font-size:10px;color:#475569;margin-top:10px">Cancel anytime · Instant activation</div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ── TOOL MODAL ── -->
+<div id="tool-modal">
+  <div class="tool-modal-box">
+    <div class="tmo-handle"></div>
+    <div class="tmo-header">
+      <div class="tmo-title" id="tmo-title">Video Compressor</div>
+      <button class="tmo-close" onclick="closeTool()">✕</button>
+    </div>
+
+    <!-- Upload Area -->
+    <div class="upload-area" onclick="document.getElementById('vid-file').click()">
+      <div id="upload-area-inner">
+        <div class="ua-emoji">🎬</div>
+        <div class="ua-text">Tap to select video</div>
+        <div class="ua-sub">MP4, MOV, AVI, WebM · Max 100MB (Free) / 2GB (Premium)</div>
+      </div>
+      <input type="file" id="vid-file" accept="video/*" onchange="fileSelected(this)">
+    </div>
+
+    <!-- Options for compress -->
+    <div id="tmo-compress-opts">
+      <div style="font-size:11px;color:#64748b;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Quality</div>
+      <div class="tool-option-row">
+        <div class="tool-option selected" onclick="selectOption(this,'quality','high')">
+          <div class="to-emoji">🏆</div>
+          <div class="to-label">High Quality</div>
+          <div class="to-sub">Smaller reduction</div>
+        </div>
+        <div class="tool-option" onclick="selectOption(this,'quality','max')">
+          <div class="to-emoji">⚡</div>
+          <div class="to-label">Max Compress</div>
+          <div class="to-sub">Smallest file</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Options for convert -->
+    <div id="tmo-convert-opts" style="display:none">
+      <div style="font-size:11px;color:#64748b;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Output Format</div>
+      <div class="tool-option-row">
+        <div class="tool-option selected" onclick="selectOption(this,'format','mp4')">
+          <div class="to-emoji">🎬</div>
+          <div class="to-label">MP4</div>
+          <div class="to-sub">Most compatible</div>
+        </div>
+        <div class="tool-option" onclick="selectOption(this,'format','webm')">
+          <div class="to-emoji">🌐</div>
+          <div class="to-label">WebM</div>
+          <div class="to-sub">Web optimised</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Options for resize -->
+    <div id="tmo-resize-opts" style="display:none">
+      <div style="font-size:11px;color:#64748b;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Platform</div>
+      <div class="tool-option-row">
+        <div class="tool-option selected" onclick="selectOption(this,'platform','reels')">
+          <div class="to-emoji">📱</div>
+          <div class="to-label">Reels / TikTok</div>
+          <div class="to-sub">9:16 vertical</div>
+        </div>
+        <div class="tool-option" onclick="selectOption(this,'platform','yt')">
+          <div class="to-emoji">▶️</div>
+          <div class="to-label">YouTube</div>
+          <div class="to-sub">16:9 landscape</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trim options -->
+    <div id="tmo-trim-opts" style="display:none">
+      <div style="font-size:11px;color:#64748b;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Trim Range (seconds)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+        <div>
+          <label style="font-size:10px;color:#94a3b8;display:block;margin-bottom:4px">Start (s)</label>
+          <input type="number" id="trim-start" value="0" min="0" style="width:100%;background:#0f172a;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;padding:8px 10px;font-size:13px;outline:none">
+        </div>
+        <div>
+          <label style="font-size:10px;color:#94a3b8;display:block;margin-bottom:4px">End (s) <span style="color:#ffd700">max 30s (free)</span></label>
+          <input type="number" id="trim-end" value="30" min="1" max="30" style="width:100%;background:#0f172a;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;padding:8px 10px;font-size:13px;outline:none">
+        </div>
+      </div>
+    </div>
+
+    <button class="process-btn" id="process-btn" onclick="processVideo()">🚀 Process Video</button>
+
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
+      <div class="progress-text" id="progress-text">Processing...</div>
+    </div>
+
+    <div class="result-area" id="result-area">
+      <div class="ra-success">✅</div>
+      <div class="ra-title">Video Ready!</div>
+      <div class="ra-sub" id="result-sub">Your video has been processed successfully.</div>
+      <a class="download-btn" id="download-link" href="#" download>⬇️ Download Video</a>
+      <div class="watermark-note" id="watermark-note">⚠️ Free plan: Cozycabin watermark applied. Upgrade to remove.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── REGISTER GATE ── -->
+<div id="reg-gate">
+  <div class="rg-box" style="position:relative">
+    <button class="rg-close" onclick="document.getElementById('reg-gate').classList.remove('open')">✕</button>
+    <div class="rg-emoji">🔐</div>
+    <div class="rg-title">Free Account Required</div>
+    <div class="rg-desc">Create your free CozyCabin account to use the video tools and track your daily usage. Takes 30 seconds.</div>
+    <a href="affiliate.html" class="rg-btn rg-btn-primary">Create Free Account →</a>
+    <button class="rg-btn rg-btn-secondary" onclick="document.getElementById('reg-gate').classList.remove('open');skipReg()">Continue as Guest (limited)</button>
+  </div>
+</div>
+
+<!-- WA FAB -->
+<a href="https://wa.me/254702468460" class="wa-fab" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 2.93C8.8 2.93 2.93 8.8 2.93 16c0 2.32.63 4.5 1.72 6.38L2.67 29.07l6.87-1.97A13.03 13.03 0 0016 29.07C23.2 29.07 29.07 23.2 29.07 16S23.2 2.93 16 2.93zm0 23.84a10.76 10.76 0 01-5.54-1.53l-.4-.24-4.08 1.17 1.14-4-.26-.42A10.8 10.8 0 0116 5.2c5.96 0 10.8 4.84 10.8 10.8S21.96 26.77 16 26.77zm5.93-8.07c-.32-.16-1.9-.94-2.2-1.05-.3-.1-.52-.16-.74.16-.22.32-.84 1.05-1.03 1.26-.19.22-.38.24-.7.08-.32-.16-1.36-.5-2.6-1.6-.96-.86-1.6-1.92-1.8-2.24-.18-.32 0-.5.14-.66.14-.14.32-.38.48-.57.16-.19.22-.32.32-.54.1-.22.05-.41-.03-.57-.08-.16-.74-1.8-1.02-2.46-.27-.64-.54-.56-.74-.57h-.63c-.22 0-.57.08-.87.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.12 1.32 3.33c.16.22 2.28 3.48 5.52 4.88.77.33 1.38.53 1.85.68.78.25 1.48.21 2.04.13.62-.1 1.9-.78 2.17-1.53.27-.76.27-1.41.19-1.54-.08-.14-.3-.22-.62-.38z"/></svg>
+</a>
+
+<script>
+// ── State ──
+const DAILY_LIMIT = 3;
+let isLoggedIn = false;
+let isGuest = false;
+let currentTool = 'compress';
+let selectedFile = null;
+let usage = JSON.parse(localStorage.getItem('cc_vid_usage') || '{}');
+const today = new Date().toDateString();
+if (usage.date !== today) { usage = {date:today, compress:0, trim:0, convert:0, resize:0}; saveUsage(); }
+
+function saveUsage(){ localStorage.setItem('cc_vid_usage', JSON.stringify(usage)); }
+function getCount(tool){ return usage[tool] || 0; }
+
+// Check session
+const session = localStorage.getItem('cc_vid_session');
+if (session === 'loggedin') isLoggedIn = true;
+if (session === 'guest') isGuest = true;
+
+// Update usage display on load
+updateUsageUI();
+
+function updateUsageUI(){
+  const tools = ['compress','trim','convert','resize'];
+  const ids = ['compress-count','trim-count','convert-count','resize-count'];
+  const fills = [33,0,0,0]; // demo default
+  tools.forEach((t,i)=>{
+    const el = document.getElementById(ids[i]);
+    if(el) el.textContent = `${usage[t]||0} / ${DAILY_LIMIT} used today`;
+  });
+}
+
+// ── Open Tool ──
+function openTool(tool){
+  if(!isLoggedIn && !isGuest){
+    document.getElementById('reg-gate').classList.add('open');
+    return;
+  }
+  currentTool = tool;
+  selectedFile = null;
+  document.getElementById('result-area').style.display = 'none';
+  document.getElementById('progress-wrap').style.display = 'none';
+  document.getElementById('process-btn').disabled = false;
+
+  // Premium-only tools
+  if(tool === 'thumbnail' || tool === 'batch'){
+    openUpgrade(); return;
+  }
+
+  // Check limit
+  if((usage[tool]||0) >= DAILY_LIMIT){
+    alert(`Daily limit reached for this tool (${DAILY_LIMIT}/day). Upgrade to Premium for unlimited exports.`);
+    return;
+  }
+
+  // Set title & options
+  const titles = {compress:'🗜️ Video Compressor',trim:'✂️ Video Trimmer',convert:'🔄 Video Converter',resize:'📱 Social Media Resizer'};
+  document.getElementById('tmo-title').textContent = titles[tool] || tool;
+  document.getElementById('tmo-compress-opts').style.display = tool==='compress'?'block':'none';
+  document.getElementById('tmo-convert-opts').style.display = tool==='convert'?'block':'none';
+  document.getElementById('tmo-resize-opts').style.display = tool==='resize'?'block':'none';
+  document.getElementById('tmo-trim-opts').style.display = tool==='trim'?'block':'none';
+
+  // Reset upload
+  document.getElementById('upload-area-inner').innerHTML = '<div class="ua-emoji">🎬</div><div class="ua-text">Tap to select video</div><div class="ua-sub">MP4, MOV, AVI, WebM · Max 100MB</div>';
+  document.getElementById('vid-file').value = '';
+
+  document.getElementById('tool-modal').classList.add('open');
+}
+
+function closeTool(){
+  document.getElementById('tool-modal').classList.remove('open');
+}
+
+function fileSelected(input){
+  if(!input.files.length) return;
+  selectedFile = input.files[0];
+  const sizeMB = (selectedFile.size/1024/1024).toFixed(1);
+  document.getElementById('upload-area-inner').innerHTML = `<div class="ua-emoji">✅</div><div class="ua-text">${selectedFile.name}</div><div class="ua-sub">${sizeMB} MB · Tap to change</div>`;
+}
+
+function selectOption(el, group, val){
+  el.closest('.tool-option-row').querySelectorAll('.tool-option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function processVideo(){
+  if(!selectedFile){ alert('Please select a video file first.'); return; }
+
+  // Check limit again
+  if((usage[currentTool]||0) >= DAILY_LIMIT){
+    alert(`Daily limit reached (${DAILY_LIMIT}/day). Upgrade to Premium for unlimited.`); return;
+  }
+
+  const btn = document.getElementById('process-btn');
+  btn.disabled = true;
+  const pw = document.getElementById('progress-wrap');
+  const pf = document.getElementById('progress-fill');
+  const pt = document.getElementById('progress-text');
+  pw.style.display = 'block';
+  document.getElementById('result-area').style.display = 'none';
+
+  // Simulate progress
+  let pct = 0;
+  const steps = ['Analysing video...','Processing frames...','Applying settings...','Finalising output...','Adding watermark...'];
+  const interval = setInterval(()=>{
+    pct += Math.random()*18 + 5;
+    if(pct > 100) pct = 100;
+    pf.style.width = pct + '%';
+    pt.textContent = steps[Math.floor(pct/25)] || 'Almost done...';
+    if(pct >= 100){
+      clearInterval(interval);
+      setTimeout(()=>showResult(), 400);
+    }
+  }, 350);
+}
+
+function showResult(){
+  // Increment usage
+  usage[currentTool] = (usage[currentTool]||0) + 1;
+  saveUsage();
+  updateUsageUI();
+
+  document.getElementById('progress-wrap').style.display = 'none';
+  document.getElementById('process-btn').disabled = false;
+
+  // Create dummy download (in real implementation, this would be actual processed video)
+  const url = URL.createObjectURL(selectedFile);
+  const dl = document.getElementById('download-link');
+  dl.href = url;
+  dl.download = 'cozycabin_' + selectedFile.name;
+
+  const remaining = DAILY_LIMIT - (usage[currentTool]||0);
+  document.getElementById('result-sub').textContent = `Ready to download. ${remaining} export${remaining!==1?'s':''} remaining today.`;
+
+  document.getElementById('result-area').style.display = 'block';
+}
+
+function skipReg(){
+  isGuest = true;
+  localStorage.setItem('cc_vid_session','guest');
+}
+
+function openUpgrade(){
+  const msg = encodeURIComponent("Hi CozyCabin, I'd like to upgrade to the Premium Video Editor plan (KES 200/month). Please guide me on M-Pesa payment.");
+  window.open(`https://wa.me/254702468460?text=${msg}`, '_blank');
+}
+
+// Close modals on backdrop click
+document.getElementById('tool-modal').addEventListener('click', function(e){
+  if(e.target === this) closeTool();
+});
+document.getElementById('reg-gate').addEventListener('click', function(e){
+  if(e.target === this) this.classList.remove('open');
+});
+</script>
+</body>
+</html>
