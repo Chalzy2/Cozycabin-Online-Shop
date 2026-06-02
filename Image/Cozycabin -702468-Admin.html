@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozycabin · Admin Tool</title>
+    <style>
+        :root { --gold: #ffd700; --navy: #060d1f; }
+        body { background: var(--navy); color: #e2e8f0; font-family: sans-serif; padding: 20px; }
+        .app-wrapper { max-width: 800px; margin: auto; }
+        .panel { background: #0d1830; padding: 20px; border-radius: 20px; border: 1px solid rgba(255,215,0,0.2); }
+        .dropzone { border: 2px dashed var(--gold); padding: 40px; text-align: center; cursor: pointer; border-radius: 20px; margin-bottom: 20px; }
+        .dl-btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 5px; display: block; text-decoration: none; text-align: center; }
+        .settings { margin-bottom: 20px; display: flex; gap: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="app-wrapper">
+    <header style="text-align:center; margin-bottom: 30px;">
+        <h1 style="color:var(--gold);">COZYCABIN ADMIN TOOLS</h1>
+        <p>Locked Style: White Background + Logo Mandatory</p>
+    </header>
+
+    <div class="panel">
+        <div class="settings">
+            <label><input type="checkbox" id="addWatermark"> Include Optional Watermark</label>
+        </div>
+        <div class="dropzone" id="dropzone">
+            <p>📸 Drop Product Images Here</p>
+            <input type="file" id="fileInput" multiple accept="image/*" style="display:none;">
+        </div>
+        <div id="results"></div>
+    </div>
+</div>
+
+<script>
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const logoSrc = 'Images/Cozycabin log .webp'; // Logo path as referenced in project files[span_1](start_span)[span_1](end_span)
+
+    dropzone.onclick = () => fileInput.click();
+    fileInput.onchange = (e) => handleFiles(e.target.files);
+
+    function handleFiles(files) {
+        const logo = new Image();
+        logo.src = logoSrc;
+        logo.onload = () => {
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = 1200; 
+                        canvas.height = 1200;
+                        const ctx = canvas.getContext('2d');
+                        
+                        // 1. Locked Style: Pure White Background[span_2](start_span)[span_2](end_span)
+                        ctx.fillStyle = "#ffffff";
+                        ctx.fillRect(0, 0, 1200, 1200);
+                        
+                        // 2. Scanner/Centering Logic
+                        const scale = Math.min(1000 / img.width, 1000 / img.height);
+                        const x = (1200 - img.width * scale) / 2;
+                        const y = (1200 - img.height * scale) / 2;
+                        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+                        
+                        // 3. MANDATORY: Cozycabin Logo
+                        ctx.drawImage(logo, 1050, 50, 100, 100); 
+                        
+                        // 4. OPTIONAL: Watermark
+                        if(document.getElementById('addWatermark').checked) {
+                            ctx.fillStyle = "rgba(128, 128, 128, 0.2)";
+                            ctx.font = "bold 40px Arial";
+                            ctx.save();
+                            ctx.translate(600, 600);
+                            ctx.rotate(-Math.PI / 4);
+                            ctx.fillText("COZYCABIN", 0, 0);
+                            ctx.restore();
+                        }
+                        
+                        // 5. Output as WebP for smallest size[span_3](start_span)[span_3](end_span)
+                        const webpData = canvas.toDataURL('image/webp', 0.8);
+                        renderResult(webpData, file.name.split('.')[0] + ".webp");
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        };
+    }
+
+    function renderResult(data, name) {
+        const div = document.getElementById('results');
+        div.innerHTML += `
+            <div style="background:#111; padding:10px; margin-top:10px; border-radius:10px;">
+                <p style="font-size:12px;">${name}</p>
+                <a href="${data}" download="${name}" class="dl-btn">Download WebP</a>
+            </div>
+        `;
+    }
+</script>
+
+</body>
+  </html>
+  
