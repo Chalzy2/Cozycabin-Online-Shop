@@ -964,6 +964,112 @@ function cozyyCopy(text, btnId) {
     setTimeout(function() { if (btn) btn.textContent = 'Copy'; }, 2000);
   });
 }
+/* ============================================================
+   COZYCABIN — ccGoTo PIXEL FIX
+   Paste at the VERY BOTTOM of products.js
+
+   Problem: translateX(-N * 100%) uses % of the TRACK width
+   (all slides combined), not the viewport — so images shift wrong.
+   Fix: use actual pixel width of the viewport instead.
+   ============================================================ */
+
+(function () {
+  // Save the original ccGoTo built earlier in products.js
+  var _prev = window.ccGoTo;
+
+  window.ccGoTo = function (galId, si, pidx) {
+    var gal      = document.getElementById(galId);
+    var track    = document.getElementById('cc-track-' + galId);
+    var counter  = document.getElementById('cc-counter-' + galId);
+    if (!gal || !track) return;
+
+    var total   = parseInt(gal.getAttribute('data-total'));
+    var current = parseInt(gal.getAttribute('data-current'));
+
+    // Pause video when leaving slide 0
+    if (current === 0 && si !== 0) {
+      var v = document.getElementById('ccvid-' + pidx);
+      if (v && !v.paused) {
+        v.pause();
+        var ov = document.getElementById('cc-play-' + pidx);
+        if (ov) { ov.style.opacity = '1'; ov.style.pointerEvents = 'auto'; }
+      }
+      if (window._vidTimer && window._vidTimer[pidx]) {
+        clearTimeout(window._vidTimer[pidx]);
+      }
+    }
+
+    gal.setAttribute('data-current', si);
+
+    // ── THE KEY FIX ──
+    // Use the viewport's real pixel width, not a percentage
+    var viewport   = gal.querySelector('.cc-viewport');
+    var slideWidth = viewport ? viewport.offsetWidth : gal.offsetWidth;
+    track.style.transform = 'translateX(-' + (si * slideWidth) + 'px)';
+
+    // Update counter
+    if (counter) counter.textContent = (si + 1) + ' / ' + total;
+
+    // Update dots
+    gal.querySelectorAll('.cc-dot').forEach(function (d, i) {
+      d.classList.toggle('cc-dot-active', i === si);
+    });
+
+    // Update thumbnails
+    gal.querySelectorAll('.cc-thumb').forEach(function (th) {
+      th.classList.toggle('cc-th-active', parseInt(th.getAttribute('data-si')) === si);
+    });
+
+    // Re-autoplay when returning to video slide 0
+    if (si === 0) {
+      var vid  = document.getElementById('ccvid-' + pidx);
+      var ovl  = document.getElementById('cc-play-' + pidx);
+      var prog = document.getElementById('cc-prog-' + pidx);
+      if (prog) { prog.style.transition = 'none'; prog.style.width = '0%'; }
+      if (vid) {
+        vid.currentTime = 0;
+        vid.play().then(function () {
+          if (ovl) { ovl.style.opacity = '0'; ovl.style.pointerEvents = 'none'; }
+          if (prog) {
+            requestAnimationFrame(function () {
+              requestAnimationFrame(function () {
+                prog.style.transition = 'width 20s linear';
+                prog.style.width = '100%';
+              });
+            });
+          }
+          if (parseInt(gal.getAttribute('data-total')) > 1) {
+            if (!window._vidTimer) window._vidTimer = {};
+            window._vidTimer[pidx] = setTimeout(function () {
+              if (parseInt(gal.getAttribute('data-current')) === 0) {
+                window.ccGoTo(galId, 1, pidx);
+                if (vid) vid.pause();
+              }
+            }, 20000);
+          }
+        }).catch(function () {
+          if (ovl) { ovl.style.opacity = '1'; ovl.style.pointerEvents = 'auto'; }
+        });
+      }
+    }
+  };
+
+  // Fix slide position on screen rotate / resize
+  window.addEventListener('resize', function () {
+    document.querySelectorAll('.cc-gallery').forEach(function (gal) {
+      var current = parseInt(gal.getAttribute('data-current') || '0');
+      if (current === 0) return; // slide 0 is always at 0px, skip
+      var track    = document.getElementById('cc-track-' + gal.id);
+      var viewport = gal.querySelector('.cc-viewport');
+      if (!track || !viewport) return;
+      track.style.transition = 'none';
+      track.style.transform  = 'translateX(-' + (current * viewport.offsetWidth) + 'px)';
+      requestAnimationFrame(function () {
+        track.style.transition = 'transform 0.35s ease';
+      });
+    });
+  });
+})();
 
 window.copyText = cozyyCopy;
 window.cozyyCopy = cozyyCopy;
