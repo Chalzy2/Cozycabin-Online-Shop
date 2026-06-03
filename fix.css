@@ -1601,4 +1601,7 @@ body {
   overflow-x: hidden !important;
   max-width: 100vw !important;
 }
-
+#products-container {
+  border: none !important;
+  box-shadow: none !important;
+}
