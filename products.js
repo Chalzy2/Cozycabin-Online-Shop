@@ -514,6 +514,8 @@ window.toggleSub = function(id) {
     var digitalIds = ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu'];
     if (m.id !== id && digitalIds.indexOf(m.id) === -1) {
       m.style.display = 'none';
+      m.style.borderColor = '';
+      m.style.boxShadow = '';
     }
   });
   var t = document.getElementById(id);
@@ -521,6 +523,8 @@ window.toggleSub = function(id) {
   var isOpen = t.style.display === 'block';
   t.style.display = isOpen ? 'none' : 'block';
   if (isOpen) {
+    t.style.borderColor = '';
+    t.style.boxShadow = '';
     hideProducts();
   } else {
     setTimeout(function() { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
@@ -530,11 +534,16 @@ window.toggleSub = function(id) {
 window.closeAllSubmenus = function() {
   var digitalIds = ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu'];
   document.querySelectorAll('.minor-menu').forEach(function(m) {
-    if (digitalIds.indexOf(m.id) === -1) m.style.display = 'none';
+    if (digitalIds.indexOf(m.id) === -1) {
+      m.style.display = 'none';
+      m.style.borderColor = '';
+      m.style.boxShadow = '';
+    }
   });
   hideProducts();
 };
-    // ============================================================
+
+// ============================================================
 //  SHOW PRODUCTS — uses buildGalleryHTML
 // ============================================================
 window.showProducts = function(category) {
@@ -551,8 +560,7 @@ window.showProducts = function(category) {
     openMenu.parentNode.insertBefore(container, openMenu.nextSibling);
     openMenu.style.borderColor = 'transparent';
     openMenu.style.boxShadow = 'none';
-        }
-
+                                                   }
   if (!products[category] || products[category].length === 0) {
     container.style.display = 'block';
     container.innerHTML =
