@@ -37,19 +37,18 @@
     }
   });
 
-  // 5. Detect DevTools open (width/height gap trick) — just logs, no disruption
-  var devToolsOpen = false;
-  setInterval(function() {
-    var w = window.outerWidth - window.innerWidth;
-    var h = window.outerHeight - window.innerHeight;
-    if (!devToolsOpen && (w > 160 || h > 160)) {
-      devToolsOpen = true;
-      console.clear();
-      console.log('%c⚠ COZYCABIN — Authorised access only', 'color:#ffd700;font-size:14px;font-weight:bold;');
-    } else if (devToolsOpen && w < 160 && h < 160) {
-      devToolsOpen = false;
-    }
-  }, 1500);
+  // DevTools detection — log only, never block page
+setInterval(function() {
+  var w = window.outerWidth - window.innerWidth;
+  var h = window.outerHeight - window.innerHeight;
+  if (!devToolsOpen && (w > 300 || h > 300)) {
+    devToolsOpen = true;
+    console.clear();
+    console.log('%c⚠ COZYCABIN — Authorised access only', 'color:#ffd700;font-size:14px;font-weight:bold;');
+  } else if (devToolsOpen && w < 300 && h < 300) {
+    devToolsOpen = false;
+  }
+}, 1500);
 
   // 6. CSS: prevent text selection on product cards (images, titles)
   var noSelectStyle = document.createElement('style');
