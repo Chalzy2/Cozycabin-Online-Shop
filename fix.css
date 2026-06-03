@@ -1343,3 +1343,60 @@ input, select, textarea { width: 100%; max-width: 100%; font-family: var(--font-
     -webkit-user-drag: none;
   }
 }
+/* ============================================================
+   COZYCABIN — ASPECT RATIO FIX (paste at bottom of fix.css)
+   Fixes: 1:1 and 3:4 product images on all screen sizes
+   ============================================================ */
+
+/* Gallery wrapper — never overflow the card */
+.cc-gallery {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  border-radius: 14px !important;
+  background: #000 !important;
+  margin-bottom: 12px !important;
+}
+
+/* Viewport — enforce aspect ratio, clip slides */
+.cc-viewport {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  position: relative !important;
+  border-radius: 14px !important;
+  background: #000 !important;
+  /* aspect-ratio is set inline per product e.g. style="aspect-ratio:3/4" */
+}
+
+/* Slide strip — full width, no shrink */
+.cc-track {
+  display: flex !important;
+  height: 100% !important;
+  transition: transform 0.35s ease !important;
+}
+
+/* Each individual slide — exactly 100% of viewport */
+.cc-slide {
+  flex: 0 0 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Images inside slides */
+.cc-slide img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Videos inside slides */
+.cc-slide video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
