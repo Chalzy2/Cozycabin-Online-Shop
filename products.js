@@ -92,7 +92,7 @@ var products = {
       colors: ["Black","Green", "Blue","White"],
       description: "Stylish and comfortable ladies slip-on sandals featuring a soft cushioned footbed, elegant gold buckle design, and lightweight sole. Perfect for everyday wear, shopping, travel, and casual outings..",
       video: "Images/video-black-shoes.mp4",
-      images: ["Images/Lopnshblu.webp","Images/Lopnshg.webp","Images/Lopnshw.webp"]
+      images: ["Images/Lopnshblu.webp","Images/Lopnshb.webp","Images/Lopnshg.webp","Images/Lopnshw.webp"]
     },
     {
       ratio: "3/4", title: "Ladies Fashion Sneakers", company: "Fashion",
@@ -100,7 +100,7 @@ var products = {
       colors: ["White","Olive Green","Peach Pink","Grey","Black"],
       description: "Lightweight breathable ladies sneakers with cushioned sole and non-slip outsole. Perfect for walking, shopping, travel, and everyday wear.",
       video: "Images/video-ladies-sneakers.mp4",
-      images: ["Images/FLS-white.webp","Images/Lopnshb.webp","Images/flsgreen.webp","Images/FLS-B.webp","Images/FLSGry.webp","Images/FLS-pich.webp"]
+      images: ["Images/FLS-white.webp","Images/flsgreen.webp","Images/FLS-B.webp","Images/FLSGry.webp","Images/FLS-pich.webp"]
     },
     {
       ratio: "1/1", title: "Calvin Klein Casual", company: "Calvin Klein",
@@ -164,8 +164,19 @@ var products = {
       description: "Premium men's formal shoes crafted for office wear, weddings, church, business meetings, and special occasions. Features elegant polished finishes, cushioned comfort, durable outsole, and stylish modern designs including loafers and lace-up options.",
       images: ["Images/officialleatherbrwn.webp","Images/officialblcks.webp","Images/classicbrwn.webp","Images/classicblack.webp","Images/classicblck.webp"],
       badge: "Executive Collection"
-    }
-  ],
+    },
+    {
+      title: "Warm Plush House Slippers",
+      company: "Home Comfort",
+      price: 850,
+      oldPrice: 1500,
+      sizes: ["36-37", "38-39", "40-41", "42-43"],
+      colors: ["Lime Green", "Brown", "Yellow", "Navy Blue", "Pink", "Grey", "Mauve", "Rose Pink"],
+      description: "Soft plush indoor slippers designed for warmth and comfort. Features a cushioned footbed, cozy fleece lining, and lightweight non-slip sole for everyday home use.",
+      image: "Images/warm-plush-house-slippers.webp",
+      badge: "Best Seller"
+     }
+   ],
   cutlery: [
     {
       title: "Silicone Spoons", company: "Kitchen",
