@@ -103,12 +103,12 @@ var products = {
       images: ["Images/women-wshoe.webp","Images/women-bshoes.webp"]
     },
     {
-      ratio: "3/4", title: "Calvin Klein Casual", company: "Calvin Klein",
+      ratio: "1/1", title: "Calvin Klein Casual", company: "Calvin Klein",
       price: 3200, oldPrice: 4000, sizes: [40,41,42,43,44,45],
-      colors: ["Brown","Blue","Tan"],
+      colors: ["Brown","Blue","Tan","Brown","White"],
       description: "Premium Calvin Klein casual sneakers with durable sole.",
       video: "Images/video-calvin-klein.mp4",
-      images: ["Images/calvin-brown.webp","Images/calvin-blue.webp","Images/calvin-tan.webp"]
+      images: ["Images/calvin-brown.webp","Images/calvin-blue.webp","kelvinb.webp","Kelvinbr.webp","kalvinw.webp","Kelvin.webp"]
     },
     {
       ratio: "3/4", title: "Premium Timberland Casual", company: "Timberland",
