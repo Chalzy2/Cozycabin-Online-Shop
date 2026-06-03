@@ -1678,29 +1678,6 @@ document.addEventListener('visibilitychange', function() {
   }
 });
 
-// ── 7. DEVTOOLS OPEN DETECTION — redirect or warn ──
-(function() {
-  var threshold = 160;
-  var devOpen = false;
-  setInterval(function() {
-    var widthDiff  = window.outerWidth  - window.innerWidth  > threshold;
-    var heightDiff = window.outerHeight - window.innerHeight > threshold;
-    if ((widthDiff || heightDiff) && !devOpen) {
-      devOpen = true;
-      document.body.innerHTML =
-        '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;background:#000;color:#ffd700;font-family:sans-serif;text-align:center;padding:20px;">' +
-        '<div style="font-size:60px;margin-bottom:20px;">🔒</div>' +
-        '<h1 style="font-size:24px;margin-bottom:10px;">Access Restricted</h1>' +
-        '<p style="color:#94a3b8;font-size:14px;">Developer tools are not permitted on this site.</p>' +
-        '<p style="color:#94a3b8;font-size:14px;margin-top:8px;">Please close DevTools and refresh the page.</p>' +
-        '</div>';
-    }
-    if (!widthDiff && !heightDiff && devOpen) {
-      devOpen = false;
-      location.reload();
-    }
-  }, 1000);
-})();
 
 // ── 8. DISABLE LONG-PRESS IMAGE SAVE (iOS / Android) ──
 document.querySelectorAll('img').forEach(function(img) {
