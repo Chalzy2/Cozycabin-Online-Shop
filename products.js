@@ -535,9 +535,6 @@ window.closeAllSubmenus = function() {
   hideProducts();
 };
 
-// ============================================================
-//  SHOW PRODUCTS — uses buildGalleryHTML
-// ============================================================
 window.showProducts = function(category) {
   var container = document.getElementById('products-container');
   if (!container) return;
@@ -550,9 +547,7 @@ window.showProducts = function(category) {
   });
   if (openMenu && openMenu.parentNode) {
     openMenu.parentNode.insertBefore(container, openMenu.nextSibling);
-    openMenu.style.borderColor = 'transparent';
-    openMenu.style.boxShadow = 'none';
-    }                                  }
+  }
   if (!products[category] || products[category].length === 0) {
     container.style.display = 'block';
     container.innerHTML =
