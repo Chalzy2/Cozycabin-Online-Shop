@@ -213,7 +213,7 @@ function buildGalleryHTML(product, index) {
   slides.forEach(function(slide, si) {
     if (slide.type === 'video') {
       trackHTML +=
-        '<div class="cc-slide">' +
+        '<div class="cc-slide" style="flex:0 0 100%;min-width:100%;width:100%;height:100%;position:relative;overflow:hidden;box-sizing:border-box;">' +
           '<video class="cc-video" id="ccvid-' + index + '" src="' + slide.src + '" ' +
                  'muted autoplay playsinline preload="auto" ' +
                  'oncanplay="ccOnCanPlay(' + index + ')" ' +
@@ -265,8 +265,9 @@ function buildGalleryHTML(product, index) {
     '<div class="cc-gallery" id="' + galleryId + '" data-current="0" data-total="' + total + '" data-pidx="' + index + '">' +
 
       // Viewport — ratio set per product (3/4 portrait for fashion, 1/1 square for others)
-      '<div class="cc-viewport" style="aspect-ratio:' + (product.ratio || '1/1') + ';">' +
-        '<div class="cc-track" id="cc-track-' + galleryId + '">' +
+    
+'<div class="cc-viewport" style="position:relative;width:100%;overflow:hidden;border-radius:14px;padding-bottom:' + (product.ratio === '3/4' ? '133.33' : '100') + '%;height:0;box-sizing:border-box;">' +
+        '<div class="cc-track" id="cc-track-' + galleryId + '" style="display:flex;flex-direction:row;flex-wrap:nowrap;width:100%;height:100%;position:absolute;top:0;left:0;transition:transform 0.35s ease;will-change:transform;">' +
           trackHTML +
         '</div>' +
         // Counter
