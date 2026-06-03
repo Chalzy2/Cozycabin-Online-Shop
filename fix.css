@@ -1605,3 +1605,38 @@ body {
   border: none !important;
   box-shadow: none !important;
 }
+/* ── FIX: card fills container, no side gaps showing border ── */
+#products-container {
+  padding: 16px !important;
+  gap: 16px !important;
+}
+
+.product-card {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Flexible gallery — auto-detects aspect ratio */
+.cc-viewport {
+  padding-bottom: 0 !important;
+  height: auto !important;
+  aspect-ratio: unset !important;
+}
+
+.cc-track {
+  position: relative !important;
+  height: auto !important;
+}
+
+.cc-slide {
+  aspect-ratio: 1 / 1;  /* default square */
+}
+
+/* Portrait slides auto-switch to 3:4 */
+.cc-slide img,
+.cc-slide video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
