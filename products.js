@@ -87,12 +87,12 @@ var referralCode = localStorage.getItem('referralCode');
 var products = {
   shoes: [
     {
-      ratio: "3/4", title: "Classic Black Sneakers", company: "Fashion",
-      price: 1999, oldPrice: 2500, sizes: [41,42,43,44],
-      colors: ["Black","Grey","Gold"],
-      description: "Comfortable lightweight sneakers for daily wear.",
+      ratio: "1/1", title: "Ladies Comfort Slip-On Sandals", company: "Fashion",
+      price: 2299, oldPrice: 3500, sizes: [36,37,38,39,49,41,42,43],
+      colors: ["Black","Green","White"],
+      description: "Stylish and comfortable ladies slip-on sandals featuring a soft cushioned footbed, elegant gold buckle design, and lightweight sole. Perfect for everyday wear, shopping, travel, and casual outings..",
       video: "Images/video-black-shoes.mp4",
-      images: ["Images/black-shoes.webp","Images/greyshoes.webp","Images/gold-shoes.webp"]
+      images: ["Images/Lopnshb.webp","Images/Lopnshg.webp","Images/Lopnshw.webp"]
     },
     {
       ratio: "3/4", title: "Ladies Fashion Sneakers", company: "Fashion",
@@ -132,7 +132,7 @@ var products = {
     },
     {
       ratio: "3/4", title: "Women's Comfort Slip-On Sneakers", company: "Fashion",
-      price: 1499, oldPrice: 2200,
+      price: 1799, oldPrice: 2500,
       sizes: [37,38,39,40,41,42],
       colors: ["Khaki","Red","Grey","Navy Blue","Black"],
       description: "Lightweight breathable slip-on sneakers designed for everyday comfort, walking and casual wear.",
