@@ -96,7 +96,7 @@ var products = {
     },
     {
       ratio: "3/4", title: "Ladies Fashion Sneakers", company: "Fashion",
-      price: 1999, oldPrice: 2500, sizes: [41,42,43,44],
+      price: 2299, oldPrice: 3299, sizes: [41,42,43,44],
       colors: ["White","Olive Green","Peach Pink","Grey","Black"],
       description: "Lightweight breathable ladies sneakers with cushioned sole and non-slip outsole. Perfect for walking, shopping, travel, and everyday wear.",
       video: "Images/video-ladies-sneakers.mp4",
@@ -112,22 +112,21 @@ var products = {
     },
     {
       ratio: "3/4", title: "Premium Timberland Casual", company: "Timberland",
-      price: 3200, oldPrice: 4000, sizes: [40,41,42,43,44,45],
-      colors: ["Black","White","Brown","Dark Brown","Grey White","Navy Blue"],
+      price: 3850, oldPrice: 5000, sizes: [40,41,42,43,44,45],
+      colors: ["Black","White","Brown","Dark Brown"],
       description: "Premium Timberland casual sneakers crafted for comfort and style. Durable construction, cushioned sole and versatile design make them ideal for everyday wear, office casual outfits and weekend outings.",
       video: "Images/video-timber-casual.mp4",
-      images: ["Images/timber-black.webp","Images/timber-white.webp","Images/timber-white1.webp","Images/timber-tan.webp","Images/timber-greywhite.webp","Images/timber-darkblue.webp","Images/timber-navy.webp"]
+      images: ["Images/timber-black.webp","Images/timber-white.webp","Images/Timberlandlebrwn.webp","Images/Timberlandghbrwn.webp"]
     },
     {
       ratio: "3/4", title: "Timberland Casual Sneakers", company: "cartoon",
-      price: 3200, oldPrice: 4500,
+      price: 3500, oldPrice: 4500,
       sizes: [40,41,42,43,44,45],
       colors: [""],
       description: "Premium Timberland casual sneakers crafted for comfort and style. Durable construction, cushioned sole and versatile design make them ideal for everyday wear, office casual outfits and weekend outings.",
       video: "https://www.dropbox.com/scl/fi/yqlmt56nzjgkzxur1l86u/MP4_20260530_211747VLOG.mp4?rlkey=vywsa20vw3qo528nssg0b3hse&raw=1",
       images: [
-        "Images/timber-navy.webp","Images/timber-black.webp","Images/timber-white.webp",
-        "Images/timber-brown.webp","Images/timber-darkbrown.webp","Images/timber-greywhite.webp"
+        "Images/timber-navy.webp","Images/timber-brown.webp","Images/timber-darkbrown.webp","Images/timber-greywhite.webp"
       ]
     },
     {
@@ -163,10 +162,10 @@ var products = {
       sizes: ["40", "41", "42", "43", "44", "45"],
       colors: ["Black", "Brown", "Tan", "Wine"],
       description: "Premium men's formal shoes crafted for office wear, weddings, church, business meetings, and special occasions. Features elegant polished finishes, cushioned comfort, durable outsole, and stylish modern designs including loafers and lace-up options.",
-      image: "Images/mens-premi um-formal-shoes.webp",
+      images: ["Images/officialleatherbrwn.webp","Images/officialblcks.webp","Images/classicbrwn.webp","Images/classicblack.webp","Images/classicblck.webp"],
       badge: "Executive Collection"
     }
-    ],
+  ],
   cutlery: [
     {
       title: "Silicone Spoons", company: "Kitchen",
