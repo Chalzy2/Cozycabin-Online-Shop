@@ -100,7 +100,7 @@ var products = {
       colors: ["White","Olive Green","Peach Pink","Grey","Black"],
       description: "Lightweight breathable ladies sneakers with cushioned sole and non-slip outsole. Perfect for walking, shopping, travel, and everyday wear.",
       video: "Images/video-ladies-sneakers.mp4",
-      images: ["Images/FLS-white.webp","Images/flsgreen.webp","Images/FLS-B.webp","Images/FLSGry.webp","Images/FLS-pich.webp"]
+      images: ["Images/FLS-white.webp","Images/Lopnshb.webp","Images/flsgreen.webp","Images/FLS-B.webp","Images/FLSGry.webp","Images/FLS-pich.webp"]
     },
     {
       ratio: "1/1", title: "Calvin Klein Casual", company: "Calvin Klein",
@@ -154,8 +154,19 @@ var products = {
       video: "Images/video-ladies-comfort-sandals.mp4",
       badge: "🔥🔥New Arrival",
       category: "Footwear"
+    },
+    {
+      title: "Men's Premium Formal Shoes",
+      company: "Empire Shoes",
+      price: 3500,
+      oldPrice: 4500,
+      sizes: ["40", "41", "42", "43", "44", "45"],
+      colors: ["Black", "Brown", "Tan", "Wine"],
+      description: "Premium men's formal shoes crafted for office wear, weddings, church, business meetings, and special occasions. Features elegant polished finishes, cushioned comfort, durable outsole, and stylish modern designs including loafers and lace-up options.",
+      image: "Images/mens-premi um-formal-shoes.webp",
+      badge: "Executive Collection"
     }
-  ],
+    ],
   cutlery: [
     {
       title: "Silicone Spoons", company: "Kitchen",
