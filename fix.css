@@ -1640,3 +1640,47 @@ body {
   object-fit: cover !important;
   display: block !important;
 }
+/* ══ COZYCABIN YELLOW LINE FIX ══ */
+
+/* Card fills full width, clips gold border bleed */
+.product-card {
+  overflow: hidden !important;
+  isolation: isolate !important;
+  width: 100% !important;
+}
+
+/* Container clips its own gold border from showing inside cards */
+#products-container {
+  overflow: hidden !important;
+  padding: 12px !important;
+}
+
+/* Gallery background fills fully — no transparent gaps */
+.cc-gallery,
+.cc-viewport {
+  background: #000 !important;
+  isolation: isolate !important;
+}
+
+/* Slides fill their slot completely */
+.cc-slide {
+  background: #000 !important;
+  flex: 0 0 100% !important;
+  min-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Images/videos fill slide — no gaps on sides */
+.cc-slide img,
+.cc-slide video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Minor menu border stops bleeding into product section */
+.minor-menu {
+  overflow: hidden !important;
+  margin-bottom: 24px !important;
+}
