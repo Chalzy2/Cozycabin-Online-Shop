@@ -89,18 +89,18 @@ var products = {
     {
       ratio: "1/1", title: "Ladies Comfort Slip-On Sandals", company: "Fashion",
       price: 2299, oldPrice: 3500, sizes: [36,37,38,39,49,41,42,43],
-      colors: ["Black","Green","White"],
+      colors: ["Black","Green", "Blue","White"],
       description: "Stylish and comfortable ladies slip-on sandals featuring a soft cushioned footbed, elegant gold buckle design, and lightweight sole. Perfect for everyday wear, shopping, travel, and casual outings..",
       video: "Images/video-black-shoes.mp4",
-      images: ["Images/Lopnshb.webp","Images/Lopnshg.webp","Images/Lopnshw.webp"]
+      images: ["Images/Lopnshblu.webp","Images/Lopnshg.webp","Images/Lopnshw.webp"]
     },
     {
       ratio: "3/4", title: "Ladies Fashion Sneakers", company: "Fashion",
       price: 1999, oldPrice: 2500, sizes: [41,42,43,44],
-      colors: ["White","Black"],
-      description: "Stylish ladies sneakers with soft inner comfort.",
+      colors: ["White","Olive Green","Peach Pink","Grey","Black"],
+      description: "Lightweight breathable ladies sneakers with cushioned sole and non-slip outsole. Perfect for walking, shopping, travel, and everyday wear.",
       video: "Images/video-ladies-sneakers.mp4",
-      images: ["Images/women-wshoe.webp","Images/women-bshoes.webp"]
+      images: ["Images/FLS-white.webp","Images/flsgreen.webp","Images/FLS-B.webp","Images/FLSGry.webp","Images/FLS-pich.webp"]
     },
     {
       ratio: "1/1", title: "Calvin Klein Casual", company: "Calvin Klein",
