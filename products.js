@@ -173,7 +173,7 @@ var products = {
       sizes: ["36-37", "38-39", "40-41", "42-43"],
       colors: ["Lime Green", "Brown", "Yellow", "Navy Blue", "Pink", "Grey", "Mauve", "Rose Pink"],
       description: "Soft plush indoor slippers designed for warmth and comfort. Features a cushioned footbed, cozy fleece lining, and lightweight non-slip sole for everyday home use.",
-      image: "Images/warm-plush-house-slippers.webp",
+      images: ["Images/warmhseslippinky.webp","Images/warmhsenavy.webp","Images/warmhsegrey.webp","Images/Watmhseslipy.webp","Images/Warmhseslipink.webp"],
       badge: "Best Seller"
      }
    ],
