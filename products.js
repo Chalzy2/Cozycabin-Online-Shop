@@ -194,14 +194,12 @@ function savingsPercent(price, oldPrice) {
 // ============================================================
 function buildGalleryHTML(product, index) {
   var hasVideo  = product.video && product.video.length > 0;
-  var slides    = [];          // {type:'video'|'img', src, thumb}
+  var slides    = [];
   var galleryId = 'gal-' + index;
 
-  // Push video first
   if (hasVideo) {
     slides.push({ type: 'video', src: product.video });
   }
-  // Then images
   product.images.forEach(function(img) {
     slides.push({ type: 'img', src: img });
   });
@@ -227,7 +225,7 @@ function buildGalleryHTML(product, index) {
         '</div>';
     } else {
       trackHTML +=
-        '<div class="cc-slide">' +
+        '<div class="cc-slide" style="flex:0 0 100%;min-width:100%;width:100%;height:100%;box-sizing:border-box;">' +
           '<img src="' + slide.src + '" loading="lazy" ' +
                'style="width:100%;height:100%;object-fit:cover;display:block;">' +
         '</div>';
@@ -261,29 +259,27 @@ function buildGalleryHTML(product, index) {
   });
 
   // ── Full gallery wrapper ──
+  // FIX: Added the missing + operator between the cc-viewport opening div and cc-track div
   return (
     '<div class="cc-gallery" id="' + galleryId + '" data-current="0" data-total="' + total + '" data-pidx="' + index + '">' +
 
-      // Viewport — ratio set per product (3/4 portrait for fashion, 1/1 square for others)
-    
-'<div class="cc-viewport" style="position:relative;width:100%;overflow:hidden;border-radius:14px;aspect-ratio:' + 
-(product.ratio === '3/4' ? '3/4' : '1/1') + ';height:auto;box-sizing:border-box;">'
-        '<div class="cc-track" id="cc-track-' + galleryId + '"style="display:flex;flex-direction:row;flex-wrap:nowrap;width:100%;height:100%;position:absolute;top:0;left:0;right:0;bottom:0;transition:transform 0.35s ease;will-change:transform;">' +
+      '<div class="cc-viewport" style="position:relative;width:100%;overflow:hidden;border-radius:14px;aspect-ratio:' +
+      (product.ratio === '3/4' ? '3/4' : '1/1') + ';height:auto;box-sizing:border-box;">' +   // ← FIXED: + added here
+
+        '<div class="cc-track" id="cc-track-' + galleryId + '" style="display:flex;flex-direction:row;flex-wrap:nowrap;width:100%;height:100%;position:absolute;top:0;left:0;right:0;bottom:0;transition:transform 0.35s ease;will-change:transform;">' +
           trackHTML +
         '</div>' +
-        // Counter
+
         '<div class="cc-counter" id="cc-counter-' + galleryId + '">1 / ' + total + '</div>' +
-        // Dots
         '<div class="cc-dots" id="cc-dots-' + galleryId + '">' + dotsHTML + '</div>' +
+
       '</div>' +
 
-      // Thumbnails
       '<div class="cc-thumbrow" id="cc-thumbrow-' + galleryId + '">' + thumbHTML + '</div>' +
 
     '</div>'
   );
 }
-
 // ============================================================
 //  GALLERY RUNTIME — go to slide, video toggle
 // ============================================================
