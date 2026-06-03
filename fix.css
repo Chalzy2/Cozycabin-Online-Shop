@@ -1684,3 +1684,10 @@ body {
   overflow: hidden !important;
   margin-bottom: 24px !important;
 }
+/* ══ YELLOW LINE FIX — CSS ONLY ══ */
+.minor-menu {
+  border-left: none !important;
+  border-right: none !important;
+  border-top: 2px solid var(--gold) !important;
+  border-bottom: 2px solid var(--gold) !important;
+}
