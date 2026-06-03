@@ -141,9 +141,21 @@ var products = {
         "Images/womenredwalker.webp","Images/womendarkblue.webp","Images/womenlightbrown.webp",
         "Images/womenblackwalker.webp","Images/womegreywalker.webp"
       ]
+    },
+    {
+      title: "Ladies Comfort Sandals",
+      company: "Fashion",
+      price: 2499,
+      oldPrice: 3500,
+      sizes: [36,37,38,39,40,41],
+      colors: ["Green","Cream","Brown","Red"],
+      description: "Elegant open-toe ladies sandals with a comfortable low heel and stylish crocodile texture.",
+      images: ["Lsandlsb.webp","LsandlsG.webp","LsandalsR.webp","LsandlsBr.webp","LsandlsC.webp",]
+      video: "Images/video-ladies-comfort-sandals.mp4",
+      badge: "🔥🔥New Arrival",
+      category: "Footwear"
     }
   ],
-  
   cutlery: [
     {
       title: "Silicone Spoons", company: "Kitchen",
