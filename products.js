@@ -108,7 +108,7 @@ var products = {
       colors: ["Brown","Blue","Tan","Brown","White"],
       description: "Premium Calvin Klein casual sneakers with durable sole.",
       video: "Images/video-calvin-klein.mp4",
-      images: ["Images/calvin-brown.webp","Images/calvin-blue.webp","kelvinb.webp","Kelvinbr.webp","kalvinw.webp","Kelvin.webp"]
+      images: ["Images/calvin-brown.webp","Images/calvin-blue.webp","Images/kelvinb.webp","Images/Kelvinbr.webp","Images/kalvinw.webp","Images/Kelvin.webp"]
     },
     {
       ratio: "3/4", title: "Premium Timberland Casual", company: "Timberland",
@@ -150,7 +150,7 @@ var products = {
       sizes: [36,37,38,39,40,41],
       colors: ["Green","Cream","Brown","Red"],
       description: "Elegant open-toe ladies sandals with a comfortable low heel and stylish crocodile texture.",
-      images: ["Lsandlsb.webp","LsandlsG.webp","LsandalsR.webp","LsandlsBr.webp","LsandlsC.webp",]
+      images: ["Images/Lsandlsb.webp","Imaged/LsandlsG.webp","Images/LsandalsR.webp","Images/LsandlsBr.webp","Images/LsandlsC.webp",]
       video: "Images/video-ladies-comfort-sandals.mp4",
       badge: "🔥🔥New Arrival",
       category: "Footwear"
