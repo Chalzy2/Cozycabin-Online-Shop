@@ -230,6 +230,18 @@ var products = {
       images: ["Images/blcksilicn.webp","Images/Silcn12psc1499.webp"]
     },
     {
+       title: "19PCS Premium Silicone Kitchenware Set",
+       company: "Kitchen",
+       price: 2850,
+       oldPrice: 3500,
+       sizes: [],
+       colors: ["Black","Grey","Pink"],
+       description: "Complete 19-piece silicone kitchen utensil set with holder, chopping board, knife and wooden-handle cooking tools. Safe for non-stick cookware.",
+       image: "Images/19pcsiliconb-1.webp","Images/19pcsilicongrey-1(2).webp"],
+       badge: "Best Seller",
+       category: "kitchen"
+     },
+     {
       title: "24 Psc Gold Cutlery Set", company: "Kitchen",
       price: 2500, oldPrice: 3500, sizes: [],
       colors: ["Gold","Silver"],
