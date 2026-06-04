@@ -198,7 +198,7 @@ var products = {
         sizes: ["14\"","20\"","24\"","28\""],
         colors: ["Pink", "Sage Green", "Beige", "Black", "Navy Blue", "Blush Pink", "Sky Blue"],
         description: "Luxury 4-piece fibre suitcase set with beauty case, telescopic handle, double-zip closure, spacious interior and smooth 360° spinner wheels.",
-        image: "Images/suitcase-4in1.webp",
+        image: ["Images/1-9.webp","Images/1-7.webp","Images/1-4.webp","Images/1-5.webp","Images/1-6.webp","Images/1-7webp.webp","Images/1-2.webp"],
         badge: "New Arrival",
         category: "travel"
       }
