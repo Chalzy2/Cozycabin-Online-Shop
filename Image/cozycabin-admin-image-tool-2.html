@@ -1,0 +1,5198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cozycabin · Image Processor</title>
+<style>
+/* ================================================================
+   COZYCABIN IMAGE PROCESSOR — upload.css
+   Mobile-first, dark theme, brand: navy + gold
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --gold:       #ffd700;
+  --gold2:      #e6a800;
+  --gold-soft:  rgba(255,215,0,0.12);
+  --gold-glow:  rgba(255,215,0,0.25);
+  --navy:       #060d1f;
+  --navy2:      #0a1228;
+  --card:       #0d1830;
+  --card2:      #111f3a;
+  --border:     rgba(255,215,0,0.14);
+  --border2:    rgba(255,215,0,0.28);
+  --text:       #e2e8f0;
+  --muted:      #5a7090;
+  --muted2:     #8aa0b8;
+  --green:      #22c55e;
+  --red:        #ef4444;
+  --radius-sm:  8px;
+  --radius:     14px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --shadow:     0 8px 40px rgba(0,0,0,0.5);
+  --shadow-sm:  0 2px 12px rgba(0,0,0,0.3);
+  --transition: all .2s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--navy2); }
+::-webkit-scrollbar-thumb { background: var(--gold2); border-radius: 4px; }
+
+/* ================================================================
+   LAYOUT
+   ================================================================ */
+.app-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 14px 80px;
+}
+
+/* ── Noise texture overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 0 16px;
+  margin-bottom: 4px;
+  position: relative;
+}
+.app-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.logo-wrap {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--card);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 18px var(--gold-glow);
+}
+.logo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.logo-fallback {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .06em;
+}
+.header-text h1 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .1em;
+  line-height: 1;
+}
+.header-text p {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.header-badge {
+  margin-left: auto;
+  background: var(--gold-soft);
+  border: 1px solid var(--border2);
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* ================================================================
+   SECTION TITLES
+   ================================================================ */
+.section-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted2);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ================================================================
+   PANELS / CARDS
+   ================================================================ */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.panel-sm { padding: 12px 14px; }
+
+/* ================================================================
+   PRESET SELECTOR
+   ================================================================ */
+.presets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.preset-btn {
+  background: var(--navy2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 11px 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
+}
+.preset-btn:hover { border-color: var(--gold2); background: var(--card2); }
+.preset-btn.active {
+  border-color: var(--gold);
+  background: var(--gold-soft);
+  box-shadow: 0 0 16px var(--gold-glow);
+}
+.preset-icon { font-size: 20px; margin-bottom: 5px; }
+.preset-name {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+.preset-dim {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+}
+
+/* ================================================================
+   SETTINGS GRID
+   ================================================================ */
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.setting-item label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+.setting-item select {
+  width: 100%;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 9px 12px;
+  font-size: 12px;
+  font-family: 'Sora', sans-serif;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ffd700'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  transition: var(--transition);
+}
+.setting-item select:focus { border-color: var(--gold2); }
+
+/* Range sliders */
+.range-wrap { display: flex; flex-direction: column; gap: 4px; }
+.range-label-row { display: flex; justify-content: space-between; align-items: center; }
+.range-label-row label { font-size: 10px; font-weight: 600; color: var(--muted2); text-transform: uppercase; letter-spacing: .08em; }
+.range-val { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); font-weight: 500; }
+input[type=range] {
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  background: var(--navy2);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  accent-color: var(--gold);
+}
+input[type=range]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px; height: 16px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+/* ================================================================
+   TOGGLE SWITCHES
+   ================================================================ */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.toggle-row:last-child { border-bottom: none; padding-bottom: 0; }
+.toggle-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.toggle-label span:first-child {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.toggle-label span:last-child {
+  font-size: 10px;
+  color: var(--muted);
+}
+.toggle {
+  position: relative;
+  width: 44px; height: 24px;
+  flex-shrink: 0;
+}
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  left: 2px; top: 2px;
+  background: var(--muted);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+.toggle input:checked + .toggle-slider {
+  background: var(--gold-soft);
+  border-color: var(--gold);
+}
+.toggle input:checked + .toggle-slider::before {
+  background: var(--gold);
+  transform: translateX(20px);
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+/* Sub-settings (shown when toggle ON) */
+.sub-settings {
+  display: none;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  animation: fadeDown .2s ease;
+}
+.sub-settings.visible { display: block; }
+@keyframes fadeDown { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+
+/* Naming options */
+.naming-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.naming-row label { font-size: 11px; color: var(--muted2); min-width: 50px; }
+.naming-row input[type=text] {
+  flex: 1;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 7px 10px;
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  outline: none;
+  transition: var(--transition);
+}
+.naming-row input[type=text]:focus { border-color: var(--gold2); }
+.naming-row input[type=checkbox] { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
+
+/* ================================================================
+   LOGO UPLOAD
+   ================================================================ */
+.logo-upload-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--navy2);
+  border: 1.5px dashed var(--border2);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.logo-upload-area input[type=file] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.logo-upload-area:hover { border-color: var(--gold); background: var(--card2); }
+.logo-preview-thumb {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.logo-preview-thumb img { width: 100%; height: 100%; object-fit: contain; }
+.logo-upload-text { flex: 1; }
+.logo-upload-text strong { font-size: 12px; color: var(--gold); display: block; }
+.logo-upload-text span { font-size: 10px; color: var(--muted); }
+
+/* ================================================================
+   DROP ZONE
+   ================================================================ */
+.dropzone {
+  border: 2px dashed rgba(255,215,0,0.25);
+  border-radius: var(--radius-xl);
+  padding: 48px 20px 44px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  background: rgba(255,215,0,0.015);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.dropzone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center bottom, rgba(255,215,0,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.dropzone.drag-over {
+  border-color: var(--gold);
+  background: rgba(255,215,0,0.06);
+  box-shadow: 0 0 40px rgba(255,215,0,0.12);
+}
+.dropzone input[type=file] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.drop-icon {
+  font-size: 52px;
+  margin-bottom: 14px;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+.drop-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .04em;
+  margin-bottom: 6px;
+}
+.drop-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.drop-formats {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.format-tag {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  color: var(--muted2);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+
+/* ================================================================
+   PROGRESS
+   ================================================================ */
+.progress-wrap {
+  display: none;
+  margin-bottom: 16px;
+  padding: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  z-index: 1;
+  position: relative;
+}
+.progress-wrap.visible { display: block; }
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.progress-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.progress-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--gold);
+}
+.progress-bar-bg {
+  height: 6px;
+  background: var(--navy2);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold2), var(--gold));
+  border-radius: 6px;
+  transition: width .3s ease;
+  width: 0%;
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+.progress-eta {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* ================================================================
+   RESULTS
+   ================================================================ */
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.results-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .04em;
+}
+.clear-btn {
+  background: transparent;
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Sora', sans-serif;
+  transition: var(--transition);
+}
+.clear-btn:hover { background: rgba(239,68,68,0.08); border-color: #ef4444; }
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Image Card ── */
+.img-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  animation: fadeUp .3s ease both;
+  display: flex;
+  flex-direction: column;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:none; }
+}
+
+/* Preview area with tabs */
+.card-preview {
+  position: relative;
+  aspect-ratio: 1;
+  background: #000;
+  overflow: hidden;
+}
+.card-preview canvas,
+.card-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.preview-tabs {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  display: flex;
+  gap: 4px;
+}
+.preview-tab {
+  background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+  font-size: 9px;
+  font-weight: 600;
+  padding: 3px 7px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Sora', sans-serif;
+}
+.preview-tab.active {
+  background: var(--gold);
+  color: #000;
+  border-color: var(--gold);
+}
+
+/* Card body */
+.card-body {
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.card-filename {
+  font-size: 10px;
+  color: var(--muted2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'DM Mono', monospace;
+}
+.card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.stat-item {
+  background: var(--navy2);
+  border-radius: 5px;
+  padding: 4px 6px;
+}
+.stat-label { font-size: 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.stat-value { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text); font-weight: 500; }
+.stat-value.gold { color: var(--gold); }
+.stat-value.green { color: var(--green); }
+
+.card-dl-btn {
+  display: block;
+  width: 100%;
+  background: var(--gold);
+  color: #000;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 9px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  font-family: 'Sora', sans-serif;
+  letter-spacing: .04em;
+  transition: var(--transition);
+  margin-top: auto;
+}
+.card-dl-btn:hover { opacity: .88; }
+.card-dl-btn:active { transform: scale(.97); }
+
+/* ================================================================
+   DOWNLOAD ALL BAR
+   ================================================================ */
+.dl-all-bar {
+  display: none;
+  position: sticky;
+  bottom: 14px;
+  z-index: 50;
+  margin-top: 16px;
+}
+.dl-all-bar.visible { display: flex; gap: 10px; }
+.dl-all-btn {
+  flex: 1;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #000;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 30px rgba(255,215,0,0.35);
+  transition: var(--transition);
+}
+.dl-all-btn:hover { opacity: .9; transform: translateY(-1px); }
+.dl-all-btn:active { transform: scale(.98); }
+.dl-zip-btn {
+  background: var(--card);
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 16px 20px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.dl-zip-btn:hover { background: var(--gold-soft); }
+
+/* ================================================================
+   EMPTY STATE
+   ================================================================ */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: 13px;
+  display: none;
+}
+.empty-state-icon { font-size: 40px; margin-bottom: 10px; }
+
+/* ================================================================
+   TOAST NOTIFICATIONS
+   ================================================================ */
+.toast-container {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: calc(100% - 32px);
+  max-width: 400px;
+  pointer-events: none;
+}
+.toast {
+  background: var(--card2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow);
+  animation: slideDown .3s ease;
+  pointer-events: all;
+}
+.toast.success { border-color: rgba(34,197,94,0.4); color: var(--green); }
+.toast.error   { border-color: rgba(239,68,68,0.4);  color: var(--red); }
+.toast.info    { border-color: var(--border2);        color: var(--gold); }
+@keyframes slideDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:none; } }
+
+/* ================================================================
+   ADVERT MODE
+   ================================================================ */
+.advert-styles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+.advert-style-btn {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0;
+  cursor: pointer;
+  transition: var(--transition);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.advert-style-btn:hover  { border-color: var(--gold2); }
+.advert-style-btn.active { border-color: var(--gold); box-shadow: 0 0 14px var(--gold-glow); }
+.advert-style-preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.advert-style-label {
+  position: relative;
+  z-index: 1;
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  background: rgba(0,0,0,0.55);
+  width: 100%;
+  text-align: center;
+  padding: 4px 2px;
+}
+/* Gradient previews */
+.adv-gold   { background: linear-gradient(135deg,#1a1000,#ffd700); }
+.adv-navy   { background: linear-gradient(135deg,#060d1f,#1a3a6e); }
+.adv-dark   { background: linear-gradient(135deg,#0a0a0a,#2d2d2d); }
+.adv-warm   { background: linear-gradient(135deg,#1a0800,#c0392b); }
+.adv-green  { background: linear-gradient(135deg,#001a0a,#27ae60); }
+.adv-purple { background: linear-gradient(135deg,#0d0020,#8e44ad); }
+
+.advert-tagline-row {
+  margin-top: 12px;
+}
+.advert-tagline-row label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+.advert-tagline-row input {
+  width: 100%;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 9px 12px;
+  font-size: 13px;
+  font-family: 'DM Mono', monospace;
+  outline: none;
+  transition: var(--transition);
+}
+.advert-tagline-row input:focus { border-color: var(--gold2); }
+
+.advert-sub { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); animation: fadeDown .2s ease; }
+.advert-sub.visible { display: block; }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (min-width: 600px) {
+  .results-grid { grid-template-columns: repeat(3, 1fr); }
+  .presets-grid { gap: 12px; }
+  .settings-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .presets-grid { grid-template-columns: 1fr; }
+  .settings-grid { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ================================================================
+   MAIN NAVIGATION TABS
+   ================================================================ */
+.main-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 14px 0 0;
+  margin-bottom: 0;
+  scrollbar-width: none;
+  border-bottom: 2px solid rgba(255,215,0,0.12);
+}
+.main-tabs::-webkit-scrollbar { display: none; }
+.main-tab {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--muted);
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  margin-bottom: -2px;
+}
+.main-tab:hover { color: var(--text); }
+.main-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.main-tab .tab-icon { font-size: 15px; }
+.tool-panel { display: none; padding-top: 20px; }
+.tool-panel.active { display: block; animation: fadeDown .3s ease; }
+
+/* ================================================================
+   ZIP TOOLS PANEL
+   ================================================================ */
+.zip-tool-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+@media(max-width:500px){ .zip-tool-grid { grid-template-columns: 1fr; } }
+.zip-mode-btn {
+  background: var(--navy2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  color: var(--text);
+}
+.zip-mode-btn:hover { border-color: var(--gold2); background: var(--card2); }
+.zip-mode-btn.active { border-color: var(--gold); background: var(--gold-soft); box-shadow: 0 0 16px var(--gold-glow); }
+.zip-mode-icon { font-size: 28px; margin-bottom: 6px; }
+.zip-mode-name { font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+.zip-mode-desc { font-size: 10px; color: var(--muted); line-height: 1.4; }
+
+.file-list {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px;
+  min-height: 80px;
+  max-height: 260px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+.file-list-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.file-list-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  border-radius: 8px;
+  border-bottom: 1px solid var(--border);
+  animation: fadeIn .2s ease;
+}
+.file-list-item:last-child { border-bottom: none; }
+.file-list-item:hover { background: rgba(255,215,0,0.04); }
+.fli-icon { font-size: 18px; flex-shrink: 0; }
+.fli-name { flex: 1; font-size: 11px; color: var(--text); font-family: 'DM Mono', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fli-size { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted2); flex-shrink: 0; }
+.fli-remove { background: none; border: none; color: var(--muted); font-size: 14px; cursor: pointer; padding: 2px 4px; transition: color .15s; flex-shrink: 0; }
+.fli-remove:hover { color: var(--red); }
+
+.action-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #000;
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 24px rgba(255,215,0,0.28);
+  transition: var(--transition);
+  margin-bottom: 8px;
+}
+.action-btn:hover { opacity: .9; transform: translateY(-1px); }
+.action-btn:active { transform: scale(.98); }
+.action-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.action-btn-outline {
+  width: 100%;
+  background: transparent;
+  color: var(--gold);
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--gold);
+  cursor: pointer;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  transition: var(--transition);
+  margin-bottom: 8px;
+}
+.action-btn-outline:hover { background: var(--gold-soft); }
+
+.zip-name-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.zip-name-row label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+.zip-name-row input {
+  flex: 1;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  outline: none;
+  transition: var(--transition);
+}
+.zip-name-row input:focus { border-color: var(--gold2); }
+
+.unzip-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+@media(min-width:500px){ .unzip-result-grid { grid-template-columns: repeat(3, 1fr); } }
+.unzip-file-card {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 10px;
+  text-align: center;
+  animation: fadeUp .2s ease;
+}
+.unzip-file-icon { font-size: 28px; margin-bottom: 6px; }
+.unzip-file-name { font-size: 10px; color: var(--text); font-family: 'DM Mono', monospace; word-break: break-all; line-height: 1.3; margin-bottom: 4px; }
+.unzip-file-size { font-size: 9px; color: var(--muted); margin-bottom: 8px; }
+.unzip-dl-btn {
+  display: block;
+  width: 100%;
+  background: var(--gold);
+  color: #000;
+  font-weight: 700;
+  font-size: 10px;
+  padding: 6px;
+  border-radius: 7px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.unzip-dl-btn:hover { opacity: .85; }
+
+/* ================================================================
+   PDF CONVERTER PANEL
+   ================================================================ */
+.pdf-dropzone {
+  border: 2px dashed rgba(255,215,0,0.22);
+  border-radius: var(--radius-xl);
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  background: rgba(255,215,0,0.015);
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.pdf-dropzone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center bottom, rgba(255,215,0,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.pdf-dropzone.drag-over { border-color: var(--gold); background: rgba(255,215,0,0.06); }
+.pdf-dropzone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; z-index: 2; }
+
+.pdf-file-type-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+@media(min-width:500px){ .pdf-file-type-grid { grid-template-columns: repeat(6, 1fr); } }
+.pdf-type-btn {
+  background: var(--navy2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  color: var(--text);
+}
+.pdf-type-btn:hover { border-color: var(--gold2); }
+.pdf-type-btn.active { border-color: var(--gold); background: var(--gold-soft); }
+.pdf-type-icon { font-size: 20px; margin-bottom: 4px; }
+.pdf-type-label { font-size: 9px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: .06em; }
+
+.pdf-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.pdf-opt-item label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+.pdf-opt-item select, .pdf-opt-item input[type=text] {
+  width: 100%;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: 'Sora', sans-serif;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ffd700'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  transition: var(--transition);
+}
+.pdf-opt-item input[type=text] {
+  background-image: none;
+  padding-right: 12px;
+}
+.pdf-opt-item select:focus, .pdf-opt-item input:focus { border-color: var(--gold2); }
+
+.pdf-result-card {
+  background: var(--card);
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  animation: fadeUp .3s ease;
+  margin-bottom: 12px;
+  box-shadow: 0 0 20px rgba(255,215,0,0.05);
+}
+.pdf-result-icon { font-size: 40px; flex-shrink: 0; }
+.pdf-result-info { flex: 1; min-width: 0; }
+.pdf-result-name { font-size: 13px; font-weight: 600; color: var(--gold); margin-bottom: 4px; word-break: break-all; }
+.pdf-result-meta { font-size: 10px; color: var(--muted2); font-family: 'DM Mono', monospace; }
+.pdf-dl-btn {
+  background: var(--gold);
+  color: #000;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  transition: var(--transition);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.pdf-dl-btn:hover { opacity: .88; }
+
+/* ================================================================
+   DOC VIEWER PANEL
+   ================================================================ */
+.doc-drop-area {
+  border: 2px dashed rgba(255,215,0,0.22);
+  border-radius: var(--radius-xl);
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  background: rgba(255,215,0,0.015);
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.doc-drop-area.drag-over { border-color: var(--gold); background: rgba(255,215,0,0.06); }
+.doc-drop-area input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; z-index: 2; }
+
+.doc-viewer-frame {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 12px;
+  display: none;
+}
+.doc-viewer-frame.visible { display: block; }
+.doc-viewer-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--navy2);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.doc-toolbar-name {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  font-family: 'DM Mono', monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.doc-toolbar-btn {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.doc-toolbar-btn:hover { border-color: var(--gold); color: var(--gold); }
+.doc-toolbar-btn.active { background: var(--gold-soft); border-color: var(--gold); color: var(--gold); }
+
+.doc-content-area {
+  padding: 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+  user-select: text;
+  -webkit-user-select: text;
+}
+.doc-content-area h1, .doc-content-area h2, .doc-content-area h3 {
+  color: var(--gold);
+  font-family: 'Rajdhani', sans-serif;
+  margin: 16px 0 8px;
+  letter-spacing: .04em;
+}
+.doc-content-area h1 { font-size: 22px; }
+.doc-content-area h2 { font-size: 18px; }
+.doc-content-area h3 { font-size: 15px; }
+.doc-content-area p { margin-bottom: 10px; }
+.doc-content-area ul, .doc-content-area ol { margin: 8px 0 8px 20px; }
+.doc-content-area li { margin-bottom: 4px; }
+.doc-content-area table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+.doc-content-area th, .doc-content-area td { border: 1px solid var(--border); padding: 8px; font-size: 12px; }
+.doc-content-area th { background: var(--navy2); color: var(--gold); font-weight: 700; }
+.doc-content-area pre, .doc-content-area code { background: var(--navy2); padding: 2px 6px; border-radius: 5px; font-family: 'DM Mono', monospace; font-size: 12px; }
+.doc-content-area pre { padding: 12px; display: block; overflow-x: auto; margin-bottom: 10px; }
+.doc-content-area img { max-width: 100%; border-radius: 8px; margin: 6px 0; }
+.doc-content-area strong { color: var(--gold); }
+.doc-content-area a { color: var(--gold2); text-decoration: underline; }
+.doc-content-area blockquote {
+  border-left: 3px solid var(--gold);
+  padding: 8px 16px;
+  background: var(--navy2);
+  border-radius: 0 8px 8px 0;
+  margin: 10px 0;
+  color: var(--muted2);
+}
+
+.doc-search-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.doc-search-row input {
+  flex: 1;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: 'Sora', sans-serif;
+  outline: none;
+  transition: var(--transition);
+}
+.doc-search-row input:focus { border-color: var(--gold2); }
+.doc-search-row button {
+  background: var(--gold-soft);
+  border: 1px solid var(--border2);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.doc-search-row button:hover { background: var(--gold); color: #000; }
+mark { background: rgba(255,215,0,0.3); color: var(--gold); border-radius: 2px; }
+
+.doc-stats-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.doc-stat-chip {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  color: var(--muted2);
+  font-family: 'DM Mono', monospace;
+}
+.doc-stat-chip strong { color: var(--gold); }
+
+/* ================================================================
+   WATERMARK REMOVER + BG CHANGER — shared canvas editor styles
+   ================================================================ */
+
+/* Canvas split view */
+.editor-canvas-wrap {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+  touch-action: none;
+  user-select: none;
+}
+.editor-canvas-wrap canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 55vw;
+  object-fit: contain;
+}
+.canvas-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--muted);
+  font-size: 13px;
+  gap: 8px;
+}
+.canvas-placeholder-icon { font-size: 40px; }
+
+/* Before/after slider */
+.before-after-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+  cursor: col-resize;
+  touch-action: none;
+}
+.ba-img {
+  display: block;
+  width: 100%;
+  max-height: 55vw;
+  object-fit: contain;
+  background: #000;
+}
+.ba-after-wrap {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+}
+.ba-after-wrap canvas, .ba-after-wrap img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  max-height: 55vw;
+  object-fit: contain;
+  background: transparent;
+}
+.ba-divider {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  cursor: col-resize;
+  box-shadow: 0 0 10px rgba(255,215,0,0.6);
+  z-index: 10;
+}
+.ba-divider::before {
+  content: '◀ ▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: var(--gold);
+  color: #000;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 5px 7px;
+  border-radius: 20px;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+.ba-label {
+  position: absolute;
+  bottom: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 5;
+}
+.ba-label-before { left: 8px; background: rgba(0,0,0,0.7); color: #fff; }
+.ba-label-after  { right: 8px; background: var(--gold); color: #000; }
+
+/* Paint brush toolbar */
+.brush-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+.brush-size-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 120px;
+}
+.brush-size-wrap label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+.brush-size-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  min-width: 28px;
+}
+.brush-btn {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.brush-btn:hover { border-color: var(--gold2); }
+.brush-btn.active { background: var(--gold-soft); border-color: var(--gold); color: var(--gold); }
+.brush-btn.danger { border-color: rgba(239,68,68,.3); color: var(--red); }
+.brush-btn.danger:hover { background: rgba(239,68,68,.08); }
+
+/* Mode hint chips */
+.mode-hints {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.hint-chip {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 10px;
+  color: var(--muted2);
+  line-height: 1.4;
+}
+.hint-chip strong { color: var(--gold); }
+
+/* Sensitivity/tolerance row */
+.tol-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.tol-row label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  white-space: nowrap;
+  min-width: 80px;
+}
+.tol-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  min-width: 28px;
+}
+
+/* BG color picker grid */
+.bg-options-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
+@media(min-width:500px) { .bg-options-grid { grid-template-columns: repeat(8, 1fr); } }
+.bg-swatch {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.bg-swatch:hover { transform: scale(1.08); }
+.bg-swatch.active { border-color: var(--gold); box-shadow: 0 0 10px var(--gold-glow); }
+.bg-swatch.checkerboard {
+  background-image: linear-gradient(45deg, #444 25%, transparent 25%),
+    linear-gradient(-45deg, #444 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #444 75%),
+    linear-gradient(-45deg, transparent 75%, #444 75%);
+  background-size: 10px 10px;
+  background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+  background-color: #888;
+}
+.bg-gradient-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.bg-grad-btn {
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--transition);
+  font-size: 0;
+}
+.bg-grad-btn:hover { transform: scale(1.04); }
+.bg-grad-btn.active { border-color: var(--gold); box-shadow: 0 0 10px var(--gold-glow); }
+
+.custom-color-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.custom-color-row label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+.custom-color-row input[type=color] {
+  width: 40px;
+  height: 34px;
+  border: 1.5px solid var(--border2);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 2px;
+  background: var(--navy2);
+}
+.custom-color-row input[type=text] {
+  flex: 1;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  outline: none;
+  transition: var(--transition);
+}
+.custom-color-row input[type=text]:focus { border-color: var(--gold2); }
+
+/* Step indicator dots */
+.step-dots {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.step-dot {
+  flex: 1;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--border);
+  transition: var(--transition);
+}
+.step-dot.done { background: var(--green); }
+.step-dot.active { background: var(--gold); box-shadow: 0 0 8px var(--gold-glow); }
+
+/* ================================================================
+   AUTH SYSTEM — Login screen + session bar
+   ================================================================ */
+
+/* App hidden until authenticated */
+#appShield { display: block; }
+
+/* ── Login overlay ── */
+#loginOverlay {
+  position: fixed;
+  inset: 0;
+  background: var(--navy);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+#loginOverlay.hidden { display: none; }
+
+.login-box {
+  width: 100%;
+  max-width: 380px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 24px;
+  padding: 32px 24px 28px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 60px rgba(255,215,0,0.06);
+  animation: loginAppear .4s cubic-bezier(.4,0,.2,1);
+}
+@keyframes loginAppear {
+  from { opacity:0; transform:translateY(24px) scale(.97); }
+  to   { opacity:1; transform:none; }
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.login-logo-img {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  object-fit: cover;
+  box-shadow: 0 0 24px rgba(255,215,0,0.3);
+  margin-bottom: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.login-logo-fallback {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--navy2);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+  box-shadow: 0 0 24px rgba(255,215,0,0.3);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .06em;
+}
+.login-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .1em;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.login-subtitle {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.login-field {
+  position: relative;
+  margin-bottom: 14px;
+}
+.login-field label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 7px;
+}
+.login-field input[type=password],
+.login-field input[type=text] {
+  width: 100%;
+  background: var(--navy2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  padding: 14px 50px 14px 16px;
+  font-size: 18px;
+  font-family: 'Sora', sans-serif;
+  outline: none;
+  letter-spacing: .12em;
+  transition: border-color .2s, box-shadow .2s;
+  -webkit-text-security: disc;
+}
+.login-field input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(255,215,0,0.1);
+}
+.login-field input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
+  animation: shake .35s ease;
+}
+@keyframes shake {
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-8px)}
+  40%{transform:translateX(8px)}
+  60%{transform:translateX(-5px)}
+  80%{transform:translateX(5px)}
+}
+
+/* Show/hide password toggle */
+.pw-toggle {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 18px;
+  padding: 0;
+  line-height: 1;
+  transition: color .15s;
+}
+.pw-toggle:hover { color: var(--gold); }
+
+/* Remember device row */
+.remember-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+.remember-row input[type=checkbox] {
+  width: 18px; height: 18px;
+  accent-color: var(--gold);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.remember-row span {
+  font-size: 12px;
+  color: var(--muted2);
+  line-height: 1.4;
+}
+
+/* Login button */
+.login-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #000;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 28px rgba(255,215,0,0.3);
+  transition: all .2s;
+  margin-bottom: 14px;
+}
+.login-btn:hover   { opacity:.9; transform:translateY(-1px); box-shadow: 0 12px 36px rgba(255,215,0,0.4); }
+.login-btn:active  { transform:scale(.97); }
+.login-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+/* Error message */
+.login-error {
+  text-align: center;
+  font-size: 12px;
+  color: #ef4444;
+  min-height: 18px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.login-error.visible { opacity: 1; }
+
+/* Passkey hint (future upgrade) */
+.passkey-hint {
+  text-align: center;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+  letter-spacing: .04em;
+}
+.passkey-hint span {
+  color: var(--muted2);
+  cursor: default;
+    }
+  
+
+/* ── Session bar ── */
+#sessionBar {
+  display: none;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+#sessionBar.visible {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.session-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.session-dot {
+  width: 7px; height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(34,197,94,0.6);
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;} 50%{opacity:.5;}
+}
+.session-label {
+  font-size: 11px;
+  color: var(--muted2);
+  font-weight: 500;
+}
+.session-label strong { color: var(--gold); font-size: 12px; }
+.logout-btn {
+  background: transparent;
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Sora', sans-serif;
+  transition: all .2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.logout-btn:hover { background: rgba(239,68,68,0.1); border-color: #ef4444; }
+
+</style>
+<!-- JSZip for ZIP tools -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<!-- jsPDF for PDF conversion -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- Mammoth.js for Word .docx reading -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     AUTH — Login Overlay (rendered FIRST, blocks app)
+     WebAuthn/passkey hooks ready for future upgrade
+═══════════════════════════════════════════ -->
+<div id="loginOverlay" class="hidden">
+  <div class="login-box">
+
+    <!-- Logo -->
+    <div class="login-logo">
+      <img class="login-logo-img" src="Images/Cozycabin log .webp" alt="Cozycabin"
+           onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex'">
+      <div class="login-logo-fallback" id="logoFallback" style="display:none;">CC</div>
+      <div class="login-title">COZYCABIN</div>
+      <div class="login-subtitle">Admin Image Processor</div>
+    </div>
+
+    <!-- Password field -->
+    <div class="login-field">
+      <label>Admin Password</label>
+      <input type="password" id="pwInput" placeholder="••••••••"
+             autocomplete="current-password"
+             onkeydown="if(event.key==='Enter')AUTH.login()">
+      <button class="pw-toggle" onclick="AUTH.togglePw()" title="Show/hide">👁</button>
+    </div>
+
+    <!-- Remember device -->
+    <label class="remember-row">
+      <input type="checkbox" id="rememberDevice" checked>
+      <span>Remember this device for <strong>30 days</strong></span>
+    </label>
+
+    <!-- Error -->
+    <div class="login-error" id="loginError">Incorrect password — Access Denied</div>
+
+    <!-- Login button -->
+    <button class="login-btn" id="loginBtn" onclick="AUTH.login()">
+      🔐 Unlock Access
+    </button>
+
+    <!-- Passkey hint (WebAuthn ready) -->
+    <div class="passkey-hint">
+      <span id="passkeyHint">🔒 Private Admin Tool · Cozycabin</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Session Bar hidden (auth removed) ── -->
+<div id="sessionBar" style="display:none;">
+  <div class="session-info">
+    <div class="session-dot"></div>
+    <div class="session-label">Logged in as <strong>Cozycabin Admin</strong></div>
+  </div>
+  <button class="logout-btn" onclick="AUTH.logout()">⏏ Logout</button>
+</div>
+
+<!-- ── App Shield (wraps everything, hidden until auth) ── -->
+<div id="appShield">
+
+
+<!-- Toast container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<div class="app-wrapper">
+
+  <!-- ═══════════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════════ -->
+  <header class="app-header">
+    <div class="logo-wrap" id="headerLogoWrap">
+      <img src="Images/Cozycabin log .webp" alt="Logo" onerror="this.parentElement.innerHTML='<span class=logo-fallback>CC</span>'">
+    </div>
+    <div class="header-text">
+      <h1>COZYCABIN</h1>
+      <p>Admin Studio</p>
+    </div>
+    <div class="header-badge">Pro Tools</div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN NAVIGATION TABS
+  ═══════════════════════════════════════════ -->
+  <nav class="main-tabs" id="mainTabs">
+    <button class="main-tab active" onclick="STUDIO.switchTab('images',this)">
+      <span class="tab-icon">🖼️</span> Images
+    </button>
+    <button class="main-tab" onclick="STUDIO.switchTab('zip',this)">
+      <span class="tab-icon">📦</span> ZIP Tools
+    </button>
+    <button class="main-tab" onclick="STUDIO.switchTab('pdf',this)">
+      <span class="tab-icon">📄</span> → PDF
+    </button>
+    <button class="main-tab" onclick="STUDIO.switchTab('doc',this)">
+      <span class="tab-icon">📝</span> Doc Viewer
+    </button>
+    <button class="main-tab" onclick="STUDIO.switchTab('wm',this)">
+      <span class="tab-icon">🪄</span> Watermark Remover
+    </button>
+    <button class="main-tab" onclick="STUDIO.switchTab('bg',this)">
+      <span class="tab-icon">🎨</span> BG Changer
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       TAB PANEL: IMAGES (existing tool)
+  ═══════════════════════════════════════════ -->
+  <div class="tool-panel active" id="panel-images">
+
+  <!-- ═══════════════════════════════════════════
+       STEP 1 — SIZE PRESET
+  ═══════════════════════════════════════════ -->
+  <div style="margin-top:20px;margin-bottom:8px;">
+    <div class="section-title">① Size Preset</div>
+  </div>
+
+  <div class="presets-grid" id="presetGrid">
+    <button class="preset-btn active" data-preset="standard" onclick="CC.selectPreset('standard',this)">
+      <div class="preset-icon">🟥</div>
+      <div class="preset-name">Product Standard</div>
+      <div class="preset-dim">1200 × 1200</div>
+    </button>
+    <button class="preset-btn" data-preset="fashion" onclick="CC.selectPreset('fashion',this)">
+      <div class="preset-icon">👟</div>
+      <div class="preset-name">Fashion Portrait</div>
+      <div class="preset-dim">1200 × 1600</div>
+    </button>
+    <button class="preset-btn" data-preset="original" onclick="CC.selectPreset('original',this)">
+      <div class="preset-icon">📐</div>
+      <div class="preset-name">Keep Ratio</div>
+      <div class="preset-dim">Long side 1200</div>
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 2 — QUALITY & OUTPUT
+  ═══════════════════════════════════════════ -->
+  <div style="margin-top:20px;margin-bottom:8px;">
+    <div class="section-title">② Output Quality</div>
+  </div>
+
+  <div class="panel panel-sm">
+    <div class="settings-grid">
+      <div class="setting-item">
+        <label>Quality</label>
+        <select id="quality" onchange="CC.saveSettings()">
+          <option value="0.7">70% — Smallest</option>
+          <option value="0.8">80% — Balanced</option>
+          <option value="0.85" selected>85% — Default ✓</option>
+          <option value="0.9">90% — High</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <label>Format</label>
+        <select id="outputFormat" onchange="CC.saveSettings()">
+          <option value="webp" selected>WEBP (recommended)</option>
+          <option value="jpeg">JPEG</option>
+          <option value="png">PNG (lossless)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 3 — LOGO
+  ═══════════════════════════════════════════ -->
+  <div style="margin-top:20px;margin-bottom:8px;">
+    <div class="section-title">③ Logo Settings</div>
+  </div>
+
+  <div class="panel">
+    <!-- Logo upload -->
+    <div class="logo-upload-area" id="logoUploadArea">
+      <input type="file" id="logoFileInput" accept="image/*">
+      <div class="logo-preview-thumb" id="logoThumb">
+        <img src="Images/Cozycabin log .webp" id="logoThumbImg" alt="Logo"
+             onerror="this.parentElement.innerHTML='<span style=color:var(--gold);font-size:10px;text-align:center;padding:4px>No logo</span>'">
+      </div>
+      <div class="logo-upload-text">
+        <strong>Upload / Change Logo</strong>
+        <span>TAP to pick a new logo image</span>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;" class="settings-grid">
+      <div class="setting-item">
+        <label>Position</label>
+        <select id="logoPosition" onchange="CC.saveSettings()">
+          <option value="auto" selected>🤖 Smart Auto</option>
+          <option value="br">↘ Bottom Right</option>
+          <option value="bl">↙ Bottom Left</option>
+          <option value="tr">↗ Top Right</option>
+          <option value="tl">↖ Top Left</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <label>Size</label>
+        <select id="logoSize" onchange="CC.saveSettings()">
+          <option value="0.05">Small (5%)</option>
+          <option value="0.08" selected>Medium (8%)</option>
+          <option value="0.12">Large (12%)</option>
+          <option value="0.16">X-Large (16%)</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;" class="range-wrap">
+      <div class="range-label-row">
+        <label>Logo Opacity</label>
+        <span class="range-val" id="logoOpVal">90%</span>
+      </div>
+      <input type="range" id="logoOpacity" min="50" max="100" value="90"
+             oninput="document.getElementById('logoOpVal').textContent=this.value+'%'; CC.saveSettings()">
+    </div>
+  </div>
+  
+  <!-- ═══════════════════════════════════════════
+       STEP 4 — OPTIONS
+  ═══════════════════════════════════════════ -->
+  <div style="margin-top:20px;margin-bottom:8px;">
+    <div class="section-title">④ Options</div>
+  </div>
+
+  <div class="panel">
+
+    <!-- White Background -->
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>⬜ White Background</span>
+        <span>Center product on clean white</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="toggleWhiteBg" onchange="CC.saveSettings()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <!-- Watermark -->
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>💧 Text Watermark</span>
+        <span>Diagonal text overlay</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="toggleWatermark" onchange="CC.toggleWatermarkSub(); CC.saveSettings()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="sub-settings" id="watermarkSub">
+      <div class="settings-grid">
+        <div class="setting-item" style="grid-column:1/-1;">
+          <label>Watermark Text</label>
+          <input type="text" id="watermarkText" value="COZYCABIN" placeholder="Your text"
+                 style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:9px 12px;font-size:13px;font-family:'DM Mono',monospace;outline:none;"
+                 oninput="CC.saveSettings()">
+        </div>
+        <div class="range-wrap">
+          <div class="range-label-row">
+            <label>Opacity</label>
+            <span class="range-val" id="wmOpVal">15%</span>
+          </div>
+          <input type="range" id="wmOpacity" min="5" max="60" value="15"
+                 oninput="document.getElementById('wmOpVal').textContent=this.value+'%'; CC.saveSettings()">
+        </div>
+        <div class="range-wrap">
+          <div class="range-label-row">
+            <label>Size</label>
+            <span class="range-val" id="wmSzVal">28px</span>
+          </div>
+          <input type="range" id="wmSize" min="14" max="60" value="28"
+                 oninput="document.getElementById('wmSzVal').textContent=this.value+'px'; CC.saveSettings()">
+        </div>
+      </div>
+    </div>
+
+    <!-- File Naming -->
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>🏷️ Custom File Naming</span>
+        <span>Add prefix / suffix</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="toggleNaming" onchange="CC.toggleNamingSub(); CC.saveSettings()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="sub-settings" id="namingSub">
+      <div class="naming-row">
+        <label>Prefix</label>
+        <input type="checkbox" id="usePrefix" onchange="CC.saveSettings()">
+        <input type="text" id="prefixText" value="cozycabin-" oninput="CC.saveSettings()">
+      </div>
+      <div class="naming-row">
+        <label>Suffix</label>
+        <input type="checkbox" id="useSuffix" onchange="CC.saveSettings()">
+        <input type="text" id="suffixText" value="-cc" oninput="CC.saveSettings()">
+      </div>
+    </div>
+
+  </div><!-- /panel -->
+
+  <!-- ═══════════════════════════════════════════
+       STEP 5 — ADVERT MODE
+  ═══════════════════════════════════════════ -->
+  <div style="margin-top:20px;margin-bottom:8px;">
+    <div class="section-title">⑤ Advert Mode</div>
+  </div>
+
+  <div class="panel">
+    <div class="toggle-row" style="padding-top:0;">
+      <div class="toggle-label">
+        <span>📢 Auto Advert Layout</span>
+        <span>Photo + logo on branded background</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="toggleAdvert" onchange="CC.toggleAdvertSub()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="advert-sub" id="advertSub">
+
+      <!-- Background style picker -->
+      <div style="font-size:10px;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Background Style</div>
+      <div class="advert-styles-grid" id="advertStyleGrid">
+        <button class="advert-style-btn active" data-adv="gold" onclick="CC.selectAdvertStyle('gold',this)">
+          <div class="advert-style-preview adv-gold">✨</div>
+          <div class="advert-style-label">Gold</div>
+        </button>
+        <button class="advert-style-btn" data-adv="navy" onclick="CC.selectAdvertStyle('navy',this)">
+          <div class="advert-style-preview adv-navy">🌊</div>
+          <div class="advert-style-label">Navy</div>
+        </button>
+        <button class="advert-style-btn" data-adv="dark" onclick="CC.selectAdvertStyle('dark',this)">
+          <div class="advert-style-preview adv-dark">🖤</div>
+          <div class="advert-style-label">Dark</div>
+        </button>
+        <button class="advert-style-btn" data-adv="warm" onclick="CC.selectAdvertStyle('warm',this)">
+          <div class="advert-style-preview adv-warm">🔥</div>
+          <div class="advert-style-label">Warm</div>
+        </button>
+        <button class="advert-style-btn" data-adv="green" onclick="CC.selectAdvertStyle('green',this)">
+          <div class="advert-style-preview adv-green">🌿</div>
+          <div class="advert-style-label">Green</div>
+        </button>
+        <button class="advert-style-btn" data-adv="purple" onclick="CC.selectAdvertStyle('purple',this)">
+          <div class="advert-style-preview adv-purple">💜</div>
+          <div class="advert-style-label">Purple</div>
+        </button>
+      </div>
+
+      <!-- Tagline -->
+      <div class="advert-tagline-row">
+        <label>Tagline (optional)</label>
+        <input type="text" id="advertTagline" placeholder="e.g.  Smart Living Solutions · cozycabin.com">
+      </div>
+
+      <!-- Logo position in advert -->
+      <div style="margin-top:12px;" class="setting-item">
+        <label style="display:block;font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">Logo Position in Advert</label>
+        <select id="advertLogoPos" style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:9px 12px;font-size:12px;font-family:'Sora',sans-serif;outline:none;appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ffd700'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;">
+          <option value="top-center" selected>⬆ Top Centre</option>
+          <option value="top-left">↖ Top Left</option>
+          <option value="top-right">↗ Top Right</option>
+          <option value="bottom-center">⬇ Bottom Centre</option>
+        </select>
+      </div>
+
+    </div>
+  </div><!-- /advert panel -->
+
+  <!-- ═══════════════════════════════════════════
+       STEP 6 — UPLOAD / DROP ZONE
+  ═══════════════════════════════════════════ -->
+  <div style="margin-top:20px;margin-bottom:8px;">
+    <div class="section-title">⑥ Upload Images</div>
+  </div>
+
+  <div class="dropzone" id="dropzone">
+    <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/jpg" multiple>
+    <span class="drop-icon">📸</span>
+    <div class="drop-title">Tap or Drop Images Here</div>
+    <div class="drop-sub">Process multiple images at once</div>
+    <div class="drop-formats">
+      <span class="format-tag">JPG</span>
+      <span class="format-tag">JPEG</span>
+      <span class="format-tag">PNG</span>
+      <span class="format-tag">WEBP</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PROGRESS
+  ═══════════════════════════════════════════ -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-header">
+      <span class="progress-label" id="progressLabel">Processing...</span>
+      <span class="progress-count" id="progressCount">0 / 0</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-eta" id="progressEta">Estimating time...</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       RESULTS
+  ═══════════════════════════════════════════ -->
+  <div id="resultsSection" style="display:none;">
+    <div class="results-header">
+      <div class="results-title" id="resultsTitle">✅ 0 Ready</div>
+      <button class="clear-btn" onclick="CC.clearResults()">✕ Clear All</button>
+    </div>
+    <div class="results-grid" id="resultsGrid"></div>
+  </div>
+
+  <!-- Download All Bar -->
+  <div class="dl-all-bar" id="dlAllBar">
+    <button class="dl-zip-btn" onclick="CC.downloadZip()">📦 ZIP</button>
+    <button class="dl-all-btn" onclick="CC.downloadAll()">⬇ Download All</button>
+  </div>
+
+  </div><!-- /panel-images -->
+
+  <!-- ═══════════════════════════════════════════
+       TAB PANEL: ZIP TOOLS
+  ═══════════════════════════════════════════ -->
+  <div class="tool-panel" id="panel-zip">
+
+    <div class="section-title">ZIP Mode</div>
+    <div class="zip-tool-grid" id="zipModeGrid">
+      <button class="zip-mode-btn active" onclick="STUDIO.setZipMode('create',this)">
+        <div class="zip-mode-icon">🗜️</div>
+        <div class="zip-mode-name">Create ZIP</div>
+        <div class="zip-mode-desc">Upload any files → pack into a ZIP archive</div>
+      </button>
+      <button class="zip-mode-btn" onclick="STUDIO.setZipMode('unzip',this)">
+        <div class="zip-mode-icon">📂</div>
+        <div class="zip-mode-name">Unzip / Extract</div>
+        <div class="zip-mode-desc">Open a ZIP → preview &amp; download contents</div>
+      </button>
+    </div>
+
+    <!-- CREATE ZIP SECTION -->
+    <div id="zipCreateSection">
+      <div class="section-title">① Add Files</div>
+      <div class="panel" style="padding:12px;position:relative;cursor:pointer;background:rgba(255,215,0,0.015);border:2px dashed rgba(255,215,0,0.22);" id="zipDropzone">
+        <input type="file" id="zipFileInput" multiple style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;z-index:2;">
+        <div style="text-align:center;padding:10px 0;">
+          <div style="font-size:36px;margin-bottom:8px;animation:float 3s ease-in-out infinite;display:block;">📁</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--gold);margin-bottom:4px;">Tap or Drop Any Files</div>
+          <div style="font-size:11px;color:var(--muted);">Images, PDFs, docs, videos — anything</div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:4px;">② Files to Zip <span id="zipCountBadge" style="color:var(--gold);font-size:12px;font-family:'DM Mono',monospace;"></span></div>
+      <div class="file-list" id="zipFileList">
+        <div class="file-list-empty" id="zipListEmpty">No files added yet — tap the area above</div>
+      </div>
+
+      <div class="section-title">③ Archive Name</div>
+      <div class="zip-name-row">
+        <label>Name</label>
+        <input type="text" id="zipOutputName" value="cozycabin-files" placeholder="archive-name">
+        <span style="font-size:11px;color:var(--muted);flex-shrink:0;">.zip</span>
+      </div>
+
+      <button class="action-btn" id="createZipBtn" onclick="STUDIO.buildZip()">📦 Build &amp; Download ZIP</button>
+      <button class="action-btn-outline" onclick="STUDIO.clearZipFiles()">✕ Clear All Files</button>
+    </div>
+
+    <!-- UNZIP SECTION -->
+    <div id="zipUnzipSection" style="display:none;">
+      <div class="section-title">① Upload ZIP File</div>
+      <div class="panel" style="padding:12px;position:relative;cursor:pointer;background:rgba(255,215,0,0.015);border:2px dashed rgba(255,215,0,0.22);" id="unzipDropzone">
+        <input type="file" id="unzipFileInput" accept=".zip" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;z-index:2;">
+        <div style="text-align:center;padding:10px 0;">
+          <div style="font-size:36px;margin-bottom:8px;animation:float 3s ease-in-out infinite;display:block;">📦</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--gold);margin-bottom:4px;">Tap or Drop ZIP Here</div>
+          <div style="font-size:11px;color:var(--muted);">Extracts and lists all files inside</div>
+        </div>
+      </div>
+
+      <div id="unzipResults" style="display:none;">
+        <div class="results-header" style="margin-top:16px;">
+          <div class="results-title" id="unzipTitle">📂 0 Files</div>
+          <button class="clear-btn" onclick="STUDIO.clearUnzip()">✕ Clear</button>
+        </div>
+        <button class="action-btn" id="unzipAllBtn" onclick="STUDIO.downloadAllUnzipped()" style="margin-bottom:12px;">⬇ Download All Files</button>
+        <div class="unzip-result-grid" id="unzipGrid"></div>
+      </div>
+    </div>
+
+  </div><!-- /panel-zip -->
+
+  <!-- ═══════════════════════════════════════════
+       TAB PANEL: FILE → PDF CONVERTER
+  ═══════════════════════════════════════════ -->
+  <div class="tool-panel" id="panel-pdf">
+
+    <div style="background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:16px;font-size:11px;color:var(--muted2);line-height:1.6;">
+      💡 Convert <strong style="color:var(--gold)">images (JPG/PNG/WEBP)</strong> into a PDF — each image becomes a page. Or paste/type text for a text PDF.
+    </div>
+
+    <div class="section-title">① PDF Settings</div>
+    <div class="panel panel-sm">
+      <div class="pdf-options-grid">
+        <div class="pdf-opt-item">
+          <label>Page Size</label>
+          <select id="pdfPageSize">
+            <option value="a4" selected>A4 (210×297mm)</option>
+            <option value="letter">Letter (8.5×11in)</option>
+            <option value="a3">A3 (297×420mm)</option>
+            <option value="a5">A5 (148×210mm)</option>
+          </select>
+        </div>
+        <div class="pdf-opt-item">
+          <label>Orientation</label>
+          <select id="pdfOrientation">
+            <option value="portrait" selected>Portrait ↕</option>
+            <option value="landscape">Landscape ↔</option>
+          </select>
+        </div>
+        <div class="pdf-opt-item">
+          <label>Image Fit</label>
+          <select id="pdfImageFit">
+            <option value="contain" selected>Contain (fit page)</option>
+            <option value="fill">Fill (stretch)</option>
+          </select>
+        </div>
+        <div class="pdf-opt-item">
+          <label>Output Name</label>
+          <input type="text" id="pdfOutputName" value="cozycabin-document" placeholder="filename">
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">② Upload Images</div>
+    <div class="pdf-dropzone" id="pdfDropzone">
+      <input type="file" id="pdfFileInput" multiple accept="image/jpeg,image/png,image/webp,image/jpg">
+      <div style="font-size:44px;margin-bottom:12px;animation:float 3s ease-in-out infinite;display:block;">📑</div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--gold);margin-bottom:6px;">Tap or Drop Images</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:14px;">Each image becomes one PDF page</div>
+      <div style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap;">
+        <span class="format-tag">JPG</span><span class="format-tag">PNG</span><span class="format-tag">WEBP</span>
+      </div>
+    </div>
+
+    <div id="pdfFileQueue" style="display:none;">
+      <div class="section-title">③ Image Queue <span id="pdfCountBadge" style="color:var(--gold);font-size:12px;font-family:'DM Mono',monospace;"></span></div>
+      <div class="file-list" id="pdfQueueList"></div>
+      <button class="action-btn" id="convertPdfBtn" onclick="STUDIO.convertToPdf()" style="margin-top:12px;">📄 Convert to PDF</button>
+      <button class="action-btn-outline" onclick="STUDIO.clearPdfQueue()">✕ Clear Queue</button>
+    </div>
+
+    <div id="pdfResultSection" style="display:none;margin-top:16px;">
+      <div class="section-title">✅ PDF Ready</div>
+      <div id="pdfResultCard"></div>
+    </div>
+
+  </div><!-- /panel-pdf -->
+
+  <!-- ═══════════════════════════════════════════
+       TAB PANEL: DOC VIEWER
+  ═══════════════════════════════════════════ -->
+  <div class="tool-panel" id="panel-doc">
+
+    <div style="background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:16px;font-size:11px;color:var(--muted2);line-height:1.6;">
+      📖 Read documents in your browser. Supports <strong style="color:var(--gold)">.docx (Word), .txt, .csv, .html, .md, .json</strong>. Fully offline — nothing leaves your device.
+    </div>
+
+    <div class="section-title">Upload Document</div>
+    <div class="doc-drop-area" id="docDropArea">
+      <input type="file" id="docFileInput" accept=".docx,.txt,.csv,.html,.md,.json">
+      <div style="font-size:44px;margin-bottom:12px;animation:float 3s ease-in-out infinite;display:block;">📖</div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--gold);margin-bottom:6px;">Tap or Drop Document</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:14px;">Opens and renders instantly in your browser</div>
+      <div style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap;">
+        <span class="format-tag">DOCX</span><span class="format-tag">TXT</span><span class="format-tag">CSV</span><span class="format-tag">HTML</span><span class="format-tag">MD</span><span class="format-tag">JSON</span>
+      </div>
+    </div>
+
+    <div id="docViewerSection" style="display:none;">
+      <div class="doc-stats-bar" id="docStatsBar"></div>
+
+      <div class="doc-search-row">
+        <input type="text" id="docSearchInput" placeholder="🔍  Search in document…" oninput="STUDIO.docSearch(this.value)">
+        <button onclick="STUDIO.docSearch(document.getElementById('docSearchInput').value)">Find</button>
+        <button onclick="STUDIO.clearDocSearch()">✕</button>
+      </div>
+
+      <div class="doc-viewer-frame visible" id="docViewerFrame">
+        <div class="doc-viewer-toolbar">
+          <span class="doc-toolbar-name" id="docFileName">document</span>
+          <button class="doc-toolbar-btn" onclick="STUDIO.docCopyAll()">📋 Copy</button>
+          <button class="doc-toolbar-btn" onclick="STUDIO.docDownloadTxt()">⬇ TXT</button>
+          <button class="doc-toolbar-btn" onclick="STUDIO.docToPdf()">📄 → PDF</button>
+        </div>
+        <div class="doc-content-area" id="docContentArea"></div>
+      </div>
+    </div>
+
+  </div><!-- /panel-doc -->
+
+  <!-- ═══════════════════════════════════════════
+       TAB PANEL: WATERMARK REMOVER
+  ═══════════════════════════════════════════ -->
+  <div class="tool-panel" id="panel-wm">
+
+    <div style="background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:16px;font-size:11px;color:var(--muted2);line-height:1.7;">
+      🪄 <strong style="color:var(--gold)">Paint over watermarks, text, or logos</strong> with a brush — the tool rebuilds the area using surrounding pixels (inpainting). Works great on screenshots and product images.
+    </div>
+
+    <div class="step-dots">
+      <div class="step-dot active" id="wm-dot-1"></div>
+      <div class="step-dot" id="wm-dot-2"></div>
+      <div class="step-dot" id="wm-dot-3"></div>
+    </div>
+
+    <!-- STEP 1: Upload -->
+    <div class="section-title">① Upload Image</div>
+    <div class="panel" style="padding:12px;position:relative;cursor:pointer;background:rgba(255,215,0,0.015);border:2px dashed rgba(255,215,0,0.22);margin-bottom:16px;" id="wmDropzone">
+      <input type="file" id="wmFileInput" accept="image/jpeg,image/png,image/webp" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;z-index:2;">
+      <div style="text-align:center;padding:8px 0;">
+        <div style="font-size:32px;margin-bottom:6px;animation:float 3s ease-in-out infinite;display:block;">🖼️</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:var(--gold);margin-bottom:3px;">Tap or Drop Image</div>
+        <div style="font-size:11px;color:var(--muted);">JPG · PNG · WEBP · Screenshots</div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Paint mask -->
+    <div id="wmEditorSection" style="display:none;">
+      <div class="section-title">② Paint Over Watermark / Text</div>
+
+      <div class="mode-hints">
+        <span class="hint-chip">🖌️ <strong>Draw</strong> over the watermark</span>
+        <span class="hint-chip">⬛ Red mask shows painted area</span>
+        <span class="hint-chip">✅ Tap <strong>Remove</strong> when done</span>
+      </div>
+
+      <!-- Canvas -->
+      <div class="editor-canvas-wrap" id="wmCanvasWrap">
+        <canvas id="wmCanvas"></canvas>
+      </div>
+
+      <!-- Brush toolbar -->
+      <div class="brush-toolbar">
+        <div class="brush-size-wrap">
+          <label>Brush</label>
+          <input type="range" id="wmBrushSize" min="4" max="80" value="24" style="flex:1;"
+            oninput="document.getElementById('wmBrushVal').textContent=this.value+'px'">
+          <span class="brush-size-val" id="wmBrushVal">24px</span>
+        </div>
+        <button class="brush-btn active" id="wmDrawBtn" onclick="WM.setMode('draw',this)">🖌 Draw</button>
+        <button class="brush-btn" id="wmEraseBtn" onclick="WM.setMode('erase',this)">⬜ Erase</button>
+        <button class="brush-btn danger" onclick="WM.clearMask()">✕ Clear</button>
+        <button class="brush-btn" onclick="WM.undo()">↩ Undo</button>
+      </div>
+
+      <div class="tol-row">
+        <label>Fill Quality</label>
+        <input type="range" id="wmFillQuality" min="1" max="5" value="3" style="flex:1;"
+          oninput="document.getElementById('wmFillVal').textContent=['Draft','Fast','Balanced','Good','Best'][this.value-1]">
+        <span class="tol-val" id="wmFillVal">Balanced</span>
+      </div>
+
+      <button class="action-btn" onclick="WM.removeMasked()">🪄 Remove Watermark / Fill</button>
+
+      <!-- STEP 3: Result -->
+      <div id="wmResultSection" style="display:none;margin-top:16px;">
+        <div class="section-title">③ Result — Drag slider to compare</div>
+        <div class="before-after-wrap" id="wmBAWrap">
+          <img class="ba-img" id="wmBeforeImg" alt="Before">
+          <div class="ba-after-wrap" id="wmAfterWrap" style="clip-path:inset(0 50% 0 0);">
+            <canvas id="wmResultCanvas"></canvas>
+          </div>
+          <div class="ba-divider" id="wmDivider" style="left:50%"></div>
+          <span class="ba-label ba-label-before">Before</span>
+          <span class="ba-label ba-label-after">After</span>
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:4px;">
+          <button class="action-btn" onclick="WM.downloadResult()" style="margin-bottom:0;">⬇ Download Result</button>
+          <button class="action-btn-outline" onclick="WM.useResultAsSource()" style="margin-bottom:0;flex-shrink:0;">🔁 Re-edit</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /panel-wm -->
+
+  <!-- ═══════════════════════════════════════════
+       TAB PANEL: BACKGROUND CHANGER
+  ═══════════════════════════════════════════ -->
+  <div class="tool-panel" id="panel-bg">
+
+    <div style="background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:16px;font-size:11px;color:var(--muted2);line-height:1.7;">
+      🎨 <strong style="color:var(--gold)">Remove or replace the background</strong> of any image. Use the magic wand to auto-select, or paint manually. Works best on product shots with clear subject edges.
+    </div>
+
+    <div class="step-dots">
+      <div class="step-dot active" id="bg-dot-1"></div>
+      <div class="step-dot" id="bg-dot-2"></div>
+      <div class="step-dot" id="bg-dot-3"></div>
+    </div>
+
+    <!-- STEP 1: Upload -->
+    <div class="section-title">① Upload Image</div>
+    <div class="panel" style="padding:12px;position:relative;cursor:pointer;background:rgba(255,215,0,0.015);border:2px dashed rgba(255,215,0,0.22);margin-bottom:16px;" id="bgDropzone">
+      <input type="file" id="bgFileInput" accept="image/jpeg,image/png,image/webp" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;z-index:2;">
+      <div style="text-align:center;padding:8px 0;">
+        <div style="font-size:32px;margin-bottom:6px;animation:float 3s ease-in-out infinite;display:block;">🏞️</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:var(--gold);margin-bottom:3px;">Tap or Drop Image</div>
+        <div style="font-size:11px;color:var(--muted);">Product photos work best</div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Select BG -->
+    <div id="bgEditorSection" style="display:none;">
+      <div class="section-title">② Select Background to Remove</div>
+
+      <div class="mode-hints">
+        <span class="hint-chip">🪄 <strong>Wand</strong>: tap BG color to auto-select</span>
+        <span class="hint-chip">🖌️ <strong>Paint</strong>: manually mark BG area</span>
+      </div>
+
+      <!-- Mode tabs -->
+      <div style="display:flex;gap:8px;margin-bottom:12px;">
+        <button class="brush-btn active" id="bgWandBtn" onclick="BG.setTool('wand',this)">🪄 Magic Wand</button>
+        <button class="brush-btn" id="bgPaintBtn" onclick="BG.setTool('paint',this)">🖌 Paint BG</button>
+        <button class="brush-btn danger" onclick="BG.clearMask()">✕ Reset</button>
+        <button class="brush-btn" onclick="BG.undo()">↩ Undo</button>
+      </div>
+
+      <!-- Tolerance for wand -->
+      <div class="tol-row" id="bgTolRow">
+        <label>Tolerance</label>
+        <input type="range" id="bgTolerance" min="5" max="80" value="30" style="flex:1;"
+          oninput="document.getElementById('bgTolVal').textContent=this.value">
+        <span class="tol-val" id="bgTolVal">30</span>
+      </div>
+
+      <!-- Brush size for paint -->
+      <div class="brush-toolbar" id="bgBrushBar" style="display:none;">
+        <div class="brush-size-wrap">
+          <label>Brush</label>
+          <input type="range" id="bgBrushSize" min="4" max="80" value="20" style="flex:1;"
+            oninput="document.getElementById('bgBrushVal').textContent=this.value+'px'">
+          <span class="brush-size-val" id="bgBrushVal">20px</span>
+        </div>
+      </div>
+
+      <!-- Canvas -->
+      <div class="editor-canvas-wrap" id="bgCanvasWrap">
+        <canvas id="bgCanvas"></canvas>
+      </div>
+
+      <!-- Edge refinement -->
+      <div class="tol-row" style="margin-top:10px;">
+        <label>Edge Smooth</label>
+        <input type="range" id="bgEdgeSmooth" min="0" max="6" value="2" style="flex:1;"
+          oninput="document.getElementById('bgEdgeVal').textContent=this.value">
+        <span class="tol-val" id="bgEdgeVal">2</span>
+      </div>
+
+      <button class="action-btn" onclick="BG.applyRemoval()">✂️ Remove Background</button>
+
+      <!-- STEP 3: Choose new background -->
+      <div id="bgReplaceSection" style="display:none;margin-top:18px;">
+        <div class="section-title">③ Choose New Background</div>
+
+        <!-- Solid swatches -->
+        <div style="font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Solid Colors</div>
+        <div class="bg-options-grid" id="bgSwatchGrid">
+          <div class="bg-swatch checkerboard active" data-bg="transparent" onclick="BG.selectBg('transparent',this)" title="Transparent (PNG)"></div>
+          <div class="bg-swatch" style="background:#ffffff;" data-bg="#ffffff" onclick="BG.selectBg('#ffffff',this)" title="White"></div>
+          <div class="bg-swatch" style="background:#000000;" data-bg="#000000" onclick="BG.selectBg('#000000',this)" title="Black"></div>
+          <div class="bg-swatch" style="background:#ffd700;" data-bg="#ffd700" onclick="BG.selectBg('#ffd700',this)" title="Gold"></div>
+          <div class="bg-swatch" style="background:#060d1f;" data-bg="#060d1f" onclick="BG.selectBg('#060d1f',this)" title="Navy"></div>
+          <div class="bg-swatch" style="background:#e2e8f0;" data-bg="#e2e8f0" onclick="BG.selectBg('#e2e8f0',this)" title="Light gray"></div>
+          <div class="bg-swatch" style="background:#22c55e;" data-bg="#22c55e" onclick="BG.selectBg('#22c55e',this)" title="Green"></div>
+          <div class="bg-swatch" style="background:#ef4444;" data-bg="#ef4444" onclick="BG.selectBg('#ef4444',this)" title="Red"></div>
+          <div class="bg-swatch" style="background:#3b82f6;" data-bg="#3b82f6" onclick="BG.selectBg('#3b82f6',this)" title="Blue"></div>
+          <div class="bg-swatch" style="background:#8b5cf6;" data-bg="#8b5cf6" onclick="BG.selectBg('#8b5cf6',this)" title="Purple"></div>
+        </div>
+
+        <!-- Gradients -->
+        <div style="font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Gradients</div>
+        <div class="bg-gradient-row" id="bgGradGrid">
+          <div class="bg-grad-btn" style="background:linear-gradient(135deg,#120a00,#ffd700);" data-grad="gold" onclick="BG.selectGrad('gold',this)"></div>
+          <div class="bg-grad-btn" style="background:linear-gradient(135deg,#060d1f,#1a3a6e);" data-grad="navy" onclick="BG.selectGrad('navy',this)"></div>
+          <div class="bg-grad-btn" style="background:linear-gradient(135deg,#0a0a0a,#2d2d2d);" data-grad="dark" onclick="BG.selectGrad('dark',this)"></div>
+          <div class="bg-grad-btn" style="background:linear-gradient(135deg,#fff,#e2e8f0);" data-grad="white" onclick="BG.selectGrad('white',this)"></div>
+          <div class="bg-grad-btn" style="background:linear-gradient(135deg,#1a0800,#c0392b);" data-grad="red" onclick="BG.selectGrad('red',this)"></div>
+          <div class="bg-grad-btn" style="background:linear-gradient(135deg,#001a0a,#27ae60);" data-grad="green" onclick="BG.selectGrad('green',this)"></div>
+        </div>
+
+        <!-- Custom color -->
+        <div class="custom-color-row">
+          <label>Custom</label>
+          <input type="color" id="bgCustomColor" value="#ff6b35" onchange="BG.selectBg(this.value,null)">
+          <input type="text" id="bgCustomHex" value="#ff6b35" placeholder="#rrggbb"
+            onchange="BG.setCustomHex(this.value)">
+          <button class="brush-btn" onclick="BG.selectBg(document.getElementById('bgCustomHex').value,null)">Apply</button>
+        </div>
+
+        <!-- Upload custom BG image -->
+        <div class="toggle-row" style="padding:10px 0 12px;">
+          <div class="toggle-label">
+            <span>🖼️ Use Image as Background</span>
+            <span>Upload your own background photo</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="bgUseImage" onchange="BG.toggleBgImage(this.checked)">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div id="bgImageUploadArea" style="display:none;margin-bottom:12px;">
+          <div class="panel" style="padding:10px;position:relative;cursor:pointer;border:2px dashed rgba(255,215,0,0.22);">
+            <input type="file" id="bgImageFile" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;">
+            <div style="text-align:center;font-size:12px;color:var(--muted);">📁 Tap to upload background image</div>
+          </div>
+        </div>
+
+        <!-- Result preview -->
+        <div class="section-title" style="margin-top:4px;">④ Preview — Drag slider</div>
+        <div class="before-after-wrap" id="bgBAWrap">
+          <img class="ba-img" id="bgBeforeImg" alt="Before">
+          <div class="ba-after-wrap" id="bgAfterWrap" style="clip-path:inset(0 50% 0 0);">
+            <canvas id="bgResultCanvas"></canvas>
+          </div>
+          <div class="ba-divider" id="bgDivider" style="left:50%"></div>
+          <span class="ba-label ba-label-before">Original</span>
+          <span class="ba-label ba-label-after">New BG</span>
+        </div>
+
+        <div style="display:flex;gap:8px;">
+          <button class="action-btn" onclick="BG.downloadResult()" style="margin-bottom:0;">⬇ Download PNG</button>
+          <button class="action-btn-outline" onclick="BG.downloadJpeg()" style="margin-bottom:0;flex-shrink:0;">⬇ JPG</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /panel-bg -->
+
+</div><!-- /app-wrapper -->
+
+<script>
+
+/* ================================================================
+   AUTH SYSTEM — Password protection + Remember Device
+   Structure ready for WebAuthn / passkey upgrade
+   ================================================================ */
+
+var AUTH = (function () {
+
+  // ── Config ──
+  // CHANGE THIS PASSWORD to your own secret
+  var PASSWORD_HASH = btoa('Cozycabin2024!');   // base64 obfuscated — change to your password
+
+  var STORAGE_KEY   = 'cc_auth_token';
+  var REMEMBER_DAYS = 30;
+  var pwVisible     = false;
+
+  /* ----------------------------------------------------------
+     INIT — runs immediately, before DOMContentLoaded
+     Blocks the app render until auth passes
+  ---------------------------------------------------------- */
+  function init() {
+    // Check saved session first
+    if (isSessionValid()) {
+      grantAccess(false);
+      return;
+    }
+    // Otherwise show login
+    showLogin();
+  }
+
+  /* ----------------------------------------------------------
+     SESSION CHECK
+  ---------------------------------------------------------- */
+  function isSessionValid() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      var data = JSON.parse(raw);
+      if (data.token !== PASSWORD_HASH) return false;
+      if (Date.now() > data.expires)   return false;
+      return true;
+    } catch (e) { return false; }
+  }
+
+  /* ----------------------------------------------------------
+     LOGIN
+  ---------------------------------------------------------- */
+  function login() {
+    var inp = document.getElementById('pwInput');
+    var err = document.getElementById('loginError');
+    var btn = document.getElementById('loginBtn');
+    if (!inp) return;
+
+    var entered = btoa(inp.value);
+
+    if (entered === PASSWORD_HASH) {
+      // ── Correct ──
+      var remember = document.getElementById('rememberDevice').checked;
+      if (remember) {
+        var expires = Date.now() + (REMEMBER_DAYS * 24 * 60 * 60 * 1000);
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            token:   PASSWORD_HASH,
+            expires: expires,
+            device:  navigator.userAgent.substring(0, 60)
+          }));
+        } catch (e) {}
+      }
+      inp.classList.remove('error');
+      if (err) { err.classList.remove('visible'); }
+      grantAccess(true);
+
+    } else {
+      // ── Wrong password ──
+      inp.classList.add('error');
+      if (err) { err.classList.add('visible'); }
+      inp.value = '';
+      // Remove error class after shake animation
+      setTimeout(function () { inp.classList.remove('error'); }, 600);
+      // Rate limit: brief disable
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = '⏳ Wait...';
+        setTimeout(function () {
+          btn.disabled = false;
+          btn.textContent = '🔐 Unlock Access';
+        }, 1500);
+      }
+    }
+  }
+            
+
+  /* ----------------------------------------------------------
+     GRANT ACCESS
+  ---------------------------------------------------------- */
+  function grantAccess(animate) {
+    var overlay    = document.getElementById('loginOverlay');
+    var shield     = document.getElementById('appShield');
+    var sessionBar = document.getElementById('sessionBar');
+
+    if (overlay) overlay.classList.add('hidden');
+    if (shield)  shield.style.display = 'block';
+    if (sessionBar) sessionBar.classList.add('visible');
+
+    // Focus body for usability
+    document.body.style.overflow = '';
+  }
+
+  /* ----------------------------------------------------------
+     LOGOUT
+  ---------------------------------------------------------- */
+  function logout() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+
+    var overlay    = document.getElementById('loginOverlay');
+    var shield     = document.getElementById('appShield');
+    var sessionBar = document.getElementById('sessionBar');
+    var inp        = document.getElementById('pwInput');
+
+    if (overlay)    { overlay.classList.remove('hidden'); }
+    if (shield)     { shield.style.display = 'none'; }
+    if (sessionBar) { sessionBar.classList.remove('visible'); }
+    if (inp)        { inp.value = ''; }
+
+    // Scroll to top
+    window.scrollTo(0, 0);
+  }
+
+  /* ----------------------------------------------------------
+     TOGGLE PASSWORD VISIBILITY
+  ---------------------------------------------------------- */
+  function togglePw() {
+    var inp = document.getElementById('pwInput');
+    var btn = document.querySelector('.pw-toggle');
+    if (!inp) return;
+    pwVisible = !pwVisible;
+    inp.type  = pwVisible ? 'text' : 'password';
+    if (btn) btn.textContent = pwVisible ? '🙈' : '👁';
+  }
+
+  /* ----------------------------------------------------------
+     SHOW LOGIN (prevent body scroll while overlay is up)
+  ---------------------------------------------------------- */
+  function showLogin() {
+    document.body.style.overflow = 'hidden';
+    var overlay = document.getElementById('loginOverlay');
+    if (overlay) overlay.classList.remove('hidden');
+    // Focus password input after a tick
+    setTimeout(function () {
+      var inp = document.getElementById('pwInput');
+      if (inp) inp.focus();
+    }, 200);
+  }
+
+  /* ----------------------------------------------------------
+     WEBAUTHN HOOK — ready for future passkey upgrade
+     Uncomment and implement when needed:
+
+  async function loginWithPasskey() {
+    try {
+      const credential = await navigator.credentials.get({
+        publicKey: {
+          challenge: new Uint8Array(32),
+          allowCredentials: [],
+          timeout: 60000,
+          userVerification: 'preferred'
+        }
+      });
+      // Verify credential here
+      grantAccess(true);
+    } catch (err) {
+      console.log('Passkey failed:', err);
+    }
+  }
+  ---------------------------------------------------------- */
+
+  /* ----------------------------------------------------------
+     AUTO-INIT on DOM ready
+  ---------------------------------------------------------- */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Public API
+  return { login: login, logout: logout, togglePw: togglePw };
+
+})();
+
+/* ================================================================
+   COZYCABIN IMAGE PROCESSOR — upload.js
+   All processing runs in-browser via Canvas API.
+   No backend. No server. GitHub Pages compatible.
+   ================================================================ */
+
+/* global JSZip */
+
+var CC = (function () {
+
+  // ── State ──────────────────────────────────────────────────
+  var state = {
+    preset:       'standard',
+    logoImg:      null,
+    logoLoaded:   false,
+    processed:    [],          // { canvas, name, origSize, outSize }
+    processing:   false,
+    startTime:    0,
+    advertStyle:  'gold'
+  };
+
+  // ── Preset definitions ─────────────────────────────────────
+  var PRESETS = {
+    standard: { w: 1200, h: 1200 },
+    fashion:  { w: 1200, h: 1600 },
+    original: { w: null, h: null }   // longest side = 1200
+  };
+
+  /* ============================================================
+     INIT
+  ============================================================ */
+  function init() {
+    loadSettings();
+    loadDefaultLogo();
+    bindDropzone();
+    bindLogoUpload();
+    restoreToggles();
+  }
+
+  /* ============================================================
+     LOGO LOADING
+  ============================================================ */
+  function loadDefaultLogo() {
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload  = function () { state.logoImg = img; state.logoLoaded = true; };
+    img.onerror = function () { buildFallbackLogo(); };
+    img.src = 'Images/Cozycabin log .webp';
+  }
+
+  function buildFallbackLogo() {
+    // Draw a text-based fallback logo onto a canvas
+    var fc  = document.createElement('canvas');
+    fc.width  = 260; fc.height = 70;
+    var ctx = fc.getContext('2d');
+    ctx.fillStyle = 'rgba(0,0,0,0.6)';
+    ctx.beginPath();
+    ctx.roundRect(0, 0, 260, 70, 12);
+    ctx.fill();
+    ctx.fillStyle   = '#ffd700';
+    ctx.font        = 'bold 22px Arial';
+    ctx.textAlign   = 'center';
+    ctx.fillText('COZYCABIN', 130, 28);
+    ctx.font        = '11px Arial';
+    ctx.fillStyle   = '#ffffff';
+    ctx.fillText('SMART LIVING SOLUTIONS', 130, 52);
+    var fallback = new Image();
+    fallback.onload = function () { state.logoImg = fallback; state.logoLoaded = true; };
+    fallback.src = fc.toDataURL();
+  }
+
+  function bindLogoUpload() {
+    var inp = document.getElementById('logoFileInput');
+    if (!inp) return;
+    inp.addEventListener('change', function () {
+      var file = this.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var img = new Image();
+        img.onload = function () {
+          state.logoImg    = img;
+          state.logoLoaded = true;
+          // Update thumb
+          var thumbImg = document.getElementById('logoThumbImg');
+          if (thumbImg) {
+            thumbImg.src = e.target.result;
+            thumbImg.style.display = 'block';
+          }
+          toast('Logo updated ✓', 'success');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /* ============================================================
+     DROPZONE — drag & drop + file input
+  ============================================================ */
+  function bindDropzone() {
+    var dz  = document.getElementById('dropzone');
+    var inp = document.getElementById('fileInput');
+    if (!dz || !inp) return;
+
+    dz.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      dz.classList.add('drag-over');
+    });
+    dz.addEventListener('dragleave', function () {
+      dz.classList.remove('drag-over');
+    });
+    dz.addEventListener('drop', function (e) {
+      e.preventDefault();
+      dz.classList.remove('drag-over');
+      handleFiles(e.dataTransfer.files);
+    });
+
+    inp.addEventListener('change', function () {
+      handleFiles(this.files);
+      this.value = '';   // allow re-upload of same file
+    });
+  }
+
+  /* ============================================================
+     FILE HANDLING — validate, queue, process
+  ============================================================ */
+  function handleFiles(files) {
+    if (!files || !files.length) return;
+    if (state.processing) { toast('⏳ Already processing — please wait', 'info'); return; }
+
+    var arr = Array.prototype.slice.call(files).filter(function (f) {
+      return f.type.startsWith('image/');
+    });
+
+    if (!arr.length) { toast('No valid images found', 'error'); return; }
+
+    state.processing = true;
+    state.startTime  = Date.now();
+
+    showProgress(true);
+    updateProgress(0, arr.length);
+
+    var done    = 0;
+    var results = [];
+
+    arr.forEach(function (file, idx) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var img = new Image();
+        img.onload = function () {
+          setTimeout(function () {    // yield to browser so UI updates
+            var result = processImage(img, file);
+            results.push(result);
+            done++;
+            updateProgress(done, arr.length);
+
+            if (done === arr.length) {
+              finishBatch(results);
+            }
+          }, idx * 30);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /* ============================================================
+     CORE IMAGE PROCESSOR
+  ============================================================ */
+  function processImage(sourceImg, file) {
+    var preset      = state.preset;
+    var quality     = parseFloat(document.getElementById('quality').value       || '0.85');
+    var whiteBg     = document.getElementById('toggleWhiteBg').checked;
+    var doWatermark = document.getElementById('toggleWatermark').checked;
+    var logoPosSel  = document.getElementById('logoPosition').value;
+    var logoSizePct = parseFloat(document.getElementById('logoSize').value      || '0.08');
+    var logoOpacity = parseInt(document.getElementById('logoOpacity').value     || '90') / 100;
+    var doAdvert    = document.getElementById('toggleAdvert').checked;
+    var fmt         = document.getElementById('outputFormat').value             || 'webp';
+    var origSize    = file.size;
+
+    // ── Determine output dimensions ──
+    var outW, outH;
+    if (preset === 'original') {
+      var maxSide = 1200;
+      if (sourceImg.width >= sourceImg.height) {
+        outW = Math.min(sourceImg.width, maxSide);
+        outH = Math.round(outW * (sourceImg.height / sourceImg.width));
+      } else {
+        outH = Math.min(sourceImg.height, maxSide);
+        outW = Math.round(outH * (sourceImg.width / sourceImg.height));
+      }
+    } else {
+      outW = PRESETS[preset].w;
+      outH = PRESETS[preset].h;
+    }
+
+    // ── Create canvas ──
+    var canvas = document.createElement('canvas');
+    canvas.width  = outW;
+    canvas.height = outH;
+    var ctx = canvas.getContext('2d');
+
+    // ── Background / Layout ──
+    if (doAdvert) {
+      // Advert mode: branded bg, photo centered (top 70%), logo + tagline in bottom strip
+      drawAdvertLayout(ctx, sourceImg, outW, outH);
+    } else if (whiteBg) {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, outW, outH);
+      // Center product with padding (80% of canvas)
+      var scale    = Math.min((outW * 0.8) / sourceImg.width, (outH * 0.8) / sourceImg.height);
+      var drawW    = sourceImg.width  * scale;
+      var drawH    = sourceImg.height * scale;
+      var drawX    = (outW - drawW) / 2;
+      var drawY    = (outH - drawH) / 2;
+      ctx.drawImage(sourceImg, drawX, drawY, drawW, drawH);
+    } else {
+      // Cover-crop fill
+      var srcR = sourceImg.width / sourceImg.height;
+      var tgtR = outW / outH;
+      var sx, sy, sw, sh;
+      if (srcR > tgtR) {
+        sh = sourceImg.height;
+        sw = Math.round(sh * tgtR);
+        sx = Math.round((sourceImg.width - sw) / 2);
+        sy = 0;
+      } else {
+        sw = sourceImg.width;
+        sh = Math.round(sw / tgtR);
+        sx = 0;
+        sy = Math.round((sourceImg.height - sh) / 2);
+      }
+      ctx.drawImage(sourceImg, sx, sy, sw, sh, 0, 0, outW, outH);
+    }
+
+    // ── Watermark ──
+    if (doWatermark) {
+      drawWatermark(ctx, outW, outH);
+    }
+
+    // ── Logo (only in normal mode — advert mode draws logo itself) ──
+    if (!doAdvert && state.logoLoaded && state.logoImg) {
+      drawLogo(ctx, outW, outH, logoPosSel, logoSizePct, logoOpacity);
+    }
+
+    // ── File name ──
+    var outName = buildFileName(file.name, fmt);
+
+    // ── Estimate output size (approximate) ──
+    var dataUrl  = canvas.toDataURL('image/' + fmt, quality);
+    var base64   = dataUrl.split(',')[1] || '';
+    var outSize  = Math.round((base64.length * 3) / 4);
+
+    return { canvas: canvas, name: outName, origSize: origSize, outSize: outSize, quality: quality, fmt: fmt, dataUrl: dataUrl };
+  }
+
+  /* ============================================================
+     ADVERT LAYOUT — branded background + photo + logo + tagline
+  ============================================================ */
+  var ADVERT_GRADIENTS = {
+    gold:   ['#120a00', '#ffd700'],
+    navy:   ['#060d1f', '#1a3a6e'],
+    dark:   ['#0a0a0a', '#2d2d2d'],
+    warm:   ['#1a0800', '#c0392b'],
+    green:  ['#001a0a', '#27ae60'],
+    purple: ['#0d0020', '#8e44ad']
+  };
+
+  function drawAdvertLayout(ctx, sourceImg, outW, outH) {
+    var styleName = state.advertStyle || 'gold';
+    var colors    = ADVERT_GRADIENTS[styleName] || ADVERT_GRADIENTS.gold;
+    var logoPos   = document.getElementById('advertLogoPos').value || 'top-center';
+    var tagline   = (document.getElementById('advertTagline').value || '').trim();
+
+    // ── 1. Full canvas gradient background ──
+    var grad = ctx.createLinearGradient(0, 0, outW, outH);
+    grad.addColorStop(0, colors[0]);
+    grad.addColorStop(1, colors[1]);
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, outW, outH);
+
+    // Subtle radial glow in centre
+    var glow = ctx.createRadialGradient(outW * 0.5, outH * 0.42, 0, outW * 0.5, outH * 0.42, outW * 0.65);
+    glow.addColorStop(0, 'rgba(255,255,255,0.07)');
+    glow.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, outW, outH);
+
+    // ── 2. Decide layout zones ──
+    //   Logo strip height = ~14% of canvas
+    //   Tagline strip height = ~10% if present, else 0
+    //   Photo occupies the rest (centred, with 6% padding on sides)
+    var logoStripH    = Math.round(outH * 0.14);
+    var taglineStripH = tagline ? Math.round(outH * 0.10) : 0;
+    var bottomBarH    = logoStripH + taglineStripH;
+
+    var photoAreaY, photoAreaH;
+    var isLogoTop = logoPos === 'top-center' || logoPos === 'top-left' || logoPos === 'top-right';
+
+    if (isLogoTop) {
+      photoAreaY = logoStripH;
+      photoAreaH = outH - logoStripH - taglineStripH;
+    } else {
+      // logo at bottom
+      photoAreaY = 0;
+      photoAreaH = outH - bottomBarH;
+    }
+
+    // ── 3. Draw photo centred in photo area ──
+    var pad      = Math.round(outW * 0.06);
+    var maxPhotoW = outW - pad * 2;
+    var maxPhotoH = photoAreaH - Math.round(outH * 0.04);
+    var scale     = Math.min(maxPhotoW / sourceImg.width, maxPhotoH / sourceImg.height);
+    var pW        = Math.round(sourceImg.width  * scale);
+    var pH        = Math.round(sourceImg.height * scale);
+    var pX        = Math.round((outW - pW) / 2);
+    var pY        = Math.round(photoAreaY + (maxPhotoH - pH) / 2 + outH * 0.02);
+
+    // Soft shadow beneath photo
+    ctx.save();
+    ctx.shadowColor   = 'rgba(0,0,0,0.55)';
+    ctx.shadowBlur    = Math.round(outW * 0.04);
+    ctx.shadowOffsetY = Math.round(outH * 0.015);
+    ctx.drawImage(sourceImg, pX, pY, pW, pH);
+    ctx.restore();
+
+    // ── 4. Separator line between photo and brand strip ──
+    var sepY = isLogoTop ? logoStripH : photoAreaH;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255,215,0,0.30)';
+    ctx.lineWidth   = 1;
+    ctx.beginPath();
+    ctx.moveTo(pad, sepY);
+    ctx.lineTo(outW - pad, sepY);
+    ctx.stroke();
+    ctx.restore();
+
+    // ── 5. Draw logo in its strip ──
+    if (state.logoLoaded && state.logoImg) {
+      var logo      = state.logoImg;
+      var logoH     = Math.round(logoStripH * 0.60);
+      var logoW2    = Math.round(logoH * (logo.width / logo.height));
+      var stripCentY = isLogoTop
+        ? Math.round(logoStripH / 2)
+        : Math.round(photoAreaH + logoStripH / 2);
+
+      var lx;
+      if (logoPos === 'top-left' || logoPos === 'bottom-left') {
+        lx = pad;
+      } else if (logoPos === 'top-right' || logoPos === 'bottom-right') {
+        lx = outW - pad - logoW2;
+      } else {
+        lx = Math.round((outW - logoW2) / 2);
+      }
+
+      ctx.globalAlpha = 0.95;
+      ctx.drawImage(logo, lx, stripCentY - Math.round(logoH / 2), logoW2, logoH);
+      ctx.globalAlpha = 1;
+    }
+
+    // ── 6. Tagline ──
+    if (tagline) {
+      var tagY = isLogoTop
+        ? outH - taglineStripH + Math.round(taglineStripH / 2)
+        : photoAreaH + logoStripH + Math.round(taglineStripH / 2);
+
+      var tagFontSize = Math.max(18, Math.round(outW * 0.022));
+      ctx.save();
+      ctx.font         = '500 ' + tagFontSize + 'px Arial';
+      ctx.fillStyle    = 'rgba(255,255,255,0.82)';
+      ctx.textAlign    = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(tagline, outW / 2, tagY);
+      ctx.restore();
+    }
+  }
+
+  /* ============================================================
+     LOGO PLACEMENT — smart auto or manual
+  ============================================================ */
+  function drawLogo(ctx, outW, outH, posMode, sizePct, opacity) {
+    var logo   = state.logoImg;
+    var logoW  = Math.round(outW * sizePct);
+    var logoH  = Math.round(logoW * (logo.height / logo.width));
+    var margin = Math.max(20, Math.round(outW * 0.02));
+
+    var lx, ly;
+
+    if (posMode === 'auto') {
+      // Smart placement: sample pixel brightness in each corner to find emptiest
+      var corners = [
+        { id:'br', x: outW - logoW - margin, y: outH - logoH - margin },
+        { id:'bl', x: margin,                y: outH - logoH - margin },
+        { id:'tr', x: outW - logoW - margin, y: margin },
+        { id:'tl', x: margin,                y: margin }
+      ];
+
+      var best      = corners[0];
+      var bestScore = Infinity;
+
+      corners.forEach(function (corner) {
+        // Sample a small region brightness
+        var sampleW = Math.min(logoW, outW - corner.x);
+        var sampleH = Math.min(logoH, outH - corner.y);
+        if (sampleW <= 0 || sampleH <= 0) return;
+        try {
+          var data   = ctx.getImageData(corner.x, corner.y, sampleW, sampleH).data;
+          var total  = 0;
+          var count  = 0;
+          for (var i = 0; i < data.length; i += 16) {   // sample every 4th pixel
+            // variance from neutral grey — lower = more uniform (better spot)
+            var r = data[i] - 128, g = data[i+1] - 128, b = data[i+2] - 128;
+            total += r*r + g*g + b*b;
+            count++;
+          }
+          var score = count > 0 ? total / count : Infinity;
+          if (score < bestScore) { bestScore = score; best = corner; }
+        } catch (e) {
+          // CORS or tainted canvas — skip auto, default to br
+        }
+      });
+
+      lx = best.x;
+      ly = best.y;
+    } else {
+      var positions = {
+        br: { x: outW - logoW - margin, y: outH - logoH - margin },
+        bl: { x: margin,                y: outH - logoH - margin },
+        tr: { x: outW - logoW - margin, y: margin },
+        tl: { x: margin,                y: margin }
+      };
+      lx = positions[posMode].x;
+      ly = positions[posMode].y;
+    }
+
+    // Clamp to canvas bounds
+    lx = Math.max(0, Math.min(lx, outW - logoW));
+    ly = Math.max(0, Math.min(ly, outH - logoH));
+
+    ctx.globalAlpha = opacity;
+    ctx.drawImage(logo, lx, ly, logoW, logoH);
+    ctx.globalAlpha = 1;
+  }
+  
+/* ============================================================
+     WATERMARK — single centred text on a solid bottom bar
+     (does not overlay the photo — sits in a bar below image)
+  ============================================================ */
+  function drawWatermark(ctx, outW, outH) {
+    var text    = document.getElementById('watermarkText').value || 'COZYCABIN';
+    var opacity = parseInt(document.getElementById('wmOpacity').value || '15') / 100;
+    var size    = parseInt(document.getElementById('wmSize').value || '28');
+
+    // Bar height = text size + generous padding
+    var barH = size + Math.round(size * 1.2);
+    var barY = outH - barH;
+
+    ctx.save();
+
+    // Solid dark background bar (more opaque so text is legible)
+    ctx.globalAlpha = Math.min(opacity * 5, 0.85);
+    ctx.fillStyle   = '#000000';
+    ctx.fillRect(0, barY, outW, barH);
+
+    // Single centred white text
+    ctx.globalAlpha  = 1;
+    ctx.font         = 'bold ' + size + 'px Arial';
+    ctx.fillStyle    = '#ffffff';
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text, outW / 2, barY + barH / 2);
+
+    ctx.restore();
+  }
+
+  /* ============================================================
+     FILE NAMING
+  ============================================================ */
+  function buildFileName(originalName, fmt) {
+    var usePrefix  = document.getElementById('toggleNaming').checked && document.getElementById('usePrefix').checked;
+    var useSuffix  = document.getElementById('toggleNaming').checked && document.getElementById('useSuffix').checked;
+    var prefixText = document.getElementById('prefixText').value  || '';
+    var suffixText = document.getElementById('suffixText').value  || '';
+
+    // Strip extension
+    var base = originalName.lastIndexOf('.') !== -1
+      ? originalName.substring(0, originalName.lastIndexOf('.'))
+      : originalName;
+
+    var name = (usePrefix ? prefixText : '') + base + (useSuffix ? suffixText : '');
+    return name + '.' + fmt;
+  }
+
+  /* ============================================================
+     BATCH FINISH — render cards
+  ============================================================ */
+  function finishBatch(results) {
+    state.processing = false;
+    showProgress(false);
+
+    // Append to existing results
+    results.forEach(function (r) {
+      state.processed.push(r);
+      appendCard(r);
+    });
+
+    var total = state.processed.length;
+    var sec   = ((Date.now() - state.startTime) / 1000).toFixed(1);
+
+    document.getElementById('resultsSection').style.display = 'block';
+    document.getElementById('resultsTitle').textContent     = '✅ ' + total + ' Image' + (total !== 1 ? 's' : '') + ' Ready';
+
+    var dlBar = document.getElementById('dlAllBar');
+    if (dlBar && total > 0) dlBar.classList.add('visible');
+
+    toast('✓ ' + results.length + ' image' + (results.length !== 1 ? 's' : '') + ' processed in ' + sec + 's', 'success');
+  }
+
+  /* ============================================================
+     CARD RENDERER
+  ============================================================ */
+  function appendCard(result) {
+    var grid = document.getElementById('resultsGrid');
+    if (!grid) return;
+
+    var idx      = state.processed.indexOf(result);
+    var origKB   = (result.origSize  / 1024).toFixed(0);
+    var outKB    = (result.outSize   / 1024).toFixed(0);
+    var saved    = result.origSize > 0
+      ? Math.max(0, Math.round((1 - result.outSize / result.origSize) * 100))
+      : 0;
+
+    var card      = document.createElement('div');
+    card.className = 'img-card';
+    card.style.animationDelay = (idx * 60) + 'ms';
+
+    // Preview area
+    var prevWrap  = document.createElement('div');
+    prevWrap.className = 'card-preview';
+
+    // Clone canvas for display
+    var dispCanvas = document.createElement('canvas');
+    dispCanvas.width  = result.canvas.width;
+    dispCanvas.height = result.canvas.height;
+    dispCanvas.getContext('2d').drawImage(result.canvas, 0, 0);
+    prevWrap.appendChild(dispCanvas);
+
+    // Original / Processed tabs
+    var tabsDiv = document.createElement('div');
+    tabsDiv.className = 'preview-tabs';
+    tabsDiv.innerHTML =
+      '<button class="preview-tab active" onclick="CC.showProcessed(this)">After</button>' +
+      '<button class="preview-tab" onclick="CC.showOriginal(this,\'' + idx + '\')">Before</button>';
+    prevWrap.appendChild(tabsDiv);
+
+    // Card body
+    var body = document.createElement('div');
+    body.className = 'card-body';
+    body.innerHTML =
+      '<div class="card-filename">' + result.name + '</div>' +
+      '<div class="card-stats">' +
+        '<div class="stat-item">' +
+          '<div class="stat-label">Output</div>' +
+          '<div class="stat-value gold">' + result.canvas.width + '×' + result.canvas.height + '</div>' +
+        '</div>' +
+        '<div class="stat-item">' +
+          '<div class="stat-label">Original</div>' +
+          '<div class="stat-value">' + origKB + ' KB</div>' +
+        '</div>' +
+        '<div class="stat-item">' +
+          '<div class="stat-label">Output size</div>' +
+          '<div class="stat-value">' + outKB + ' KB</div>' +
+        '</div>' +
+        '<div class="stat-item">' +
+          '<div class="stat-label">Saved</div>' +
+          '<div class="stat-value green">' + saved + '%</div>' +
+        '</div>' +
+      '</div>' +
+      '<button class="card-dl-btn" onclick="CC.downloadSingle(' + idx + ')">⬇ Download</button>';
+
+    card.appendChild(prevWrap);
+    card.appendChild(body);
+    grid.appendChild(card);
+  }
+
+  /* ============================================================
+     PREVIEW TOGGLE (Before / After)
+  ============================================================ */
+  function showProcessed(btn) {
+    var preview = btn.closest('.card-preview');
+    var canvas  = preview.querySelector('canvas');
+    var tabs    = preview.querySelectorAll('.preview-tab');
+    tabs.forEach(function (t) { t.classList.remove('active'); });
+    btn.classList.add('active');
+    if (canvas) canvas.style.display = 'block';
+    var imgEl = preview.querySelector('img.before-img');
+    if (imgEl) imgEl.style.display = 'none';
+  }
+
+  function showOriginal(btn, idx) {
+    var preview = btn.closest('.card-preview');
+    var canvas  = preview.querySelector('canvas');
+    var tabs    = preview.querySelectorAll('.preview-tab');
+    tabs.forEach(function (t) { t.classList.remove('active'); });
+    btn.classList.add('active');
+    if (canvas) canvas.style.display = 'none';
+
+    var imgEl = preview.querySelector('img.before-img');
+    if (!imgEl) {
+      // We can't recover original from state but we show a note
+      var note = document.createElement('div');
+      note.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:11px;text-align:center;padding:16px;';
+      note.textContent   = 'Original not cached\n(upload fresh to compare)';
+      note.classList.add('before-img');
+      preview.appendChild(note);
+    } else {
+      imgEl.style.display = 'flex';
+    }
+  }
+
+  /* ============================================================
+     DOWNLOAD
+  ============================================================ */
+  function downloadSingle(idx) {
+    var item = state.processed[idx];
+    if (!item) return;
+    triggerDownload(item.dataUrl, item.name);
+  }
+
+  function downloadAll() {
+    state.processed.forEach(function (item, i) {
+      setTimeout(function () {
+        triggerDownload(item.dataUrl, item.name);
+      }, i * 350);
+    });
+  }
+
+  function downloadZip() {
+    if (!state.processed.length) return;
+    if (typeof JSZip === 'undefined') {
+      toast('JSZip not loaded — try Download All instead', 'error'); return;
+    }
+
+    toast('⏳ Building ZIP…', 'info');
+    var zip = new JSZip();
+
+    state.processed.forEach(function (item) {
+      var base64 = item.dataUrl.split(',')[1];
+      zip.file(item.name, base64, { base64: true });
+    });
+
+    zip.generateAsync({ type: 'blob' }).then(function (content) {
+      var url  = URL.createObjectURL(content);
+      var link = document.createElement('a');
+      link.href     = url;
+      link.download = 'cozycabin-images.zip';
+      link.click();
+      URL.revokeObjectURL(url);
+      toast('✓ ZIP downloaded (' + state.processed.length + ' files)', 'success');
+    });
+  }
+
+  function triggerDownload(dataUrl, name) {
+    var link      = document.createElement('a');
+    link.href     = dataUrl;
+    link.download = name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  /* ============================================================
+     CLEAR RESULTS
+  ============================================================ */
+  function clearResults() {
+    state.processed = [];
+    var grid = document.getElementById('resultsGrid');
+    if (grid) grid.innerHTML = '';
+    document.getElementById('resultsSection').style.display = 'none';
+    var dlBar = document.getElementById('dlAllBar');
+    if (dlBar) dlBar.classList.remove('visible');
+    toast('Results cleared', 'info');
+  }
+
+  /* ============================================================
+     PROGRESS
+  ============================================================ */
+  function showProgress(visible) {
+    var wrap = document.getElementById('progressWrap');
+    if (!wrap) return;
+    if (visible) {
+      wrap.classList.add('visible');
+      document.getElementById('progressFill').style.width = '0%';
+    } else {
+      wrap.classList.remove('visible');
+    }
+  }
+
+  function updateProgress(done, total) {
+    var pct     = total > 0 ? Math.round((done / total) * 100) : 0;
+    var elapsed = (Date.now() - state.startTime) / 1000;
+    var eta     = done > 0 ? Math.round((elapsed / done) * (total - done)) : '…';
+
+    var fill  = document.getElementById('progressFill');
+    var label = document.getElementById('progressLabel');
+    var count = document.getElementById('progressCount');
+    var etaEl = document.getElementById('progressEta');
+
+    if (fill)  fill.style.width   = pct + '%';
+    if (label) label.textContent  = pct < 100 ? 'Processing…' : 'Done!';
+    if (count) count.textContent  = done + ' / ' + total;
+    if (etaEl) etaEl.textContent  = done < total
+      ? 'About ' + eta + 's remaining'
+      : '✓ All done in ' + elapsed.toFixed(1) + 's';
+  }
+
+  /* ============================================================
+     PRESET SELECTION
+  ============================================================ */
+  function selectPreset(name, btn) {
+    state.preset = name;
+    document.querySelectorAll('.preset-btn').forEach(function (b) {
+      b.classList.remove('active');
+    });
+    if (btn) btn.classList.add('active');
+    saveSettings();
+  }
+
+  /* ============================================================
+     TOGGLE UI HELPERS
+  ============================================================ */
+  function toggleWatermarkSub() {
+    var sub = document.getElementById('watermarkSub');
+    if (sub) sub.classList.toggle('visible', document.getElementById('toggleWatermark').checked);
+  }
+
+  function toggleNamingSub() {
+    var sub = document.getElementById('namingSub');
+    if (sub) sub.classList.toggle('visible', document.getElementById('toggleNaming').checked);
+  }
+
+  /* ============================================================
+     SETTINGS PERSISTENCE
+  ============================================================ */
+  function saveSettings() {
+    try {
+      localStorage.setItem('cc_settings', JSON.stringify({
+        preset:      state.preset,
+        quality:     document.getElementById('quality').value,
+        fmt:         document.getElementById('outputFormat').value,
+        logoPos:     document.getElementById('logoPosition').value,
+        logoSize:    document.getElementById('logoSize').value,
+        logoOp:      document.getElementById('logoOpacity').value,
+        whiteBg:     document.getElementById('toggleWhiteBg').checked,
+        watermark:   document.getElementById('toggleWatermark').checked,
+        wmText:      document.getElementById('watermarkText').value,
+        wmOp:        document.getElementById('wmOpacity').value,
+        wmSz:        document.getElementById('wmSize').value,
+        naming:      document.getElementById('toggleNaming').checked,
+        usePrefix:   document.getElementById('usePrefix').checked,
+        prefixText:  document.getElementById('prefixText').value,
+        useSuffix:   document.getElementById('useSuffix').checked,
+        suffixText:  document.getElementById('suffixText').value
+      }));
+    } catch (e) { /* localStorage may be blocked */ }
+  }
+
+  function loadSettings() {
+    try {
+      var raw = localStorage.getItem('cc_settings');
+      if (!raw) return;
+      var s = JSON.parse(raw);
+
+      if (s.preset)   { state.preset = s.preset; document.querySelector('[data-preset="' + s.preset + '"]') && document.querySelector('[data-preset="' + s.preset + '"]').classList.add('active'); }
+      if (s.quality)  setVal('quality', s.quality);
+      if (s.fmt)      setVal('outputFormat', s.fmt);
+      if (s.logoPos)  setVal('logoPosition', s.logoPos);
+      if (s.logoSize) setVal('logoSize', s.logoSize);
+      if (s.logoOp) {
+        setVal('logoOpacity', s.logoOp);
+        var el = document.getElementById('logoOpVal');
+        if (el) el.textContent = s.logoOp + '%';
+      }
+      if (s.whiteBg   !== undefined) document.getElementById('toggleWhiteBg').checked  = s.whiteBg;
+      if (s.watermark !== undefined) document.getElementById('toggleWatermark').checked = s.watermark;
+      if (s.wmText)   document.getElementById('watermarkText').value = s.wmText;
+      if (s.wmOp) {
+        setVal('wmOpacity', s.wmOp);
+        var el2 = document.getElementById('wmOpVal');
+        if (el2) el2.textContent = s.wmOp + '%';
+      }
+      if (s.wmSz) {
+        setVal('wmSize', s.wmSz);
+        var el3 = document.getElementById('wmSzVal');
+        if (el3) el3.textContent = s.wmSz + 'px';
+      }
+      if (s.naming    !== undefined) document.getElementById('toggleNaming').checked   = s.naming;
+      if (s.usePrefix !== undefined) document.getElementById('usePrefix').checked      = s.usePrefix;
+      if (s.prefixText) document.getElementById('prefixText').value = s.prefixText;
+      if (s.useSuffix !== undefined) document.getElementById('useSuffix').checked      = s.useSuffix;
+      if (s.suffixText) document.getElementById('suffixText').value = s.suffixText;
+    } catch (e) { /* corrupted data */ }
+  }
+
+  function restoreToggles() {
+    toggleWatermarkSub();
+    toggleNamingSub();
+    // Restore active preset button
+    var btn = document.querySelector('[data-preset="' + state.preset + '"]');
+    if (btn) {
+      document.querySelectorAll('.preset-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    }
+  }
+
+  function setVal(id, val) {
+    var el = document.getElementById(id);
+    if (el) el.value = val;
+  }
+
+  /* ============================================================
+     TOAST NOTIFICATIONS
+  ============================================================ */
+  function toast(msg, type) {
+    var container = document.getElementById('toastContainer');
+    if (!container) return;
+    var icons = { success: '✅', error: '❌', info: 'ℹ️' };
+    var div   = document.createElement('div');
+    div.className   = 'toast ' + (type || 'info');
+    div.textContent = (icons[type] || '') + ' ' + msg;
+    container.appendChild(div);
+    setTimeout(function () {
+      div.style.opacity   = '0';
+      div.style.transform = 'translateY(-8px)';
+      div.style.transition = 'all .3s';
+      setTimeout(function () { if (div.parentNode) div.parentNode.removeChild(div); }, 350);
+    }, 3000);
+  }
+
+  /* ============================================================
+     PUBLIC API
+  ============================================================ */
+  document.addEventListener('DOMContentLoaded', init);
+
+  return {
+    selectPreset:       selectPreset,
+    saveSettings:       saveSettings,
+    clearResults:       clearResults,
+    downloadSingle:     downloadSingle,
+    downloadAll:        downloadAll,
+    downloadZip:        downloadZip,
+    toggleWatermarkSub: toggleWatermarkSub,
+    toggleNamingSub:    toggleNamingSub,
+    showProcessed:      showProcessed,
+    showOriginal:       showOriginal,
+    toast:              toast
+  };
+
+})();
+
+/* ================================================================
+   STUDIO — Tab controller + ZIP Tools + PDF Converter + Doc Viewer
+   ================================================================ */
+
+var STUDIO = (function () {
+
+  /* ------------------------------------------------------------------
+     TAB SWITCHING
+  ------------------------------------------------------------------ */
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tool-panel').forEach(function (p) { p.classList.remove('active'); });
+    document.querySelectorAll('.main-tab').forEach(function (b) { b.classList.remove('active'); });
+    var panel = document.getElementById('panel-' + name);
+    if (panel) panel.classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+
+  /* ==================================================================
+     ZIP TOOLS
+  ================================================================== */
+  var zipState = { mode: 'create', files: [] };
+  var unzipState = { entries: [] };
+
+  function setZipMode(mode, btn) {
+    zipState.mode = mode;
+    document.querySelectorAll('#zipModeGrid .zip-mode-btn').forEach(function (b) { b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    document.getElementById('zipCreateSection').style.display  = mode === 'create' ? 'block' : 'none';
+    document.getElementById('zipUnzipSection').style.display   = mode === 'unzip'  ? 'block' : 'none';
+  }
+
+  function getFileIcon(name) {
+    var ext = (name.split('.').pop() || '').toLowerCase();
+    var map = { jpg:'🖼️', jpeg:'🖼️', png:'🖼️', webp:'🖼️', gif:'🖼️', svg:'🖼️',
+                pdf:'📄', doc:'📝', docx:'📝', txt:'📄', csv:'📊', xls:'📊', xlsx:'📊',
+                mp4:'🎬', mov:'🎬', avi:'🎬', mp3:'🎵', wav:'🎵', zip:'📦', rar:'📦',
+                html:'🌐', css:'🎨', js:'⚙️', json:'📋', py:'🐍', sh:'⚙️' };
+    return map[ext] || '📁';
+  }
+
+  function formatBytes(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+
+  /* ── Create ZIP ── */
+  function initZipCreate() {
+    var inp = document.getElementById('zipFileInput');
+    if (!inp) return;
+    inp.addEventListener('change', function () {
+      Array.prototype.forEach.call(this.files, addZipFile);
+      this.value = '';
+    });
+    var dz = document.getElementById('zipDropzone');
+    if (dz) {
+      dz.addEventListener('dragover', function (e) { e.preventDefault(); dz.style.borderColor='var(--gold)'; });
+      dz.addEventListener('dragleave', function () { dz.style.borderColor=''; });
+      dz.addEventListener('drop', function (e) {
+        e.preventDefault(); dz.style.borderColor='';
+        Array.prototype.forEach.call(e.dataTransfer.files, addZipFile);
+      });
+    }
+  }
+
+  function addZipFile(file) {
+    // avoid duplicates by name
+    if (zipState.files.some(function (f) { return f.name === file.name; })) {
+      CC.toast('Already added: ' + file.name, 'info'); return;
+    }
+    zipState.files.push(file);
+    renderZipList();
+  }
+
+  function renderZipList() {
+    var list = document.getElementById('zipFileList');
+    var empty = document.getElementById('zipListEmpty');
+    var badge = document.getElementById('zipCountBadge');
+    if (!list) return;
+    list.innerHTML = '';
+    if (!zipState.files.length) {
+      list.innerHTML = '<div class="file-list-empty">No files added yet — tap the area above</div>';
+      if (badge) badge.textContent = '';
+      return;
+    }
+    if (badge) badge.textContent = '(' + zipState.files.length + ')';
+    zipState.files.forEach(function (f, idx) {
+      var item = document.createElement('div');
+      item.className = 'file-list-item';
+      item.innerHTML =
+        '<span class="fli-icon">' + getFileIcon(f.name) + '</span>' +
+        '<span class="fli-name">' + f.name + '</span>' +
+        '<span class="fli-size">' + formatBytes(f.size) + '</span>' +
+        '<button class="fli-remove" onclick="STUDIO.removeZipFile(' + idx + ')" title="Remove">✕</button>';
+      list.appendChild(item);
+    });
+  }
+
+  function removeZipFile(idx) {
+    zipState.files.splice(idx, 1);
+    renderZipList();
+  }
+
+  function clearZipFiles() {
+    zipState.files = [];
+    renderZipList();
+    CC.toast('File list cleared', 'info');
+  }
+
+  function buildZip() {
+    if (!zipState.files.length) { CC.toast('Add files first', 'error'); return; }
+    if (typeof JSZip === 'undefined') { CC.toast('JSZip not loaded', 'error'); return; }
+
+    var btn = document.getElementById('createZipBtn');
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Building…'; }
+
+    var zip = new JSZip();
+    var name = (document.getElementById('zipOutputName').value || 'cozycabin-files').trim() + '.zip';
+    var pending = zipState.files.length;
+
+    zipState.files.forEach(function (file) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var b64 = e.target.result.split(',')[1];
+        zip.file(file.name, b64, { base64: true });
+        pending--;
+        if (pending === 0) {
+          zip.generateAsync({ type: 'blob' }).then(function (blob) {
+            var url  = URL.createObjectURL(blob);
+            var a    = document.createElement('a');
+            a.href     = url;
+            a.download = name;
+            a.click();
+            URL.revokeObjectURL(url);
+            if (btn) { btn.disabled = false; btn.textContent = '📦 Build & Download ZIP'; }
+            CC.toast('✓ ZIP ready: ' + name + ' (' + zipState.files.length + ' files)', 'success');
+          });
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /* ── Unzip ── */
+  function initUnzip() {
+    var inp = document.getElementById('unzipFileInput');
+    if (!inp) return;
+    inp.addEventListener('change', function () {
+      if (this.files[0]) extractZip(this.files[0]);
+      this.value = '';
+    });
+  }
+
+  function extractZip(file) {
+    if (typeof JSZip === 'undefined') { CC.toast('JSZip not loaded', 'error'); return; }
+    CC.toast('⏳ Extracting…', 'info');
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      JSZip.loadAsync(e.target.result).then(function (zip) {
+        unzipState.entries = [];
+        var names = Object.keys(zip.files).filter(function (n) { return !zip.files[n].dir; });
+        var done = 0;
+        if (!names.length) { CC.toast('ZIP is empty', 'info'); return; }
+
+        names.forEach(function (name) {
+          zip.files[name].async('blob').then(function (blob) {
+            unzipState.entries.push({ name: name.split('/').pop() || name, blob: blob, size: blob.size });
+            done++;
+            if (done === names.length) renderUnzipResults();
+          });
+        });
+      }).catch(function () { CC.toast('Failed to read ZIP', 'error'); });
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  function renderUnzipResults() {
+    var grid    = document.getElementById('unzipGrid');
+    var section = document.getElementById('unzipResults');
+    var title   = document.getElementById('unzipTitle');
+    if (!grid || !section) return;
+
+    grid.innerHTML = '';
+    section.style.display = 'block';
+    if (title) title.textContent = '📂 ' + unzipState.entries.length + ' File' + (unzipState.entries.length !== 1 ? 's' : '');
+
+    unzipState.entries.forEach(function (entry, idx) {
+      var card = document.createElement('div');
+      card.className = 'unzip-file-card';
+      card.innerHTML =
+        '<div class="unzip-file-icon">' + getFileIcon(entry.name) + '</div>' +
+        '<div class="unzip-file-name">' + entry.name + '</div>' +
+        '<div class="unzip-file-size">' + formatBytes(entry.size) + '</div>' +
+        '<button class="unzip-dl-btn" onclick="STUDIO.downloadUnzipEntry(' + idx + ')">⬇ Download</button>';
+      grid.appendChild(card);
+    });
+
+    CC.toast('✓ Extracted ' + unzipState.entries.length + ' file(s)', 'success');
+  }
+
+  function downloadUnzipEntry(idx) {
+    var entry = unzipState.entries[idx];
+    if (!entry) return;
+    var url = URL.createObjectURL(entry.blob);
+    var a   = document.createElement('a');
+    a.href     = url;
+    a.download = entry.name;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function downloadAllUnzipped() {
+    if (!unzipState.entries.length) return;
+    unzipState.entries.forEach(function (entry, i) {
+      setTimeout(function () { downloadUnzipEntry(i); }, i * 300);
+    });
+    CC.toast('Downloading ' + unzipState.entries.length + ' files…', 'info');
+  }
+
+  function clearUnzip() {
+    unzipState.entries = [];
+    var section = document.getElementById('unzipResults');
+    if (section) section.style.display = 'none';
+    CC.toast('Cleared', 'info');
+  }
+
+  /* ==================================================================
+     PDF CONVERTER
+  ================================================================== */
+  var pdfState = { files: [] };
+
+  function initPdfConverter() {
+    var inp = document.getElementById('pdfFileInput');
+    if (!inp) return;
+    inp.addEventListener('change', function () {
+      Array.prototype.forEach.call(this.files, addPdfFile);
+      this.value = '';
+    });
+    var dz = document.getElementById('pdfDropzone');
+    if (dz) {
+      dz.addEventListener('dragover', function (e) { e.preventDefault(); dz.style.borderColor='var(--gold)'; });
+      dz.addEventListener('dragleave', function () { dz.style.borderColor=''; });
+      dz.addEventListener('drop', function (e) {
+        e.preventDefault(); dz.style.borderColor='';
+        Array.prototype.forEach.call(e.dataTransfer.files, addPdfFile);
+      });
+    }
+  }
+
+  function addPdfFile(file) {
+    if (!file.type.startsWith('image/')) { CC.toast('Images only (JPG/PNG/WEBP)', 'error'); return; }
+    pdfState.files.push(file);
+    renderPdfQueue();
+  }
+
+  function renderPdfQueue() {
+    var list    = document.getElementById('pdfQueueList');
+    var section = document.getElementById('pdfFileQueue');
+    var badge   = document.getElementById('pdfCountBadge');
+    if (!list || !section) return;
+
+    section.style.display = pdfState.files.length ? 'block' : 'none';
+    list.innerHTML = '';
+    if (badge) badge.textContent = pdfState.files.length ? '(' + pdfState.files.length + ')' : '';
+
+    pdfState.files.forEach(function (f, idx) {
+      var item = document.createElement('div');
+      item.className = 'file-list-item';
+      item.innerHTML =
+        '<span class="fli-icon">🖼️</span>' +
+        '<span class="fli-name">' + f.name + '</span>' +
+        '<span class="fli-size">' + formatBytes(f.size) + '</span>' +
+        '<button class="fli-remove" onclick="STUDIO.removePdfFile(' + idx + ')" title="Remove">✕</button>';
+      list.appendChild(item);
+    });
+  }
+
+  function removePdfFile(idx) {
+    pdfState.files.splice(idx, 1);
+    renderPdfQueue();
+  }
+
+  function clearPdfQueue() {
+    pdfState.files = [];
+    renderPdfQueue();
+    document.getElementById('pdfResultSection').style.display = 'none';
+    CC.toast('Queue cleared', 'info');
+  }
+
+  function convertToPdf() {
+    if (!pdfState.files.length) { CC.toast('Add images first', 'error'); return; }
+    if (typeof window.jspdf === 'undefined' && typeof jsPDF === 'undefined') {
+      CC.toast('jsPDF not loaded — try again in a moment', 'error'); return;
+    }
+
+    var btn = document.getElementById('convertPdfBtn');
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Converting…'; }
+
+    var pageSize   = document.getElementById('pdfPageSize').value    || 'a4';
+    var orient     = document.getElementById('pdfOrientation').value || 'portrait';
+    var fit        = document.getElementById('pdfImageFit').value    || 'contain';
+    var outName    = (document.getElementById('pdfOutputName').value || 'cozycabin-document').trim() + '.pdf';
+
+    var jsPDFCtor  = (typeof window.jspdf !== 'undefined') ? window.jspdf.jsPDF : jsPDF;
+    var doc        = new jsPDFCtor({ orientation: orient, unit: 'mm', format: pageSize });
+    var pW         = doc.internal.pageSize.getWidth();
+    var pH         = doc.internal.pageSize.getHeight();
+
+    var loaded = 0;
+    var imgData = new Array(pdfState.files.length);
+
+    pdfState.files.forEach(function (file, idx) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var img   = new Image();
+        img.onload = function () {
+          imgData[idx] = { src: e.target.result, w: img.width, h: img.height };
+          loaded++;
+          if (loaded === pdfState.files.length) finalizePdf(doc, imgData, pW, pH, fit, outName, btn, pageSize, orient);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function finalizePdf(doc, imgData, pW, pH, fit, outName, btn, pageSize, orient) {
+    var margin = 8; // mm
+    imgData.forEach(function (item, i) {
+      if (i > 0) doc.addPage(pageSize, orient);
+      var aspect = item.w / item.h;
+      var drawW, drawH, dx, dy;
+
+      if (fit === 'contain') {
+        var maxW = pW - margin * 2;
+        var maxH = pH - margin * 2;
+        if (aspect > maxW / maxH) { drawW = maxW; drawH = drawW / aspect; }
+        else                       { drawH = maxH; drawW = drawH * aspect; }
+        dx = (pW - drawW) / 2;
+        dy = (pH - drawH) / 2;
+      } else {
+        drawW = pW; drawH = pH; dx = 0; dy = 0;
+      }
+
+      var fmt = item.src.startsWith('data:image/jpeg') || item.src.startsWith('data:image/jpg') ? 'JPEG' : 'PNG';
+      doc.addImage(item.src, fmt, dx, dy, drawW, drawH);
+    });
+
+    doc.save(outName);
+
+    if (btn) { btn.disabled = false; btn.textContent = '📄 Convert to PDF'; }
+
+    var rs = document.getElementById('pdfResultSection');
+    var rc = document.getElementById('pdfResultCard');
+    if (rs && rc) {
+      rs.style.display = 'block';
+      rc.innerHTML =
+        '<div class="pdf-result-card">' +
+          '<div class="pdf-result-icon">📄</div>' +
+          '<div class="pdf-result-info">' +
+            '<div class="pdf-result-name">' + outName + '</div>' +
+            '<div class="pdf-result-meta">' + imgData.length + ' page' + (imgData.length !== 1 ? 's' : '') + ' · ' + pageSize.toUpperCase() + ' · ' + orient + '</div>' +
+          '</div>' +
+          '<button class="pdf-dl-btn" onclick="STUDIO.redownloadPdf()">⬇ Resave</button>' +
+        '</div>';
+    }
+    CC.toast('✓ PDF created: ' + outName + ' (' + imgData.length + ' pages)', 'success');
+  }
+
+  // Re-download: just re-run convert
+  function redownloadPdf() { convertToPdf(); }
+
+  /* ==================================================================
+     DOC VIEWER
+  ================================================================== */
+  var docState = { rawText: '', htmlContent: '' };
+
+  function initDocViewer() {
+    var inp = document.getElementById('docFileInput');
+    if (!inp) return;
+    inp.addEventListener('change', function () {
+      if (this.files[0]) openDoc(this.files[0]);
+      this.value = '';
+    });
+    var dz = document.getElementById('docDropArea');
+    if (dz) {
+      dz.addEventListener('dragover', function (e) { e.preventDefault(); dz.classList.add('drag-over'); });
+      dz.addEventListener('dragleave', function () { dz.classList.remove('drag-over'); });
+      dz.addEventListener('drop', function (e) {
+        e.preventDefault(); dz.classList.remove('drag-over');
+        if (e.dataTransfer.files[0]) openDoc(e.dataTransfer.files[0]);
+      });
+    }
+  }
+
+  function openDoc(file) {
+    var ext = file.name.split('.').pop().toLowerCase();
+    document.getElementById('docFileName').textContent = file.name;
+    CC.toast('⏳ Loading ' + file.name + '…', 'info');
+
+    if (ext === 'docx') {
+      if (typeof mammoth === 'undefined') { CC.toast('mammoth.js not loaded', 'error'); return; }
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        mammoth.convertToHtml({ arrayBuffer: e.target.result })
+          .then(function (result) {
+            docState.htmlContent = result.value;
+            docState.rawText     = stripHtml(result.value);
+            renderDocHtml(result.value);
+            showDocStats(file, docState.rawText);
+          })
+          .catch(function () { CC.toast('Failed to parse DOCX', 'error'); });
+      };
+      reader.readAsArrayBuffer(file);
+
+    } else if (ext === 'html') {
+      var reader2 = new FileReader();
+      reader2.onload = function (e) {
+        // Sanitize: only render body content
+        var parser = new DOMParser();
+        var parsed = parser.parseFromString(e.target.result, 'text/html');
+        var body   = parsed.body ? parsed.body.innerHTML : e.target.result;
+        docState.htmlContent = body;
+        docState.rawText     = stripHtml(body);
+        renderDocHtml(body);
+        showDocStats(file, docState.rawText);
+      };
+      reader2.readAsText(file);
+
+    } else if (ext === 'md') {
+      var reader3 = new FileReader();
+      reader3.onload = function (e) {
+        var html = mdToHtml(e.target.result);
+        docState.htmlContent = html;
+        docState.rawText     = e.target.result;
+        renderDocHtml(html);
+        showDocStats(file, docState.rawText);
+      };
+      reader3.readAsText(file);
+
+    } else if (ext === 'csv') {
+      var reader4 = new FileReader();
+      reader4.onload = function (e) {
+        var html = csvToHtml(e.target.result);
+        docState.htmlContent = html;
+        docState.rawText     = e.target.result;
+        renderDocHtml(html);
+        showDocStats(file, docState.rawText);
+      };
+      reader4.readAsText(file);
+
+    } else if (ext === 'json') {
+      var reader5 = new FileReader();
+      reader5.onload = function (e) {
+        var pretty;
+        try { pretty = JSON.stringify(JSON.parse(e.target.result), null, 2); }
+        catch (err) { pretty = e.target.result; }
+        var html = '<pre>' + escHtml(pretty) + '</pre>';
+        docState.htmlContent = html;
+        docState.rawText     = pretty;
+        renderDocHtml(html);
+        showDocStats(file, docState.rawText);
+      };
+      reader5.readAsText(file);
+
+    } else {
+      // txt and anything else
+      var reader6 = new FileReader();
+      reader6.onload = function (e) {
+        var html = '<pre style="white-space:pre-wrap;word-break:break-word;">' + escHtml(e.target.result) + '</pre>';
+        docState.htmlContent = html;
+        docState.rawText     = e.target.result;
+        renderDocHtml(html);
+        showDocStats(file, docState.rawText);
+      };
+      reader6.readAsText(file);
+    }
+  }
+
+  function renderDocHtml(html) {
+    var area    = document.getElementById('docContentArea');
+    var section = document.getElementById('docViewerSection');
+    if (!area || !section) return;
+    area.innerHTML = html;
+    section.style.display = 'block';
+    CC.toast('✓ Document loaded', 'success');
+  }
+
+  function showDocStats(file, text) {
+    var words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    var chars = text.length;
+    var lines = text.split('\n').length;
+    var bar   = document.getElementById('docStatsBar');
+    if (!bar) return;
+    bar.innerHTML =
+      '<span class="doc-stat-chip"><strong>' + formatBytes(file.size) + '</strong> size</span>' +
+      '<span class="doc-stat-chip"><strong>' + words.toLocaleString() + '</strong> words</span>' +
+      '<span class="doc-stat-chip"><strong>' + chars.toLocaleString() + '</strong> chars</span>' +
+      '<span class="doc-stat-chip"><strong>' + lines.toLocaleString() + '</strong> lines</span>';
+  }
+
+  function docSearch(query) {
+    var area = document.getElementById('docContentArea');
+    if (!area) return;
+    // Re-render then highlight
+    area.innerHTML = docState.htmlContent;
+    if (!query || query.length < 2) return;
+
+    var walker = document.createTreeWalker(area, NodeFilter.SHOW_TEXT, null, false);
+    var nodes  = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    var regex = new RegExp('(' + escapeRegex(query) + ')', 'gi');
+    nodes.forEach(function (node) {
+      if (!regex.test(node.nodeValue)) return;
+      regex.lastIndex = 0;
+      var span      = document.createElement('span');
+      span.innerHTML = node.nodeValue.replace(regex, '<mark>$1</mark>');
+      node.parentNode.replaceChild(span, node);
+    });
+
+    // Scroll to first match
+    var first = area.querySelector('mark');
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function clearDocSearch() {
+    document.getElementById('docSearchInput').value = '';
+    var area = document.getElementById('docContentArea');
+    if (area) area.innerHTML = docState.htmlContent;
+  }
+
+  function docCopyAll() {
+    if (!docState.rawText) return;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(docState.rawText).then(function () {
+        CC.toast('✓ Copied to clipboard', 'success');
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = docState.rawText;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      CC.toast('✓ Copied to clipboard', 'success');
+    }
+  }
+
+  function docDownloadTxt() {
+    if (!docState.rawText) return;
+    var name = (document.getElementById('docFileName').textContent || 'document').replace(/\.[^.]+$/, '') + '.txt';
+    var blob = new Blob([docState.rawText], { type: 'text/plain' });
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement('a'); a.href = url; a.download = name; a.click();
+    URL.revokeObjectURL(url);
+    CC.toast('✓ Downloaded as ' + name, 'success');
+  }
+
+  function docToPdf() {
+    if (!docState.rawText) return;
+    if (typeof window.jspdf === 'undefined' && typeof jsPDF === 'undefined') {
+      CC.toast('jsPDF not loaded', 'error'); return;
+    }
+    var jsPDFCtor = (typeof window.jspdf !== 'undefined') ? window.jspdf.jsPDF : jsPDF;
+    var doc       = new jsPDFCtor({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    var outName   = (document.getElementById('docFileName').textContent || 'document').replace(/\.[^.]+$/, '') + '.pdf';
+
+    var lines = doc.splitTextToSize(docState.rawText, 180);
+    var y     = 15;
+    doc.setFontSize(10);
+    doc.setTextColor(30, 30, 30);
+    lines.forEach(function (line) {
+      if (y > 275) { doc.addPage(); y = 15; }
+      doc.text(line, 15, y);
+      y += 5;
+    });
+    doc.save(outName);
+    CC.toast('✓ Saved as ' + outName, 'success');
+  }
+
+  /* ── Helpers ── */
+  function stripHtml(html) {
+    var tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function escapeRegex(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function mdToHtml(md) {
+    // Minimal Markdown → HTML
+    var h = md
+      .replace(/^######\s+(.+)/gm,  '<h6>$1</h6>')
+      .replace(/^#####\s+(.+)/gm,   '<h5>$1</h5>')
+      .replace(/^####\s+(.+)/gm,    '<h4>$1</h4>')
+      .replace(/^###\s+(.+)/gm,     '<h3>$1</h3>')
+      .replace(/^##\s+(.+)/gm,      '<h2>$1</h2>')
+      .replace(/^#\s+(.+)/gm,       '<h1>$1</h1>')
+      .replace(/\*\*(.+?)\*\*/g,    '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g,        '<em>$1</em>')
+      .replace(/`([^`]+)`/g,        '<code>$1</code>')
+      .replace(/^> (.+)/gm,         '<blockquote>$1</blockquote>')
+      .replace(/^[-*] (.+)/gm,      '<li>$1</li>')
+      .replace(/(<li>.*<\/li>)/s,   '<ul>$1</ul>')
+      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank">$1</a>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+    return '<p>' + h + '</p>';
+  }
+
+  function csvToHtml(csv) {
+    var lines = csv.trim().split('\n');
+    if (!lines.length) return '<p>Empty CSV</p>';
+    var html = '<table>';
+    lines.forEach(function (line, i) {
+      var cells = line.split(',').map(function (c) { return escHtml(c.trim().replace(/^"|"$/g,'')); });
+      html += '<tr>' + cells.map(function (c) {
+        return i === 0 ? '<th>' + c + '</th>' : '<td>' + c + '</td>';
+      }).join('') + '</tr>';
+    });
+    return html + '</table>';
+  }
+
+  /* ==================================================================
+     INIT
+  ================================================================== */
+  document.addEventListener('DOMContentLoaded', function () {
+    initZipCreate();
+    initUnzip();
+    initPdfConverter();
+    initDocViewer();
+    // Start in create ZIP mode
+    setZipMode('create', document.querySelector('#zipModeGrid .zip-mode-btn'));
+  });
+
+  return {
+    switchTab:           switchTab,
+    setZipMode:          setZipMode,
+    addZipFile:          addZipFile,
+    removeZipFile:       removeZipFile,
+    clearZipFiles:       clearZipFiles,
+    buildZip:            buildZip,
+    downloadUnzipEntry:  downloadUnzipEntry,
+    downloadAllUnzipped: downloadAllUnzipped,
+    clearUnzip:          clearUnzip,
+    removePdfFile:       removePdfFile,
+    clearPdfQueue:       clearPdfQueue,
+    convertToPdf:        convertToPdf,
+    redownloadPdf:       redownloadPdf,
+    docSearch:           docSearch,
+    clearDocSearch:      clearDocSearch,
+    docCopyAll:          docCopyAll,
+    docDownloadTxt:      docDownloadTxt,
+    docToPdf:            docToPdf
+  };
+
+})();
+
+/* ================================================================
+   WM — Watermark / Text Remover (canvas inpainting)
+   ================================================================ */
+var WM = (function () {
+
+  var state = {
+    srcImg: null, srcCanvas: null, srcCtx: null,
+    maskCanvas: null, maskCtx: null,
+    displayCanvas: null, displayCtx: null,
+    painting: false, mode: 'draw',
+    history: [],
+    resultCanvas: null
+  };
+
+  function init() {
+    var inp = document.getElementById('wmFileInput');
+    if (inp) inp.addEventListener('change', function () { if (this.files[0]) loadImage(this.files[0]); this.value=''; });
+    var dz = document.getElementById('wmDropzone');
+    if (dz) {
+      dz.addEventListener('dragover', function (e) { e.preventDefault(); dz.style.borderColor='var(--gold)'; });
+      dz.addEventListener('dragleave', function () { dz.style.borderColor=''; });
+      dz.addEventListener('drop', function (e) { e.preventDefault(); dz.style.borderColor=''; if (e.dataTransfer.files[0]) loadImage(e.dataTransfer.files[0]); });
+    }
+  }
+
+  function loadImage(file) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var img = new Image();
+      img.onload = function () {
+        state.srcImg = img;
+        setupCanvases(img);
+        document.getElementById('wmEditorSection').style.display = 'block';
+        document.getElementById('wmResultSection').style.display = 'none';
+        setDot(1);
+        CC.toast('Image loaded — paint over the watermark', 'success');
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function setupCanvases(img) {
+    var wrap = document.getElementById('wmCanvasWrap');
+    var scale = Math.min(1, wrap.clientWidth / img.width);
+    var dw = Math.round(img.width * scale);
+    var dh = Math.round(img.height * scale);
+
+    // Source canvas (full res)
+    state.srcCanvas = document.createElement('canvas');
+    state.srcCanvas.width  = img.width;
+    state.srcCanvas.height = img.height;
+    state.srcCtx = state.srcCanvas.getContext('2d');
+    state.srcCtx.drawImage(img, 0, 0);
+
+    // Mask canvas (full res)
+    state.maskCanvas = document.createElement('canvas');
+    state.maskCanvas.width  = img.width;
+    state.maskCanvas.height = img.height;
+    state.maskCtx = state.maskCanvas.getContext('2d');
+
+    // Display canvas (scaled)
+    var dc = document.getElementById('wmCanvas');
+    dc.width  = img.width;
+    dc.height = img.height;
+    dc.style.maxHeight = '55vw';
+    state.displayCanvas = dc;
+    state.displayCtx    = dc.getContext('2d');
+    renderDisplay();
+    bindPaint(dc, img.width / dw);
+    state.history = [];
+  }
+
+  function renderDisplay() {
+    if (!state.displayCtx || !state.srcCanvas) return;
+    state.displayCtx.drawImage(state.srcCanvas, 0, 0);
+    // Overlay mask in semi-transparent red
+    var mData = state.maskCtx.getImageData(0, 0, state.maskCanvas.width, state.maskCanvas.height);
+    var d = mData.data;
+    for (var i = 0; i < d.length; i += 4) {
+      if (d[i+3] > 0) {
+        state.displayCtx.fillStyle = 'rgba(220,30,30,0.52)';
+        var px = (i/4) % state.maskCanvas.width;
+        var py = Math.floor((i/4) / state.maskCanvas.width);
+        state.displayCtx.fillRect(px, py, 1, 1);
+      }
+    }
+  }
+
+  function bindPaint(canvas, scaleRatio) {
+    function getPos(e) {
+      var rect = canvas.getBoundingClientRect();
+      var cx = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+      var cy = e.clientY || (e.touches && e.touches[0].clientY) || 0;
+      return {
+        x: (cx - rect.left) * (canvas.width / rect.width),
+        y: (cy - rect.top)  * (canvas.height / rect.height)
+      };
+    }
+    function paint(e) {
+      if (!state.painting) return;
+      e.preventDefault();
+      var p = getPos(e);
+      var r = parseInt(document.getElementById('wmBrushSize').value || '24');
+      if (state.mode === 'draw') {
+        state.maskCtx.globalCompositeOperation = 'source-over';
+        state.maskCtx.fillStyle = 'rgba(255,0,0,1)';
+        state.maskCtx.beginPath();
+        state.maskCtx.arc(p.x, p.y, r, 0, Math.PI*2);
+        state.maskCtx.fill();
+      } else {
+        state.maskCtx.globalCompositeOperation = 'destination-out';
+        state.maskCtx.beginPath();
+        state.maskCtx.arc(p.x, p.y, r, 0, Math.PI*2);
+        state.maskCtx.fill();
+        state.maskCtx.globalCompositeOperation = 'source-over';
+      }
+      renderDisplay();
+    }
+    canvas.addEventListener('mousedown', function (e) { saveHistory(); state.painting = true; paint(e); });
+    canvas.addEventListener('mousemove', paint);
+    canvas.addEventListener('mouseup',   function () { state.painting = false; });
+    canvas.addEventListener('mouseleave',function () { state.painting = false; });
+    canvas.addEventListener('touchstart', function (e) { saveHistory(); state.painting = true; paint(e); }, {passive:false});
+    canvas.addEventListener('touchmove',  paint, {passive:false});
+    canvas.addEventListener('touchend',   function () { state.painting = false; });
+  }
+
+  function saveHistory() {
+    var snap = state.maskCtx.getImageData(0, 0, state.maskCanvas.width, state.maskCanvas.height);
+    state.history.push(snap);
+    if (state.history.length > 20) state.history.shift();
+  }
+
+  function undo() {
+    if (!state.history.length) return;
+    state.maskCtx.putImageData(state.history.pop(), 0, 0);
+    renderDisplay();
+  }
+
+  function setMode(m, btn) {
+    state.mode = m;
+    document.getElementById('wmDrawBtn').classList.toggle('active', m === 'draw');
+    document.getElementById('wmEraseBtn').classList.toggle('active', m === 'erase');
+  }
+
+  function clearMask() {
+    saveHistory();
+    state.maskCtx.clearRect(0, 0, state.maskCanvas.width, state.maskCanvas.height);
+    renderDisplay();
+  }
+
+  /* Core inpainting: for each masked pixel, sample surrounding ring of non-masked pixels */
+  function inpaint(srcData, maskData, w, h, passes) {
+    var result = new Uint8ClampedArray(srcData.data);
+    for (var pass = 0; pass < passes; pass++) {
+      for (var y = 0; y < h; y++) {
+        for (var x = 0; x < w; x++) {
+          var idx = (y * w + x) * 4;
+          if (maskData.data[idx + 3] < 128) continue; // not masked
+          var r = 0, g = 0, b = 0, count = 0;
+          var radius = 6 + pass * 2;
+          for (var dy = -radius; dy <= radius; dy++) {
+            for (var dx = -radius; dx <= radius; dx++) {
+              var nx = x + dx, ny = y + dy;
+              if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
+              if (dx*dx + dy*dy > radius*radius) continue;
+              var ni = (ny * w + nx) * 4;
+              if (maskData.data[ni + 3] > 128) continue; // neighbour also masked — skip
+              var weight = 1 / (Math.sqrt(dx*dx + dy*dy) + 1);
+              r += result[ni]   * weight;
+              g += result[ni+1] * weight;
+              b += result[ni+2] * weight;
+              count += weight;
+            }
+          }
+          if (count > 0) {
+            result[idx]   = r / count;
+            result[idx+1] = g / count;
+            result[idx+2] = b / count;
+            result[idx+3] = 255;
+          }
+        }
+      }
+    }
+    return result;
+  }
+
+  function removeMasked() {
+    var maskData = state.maskCtx.getImageData(0, 0, state.maskCanvas.width, state.maskCanvas.height);
+    var hasAny = false;
+    for (var i = 3; i < maskData.data.length; i += 4) { if (maskData.data[i] > 0) { hasAny = true; break; } }
+    if (!hasAny) { CC.toast('Paint over the watermark first!', 'error'); return; }
+
+    CC.toast('⏳ Removing… please wait', 'info');
+    var srcData = state.srcCtx.getImageData(0, 0, state.srcCanvas.width, state.srcCanvas.height);
+    var quality = parseInt(document.getElementById('wmFillQuality').value || '3');
+    var passes  = quality;
+
+    setTimeout(function () {
+      var filled = inpaint(srcData, maskData, state.srcCanvas.width, state.srcCanvas.height, passes);
+
+      // Build result canvas
+      var rc = document.getElementById('wmResultCanvas');
+      rc.width  = state.srcCanvas.width;
+      rc.height = state.srcCanvas.height;
+      var rCtx  = rc.getContext('2d');
+      var outData = rCtx.createImageData(state.srcCanvas.width, state.srcCanvas.height);
+      outData.data.set(filled);
+      rCtx.putImageData(outData, 0, 0);
+      state.resultCanvas = rc;
+
+      // Before/After
+      var bImg = document.getElementById('wmBeforeImg');
+      bImg.src = state.srcCanvas.toDataURL();
+      bindBASlider('wmBAWrap', 'wmDivider', 'wmAfterWrap');
+
+      document.getElementById('wmResultSection').style.display = 'block';
+      setDot(3);
+      CC.toast('✓ Watermark removed!', 'success');
+    }, 50);
+  }
+
+  function bindBASlider(wrapId, dividerId, afterId) {
+    var wrap  = document.getElementById(wrapId);
+    var div   = document.getElementById(dividerId);
+    var after = document.getElementById(afterId);
+    if (!wrap || !div || !after) return;
+
+    function setPos(pct) {
+      pct = Math.max(2, Math.min(98, pct));
+      div.style.left = pct + '%';
+      after.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+    }
+    function onMove(e) {
+      var rect = wrap.getBoundingClientRect();
+      var cx   = (e.clientX || (e.touches && e.touches[0].clientX) || 0);
+      setPos(((cx - rect.left) / rect.width) * 100);
+    }
+    var dragging = false;
+    div.addEventListener('mousedown', function () { dragging = true; });
+    wrap.addEventListener('mousedown', function (e) { dragging = true; onMove(e); });
+    document.addEventListener('mousemove', function (e) { if (dragging) onMove(e); });
+    document.addEventListener('mouseup', function () { dragging = false; });
+    div.addEventListener('touchstart', function () { dragging = true; }, {passive:true});
+    wrap.addEventListener('touchmove', function (e) { if (dragging) { e.preventDefault(); onMove(e); } }, {passive:false});
+    wrap.addEventListener('touchend', function () { dragging = false; });
+    setPos(50);
+  }
+
+  function downloadResult() {
+    if (!state.resultCanvas) return;
+    var a = document.createElement('a');
+    a.href     = state.resultCanvas.toDataURL('image/png');
+    a.download = 'cozycabin-wm-removed.png';
+    a.click();
+    CC.toast('✓ Downloaded', 'success');
+  }
+
+  function useResultAsSource() {
+    if (!state.resultCanvas) return;
+    var img = new Image();
+    img.onload = function () { state.srcImg = img; setupCanvases(img); setDot(2); };
+    img.src = state.resultCanvas.toDataURL();
+  }
+
+  function setDot(n) {
+    for (var i = 1; i <= 3; i++) {
+      var d = document.getElementById('wm-dot-' + i);
+      if (!d) continue;
+      d.classList.remove('active','done');
+      if (i < n) d.classList.add('done');
+      else if (i === n) d.classList.add('active');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+  return { setMode: setMode, clearMask: clearMask, undo: undo, removeMasked: removeMasked, downloadResult: downloadResult, useResultAsSource: useResultAsSource };
+})();
+
+
+/* ================================================================
+   BG — Background Remover + Changer
+   ================================================================ */
+var BG = (function () {
+
+  var state = {
+    srcImg: null, srcCanvas: null, srcCtx: null,
+    maskCanvas: null, maskCtx: null,
+    displayCanvas: null, displayCtx: null,
+    resultCanvas: null,
+    tool: 'wand',
+    painting: false,
+    history: [],
+    bgType: 'solid', bgColor: 'transparent', bgGrad: null, bgImage: null,
+    hasMask: false
+  };
+
+  var GRAD_MAP = {
+    gold:  ['#120a00', '#ffd700'],
+    navy:  ['#060d1f', '#1a3a6e'],
+    dark:  ['#0a0a0a', '#2d2d2d'],
+    white: ['#ffffff', '#e2e8f0'],
+    red:   ['#1a0800', '#c0392b'],
+    green: ['#001a0a', '#27ae60']
+  };
+
+  function init() {
+    var inp = document.getElementById('bgFileInput');
+    if (inp) inp.addEventListener('change', function () { if (this.files[0]) loadImage(this.files[0]); this.value=''; });
+    var dz = document.getElementById('bgDropzone');
+    if (dz) {
+      dz.addEventListener('dragover', function (e) { e.preventDefault(); dz.style.borderColor='var(--gold)'; });
+      dz.addEventListener('dragleave', function () { dz.style.borderColor=''; });
+      dz.addEventListener('drop', function (e) { e.preventDefault(); dz.style.borderColor=''; if (e.dataTransfer.files[0]) loadImage(e.dataTransfer.files[0]); });
+    }
+    var bgImgInp = document.getElementById('bgImageFile');
+    if (bgImgInp) bgImgInp.addEventListener('change', function () { if (this.files[0]) loadBgImage(this.files[0]); });
+  }
+
+  function loadImage(file) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var img = new Image();
+      img.onload = function () {
+        state.srcImg = img;
+        setupCanvases(img);
+        document.getElementById('bgEditorSection').style.display = 'block';
+        document.getElementById('bgReplaceSection').style.display = 'none';
+        state.hasMask = false;
+        setDot(1);
+        CC.toast('Image loaded — select the background to remove', 'success');
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function setupCanvases(img) {
+    state.srcCanvas = document.createElement('canvas');
+    state.srcCanvas.width  = img.width;
+    state.srcCanvas.height = img.height;
+    state.srcCtx = state.srcCanvas.getContext('2d');
+    state.srcCtx.drawImage(img, 0, 0);
+
+    state.maskCanvas = document.createElement('canvas');
+    state.maskCanvas.width  = img.width;
+    state.maskCanvas.height = img.height;
+    state.maskCtx = state.maskCanvas.getContext('2d');
+
+    var dc = document.getElementById('bgCanvas');
+    dc.width  = img.width;
+    dc.height = img.height;
+    dc.style.maxHeight = '55vw';
+    state.displayCanvas = dc;
+    state.displayCtx    = dc.getContext('2d');
+    renderDisplay();
+    bindInteraction(dc);
+    state.history = [];
+  }
+
+  function renderDisplay() {
+    if (!state.displayCtx || !state.srcCanvas) return;
+    state.displayCtx.drawImage(state.srcCanvas, 0, 0);
+    // Overlay mask green = selected BG
+    var mData = state.maskCtx.getImageData(0, 0, state.maskCanvas.width, state.maskCanvas.height);
+    var d = mData.data;
+    for (var i = 0; i < d.length; i += 4) {
+      if (d[i+3] > 0) {
+        var px = (i/4) % state.maskCanvas.width;
+        var py = Math.floor((i/4) / state.maskCanvas.width);
+        state.displayCtx.fillStyle = 'rgba(50,220,100,0.45)';
+        state.displayCtx.fillRect(px, py, 1, 1);
+      }
+    }
+  }
+
+  function bindInteraction(canvas) {
+    function getPos(e) {
+      var rect = canvas.getBoundingClientRect();
+      var cx = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+      var cy = e.clientY || (e.touches && e.touches[0].clientY) || 0;
+      return {
+        x: Math.round((cx - rect.left) * (canvas.width / rect.width)),
+        y: Math.round((cy - rect.top)  * (canvas.height / rect.height))
+      };
+    }
+    function onDown(e) {
+      e.preventDefault();
+      var p = getPos(e);
+      if (state.tool === 'wand') {
+        saveHistory();
+        floodFill(p.x, p.y);
+      } else {
+        saveHistory();
+        state.painting = true;
+        paintBg(p);
+      }
+    }
+    function onMove(e) {
+      if (state.painting && state.tool === 'paint') { e.preventDefault(); paintBg(getPos(e)); }
+    }
+    function onUp() { state.painting = false; }
+
+    canvas.addEventListener('mousedown', onDown);
+    canvas.addEventListener('mousemove', onMove);
+    canvas.addEventListener('mouseup', onUp);
+    canvas.addEventListener('touchstart', onDown, {passive:false});
+    canvas.addEventListener('touchmove',  onMove, {passive:false});
+    canvas.addEventListener('touchend',   onUp);
+  }
+
+  function paintBg(p) {
+    var r = parseInt(document.getElementById('bgBrushSize').value || '20');
+    state.maskCtx.globalCompositeOperation = 'source-over';
+    state.maskCtx.fillStyle = 'rgba(255,0,0,1)';
+    state.maskCtx.beginPath();
+    state.maskCtx.arc(p.x, p.y, r, 0, Math.PI*2);
+    state.maskCtx.fill();
+    renderDisplay();
+    state.hasMask = true;
+  }
+
+  /* Flood fill from seed pixel with tolerance */
+  function floodFill(sx, sy) {
+    var tol  = parseInt(document.getElementById('bgTolerance').value || '30');
+    var w    = state.srcCanvas.width;
+    var h    = state.srcCanvas.height;
+    var src  = state.srcCtx.getImageData(0, 0, w, h);
+    var sd   = src.data;
+    var mask = new Uint8Array(w * h);
+
+    var si   = (sy * w + sx) * 4;
+    var tr   = sd[si], tg = sd[si+1], tb = sd[si+2];
+
+    var queue = [sy * w + sx];
+    mask[sy * w + sx] = 1;
+
+    while (queue.length) {
+      var pos  = queue.pop();
+      var px   = pos % w;
+      var py   = Math.floor(pos / w);
+      var idx  = pos * 4;
+      var dr   = sd[idx] - tr, dg = sd[idx+1] - tg, db = sd[idx+2] - tb;
+      var dist = Math.sqrt(dr*dr + dg*dg + db*db);
+      if (dist > tol * 2.2) continue;
+
+      var neighbours = [pos-1, pos+1, pos-w, pos+w];
+      for (var i = 0; i < neighbours.length; i++) {
+        var n = neighbours[i];
+        if (n < 0 || n >= w*h) continue;
+        var nx2 = n % w, ny2 = Math.floor(n / w);
+        if (Math.abs(nx2 - px) > 1) continue; // wrap guard
+        if (mask[n]) continue;
+        var ni = n * 4;
+        var nr = sd[ni]-tr, ng = sd[ni+1]-tg, nb2 = sd[ni+2]-tb;
+        if (Math.sqrt(nr*nr+ng*ng+nb2*nb2) <= tol * 2.2) {
+          mask[n] = 1;
+          queue.push(n);
+        }
+      }
+    }
+
+    // Write mask
+    var smooth = parseInt(document.getElementById('bgEdgeSmooth').value || '2');
+    // Simple box-blur expand then write
+    for (var y = 0; y < h; y++) {
+      for (var x = 0; x < w; x++) {
+        if (mask[y * w + x]) {
+          state.maskCtx.fillStyle = 'rgba(255,0,0,1)';
+          state.maskCtx.fillRect(x, y, 1, 1);
+        }
+      }
+    }
+    renderDisplay();
+    state.hasMask = true;
+    CC.toast('✓ Background selected — tap Remove Background', 'info');
+  }
+
+  function saveHistory() {
+    var snap = state.maskCtx.getImageData(0, 0, state.maskCanvas.width, state.maskCanvas.height);
+    state.history.push(snap);
+    if (state.history.length > 15) state.history.shift();
+  }
+
+  function undo() {
+    if (!state.history.length) return;
+    state.maskCtx.putImageData(state.history.pop(), 0, 0);
+    renderDisplay();
+  }
+
+  function clearMask() {
+    state.maskCtx.clearRect(0, 0, state.maskCanvas.width, state.maskCanvas.height);
+    state.hasMask = false;
+    renderDisplay();
+    document.getElementById('bgReplaceSection').style.display = 'none';
+  }
+
+  function setTool(tool, btn) {
+    state.tool = tool;
+    document.getElementById('bgWandBtn').classList.toggle('active', tool === 'wand');
+    document.getElementById('bgPaintBtn').classList.toggle('active', tool === 'paint');
+    document.getElementById('bgTolRow').style.display   = tool === 'wand'  ? 'flex' : 'none';
+    document.getElementById('bgBrushBar').style.display = tool === 'paint' ? 'flex' : 'none';
+  }
+
+  function applyRemoval() {
+    if (!state.hasMask) { CC.toast('Select the background first', 'error'); return; }
+    CC.toast('⏳ Removing background…', 'info');
+    var smooth = parseInt(document.getElementById('bgEdgeSmooth').value || '2');
+    var w = state.srcCanvas.width, h = state.srcCanvas.height;
+    var srcData  = state.srcCtx.getImageData(0, 0, w, h);
+    var maskData = state.maskCtx.getImageData(0, 0, w, h);
+
+    // Build alpha mask: masked pixels → transparent
+    var out = document.createElement('canvas');
+    out.width = w; out.height = h;
+    var outCtx = out.getContext('2d');
+    var outData = outCtx.createImageData(w, h);
+    var sd = srcData.data, md = maskData.data, od = outData.data;
+
+    for (var i = 0; i < sd.length; i += 4) {
+      od[i]   = sd[i];
+      od[i+1] = sd[i+1];
+      od[i+2] = sd[i+2];
+      // If pixel is in mask → transparent
+      od[i+3] = md[i+3] > 64 ? 0 : sd[i+3];
+    }
+
+    // Simple edge feather if smooth > 0
+    if (smooth > 0) {
+      for (var pass = 0; pass < smooth; pass++) {
+        for (var y = 1; y < h-1; y++) {
+          for (var x = 1; x < w-1; x++) {
+            var ci = (y*w+x)*4;
+            if (od[ci+3] > 0 && od[ci+3] < 255) continue;
+            if (od[ci+3] === 255) {
+              // Check if any neighbour is transparent
+              var hasTransp = od[((y-1)*w+x)*4+3]===0 || od[((y+1)*w+x)*4+3]===0 ||
+                              od[(y*w+x-1)*4+3]===0   || od[(y*w+x+1)*4+3]===0;
+              if (hasTransp) od[ci+3] = 128;
+            }
+          }
+        }
+      }
+    }
+
+    outCtx.putImageData(outData, 0, 0);
+    state.resultCanvas = out;
+
+    // Show BG picker & preview
+    document.getElementById('bgReplaceSection').style.display = 'block';
+    setDot(2);
+    applyBgToPreview();
+    CC.toast('✓ Background removed — choose a new background', 'success');
+  }
+
+  function applyBgToPreview() {
+    if (!state.resultCanvas) return;
+    var w = state.resultCanvas.width, h = state.resultCanvas.height;
+    var rc = document.getElementById('bgResultCanvas');
+    rc.width = w; rc.height = h;
+    var rCtx = rc.getContext('2d');
+
+    // Draw chosen background first
+    if (state.bgType === 'transparent') {
+      // Checkered
+      for (var y = 0; y < h; y += 12) {
+        for (var x = 0; x < w; x += 12) {
+          rCtx.fillStyle = ((Math.floor(x/12) + Math.floor(y/12)) % 2 === 0) ? '#cccccc' : '#ffffff';
+          rCtx.fillRect(x, y, 12, 12);
+        }
+      }
+    } else if (state.bgType === 'solid') {
+      rCtx.fillStyle = state.bgColor;
+      rCtx.fillRect(0, 0, w, h);
+    } else if (state.bgType === 'gradient' && state.bgGrad) {
+      var g = rCtx.createLinearGradient(0, 0, w, h);
+      g.addColorStop(0, state.bgGrad[0]);
+      g.addColorStop(1, state.bgGrad[1]);
+      rCtx.fillStyle = g;
+      rCtx.fillRect(0, 0, w, h);
+    } else if (state.bgType === 'image' && state.bgImage) {
+      rCtx.drawImage(state.bgImage, 0, 0, w, h);
+    }
+
+    // Draw subject on top
+    rCtx.drawImage(state.resultCanvas, 0, 0);
+
+    // Update before/after
+    var bImg = document.getElementById('bgBeforeImg');
+    bImg.src = state.srcCanvas.toDataURL();
+    bindBASlider('bgBAWrap', 'bgDivider', 'bgAfterWrap');
+    setDot(3);
+  }
+
+  function bindBASlider(wrapId, dividerId, afterId) {
+    var wrap  = document.getElementById(wrapId);
+    var div   = document.getElementById(dividerId);
+    var after = document.getElementById(afterId);
+    if (!wrap || !div || !after) return;
+    // Remove old listeners by cloning
+    var newDiv = div.cloneNode(true);
+    div.parentNode.replaceChild(newDiv, div);
+    var newWrap = wrap;
+
+    function setPos(pct) {
+      pct = Math.max(2, Math.min(98, pct));
+      newDiv.style.left = pct + '%';
+      after.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+    }
+    var dragging = false;
+    newDiv.addEventListener('mousedown', function () { dragging = true; });
+    newWrap.addEventListener('mousedown', function (e) { dragging = true; var r=newWrap.getBoundingClientRect(); setPos(((e.clientX-r.left)/r.width)*100); });
+    document.addEventListener('mousemove', function (e) { if (!dragging) return; var r=newWrap.getBoundingClientRect(); setPos(((e.clientX-r.left)/r.width)*100); });
+    document.addEventListener('mouseup', function () { dragging = false; });
+    newDiv.addEventListener('touchstart', function () { dragging = true; }, {passive:true});
+    newWrap.addEventListener('touchmove', function (e) { if (!dragging) return; e.preventDefault(); var r=newWrap.getBoundingClientRect(); var cx=e.touches[0].clientX; setPos(((cx-r.left)/r.width)*100); }, {passive:false});
+    newWrap.addEventListener('touchend', function () { dragging = false; });
+    setPos(50);
+  }
+
+  function selectBg(color, btn) {
+    state.bgType  = color === 'transparent' ? 'transparent' : 'solid';
+    state.bgColor = color;
+    state.bgGrad  = null;
+    if (btn) {
+      document.querySelectorAll('.bg-swatch').forEach(function (s) { s.classList.remove('active'); });
+      document.querySelectorAll('.bg-grad-btn').forEach(function (s) { s.classList.remove('active'); });
+      btn.classList.add('active');
+    }
+    applyBgToPreview();
+  }
+
+  function selectGrad(name, btn) {
+    state.bgType = 'gradient';
+    state.bgGrad = GRAD_MAP[name] || GRAD_MAP.gold;
+    document.querySelectorAll('.bg-swatch').forEach(function (s) { s.classList.remove('active'); });
+    document.querySelectorAll('.bg-grad-btn').forEach(function (s) { s.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    applyBgToPreview();
+  }
+
+  function setCustomHex(val) {
+    document.getElementById('bgCustomColor').value = val;
+    selectBg(val, null);
+  }
+
+  function toggleBgImage(on) {
+    document.getElementById('bgImageUploadArea').style.display = on ? 'block' : 'none';
+  }
+
+  function loadBgImage(file) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var img = new Image();
+      img.onload = function () {
+        state.bgImage = img;
+        state.bgType  = 'image';
+        applyBgToPreview();
+        CC.toast('Background image loaded', 'success');
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function downloadResult() {
+    if (!state.resultCanvas) return;
+    var rc = document.getElementById('bgResultCanvas');
+    if (!rc) return;
+    var a = document.createElement('a');
+    a.href     = rc.toDataURL('image/png');
+    a.download = 'cozycabin-bg-changed.png';
+    a.click();
+    CC.toast('✓ Downloaded as PNG', 'success');
+  }
+
+  function downloadJpeg() {
+    var rc = document.getElementById('bgResultCanvas');
+    if (!rc) return;
+    // For JPEG we need to flatten transparency first
+    var flat = document.createElement('canvas');
+    flat.width = rc.width; flat.height = rc.height;
+    var fCtx = flat.getContext('2d');
+    fCtx.fillStyle = '#ffffff';
+    fCtx.fillRect(0, 0, flat.width, flat.height);
+    fCtx.drawImage(rc, 0, 0);
+    var a = document.createElement('a');
+    a.href     = flat.toDataURL('image/jpeg', 0.92);
+    a.download = 'cozycabin-bg-changed.jpg';
+    a.click();
+    CC.toast('✓ Downloaded as JPG', 'success');
+  }
+
+  function setDot(n) {
+    for (var i = 1; i <= 3; i++) {
+      var d = document.getElementById('bg-dot-' + i);
+      if (!d) continue;
+      d.classList.remove('active','done');
+      if (i < n) d.classList.add('done');
+      else if (i === n) d.classList.add('active');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+  return { setTool: setTool, clearMask: clearMask, undo: undo, applyRemoval: applyRemoval,
+           selectBg: selectBg, selectGrad: selectGrad, setCustomHex: setCustomHex,
+           toggleBgImage: toggleBgImage, downloadResult: downloadResult, downloadJpeg: downloadJpeg };
+})();
+</script>
+
+</div><!-- /appShield -->
+</body>
+</html>
+
+
+
+  
