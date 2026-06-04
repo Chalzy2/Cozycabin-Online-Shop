@@ -162,6 +162,7 @@ var products = {
       sizes: ["40", "41", "42", "43", "44", "45"],
       colors: ["Black", "Brown", "Tan", "Wine"],
       description: "Premium men's formal shoes crafted for office wear, weddings, church, business meetings, and special occasions. Features elegant polished finishes, cushioned comfort, durable outsole, and stylish modern designs including loafers and lace-up options.",
+      video: "Images/video-ladies-comfort-sandals.mp4",
       images: ["Images/officialleatherbrwn.webp","Images/officialblcks.webp","Images/classicbrwn.webp","Images/classicblack.webp","Images/classicblck.webp"],
       badge: "Executive Collection"
     },
@@ -173,10 +174,24 @@ var products = {
       sizes: ["36-37", "38-39", "40-41", "42-43"],
       colors: ["Lime Green", "Brown", "Yellow", "Navy Blue", "Pink", "Grey", "Mauve", "Rose Pink"],
       description: "Soft plush indoor slippers designed for warmth and comfort. Features a cushioned footbed, cozy fleece lining, and lightweight non-slip sole for everyday home use.",
+      video: "Images/video-ladies-comfort-sandals.mp4",
       images: ["Images/warmhseslippinky.webp","Images/warmhsenavy.webp","Images/warmhsegrey.webp","Images/Watmhseslipy.webp","Images/Warmhseslipink.webp"],
       badge: "Best Seller"
-     }
-   ],
+    },
+    {
+     title: "Ladies Lightweight Slip-On Sneakers",
+     company: "Fashion",
+     price: 1499,
+     oldPrice: 2000,
+     sizes: ["36","37","38","39","40","41"],
+     colors: ["Black","Grey","Beige","Pink","Wine Red"],
+     description: "Breathable lightweight slip-on sneakers with flexible sole, soft knit upper and all-day comfort.",
+     video: "Images/video-ladies-comfort-sandals.mp4",    
+     image: "Images/slipon-sneakers.webp",
+     badge: "In Stock",
+     category: "shoes"
+   },
+ ],
   travel: [
       {
        title: "3 in 1 Luxurious Fibre Suitcase Set",
@@ -186,6 +201,7 @@ var products = {
        sizes: ["63cm", "57cm", "48cm"],
        colors: ["Blue", "Pink", "Grey", "Brown", "Green"],
        description: "Premium 3-piece fibre suitcase set featuring 360° spinner wheels, telescopic handle, zipper closure frame and spacious storage compartments.",
+       video: "Images/video-ladies-comfort-sandals.mp4",
        images: ["Images/Siutbl.webp","Images/suitcaseblack1webp.webp","Images/suitcasegrey.webp","Images/1pich.webp","Images/Suite3in1pink.webp"],
        badge: "Price Drop",
        category: "travel"
@@ -198,6 +214,7 @@ var products = {
       sizes: ["14\"","20\"","24\"","28\""],
       colors: ["Pink", "Sage Green", "Beige", "Black", "Navy Blue", "Blush Pink", "Sky Blue"],
       description: "Luxury 4-piece fibre suitcase set with beauty case, telescopic handle, double-zip closure, spacious interior and smooth 360° spinner wheels.",
+      video: "Images/video-ladies-comfort-sandals.mp4",
       images: ["Images/1-9.webp","Images/1-7.webp","Images/1-4.webp","Images/1-5.webp","Images/1-6.webp","Images/1-7webp.webp","Images/1-2.webp"],
       badge: "New Arrival",
       category: "travel"
