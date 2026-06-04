@@ -177,6 +177,20 @@ var products = {
       badge: "Best Seller"
      }
    ],
+  travel: [
+      {
+       title: "3 in 1 Luxurious Fibre Suitcase Set",
+       company: "Travel",
+       price: 8500,
+       oldPrice: 10000,
+       sizes: ["63cm", "57cm", "48cm"],
+       colors: ["Blue", "Pink", "Grey", "Brown", "Green"],
+       description: "Premium 3-piece fibre suitcase set featuring 360° spinner wheels, telescopic handle, zipper closure frame and spacious storage compartments.",
+       image: "Images/Siutbl.webp","Images/suitcaseblack1webp.webp","Images/suitcasegrey.webp","Images/1pich.webp","Images/Suite3in1pink.webp"],
+       badge: "Price Drop",
+       category: "travel"
+     }
+    ],
   cutlery: [
     {
       title: "Silicone Spoons", company: "Kitchen",
