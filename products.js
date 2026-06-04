@@ -189,7 +189,19 @@ var products = {
        image: "Images/Siutbl.webp","Images/suitcaseblack1webp.webp","Images/suitcasegrey.webp","Images/1pich.webp","Images/Suite3in1pink.webp"],
        badge: "Price Drop",
        category: "travel"
-     }
+     },
+     {
+        title: "4 in 1 Premium Fibre Suitcase Set",
+        company: "Travel",
+        price: 11000,
+        oldPrice: 13000,
+        sizes: ["14\"","20\"","24\"","28\""],
+        colors: ["Pink", "Sage Green", "Beige", "Black", "Navy Blue", "Blush Pink", "Sky Blue"],
+        description: "Luxury 4-piece fibre suitcase set with beauty case, telescopic handle, double-zip closure, spacious interior and smooth 360° spinner wheels.",
+        image: "Images/suitcase-4in1.webp",
+        badge: "New Arrival",
+        category: "travel"
+      }
     ],
   cutlery: [
     {
@@ -205,7 +217,7 @@ var products = {
       price: 2500, oldPrice: 3500, sizes: [],
       colors: ["Gold","Silver"],
       description: "Elegant 24-pieces stainless steel cutlery set with stand.",
-      video: "Images/video-gold-cutlery.mp4",
+      video: ["Images/video-gold-cutlery.mp4"]
       images: ["Images/24goldcutlery-set.webp","Images/24goldcutlery-set.webp"]
     }
   ],
