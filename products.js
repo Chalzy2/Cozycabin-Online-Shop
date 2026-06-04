@@ -187,7 +187,7 @@ var products = {
      colors: ["Black","Grey","Beige","Pink","Wine Red"],
      description: "Breathable lightweight slip-on sneakers with flexible sole, soft knit upper and all-day comfort.",
      video: "Images/video-ladies-comfort-sandals.mp4",    
-     image: "Images/slipon-sneakers.webp",
+     image: ["Images/cc.Lsandals-3.webp","Images/cc.Lsandals-2.webp","Images/cc.Lsandals-1.webp","Images/cc.Lsandals-4.webp","Images/cc.Lsandals-5.webp"],
      badge: "In Stock",
      category: "shoes"
    },
