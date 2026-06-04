@@ -217,7 +217,7 @@ var products = {
       price: 2500, oldPrice: 3500, sizes: [],
       colors: ["Gold","Silver"],
       description: "Elegant 24-pieces stainless steel cutlery set with stand.",
-      video: ["Images/video-gold-cutlery.mp4"]
+      video: "Images/video-gold-cutlery.mp4",
       images: ["Images/24goldcutlery-set.webp","Images/24goldcutlery-set.webp"]
     }
   ],
