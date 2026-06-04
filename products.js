@@ -186,7 +186,7 @@ var products = {
        sizes: ["63cm", "57cm", "48cm"],
        colors: ["Blue", "Pink", "Grey", "Brown", "Green"],
        description: "Premium 3-piece fibre suitcase set featuring 360° spinner wheels, telescopic handle, zipper closure frame and spacious storage compartments.",
-       image: "Images/Siutbl.webp","Images/suitcaseblack1webp.webp","Images/suitcasegrey.webp","Images/1pich.webp","Images/Suite3in1pink.webp"],
+       images: ["Images/Siutbl.webp","Images/suitcaseblack1webp.webp","Images/suitcasegrey.webp","Images/1pich.webp","Images/Suite3in1pink.webp"],
        badge: "Price Drop",
        category: "travel"
      },
