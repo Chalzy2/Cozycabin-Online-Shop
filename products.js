@@ -1152,7 +1152,547 @@ function cozyyCopy(text, btnId) {
     });
   });
 })();
+// ============================================================
+//  COZYCABIN UPGRADE — products-upgrade.js
+//  PASTE THIS FILE AT THE VERY BOTTOM OF products.js
+//  ──────────────────────────────────────────────────────────
+//  Adds:
+//    • Feature 1 — Variant Product Card  (productType:"variant")
+//    • Feature 2 — Similar Products strip
+//
+//  Does NOT touch any existing functions, variables, products,
+//  gallery, swipe, video, cart, modals, or WhatsApp flow.
+// ============================================================
 
+// ============================================================
+//  FEATURE 1 — VARIANT PRODUCT CARD
+//  ──────────────────────────────────────────────────────────
+//  A Variant product looks like:
+//  {
+//    title: "Premium Hotpot Collection",
+//    productType: "variant",
+//    variants: [
+//      { name:"Gold Design",   price:3300, oldPrice:4000, image:"Images/hotpot-gold.webp" },
+//      { name:"Floral Design", price:2999, oldPrice:3500, image:"Images/hotpot-floral.webp" },
+//      { name:"Luxury Design", price:3800, oldPrice:4500, image:"Images/hotpot-luxury.webp" }
+//    ]
+//  }
+//
+//  All other product fields (description, video, badge, etc.)
+//  are still supported alongside variants.
+// ============================================================
+
+/* ── CSS for variant card (injected once) ── */
+(function injectVariantCSS() {
+  if (document.getElementById('cc-variant-style')) return;
+  var s = document.createElement('style');
+  s.id = 'cc-variant-style';
+  s.textContent = [
+    /* variant selector row */
+    '.cc-variant-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 6px;}',
+    '.cc-variant-btn{',
+    '  display:flex;flex-direction:column;align-items:center;gap:4px;',
+    '  border:2px solid rgba(255,215,0,0.25);border-radius:10px;',
+    '  background:rgba(10,17,40,0.7);padding:6px 10px;cursor:pointer;',
+    '  transition:border-color .18s,background .18s;min-width:72px;',
+    '}',
+    '.cc-variant-btn:hover{border-color:rgba(255,215,0,0.6);background:rgba(255,215,0,0.07);}',
+    '.cc-variant-btn.cc-var-active{border-color:#ffd700;background:rgba(255,215,0,0.13);}',
+    '.cc-variant-thumb{width:52px;height:52px;border-radius:7px;object-fit:cover;display:block;pointer-events:none;}',
+    '.cc-variant-label{font-size:10px;font-weight:700;color:#cbd5e1;text-align:center;line-height:1.2;max-width:68px;',
+    '  white-space:normal;word-break:break-word;}',
+    '.cc-variant-btn.cc-var-active .cc-variant-label{color:#ffd700;}',
+    /* animated price swap */
+    '.cc-var-price-wrap{transition:opacity .18s;opacity:1;}',
+    '.cc-var-price-wrap.cc-fading{opacity:0;}',
+    /* selected design name tag */
+    '.cc-var-selected-name{',
+    '  display:inline-block;font-size:11px;font-weight:700;',
+    '  background:rgba(255,215,0,0.12);color:#ffd700;',
+    '  border:1px solid rgba(255,215,0,0.3);border-radius:20px;',
+    '  padding:3px 12px;margin-bottom:6px;letter-spacing:0.04em;',
+    '}',
+    /* variant main image */
+    '.cc-var-main-img{',
+    '  width:100%;border-radius:14px;object-fit:cover;display:block;',
+    '  aspect-ratio:1/1;transition:opacity .22s;',
+    '}',
+    '.cc-var-main-img.cc-img-fade{opacity:0;}',
+    '.cc-var-img-wrap{position:relative;width:100%;margin-bottom:10px;border-radius:14px;overflow:hidden;background:#0a0f1e;}'
+  ].join('');
+  document.head.appendChild(s);
+})();
+
+/* ── renderVariantCard ── */
+function renderVariantCard(product, index) {
+  if (!product.variants || !product.variants.length) return null;
+
+  var card = document.createElement('div');
+  card.className = 'product-card';
+  card.setAttribute('data-product-index', index);
+
+  var firstVar = product.variants[0];
+
+  /* ── image area ── */
+  var imgWrap = document.createElement('div');
+  imgWrap.className = 'cc-var-img-wrap';
+
+  var mainImg = document.createElement('img');
+  mainImg.className = 'cc-var-main-img';
+  mainImg.src = firstVar.image || '';
+  mainImg.alt = product.title;
+  mainImg.loading = 'lazy';
+  mainImg.id = 'cc-var-img-' + index;
+  imgWrap.appendChild(mainImg);
+
+  card.appendChild(imgWrap);
+
+  /* ── selected design name ── */
+  var nameTag = document.createElement('div');
+  nameTag.className = 'cc-var-selected-name';
+  nameTag.id = 'cc-var-name-' + index;
+  nameTag.textContent = firstVar.name;
+  card.appendChild(nameTag);
+
+  /* ── title ── */
+  var h2 = document.createElement('h2');
+  h2.className = 'product-title';
+  h2.textContent = product.title;
+  card.appendChild(h2);
+
+  /* ── company ── */
+  if (product.company) {
+    var co = document.createElement('p');
+    co.className = 'company-name';
+    co.textContent = product.company;
+    card.appendChild(co);
+  }
+
+  /* ── description ── */
+  if (product.description) {
+    var desc = document.createElement('p');
+    desc.className = 'product-description';
+    desc.textContent = product.description;
+    card.appendChild(desc);
+  }
+
+  /* ── price box ── */
+  var pct = savingsPercent(firstVar.price, firstVar.oldPrice);
+  var priceWrap = document.createElement('div');
+  priceWrap.id = 'cc-var-price-' + index;
+  priceWrap.className = 'price-box cc-var-price-wrap';
+  priceWrap.innerHTML =
+    '<span class="new-price" id="cc-var-newp-' + index + '">KES ' + (firstVar.price || 0).toLocaleString() + '</span>' +
+    '<span class="old-price" id="cc-var-oldp-' + index + '">KES ' + (firstVar.oldPrice || 0).toLocaleString() + '</span>' +
+    (pct > 0 ? '<span class="savings-badge" id="cc-var-badge-' + index + '">SAVE ' + pct + '%</span>' : '<span class="savings-badge" id="cc-var-badge-' + index + '" style="display:none;"></span>');
+  card.appendChild(priceWrap);
+
+  /* ── variant selector ── */
+  var varLabel = document.createElement('div');
+  varLabel.style.cssText = 'font-size:12px;font-weight:700;color:#94a3b8;margin:8px 0 2px;text-transform:uppercase;letter-spacing:0.06em;';
+  varLabel.textContent = 'Select Design';
+  card.appendChild(varLabel);
+
+  var varRow = document.createElement('div');
+  varRow.className = 'cc-variant-row';
+  varRow.id = 'cc-varrow-' + index;
+
+  product.variants.forEach(function(v, vi) {
+    var btn = document.createElement('button');
+    btn.className = 'cc-variant-btn' + (vi === 0 ? ' cc-var-active' : '');
+    btn.setAttribute('data-vi', vi);
+    btn.setAttribute('data-pidx', index);
+
+    var thumb = document.createElement('img');
+    thumb.className = 'cc-variant-thumb';
+    thumb.src = v.image || '';
+    thumb.alt = v.name;
+    thumb.loading = 'lazy';
+
+    var lbl = document.createElement('span');
+    lbl.className = 'cc-variant-label';
+    lbl.textContent = v.name;
+
+    btn.appendChild(thumb);
+    btn.appendChild(lbl);
+    varRow.appendChild(btn);
+
+    btn.addEventListener('click', function() {
+      ccSelectVariant(index, vi, product.variants);
+    });
+  });
+
+  card.appendChild(varRow);
+
+  /* ── hint ── */
+  var hint = document.createElement('p');
+  hint.className = 'selection-hint';
+  hint.id = 'selection-hint-' + index;
+  card.appendChild(hint);
+
+  /* ── buy button ── */
+  var buyBtn = document.createElement('button');
+  buyBtn.className = 'buy-btn';
+  buyBtn.setAttribute('data-index', index);
+  buyBtn.setAttribute('data-title', product.title);
+  buyBtn.setAttribute('data-price', firstVar.price);
+  buyBtn.setAttribute('data-variant-mode', '1');
+  buyBtn.id = 'cc-var-buybtn-' + index;
+  buyBtn.textContent = '🛒 Order via WhatsApp';
+
+  buyBtn.addEventListener('click', function() {
+    var v = product.variants[window._ccSelectedVariant && window._ccSelectedVariant[index] !== undefined ? window._ccSelectedVariant[index] : 0];
+    window._pendingOrder = {
+      title: product.title + ' — ' + v.name,
+      size:  'N/A',
+      color: v.name,
+      price: v.price,
+      ref:   localStorage.getItem('referralCode')
+    };
+    window.openPaymentModal();
+  });
+
+  card.appendChild(buyBtn);
+
+  /* ── cart button ── */
+  var cartBtn = document.createElement('button');
+  cartBtn.className = 'cart-btn';
+  cartBtn.textContent = '🛍️ Add to Cart';
+  card.appendChild(cartBtn);
+
+  /* ── details ── */
+  var details = document.createElement('details');
+  details.className = 'details-box';
+  details.innerHTML = '<summary>📋 More Details</summary><p style="margin-top:10px;">Premium quality product. Comfortable, durable and stylish. Nationwide delivery available via G4S, Simba Coach, Tahmeed and more.</p>';
+  card.appendChild(details);
+
+  /* ── similar products placeholder ── */
+  var simContainer = document.createElement('div');
+  simContainer.className = 'cc-similar-wrap';
+  simContainer.id = 'cc-sim-' + index;
+  card.appendChild(simContainer);
+
+  return card;
+}
+
+/* ── Switch variant: update image, name, price ── */
+window.ccSelectVariant = function(pidx, vi, variants) {
+  if (!variants || vi >= variants.length) return;
+  if (!window._ccSelectedVariant) window._ccSelectedVariant = {};
+  window._ccSelectedVariant[pidx] = vi;
+
+  var v = variants[vi];
+
+  /* Image fade */
+  var img = document.getElementById('cc-var-img-' + pidx);
+  if (img) {
+    img.classList.add('cc-img-fade');
+    setTimeout(function() {
+      img.src = v.image || '';
+      img.classList.remove('cc-img-fade');
+    }, 200);
+  }
+
+  /* Name tag */
+  var nameTag = document.getElementById('cc-var-name-' + pidx);
+  if (nameTag) nameTag.textContent = v.name;
+
+  /* Price fade */
+  var pw = document.getElementById('cc-var-price-' + pidx);
+  if (pw) pw.classList.add('cc-fading');
+  setTimeout(function() {
+    var newp  = document.getElementById('cc-var-newp-' + pidx);
+    var oldp  = document.getElementById('cc-var-oldp-' + pidx);
+    var badge = document.getElementById('cc-var-badge-' + pidx);
+    if (newp) newp.textContent = 'KES ' + (v.price || 0).toLocaleString();
+    if (oldp) oldp.textContent = 'KES ' + (v.oldPrice || 0).toLocaleString();
+    var pct = savingsPercent(v.price, v.oldPrice);
+    if (badge) {
+      if (pct > 0) { badge.textContent = 'SAVE ' + pct + '%'; badge.style.display = ''; }
+      else { badge.style.display = 'none'; }
+    }
+    if (pw) pw.classList.remove('cc-fading');
+  }, 180);
+
+  /* Buy button price */
+  var buyBtn = document.getElementById('cc-var-buybtn-' + pidx);
+  if (buyBtn) buyBtn.setAttribute('data-price', v.price);
+
+  /* Active thumb */
+  var row = document.getElementById('cc-varrow-' + pidx);
+  if (row) {
+    row.querySelectorAll('.cc-variant-btn').forEach(function(btn) {
+      btn.classList.toggle('cc-var-active', parseInt(btn.getAttribute('data-vi')) === vi);
+    });
+  }
+};
+
+// ============================================================
+//  FEATURE 2 — SIMILAR PRODUCTS
+//  ──────────────────────────────────────────────────────────
+//  Displayed below each product card (standard or variant).
+//  Shows 4–8 products from same category, falls back to
+//  related categories if not enough products exist.
+// ============================================================
+
+/* ── Related-category map (extend as new categories are added) ── */
+var CC_RELATED = {
+  hotpots:     ['flasks','bottles','cutlery','dispenser'],
+  flasks:      ['hotpots','bottles','dispenser','cutlery'],
+  bottles:     ['flasks','hotpots','dispenser','cutlery'],
+  cutlery:     ['hotpots','flasks','dispenser','racks'],
+  dispenser:   ['bottles','flasks','cutlery','hotpots'],
+  racks:       ['cutlery','dispenser','hotpots','cookers'],
+  cookers:     ['blenders','kettles','microwaves','racks'],
+  blenders:    ['cookers','kettles','microwaves','cutlery'],
+  kettles:     ['cookers','blenders','microwaves','hotpots'],
+  microwaves:  ['cookers','kettles','blenders','fridges'],
+  fridges:     ['microwaves','cookers','kettles','irons'],
+  washing:     ['irons','heaters','fansapp','microwaves'],
+  irons:       ['washing','heaters','fansapp','kettles'],
+  heaters:     ['irons','fans','fansapp','washing'],
+  fansapp:     ['heaters','fans','irons','washing'],
+  fans:        ['fansapp','heaters','solarlights','chargers'],
+  shoes:       ['travel'],
+  travel:      ['shoes'],
+  solarlights: ['panels','inverters','batteries','chargers','floodlights','streetlights'],
+  panels:      ['solarlights','inverters','batteries','chargers'],
+  inverters:   ['panels','batteries','chargers','solarlights'],
+  batteries:   ['inverters','panels','chargers','solarlights'],
+  chargers:    ['powerbanks','flashdisks','batteries','solarlights'],
+  floodlights: ['solarlights','streetlights','panels'],
+  streetlights:['floodlights','solarlights','panels'],
+  speakers:    ['earbuds','radios','tvbox','gaming'],
+  earbuds:     ['speakers','radios','smartwatch','gaming'],
+  radios:      ['speakers','earbuds','tvbox'],
+  tvbox:       ['speakers','radios','gaming'],
+  smartwatch:  ['earbuds','powerbanks','phones','gaming'],
+  gaming:      ['speakers','earbuds','tvbox','smartwatch'],
+  phones:      ['tablets','laptops','chargers','powerbanks'],
+  tablets:     ['phones','laptops','keyboards','storage'],
+  laptops:     ['tablets','phones','keyboards','mouse','storage'],
+  keyboards:   ['laptops','mouse','tablets'],
+  mouse:       ['keyboards','laptops'],
+  printers:    ['laptops','storage','keyboards'],
+  storage:     ['flashdisks','laptops','phones'],
+  flashdisks:  ['storage','powerbanks','chargers'],
+  powerbanks:  ['chargers','flashdisks','phones'],
+  cameras:     ['alarms','trackers','recorders','locks'],
+  alarms:      ['cameras','sensors','locks','doorbells'],
+  locks:       ['alarms','cameras','doorbells','safes'],
+  doorbells:   ['locks','alarms','cameras'],
+  trackers:    ['cameras','sensors','safes'],
+  sensors:     ['alarms','cameras','trackers'],
+  safes:       ['locks','cameras','alarms'],
+  recorders:   ['cameras','alarms','sensors'],
+  wallart:     ['mirrors','flowers','lamps','frames','vases'],
+  mirrors:     ['wallart','lamps','frames','flowers'],
+  flowers:     ['wallart','vases','mirrors','lamps'],
+  lamps:       ['wallart','mirrors','flowers','curtains'],
+  carpets:     ['curtains','wallart','lamps','duvets'],
+  curtains:    ['carpets','lamps','wallart','duvets'],
+  frames:      ['wallart','mirrors','vases'],
+  vases:       ['flowers','wallart','frames'],
+  duvets:      ['bedsheets','blankets','pillows','mattress'],
+  bedsheets:   ['duvets','pillows','covers','blankets'],
+  blankets:    ['duvets','bedsheets','pillows','mattress'],
+  pillows:     ['duvets','bedsheets','blankets','covers'],
+  mattress:    ['duvets','blankets','pillows','bedsheets'],
+  covers:      ['bedsheets','pillows','duvets','nets'],
+  nets:        ['covers','bedsheets','duvets'],
+  towels:      ['bedsheets','duvets','covers']
+};
+
+/* ── CSS for similar products strip (injected once) ── */
+(function injectSimilarCSS() {
+  if (document.getElementById('cc-similar-style')) return;
+  var s = document.createElement('style');
+  s.id = 'cc-similar-style';
+  s.textContent = [
+    '.cc-similar-wrap{margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,215,0,0.12);}',
+    '.cc-similar-heading{',
+    '  font-size:11px;font-weight:800;color:#ffd700;',
+    '  text-transform:uppercase;letter-spacing:0.12em;',
+    '  margin-bottom:12px;',
+    '}',
+    '.cc-similar-row{',
+    '  display:flex;gap:10px;overflow-x:auto;',
+    '  padding-bottom:6px;scrollbar-width:none;',
+    '}',
+    '.cc-similar-row::-webkit-scrollbar{display:none;}',
+    '.cc-similar-item{',
+    '  flex:0 0 110px;cursor:pointer;',
+    '  border-radius:10px;overflow:hidden;',
+    '  background:rgba(10,17,40,0.7);',
+    '  border:1px solid rgba(255,215,0,0.15);',
+    '  transition:border-color .18s,transform .18s;',
+    '}',
+    '.cc-similar-item:hover{border-color:rgba(255,215,0,0.5);transform:translateY(-2px);}',
+    '.cc-similar-item:active{transform:scale(0.97);}',
+    '.cc-sim-img{width:100%;height:90px;object-fit:cover;display:block;}',
+    '.cc-sim-info{padding:6px 7px 8px;}',
+    '.cc-sim-title{',
+    '  font-size:10px;font-weight:700;color:#e2e8f0;',
+    '  line-height:1.3;margin-bottom:3px;',
+    '  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;',
+    '}',
+    '.cc-sim-price{font-size:11px;font-weight:800;color:#ffd700;}'
+  ].join('');
+  document.head.appendChild(s);
+})();
+
+/* ── Collect candidates for similar products ── */
+function ccGetSimilar(currentCategory, currentIndex) {
+  var results = [];
+  var seen    = {};
+
+  /* 1. Same category first */
+  var sameCat = (products[currentCategory] || []);
+  sameCat.forEach(function(p, i) {
+    if (i === currentIndex) return; // exclude self
+    if (!seen[currentCategory + '-' + i]) {
+      seen[currentCategory + '-' + i] = true;
+      results.push({ product: p, category: currentCategory, catIndex: i });
+    }
+  });
+
+  /* 2. Fill from related categories if < 4 */
+  if (results.length < 4) {
+    var related = CC_RELATED[currentCategory] || [];
+    for (var ri = 0; ri < related.length && results.length < 8; ri++) {
+      var relCat = related[ri];
+      var relArr = products[relCat] || [];
+      for (var rj = 0; rj < relArr.length && results.length < 8; rj++) {
+        var key = relCat + '-' + rj;
+        if (!seen[key]) {
+          seen[key] = true;
+          results.push({ product: relArr[rj], category: relCat, catIndex: rj });
+        }
+      }
+    }
+  }
+
+  /* 3. Cap at 8 */
+  return results.slice(0, 8);
+}
+
+/* ── Build and inject the similar products strip ── */
+function ccBuildSimilar(containerId, currentCategory, currentIndex) {
+  var wrap = document.getElementById(containerId);
+  if (!wrap) return;
+
+  var candidates = ccGetSimilar(currentCategory, currentIndex);
+  if (!candidates.length) { wrap.style.display = 'none'; return; }
+
+  var heading = document.createElement('div');
+  heading.className = 'cc-similar-heading';
+  heading.textContent = '🛍 Similar Products';
+  wrap.appendChild(heading);
+
+  var row = document.createElement('div');
+  row.className = 'cc-similar-row';
+
+  candidates.forEach(function(c) {
+    var p   = c.product;
+    var img = (p.images && p.images[0]) || (p.variants && p.variants[0] && p.variants[0].image) || '';
+    var price = p.price || (p.variants && p.variants[0] && p.variants[0].price) || 0;
+
+    var item = document.createElement('div');
+    item.className = 'cc-similar-item';
+    item.innerHTML =
+      '<img class="cc-sim-img" src="' + img + '" loading="lazy" alt="' + (p.title || '') + '">' +
+      '<div class="cc-sim-info">' +
+        '<div class="cc-sim-title">' + (p.title || '') + '</div>' +
+        '<div class="cc-sim-price">KES ' + price.toLocaleString() + '</div>' +
+      '</div>';
+
+    /* Click → open that product's category panel and scroll to the item */
+    item.addEventListener('click', function() {
+      window.showProducts(c.category);
+      /* After rendering, scroll to the specific card */
+      setTimeout(function() {
+        var container = document.getElementById('products-container');
+        if (container) {
+          var cards = container.querySelectorAll('.product-card');
+          if (cards[c.catIndex]) {
+            cards[c.catIndex].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            /* Brief highlight pulse */
+            cards[c.catIndex].style.transition = 'box-shadow .3s';
+            cards[c.catIndex].style.boxShadow  = '0 0 0 2px #ffd700';
+            setTimeout(function() { cards[c.catIndex].style.boxShadow = ''; }, 1200);
+          }
+        }
+      }, 400);
+    });
+
+    row.appendChild(item);
+  });
+
+  wrap.appendChild(row);
+}
+
+// ============================================================
+//  PATCH showProducts — hook in Variant + Similar rendering
+//  ──────────────────────────────────────────────────────────
+//  Wraps the EXISTING showProducts without replacing it.
+//  Strategy:
+//    • Let the original showProducts run first (handles all
+//      standard cards, categories, positioning, scroll)
+//    • Then, for any product with productType:"variant",
+//      SWAP the standard card the original created with a
+//      proper variant card built by renderVariantCard()
+//    • Then inject similar products strip into every card
+// ============================================================
+(function patchShowProducts() {
+  var _originalShowProducts = window.showProducts;
+
+  window.showProducts = function(category) {
+    /* ① Run original — builds all standard cards as before */
+    _originalShowProducts(category);
+
+    var container = document.getElementById('products-container');
+    if (!container) return;
+
+    var categoryProducts = products[category];
+    if (!categoryProducts || !categoryProducts.length) return;
+
+    /* ② Walk each product — swap variant cards, then inject similar */
+    var cards = container.querySelectorAll('.product-card');
+
+    categoryProducts.forEach(function(product, index) {
+
+      /* ── VARIANT SWAP ── */
+      if (product.productType === 'variant' && product.variants && product.variants.length) {
+        var originalCard = cards[index];
+        var variantCard  = renderVariantCard(product, index);
+        if (variantCard && originalCard) {
+          container.replaceChild(variantCard, originalCard);
+        }
+      }
+
+      /* ── SIMILAR PRODUCTS ── */
+      /* Re-query cards after possible replacement */
+      var allCards = container.querySelectorAll('.product-card');
+      var targetCard = allCards[index];
+      if (!targetCard) return;
+
+      /* Add similar container if not already there */
+      if (!targetCard.querySelector('.cc-similar-wrap')) {
+        var simWrap = document.createElement('div');
+        simWrap.className = 'cc-similar-wrap';
+        simWrap.id = 'cc-sim-' + category + '-' + index;
+        targetCard.appendChild(simWrap);
+      }
+
+      /* Build similar products strip */
+      ccBuildSimilar('cc-sim-' + category + '-' + index, category, index);
+    });
+  };
+})();
+
+// ============================================================
+//  END OF UPGRADE — products-upgrade.js
+// ============================================================
 window.copyText = cozyyCopy;
 window.cozyyCopy = cozyyCopy;
 
