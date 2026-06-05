@@ -426,34 +426,95 @@ window.toggleAuthMode = function(){
 };
 
 /* ── EMAIL AUTH ── */
-window.handleEmailAuth = async function(event){
+window.handleEmailAuth = async function(event) {
   event.preventDefault();
-  const email = document.getElementById('auth-email').value.trim();
-  const password = document.getElementById('auth-password').value;
+
+  const email     = document.getElementById('auth-email').value.trim();
+  const password  = document.getElementById('auth-password').value;
   const submitBtn = document.getElementById('auth-submit-btn');
-  if(password.length < 6){ alert("Password must be at least 6 characters."); return; }
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = '<div class="loader"></div>';
-  grecaptcha.enterprise.ready(async () => {
-    try {
-      const actionName = currentAuthMode === "register" ? "signup" : "login";
-      const token = await grecaptcha.enterprise.execute('6Le99f4sAAAAABz6KQK0CIslyyoK1St4r_-FIBVc', {action: actionName});
-      if(currentAuthMode === "register"){
-        const credential = await createUserWithEmailAndPassword(auth, email, password);
-        await checkAndCreateAffiliateProfile(credential.user);
-      } else {
-        const credential = await signInWithEmailAndPassword(auth, email, password);
-        const userDocRef = doc(db, "affiliates", credential.user.uid);
-        await renderDashboard(userDocRef);
-      }
-    } catch(error){
-      // Replace with silent fallback — just proceed without reCAPTCHA:
-console.warn('reCAPTCHA not available, proceeding without it.');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.innerText = currentAuthMode === "register" ? "REGISTER NEW ACCOUNT" : "SIGN IN WITH EMAIL";
+
+  if (password.length < 6) {
+    showMsg('Password must be at least 6 characters.'); 
+    return; 
+  }
+
+  setLoading(true);
+
+  // ── Try reCAPTCHA but NEVER block login if it fails ──
+  let token = null;
+  try {
+    if (typeof grecaptcha !== 'undefined' && grecaptcha.enterprise) {
+      const actionName = currentAuthMode === 'register' ? 'signup' : 'login';
+      await new Promise(resolve => grecaptcha.enterprise.ready(resolve));
+      token = await grecaptcha.enterprise.execute(
+        '6Le99f4sAAAAABz6KQK0CIslyyoK1St4r_-FIBVc',
+        { action: actionName }
+      );
     }
-  });
+  } catch (e) {
+    // reCAPTCHA failed — silently continue, don't block the user
+    console.warn('reCAPTCHA skipped:', e.message);
+  }
+
+  // ── Now run actual Firebase auth ──
+  try {
+    if (currentAuthMode === 'register') {
+      const name  = document.getElementById('auth-name')?.value.trim();
+      const phone = document.getElementById('auth-phone')?.value.trim();
+
+      if (!name) { 
+        showMsg('Please enter your full name.'); 
+        setLoading(false); 
+        return; 
+      }
+      if (!phone || phone.length < 9) {
+        showMsg('Please enter a valid M-Pesa number (9 digits).');
+        setLoading(false);
+        return;
+      }
+
+      const credential = await createUserWithEmailAndPassword(auth, email, password);
+
+      // Save full profile to Firestore
+      const code = credential.user.uid.substring(0, 8).toUpperCase();
+      await setDoc(doc(db, 'affiliates', credential.user.uid), {
+        uid:          credential.user.uid,
+        email:        email,
+        name:         name,
+        phone:        '+254' + phone.replace(/^0/, '').replace(/^\+254/, ''),
+        referralCode: code,
+        balance:      0,
+        clicks:       0,
+        sales:        0,
+        joinedAt:     new Date().toISOString()
+      });
+
+      await loadDashboard(credential.user);
+
+    } else {
+      // LOGIN — only email + password needed
+      const credential = await signInWithEmailAndPassword(auth, email, password);
+      await loadDashboard(credential.user);
+    }
+
+  } catch (error) {
+    // Friendly Firebase error messages
+    const msgs = {
+      'auth/email-already-in-use': 'This email is already registered. Please sign in.',
+      'auth/user-not-found':       'No account found with this email. Please register.',
+      'auth/wrong-password':       'Incorrect password. Try again.',
+      'auth/invalid-credential':   'Incorrect email or password. Try again.',
+      'auth/invalid-email':        'Please enter a valid email address.',
+      'auth/weak-password':        'Password must be at least 6 characters.',
+      'auth/too-many-requests':    'Too many attempts. Please wait a moment and try again.',
+      'auth/network-request-failed': 'No internet connection. Check your network.',
+    };
+    showMsg(msgs[error.code] || error.message);
+
+  } finally {
+    setLoading(false);
+  }
+};
 };
 
 /* ── GOOGLE LOGIN ── */
@@ -496,21 +557,163 @@ onAuthStateChanged(auth, (user)=>{
 });
 
 /* ── DASHBOARD ── */
-async function renderDashboard(userDocRef){
-  try{
+async function renderDashboard(userDocRef) {
+  try {
     const snap = await getDoc(userDocRef);
-    if(snap.exists()){
-      currentAffiliateData = snap.data();
-      document.getElementById('login-section').style.display = 'none';
-      document.getElementById('dashboard-section').style.display = 'block';
-      document.getElementById('balance-display').innerText = Number(currentAffiliateData.commission || 0).toFixed(2);
-      document.getElementById('clicks-display').innerText = currentAffiliateData.clicks || 0;
-      document.getElementById('sales-display').innerText = currentAffiliateData.sales || 0;
-      document.getElementById('share-link').value = `${window.location.origin}/?ref=${currentAffiliateData.referralCode || 'COZY0000001'}`;
-      loadToolUsage();
+
+    if (!snap.exists()) {
+      showMsg('Profile not found. Please register again.');
+      return;
     }
-  }catch(error){ console.log(error); }
+
+    currentAffiliateData = snap.data();
+    const d = currentAffiliateData;
+
+    // ── Switch views ──
+    document.getElementById('login-section').style.display     = 'none';
+    document.getElementById('dashboard-section').style.display = 'block';
+
+    // ── Balance — handle both 'balance' and 'commission' field names ──
+    const balance = Number(d.balance ?? d.commission ?? 0);
+    document.getElementById('balance-display').innerText = balance.toFixed(2);
+
+    // ── Stats ──
+    document.getElementById('clicks-display').innerText = d.clicks || 0;
+    document.getElementById('sales-display').innerText  = d.sales  || 0;
+
+    // ── Referral link ──
+    const code = d.referralCode || d.referral_code || 'COZY0000001';
+    document.getElementById('share-link').value =
+      `${window.location.origin}/?ref=${code}`;
+
+    // ── M-Pesa number on payout panel ──
+    const mpesaEl = document.getElementById('mpesa-display');
+    if (mpesaEl) {
+      mpesaEl.textContent = d.phone || 'Not set — add below';
+    }
+
+    // ── Show affiliate name if element exists ──
+    const nameEl = document.getElementById('affiliate-name');
+    if (nameEl) {
+      nameEl.textContent = d.name || d.email || 'Affiliate';
+    }
+
+    // ── Payout threshold warning ──
+    const payoutBtn = document.querySelector('[onclick*="requestPayout"]');
+    if (payoutBtn && balance < 350) {
+      payoutBtn.style.opacity = '0.5';
+      payoutBtn.title = `Need KES ${(350 - balance).toFixed(2)} more to withdraw`;
+    }
+
+    // ── Load tool usage ──
+    loadToolUsage();
+
+    // ── Track returning visit click ──
+    // Only count if came via referral link
+    const urlRef = new URLSearchParams(window.location.search).get('ref');
+    if (urlRef && urlRef !== code) {
+      // Someone else's referral — track it
+      try {
+        const refQuery = await getDocs(
+          query(
+            collection(db, 'affiliates'),
+            where('referralCode', '==', urlRef)
+          )
+        );
+        refQuery.forEach(async (refDoc) => {
+          await updateDoc(refDoc.ref, { clicks: increment(1) });
+        });
+      } catch(e) {
+        console.warn('Click tracking skipped:', e.message);
+      }
+    }
+
+  } catch (error) {
+    console.error('Dashboard error:', error);
+    showMsg('Failed to load dashboard. Please refresh.');
+  }
 }
+
+/* ── LOAD DASHBOARD (called after login/register) ── */
+async function loadDashboard(user) {
+  if (!user) return;
+  currentUserUid = user.uid;
+
+  const userDocRef = doc(db, 'affiliates', user.uid);
+  const snap       = await getDoc(userDocRef);
+
+  // If profile doesn't exist yet (Google login first time) — create it
+  if (!snap.exists()) {
+    const code = user.uid.substring(0, 8).toUpperCase();
+    await setDoc(userDocRef, {
+      uid:          user.uid,
+      email:        user.email  || '',
+      name:         user.displayName || '',
+      phone:        '',
+      referralCode: code,
+      balance:      0,
+      commission:   0,   // keep both for backward compatibility
+      clicks:       0,
+      sales:        0,
+      joinedAt:     new Date().toISOString()
+    });
+  }
+
+  await renderDashboard(userDocRef);
+}
+
+/* ── LOAD TOOL USAGE ── */
+function loadToolUsage() {
+  try {
+    const today = new Date().toDateString();
+    const raw   = localStorage.getItem('cc_tool_usage');
+    const usage = raw ? JSON.parse(raw) : {};
+
+    // Reset if new day
+    const data = usage.date === today ? usage : {
+      date:     today,
+      img:      0,
+      webp:     0,
+      bg:       0,
+      video:    0
+    };
+
+    // Limits
+    const limits = { img: 20, webp: 20, bg: 5, video: 3 };
+
+    // Update bars and counts
+    const tools = ['img', 'webp', 'bg', 'video'];
+    tools.forEach(function(t) {
+      const used  = data[t]  || 0;
+      const limit = limits[t];
+      const pct   = Math.min(Math.round((used / limit) * 100), 100);
+
+      const bar   = document.getElementById('bar-'   + t);
+      const count = document.getElementById('count-' + t);
+
+      if (bar)   bar.style.width     = pct + '%';
+      if (count) count.textContent   = `${used} / ${limit} used today`;
+
+      // Turn bar red if at limit
+      if (bar && pct >= 100) {
+        bar.style.background = 'linear-gradient(90deg,#ef4444,#dc2626)';
+      }
+    });
+
+  } catch(e) {
+    console.warn('Tool usage load failed:', e.message);
+  }
+}
+
+/* ── AUTO LOGIN on page load ── */
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    await loadDashboard(user);
+  } else {
+    document.getElementById('login-section').style.display     = 'block';
+    document.getElementById('dashboard-section').style.display = 'none';
+  }
+});
 
 /* ── COPY LINK ── */
 window.copyLink = function(){
