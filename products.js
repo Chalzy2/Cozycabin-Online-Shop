@@ -1686,48 +1686,34 @@ function ccBuildSimilar(containerId, currentCategory, currentIndex) {
   var _originalShowProducts = window.showProducts;
 
   window.showProducts = function(category) {
-    /* ① Run original — builds all standard cards as before */
-    _originalShowProducts(category);
-
-    var container = document.getElementById('products-container');
-    if (!container) return;
-
     var categoryProducts = products[category];
-    if (!categoryProducts || !categoryProducts.length) return;
 
-    /* ② Walk each product — swap variant cards, then inject similar */
-    var cards = container.querySelectorAll('.product-card');
-
-    categoryProducts.forEach(function(product, index) {
-
-      /* ── VARIANT SWAP ── */
-      if (product.productType === 'variant' && product.variants && product.variants.length) {
-        var originalCard = cards[index];
-        var variantCard  = renderVariantCard(product, index);
-        if (variantCard && originalCard) {
-          container.replaceChild(variantCard, originalCard);
-        }
-      }
-
-      /* ── SIMILAR PRODUCTS ── */
-      /* Re-query cards after possible replacement */
-      var allCards = container.querySelectorAll('.product-card');
-      var targetCard = allCards[index];
-      if (!targetCard) return;
-
-      /* Add similar container if not already there */
-      if (!targetCard.querySelector('.cc-similar-wrap')) {
-        var simWrap = document.createElement('div');
-        simWrap.className = 'cc-similar-wrap';
-        simWrap.id = 'cc-sim-' + category + '-' + index;
-        targetCard.appendChild(simWrap);
-      }
-
-      /* Build similar products strip */
-      ccBuildSimilar('cc-sim-' + category + '-' + index, category, index);
+    /* Check if any product in this category is a variant */
+    var hasVariants = categoryProducts && categoryProducts.some(function(p) {
+      return p.productType === 'variant';
     });
-  };
-})();
+
+    /* ── No variants: original handles everything, we just add similar strips ── */
+    if (!hasVariants) {
+      _originalShowProducts(category);
+      var container = document.getElementById('products-container');
+      if (!container) return;
+      var cards = container.querySelectorAll('.product-card');
+      (categoryProducts || []).forEach(function(product, index) {
+        var targetCard = cards[index];
+        if (!targetCard) return;
+        if (!targetCard.querySelector('.cc-similar-wrap')) {
+          var simWrap = document.createElement('div');
+          simWrap.className = 'cc-similar-wrap';
+          simWrap.id = 'cc-sim-' + category + '-' + index;
+          targetCard.appendChild(simWrap);
+        }
+        ccBuildSimilar('cc-sim-' + category + '-' + index, category, index);
+      });
+      return;
+    }
+
+    /* ── Has variants: run original first, then swap variant cards
 window.copyText = cozyyCopy;
 window.cozyyCopy = cozyyCopy;
 
