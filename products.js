@@ -249,42 +249,6 @@ var products = {
     description: "Elegant 24-pieces stainless steel cutlery set with stand.",
     video: "Images/video-gold-cutlery.mp4",
     images: ["Images/24goldcutlery-set.webp","Images/24goldcutlery-set.webp","Images/goldencutlery.webp","Images/silvercutlery.webp"]
-  },
-  {
-    title: "6PCS Dining Cutlery Collection",
-    company: "Kitchen",
-    productType: "variant",
-    description: "Elegant stainless steel dining cutlery available in gold and silver finishes.",
-    variants: [
-      {
-        name: "6PCS Gold Spoon Set",
-        price: 400,
-        oldPrice: 600,
-        description: "Heavy gauge 6psc table spoon golden",
-        image: "Images/Spoonset-2.webp"
-      },
-      {
-        name: "6PCS Silver Spoon Set",
-        price: 350,
-        oldPrice: 500,
-        description: "Heavy gauge 6psc table spoon silver",
-        image: "Images/Spoonsetsil-2.webp"
-      },
-      {
-        name: "6PCS Gold Knife Set",
-        price: 450,
-        oldPrice: 700,
-        description: "Yuchang butter knife heavy gauge set of 6psc",
-        image: "Images/Spoonsetg-1.webp"
-      },
-      {
-        name: "6PCS Silver Knife Set",
-        price: 400,
-        oldPrice: 600,
-        description: "Butter knife heavy gauge",
-        image: "Images/Spoonsetsil-1.webp"
-      }
-    ]
   }
 ],
       
