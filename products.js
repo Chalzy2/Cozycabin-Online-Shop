@@ -247,7 +247,7 @@ var products = {
       price: 450,
       oldPrice: 700,
       description: "Yuchang butter knife heavy gauge set of 6psc",
-      image: "Images/6pcs-gold-knives.webp"
+      image: "Images/Spoonsetg-1.webp"
     },
     {
       name: "6PCS Silver Knife Set",
