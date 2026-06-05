@@ -1728,12 +1728,12 @@ function ccBuildSimilar(containerId, currentCategory, currentIndex) {
     });
   };
 })();
+window.copyText = cozyyCopy;
+window.cozyyCopy = cozyyCopy;
 
 // ============================================================
 //  END OF UPGRADE — products-upgrade.js
 // ============================================================
-window.copyText = cozyyCopy;
-window.cozyyCopy = cozyyCopy;
 
 
 
