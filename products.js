@@ -221,35 +221,71 @@ var products = {
       }
     ],
   cutlery: [
-    {
-      title: "Silicone Spoons", company: "Kitchen",
-      price: 1499, oldPrice: 2000, sizes: [],
-      colors: ["Black","Grey"],
-      description: "Elegant Silicone spoons for everyday use.",
-      video: "Images/video-silicone-spoons.mp4",
-      images: ["Images/blcksilicn.webp","Images/Silcn12psc1499.webp"]
-    },
-    {
-       title: "19PCS Premium Silicone Kitchenware Set",
-       company: "Kitchen",
-       price: 2850,
-       oldPrice: 3500,
-       sizes: [],
-       colors: ["Black","Grey","Pink"],
-       description: "Complete 19-piece silicone kitchen utensil set with holder, chopping board, knife and wooden-handle cooking tools. Safe for non-stick cookware.",
-       images: ["Images/19pcsiliconb-1.webp","Images/19pcsilicongrey-1(2).webp","Images/19set.webp"],
-       badge: "Best Seller",
-       category: "kitchen"
-     },
-     {
-      title: "24 Psc Gold Cutlery Set", company: "Kitchen",
-      price: 2500, oldPrice: 3500, sizes: [],
-      colors: ["Gold","Silver"],
-      description: "Elegant 24-pieces stainless steel cutlery set with stand.",
-      video: "Images/video-gold-cutlery.mp4",
-      images: ["Images/24goldcutlery-set.webp","Images/24goldcutlery-set.webp","Images/goldencutlery.webp","Images/silvercutlery.webp"]
-    }
-  ],
+  {
+    title: "Silicone Spoons", company: "Kitchen",
+    price: 1499, oldPrice: 2000, sizes: [],
+    colors: ["Black","Grey"],
+    description: "Elegant Silicone spoons for everyday use.",
+    video: "Images/video-silicone-spoons.mp4",
+    images: ["Images/blcksilicn.webp","Images/Silcn12psc1499.webp"]
+  },
+  {
+    title: "19PCS Premium Silicone Kitchenware Set",
+    company: "Kitchen",
+    price: 2850,
+    oldPrice: 3500,
+    sizes: [],
+    colors: ["Black","Grey","Pink"],
+    description: "Complete 19-piece silicone kitchen utensil set with holder, chopping board, knife and wooden-handle cooking tools. Safe for non-stick cookware.",
+    images: ["Images/19pcsiliconb-1.webp","Images/pscsiliconset.webp","Images/19set.webp"],
+    badge: "Best Seller",
+    category: "kitchen"
+  },
+  {
+    title: "24 Psc Gold Cutlery Set", company: "Kitchen",
+    price: 2500, oldPrice: 3500, sizes: [],
+    colors: ["Gold","Silver"],
+    description: "Elegant 24-pieces stainless steel cutlery set with stand.",
+    video: "Images/video-gold-cutlery.mp4",
+    images: ["Images/24goldcutlery-set.webp","Images/24goldcutlery-set.webp","Images/goldencutlery.webp","Images/silvercutlery.webp"]
+  },
+  {
+    title: "6PCS Dining Cutlery Collection",
+    company: "Kitchen",
+    productType: "variant",
+    description: "Elegant stainless steel dining cutlery available in gold and silver finishes.",
+    variants: [
+      {
+        name: "6PCS Gold Spoon Set",
+        price: 400,
+        oldPrice: 600,
+        description: "Heavy gauge 6psc table spoon golden",
+        image: "Images/Spoonset-2.webp"
+      },
+      {
+        name: "6PCS Silver Spoon Set",
+        price: 350,
+        oldPrice: 500,
+        description: "Heavy gauge 6psc table spoon silver",
+        image: "Images/Spoonsetsil-2.webp"
+      },
+      {
+        name: "6PCS Gold Knife Set",
+        price: 450,
+        oldPrice: 700,
+        description: "Yuchang butter knife heavy gauge set of 6psc",
+        image: "Images/Spoonsetg-1.webp"
+      },
+      {
+        name: "6PCS Silver Knife Set",
+        price: 400,
+        oldPrice: 600,
+        description: "Butter knife heavy gauge",
+        image: "Images/Spoonsetsil-1.webp"
+      }
+    ]
+   }
+], 
 
   // ── Placeholders — add products + video fields later ──
   dispenser:[], hotpots:[], racks:[], flasks:[], bottles:[], cookers:[], blenders:[],
