@@ -220,7 +220,6 @@ var products = {
       category: "travel"
       }
     ],
-  
   cutlery: [
   {
     title: "Silicone Spoons", company: "Kitchen",
