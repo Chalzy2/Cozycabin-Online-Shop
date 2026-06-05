@@ -38,6 +38,7 @@
   });
 
   // DevTools detection — log only, never block page
+var devToolsOpen = false;
 setInterval(function() {
   var w = window.outerWidth - window.innerWidth;
   var h = window.outerHeight - window.innerHeight;
@@ -422,10 +423,10 @@ window.ccGoTo = function(galId, si, pidx) {
     if (vid && !vid.paused) {
       vid.pause();
       var overlay = document.getElementById('cc-play-' + pidx);
-      if (overlay) overlay.style.opacity = '1';
+     if (overlay) overlay.style.opacity = '1';
     }
   }
-         gal.setAttribute('data-current', si);
+      gal.setAttribute('data-current', si);
 
   // Move track
   track.style.transform = 'translateX(-' + (si * 100) + '%)';
@@ -746,7 +747,7 @@ function vcBuildGalleryHTML(slides, galId, pidx) {
       '<div class="cc-thumbrow" id="cc-thumbrow-' + galId + '">' + thumbHTML + '</div>' +
     '</div>'
   );
-  }
+}
 
 /* ── Main V2 variant card renderer ── */
 function renderVariantCard(product, index) {
@@ -912,8 +913,7 @@ function vcSelectVariant(pidx, vi, variants) {
     var trackHTML = '';
     var thumbHTML = '';
     var dotsHTML  = '';
-
-    slides.forEach(function(slide, si) {
+  slides.forEach(function(slide, si) {
       var active = si === 0 ? ' cc-th-active' : '';
       if (slide.type === 'video') {
         trackHTML +=
@@ -1363,7 +1363,6 @@ document.addEventListener('click', function(e) {
   } else { initHeroBanner(); }
 })();
 
-
 // ============================================================
 //  PROMO BANNER
 // ============================================================
@@ -1425,7 +1424,8 @@ document.addEventListener('click', function(e) {
     document.addEventListener('DOMContentLoaded', initPromoBanner);
   } else { initPromoBanner(); }
 })();
-/ ============================================================
+
+// ============================================================
 //  SMART PAYMENT MODAL
 //  Now shows variant design name when present
 // ============================================================
@@ -1620,8 +1620,8 @@ function cozyyCopy(text, btnId) {
       }
     }
   };
-  
- // Fix slide position on screen rotate / resize
+
+  // Fix slide position on screen rotate / resize
   window.addEventListener('resize', function () {
     document.querySelectorAll('.cc-gallery').forEach(function (gal) {
       var current = parseInt(gal.getAttribute('data-current') || '0');
@@ -1719,8 +1719,7 @@ var CC_RELATED = {
   nets:        ['covers','bedsheets','duvets'],
   towels:      ['bedsheets','duvets','covers']
 };
-
-/* ── CSS for similar products strip (injected once) ── */
+* ── CSS for similar products strip (injected once) ── */
 (function injectSimilarCSS() {
   if (document.getElementById('cc-similar-style')) return;
   var s = document.createElement('style');
@@ -1757,7 +1756,8 @@ var CC_RELATED = {
   ].join('');
   document.head.appendChild(s);
 })();
-* ── Collect candidates for similar products ── */
+
+/* ── Collect candidates for similar products ── */
 function ccGetSimilar(currentCategory, currentIndex) {
   var results = [];
   var seen    = {};
@@ -1894,21 +1894,14 @@ window.cozyyCopy = cozyyCopy
 //  END OF UPGRADE — products-upgrade.js
 // ============================================================
 
+          
+        
+
+
+
 
 
 
 
 
     
-    
-
-
-
-
-
-
-
-
-
-  
-                                                   }
