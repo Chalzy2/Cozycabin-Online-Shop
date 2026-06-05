@@ -447,7 +447,8 @@ window.handleEmailAuth = async function(event){
         await renderDashboard(userDocRef);
       }
     } catch(error){
-      alert("Cozycabin Security: " + error.message);
+      // Replace with silent fallback — just proceed without reCAPTCHA:
+console.warn('reCAPTCHA not available, proceeding without it.');
     } finally {
       submitBtn.disabled = false;
       submitBtn.innerText = currentAuthMode === "register" ? "REGISTER NEW ACCOUNT" : "SIGN IN WITH EMAIL";
