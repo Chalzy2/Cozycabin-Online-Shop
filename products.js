@@ -237,7 +237,7 @@ var products = {
     sizes: [],
     colors: ["Black","Grey","Pink"],
     description: "Complete 19-piece silicone kitchen utensil set with holder, chopping board, knife and wooden-handle cooking tools. Safe for non-stick cookware.",
-    images: ["Images/19pcsiliconb-1.webp","Images/19pcsilicongrey-1(2).webp","Images/19set.webp"],
+    images: ["Images/19pcsiliconb-1.webp","Images/pscsiliconset.webp","Images/19set.webp"],
     badge: "Best Seller",
     category: "kitchen"
   },
