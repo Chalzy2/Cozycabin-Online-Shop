@@ -425,7 +425,7 @@ window.ccGoTo = function(galId, si, pidx) {
       if (overlay) overlay.style.opacity = '1';
     }
   }
-      gal.setAttribute('data-current', si);
+         gal.setAttribute('data-current', si);
 
   // Move track
   track.style.transform = 'translateX(-' + (si * 100) + '%)';
@@ -625,217 +625,416 @@ function attachSwipe(galId, pidx) {
 })();
 
 // ============================================================
-//  VARIANT CARD CSS — injected once into <head>
-//  Completely separate from gallery CSS — no overlap
+//  VARIANT CARD — V2 CSS + RENDERER
+//  Premium Amazon/Shopify-style: full swipeable gallery
+//  + compact image thumbnail selector (no large images below)
 // ============================================================
+
+/* ── V2 Variant CSS (injected once) ── */
 (function injectVariantCSS() {
   if (document.getElementById('cc-variant-style')) return;
   var s = document.createElement('style');
   s.id = 'cc-variant-style';
   s.textContent = [
-    /* ── Variant image area ── */
-    '.vc-img-wrap{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:14px;background:#0a0f1e;margin-bottom:10px;}',
-    '.vc-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity 0.25s ease;}',
-    '.vc-img-wrap img.vc-fade{opacity:0;}',
-
-    /* ── Variant tab strip ── */
-    '.vc-tabs{display:flex;gap:6px;flex-wrap:wrap;padding:0 0 10px;margin-bottom:4px;}',
-    '.vc-tab{flex-shrink:0;padding:5px 12px;border-radius:20px;border:1.5px solid rgba(255,215,0,0.25);',
-    '  background:transparent;color:#94a3b8;font-size:12px;font-weight:600;cursor:pointer;',
-    '  transition:all 0.18s ease;line-height:1.3;white-space:nowrap;}',
-    '.vc-tab:hover{border-color:rgba(255,215,0,0.55);color:#e2e8f0;}',
-    '.vc-tab.vc-active{border-color:#ffd700;background:rgba(255,215,0,0.12);color:#ffd700;}',
-
-    /* ── Variant price row ── */
-    '.vc-price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;flex-wrap:wrap;}',
-    '.vc-price{font-size:20px;font-weight:800;color:#ffd700;}',
-    '.vc-old{font-size:13px;color:#64748b;text-decoration:line-through;}',
-    '.vc-save{font-size:10px;font-weight:700;color:#22c55e;background:rgba(34,197,94,0.12);',
-    '  border:1px solid rgba(34,197,94,0.25);border-radius:4px;padding:2px 6px;white-space:nowrap;}',
-
-    /* ── Variant name label ── */
-    '.vc-variant-label{font-size:11px;font-weight:600;color:#94a3b8;margin-bottom:8px;',
-    '  text-transform:uppercase;letter-spacing:0.08em;}',
-    '.vc-variant-label span{color:#ffd700;}',
-
-    /* ── Variant badge (top-left of image) ── */
-    '.vc-badge{position:absolute;top:8px;left:8px;background:#ffd700;color:#000;',
-    '  font-size:9px;font-weight:800;letter-spacing:0.1em;padding:3px 8px;border-radius:5px;',
-    '  text-transform:uppercase;pointer-events:none;z-index:3;}',
-
-    /* ── Variant image counter ── */
-    '.vc-counter{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;',
-    '  font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;pointer-events:none;z-index:3;}',
+    /* ── Compact variant selector ── */
+    '.cc-vsel-label{font-size:11px;font-weight:700;color:#94a3b8;',
+    '  text-transform:uppercase;letter-spacing:0.08em;margin:10px 0 6px;}',
+    '.cc-vsel-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;}',
+    '.cc-vsel-btn{',
+    '  display:flex;flex-direction:column;align-items:center;gap:3px;',
+    '  border:2px solid rgba(255,215,0,0.22);border-radius:10px;',
+    '  background:rgba(10,17,40,0.75);padding:5px 7px;cursor:pointer;',
+    '  transition:border-color .18s,background .18s,transform .15s;',
+    '  min-width:64px;max-width:80px;',
+    '}',
+    '.cc-vsel-btn:hover{border-color:rgba(255,215,0,0.6);background:rgba(255,215,0,0.08);transform:translateY(-1px);}',
+    '.cc-vsel-btn:active{transform:scale(0.96);}',
+    '.cc-vsel-btn.cc-vsel-active{border-color:#ffd700;background:rgba(255,215,0,0.13);}',
+    '.cc-vsel-thumb{width:48px;height:48px;border-radius:7px;object-fit:cover;display:block;pointer-events:none;}',
+    '.cc-vsel-name{font-size:9px;font-weight:700;color:#cbd5e1;text-align:center;line-height:1.2;',
+    '  max-width:68px;white-space:normal;word-break:break-word;}',
+    '.cc-vsel-btn.cc-vsel-active .cc-vsel-name{color:#ffd700;}',
+    /* ── Selected variant name pill ── */
+    '.cc-vsel-selected{display:inline-flex;align-items:center;gap:5px;',
+    '  font-size:12px;font-weight:700;color:#ffd700;',
+    '  background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.28);',
+    '  border-radius:20px;padding:4px 12px;margin-bottom:8px;}',
+    '.cc-vsel-selected .cc-vsel-badge{',
+    '  font-size:9px;font-weight:800;background:#ffd700;color:#000;',
+    '  border-radius:10px;padding:1px 6px;margin-left:2px;',
+    '}',
+    /* ── Price row animations ── */
+    '.cc-vpr-wrap{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:6px;transition:opacity .18s;}',
+    '.cc-vpr-wrap.cc-vpr-fade{opacity:0;}',
+    '.cc-vpr-new{font-size:20px;font-weight:800;color:#ffd700;}',
+    '.cc-vpr-old{font-size:13px;color:#64748b;text-decoration:line-through;}',
+    '.cc-vpr-save{font-size:10px;font-weight:700;color:#22c55e;',
+    '  background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);',
+    '  border-radius:4px;padding:2px 6px;white-space:nowrap;}',
   ].join('');
   document.head.appendChild(s);
 })();
 
-// ============================================================
-//  VARIANT CARD RENDERER
-//  Called by showProducts() when product.productType === 'variant'
-//  Returns a DOM element — same as standard card approach
-// ============================================================
-
-// Tracks which variant is selected per card: { cardIndex: variantIndex }
+/* ── Track selected variant per card ── */
 var selectedVariants = {};
 
-function renderVariantCard(product, index) {
-  // Initialise state — default to first variant
-  selectedVariants[index] = 0;
-  selectedOptions[index]  = { size: null, color: null };
+/* ── Build variant gallery slides from a variant object ──
+   Supports:  v.images[] (multiple)  or  v.image (single fallback)       */
+function vcBuildGallerySlides(v) {
+  var slides = [];
+  if (v.video) slides.push({ type: 'video', src: v.video });
+  if (v.images && v.images.length) {
+    v.images.forEach(function(img) { slides.push({ type: 'img', src: img }); });
+  } else if (v.image) {
+    slides.push({ type: 'img', src: v.image });
+  }
+  return slides;
+}
 
+/* ── Build gallery track + thumb HTML for a set of slides ── */
+function vcBuildGalleryHTML(slides, galId, pidx) {
+  var total     = slides.length;
+  var trackHTML = '';
+  var thumbHTML = '';
+  var dotsHTML  = '';
+
+  slides.forEach(function(slide, si) {
+    var active = si === 0 ? ' cc-th-active' : '';
+    if (slide.type === 'video') {
+      trackHTML +=
+        '<div class="cc-slide" style="flex:0 0 100%;min-width:100%;width:100%;height:100%;position:relative;overflow:hidden;box-sizing:border-box;">' +
+          '<video class="cc-video" id="ccvid-' + pidx + '" src="' + slide.src + '" ' +
+                 'muted autoplay playsinline preload="auto" ' +
+                 'oncanplay="ccOnCanPlay(' + pidx + ')" ' +
+                 'onerror="ccOnVideoError(' + pidx + ')" ' +
+                 'style="width:100%;height:100%;object-fit:cover;display:block;"></video>' +
+          '<div class="cc-vid-progress" id="cc-prog-' + pidx + '"></div>' +
+          '<div class="cc-play-overlay" id="cc-play-' + pidx + '" onclick="ccToggleVideo(' + pidx + ')" style="opacity:0;pointer-events:none;">' +
+            '<div class="cc-play-btn"><svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#000;margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div>' +
+          '</div>' +
+          '<span class="cc-vid-badge" id="cc-badge-' + pidx + '">⏳ Loading</span>' +
+        '</div>';
+      thumbHTML +=
+        '<div class="cc-thumb' + active + '" onclick="ccGoTo(\'' + galId + '\',' + si + ',' + pidx + ')">' +
+          '<video src="' + slide.src + '" muted preload="none" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>' +
+          '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.38);">' +
+            '<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#ffd700;"><polygon points="5,3 19,12 5,21"/></svg>' +
+          '</div>' +
+        '</div>';
+    } else {
+      trackHTML +=
+        '<div class="cc-slide" style="flex:0 0 100%;min-width:100%;width:100%;height:100%;box-sizing:border-box;">' +
+          '<img src="' + slide.src + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">' +
+        '</div>';
+      thumbHTML +=
+        '<div class="cc-thumb' + active + '" onclick="ccGoTo(\'' + galId + '\',' + si + ',' + pidx + ')">' +
+          '<img src="' + slide.src + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">' +
+        '</div>';
+    }
+    dotsHTML += '<span class="cc-dot' + (si === 0 ? ' cc-dot-active' : '') + '"></span>';
+  });
+
+  return (
+    '<div class="cc-gallery" id="' + galId + '" data-current="0" data-total="' + total + '" data-pidx="' + pidx + '">' +
+      '<div class="cc-viewport" style="position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:14px;">' +
+        '<div class="cc-track" id="cc-track-' + galId + '" style="display:flex;flex-direction:row;flex-wrap:nowrap;width:100%;height:100%;position:absolute;top:0;left:0;right:0;bottom:0;transition:transform 0.35s ease;will-change:transform;">' +
+          trackHTML +
+        '</div>' +
+        '<div class="cc-counter" id="cc-counter-' + galId + '">1 / ' + total + '</div>' +
+        '<div class="cc-dots" id="cc-dots-' + galId + '">' + dotsHTML + '</div>' +
+      '</div>' +
+      '<div class="cc-thumbrow" id="cc-thumbrow-' + galId + '">' + thumbHTML + '</div>' +
+    '</div>'
+  );
+  }
+
+/* ── Main V2 variant card renderer ── */
+function renderVariantCard(product, index) {
   var variants = product.variants || [];
   if (!variants.length) return null;
 
-  var first = variants[0];
+  selectedVariants[index] = 0;
+  selectedOptions[index]  = { size: null, color: null };
 
-  // ── Tab strip HTML ──
-  var tabsHTML = '';
+  var first  = variants[0];
+  var galId  = 'vc-gal-' + index;
+  var slides = vcBuildGallerySlides(first);
+  var galHTML = vcBuildGalleryHTML(slides, galId, index);
+
+  /* ── Savings calc ── */
+  var pct0 = savingsPercent(first.price, first.oldPrice);
+
+  /* ── Compact variant selector buttons ── */
+  var selHTML = '';
   variants.forEach(function(v, vi) {
-    tabsHTML +=
-      '<button class="vc-tab' + (vi === 0 ? ' vc-active' : '') + '" ' +
-              'data-card="' + index + '" data-vi="' + vi + '" ' +
-              'onclick="vcSwitch(' + index + ',' + vi + ')">' +
-        v.name +
+    var thumbSrc = (v.images && v.images[0]) || v.image || '';
+    var badgeHTML = v.badge ? '<span class="cc-vsel-badge">' + v.badge + '</span>' : '';
+    selHTML +=
+      '<button class="cc-vsel-btn' + (vi === 0 ? ' cc-vsel-active' : '') + '" ' +
+              'data-pidx="' + index + '" data-vi="' + vi + '" ' +
+              'aria-label="Select ' + v.name + '">' +
+        (thumbSrc ? '<img class="cc-vsel-thumb" src="' + thumbSrc + '" loading="lazy" alt="' + v.name + '">' : '') +
+        '<span class="cc-vsel-name">' + v.name.replace(product.title,'').trim() + '</span>' +
       '</button>';
   });
 
-  // ── Savings for first variant ──
-  var pct0 = savingsPercent(first.price, first.oldPrice);
-  var saveBadge0 = pct0 > 0 ? '<span class="vc-save">SAVE ' + pct0 + '%</span>' : '';
-
-  // ── Size buttons (shared across all variants if product.sizes exists) ──
+  /* ── Sizes ── */
   var sizesSection = '';
   if (product.sizes && product.sizes.length) {
     var sizesHTML = '';
     product.sizes.forEach(function(sz) {
       sizesHTML += '<button class="size-btn" data-index="' + index + '" data-size="' + sz + '">' + sz + '</button>';
     });
-    sizesSection =
-      '<div class="sizes-box"><h4>Select Size</h4>' +
-      '<div class="sizes-row" id="sizes-' + index + '">' + sizesHTML + '</div></div>';
+    sizesSection = '<div class="sizes-box"><h4>Select Size</h4><div class="sizes-row" id="sizes-' + index + '">' + sizesHTML + '</div></div>';
   }
 
-  // ── Build card ──
+  /* ── Build card element ── */
   var card = document.createElement('div');
   card.className = 'product-card';
   card.setAttribute('data-variant-card', index);
+  card.setAttribute('data-product-index', index);
 
   card.innerHTML =
-    // Image area
-    '<div class="vc-img-wrap" id="vc-img-wrap-' + index + '">' +
-      '<img id="vc-img-' + index + '" src="' + first.image + '" loading="lazy" alt="' + product.title + '">' +
-      (product.badge ? '<span class="vc-badge">' + product.badge + '</span>' : '') +
-      '<span class="vc-counter">' + variants.length + ' Designs</span>' +
-    '</div>' +
+    /* 1 — Gallery */
+    galHTML +
 
-    // Variant tabs
-    '<div class="vc-tabs" id="vc-tabs-' + index + '">' + tabsHTML + '</div>' +
-
-    // Active variant label
-    '<div class="vc-variant-label" id="vc-label-' + index + '">Design: <span>' + first.name + '</span></div>' +
-
-    // Title + company
+    /* 2 — Title */
     '<h2 class="product-title">' + product.title + '</h2>' +
     (product.company ? '<p class="company-name">' + product.company + '</p>' : '') +
-    (product.description ? '<p class="product-description">' + product.description + '</p>' : '') +
 
-    // Price row — updates on tab switch
-    '<div class="vc-price-row" id="vc-price-' + index + '">' +
-      '<span class="vc-price" id="vc-p-' + index + '">KES ' + first.price.toLocaleString() + '</span>' +
-      (first.oldPrice ? '<span class="vc-old" id="vc-op-' + index + '">KES ' + first.oldPrice.toLocaleString() + '</span>' : '<span id="vc-op-' + index + '"></span>') +
-      '<span id="vc-save-' + index + '">' + saveBadge0 + '</span>' +
+    /* 3 — Selected variant name pill */
+    '<div class="cc-vsel-selected" id="vc-selname-' + index + '">' +
+      '✦ <span id="vc-selname-text-' + index + '">' + first.name + '</span>' +
+      (first.badge ? '<span class="cc-vsel-badge">' + first.badge + '</span>' : '') +
     '</div>' +
 
-    // Sizes (optional)
+    /* 4 — Price row */
+    '<div class="cc-vpr-wrap" id="vc-prwrap-' + index + '">' +
+      '<span class="cc-vpr-new" id="vc-newp-' + index + '">KES ' + (first.price || 0).toLocaleString() + '</span>' +
+      (first.oldPrice ? '<span class="cc-vpr-old" id="vc-oldp-' + index + '">KES ' + first.oldPrice.toLocaleString() + '</span>' : '<span id="vc-oldp-' + index + '"></span>') +
+      (pct0 > 0 ? '<span class="cc-vpr-save" id="vc-save-' + index + '">SAVE ' + pct0 + '%</span>' : '<span class="cc-vpr-save" id="vc-save-' + index + '" style="display:none;"></span>') +
+    '</div>' +
+
+    /* 5 — Description */
+    (product.description ? '<p class="product-description">' + product.description + '</p>' : '') +
+
+    /* 6 — Variant selector label + compact thumbnails */
+    '<div class="cc-vsel-label">Select Design (' + variants.length + ' options)</div>' +
+    '<div class="cc-vsel-row" id="vc-selrow-' + index + '">' + selHTML + '</div>' +
+
+    /* 7 — Sizes (optional) */
     sizesSection +
 
-    // Selection hint
+    /* 8 — Selection hint */
     '<p id="selection-hint-' + index + '" class="selection-hint"></p>' +
 
-    // Buttons — same classes as standard card so click handler works
-    '<button class="buy-btn" ' +
+    /* 9 — Action buttons */
+    '<button class="buy-btn" id="vc-buybtn-' + index + '" ' +
             'data-index="' + index + '" ' +
             'data-title="' + product.title.replace(/"/g, '&quot;') + '" ' +
             'data-price="' + first.price + '" ' +
             'data-variant-card="' + index + '">' +
       '🛒 Order via WhatsApp' +
     '</button>' +
-    '<button class="cart-btn">🛍️ Add to Cart</button>' +
+    '<button class="cart-btn" id="vc-cartbtn-' + index + '">🛍️ Add to Cart</button>' +
     '<details class="details-box"><summary>📋 More Details</summary>' +
       '<p style="margin-top:10px;">Premium quality product. ' +
       'Nationwide delivery available via G4S, Simba Coach, Tahmeed and more.</p>' +
     '</details>';
 
+  /* ── Wire up compact selector clicks ── */
+  (function(pidx, productRef) {
+    setTimeout(function() {
+      var row = document.getElementById('vc-selrow-' + pidx);
+      if (!row) return;
+      row.addEventListener('click', function(e) {
+        var btn = e.target.closest('.cc-vsel-btn');
+        if (!btn) return;
+        var vi = parseInt(btn.getAttribute('data-vi'));
+        vcSelectVariant(pidx, vi, productRef.variants);
+      });
+    }, 0);
+  }(index, product));
+
+  /* ── Wire up cart button ── */
+  (function(pidx, productRef) {
+    setTimeout(function() {
+      var cartBtn = document.getElementById('vc-cartbtn-' + pidx);
+      if (!cartBtn) return;
+      cartBtn.addEventListener('click', function() {
+        var vi = selectedVariants[pidx] || 0;
+        var v  = productRef.variants[vi];
+        var cartItem = {
+          title:   productRef.title,
+          variant: v.name,
+          price:   v.price,
+          image:   (v.images && v.images[0]) || v.image || ''
+        };
+        /* If global addToCart exists, use it; otherwise log */
+        if (typeof window.addToCart === 'function') {
+          window.addToCart(cartItem);
+        } else {
+          console.log('Cart item:', cartItem);
+        }
+      });
+    }, 0);
+  }(index, product));
+
+  /* ── Attach swipe on the variant gallery ── */
+  setTimeout(function() { attachSwipe(galId, index); }, 0);
+
   return card;
 }
 
-// ── Switch active variant inside a variant card ──
-window.vcSwitch = function(cardIndex, vi) {
-  var variants = null;
+/* ── V2 vcSelectVariant: updates gallery + name + price + selector ── */
+function vcSelectVariant(pidx, vi, variants) {
+  if (!variants || vi >= variants.length) return;
+  selectedVariants[pidx] = vi;
 
-  // Find the product by walking all category arrays
+  var v      = variants[vi];
+  var galId  = 'vc-gal-' + pidx;
+  var slides = vcBuildGallerySlides(v);
+
+  /* ── Rebuild gallery (swap track + thumbs) ── */
+  var gal = document.getElementById(galId);
+  if (gal) {
+    /* Pause any running video */
+    var oldVid = document.getElementById('ccvid-' + pidx);
+    if (oldVid) { try { oldVid.pause(); } catch(e){} }
+
+    /* Build new inner HTML */
+    var trackEl   = document.getElementById('cc-track-' + galId);
+    var thumbRowEl = document.getElementById('cc-thumbrow-' + galId);
+    var counterEl = document.getElementById('cc-counter-' + galId);
+    var dotsEl    = document.getElementById('cc-dots-' + galId);
+
+    var total     = slides.length;
+    var trackHTML = '';
+    var thumbHTML = '';
+    var dotsHTML  = '';
+
+    slides.forEach(function(slide, si) {
+      var active = si === 0 ? ' cc-th-active' : '';
+      if (slide.type === 'video') {
+        trackHTML +=
+          '<div class="cc-slide" style="flex:0 0 100%;min-width:100%;width:100%;height:100%;position:relative;overflow:hidden;box-sizing:border-box;">' +
+            '<video class="cc-video" id="ccvid-' + pidx + '" src="' + slide.src + '" ' +
+                   'muted autoplay playsinline preload="auto" ' +
+                   'oncanplay="ccOnCanPlay(' + pidx + ')" ' +
+                   'onerror="ccOnVideoError(' + pidx + ')" ' +
+                   'style="width:100%;height:100%;object-fit:cover;display:block;"></video>' +
+            '<div class="cc-vid-progress" id="cc-prog-' + pidx + '"></div>' +
+            '<div class="cc-play-overlay" id="cc-play-' + pidx + '" onclick="ccToggleVideo(' + pidx + ')" style="opacity:0;pointer-events:none;">' +
+              '<div class="cc-play-btn"><svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#000;margin-left:3px;"><polygon points="5,3 19,12 5,21"/></svg></div>' +
+            '</div>' +
+            '<span class="cc-vid-badge" id="cc-badge-' + pidx + '">⏳ Loading</span>' +
+          '</div>';
+        thumbHTML +=
+          '<div class="cc-thumb' + active + '" onclick="ccGoTo(\'' + galId + '\',' + si + ',' + pidx + ')">' +
+            '<video src="' + slide.src + '" muted preload="none" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>' +
+            '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.38);">' +
+              '<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#ffd700;"><polygon points="5,3 19,12 5,21"/></svg>' +
+            '</div>' +
+          '</div>';
+      } else {
+        trackHTML +=
+          '<div class="cc-slide" style="flex:0 0 100%;min-width:100%;width:100%;height:100%;box-sizing:border-box;">' +
+            '<img src="' + slide.src + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">' +
+          '</div>';
+        thumbHTML +=
+          '<div class="cc-thumb' + active + '" onclick="ccGoTo(\'' + galId + '\',' + si + ',' + pidx + ')">' +
+            '<img src="' + slide.src + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">' +
+          '</div>';
+      }
+      dotsHTML += '<span class="cc-dot' + (si === 0 ? ' cc-dot-active' : '') + '"></span>';
+    });
+
+    /* Inject rebuilt content */
+    if (trackEl)    { trackEl.style.transform = 'translateX(0)'; trackEl.innerHTML = trackHTML; }
+    if (thumbRowEl) thumbRowEl.innerHTML = thumbHTML;
+    if (counterEl)  counterEl.textContent = '1 / ' + total;
+    if (dotsEl)     dotsEl.innerHTML = dotsHTML;
+    gal.setAttribute('data-current', '0');
+    gal.setAttribute('data-total', total);
+
+    /* Re-attach swipe */
+    attachSwipe(galId, pidx);
+  }
+
+  /* ── Update selected variant name pill (with fade) ── */
+  var selNameEl = document.getElementById('vc-selname-' + pidx);
+  var selNameText = document.getElementById('vc-selname-text-' + pidx);
+  if (selNameEl) {
+    selNameEl.style.transition = 'opacity .15s';
+    selNameEl.style.opacity = '0';
+    setTimeout(function() {
+      if (selNameText) selNameText.textContent = v.name;
+      /* Update badge in pill */
+      var oldBadge = selNameEl.querySelector('.cc-vsel-badge');
+      if (oldBadge) oldBadge.remove();
+      if (v.badge) {
+        var nb = document.createElement('span');
+        nb.className = 'cc-vsel-badge';
+        nb.textContent = v.badge;
+        selNameEl.appendChild(nb);
+      }
+      selNameEl.style.opacity = '1';
+    }, 150);
+  }
+
+  /* ── Update price (with fade) ── */
+  var prWrap = document.getElementById('vc-prwrap-' + pidx);
+  if (prWrap) { prWrap.classList.add('cc-vpr-fade'); }
+  setTimeout(function() {
+    var newpEl = document.getElementById('vc-newp-' + pidx);
+    var oldpEl = document.getElementById('vc-oldp-' + pidx);
+    var saveEl = document.getElementById('vc-save-' + pidx);
+    if (newpEl) newpEl.textContent = 'KES ' + (v.price || 0).toLocaleString();
+    if (oldpEl) oldpEl.textContent = v.oldPrice ? 'KES ' + v.oldPrice.toLocaleString() : '';
+    var pct = savingsPercent(v.price, v.oldPrice);
+    if (saveEl) {
+      if (pct > 0) { saveEl.textContent = 'SAVE ' + pct + '%'; saveEl.style.display = ''; }
+      else         { saveEl.style.display = 'none'; }
+    }
+    if (prWrap) prWrap.classList.remove('cc-vpr-fade');
+  }, 180);
+
+  /* ── Update buy button data ── */
+  var buyBtn = document.getElementById('vc-buybtn-' + pidx);
+  if (buyBtn) buyBtn.setAttribute('data-price', v.price);
+
+  /* ── Update active selector button ── */
+  var row = document.getElementById('vc-selrow-' + pidx);
+  if (row) {
+    row.querySelectorAll('.cc-vsel-btn').forEach(function(btn) {
+      btn.classList.toggle('cc-vsel-active', parseInt(btn.getAttribute('data-vi')) === vi);
+    });
+  }
+
+  /* ── Reset size/color selection hint ── */
+  var hint = document.getElementById('selection-hint-' + pidx);
+  if (hint) hint.textContent = '';
+  if (selectedOptions[pidx]) {
+    selectedOptions[pidx].size  = null;
+    selectedOptions[pidx].color = null;
+  }
+}
+
+/* ── Legacy vcSwitch alias (kept for any HTML onclick= references) ── */
+window.vcSwitch = function(cardIndex, vi) {
+  /* Find variants by _cardIndex */
+  var variants = null;
   var cats = Object.keys(products);
   for (var ci = 0; ci < cats.length; ci++) {
     var arr = products[cats[ci]];
     for (var pi = 0; pi < arr.length; pi++) {
-      // Match by rendered card index stored during showProducts()
       if (arr[pi]._cardIndex === cardIndex && arr[pi].productType === 'variant') {
-        variants = arr[pi].variants;
-        break;
+        variants = arr[pi].variants; break;
       }
     }
     if (variants) break;
   }
-  if (!variants || !variants[vi]) return;
-
-  var v = variants[vi];
-  selectedVariants[cardIndex] = vi;
-
-  // ── Swap image with fade ──
-  var img = document.getElementById('vc-img-' + cardIndex);
-  if (img) {
-    img.classList.add('vc-fade');
-    setTimeout(function() {
-      img.src = v.image;
-      img.onload = function() { img.classList.remove('vc-fade'); };
-      // Fallback remove fade even if onload doesn't fire
-      setTimeout(function() { img.classList.remove('vc-fade'); }, 350);
-    }, 150);
-  }
-
-  // ── Update price ──
-  var priceEl = document.getElementById('vc-p-' + cardIndex);
-  var oldEl   = document.getElementById('vc-op-' + cardIndex);
-  var saveEl  = document.getElementById('vc-save-' + cardIndex);
-  if (priceEl) priceEl.textContent = 'KES ' + v.price.toLocaleString();
-  if (oldEl)   oldEl.textContent   = v.oldPrice ? 'KES ' + v.oldPrice.toLocaleString() : '';
-  if (saveEl) {
-    var pct = savingsPercent(v.price, v.oldPrice);
-    saveEl.innerHTML = pct > 0 ? '<span class="vc-save">SAVE ' + pct + '%</span>' : '';
-  }
-
-  // ── Update variant label ──
-  var labelEl = document.getElementById('vc-label-' + cardIndex);
-  if (labelEl) labelEl.innerHTML = 'Design: <span>' + v.name + '</span>';
-
-  // ── Update buy button price + data ──
-  var buyBtn = document.querySelector('[data-variant-card="' + cardIndex + '"].buy-btn');
-  if (buyBtn) buyBtn.setAttribute('data-price', v.price);
-
-  // ── Update active tab style ──
-  var tabs = document.querySelectorAll('#vc-tabs-' + cardIndex + ' .vc-tab');
-  tabs.forEach(function(tab, ti) {
-    tab.classList.toggle('vc-active', ti === vi);
-  });
-
-  // ── Reset selection hint ──
-  var hint = document.getElementById('selection-hint-' + cardIndex);
-  if (hint) { hint.textContent = ''; }
-  if (selectedOptions[cardIndex]) {
-    selectedOptions[cardIndex].size  = null;
-    selectedOptions[cardIndex].color = null;
-  }
+  if (variants) vcSelectVariant(cardIndex, vi, variants);
 };
 
 // ============================================================
@@ -1082,10 +1281,14 @@ document.addEventListener('click', function(e) {
     if (isVC) {
       var vcIdx = parseInt(el.getAttribute('data-variant-card'));
       var vi    = selectedVariants[vcIdx] || 0;
-      var labelEl = document.getElementById('vc-label-' + vcIdx);
-      if (labelEl) {
-        var span = labelEl.querySelector('span');
-        if (span) variantName = span.textContent;
+      /* V2: read from vc-selname-text element */
+      var selnameEl = document.getElementById('vc-selname-text-' + vcIdx);
+      if (selnameEl) {
+        variantName = selnameEl.textContent;
+      } else {
+        /* Legacy fallback: vc-label span */
+        var labelEl = document.getElementById('vc-label-' + vcIdx);
+        if (labelEl) { var span = labelEl.querySelector('span'); if (span) variantName = span.textContent; }
       }
     }
 
@@ -1222,8 +1425,7 @@ document.addEventListener('click', function(e) {
     document.addEventListener('DOMContentLoaded', initPromoBanner);
   } else { initPromoBanner(); }
 })();
-
-// ============================================================
+/ ============================================================
 //  SMART PAYMENT MODAL
 //  Now shows variant design name when present
 // ============================================================
@@ -1237,7 +1439,7 @@ window.openPaymentModal = function() {
       '<div style="background:#0a1128;border:1px solid rgba(255,215,0,0.2);border-radius:12px;padding:14px;margin-bottom:16px;">' +
         '<div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Order Summary</div>' +
         '<div style="font-weight:700;color:#fff;margin-bottom:4px;">' + order.title + '</div>' +
-        (order.variant ? '<div style="font-size:13px;color:#ffd700;">Design: ' + order.variant + '</div>' : '') +
+        (order.variant ? '<div style="font-size:13px;color:#ffd700;">Variant: ' + order.variant + '</div>' : '') +
         (order.size && order.size !== 'N/A' ? '<div style="font-size:13px;color:#94a3b8;">Size: ' + order.size + '</div>' : '') +
         (order.color && order.color !== 'N/A' ? '<div style="font-size:13px;color:#94a3b8;">Colour: ' + order.color + '</div>' : '') +
         '<div style="font-size:20px;font-weight:800;color:#ffd700;margin-top:8px;">KES ' + (order.price || 0).toLocaleString() + '</div>' +
@@ -1247,9 +1449,9 @@ window.openPaymentModal = function() {
   var waOrder = encodeURIComponent(
     '🛒 *COZYCABIN ORDER*\n\n' +
     'Product: ' + (order.title   || '') + '\n' +
-    (order.variant ? 'Design: '  + order.variant + '\n' : '') +
-    'Size: '    + (order.size    || 'N/A') + '\n' +
-    'Colour: '  + (order.color   || 'N/A') + '\n' +
+    (order.variant ? 'Variant: '  + order.variant + '\n' : '') +
+    (order.size && order.size !== 'N/A' ? 'Size: ' + order.size + '\n' : '') +
+    (order.color && order.color !== 'N/A' && order.color !== order.variant ? 'Colour: ' + order.color + '\n' : '') +
     'Price: KES ' + (order.price || 0).toLocaleString() + '\n' +
     (order.ref ? 'Ref: ' + order.ref + '\n' : '') +
     '\nPlease confirm delivery details. 🙏'
@@ -1418,8 +1620,8 @@ function cozyyCopy(text, btnId) {
       }
     }
   };
-
-  // Fix slide position on screen rotate / resize
+  
+ // Fix slide position on screen rotate / resize
   window.addEventListener('resize', function () {
     document.querySelectorAll('.cc-gallery').forEach(function (gal) {
       var current = parseInt(gal.getAttribute('data-current') || '0');
@@ -1437,278 +1639,10 @@ function cozyyCopy(text, btnId) {
 })();
 // ============================================================
 //  COZYCABIN UPGRADE — products-upgrade.js
-//  PASTE THIS FILE AT THE VERY BOTTOM OF products.js
-//  ──────────────────────────────────────────────────────────
-//  Adds:
-//    • Feature 1 — Variant Product Card  (productType:"variant")
-//    • Feature 2 — Similar Products strip
-//
-//  Does NOT touch any existing functions, variables, products,
-//  gallery, swipe, video, cart, modals, or WhatsApp flow.
+//  V2: renderVariantCard, vcSelectVariant, and variant CSS
+//  are now defined above (single unified implementation).
+//  This section retains: Similar Products + showProducts patch.
 // ============================================================
-
-// ============================================================
-//  FEATURE 1 — VARIANT PRODUCT CARD
-//  ──────────────────────────────────────────────────────────
-//  A Variant product looks like:
-//  {
-//    title: "Premium Hotpot Collection",
-//    productType: "variant",
-//    variants: [
-//      { name:"Gold Design",   price:3300, oldPrice:4000, image:"Images/hotpot-gold.webp" },
-//      { name:"Floral Design", price:2999, oldPrice:3500, image:"Images/hotpot-floral.webp" },
-//      { name:"Luxury Design", price:3800, oldPrice:4500, image:"Images/hotpot-luxury.webp" }
-//    ]
-//  }
-//
-//  All other product fields (description, video, badge, etc.)
-//  are still supported alongside variants.
-// ============================================================
-
-/* ── CSS for variant card (injected once) ── */
-(function injectVariantCSS() {
-  if (document.getElementById('cc-variant-style')) return;
-  var s = document.createElement('style');
-  s.id = 'cc-variant-style';
-  s.textContent = [
-    /* variant selector row */
-    '.cc-variant-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 6px;}',
-    '.cc-variant-btn{',
-    '  display:flex;flex-direction:column;align-items:center;gap:4px;',
-    '  border:2px solid rgba(255,215,0,0.25);border-radius:10px;',
-    '  background:rgba(10,17,40,0.7);padding:6px 10px;cursor:pointer;',
-    '  transition:border-color .18s,background .18s;min-width:72px;',
-    '}',
-    '.cc-variant-btn:hover{border-color:rgba(255,215,0,0.6);background:rgba(255,215,0,0.07);}',
-    '.cc-variant-btn.cc-var-active{border-color:#ffd700;background:rgba(255,215,0,0.13);}',
-    '.cc-variant-thumb{width:52px;height:52px;border-radius:7px;object-fit:cover;display:block;pointer-events:none;}',
-    '.cc-variant-label{font-size:10px;font-weight:700;color:#cbd5e1;text-align:center;line-height:1.2;max-width:68px;',
-    '  white-space:normal;word-break:break-word;}',
-    '.cc-variant-btn.cc-var-active .cc-variant-label{color:#ffd700;}',
-    /* animated price swap */
-    '.cc-var-price-wrap{transition:opacity .18s;opacity:1;}',
-    '.cc-var-price-wrap.cc-fading{opacity:0;}',
-    /* selected design name tag */
-    '.cc-var-selected-name{',
-    '  display:inline-block;font-size:11px;font-weight:700;',
-    '  background:rgba(255,215,0,0.12);color:#ffd700;',
-    '  border:1px solid rgba(255,215,0,0.3);border-radius:20px;',
-    '  padding:3px 12px;margin-bottom:6px;letter-spacing:0.04em;',
-    '}',
-    /* variant main image */
-    '.cc-var-main-img{',
-    '  width:100%;border-radius:14px;object-fit:cover;display:block;',
-    '  aspect-ratio:1/1;transition:opacity .22s;',
-    '}',
-    '.cc-var-main-img.cc-img-fade{opacity:0;}',
-    '.cc-var-img-wrap{position:relative;width:100%;margin-bottom:10px;border-radius:14px;overflow:hidden;background:#0a0f1e;}'
-  ].join('');
-  document.head.appendChild(s);
-})();
-
-/* ── renderVariantCard ── */
-function renderVariantCard(product, index) {
-  if (!product.variants || !product.variants.length) return null;
-
-  var card = document.createElement('div');
-  card.className = 'product-card';
-  card.setAttribute('data-product-index', index);
-
-  var firstVar = product.variants[0];
-
-  /* ── image area ── */
-  var imgWrap = document.createElement('div');
-  imgWrap.className = 'cc-var-img-wrap';
-
-  var mainImg = document.createElement('img');
-  mainImg.className = 'cc-var-main-img';
-  mainImg.src = firstVar.image || '';
-  mainImg.alt = product.title;
-  mainImg.loading = 'lazy';
-  mainImg.id = 'cc-var-img-' + index;
-  imgWrap.appendChild(mainImg);
-
-  card.appendChild(imgWrap);
-
-  /* ── selected design name ── */
-  var nameTag = document.createElement('div');
-  nameTag.className = 'cc-var-selected-name';
-  nameTag.id = 'cc-var-name-' + index;
-  nameTag.textContent = firstVar.name;
-  card.appendChild(nameTag);
-
-  /* ── title ── */
-  var h2 = document.createElement('h2');
-  h2.className = 'product-title';
-  h2.textContent = product.title;
-  card.appendChild(h2);
-
-  /* ── company ── */
-  if (product.company) {
-    var co = document.createElement('p');
-    co.className = 'company-name';
-    co.textContent = product.company;
-    card.appendChild(co);
-  }
-
-  /* ── description ── */
-  if (product.description) {
-    var desc = document.createElement('p');
-    desc.className = 'product-description';
-    desc.textContent = product.description;
-    card.appendChild(desc);
-  }
-
-  /* ── price box ── */
-  var pct = savingsPercent(firstVar.price, firstVar.oldPrice);
-  var priceWrap = document.createElement('div');
-  priceWrap.id = 'cc-var-price-' + index;
-  priceWrap.className = 'price-box cc-var-price-wrap';
-  priceWrap.innerHTML =
-    '<span class="new-price" id="cc-var-newp-' + index + '">KES ' + (firstVar.price || 0).toLocaleString() + '</span>' +
-    '<span class="old-price" id="cc-var-oldp-' + index + '">KES ' + (firstVar.oldPrice || 0).toLocaleString() + '</span>' +
-    (pct > 0 ? '<span class="savings-badge" id="cc-var-badge-' + index + '">SAVE ' + pct + '%</span>' : '<span class="savings-badge" id="cc-var-badge-' + index + '" style="display:none;"></span>');
-  card.appendChild(priceWrap);
-
-  /* ── variant selector ── */
-  var varLabel = document.createElement('div');
-  varLabel.style.cssText = 'font-size:12px;font-weight:700;color:#94a3b8;margin:8px 0 2px;text-transform:uppercase;letter-spacing:0.06em;';
-  varLabel.textContent = 'Select Design';
-  card.appendChild(varLabel);
-
-  var varRow = document.createElement('div');
-  varRow.className = 'cc-variant-row';
-  varRow.id = 'cc-varrow-' + index;
-
-  product.variants.forEach(function(v, vi) {
-    var btn = document.createElement('button');
-    btn.className = 'cc-variant-btn' + (vi === 0 ? ' cc-var-active' : '');
-    btn.setAttribute('data-vi', vi);
-    btn.setAttribute('data-pidx', index);
-
-    var thumb = document.createElement('img');
-    thumb.className = 'cc-variant-thumb';
-    thumb.src = v.image || '';
-    thumb.alt = v.name;
-    thumb.loading = 'lazy';
-
-    var lbl = document.createElement('span');
-    lbl.className = 'cc-variant-label';
-    lbl.textContent = v.name;
-
-    btn.appendChild(thumb);
-    btn.appendChild(lbl);
-    varRow.appendChild(btn);
-
-    btn.addEventListener('click', function() {
-      ccSelectVariant(index, vi, product.variants);
-    });
-  });
-
-  card.appendChild(varRow);
-
-  /* ── hint ── */
-  var hint = document.createElement('p');
-  hint.className = 'selection-hint';
-  hint.id = 'selection-hint-' + index;
-  card.appendChild(hint);
-
-  /* ── buy button ── */
-  var buyBtn = document.createElement('button');
-  buyBtn.className = 'buy-btn';
-  buyBtn.setAttribute('data-index', index);
-  buyBtn.setAttribute('data-title', product.title);
-  buyBtn.setAttribute('data-price', firstVar.price);
-  buyBtn.setAttribute('data-variant-mode', '1');
-  buyBtn.id = 'cc-var-buybtn-' + index;
-  buyBtn.textContent = '🛒 Order via WhatsApp';
-
-  buyBtn.addEventListener('click', function() {
-    var v = product.variants[window._ccSelectedVariant && window._ccSelectedVariant[index] !== undefined ? window._ccSelectedVariant[index] : 0];
-    window._pendingOrder = {
-      title: product.title + ' — ' + v.name,
-      size:  'N/A',
-      color: v.name,
-      price: v.price,
-      ref:   localStorage.getItem('referralCode')
-    };
-    window.openPaymentModal();
-  });
-
-  card.appendChild(buyBtn);
-
-  /* ── cart button ── */
-  var cartBtn = document.createElement('button');
-  cartBtn.className = 'cart-btn';
-  cartBtn.textContent = '🛍️ Add to Cart';
-  card.appendChild(cartBtn);
-
-  /* ── details ── */
-  var details = document.createElement('details');
-  details.className = 'details-box';
-  details.innerHTML = '<summary>📋 More Details</summary><p style="margin-top:10px;">Premium quality product. Comfortable, durable and stylish. Nationwide delivery available via G4S, Simba Coach, Tahmeed and more.</p>';
-  card.appendChild(details);
-
-  /* ── similar products placeholder ── */
-  var simContainer = document.createElement('div');
-  simContainer.className = 'cc-similar-wrap';
-  simContainer.id = 'cc-sim-' + index;
-  card.appendChild(simContainer);
-
-  return card;
-}
-
-/* ── Switch variant: update image, name, price ── */
-window.ccSelectVariant = function(pidx, vi, variants) {
-  if (!variants || vi >= variants.length) return;
-  if (!window._ccSelectedVariant) window._ccSelectedVariant = {};
-  window._ccSelectedVariant[pidx] = vi;
-
-  var v = variants[vi];
-
-  /* Image fade */
-  var img = document.getElementById('cc-var-img-' + pidx);
-  if (img) {
-    img.classList.add('cc-img-fade');
-    setTimeout(function() {
-      img.src = v.image || '';
-      img.classList.remove('cc-img-fade');
-    }, 200);
-  }
-
-  /* Name tag */
-  var nameTag = document.getElementById('cc-var-name-' + pidx);
-  if (nameTag) nameTag.textContent = v.name;
-
-  /* Price fade */
-  var pw = document.getElementById('cc-var-price-' + pidx);
-  if (pw) pw.classList.add('cc-fading');
-  setTimeout(function() {
-    var newp  = document.getElementById('cc-var-newp-' + pidx);
-    var oldp  = document.getElementById('cc-var-oldp-' + pidx);
-    var badge = document.getElementById('cc-var-badge-' + pidx);
-    if (newp) newp.textContent = 'KES ' + (v.price || 0).toLocaleString();
-    if (oldp) oldp.textContent = 'KES ' + (v.oldPrice || 0).toLocaleString();
-    var pct = savingsPercent(v.price, v.oldPrice);
-    if (badge) {
-      if (pct > 0) { badge.textContent = 'SAVE ' + pct + '%'; badge.style.display = ''; }
-      else { badge.style.display = 'none'; }
-    }
-    if (pw) pw.classList.remove('cc-fading');
-  }, 180);
-
-  /* Buy button price */
-  var buyBtn = document.getElementById('cc-var-buybtn-' + pidx);
-  if (buyBtn) buyBtn.setAttribute('data-price', v.price);
-
-  /* Active thumb */
-  var row = document.getElementById('cc-varrow-' + pidx);
-  if (row) {
-    row.querySelectorAll('.cc-variant-btn').forEach(function(btn) {
-      btn.classList.toggle('cc-var-active', parseInt(btn.getAttribute('data-vi')) === vi);
-    });
-  }
-};
 
 // ============================================================
 //  FEATURE 2 — SIMILAR PRODUCTS
@@ -1823,8 +1757,7 @@ var CC_RELATED = {
   ].join('');
   document.head.appendChild(s);
 })();
-
-/* ── Collect candidates for similar products ── */
+* ── Collect candidates for similar products ── */
 function ccGetSimilar(currentCategory, currentIndex) {
   var results = [];
   var seen    = {};
@@ -1915,22 +1848,17 @@ function ccBuildSimilar(containerId, currentCategory, currentIndex) {
 }
 
 // ============================================================
-//  PATCH showProducts — hook in Variant + Similar rendering
+//  PATCH showProducts — inject Similar Products strip
 //  ──────────────────────────────────────────────────────────
-//  Wraps the EXISTING showProducts without replacing it.
-//  Strategy:
-//    • Let the original showProducts run first (handles all
-//      standard cards, categories, positioning, scroll)
-//    • Then, for any product with productType:"variant",
-//      SWAP the standard card the original created with a
-//      proper variant card built by renderVariantCard()
-//    • Then inject similar products strip into every card
+//  V2: Variant cards are now rendered directly inside
+//  showProducts (no swap needed). This patch only adds the
+//  similar products strip to every card after rendering.
 // ============================================================
 (function patchShowProducts() {
   var _originalShowProducts = window.showProducts;
 
   window.showProducts = function(category) {
-    /* ① Run original — builds all standard cards as before */
+    /* ① Run original — renders all cards (standard + variant) */
     _originalShowProducts(category);
 
     var container = document.getElementById('products-container');
@@ -1939,23 +1867,10 @@ function ccBuildSimilar(containerId, currentCategory, currentIndex) {
     var categoryProducts = products[category];
     if (!categoryProducts || !categoryProducts.length) return;
 
-    /* ② Walk each product — swap variant cards, then inject similar */
-    var cards = container.querySelectorAll('.product-card');
+    /* ② Inject similar products strip into every card */
+    var allCards = container.querySelectorAll('.product-card');
 
     categoryProducts.forEach(function(product, index) {
-
-      /* ── VARIANT SWAP ── */
-      if (product.productType === 'variant' && product.variants && product.variants.length) {
-        var originalCard = cards[index];
-        var variantCard  = renderVariantCard(product, index);
-        if (variantCard && originalCard) {
-          container.replaceChild(variantCard, originalCard);
-        }
-      }
-
-      /* ── SIMILAR PRODUCTS ── */
-      /* Re-query cards after possible replacement */
-      var allCards = container.querySelectorAll('.product-card');
       var targetCard = allCards[index];
       if (!targetCard) return;
 
@@ -1967,7 +1882,6 @@ function ccBuildSimilar(containerId, currentCategory, currentIndex) {
         targetCard.appendChild(simWrap);
       }
 
-      /* Build similar products strip */
       ccBuildSimilar('cc-sim-' + category + '-' + index, category, index);
     });
   };
@@ -1987,3 +1901,14 @@ window.cozyyCopy = cozyyCopy
 
     
     
+
+
+
+
+
+
+
+
+
+  
+                                                   }
