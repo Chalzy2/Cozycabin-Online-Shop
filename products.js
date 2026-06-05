@@ -221,8 +221,8 @@ var products = {
       }
     ],
   cutlery: [
-  cutlery: [
- {
+  
+     {
        title: "Silicone Spoons", company: "Kitchen",
       price: 1499, oldPrice: 2000, sizes: [],
       colors: ["Black","Grey"],
