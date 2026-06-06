@@ -289,65 +289,63 @@ var products = {
   ],
   hotpots: [
   {
-    title: "Set of 4 Linex Hotpots",
-    company: "Kitchen",
-    productType: "standard",
-    price: 4999,
-    oldPrice: 6249,
-    discountRange: {
-      twentyPercentOff: 3999,
-      thirtyNinePercentOff: 3049
+       title: "Set of 4 Linex Hotpots",
+       company: "Kitchen",
+       productType: "standard",
+       price: 4999,
+       oldPrice: 6249,
+       discountRange: {
+       twentyPercentOff: 3999,
+       thirtyNinePercentOff: 3049
     },
-    capacities: ["1000ml", "1500ml", "2500ml", "3500ml"],
-    colors: ["White", "Cream", "Beige"],
-    description: "Set of 4 elegant Linex Hotpots for everyday use. Features include discrete pinhole filter and temperature indication.",
-    contact: "0702468460",
-    video: "",
-    images: [
+       capacities: ["1000ml", "1500ml", "2500ml", "3500ml"],
+       colors: ["White", "Cream", "Beige"],
+       description: "Set of 4 elegant Linex Hotpots for everyday use. Features include discrete pinhole filter and temperature indication.",
+       contact: "0702468460",
+       video: "",
+       images: [
       "Images/4pscLinexhpwhite.webp",
       "Images/4pscLinexhpi.webp",
       "Images/4pscLinexhpw.webp"
     ]
-  },
-
-  {
-    title: "Goldstar Hotpots 4pcs",
-    company: "Kitchen",
-    productType: "standard",
-    price: 5500,
-    oldPrice: 6875,
-    discountRange: {
-      twentyPercentOff: 4400,
-      thirtyNinePercentOff: 3355
     },
-    capacities: ["1000ml", "1500ml", "2500ml", "3500ml"],
-    colors: ["White", "Mint Green", "Grey"],
-    description: "Goldstar Hotpots 4pcs. Features include discrete pinhole filter and temperature indication.",
-    contact: "0702468460",
-    video: "",
-    images: [
+    {
+       title: "Goldstar Hotpots 4pcs",
+       company: "Kitchen",
+       productType: "standard",
+       price: 5500,
+       oldPrice: 6875,
+       discountRange: {
+       twentyPercentOff: 4400,
+       thirtyNinePercentOff: 3355
+    },
+       capacities: ["1000ml", "1500ml", "2500ml", "3500ml"],
+       colors: ["White", "Mint Green", "Grey"],
+       description: "Goldstar Hotpots 4pcs. Features include discrete pinhole filter and temperature indication.",
+       contact: "0702468460",
+       video: "",
+       images: [
       "Images/4pschotpgoldstarw.webp",
       "Images/4pschotpgoldstarg.webp",
       "Images/4pschotpgoldstar.webp"
     ]
-  },
-
-  {
-    title: "Turkish Hot Pots",
-    company: "Cozycabin",
-    productType: "standard",
-    price: 5499,
-    oldPrice: 6874,
-    discountRange: {
+   },
+   {
+      title: "Turkish Hot Pots",
+      company: "Cozycabin",
+      productType: "standard",
+      price: 5499,
+      oldPrice: 6874,
+      discountRange: {
       twentyPercentOff: 4399,
       thirtyNinePercentOff: 3354
     },
-    capacities: ["1000ml", "1500ml", "2500ml", "3500ml"],
-    colors: ["Marble Brown", "Marble White"],
-    description: "Perfect excellent quality Turkish insulated hot pots. Features include discrete pinhole filter and temperature indication.",
-    contact: "0702468460",
-    video: "",
-    images: [
+      capacities: ["1000ml", "1500ml", "2500ml", "3500ml"],
+      colors: ["Marble Brown", "Marble White"],
+      description: "Perfect excellent quality Turkish insulated hot pots. Features include discrete pinhole filter and temperature indication.",
+      contact: "0702468460",
+      video: "",
+      images: [
       "Images/4pschotpturkish1.webp",
       "Images/4pschotpturkish.webp"
     ]
