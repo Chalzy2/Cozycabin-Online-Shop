@@ -334,7 +334,7 @@ var products = {
   capacities: ["1.0 litre", "1.5 litres", "2.5 litres", "3.5 litres"],
   description: "Perfect excellent quality Turkish insulated hot pots. Features include discrete pinhole filter and temperature indication.",
   contact: "0702468460",
-  images: ["Images/4pschotpturkish.webp", "Images/5515444pschotpturkish.webp"]
+  images: ["Images/4pschotpturkish .webp", "Images/5515444pschotpturkish.webp"]
     }
     ],
   
