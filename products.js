@@ -409,7 +409,7 @@ var products = {
       ]
      }
     ],
-  flask :[
+  flasks: [
     {
        title: "Vacuum Flask Collection",
        company: "Kitchen",
@@ -421,28 +421,28 @@ var products = {
       price: 750,
       oldPrice: 1500, 
       description: "Durable stainless steel vacuum flask with carrying strap.",
-      image: "Images/548798.webp"
+      images: "Images/548798.webp"
     },
     {
       name: "6021 Temperature Flask 500ml",
       price: 550,
       oldPrice: 1000,
       description: "Stylish temperature display vacuum flask.",
-      image: "Images/553404Flsktc.webp","Images/553383Flsktc.webp","Images/553386Flsktc.webp","Images/550062.webp","Images/548799.webp"
+      images: "Images/553404Flsktc.webp","Images/553383Flsktc.webp","Images/553386Flsktc.webp","Images/550062.webp","Images/548799.webp"
     },
     {
       name: "Temperature Flask 500ml",
       price: 700,
       oldPrice: 1500,
       description: "Digital temperature display vacuum flask.",
-      image: "Images/temp-500ml.webp"
+      images: "Images/temp-500ml.webp"
     },
     {
       name: "Temperature Flask 800ml",
       price: 900,
       oldPrice: 1800,
       description: "Large capacity temperature display vacuum flask.",
-      image: "Images/548800.webp","Images/548799.webp",Images/553383Flsktc.webp","Images/548800.webp","Images/548799.webp","Images/548799.webp"
+      images: "Images/548800.webp","Images/548799.webp",Images/553383Flsktc.webp","Images/548800.webp","Images/548799.webp","Images/548799.webp"
     }
     },
     {
@@ -450,38 +450,38 @@ var products = {
       price: 1000,
       oldPrice: 1800,
       description: "Extra large temperature display vacuum flask.",
-      image: "Images/553404Flsktc.webp","Images/553383Flsktc.webp","Images/553386Flsktc.webp","Images/548800.webp","Images/548799.webp"
+      images: "Images/553404Flsktc.webp","Images/553383Flsktc.webp","Images/553386Flsktc.webp","Images/548800.webp","Images/548799.webp"
     },
     {
       name: "TC Vacuum Flask 500ml",
       price: 600,
       oldPrice: 1200,
       description: "Premium TC stainless steel flask.",
-      image: "Images/553763Flsktc.webp","Images/553764Flsktc.webp","Images/553769Flsktc.webp"
+      images: "Images/553763Flsktc.webp","Images/553764Flsktc.webp","Images/553769Flsktc.webp"
     },
     {
       name: "TC Vacuum Flask 600ml",
       price: 750,
       oldPrice: 1500,
       description: "TC insulated flask with larger capacity.",
-      image: "Images/tc-600ml.webp"
+      images: "Images/tc-600ml.webp"
     },
     {
       name: "Muchen Vacuum Flask 800ml",
       price: 900,
       oldPrice: 1600,
       description: "Elegant Muchen insulated flask.",
-      image: "Images/551394Flsk.webp","Images/551378Flsk.webp"
+      images: "Images/551394Flsk.webp","Images/551378Flsk.webp"
     },
     {
       name: "Muchen Vacuum Flask 1000ml",
       price: 1000,
       oldPrice: 2300,
       description: "Large capacity Muchen vacuum flask.",
-      image: "Images/551394Flsk.webp","Images/551378Flsk.webp","Images/551258.webp"
+      images: "Images/551394Flsk.webp","Images/551378Flsk.webp","Images/551258.webp"
     }
   ]
- }
+ 
 ],
   // ── Placeholders — add products + video fields later ──
   
