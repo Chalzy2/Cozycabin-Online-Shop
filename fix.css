@@ -1786,3 +1786,7 @@ body {
   display: block !important;
   border: none !important;
 }
+.minor-menu.open {
+  display: block !important;
+  contain: none !important;
+}
