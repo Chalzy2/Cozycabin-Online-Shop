@@ -268,7 +268,7 @@ var products = {
         price: 350,
         oldPrice: 500,
         description: "Heavy gauge 6psc table spoon silver",
-        image: "Images/Spoonsetsil-2.webp"
+        image: "Images/Spoonsilv.webp"
       },
       {
         name: "6PCS Gold Knife Set",
