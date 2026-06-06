@@ -288,7 +288,7 @@ var products = {
     }
   ],
   hotpots: [
-  {
+     {
        title: "Set of 4 Linex Hotpots",
        company: "Kitchen",
        productType: "standard",
