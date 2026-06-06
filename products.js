@@ -637,21 +637,26 @@ function attachSwipe(galId, pidx) {
   var s = document.createElement('style');
   s.id = 'cc-variant-style';
   s.textContent = [
-    '.cc-vsel-label{font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.08em;margin:10px 0 6px;}',
-    '.cc-vsel-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;}',
-    '.cc-vsel-btn{display:flex;flex-direction:column;align-items:center;gap:3px;',
-    '  border:2px solid rgba(255,215,0,0.22);border-radius:10px;',
-    '  background:rgba(10,17,40,0.75);padding:5px 7px;cursor:pointer;',
-    '  transition:border-color .18s,background .18s,transform .15s;min-width:64px;max-width:80px;}',
-    '.cc-vsel-btn:hover{border-color:rgba(255,215,0,0.6);background:rgba(255,215,0,0.08);transform:translateY(-1px);}',
-    '.cc-vsel-btn:active{transform:scale(0.96);}',
-    '.cc-vsel-btn.cc-vsel-active{border-color:#ffd700;background:rgba(255,215,0,0.13);}',
-    '.cc-vsel-thumb{width:48px;height:48px;border-radius:7px;object-fit:cover;display:block;pointer-events:none;}',
-    '.cc-vsel-name{font-size:9px;font-weight:700;color:#cbd5e1;text-align:center;line-height:1.2;max-width:68px;white-space:normal;word-break:break-word;}',
-    '.cc-vsel-btn.cc-vsel-active .cc-vsel-name{color:#ffd700;}',
+    /* ── Price-bar thumbnail row (replaces standard cc-thumbrow for variant cards) ── */
+    '.vc-pricebar{display:flex;flex-direction:row;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;',
+    '  scrollbar-width:none;padding:0;margin:0;background:transparent;}',
+    '.vc-pricebar::-webkit-scrollbar{display:none;}',
+    '.vc-pb-btn{display:flex;flex-direction:column;align-items:center;gap:0;flex-shrink:0;',
+    '  width:calc(20% - 0px);min-width:72px;max-width:110px;',
+    '  border:none;border-bottom:3px solid transparent;',
+    '  background:transparent;padding:0;cursor:pointer;',
+    '  transition:border-color .18s,background .18s;}',
+    '.vc-pb-btn:active{opacity:0.8;}',
+    '.vc-pb-btn.vc-pb-active{border-bottom-color:#ffd700;background:rgba(255,215,0,0.06);}',
+    '.vc-pb-img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;pointer-events:none;}',
+    '.vc-pb-price{font-size:11px;font-weight:700;color:#94a3b8;text-align:center;',
+    '  padding:5px 2px 6px;line-height:1;white-space:nowrap;}',
+    '.vc-pb-btn.vc-pb-active .vc-pb-price{color:#ffd700;}',
+    /* ── Selected variant name pill ── */
     '.cc-vsel-selected{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#ffd700;',
     '  background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.28);border-radius:20px;padding:4px 12px;margin-bottom:8px;}',
     '.cc-vsel-badge{font-size:9px;font-weight:800;background:#ffd700;color:#000;border-radius:10px;padding:1px 6px;margin-left:2px;}',
+    /* ── Price row ── */
     '.cc-vpr-wrap{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:6px;transition:opacity .18s;}',
     '.cc-vpr-wrap.cc-vpr-fade{opacity:0;}',
     '.cc-vpr-new{font-size:20px;font-weight:800;color:#ffd700;}',
@@ -676,12 +681,13 @@ function vcBuildSlides(v) {
   return slides;
 }
 
-/* ── Build gallery HTML string from slides ── */
-function vcBuildGalleryHTML(slides, galId, pidx) {
+/* ── Build gallery HTML string from slides ──
+   Pass variants[] to get a price-bar thumb row (one button per variant).
+   Omit variants to get standard per-image thumb row.                     */
+function vcBuildGalleryHTML(slides, galId, pidx, variants) {
   var total = slides.length;
-  var trackHTML = '', thumbHTML = '', dotsHTML = '';
+  var trackHTML = '', dotsHTML = '';
   slides.forEach(function(slide, si) {
-    var active = si === 0 ? ' cc-th-active' : '';
     if (slide.type === 'video') {
       trackHTML +=
         '<div class="cc-slide" style="flex:0 0 100%;min-width:100%;width:100%;height:100%;position:relative;overflow:hidden;box-sizing:border-box;">' +
@@ -694,18 +700,46 @@ function vcBuildGalleryHTML(slides, galId, pidx) {
           '</div>' +
           '<span class="cc-vid-badge" id="cc-badge-' + pidx + '">⏳ Loading</span>' +
         '</div>';
-      thumbHTML += '<div class="cc-thumb' + active + '" onclick="ccGoTo(\'' + galId + '\',' + si + ',' + pidx + ')">' +
-        '<video src="' + slide.src + '" muted preload="none" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>' +
-        '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.38);">' +
-          '<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#ffd700;"><polygon points="5,3 19,12 5,21"/></svg></div></div>';
     } else {
       trackHTML += '<div class="cc-slide" style="flex:0 0 100%;min-width:100%;width:100%;height:100%;box-sizing:border-box;">' +
-        '<img src="' + slide.src + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>';
-      thumbHTML += '<div class="cc-thumb' + active + '" onclick="ccGoTo(\'' + galId + '\',' + si + ',' + pidx + ')">' +
         '<img src="' + slide.src + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>';
     }
     dotsHTML += '<span class="cc-dot' + (si === 0 ? ' cc-dot-active' : '') + '"></span>';
   });
+
+  /* ── Thumb row: price-bar (variant mode) or standard per-image ── */
+  var thumbRowHTML = '';
+  if (variants && variants.length) {
+    var pbHTML = '';
+    variants.forEach(function(v, vi) {
+      var src = (v.images && v.images[0]) || v.image || '';
+      var label = v.price ? 'KES\u00a0' + Number(v.price).toLocaleString() : '';
+      pbHTML +=
+        '<button class="vc-pb-btn' + (vi === 0 ? ' vc-pb-active' : '') + '" ' +
+                'id="vc-pb-' + pidx + '-' + vi + '" ' +
+                'data-pidx="' + pidx + '" data-vi="' + vi + '">' +
+          (src ? '<img class="vc-pb-img" src="' + src + '" loading="lazy" alt="' + v.name + '">' : '') +
+          '<span class="vc-pb-price">' + label + '</span>' +
+        '</button>';
+    });
+    thumbRowHTML = '<div class="vc-pricebar" id="cc-thumbrow-' + galId + '">' + pbHTML + '</div>';
+  } else {
+    var thumbHTML = '';
+    slides.forEach(function(slide, si) {
+      var active = si === 0 ? ' cc-th-active' : '';
+      if (slide.type === 'video') {
+        thumbHTML += '<div class="cc-thumb' + active + '" onclick="ccGoTo(\'' + galId + '\',' + si + ',' + pidx + ')">' +
+          '<video src="' + slide.src + '" muted preload="none" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>' +
+          '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.38);">' +
+            '<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#ffd700;"><polygon points="5,3 19,12 5,21"/></svg></div></div>';
+      } else {
+        thumbHTML += '<div class="cc-thumb' + active + '" onclick="ccGoTo(\'' + galId + '\',' + si + ',' + pidx + ')">' +
+          '<img src="' + slide.src + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>';
+      }
+    });
+    thumbRowHTML = '<div class="cc-thumbrow" id="cc-thumbrow-' + galId + '">' + thumbHTML + '</div>';
+  }
+
   return '<div class="cc-gallery" id="' + galId + '" data-current="0" data-total="' + total + '" data-pidx="' + pidx + '">' +
     '<div class="cc-viewport" style="position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:14px;">' +
       '<div class="cc-track" id="cc-track-' + galId + '" style="display:flex;flex-direction:row;flex-wrap:nowrap;width:100%;height:100%;position:absolute;top:0;left:0;right:0;bottom:0;transition:transform 0.35s ease;will-change:transform;">' +
@@ -714,7 +748,7 @@ function vcBuildGalleryHTML(slides, galId, pidx) {
       '<div class="cc-counter" id="cc-counter-' + galId + '">1 / ' + total + '</div>' +
       '<div class="cc-dots" id="cc-dots-' + galId + '">' + dotsHTML + '</div>' +
     '</div>' +
-    '<div class="cc-thumbrow" id="cc-thumbrow-' + galId + '">' + thumbHTML + '</div>' +
+    thumbRowHTML +
   '</div>';
 }
 
@@ -729,19 +763,8 @@ function renderVariantCard(product, index) {
   var first  = variants[0];
   var galId  = 'vc-gal-' + index;
   var slides = vcBuildSlides(first);
-  var galHTML = vcBuildGalleryHTML(slides, galId, index);
+  var galHTML = vcBuildGalleryHTML(slides, galId, index, variants);
   var pct0   = savingsPercent(first.price, first.oldPrice);
- /* Compact selector buttons */
-  var selHTML = '';
-  variants.forEach(function(v, vi) {
-    var thumbSrc = (v.images && v.images[0]) || v.image || '';
-    var shortName = v.name.replace(product.title, '').trim() || v.name;
-    selHTML +=
-      '<button class="cc-vsel-btn' + (vi === 0 ? ' cc-vsel-active' : '') + '" data-pidx="' + index + '" data-vi="' + vi + '">' +
-        (thumbSrc ? '<img class="cc-vsel-thumb" src="' + thumbSrc + '" loading="lazy" alt="' + v.name + '">' : '') +
-        '<span class="cc-vsel-name">' + shortName + '</span>' +
-      '</button>';
-  });
 
   /* Sizes */
   var sizesSection = '';
@@ -770,24 +793,37 @@ function renderVariantCard(product, index) {
       (pct0 > 0 ? '<span class="cc-vpr-save" id="vc-save-' + index + '">SAVE ' + pct0 + '%</span>' : '<span class="cc-vpr-save" id="vc-save-' + index + '" style="display:none;"></span>') +
     '</div>' +
     (product.description ? '<p class="product-description">' + product.description + '</p>' : '') +
-    '<div class="cc-vsel-label">Select Design (' + variants.length + ' options)</div>' +
-    '<div class="cc-vsel-row" id="vc-selrow-' + index + '">' + selHTML + '</div>' +
     sizesSection +
     '<p id="selection-hint-' + index + '" class="selection-hint"></p>' +
     '<button class="buy-btn" id="vc-buybtn-' + index + '" data-index="' + index + '" data-title="' + product.title.replace(/"/g, '&quot;') + '" data-price="' + first.price + '" data-variant-card="' + index + '">🛒 Order via WhatsApp</button>' +
     '<button class="cart-btn">🛍️ Add to Cart</button>' +
     '<details class="details-box"><summary>📋 More Details</summary><p style="margin-top:10px;">Premium quality product. Nationwide delivery available via G4S, Simba Coach, Tahmeed and more.</p></details>';
 
-  /* Wire selector clicks */
+  /* Wire price-bar clicks + swipe (swipe also switches variant) */
   setTimeout(function() {
-    var row = document.getElementById('vc-selrow-' + index);
-    if (!row) return;
-    row.addEventListener('click', function(e) {
-      var btn = e.target.closest('.cc-vsel-btn');
-      if (!btn) return;
-      vcSelectVariant(parseInt(btn.getAttribute('data-pidx')), parseInt(btn.getAttribute('data-vi')), product.variants);
-    });
+    var pricebar = document.getElementById('cc-thumbrow-' + galId);
+    if (pricebar) {
+      pricebar.addEventListener('click', function(e) {
+        var btn = e.target.closest('.vc-pb-btn');
+        if (!btn) return;
+        vcSelectVariant(parseInt(btn.getAttribute('data-pidx')), parseInt(btn.getAttribute('data-vi')), product.variants);
+      });
+    }
     attachSwipe(galId, index);
+    /* Override swipe next/prev to switch variants */
+    var galEl = document.getElementById(galId);
+    if (galEl) {
+      galEl.addEventListener('cc-swipe-next', function() {
+        var cur = selectedVariants[index] || 0;
+        var next = (cur + 1) % product.variants.length;
+        vcSelectVariant(index, next, product.variants);
+      });
+      galEl.addEventListener('cc-swipe-prev', function() {
+        var cur = selectedVariants[index] || 0;
+        var prev = (cur - 1 + product.variants.length) % product.variants.length;
+        vcSelectVariant(index, prev, product.variants);
+      });
+    }
   }, 0);
 
   return card;
@@ -801,19 +837,17 @@ function vcSelectVariant(pidx, vi, variants) {
   var galId = 'vc-gal-' + pidx;
   var slides = vcBuildSlides(v);
 
-  /* Rebuild gallery track + thumbs */
+  /* Rebuild track slides for new variant (price-bar stays static) */
   var gal      = document.getElementById(galId);
   var trackEl  = document.getElementById('cc-track-' + galId);
-  var thumbEl  = document.getElementById('cc-thumbrow-' + galId);
   var counterEl = document.getElementById('cc-counter-' + galId);
   var dotsEl   = document.getElementById('cc-dots-' + galId);
   if (gal && trackEl) {
     var oldVid = document.getElementById('ccvid-' + pidx);
     if (oldVid) { try { oldVid.pause(); } catch(e2){} }
     var total = slides.length;
-    var trackHTML = '', thumbHTML = '', dotsHTML = '';
+    var trackHTML = '', dotsHTML = '';
     slides.forEach(function(slide, si) {
-      var active = si === 0 ? ' cc-th-active' : '';
       if (slide.type === 'video') {
         trackHTML += '<div class="cc-slide" style="flex:0 0 100%;min-width:100%;width:100%;height:100%;position:relative;overflow:hidden;box-sizing:border-box;">' +
           '<video class="cc-video" id="ccvid-' + pidx + '" src="' + slide.src + '" muted autoplay playsinline preload="auto" ' +
@@ -825,26 +859,27 @@ function vcSelectVariant(pidx, vi, variants) {
           '</div>' +
           '<span class="cc-vid-badge" id="cc-badge-' + pidx + '">⏳ Loading</span>' +
         '</div>';
-        thumbHTML += '<div class="cc-thumb' + active + '" onclick="ccGoTo(\'' + galId + '\',' + si + ',' + pidx + ')">' +
-          '<video src="' + slide.src + '" muted preload="none" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;"></video>' +
-          '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.38);">' +
-            '<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#ffd700;"><polygon points="5,3 19,12 5,21"/></svg></div></div>';
       } else {
         trackHTML += '<div class="cc-slide" style="flex:0 0 100%;min-width:100%;width:100%;height:100%;box-sizing:border-box;">' +
-          '<img src="' + slide.src + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>';
-        thumbHTML += '<div class="cc-thumb' + active + '" onclick="ccGoTo(\'' + galId + '\',' + si + ',' + pidx + ')">' +
           '<img src="' + slide.src + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>';
       }
       dotsHTML += '<span class="cc-dot' + (si === 0 ? ' cc-dot-active' : '') + '"></span>';
     });
     trackEl.style.transform = 'translateX(0)';
     trackEl.innerHTML = trackHTML;
-    if (thumbEl)   thumbEl.innerHTML  = thumbHTML;
     if (counterEl) counterEl.textContent = '1 / ' + total;
-    if (dotsEl)    dotsEl.innerHTML   = dotsHTML;
+    if (dotsEl)    dotsEl.innerHTML = dotsHTML;
     gal.setAttribute('data-current', '0');
     gal.setAttribute('data-total', total);
     attachSwipe(galId, pidx);
+  }
+
+  /* Update active state on price-bar buttons */
+  var pricebar = document.getElementById('cc-thumbrow-' + galId);
+  if (pricebar) {
+    pricebar.querySelectorAll('.vc-pb-btn').forEach(function(btn) {
+      btn.classList.toggle('vc-pb-active', parseInt(btn.getAttribute('data-vi')) === vi);
+    });
   }
 
   /* Name pill */
@@ -878,14 +913,6 @@ function vcSelectVariant(pidx, vi, variants) {
   /* Buy button */
   var buyBtn = document.getElementById('vc-buybtn-' + pidx);
   if (buyBtn) buyBtn.setAttribute('data-price', v.price);
-
-  /* Active selector */
-  var row = document.getElementById('vc-selrow-' + pidx);
-  if (row) {
-    row.querySelectorAll('.cc-vsel-btn').forEach(function(btn) {
-      btn.classList.toggle('cc-vsel-active', parseInt(btn.getAttribute('data-vi')) === vi);
-    });
-  }
 
   /* Reset hint */
   var hint = document.getElementById('selection-hint-' + pidx);
@@ -1109,8 +1136,8 @@ document.addEventListener('click', function(e) {
     selectedOptions[idx2].size = el.getAttribute('data-size');
     updateHint(idx2);
     return;
-    }
- 
+  }
+
   // COLOR BTN
   if (el.classList.contains('color-btn')) {
     var idx3 = el.getAttribute('data-index');
@@ -1282,7 +1309,7 @@ document.addEventListener('click', function(e) {
     var inquireBtn = document.getElementById('promo-btn-inquire');
     if (inquireBtn) { inquireBtn.addEventListener('click', function() { document.getElementById('promo-step-1').style.display='none'; document.getElementById('promo-step-inquire').style.display='block'; document.getElementById('promo-step-pay').style.display='none'; }); }
     var payBtn = document.getElementById('promo-btn-pay');
- if (payBtn) { payBtn.addEventListener('click', function() { document.getElementById('promo-step-1').style.display='none'; document.getElementById('promo-step-inquire').style.display='none'; document.getElementById('promo-step-pay').style.display='block'; }); }
+    if (payBtn) { payBtn.addEventListener('click', function() { document.getElementById('promo-step-1').style.display='none'; document.getElementById('promo-step-inquire').style.display='none'; document.getElementById('promo-step-pay').style.display='block'; }); }
     document.querySelectorAll('.promo-back').forEach(function(btn) { btn.addEventListener('click', promoBackToStep1); });
   }
   if (document.readyState === 'loading') {
@@ -1652,7 +1679,6 @@ function ccGetSimilar(currentCategory, currentIndex) {
     }
   }
 
-
   /* 3. Cap at 8 */
   return results.slice(0, 8);
 }
@@ -1745,14 +1771,11 @@ window.cozyyCopy = cozyyCopy
 // ============================================================
 //  END OF UPGRADE — products-upgrade.js
 // ============================================================
-                     
 
 
 
 
 
 
-
-
-
-  
+    
+    
