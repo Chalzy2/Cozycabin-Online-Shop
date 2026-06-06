@@ -443,7 +443,6 @@ var products = {
       oldPrice: 1800,
       description: "Large capacity temperature display vacuum flask.",
       images: "Images/548800.webp","Images/548799.webp",Images/553383Flsktc.webp","Images/548800.webp","Images/548799.webp","Images/548799.webp"
-    }
     },
     {
       name: "Temperature Flask 1000ml",
@@ -480,9 +479,9 @@ var products = {
       description: "Large capacity Muchen vacuum flask.",
       images: "Images/551394Flsk.webp","Images/551378Flsk.webp","Images/551258.webp"
     }
-  ]
- 
-],
+  }
+ ],
+
   // ── Placeholders — add products + video fields later ──
   
   solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], floodlights:[], chargers:[], fans:[],
