@@ -348,8 +348,8 @@ var products = {
     contact: "0702468460",
     video: "",
     images: [
-      "Images/4pschotpturkish.webp",
-      "Images/5515444pschotpturkish.webp"
+      "Images/4pschotpturkish1.webp",
+      "Images/4pschotpturkish.webp"
     ]
   }
 ],
