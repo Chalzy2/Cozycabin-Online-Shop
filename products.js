@@ -421,14 +421,14 @@ var products = {
       price: 750,
       oldPrice: 1500, 
       description: "Durable stainless steel vacuum flask with carrying strap.",
-      image: "Images/always-500ml.webp"
+      image: "Images/548798.webp"
     },
     {
       name: "6021 Temperature Flask 500ml",
       price: 550,
       oldPrice: 1000,
       description: "Stylish temperature display vacuum flask.",
-      image: "Images/6021-500ml.webp"
+      image: "Images/553404Flsktc.webp","Images/553383Flsktc.webp","Images/553386Flsktc.webp"
     },
     {
       name: "Temperature Flask 500ml",
@@ -442,21 +442,22 @@ var products = {
       price: 900,
       oldPrice: 1800,
       description: "Large capacity temperature display vacuum flask.",
-      image: "Images/temp-800ml.webp"
+      image: "Images/548800.webp","Images/548799.webp",Images/553383Flsktc.webp","Images/548800.webp","Images/548799.webp"
+    }
     },
     {
       name: "Temperature Flask 1000ml",
       price: 1000,
       oldPrice: 1800,
       description: "Extra large temperature display vacuum flask.",
-      image: "Images/temp-1000ml.webp"
+      image: "Images/553404Flsktc.webp","Images/553383Flsktc.webp","Images/553386Flsktc.webp","Images/548800.webp","Images/548799.webp"
     },
     {
       name: "TC Vacuum Flask 500ml",
       price: 600,
       oldPrice: 1200,
       description: "Premium TC stainless steel flask.",
-      image: "Images/tc-500ml.webp"
+      image: "Images/548801.webp"
     },
     {
       name: "TC Vacuum Flask 600ml",
