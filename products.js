@@ -348,9 +348,9 @@ var products = {
       images: [
       "Images/4pschotpturkish1.webp",
       "Images/4pschotpturkish.webp"
-    ]
-  },
-],{
+      ]
+    },
+    {
       title: "Redberry Stainless Steel Hotpots",
       company: "Kitchen",
       productType: "standard",
@@ -359,7 +359,7 @@ var products = {
       discountRange: {
       twentyPercentOff: 3600,
       thirtyNinePercentOff: 2745
-  },
+    },
       capacities: ["2 Litres", "3 Litres", "4 Litres", "5 Litres"],
       colors: ["Silver"],
       description: "Set of 4 Redberry stainless steel insulated hotpots. Ideal for keeping food hot for longer periods.",
@@ -368,9 +368,8 @@ var products = {
       images: [
      "Images/redberryhotp.webp"
      ]
-   },
-
- {
+    },
+    {
       title: "Casserole Hotpot Set 4pcs",
       company: "Kitchen",
       productType: "standard",
@@ -379,7 +378,7 @@ var products = {
       discountRange: {
       twentyPercentOff: 2800,
       thirtyNinePercentOff: 2135
-  },
+     },
      capacities: ["1 Litre", "2 Litres", "4 Litres", "6 Litres"],
      colors: ["White Gold"],
      description: "Elegant casserole hotpot set with stainless steel inner lining. Keeps food warm and fresh for longer.",
@@ -388,9 +387,8 @@ var products = {
      images: [
      "Images/cerasolehotp.webp"
     ]
-  },
-
-  {
+    },
+    {
      title: "Milano Insulated Hotpot 4pcs",
      company: "Kitchen",
      productType: "standard",
@@ -399,7 +397,7 @@ var products = {
      discountRange: {
      twentyPercentOff: 2800,
      thirtyNinePercentOff: 2135
-    },
+     },
       capacities: ["1000ml", "2000ml", "3000ml", "4000ml"],
       colors: ["Black", "White"],
       description: "Premium Milano insulated casserole hotpot set. Elegant marble finish with excellent heat retention.",
