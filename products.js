@@ -1325,30 +1325,41 @@ function updateHint(index) {
 }
 
 // ============================================================
+// ============================================================
 //  SINGLE DELEGATED CLICK HANDLER
 // ============================================================
 document.addEventListener('click', function(e) {
   var el = e.target;
 
-// NEW - walks up the DOM manually, works on all Android
-var gridBtn = el;
-while (gridBtn && gridBtn !== document) {
-  if (gridBtn.classList && gridBtn.classList.contains('grid-btn')) break;
-  gridBtn = gridBtn.parentNode;
-}
-if (gridBtn && gridBtn !== document) {
-  var sub = gridBtn.getAttribute('data-submenu');
-  if (sub) { e.preventDefault(); e.stopPropagation(); window.toggleSub(sub); return; }
-}
+  // grid-btn
+  var gridBtn = el;
+  while (gridBtn && gridBtn !== document) {
+    if (gridBtn.classList && gridBtn.classList.contains('grid-btn')) break;
+    gridBtn = gridBtn.parentNode;
+  }
+  if (gridBtn && gridBtn !== document) {
+    var sub = gridBtn.getAttribute('data-submenu');
+    if (sub) { e.preventDefault(); e.stopPropagation(); window.toggleSub(sub); return; }
+  }
 
-  var minorBtn = el.closest('.minor-btn');
-  if (minorBtn) {
+  // minor-btn
+  var minorBtn = el;
+  while (minorBtn && minorBtn !== document) {
+    if (minorBtn.classList && minorBtn.classList.contains('minor-btn')) break;
+    minorBtn = minorBtn.parentNode;
+  }
+  if (minorBtn && minorBtn !== document) {
     var cat = minorBtn.getAttribute('data-category');
     if (cat) { e.preventDefault(); e.stopPropagation(); window.showProducts(cat); return; }
   }
 
-  var backBtn = el.closest('.back-btn');
-  if (backBtn) {
+  // back-btn
+  var backBtn = el;
+  while (backBtn && backBtn !== document) {
+    if (backBtn.classList && backBtn.classList.contains('back-btn')) break;
+    backBtn = backBtn.parentNode;
+  }
+  if (backBtn && backBtn !== document) {
     if (!backBtn.getAttribute('onclick')) { e.preventDefault(); window.closeAllSubmenus(); }
     return;
   }
