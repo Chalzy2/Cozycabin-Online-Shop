@@ -1330,11 +1330,16 @@ function updateHint(index) {
 document.addEventListener('click', function(e) {
   var el = e.target;
 
-  var gridBtn = el.closest('.grid-btn');
-  if (gridBtn) {
-    var sub = gridBtn.getAttribute('data-submenu');
-    if (sub) { e.preventDefault(); e.stopPropagation(); window.toggleSub(sub); return; }
-  }
+// NEW - walks up the DOM manually, works on all Android
+var gridBtn = el;
+while (gridBtn && gridBtn !== document) {
+  if (gridBtn.classList && gridBtn.classList.contains('grid-btn')) break;
+  gridBtn = gridBtn.parentNode;
+}
+if (gridBtn && gridBtn !== document) {
+  var sub = gridBtn.getAttribute('data-submenu');
+  if (sub) { e.preventDefault(); e.stopPropagation(); window.toggleSub(sub); return; }
+}
 
   var minorBtn = el.closest('.minor-btn');
   if (minorBtn) {
