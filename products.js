@@ -479,9 +479,9 @@ var products = {
       description: "Large capacity Muchen vacuum flask.",
       images: "Images/551394Flsk.webp","Images/551378Flsk.webp","Images/551258.webp"
     }
-  }
- ],
-
+  ]
+ }
+],
   // ── Placeholders — add products + video fields later ──
   
   solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], floodlights:[], chargers:[], fans:[],
