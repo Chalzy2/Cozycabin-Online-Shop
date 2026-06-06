@@ -409,7 +409,70 @@ var products = {
       ]
      }
     ],
-
+  flask :[
+    {
+       title: "Vacuum Flask Collection",
+       company: "Cozycabin",
+       productType: "variant",
+       description: "Premium stainless steel vacuum flasks designed to keep drinks hot or cold for longer.",
+       variants: [
+    {
+      name: "Always Vacuum Bottle 500ml",
+      price: 750,
+      description: "Durable stainless steel vacuum flask with carrying strap.",
+      image: "Images/always-500ml.webp"
+    },
+    {
+      name: "6021 Temperature Flask 500ml",
+      price: 550,
+      description: "Stylish temperature display vacuum flask.",
+      image: "Images/6021-500ml.webp"
+    },
+    {
+      name: "Temperature Flask 500ml",
+      price: 700,
+      description: "Digital temperature display vacuum flask.",
+      image: "Images/temp-500ml.webp"
+    },
+    {
+      name: "Temperature Flask 800ml",
+      price: 900,
+      description: "Large capacity temperature display vacuum flask.",
+      image: "Images/temp-800ml.webp"
+    },
+    {
+      name: "Temperature Flask 1000ml",
+      price: 1000,
+      description: "Extra large temperature display vacuum flask.",
+      image: "Images/temp-1000ml.webp"
+    },
+    {
+      name: "TC Vacuum Flask 500ml",
+      price: 600,
+      description: "Premium TC stainless steel flask.",
+      image: "Images/tc-500ml.webp"
+    },
+    {
+      name: "TC Vacuum Flask 600ml",
+      price: 750,
+      description: "TC insulated flask with larger capacity.",
+      image: "Images/tc-600ml.webp"
+    },
+    {
+      name: "Muchen Vacuum Flask 800ml",
+      price: 900,
+      description: "Elegant Muchen insulated flask.",
+      image: "Images/551394Flsk.webp","Images/551378Flsk.webp"
+    },
+    {
+      name: "Muchen Vacuum Flask 1000ml",
+      price: 1000,
+      description: "Large capacity Muchen vacuum flask.",
+      image: "Images/551394Flsk.webp","Images/551378Flsk.webp"
+    }
+  ]
+ }
+],
   // ── Placeholders — add products + video fields later ──
   
   solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], floodlights:[], chargers:[], fans:[],
