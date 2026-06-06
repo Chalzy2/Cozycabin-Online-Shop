@@ -55,7 +55,21 @@ const PRODUCTS = {
     ["Goldstar Hotpots 4pcs",   5500, "Images/4pschotpgoldstarw.webp",  "Goldstar 4-piece hotpots with pinhole filter and temperature indication."],
     ["Turkish Hot Pots",        5499, "Images/4pschotpturkish1.webp",   "Premium Turkish insulated hotpots — excellent quality and finish."],
   ],
+// ── Variant products: idx maps to the variant, not the parent ──
+  // Format: [variantName, price, firstImage, description]
+  flasks: [
+    ["Always Vacuum Bottle 500ml",      750,  "Images/548798.webp",       "Durable stainless steel vacuum flask with carrying strap. Keeps drinks hot or cold for hours."],
+    ["6021 Temperature Flask 500ml",    550,  "Images/553404Flsktc.webp", "Stylish temperature display vacuum flask — see your drink's temperature at a glance."],
+    ["Temperature Flask 500ml",         700,  "Images/temp-500ml.webp",   "Digital temperature display vacuum flask. Premium stainless steel, keeps hot/cold for hours."],
+    ["Temperature Flask 800ml",         900,  "Images/548800.webp",       "Large capacity temperature display vacuum flask — perfect for long days or the office."],
+    ["Temperature Flask 1000ml",       1000,  "Images/553404Flsktc.webp", "Extra large temperature display vacuum flask. Ideal for travel, hiking and outdoor use."],
+    ["TC Vacuum Flask 500ml",           600,  "Images/553763Flsktc.webp", "Premium TC stainless steel vacuum flask with sleek finish and excellent insulation."],
+    ["TC Vacuum Flask 600ml",           750,  "Images/tc-600ml.webp",     "TC insulated flask with larger capacity — great for all-day hydration on the go."],
+    ["Muchen Vacuum Flask 800ml",       900,  "Images/551394Flsk.webp",   "Elegant Muchen insulated flask with premium build quality and stylish design."],
+    ["Muchen Vacuum Flask 1000ml",     1000,  "Images/551394Flsk.webp",   "Large capacity Muchen vacuum flask — keeps drinks at perfect temperature all day long."],
+  ],
 };
+
 
 const CAT_LABELS = {
   shoes:"Shoes & Footwear", travel:"Travel Bags & Suitcases",
