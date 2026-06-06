@@ -442,7 +442,7 @@ var products = {
       price: 900,
       oldPrice: 1800,
       description: "Large capacity temperature display vacuum flask.",
-      images: ["Images/548800.webp","Images/548799.webp","Images/548800.webp","Images/548799.webp","Images/548799.webp"]
+      images: ["Images/548800.webp","Images/548799.webp","Images/553386Flsktc.webp","Images/553764Flsktc.webp"]
     },
     {
       name: "Temperature Flask 1000ml",
