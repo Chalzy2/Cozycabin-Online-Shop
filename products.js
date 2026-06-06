@@ -191,8 +191,8 @@ var products = {
      images: ["Images/cc.Lsandals-3.webp","Images/cc.Lsandals-2.webp","Images/cc.Lsandals-1.webp","Images/cc.Lsandals-4.webp","Images/cc.Lsandals-5.webp"],
      badge: "In Stock",
      category: "shoes"
-   },
- ],
+    },
+  ],
   travel: [
       {
        title: "3 in 1 Luxurious Fibre Suitcase Set",
@@ -297,7 +297,7 @@ var products = {
        discountRange: {
        twentyPercentOff: 3999,
        thirtyNinePercentOff: 3049
-    },
+     },
        capacities: ["1000ml", "1500ml", "2500ml", "3500ml"],
        colors: ["White", "Cream", "Beige"],
        description: "Set of 4 elegant Linex Hotpots for everyday use. Features include discrete pinhole filter and temperature indication.",
@@ -307,9 +307,9 @@ var products = {
       "Images/4pscLinexhpwhite.webp",
       "Images/4pscLinexhpi.webp",
       "Images/4pscLinexhpw.webp"
-    ]
-    },
-    {
+      ]
+     },
+     {
        title: "Goldstar Hotpots 4pcs",
        company: "Kitchen",
        productType: "standard",
@@ -318,7 +318,7 @@ var products = {
        discountRange: {
        twentyPercentOff: 4400,
        thirtyNinePercentOff: 3355
-    },
+       },
        capacities: ["1000ml", "1500ml", "2500ml", "3500ml"],
        colors: ["White", "Mint Green", "Grey"],
        description: "Goldstar Hotpots 4pcs. Features include discrete pinhole filter and temperature indication.",
@@ -328,9 +328,9 @@ var products = {
       "Images/4pschotpgoldstarw.webp",
       "Images/4pschotpgoldstarg.webp",
       "Images/4pschotpgoldstar.webp"
-    ]
-   },
-   {
+      ]
+    },
+    {
       title: "Turkish Hot Pots",
       company: "Cozycabin",
       productType: "standard",
@@ -339,7 +339,7 @@ var products = {
       discountRange: {
       twentyPercentOff: 4399,
       thirtyNinePercentOff: 3354
-    },
+      },
       capacities: ["1000ml", "1500ml", "2500ml", "3500ml"],
       colors: ["Marble Brown", "Marble White"],
       description: "Perfect excellent quality Turkish insulated hot pots. Features include discrete pinhole filter and temperature indication.",
@@ -349,7 +349,7 @@ var products = {
       "Images/4pschotpturkish1.webp",
       "Images/4pschotpturkish.webp"
       ]
-    },
+     },
     {
       title: "Redberry Stainless Steel Hotpots",
       company: "Kitchen",
@@ -359,7 +359,7 @@ var products = {
       discountRange: {
       twentyPercentOff: 3600,
       thirtyNinePercentOff: 2745
-    },
+      },
       capacities: ["2 Litres", "3 Litres", "4 Litres", "5 Litres"],
       colors: ["Silver"],
       description: "Set of 4 Redberry stainless steel insulated hotpots. Ideal for keeping food hot for longer periods.",
@@ -367,7 +367,7 @@ var products = {
       video: "",
       images: [
      "Images/redberryhotp.webp"
-     ]
+      ]
     },
     {
       title: "Casserole Hotpot Set 4pcs",
@@ -379,33 +379,33 @@ var products = {
       twentyPercentOff: 2800,
       thirtyNinePercentOff: 2135
      },
-     capacities: ["1 Litre", "2 Litres", "4 Litres", "6 Litres"],
-     colors: ["White Gold"],
-     description: "Elegant casserole hotpot set with stainless steel inner lining. Keeps food warm and fresh for longer.",
-     contact: "0702468460",
-     video: "",
-     images: [
-     "Images/cerasolehotp.webp"
-    ]
-    },
-    {
-     title: "Milano Insulated Hotpot 4pcs",
-     company: "Kitchen",
-     productType: "standard",
-     price: 3500,
-     oldPrice: 4375,
-     discountRange: {
-     twentyPercentOff: 2800,
-     thirtyNinePercentOff: 2135
-     },
-      capacities: ["1000ml", "2000ml", "3000ml", "4000ml"],
-      colors: ["Black", "White"],
-      description: "Premium Milano insulated casserole hotpot set. Elegant marble finish with excellent heat retention.",
+      capacities: ["1 Litre", "2 Litres", "4 Litres", "6 Litres"],
+      colors: ["White Gold"],
+      description: "Elegant casserole hotpot set with stainless steel inner lining. Keeps food warm and fresh for longer.",
       contact: "0702468460",
       video: "",
       images: [
-     "Images/4pschotpmilano.webp",
-     "Images/4pschotpmilanob.webp"
+      "Images/cerasolehotp.webp"
+      ]
+    },
+    {
+      title: "Milano Insulated Hotpot 4pcs",
+      company: "Kitchen",
+      productType: "standard",
+      price: 3500,
+      oldPrice: 4375,
+      discountRange: {
+      twentyPercentOff: 2800,
+      thirtyNinePercentOff: 2135
+     },
+       capacities: ["1000ml", "2000ml", "3000ml", "4000ml"],
+       colors: ["Black", "White"],
+       description: "Premium Milano insulated casserole hotpot set. Elegant marble finish with excellent heat retention.",
+       contact: "0702468460",
+       video: "",
+       images: [
+      "Images/4pschotpmilano.webp",
+      "Images/4pschotpmilanob.webp"
       ]
      }
     ],
