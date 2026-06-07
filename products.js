@@ -478,9 +478,64 @@ var products = {
       oldPrice: 2300,
       description: "Large capacity Muchen vacuum flask.",
       images: ["Images/551394Flsk.webp","Images/551378Flsk.webp","Images/551258.webp"]
-    }
-  ]
- }
+     }
+    ]
+   }
+  ],
+floodlights: [
+  {
+    title: "Solar Security Floodlight",
+    company: "Solar",
+    productType: "variant",
+    description: "Waterproof solar-powered security floodlights with automatic photocell sensor. Switches ON at night and OFF during the day. No wiring required and easy to install.",
+    variants: [
+      {
+        name: "30W Solar Security Floodlight",
+        price: 4500,
+        oldPrice: 6000,
+        description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
+        images: [
+          "Images/solar-30w.webp"
+        ]
+      },
+      {
+        name: "60W Solar Security Floodlight",
+        price: 5500,
+        oldPrice: 7500,
+        description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
+        images: [
+          "Images/556271.jpg"
+        ]
+      },
+      {
+        name: "100W Solar Security Floodlight",
+        price: 7000,
+        oldPrice: 9500,
+        description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
+        images: [
+          "Images/556267.jpg"
+        ]
+      },
+      {
+        name: "200W Solar Security Floodlight",
+        price: 8500,
+        oldPrice: 11500,
+        description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
+        images: [
+          "Images/556274.jpg"
+        ]
+      },
+      {
+        name: "300W Solar Security Floodlight",
+        price: 10500,
+        oldPrice: 14000,
+        description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
+        images: [
+          "Images/556275.jpg"
+        ]
+      }
+    ]
+  }
 ],
   
   // ── Placeholders — add products + video fields later ──
