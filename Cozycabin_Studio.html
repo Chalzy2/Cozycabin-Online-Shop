@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cozycabin Admin Studio Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#ffd700;--gold2:#e6a800;--gold-soft:rgba(255,215,0,0.10);--gold-glow:rgba(255,215,0,0.22);--navy:#060d1f;--navy2:#0a1228;--card:#0d1830;--card2:#111f3a;--border:rgba(255,215,0,0.14);--border2:rgba(255,215,0,0.30);--text:#e2e8f0;--muted:#5a7090;--muted2:#8aa0b8;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;--radius:14px;--radius-lg:20px;--radius-xl:28px;--shadow:0 8px 40px rgba(0,0,0,0.55);--tr:all .2s cubic-bezier(.4,0,.2,1);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;}
+a{color:inherit;text-decoration:none;}
+button{font-family:'Outfit',sans-serif;cursor:pointer;}
+input,select,textarea{font-family:'Outfit',sans-serif;}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:var(--navy2);}
+::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:4px;}
+.top-bar{position:sticky;top:0;z-index:200;background:rgba(6,13,31,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 16px;height:60px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 20px rgba(0,0,0,0.6);}
+.tb-logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.tb-logo-mark{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--border2);background:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:20px;}
+.tb-brand{display:flex;flex-direction:column;line-height:1;}
+.tb-brand-name{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;}
+.tb-brand-tag{font-family:'Rajdhani',sans-serif;font-size:8px;font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
+.tb-badge{margin-left:auto;background:linear-gradient(135deg,rgba(255,215,0,0.12),rgba(255,215,0,0.06));border:1px solid var(--border2);color:var(--gold);font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;padding:4px 12px;border-radius:20px;text-transform:uppercase;flex-shrink:0;}
+.studio-hero{padding:36px 16px 28px;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(255,215,0,0.09) 0%,transparent 65%);}
+.sh-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,215,0,0.10);border:1px solid var(--border2);color:var(--gold);font-size:10px;font-weight:700;letter-spacing:2px;padding:5px 16px;border-radius:20px;margin-bottom:16px;text-transform:uppercase;}
+.sh-title{font-family:'Rajdhani',sans-serif;font-size:clamp(28px,8vw,46px);font-weight:800;color:#fff;margin-bottom:8px;line-height:1.1;}
+.sh-title span{color:var(--gold);}
+.sh-sub{font-size:13px;color:var(--muted);max-width:480px;margin:0 auto 24px;line-height:1.7;}
+.sh-rule{display:inline-flex;align-items:center;gap:8px;background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.25);border-radius:12px;padding:8px 16px;font-size:11px;color:var(--gold);font-weight:700;}
+.studio-tabs{display:flex;overflow-x:auto;padding:0 16px;scrollbar-width:none;border-bottom:2px solid rgba(255,215,0,0.12);}
+.studio-tabs::-webkit-scrollbar{display:none;}
+.studio-tab{flex-shrink:0;display:flex;align-items:center;gap:5px;background:transparent;border:none;border-bottom:3px solid transparent;color:var(--muted);font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:.5px;padding:12px 12px;cursor:pointer;transition:var(--tr);white-space:nowrap;text-transform:uppercase;margin-bottom:-2px;}
+.studio-tab:hover{color:var(--text);}
+.studio-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.studio-content{max-width:860px;margin:0 auto;padding:20px 16px 80px;}
+.studio-panel{display:none;}
+.studio-panel.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.sec-title{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:var(--muted2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px;margin-bottom:16px;}
+.rule-banner{background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,215,0,0.04));border:1.5px solid var(--border2);border-radius:var(--radius);padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;color:var(--gold);}
+.workflow-steps{display:flex;background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:20px;overflow-x:auto;scrollbar-width:none;}
+.workflow-steps::-webkit-scrollbar{display:none;}
+.wf-step{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;min-width:70px;text-align:center;position:relative;}
+.wf-step:not(:last-child)::after{content:"\2192";position:absolute;right:-14px;top:10px;color:var(--muted);font-size:12px;}
+.wf-dot{width:32px;height:32px;border-radius:50%;background:var(--navy);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;transition:var(--tr);}
+.wf-step.done .wf-dot{border-color:var(--green);background:rgba(34,197,94,0.12);}
+.wf-step.active .wf-dot{border-color:var(--gold);background:var(--gold-soft);box-shadow:0 0 12px var(--gold-glow);}
+.wf-label{font-size:9px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase;line-height:1.2;}
+.dropzone{border:2px dashed rgba(255,215,0,0.22);border-radius:var(--radius-xl);padding:40px 20px;text-align:center;cursor:pointer;transition:var(--tr);background:rgba(255,215,0,0.015);margin-bottom:16px;position:relative;overflow:hidden;}
+.dropzone.drag-over{border-color:var(--gold);background:rgba(255,215,0,0.07);box-shadow:0 0 40px rgba(255,215,0,0.14);}
+.dropzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;z-index:2;}
+.dz-icon{font-size:44px;margin-bottom:12px;display:block;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.dz-title{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--gold);margin-bottom:6px;}
+.dz-sub{font-size:12px;color:var(--muted);margin-bottom:14px;}
+.dz-formats{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;}
+.fmt-tag{background:var(--navy2);border:1px solid var(--border);color:var(--muted2);font-family:'DM Mono',monospace;font-size:10px;padding:3px 8px;border-radius:5px;}
+.presets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
+@media(min-width:500px){.presets-grid{grid-template-columns:repeat(6,1fr);}}
+.preset-btn{background:var(--navy2);border:1.5px solid var(--border);border-radius:var(--radius);padding:12px 8px;cursor:pointer;transition:var(--tr);text-align:center;color:var(--text);}
+.preset-btn:hover{border-color:var(--gold2);}
+.preset-btn.active{border-color:var(--gold);background:var(--gold-soft);box-shadow:0 0 16px var(--gold-glow);}
+.preset-icon{font-size:18px;margin-bottom:4px;}
+.preset-name{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;line-height:1.2;margin-bottom:2px;}
+.preset-dim{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.setting-item label{display:block;font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;}
+.setting-item select{width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);padding:9px 28px 9px 12px;font-size:12px;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ffd700'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;}
+.setting-item select:focus{border-color:var(--gold2);}
+.range-wrap{display:flex;flex-direction:column;gap:4px;}
+.range-label-row{display:flex;justify-content:space-between;align-items:center;}
+.range-label-row label{font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;}
+.range-val{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);font-weight:500;}
+input[type=range]{width:100%;height:4px;appearance:none;background:var(--navy2);border-radius:4px;outline:none;cursor:pointer;accent-color:var(--gold);}
+input[type=range]::-webkit-slider-thumb{appearance:none;width:16px;height:16px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px var(--gold-glow);}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);}
+.toggle-row:last-child{border-bottom:none;padding-bottom:0;}
+.toggle-label{display:flex;flex-direction:column;gap:2px;}
+.toggle-label span:first-child{font-size:13px;font-weight:600;color:var(--text);}
+.toggle-label span:last-child{font-size:10px;color:var(--muted);}
+.toggle{position:relative;width:44px;height:24px;flex-shrink:0;}
+.toggle input{opacity:0;width:0;height:0;}
+.toggle-slider{position:absolute;inset:0;background:var(--navy2);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:var(--tr);}
+.toggle-slider::before{content:'';position:absolute;width:18px;height:18px;left:2px;top:2px;background:var(--muted);border-radius:50%;transition:var(--tr);}
+.toggle input:checked+.toggle-slider{background:var(--gold-soft);border-color:var(--gold);}
+.toggle input:checked+.toggle-slider::before{background:var(--gold);transform:translateX(20px);box-shadow:0 0 8px var(--gold-glow);}
+.sub-settings{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+.sub-settings.visible{display:block;}
+.logo-upload-area{display:flex;align-items:center;gap:12px;padding:12px;background:var(--navy2);border:1.5px dashed var(--border2);border-radius:var(--radius);cursor:pointer;transition:var(--tr);position:relative;overflow:hidden;}
+.logo-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.logo-upload-area:hover{border-color:var(--gold);}
+.lp-thumb{width:48px;height:48px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+.lp-thumb img{width:100%;height:100%;object-fit:contain;}
+.lp-text strong{font-size:12px;color:var(--gold);display:block;margin-bottom:3px;}
+.lp-text span{font-size:10px;color:var(--muted);}
+.progress-wrap{display:none;margin-bottom:16px;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);}
+.progress-wrap.visible{display:block;}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.progress-label{font-size:13px;font-weight:600;color:var(--text);}
+.progress-count{font-family:'DM Mono',monospace;font-size:12px;color:var(--gold);}
+.progress-bar-bg{height:6px;background:var(--navy2);border-radius:6px;overflow:hidden;margin-bottom:6px;}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:6px;transition:width .3s ease;width:0%;box-shadow:0 0 10px var(--gold-glow);}
+.progress-eta{font-size:10px;color:var(--muted);text-align:right;}
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.results-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--gold);}
+.clear-btn{background:transparent;border:1px solid rgba(239,68,68,0.3);color:var(--red);font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px;cursor:pointer;}
+.clear-btn:hover{background:rgba(239,68,68,0.08);}
+.results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(min-width:600px){.results-grid{grid-template-columns:repeat(3,1fr);}}
+.img-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;animation:fadeUp .3s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.card-preview{position:relative;aspect-ratio:1;background:#000;overflow:hidden;}
+.card-preview img,.card-preview video{width:100%;height:100%;object-fit:contain;display:block;}
+.card-body{padding:10px;flex:1;display:flex;flex-direction:column;gap:6px;}
+.card-filename{font-size:10px;color:var(--muted2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'DM Mono',monospace;}
+.card-stats{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.stat-item{background:var(--navy2);border-radius:5px;padding:4px 6px;}
+.stat-label{font-size:8px;color:var(--muted);text-transform:uppercase;}
+.stat-value{font-family:'DM Mono',monospace;font-size:10px;color:var(--text);font-weight:500;}
+.stat-value.gold{color:var(--gold);}
+.stat-value.green{color:var(--green);}
+.card-dl-btn{display:block;width:100%;background:var(--gold);color:#000;font-weight:700;font-size:11px;padding:9px;border-radius:10px;text-align:center;border:none;cursor:pointer;margin-top:auto;text-decoration:none;}
+.card-dl-btn:hover{opacity:.88;}
+.dl-all-bar{display:none;position:sticky;bottom:14px;z-index:50;margin-top:16px;gap:10px;}
+.dl-all-bar.visible{display:flex;}
+.dl-all-btn{flex:1;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;padding:16px;border-radius:var(--radius-lg);border:none;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 30px rgba(255,215,0,0.35);}
+.dl-zip-btn{background:var(--card);border:1.5px solid var(--gold);color:var(--gold);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;padding:16px 20px;border-radius:var(--radius-lg);cursor:pointer;white-space:nowrap;}
+.dl-zip-btn:hover{background:var(--gold-soft);}
+.process-btn{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-weight:800;font-size:14px;letter-spacing:1px;padding:15px;border-radius:var(--radius);cursor:pointer;border:none;text-transform:uppercase;margin-top:4px;}
+.process-btn:hover{opacity:.88;}
+.process-btn:disabled{opacity:.45;cursor:not-allowed;}
+.social-share-bar{display:none;flex-direction:column;gap:8px;margin-top:16px;}
+.social-share-bar.visible{display:flex;}
+.social-share-title{text-align:center;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.social-btns-row{display:flex;gap:8px;}
+.social-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:var(--radius-lg);border:none;cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;transition:var(--tr);}
+.social-btn:hover{opacity:.88;transform:translateY(-2px);}
+.social-btn.wa{background:#25d366;color:#fff;}
+.social-btn.fb{background:#1877f2;color:#fff;}
+.social-btn.tt{background:#010101;color:#fff;border:1px solid rgba(255,255,255,0.15);}
+.social-btn.all{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;}
+.tool-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;}
+@media(min-width:480px){.tool-grid{grid-template-columns:repeat(3,1fr);}}
+.tool-card{background:linear-gradient(145deg,#0d1120,#111827);border:1.5px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;cursor:pointer;transition:var(--tr);}
+.tool-card:hover,.tool-card.active-tool{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+.tool-card.active-tool{border-color:var(--gold);}
+.tc-emoji{font-size:28px;}
+.tc-name{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:#fff;}
+.tc-sub{font-size:10px;color:var(--muted);}
+.tc-badge{font-size:8px;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase;background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);}
+.video-tool-panel{display:none;background:var(--card);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:20px;margin-bottom:20px;}
+.video-tool-panel.active{display:block;animation:fadeIn .3s ease;}
+.vtp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.vtp-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--gold);text-transform:uppercase;}
+.vtp-close{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:12px;padding:4px 12px;border-radius:20px;cursor:pointer;}
+.vtp-close:hover{border-color:var(--red);color:var(--red);}
+.video-preview-wrap{background:#000;border-radius:var(--radius);overflow:hidden;margin-bottom:14px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;}
+.video-preview-wrap video{width:100%;height:100%;object-fit:contain;}
+.video-controls{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+.vid-btn{background:var(--navy2);border:1px solid var(--border);color:var(--text);font-size:11px;font-weight:600;padding:8px 14px;border-radius:var(--radius);cursor:pointer;}
+.vid-btn:hover{border-color:var(--gold2);color:var(--gold);}
+.vid-btn.primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;}
+.vid-time{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-left:auto;}
+.vid-info-box{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;}
+.compress-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.compress-option{background:var(--navy2);border:1.5px solid var(--border);border-radius:var(--radius);padding:12px;text-align:center;cursor:pointer;}
+.compress-option:hover,.compress-option.active{border-color:var(--gold);background:var(--gold-soft);}
+.co-name{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:2px;}
+.co-desc{font-size:9px;color:var(--muted);}
+.trim-wrap{margin:4px 0 14px;}
+.trim-bar{height:40px;background:var(--navy2);border:1px solid var(--border);border-radius:8px;position:relative;overflow:hidden;cursor:pointer;}
+.trim-filled{position:absolute;top:0;height:100%;background:rgba(255,215,0,0.18);border-left:3px solid var(--gold);border-right:3px solid var(--gold);}
+.trim-handle{position:absolute;top:0;width:16px;height:100%;background:var(--gold);cursor:ew-resize;display:flex;align-items:center;justify-content:center;font-size:9px;color:#000;font-weight:900;}
+.trim-handle.left-h{border-radius:6px 0 0 6px;}
+.trim-handle.right-h{border-radius:0 6px 6px 0;right:0;}
+.trim-times{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-top:6px;}
+.resize-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px;}
+.resize-opt{background:var(--navy2);border:1.5px solid var(--border);border-radius:var(--radius);padding:12px;cursor:pointer;}
+.resize-opt:hover,.resize-opt.active{border-color:var(--gold);background:var(--gold-soft);}
+.ro-name{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--gold);}
+.ro-dim{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+.thumbnail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;}
+.thumb-item{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;}
+.thumb-item:hover{border-color:var(--gold);}
+.thumb-item img{width:100%;aspect-ratio:16/9;display:block;object-fit:cover;}
+.thumb-time{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);padding:4px 8px;text-align:center;}
+.doc-tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;}
+@media(min-width:480px){.doc-tools-grid{grid-template-columns:repeat(3,1fr);}}
+.doc-tool-btn{background:linear-gradient(145deg,#0d1120,#111827);border:1.5px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;cursor:pointer;transition:var(--tr);}
+.doc-tool-btn:hover{border-color:var(--border2);transform:translateY(-3px);}
+.doc-tool-btn .dte{font-size:26px;}
+.doc-tool-btn .dtn{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:#fff;}
+.doc-tool-btn .dts{font-size:10px;color:var(--muted);}
+.brand-settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.brand-setting-box{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;}
+.bsb-title{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;text-transform:uppercase;}
+.bsb-positions{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.pos-btn{background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center;font-size:10px;color:var(--muted2);cursor:pointer;}
+.pos-btn:hover,.pos-btn.active{border-color:var(--gold);color:var(--gold);background:var(--gold-soft);}
+.opacity-btns{display:flex;flex-wrap:wrap;gap:6px;}
+.opacity-btn{background:var(--navy);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:10px;color:var(--muted2);cursor:pointer;}
+.opacity-btn:hover,.opacity-btn.active{border-color:var(--gold);color:var(--gold);}
+.wc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+.wc-step{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 10px;text-align:center;}
+.wc-step-num{width:28px;height:28px;border-radius:50%;background:var(--gold-soft);border:1.5px solid var(--border2);color:var(--gold);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;}
+.wc-step-label{font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;line-height:1.3;}
+.naming-modes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
+.naming-mode{background:var(--navy2);border:1.5px solid var(--border);border-radius:var(--radius);padding:14px;cursor:pointer;}
+.naming-mode:hover,.naming-mode.active{border-color:var(--gold);background:var(--gold-soft);}
+.nm-label{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;text-transform:uppercase;}
+.nm-example{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted2);line-height:1.6;}
+.naming-input-row{display:flex;gap:10px;margin-bottom:12px;}
+.naming-generate-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-weight:800;font-size:13px;padding:10px 20px;border-radius:var(--radius);border:none;cursor:pointer;white-space:nowrap;}
+.naming-output{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);line-height:2;min-height:80px;}
+.output-presets{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.out-preset{background:linear-gradient(145deg,#0d1120,#111827);border:1.5px solid rgba(255,255,255,.08);border-radius:var(--radius-lg);padding:16px;}
+.out-preset.website{border-color:rgba(59,130,246,.35);}
+.out-preset.whatsapp{border-color:rgba(37,211,102,.35);}
+.out-preset.social{border-color:rgba(255,215,0,.35);}
+.op-icon{font-size:24px;margin-bottom:8px;}
+.op-name{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:8px;text-transform:uppercase;}
+.op-row{display:flex;justify-content:space-between;font-size:10px;margin-bottom:4px;}
+.op-key{color:var(--muted);}
+.op-val{color:var(--gold);font-weight:700;}
+.op-export-btn{width:100%;margin-top:10px;padding:9px;border-radius:10px;font-weight:700;font-size:11px;border:none;cursor:pointer;text-transform:uppercase;}
+.website .op-export-btn{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.3);}
+.whatsapp .op-export-btn{background:rgba(37,211,102,.15);color:var(--green);border:1px solid rgba(37,211,102,.3);}
+.social .op-export-btn{background:var(--gold-soft);color:var(--gold);border:1px solid var(--border2);}
+.de-btn-one{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:800;padding:18px;border-radius:var(--radius-lg);border:none;cursor:pointer;letter-spacing:1px;text-transform:uppercase;box-shadow:0 8px 30px rgba(255,215,0,0.3);}
+.de-btn-one:hover{opacity:.9;transform:translateY(-2px);}
+.de-results-split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+.de-result-col{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;}
+.de-result-header{padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;}
+.de-result-header.web{color:#3b82f6;background:rgba(59,130,246,0.07);}
+.de-result-header.wa{color:var(--green);background:rgba(37,211,102,0.07);}
+.de-result-body{padding:12px;}
+.de-text-box{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text);line-height:1.7;min-height:80px;white-space:pre-wrap;margin-bottom:8px;}
+.de-copy-btn{width:100%;background:transparent;border:1px solid var(--border2);color:var(--gold);font-size:11px;font-weight:700;padding:8px;border-radius:8px;cursor:pointer;}
+.de-copy-btn:hover{background:var(--gold-soft);}
+.de-plain-box{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text);line-height:1.8;min-height:100px;white-space:pre-wrap;margin-bottom:10px;-webkit-user-select:text;user-select:text;}
+.share-links-config{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;margin-bottom:16px;}
+.slc-title{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.slc-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.slc-row:last-child{margin-bottom:0;}
+.slc-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center;}
+.style-gen-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.sg-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:16px;overflow:hidden;}
+.sg-card.web-card{border-color:rgba(59,130,246,0.4);}
+.sg-card.wa-card{border-color:rgba(37,211,102,0.4);}
+.sg-card-title{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;margin-bottom:10px;}
+.sg-card-title.web{color:#3b82f6;}
+.sg-card-title.wa{color:var(--green);}
+.sg-preview{width:100%;aspect-ratio:1;background:#fff;border-radius:10px;margin-bottom:10px;overflow:hidden;}
+.sg-preview canvas{width:100%;height:100%;}
+.sg-rules{font-size:9px;color:var(--muted);line-height:1.8;border-top:1px solid var(--border);padding-top:10px;}
+.sg-rules span{color:var(--gold);font-weight:700;}
+.sg-generate-btn{width:100%;font-family:'Rajdhani',sans-serif;font-weight:800;font-size:14px;padding:14px;border-radius:var(--radius);cursor:pointer;text-transform:uppercase;margin-top:12px;}
+.price-input-row{display:flex;gap:8px;align-items:center;margin-bottom:12px;}
+.price-input-row label{font-size:11px;color:var(--muted);white-space:nowrap;}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px;}
+@media(min-width:500px){.stats-grid{grid-template-columns:repeat(4,1fr);}}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;text-align:center;}
+.stat-box-icon{font-size:24px;margin-bottom:8px;}
+.stat-box-val{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:800;color:var(--gold);margin-bottom:4px;}
+.stat-box-label{font-size:9px;color:var(--muted);text-transform:uppercase;}
+.stats-plain-text{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text);line-height:2;-webkit-user-select:text;user-select:text;}
+.recent-uploads-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.ru-item{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;}
+.ru-thumb{width:36px;height:36px;border-radius:6px;background:var(--navy2);border:1px solid var(--border);overflow:hidden;flex-shrink:0;}
+.ru-thumb img{width:100%;height:100%;object-fit:cover;}
+.ru-info{flex:1;min-width:0;}
+.ru-name{font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'DM Mono',monospace;}
+.ru-meta{font-size:9px;color:var(--muted);margin-top:2px;}
+.ru-badge{font-size:8px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;background:rgba(255,215,0,.12);color:var(--gold);flex-shrink:0;}
+.preset-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.preset-pill{background:var(--navy2);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:10px;color:var(--muted2);}
+.preset-pill.top{border-color:var(--border2);color:var(--gold);}
+.bp-hero{background:radial-gradient(ellipse at 50% 0%,rgba(255,215,0,0.12),transparent 70%);border:2px solid var(--border2);border-radius:var(--radius-xl);padding:24px 20px;text-align:center;margin-bottom:20px;}
+.bp-title{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:800;color:#fff;margin-bottom:6px;}
+.bp-title span{color:var(--gold);}
+.bp-sub{font-size:12px;color:var(--muted);margin-bottom:20px;}
+.bp-apply-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:800;padding:18px 40px;border-radius:var(--radius-lg);border:none;cursor:pointer;text-transform:uppercase;box-shadow:0 8px 32px rgba(255,215,0,0.35);}
+.bp-apply-btn:hover{opacity:.9;transform:translateY(-2px);}
+.bp-checks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px;}
+.bp-check{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;align-items:center;gap:10px;}
+.bp-check-icon{font-size:20px;flex-shrink:0;}
+.bp-check-info strong{font-size:12px;color:var(--text);display:block;margin-bottom:2px;}
+.bp-check-info span{font-size:10px;color:var(--muted);}
+.bp-check-status{margin-left:auto;font-size:9px;font-weight:700;padding:3px 8px;border-radius:10px;flex-shrink:0;text-transform:uppercase;}
+.bp-check-status.ok{background:rgba(34,197,94,.12);color:var(--green);}
+.bp-check-status.optional{background:rgba(255,215,0,.10);color:var(--gold);}
+.bp-result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px;}
+.bp-result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.bp-result-label{padding:6px 10px;font-size:9px;font-weight:700;text-transform:uppercase;border-bottom:1px solid var(--border);}
+.bp-result-label.web{color:#3b82f6;background:rgba(59,130,246,.07);}
+.bp-result-label.wa{color:var(--green);background:rgba(37,211,102,.07);}
+.bp-result-label.social{color:var(--gold);background:rgba(255,215,0,.06);}
+.toast-container{position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:8px;width:calc(100% - 32px);max-width:400px;pointer-events:none;}
+.toast{background:var(--card2);border:1px solid var(--border2);border-radius:var(--radius);padding:12px 16px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);animation:slideDown .3s ease;pointer-events:all;}
+.toast.success{border-color:rgba(34,197,94,0.4);color:var(--green);}
+.toast.error{border-color:rgba(239,68,68,0.4);color:var(--red);}
+.toast.info{border-color:var(--border2);color:var(--gold);}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:none;}}
+.wa-fab{position:fixed;bottom:22px;right:18px;width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,0.45);z-index:200;font-size:24px;}
+.wa-fab:hover{transform:scale(1.08);}
+.text-input{width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);padding:10px 14px;font-size:13px;outline:none;-webkit-user-select:text;user-select:text;font-family:'Outfit',sans-serif;}
+.text-input:focus{border-color:var(--gold2);}
+@media(max-width:480px){.presets-grid{grid-template-columns:repeat(3,1fr);}.output-presets,.brand-settings-grid{grid-template-columns:1fr;}.wc-steps{grid-template-columns:repeat(2,1fr);}.naming-modes-grid,.style-gen-grid,.de-results-split,.bp-result-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<script>
+const AP="Charleyz516@#$_studio-cozycabin";
+if(localStorage.getItem("cck_admin")!=="yes"){const e=prompt("🔒 Cozycabin Admin Access");if(e!==AP){alert("Access Denied");window.location.href="https://www.cozycabin.co.ke";}else localStorage.setItem("cck_admin","yes");}
+</script>
+
+<div class="top-bar">
+  <div class="tb-logo">
+    <div class="tb-logo-mark">🏡</div>
+    <div class="tb-brand"><span class="tb-brand-name">CozyCabin</span><span class="tb-brand-tag">Smart Living Solutions</span></div>
+  </div>
+  <div class="tb-badge">Admin Studio Pro</div>
+</div>
+
+<div class="studio-hero">
+  <div class="sh-badge">⚡ Pro Tools</div>
+  <h1 class="sh-title">Admin <span>Studio</span> Pro</h1>
+  <p class="sh-sub">One upload. Auto-generate Website · WhatsApp · Social versions.<br>All optimized, branded and ready to publish.</p>
+  <div class="sh-rule">🏷️ COZYCABIN RULE: Every export must contain the Cozycabin logo. The logo is the permanent signature.</div>
+</div>
+
+
+<div class="studio-tabs">
+  <button class="studio-tab active" onclick="switchTab('image')" id="tab-image">🖼️ Image Studio</button>
+  <button class="studio-tab" onclick="switchTab('video')" id="tab-video">🎥 Video Studio</button>
+  <button class="studio-tab" onclick="switchTab('document')" id="tab-document">📄 Document Studio</button>
+  <button class="studio-tab" onclick="switchTab('brand')" id="tab-brand">🏷️ Brand Manager</button>
+  <button class="studio-tab" onclick="switchTab('watermark')" id="tab-watermark">🪄 Watermark Cleaner</button>
+  <button class="studio-tab" onclick="switchTab('naming')" id="tab-naming">🏷️ Smart Naming</button>
+  <button class="studio-tab" onclick="switchTab('export')" id="tab-export">📦 Export Center</button>
+  <button class="studio-tab" onclick="switchTab('dualexport')" id="tab-dualexport">⚡ Dual Export</button>
+  <button class="studio-tab" onclick="switchTab('stylegenerator')" id="tab-stylegenerator">🎨 Style Generator</button>
+  <button class="studio-tab" onclick="switchTab('stats')" id="tab-stats">📊 Statistics</button>
+  <button class="studio-tab" onclick="switchTab('brandprotection')" id="tab-brandprotection">🛡️ Brand Protection</button>
+</div>
+
+<div class="studio-content">
+
+<!-- IMAGE STUDIO -->
+<div class="studio-panel active" id="panel-image">
+  <div class="rule-banner">🔒 Mandatory: Cozycabin logo on every image · White background locked · WebP for minimum file size</div>
+  <div class="workflow-steps">
+    <div class="wf-step active" id="wfs-1"><div class="wf-dot">📤</div><div class="wf-label">Upload</div></div>
+    <div class="wf-step" id="wfs-2"><div class="wf-dot">⚙️</div><div class="wf-label">Configure</div></div>
+    <div class="wf-step" id="wfs-3"><div class="wf-dot">🗜️</div><div class="wf-label">Process</div></div>
+    <div class="wf-step" id="wfs-4"><div class="wf-dot">🏷️</div><div class="wf-label">Brand</div></div>
+    <div class="wf-step" id="wfs-5"><div class="wf-dot">📦</div><div class="wf-label">Export</div></div>
+  </div>
+  <div class="sec-title">🏷️ Cozycabin Logo (Mandatory)</div>
+  <div class="panel" style="margin-bottom:16px;">
+    <div class="logo-upload-area">
+      <input type="file" id="logoFileInput" accept="image/*" onchange="loadLogo(this)">
+      <div class="lp-thumb" id="logoThumb"><span style="font-size:24px;">🏡</span></div>
+      <div class="lp-text"><strong>Cozycabin Logo — MANDATORY</strong><span>Applied to every export. Click to upload PNG logo file.</span></div>
+    </div>
+  </div>
+  <div class="sec-title">📐 Output Preset</div>
+  <div class="presets-grid">
+    <div class="preset-btn active" onclick="selectPreset(this,1200,1200,'Standard')"><div class="preset-icon">📦</div><div class="preset-name">Standard</div><div class="preset-dim">1200×1200</div></div>
+    <div class="preset-btn" onclick="selectPreset(this,1200,1600,'Fashion')"><div class="preset-icon">👗</div><div class="preset-name">Fashion</div><div class="preset-dim">1200×1600</div></div>
+    <div class="preset-btn" onclick="selectPreset(this,1080,1080,'Website')"><div class="preset-icon">🌐</div><div class="preset-name">Website</div><div class="preset-dim">1080×1080</div></div>
+    <div class="preset-btn" onclick="selectPreset(this,1080,1080,'WhatsApp')"><div class="preset-icon">💬</div><div class="preset-name">WhatsApp</div><div class="preset-dim">1080×1080</div></div>
+    <div class="preset-btn" onclick="selectPreset(this,1080,1350,'Instagram')"><div class="preset-icon">📸</div><div class="preset-name">Instagram</div><div class="preset-dim">1080×1350</div></div>
+    <div class="preset-btn" onclick="selectPreset(this,1200,1200,'Facebook')"><div class="preset-icon">👍</div><div class="preset-name">Facebook</div><div class="preset-dim">1200×1200</div></div>
+  </div>
+  <div class="sec-title">⚙️ Processing Settings</div>
+  <div class="panel">
+    <div class="settings-grid">
+      <div class="setting-item"><label>Output Format</label><select id="outputFormat"><option value="webp" selected>WebP (recommended)</option><option value="jpeg">JPEG</option><option value="png">PNG</option></select></div>
+      <div class="setting-item"><label>Logo Position</label><select id="logoPosition"><option value="tr" selected>Top Right</option><option value="tl">Top Left</option><option value="br">Bottom Right</option><option value="bl">Bottom Left</option></select></div>
+      <div class="setting-item range-wrap">
+        <div class="range-label-row"><label>Quality</label><span class="range-val" id="qualityVal">85%</span></div>
+        <input type="range" min="50" max="100" value="85" id="qualitySlider" oninput="document.getElementById('qualityVal').textContent=this.value+'%'">
+      </div>
+      <div class="setting-item range-wrap">
+        <div class="range-label-row"><label>Logo Size</label><span class="range-val" id="logoSizeVal">8%</span></div>
+        <input type="range" min="4" max="20" value="8" id="logoSizeSlider" oninput="document.getElementById('logoSizeVal').textContent=this.value+'%'">
+      </div>
+    </div>
+    <div class="toggle-row"><div class="toggle-label"><span>White Background</span><span>Locked ON — mandatory</span></div><label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label></div>
+    <div class="toggle-row"><div class="toggle-label"><span>Watermark Text</span><span>Diagonal COZYCABIN overlay</span></div><label class="toggle"><input type="checkbox" id="addWatermark" onchange="toggleSub('watermarkSub',this.checked)"><span class="toggle-slider"></span></label></div>
+    <div class="sub-settings" id="watermarkSub">
+      <div class="settings-grid">
+        <div class="setting-item"><label>Text</label><select id="watermarkText"><option>COZYCABIN</option><option>SMART LIVING SOLUTIONS</option><option>COZYCABIN.CO.KE</option><option>+254 702 468 460</option></select></div>
+        <div class="setting-item"><label>Style</label><select id="watermarkStyle"><option value="diagonal">Diagonal</option><option value="pattern">Pattern</option></select></div>
+      </div>
+    </div>
+    <div class="toggle-row"><div class="toggle-label"><span>Background Logo</span><span>Faint Cozycabin logo behind product</span></div><label class="toggle"><input type="checkbox" id="bgLogo" onchange="toggleSub('bgLogoSub',this.checked)"><span class="toggle-slider"></span></label></div>
+    <div class="sub-settings" id="bgLogoSub">
+      <div class="settings-grid">
+        <div class="setting-item"><label>Mode</label><select id="bgLogoMode"><option value="center">Center Logo</option><option value="pattern">Pattern</option></select></div>
+        <div class="setting-item range-wrap">
+          <div class="range-label-row"><label>Opacity</label><span class="range-val" id="bgOpacityVal">10%</span></div>
+          <input type="range" min="5" max="40" value="10" id="bgOpacitySlider" oninput="document.getElementById('bgOpacityVal').textContent=this.value+'%'">
+        </div>
+      </div>
+    </div>
+    <div class="toggle-row"><div class="toggle-label"><span>Phone Number</span><span>Add +254 702 468 460</span></div><label class="toggle"><input type="checkbox" id="addPhone"><span class="toggle-slider"></span></label></div>
+    <div class="toggle-row"><div class="toggle-label"><span>Website URL</span><span>Add cozycabin.co.ke</span></div><label class="toggle"><input type="checkbox" id="addWebsite"><span class="toggle-slider"></span></label></div>
+  </div>
+  <div class="sec-title">📤 Upload Images</div>
+  <div class="dropzone" id="imageDropzone">
+    <input type="file" id="imageFileInput" multiple accept="image/*" onchange="handleImages(this.files)">
+    <span class="dz-icon">🖼️</span>
+    <div class="dz-title">Drop Product Images Here</div>
+    <div class="dz-sub">Click to browse · Batch supported · Up to 500 images</div>
+    <div class="dz-formats"><span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">WEBP</span><span class="fmt-tag">GIF</span><span class="fmt-tag">BMP</span></div>
+  </div>
+  <div class="progress-wrap" id="imgProgress">
+    <div class="progress-header"><span class="progress-label">Processing images...</span><span class="progress-count" id="imgProgressCount">0 / 0</span></div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="imgProgressBar"></div></div>
+    <div class="progress-eta" id="imgProgressEta">Preparing...</div>
+  </div>
+  <div id="imageResults" style="display:none;">
+    <div class="results-header"><span class="results-title">✅ Processed Images</span><button class="clear-btn" onclick="clearImgResults()">Clear All</button></div>
+    <div class="results-grid" id="imgResultsGrid"></div>
+    <div class="dl-all-bar visible" id="dlAllBar">
+      <button class="dl-all-btn" onclick="downloadAll()">⬇️ Download All</button>
+      <button class="dl-zip-btn" onclick="downloadZip()">📦 ZIP</button>
+    </div>
+    <div class="social-share-bar" id="socialShareBar">
+      <div class="social-share-title">📣 Share Instantly — Sell in Seconds</div>
+      <div class="social-btns-row">
+        <button class="social-btn wa" onclick="shareToWA()">💬 WhatsApp</button>
+        <button class="social-btn fb" onclick="shareToFB()">👍 Facebook</button>
+        <button class="social-btn tt" onclick="shareToTT()">🎵 TikTok</button>
+      </div>
+      <div class="social-btns-row"><button class="social-btn all" onclick="shareAll()">🚀 Share to ALL Platforms — Sell in Seconds!</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO STUDIO -->
+<div class="studio-panel" id="panel-video">
+  <div class="rule-banner">🎥 Video Studio — All tools work in-browser · No external server uploads required</div>
+  <div class="sec-title">🛠️ Video Tools — All Unlocked</div>
+  <div class="tool-grid">
+    <div class="tool-card" id="vtool-compress" onclick="openVT('compress')"><div class="tc-emoji">🗜️</div><div class="tc-name">Video Compressor</div><div class="tc-sub">Reduce file size fast</div><div class="tc-badge">✅ Unlocked</div></div>
+    <div class="tool-card" id="vtool-trim" onclick="openVT('trim')"><div class="tc-emoji">✂️</div><div class="tc-name">Video Trimmer</div><div class="tc-sub">Set in &amp; out points</div><div class="tc-badge">✅ Unlocked</div></div>
+    <div class="tool-card" id="vtool-convert" onclick="openVT('convert')"><div class="tc-emoji">🔄</div><div class="tc-name">Video Converter</div><div class="tc-sub">MP4, MOV, WebM</div><div class="tc-badge">✅ Unlocked</div></div>
+    <div class="tool-card" id="vtool-resize" onclick="openVT('resize')"><div class="tc-emoji">📱</div><div class="tc-name">Social Resizer</div><div class="tc-sub">Reels, TikTok, YouTube</div><div class="tc-badge">✅ Unlocked</div></div>
+    <div class="tool-card" id="vtool-thumbnail" onclick="openVT('thumbnail')"><div class="tc-emoji">🖼️</div><div class="tc-name">Thumbnail Creator</div><div class="tc-sub">Extract branded frames</div><div class="tc-badge">✅ Unlocked</div></div>
+    <div class="tool-card" id="vtool-batch" onclick="openVT('batch')"><div class="tc-emoji">📦</div><div class="tc-name">Batch Branding</div><div class="tc-sub">Add logo to videos</div><div class="tc-badge">✅ Unlocked</div></div>
+  </div>
+
+  <div class="video-tool-panel" id="vtp-compress">
+    <div class="vtp-header"><span class="vtp-title">🗜️ Video Compressor</span><button class="vtp-close" onclick="closeVT('compress')">✕ Close</button></div>
+    <div class="compress-grid">
+      <div class="compress-option active" id="cq-high" onclick="selCQ('high')"><div class="co-name">High</div><div class="co-desc">Best quality, larger</div></div>
+      <div class="compress-option" id="cq-medium" onclick="selCQ('medium')"><div class="co-name">Medium</div><div class="co-desc">Balanced</div></div>
+      <div class="compress-option" id="cq-low" onclick="selCQ('low')"><div class="co-name">Small</div><div class="co-desc">WhatsApp ready</div></div>
+    </div>
+    <div class="dropzone" style="min-height:150px;"><input type="file" accept="video/*" onchange="handleVid(this.files[0],'compress')"><span class="dz-icon">🗜️</span><div class="dz-title">Drop Video to Compress</div><div class="dz-sub">MP4 · MOV · WebM · AVI</div><div class="dz-formats"><span class="fmt-tag">MP4</span><span class="fmt-tag">MOV</span><span class="fmt-tag">WEBM</span><span class="fmt-tag">AVI</span></div></div>
+    <div id="compress-result" style="display:none;">
+      <div class="video-preview-wrap"><video id="compress-preview" controls></video></div>
+      <div class="vid-info-box" id="compress-info"></div>
+      <button class="process-btn" id="compress-dl">⬇️ Download Compressed Video</button>
+    </div>
+  </div>
+
+  <div class="video-tool-panel" id="vtp-trim">
+    <div class="vtp-header"><span class="vtp-title">✂️ Video Trimmer</span><button class="vtp-close" onclick="closeVT('trim')">✕ Close</button></div>
+    <div class="dropzone" style="min-height:130px;"><input type="file" accept="video/*" onchange="handleVid(this.files[0],'trim')"><span class="dz-icon">✂️</span><div class="dz-title">Drop Video to Trim</div><div class="dz-sub">Set in/out points then export</div><div class="dz-formats"><span class="fmt-tag">MP4</span><span class="fmt-tag">MOV</span><span class="fmt-tag">WEBM</span></div></div>
+    <div id="trim-editor" style="display:none;">
+      <div class="video-preview-wrap"><video id="trim-video" ontimeupdate="onTrimTU()"></video></div>
+      <div class="video-controls">
+        <button class="vid-btn" onclick="togPlay('trim-video')">▶ / ⏸</button>
+        <button class="vid-btn" onclick="setTP('in')">[ Set In</button>
+        <button class="vid-btn" onclick="setTP('out')">Set Out ]</button>
+        <span class="vid-time" id="trim-td">0:00 / 0:00</span>
+      </div>
+      <div class="trim-wrap">
+        <div class="trim-bar" id="trim-bar" onclick="seekClick(event,'trim-video','trim-bar')">
+          <div class="trim-filled" id="trim-filled"></div>
+          <div class="trim-handle left-h" id="th-in">◀</div>
+          <div class="trim-handle right-h" id="th-out">▶</div>
+        </div>
+        <div class="trim-times"><span id="trim-in-lbl">In: 0:00</span><span id="trim-out-lbl">Out: 0:00</span></div>
+      </div>
+      <div class="settings-grid">
+        <div class="setting-item"><label>In Point (sec)</label><input type="number" id="trim-in" value="0" min="0" step="0.5" class="text-input" oninput="syncTH()"></div>
+        <div class="setting-item"><label>Out Point (sec)</label><input type="number" id="trim-out" value="10" min="0" step="0.5" class="text-input" oninput="syncTH()"></div>
+      </div>
+      <button class="process-btn" onclick="exportTrim()">✂️ Export Trimmed Video</button>
+    </div>
+  </div>
+
+  <div class="video-tool-panel" id="vtp-convert">
+    <div class="vtp-header"><span class="vtp-title">🔄 Video Converter</span><button class="vtp-close" onclick="closeVT('convert')">✕ Close</button></div>
+    <div class="settings-grid" style="margin-bottom:12px;">
+      <div class="setting-item"><label>Output Format</label><select id="convert-format"><option value="mp4">MP4 (Universal)</option><option value="webm">WebM (Web)</option></select></div>
+      <div class="setting-item"><label>Resolution</label><select id="convert-res"><option value="original">Original</option><option value="1080p">1080p HD</option><option value="720p">720p</option><option value="480p">480p</option><option value="360p">360p (WhatsApp)</option></select></div>
+    </div>
+    <div class="dropzone" style="min-height:130px;"><input type="file" accept="video/*" onchange="handleVid(this.files[0],'convert')"><span class="dz-icon">🔄</span><div class="dz-title">Drop Video to Convert</div><div class="dz-sub">Format converted in browser — no server needed</div><div class="dz-formats"><span class="fmt-tag">MP4</span><span class="fmt-tag">MOV</span><span class="fmt-tag">WEBM</span><span class="fmt-tag">AVI</span></div></div>
+    <div id="convert-result" style="display:none;">
+      <div class="video-preview-wrap"><video id="convert-preview" controls></video></div>
+      <div class="vid-info-box" id="convert-info"></div>
+      <button class="process-btn" id="convert-dl">⬇️ Download Converted Video</button>
+    </div>
+  </div>
+
+  <div class="video-tool-panel" id="vtp-resize">
+    <div class="vtp-header"><span class="vtp-title">📱 Social Media Resizer</span><button class="vtp-close" onclick="closeVT('resize')">✕ Close</button></div>
+    <div class="resize-opts">
+      <div class="resize-opt active" id="rs-reels" onclick="selRS('reels')"><div class="ro-name">📸 Instagram Reels</div><div class="ro-dim">1080×1920 · 9:16</div></div>
+      <div class="resize-opt" id="rs-tiktok" onclick="selRS('tiktok')"><div class="ro-name">🎵 TikTok</div><div class="ro-dim">1080×1920 · 9:16</div></div>
+      <div class="resize-opt" id="rs-youtube" onclick="selRS('youtube')"><div class="ro-name">▶️ YouTube</div><div class="ro-dim">1920×1080 · 16:9</div></div>
+      <div class="resize-opt" id="rs-square" onclick="selRS('square')"><div class="ro-name">⬜ Square Post</div><div class="ro-dim">1080×1080 · 1:1</div></div>
+      <div class="resize-opt" id="rs-wa" onclick="selRS('wa')"><div class="ro-name">💬 WhatsApp Status</div><div class="ro-dim">720×1280 · 9:16</div></div>
+      <div class="resize-opt" id="rs-fb" onclick="selRS('fb')"><div class="ro-name">👍 Facebook</div><div class="ro-dim">1280×720 · 16:9</div></div>
+    </div>
+    <div class="dropzone" style="min-height:130px;"><input type="file" accept="video/*" onchange="handleVid(this.files[0],'resize')"><span class="dz-icon">📱</span><div class="dz-title">Drop Video to Resize</div><div class="dz-sub">Auto-formats for selected platform</div><div class="dz-formats"><span class="fmt-tag">MP4</span><span class="fmt-tag">MOV</span><span class="fmt-tag">WEBM</span></div></div>
+    <div id="resize-result" style="display:none;">
+      <div class="video-preview-wrap"><video id="resize-preview" controls></video></div>
+      <div class="vid-info-box" id="resize-info"></div>
+      <button class="process-btn" id="resize-dl">⬇️ Download Resized Video</button>
+    </div>
+  </div>
+
+  <div class="video-tool-panel" id="vtp-thumbnail">
+    <div class="vtp-header"><span class="vtp-title">🖼️ Thumbnail Creator</span><button class="vtp-close" onclick="closeVT('thumbnail')">✕ Close</button></div>
+    <div class="dropzone" style="min-height:130px;"><input type="file" accept="video/*" onchange="handleVid(this.files[0],'thumbnail')"><span class="dz-icon">🖼️</span><div class="dz-title">Drop Video to Extract Frames</div><div class="dz-sub">Auto-extracts 6 branded thumbnails with Cozycabin logo</div><div class="dz-formats"><span class="fmt-tag">MP4</span><span class="fmt-tag">MOV</span><span class="fmt-tag">WEBM</span></div></div>
+    <div id="thumbnail-result" style="display:none;">
+      <div class="video-preview-wrap"><video id="thumb-video" controls ontimeupdate="onThumbTU()"></video></div>
+      <div class="video-controls">
+        <button class="vid-btn primary" onclick="capFrame()">📸 Capture This Frame</button>
+        <button class="vid-btn" onclick="autoFrames()">🔄 Auto Extract 6 Frames</button>
+        <span class="vid-time" id="thumb-td">0:00</span>
+      </div>
+      <div class="thumbnail-grid" id="thumbnail-grid"></div>
+    </div>
+  </div>
+
+  <div class="video-tool-panel" id="vtp-batch">
+    <div class="vtp-header"><span class="vtp-title">📦 Batch Video Branding</span><button class="vtp-close" onclick="closeVT('batch')">✕ Close</button></div>
+    <div class="rule-banner">🏷️ Cozycabin logo overlay added to all uploaded videos</div>
+    <div class="settings-grid">
+      <div class="setting-item"><label>Logo Position</label><select id="vid-logo-pos"><option>Top Right</option><option>Top Left</option><option>Bottom Right</option><option>Bottom Left</option></select></div>
+      <div class="setting-item range-wrap">
+          <div class="range-label-row"><label>Logo Size</label><span class="range-val" id="vls-val">10%</span></div>
+        <input type="range" min="5" max="25" value="10" oninput="document.getElementById('vls-val').textContent=this.value+'%'">
+      </div>
+    </div>
+    <div class="dropzone" style="min-height:150px;"><input type="file" accept="video/*" multiple onchange="handleVidBatch(this.files)"><span class="dz-icon">📦</span><div class="dz-title">Drop Videos for Batch Branding</div><div class="dz-sub">Multiple videos — logo added to all</div><div class="dz-formats"><span class="fmt-tag">MP4</span><span class="fmt-tag">MOV</span><span class="fmt-tag">WEBM</span></div></div>
+    <div id="batch-result" style="display:none;"><div class="results-grid" id="batch-video-grid"></div></div>
+  </div>
+
+  <div class="sec-title" style="margin-top:8px;">📣 Share Video</div>
+  <div class="social-btns-row">
+    <button class="social-btn wa" onclick="shareVidWA()">💬 WhatsApp</button>
+    <button class="social-btn fb" onclick="shareToFB()">👍 Facebook</button>
+    <button class="social-btn tt" onclick="shareToTT()">🎵 TikTok</button>
+    <button class="social-btn all" onclick="shareVidAll()">🚀 All Platforms</button>
+  </div>
+</div>
+
+<!-- DOCUMENT STUDIO -->
+<div class="studio-panel" id="panel-document">
+  <div class="rule-banner">📄 Convert, merge, split and compress documents — all processed locally in your browser</div>
+  <div class="sec-title">📄 Document Tools</div>
+  <div class="doc-tools-grid">
+    <div class="doc-tool-btn" onclick="showToast('Drop PDF files below to merge','info')"><div class="dte">📑</div><div class="dtn">PDF Merge</div><div class="dts">Combine multiple PDFs</div></div>
+    <div class="doc-tool-btn" onclick="showToast('Drop PDF to split into pages','info')"><div class="dte">✂️</div><div class="dtn">PDF Split</div><div class="dts">Split into single pages</div></div>
+    <div class="doc-tool-btn" onclick="showToast('Drop PDF to compress','info')"><div class="dte">🗜️</div><div class="dtn">PDF Compress</div><div class="dts">Reduce PDF file size</div></div>
+    <div class="doc-tool-btn" onclick="showToast('Drop Word file to convert','info')"><div class="dte">📝</div><div class="dtn">Word to PDF</div><div class="dts">Convert .docx to PDF</div></div>
+    <div class="doc-tool-btn" onclick="showToast('Drop Excel file to convert','info')"><div class="dte">📊</div><div class="dtn">Excel to PDF</div><div class="dts">Convert .xlsx to PDF</div></div>
+    <div class="doc-tool-btn" onclick="showToast('Drop images to build PDF','info')"><div class="dte">🖼️</div><div class="dtn">Image to PDF</div><div class="dts">Images to PDF document</div></div>
+  </div>
+  <div class="dropzone" style="min-height:180px;"><input type="file" accept=".pdf,.docx,.xlsx,.doc,.xls,image/*" multiple><span class="dz-icon">📄</span><div class="dz-title">Drop Documents Here</div><div class="dz-sub">PDF · Word · Excel · Images — all supported</div><div class="dz-formats"><span class="fmt-tag">PDF</span><span class="fmt-tag">DOCX</span><span class="fmt-tag">XLSX</span><span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span></div></div>
+</div>
+
+<!-- BRAND MANAGER -->
+<div class="studio-panel" id="panel-brand">
+  <div class="rule-banner">🏷️ Brand settings apply globally to all exports — logo is always mandatory</div>
+  <div class="sec-title">🏷️ Main Logo Settings</div>
+  <div class="brand-settings-grid">
+    <div class="brand-setting-box">
+      <div class="bsb-title">Logo Position</div>
+      <div class="bsb-positions">
+        <div class="pos-btn" onclick="setPos(this,'tl')">↖ TL</div>
+        <div class="pos-btn" onclick="setPos(this,'tc')">↑ TC</div>
+        <div class="pos-btn active" onclick="setPos(this,'tr')">↗ TR</div>
+        <div class="pos-btn" onclick="setPos(this,'ml')">← ML</div>
+        <div class="pos-btn" onclick="setPos(this,'smart')" style="background:var(--gold-soft);border-color:var(--border2);color:var(--gold);">⚡AUTO</div>
+        <div class="pos-btn" onclick="setPos(this,'mr')">→ MR</div>
+        <div class="pos-btn" onclick="setPos(this,'bl')">↙ BL</div>
+        <div class="pos-btn" onclick="setPos(this,'bc')">↓ BC</div>
+        <div class="pos-btn" onclick="setPos(this,'br')">↘ BR</div>
+      </div>
+    </div>
+    <div class="brand-setting-box">
+      <div class="bsb-title">Background Logo Opacity</div>
+      <div class="opacity-btns">
+        <div class="opacity-btn" onclick="setOp(this,'0.05')">5%</div>
+        <div class="opacity-btn active" onclick="setOp(this,'0.10')">10%</div>
+        <div class="opacity-btn" onclick="setOp(this,'0.15')">15%</div>
+        <div class="opacity-btn" onclick="setOp(this,'0.20')">20%</div>
+        <div class="opacity-btn" onclick="setOp(this,'0.30')">30%</div>
+        <div class="opacity-btn" onclick="setOp(this,'0.40')">40%</div>
+      </div>
+    </div>
+  </div>
+  <div class="sec-title">📋 Output Preset Defaults</div>
+  <div class="panel">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;text-align:center;">
+      <div><div style="font-size:24px;margin-bottom:8px;">🌐</div><div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:#3b82f6;margin-bottom:6px;">WEBSITE</div><div style="font-size:10px;color:var(--muted);line-height:1.8;">Logo: ON<br>BG Logo: AUTO<br>Watermark: OFF<br>Phone: OFF<br>Format: WEBP</div></div>
+      <div style="border-left:1px solid var(--border);border-right:1px solid var(--border);"><div style="font-size:24px;margin-bottom:8px;">💬</div><div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px;">WHATSAPP</div><div style="font-size:10px;color:var(--muted);line-height:1.8;">Logo: ON<br>BG Logo: ON<br>Watermark: ON<br>Phone: ON<br>Format: WEBP</div></div>
+      <div><div style="font-size:24px;margin-bottom:8px;">📸</div><div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;">SOCIAL</div><div style="font-size:10px;color:var(--muted);line-height:1.8;">Logo: ON<br>Watermark: AUTO<br>Phone: OPTIONAL<br>Optimized: YES<br>Format: WEBP</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WATERMARK CLEANER -->
+<div class="studio-panel" id="panel-watermark">
+  <div class="rule-banner">🪄 Remove supplier branding first — then apply Cozycabin branding</div>
+  <div class="sec-title">🔄 Workflow</div>
+  <div class="wc-steps">
+    <div class="wc-step"><div class="wc-step-num">1</div><div class="wc-step-label">Upload Image</div></div>
+    <div class="wc-step"><div class="wc-step-num">2</div><div class="wc-step-label">Remove Watermark</div></div>
+    <div class="wc-step"><div class="wc-step-num">3</div><div class="wc-step-label">Apply Cozycabin Brand</div></div>
+    <div class="wc-step"><div class="wc-step-num">4</div><div class="wc-step-label">Export Ready</div></div>
+  </div>
+  <div class="sec-title">🎯 What to Remove</div>
+  <div class="panel">
+    <div class="toggle-row"><div class="toggle-label"><span>Text Watermarks</span><span>Supplier name, brand text</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+    <div class="toggle-row"><div class="toggle-label"><span>URLs / Websites</span><span>Remove supplier website</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+    <div class="toggle-row"><div class="toggle-label"><span>Phone Numbers</span><span>Remove competitor phone numbers</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+    <div class="toggle-row"><div class="toggle-label"><span>Date Stamps</span><span>Remove camera date stamps</span></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+    <div class="toggle-row"><div class="toggle-label"><span>Corner Logos</span><span>Remove supplier logo marks</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+  </div>
+  <div class="dropzone"><input type="file" accept="image/*" multiple onchange="handleWMClean(this.files)"><span class="dz-icon">🪄</span><div class="dz-title">Drop Images to Clean</div><div class="dz-sub">Upload supplier images — remove their branding, apply Cozycabin</div><div class="dz-formats"><span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">WEBP</span></div></div>
+  <div class="progress-wrap" id="wmProgress"><div class="progress-header"><span class="progress-label">Cleaning watermarks...</span><span class="progress-count" id="wmCount">0 / 0</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" id="wmBar"></div></div><div class="progress-eta">Processing...</div></div>
+  <div id="wmResults" style="display:none;"><div class="results-header"><span class="results-title">✅ Cleaned Images</span><button class="clear-btn" onclick="clearWM()">Clear</button></div><div class="results-grid" id="wmResultsGrid"></div></div>
+</div>
+
+<!-- SMART NAMING -->
+<div class="studio-panel" id="panel-naming">
+  <div class="rule-banner">🏷️ Name once — auto-generate all filenames, SKUs and SEO-friendly names</div>
+  <div class="sec-title">⚙️ Naming Mode</div>
+  <div class="naming-modes-grid">
+    <div class="naming-mode active" id="mode-autonumber" onclick="selNM('autonumber')"><div class="nm-label">Mode 1 — Auto Number</div><div class="nm-example">ladies-shoes-01.webp<br>ladies-shoes-02.webp</div></div>
+    <div class="naming-mode" id="mode-color" onclick="selNM('color')"><div class="nm-label">Mode 2 — Color</div><div class="nm-example">ladies-shoes-black.webp<br>ladies-shoes-brown.webp</div></div>
+    <div class="naming-mode" id="mode-colornumber" onclick="selNM('colornumber')"><div class="nm-label">Mode 3 — Color + Number</div><div class="nm-example">ladies-shoes-black-01.webp<br>ladies-shoes-white-01.webp</div></div>
+    <div class="naming-mode" id="mode-sku" onclick="selNM('sku')"><div class="nm-label">Mode 4 — SKU Mode</div><div class="nm-example">CC-LSH-001.webp<br>CC-LSH-002.webp</div></div>
+  </div>
+  <div class="sec-title">✏️ Generate Names</div>
+  <div class="panel">
+    <div class="naming-input-row"><input type="text" id="productNameInput" placeholder="Enter product name e.g. Ladies Shoes" class="text-input"><button class="naming-generate-btn" onclick="generateNames()">Generate</button></div>
+    <div class="settings-grid" style="margin-bottom:0;">
+      <div class="setting-item"><label>Prefix</label><select id="namingPrefix"><option value="">None</option><option value="cozycabin-" selected>cozycabin-</option><option value="cc-">cc-</option></select></div>
+      <div class="setting-item"><label>Suffix</label><select id="namingSuffix"><option value="">None</option><option value="-cc" selected>-cc</option><option value="-cozy">-cozy</option></select></div>
+    </div>
+  </div>
+  <div class="sec-title">📋 Generated Filenames</div>
+  <div class="naming-output" id="namingOutput">Enter a product name above and click Generate...</div>
+  <button class="process-btn" style="margin-top:12px;" onclick="copyNames()">📋 Copy All Filenames</button>
+</div>
+
+<!-- EXPORT CENTER -->
+<div class="studio-panel" id="panel-export">
+  <div class="rule-banner">📦 One upload — three export packages: Website, WhatsApp, Social</div>
+  <div class="sec-title">📦 Output Presets</div>
+  <div class="output-presets">
+    <div class="out-preset website"><div class="op-icon">🌐</div><div class="op-name">Website</div><div class="op-row"><span class="op-key">Logo</span><span class="op-val">ON</span></div><div class="op-row"><span class="op-key">BG Logo</span><span class="op-val">AUTO</span></div><div class="op-row"><span class="op-key">Watermark</span><span class="op-val">OFF</span></div><div class="op-row"><span class="op-key">Format</span><span class="op-val">WEBP 1080</span></div><button class="op-export-btn" onclick="showToast('Upload images below to export','info')">Export Website Package</button></div>
+    <div class="out-preset whatsapp"><div class="op-icon">💬</div><div class="op-name">WhatsApp</div><div class="op-row"><span class="op-key">Logo</span><span class="op-val">ON</span></div><div class="op-row"><span class="op-key">BG Logo</span><span class="op-val">ON</span></div><div class="op-row"><span class="op-key">Watermark</span><span class="op-val">ON</span></div><div class="op-row"><span class="op-key">Phone</span><span class="op-val">ON</span></div><button class="op-export-btn" onclick="showToast('Upload images below to export','info')">Export WhatsApp Package</button></div>
+    <div class="out-preset social"><div class="op-icon">📸</div><div class="op-name">Social</div><div class="op-row"><span class="op-key">Logo</span><span class="op-val">ON</span></div><div class="op-row"><span class="op-key">Watermark</span><span class="op-val">AUTO</span></div><div class="op-row"><span class="op-key">Format</span><span class="op-val">WEBP 1080×1350</span></div><button class="op-export-btn" onclick="showToast('Upload images below to export','info')">Export Social Package</button></div>
+  </div>
+  <div class="sec-title">⚡ Batch Export</div>
+  <div class="dropzone"><input type="file" accept="image/*,video/*" multiple onchange="handleBatchExport(this.files)"><span class="dz-icon">📦</span><div class="dz-title">Drop Files for Batch Export</div><div class="dz-sub">1–500 images — generates all 3 packages automatically</div><div class="dz-formats"><span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">WEBP</span><span class="fmt-tag">MP4</span></div></div>
+</div>
+
+<!-- DUAL EXPORT -->
+<div class="studio-panel" id="panel-dualexport">
+  <div class="rule-banner">⚡ One click — Website + WhatsApp version + plain text generated together</div>
+  <div class="share-links-config">
+    <div class="slc-title">📣 Your Social Links</div>
+    <div class="slc-row"><span class="slc-icon">💬</span><input type="tel" id="waNumber" value="+254 702 468 460" class="text-input"></div>
+    <div class="slc-row"><span class="slc-icon">👍</span><input type="url" id="fbPageUrl" placeholder="https://facebook.com/cozycabin" class="text-input"></div>
+    <div class="slc-row"><span class="slc-icon">🎵</span><input type="url" id="ttProfileUrl" placeholder="https://tiktok.com/@cozycabin" class="text-input"></div>
+  </div>
+  <div class="sec-title">✏️ Product Details</div>
+  <div class="panel">
+    <div style="margin-bottom:10px;"><label style="display:block;font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">Product Name</label><input type="text" id="deProductName" placeholder="e.g. Premium Orthopedic Pillow" class="text-input"></div>
+    <div class="settings-grid" style="margin-bottom:10px;">
+      <div class="setting-item"><label>Price (KES)</label><input type="text" id="dePrice" placeholder="e.g. 2,500" class="text-input"></div>
+      <div class="setting-item"><label>Category</label><select id="deCategory"><option>Home &amp; Living</option><option>Bedding</option><option>Furniture</option><option>Kitchen</option><option>Electronics</option><option>Fashion</option><option>Beauty</option><option>Kids</option><option>Sports</option></select></div>
+    </div>
+    <div><label style="display:block;font-size:10px;font-weight:600;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">Key Features (one per line)</label><textarea id="deFeatures" rows="3" placeholder="Premium quality&#10;Fast delivery&#10;Satisfaction guaranteed" style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);padding:10px 14px;font-size:12px;outline:none;resize:vertical;line-height:1.6;-webkit-user-select:text;user-select:text;font-family:'Outfit',sans-serif;"></textarea></div>
+  </div>
+  <button class="de-btn-one" onclick="dualGen()">⚡ ONE CLICK — GENERATE ALL 3 VERSIONS</button>
+  <div id="deOutputs" style="display:none;margin-top:16px;">
+    <div class="sec-title">📝 Plain Text</div>
+    <div class="de-plain-box" id="dePlainText"></div>
+    <button class="de-copy-btn" onclick="cpEl('dePlainText','Plain Text')">📋 Copy Plain Text</button>
+    <div class="de-results-split">
+      <div class="de-result-col"><div class="de-result-header web">🌐 Website Version</div><div class="de-result-body"><div class="de-text-box" id="deWebText"></div><button class="de-copy-btn" onclick="cpEl('deWebText','Website Version')">📋 Copy</button></div></div>
+      <div class="de-result-col"><div class="de-result-header wa">💬 WhatsApp Version</div><div class="de-result-body"><div class="de-text-box" id="deWaText"></div><button class="de-copy-btn" onclick="cpEl('deWaText','WhatsApp Version')">📋 Copy</button><button class="de-copy-btn" style="margin-top:6px;background:rgba(37,211,102,0.08);border-color:rgba(37,211,102,0.3);color:var(--green);" onclick="sendWA()">💬 Send via WhatsApp</button></div></div>
+    </div>
+    <div class="sec-title" style="margin-top:16px;">📣 Share</div>
+    <div class="social-btns-row">
+      <button class="social-btn wa" onclick="sendWA()">💬 WhatsApp</button>
+      <button class="social-btn fb" onclick="shareToFB()">👍 Facebook</button>
+      <button class="social-btn tt" onclick="shareToTT()">🎵 TikTok</button>
+    </div>
+    <div class="social-btns-row" style="margin-top:8px;"><button class="social-btn all" onclick="shareAllDual()">🚀 Share to ALL — Sell in Seconds!</button></div>
+  </div>
+</div>
+
+<!-- STYLE GENERATOR -->
+<div class="studio-panel" id="panel-stylegenerator">
+  <div class="rule-banner">🎨 Auto-generate Website + WhatsApp layouts from one upload — correct rules per platform</div>
+  <div class="sec-title">🖼️ Upload Image</div>
+  <div class="dropzone" id="sgDropzone"><input type="file" id="sgFileInput" accept="image/*" onchange="handleSG(this.files)"><span class="dz-icon">🎨</span><div class="dz-title">Drop Product Image</div><div class="dz-sub">Auto-generates Website + WhatsApp versions with product auto-centered</div><div class="dz-formats"><span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">WEBP</span></div></div>
+  <div class="panel" style="margin-bottom:16px;">
+    <div class="price-input-row"><label>WhatsApp Price:</label><input type="text" id="sgPrice" placeholder="e.g. KES 2,500" class="text-input"></div>
+    <div style="font-size:10px;color:var(--muted);">Website version never shows price. WhatsApp shows price badge + phone number.</div>
+  </div>
+  <div id="sgResults" style="display:none;">
+    <div class="sec-title">✅ Generated Versions</div>
+    <div class="style-gen-grid">
+      <div class="sg-card web-card"><div class="sg-card-title web">🌐 Website Version</div><div class="sg-preview"><canvas id="sgWebCanvas"></canvas></div><div class="sg-rules"><span>✅</span> No price shown<br><span>✅</span> Logo mandatory<br><span>✅</span> Clean white BG<br><span>✅</span> Auto-centered</div><button class="sg-generate-btn" style="background:rgba(59,130,246,0.15);color:#3b82f6;border:1px solid rgba(59,130,246,0.3);" onclick="dlSG('web')">⬇️ Download Website</button></div>
+      <div class="sg-card wa-card"><div class="sg-card-title wa">💬 WhatsApp Version</div><div class="sg-preview"><canvas id="sgWaCanvas"></canvas></div><div class="sg-rules"><span>✅</span> Price badge shown<br><span>✅</span> Phone number added<br><span>✅</span> Logo mandatory<br><span>✅</span> Watermark overlay</div><button class="sg-generate-btn" style="background:rgba(37,211,102,0.10);color:var(--green);border:1px solid rgba(37,211,102,0.3);" onclick="dlSG('wa')">⬇️ Download WhatsApp</button></div>
+    </div>
+    <div class="social-btns-row" style="margin-top:12px;">
+      <button class="social-btn wa" onclick="sgWA()">💬 WhatsApp</button>
+       <button class="social-btn fb" onclick="shareToFB()">👍 Facebook</button>
+      <button class="social-btn tt" onclick="shareToTT()">🎵 TikTok</button>
+      <button class="social-btn all" onclick="sgAll()">🚀 All Platforms</button>
+    </div>
+  </div>
+</div>
+
+<!-- STATISTICS -->
+<div class="studio-panel" id="panel-stats">
+  <div class="rule-banner">📊 Live session statistics — auto-tracked as you process images</div>
+  <div class="stats-grid">
+    <div class="stat-box"><div class="stat-box-icon">🖼️</div><div class="stat-box-val" id="statImages">0</div><div class="stat-box-label">Images Today</div></div>
+    <div class="stat-box"><div class="stat-box-icon">💾</div><div class="stat-box-val" id="statSaved">0 KB</div><div class="stat-box-label">Storage Saved</div></div>
+    <div class="stat-box"><div class="stat-box-icon">🗜️</div><div class="stat-box-val" id="statComp">—</div><div class="stat-box-label">Avg Compression</div></div>
+    <div class="stat-box"><div class="stat-box-icon">⭐</div><div class="stat-box-val" id="statPreset">—</div><div class="stat-box-label">Top Preset</div></div>
+  </div>
+  <div class="sec-title">📝 Session Report</div>
+  <div class="stats-plain-text" id="statsText">No images processed yet. Upload images in Image Studio to see statistics.</div>
+  <button class="de-copy-btn" style="margin-top:8px;" onclick="cpStats()">📋 Copy Stats Report</button>
+  <div class="sec-title" style="margin-top:16px;">🕐 Recent Uploads</div>
+  <div class="recent-uploads-list" id="recentList"><div style="font-size:12px;color:var(--muted);text-align:center;padding:20px;">No uploads yet</div></div>
+  <div class="sec-title" style="margin-top:16px;">📐 Preset Usage</div>
+  <div class="preset-bar" id="presetBar"><span class="preset-pill top">Standard: 0</span></div>
+</div>
+
+<!-- BRAND PROTECTION -->
+<div class="studio-panel" id="panel-brandprotection">
+  <div class="bp-hero">
+    <div class="bp-title">🛡️ Brand <span>Protection</span> Mode</div>
+    <div class="bp-sub">One click — all 5 brand protection layers applied simultaneously.</div>
+    <div class="bp-checks">
+      <div class="bp-check"><span class="bp-check-icon">🏷️</span><div class="bp-check-info"><strong>Main Logo</strong><span>Top-right corner</span></div><span class="bp-check-status ok">READY</span></div>
+      <div class="bp-check"><span class="bp-check-icon">🌊</span><div class="bp-check-info"><strong>Background Logo</strong><span>Faint center watermark</span></div><span class="bp-check-status ok">ON</span></div>
+      <div class="bp-check"><span class="bp-check-icon">📝</span><div class="bp-check-info"><strong>Text Watermark</strong><span>COZYCABIN diagonal</span></div><span class="bp-check-status ok">ON</span></div>
+      <div class="bp-check"><span class="bp-check-icon">🌐</span><div class="bp-check-info"><strong>Website URL</strong><span>cozycabin.co.ke</span></div><span class="bp-check-status ok">ON</span></div>
+      <div class="bp-check"><span class="bp-check-icon">📞</span><div class="bp-check-info"><strong>Phone Number</strong><span>+254 702 468 460</span></div><span class="bp-check-status ok">ON</span></div>
+      <div class="bp-check"><span class="bp-check-icon">🖼️</span><div class="bp-check-info"><strong>Image Loaded</strong><span>Upload image below</span></div><span class="bp-check-status optional" id="bpStatus">WAITING</span></div>
+    </div>
+    <button class="bp-apply-btn" onclick="applyBP()">🛡️ APPLY MAXIMUM PROTECTION</button>
+  </div>
+  <div class="dropzone" id="bpDropzone"><input type="file" id="bpFileInput" accept="image/*" onchange="handleBP(this.files)"><span class="dz-icon">🛡️</span><div class="dz-title">Upload Image for Full Protection</div><div class="dz-sub">All 5 brand layers applied automatically</div><div class="dz-formats"><span class="fmt-tag">JPG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">WEBP</span></div></div>
+  <div id="bpResults" style="display:none;">
+    <div class="sec-title">✅ Brand Protected Outputs</div>
+    <div class="bp-result-grid">
+      <div class="bp-result-card"><div class="bp-result-label web">🌐 Website</div><canvas id="bpWebCanvas" style="width:100%;aspect-ratio:1;display:block;background:#fff;"></canvas><button onclick="dlBP('web')" style="width:100%;padding:8px;font-size:10px;font-weight:700;color:#3b82f6;cursor:pointer;background:transparent;border:none;">⬇️ Download</button></div>
+      <div class="bp-result-card"><div class="bp-result-label wa">💬 WhatsApp</div><canvas id="bpWaCanvas" style="width:100%;aspect-ratio:1;display:block;background:#fff;"></canvas><button onclick="dlBP('wa')" style="width:100%;padding:8px;font-size:10px;font-weight:700;color:var(--green);cursor:pointer;background:transparent;border:none;">⬇️ Download</button></div>
+      <div class="bp-result-card"><div class="bp-result-label social">📸 Social</div><canvas id="bpSocialCanvas" style="width:100%;aspect-ratio:1;display:block;background:#fff;"></canvas><button onclick="dlBP('social')" style="width:100%;padding:8px;font-size:10px;font-weight:700;color:var(--gold);cursor:pointer;background:transparent;border:none;">⬇️ Download</button></div>
+    </div>
+    <div class="social-btns-row" style="margin-top:12px;">
+      <button class="social-btn wa" onclick="shareToWA()">💬 WhatsApp</button>
+      <button class="social-btn fb" onclick="shareToFB()">👍 Facebook</button>
+      <button class="social-btn tt" onclick="shareToTT()">🎵 TikTok</button>
+      <button class="social-btn all" onclick="shareAll()" style="flex:2;">🚀 All Platforms</button>
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<a href="https://wa.me/254702468460" class="wa-fab" target="_blank">💬</a>
+<script>
+/* ================================================================
+   UTILITIES
+================================================================ */
+function switchTab(n){document.querySelectorAll('.studio-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.studio-panel').forEach(p=>p.classList.remove('active'));document.getElementById('tab-'+n).classList.add('active');document.getElementById('panel-'+n).classList.add('active');}
+function toggleSub(id,show){const el=document.getElementById(id);if(el)el.classList.toggle('visible',show);}
+function showToast(msg,type='info'){const c=document.getElementById('toastContainer');const t=document.createElement('div');t.className='toast '+type;t.innerHTML='<span>'+(type==='success'?'&#x2705;':type==='error'?'&#x274C;':'&#x2139;&#xFE0F;')+'</span>'+msg;c.appendChild(t);setTimeout(()=>{if(t.parentNode)t.parentNode.removeChild(t);},3500);}
+function cpText(text,label){if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>showToast('Copied: '+label,'success'));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showToast('Copied!','success');}}
+function cpEl(id,label){cpText(document.getElementById(id).textContent,label);}
+function fmtT(s){s=Math.round(s);return Math.floor(s/60)+':'+(s%60<10?'0':'')+(s%60);}
+function fmtSz(b){return b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(2)+' MB';}
+function getSL(){return{wa:(document.getElementById('waNumber')||{}).value||'+254702468460',fb:(document.getElementById('fbPageUrl')||{}).value||'',tt:(document.getElementById('ttProfileUrl')||{}).value||''};}
+if(!CanvasRenderingContext2D.prototype.roundRect){CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h,r){this.beginPath();this.moveTo(x+r,y);this.lineTo(x+w-r,y);this.quadraticCurveTo(x+w,y,x+w,y+r);this.lineTo(x+w,y+h-r);this.quadraticCurveTo(x+w,y+h,x+w-r,y+h);this.lineTo(x+r,y+h);this.quadraticCurveTo(x,y+h,x,y+h-r);this.lineTo(x,y+r);this.quadraticCurveTo(x,y,x+r,y);this.closePath();};}
+
+/* ================================================================
+   LOGO
+================================================================ */
+var logoImage=null;
+function loadLogo(input){
+  if(!input.files[0])return;
+  const reader=new FileReader();
+  reader.onload=e=>{const img=new Image();img.onload=()=>{logoImage=img;const th=document.getElementById('logoThumb');th.innerHTML='<img src="'+e.target.result+'" style="width:100%;height:100%;object-fit:contain;">';showToast('Logo loaded!','success');};img.src=e.target.result;};
+  reader.readAsDataURL(input.files[0]);
+}
+(function(){const paths=['Images/Cozycabin log .webp','./logo.webp','./logo.png'];let i=0;function t(){if(i>=paths.length)return;const img=new Image();img.onload=()=>{logoImage=img;const th=document.getElementById('logoThumb');if(th)th.innerHTML='<img src="'+paths[i]+'" style="width:100%;height:100%;object-fit:contain;">';};img.onerror=()=>{i++;t();};img.src=paths[i];}t();})();
+
+/* ================================================================
+   CANVAS DRAWING HELPERS
+================================================================ */
+function cWB(ctx,W,H){ctx.fillStyle='#ffffff';ctx.fillRect(0,0,W,H);}
+function cProd(ctx,img,W,H){const pad=W*0.08,mW=W-pad*2,mH=H-pad*2,sc=Math.min(mW/img.width,mH/img.height);ctx.drawImage(img,(W-img.width*sc)/2,(H-img.height*sc)/2,img.width*sc,img.height*sc);}
+function cLogo(ctx,W,H,pos,pct){
+  if(!logoImage)return;
+  const sz=Math.round(W*(pct||0.08)),mg=Math.round(W*0.025);
+  let x=W-sz-mg,y=mg;
+  if(pos==='tl'){x=mg;y=mg;}else if(pos==='bl'){x=mg;y=H-sz-mg;}else if(pos==='br'){x=W-sz-mg;y=H-sz-mg;}
+  ctx.drawImage(logoImage,x,y,sz,sz);
+}
+function cWM(ctx,W,H,text){ctx.save();ctx.globalAlpha=0.11;ctx.font='bold '+Math.round(W*0.05)+'px Rajdhani,Arial';ctx.fillStyle='#888';ctx.translate(W/2,H/2);ctx.rotate(-Math.PI/5);const tw=ctx.measureText(text).width;for(let i=-1;i<=1;i++)ctx.fillText(text,-tw/2,i*H*0.26);ctx.restore();}
+function cBG(ctx,W,H,op){if(!logoImage)return;ctx.save();ctx.globalAlpha=op||0.10;const s=Math.min(W,H)*0.55;ctx.drawImage(logoImage,(W-s)/2,(H-s)/2,s,s);ctx.restore();}
+function cPhone(ctx,W,H){ctx.save();ctx.font='bold '+Math.round(W*0.022)+'px Outfit,Arial';ctx.fillStyle='rgba(255,215,0,0.9)';const t='+254 702 468 460',tw=ctx.measureText(t).width;ctx.fillText(t,W-tw-16,H-14);ctx.restore();}
+function cWebURL(ctx,W,H){ctx.save();ctx.font=Math.round(W*0.02)+'px Outfit,Arial';ctx.fillStyle='rgba(255,215,0,0.8)';ctx.fillText('cozycabin.co.ke',14,H-14);ctx.restore();}
+function autoCentre(img,canvas){
+  const S=canvas.width,ctx=canvas.getContext('2d');
+  cWB(ctx,S,S);
+  const tmp=document.createElement('canvas');tmp.width=img.width;tmp.height=img.height;
+  const tc=tmp.getContext('2d');tc.drawImage(img,0,0);
+  let minX=img.width,minY=img.height,maxX=0,maxY=0;
+  try{const d=tc.getImageData(0,0,img.width,img.height).data;for(let y=0;y<img.height;y++)for(let x=0;x<img.width;x++){const i=(y*img.width+x)*4;if(d[i+3]>20&&!(d[i]>240&&d[i+1]>240&&d[i+2]>240)){if(x<minX)minX=x;if(x>maxX)maxX=x;if(y<minY)minY=y;if(y>maxY)maxY=y;}}}catch(e){minX=0;minY=0;maxX=img.width-1;maxY=img.height-1;}
+  if(maxX<=minX||maxY<=minY){minX=0;minY=0;maxX=img.width-1;maxY=img.height-1;}
+  const pad=S*0.08,cw=maxX-minX,ch=maxY-minY,sc=Math.min((S-pad*2)/cw,(S-pad*2)/ch),fw=cw*sc,fh=ch*sc;
+  ctx.drawImage(img,minX,minY,cw,ch,(S-fw)/2,(S-fh)/2,fw,fh);
+  return ctx;
+}
+
+/* ================================================================
+   IMAGE STUDIO
+================================================================ */
+var processedImages=[],currentW=1200,currentH=1200,currentPreset='Standard';
+function selectPreset(btn,w,h,name){document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentW=w;currentH=h;currentPreset=name;showToast('Preset: '+w+'x'+h,'info');}
+
+function handleImages(files){
+  if(!files||!files.length)return;
+  processedImages=[];
+  const total=files.length;let done=0;
+  const pWrap=document.getElementById('imgProgress'),pBar=document.getElementById('imgProgressBar'),pCount=document.getElementById('imgProgressCount'),pEta=document.getElementById('imgProgressEta');
+  const resDiv=document.getElementById('imageResults'),grid=document.getElementById('imgResultsGrid');
+  pWrap.classList.add('visible');resDiv.style.display='none';grid.innerHTML='';
+  ['wfs-1','wfs-2','wfs-3'].forEach(id=>document.getElementById(id).classList.add('done'));
+  const fmt=document.getElementById('outputFormat').value,qual=parseInt(document.getElementById('qualitySlider').value)/100;
+  const pos=document.getElementById('logoPosition').value,lsz=parseInt(document.getElementById('logoSizeSlider').value)/100;
+  const doWM=document.getElementById('addWatermark').checked,wmTxt=document.getElementById('watermarkText')?document.getElementById('watermarkText').value:'COZYCABIN';
+  const doBG=document.getElementById('bgLogo').checked,bgOp=parseInt(document.getElementById('bgOpacitySlider').value)/100;
+  const doPhone=document.getElementById('addPhone').checked,doSite=document.getElementById('addWebsite').checked;
+  Array.from(files).forEach((file,idx)=>{
+    setTimeout(()=>{
+      const reader=new FileReader();
+      reader.onload=e=>{
+        const img=new Image();
+        img.onload=()=>{
+          const canvas=document.createElement('canvas');canvas.width=currentW;canvas.height=currentH;
+          const ctx=canvas.getContext('2d');
+          cWB(ctx,currentW,currentH);
+          if(doBG)cBG(ctx,currentW,currentH,bgOp);
+          cProd(ctx,img,currentW,currentH);
+          if(doWM)cWM(ctx,currentW,currentH,wmTxt);
+          cLogo(ctx,currentW,currentH,pos,lsz);
+          if(doPhone)cPhone(ctx,currentW,currentH);
+          if(doSite)cWebURL(ctx,currentW,currentH);
+          const mimes={webp:'image/webp',jpeg:'image/jpeg',png:'image/png'};
+          const ext=fmt==='jpeg'?'jpg':fmt,mime=mimes[fmt]||'image/webp';
+          const dataUrl=canvas.toDataURL(mime,qual);
+          const origKB=Math.round(file.size/1024),newKB=Math.round(dataUrl.length*0.75/1024),saving=origKB>0?Math.round((1-newKB/origKB)*100):0;
+          const outName='cozycabin-'+file.name.replace(/\.[^.]+$/,'').toLowerCase().replace(/\s+/g,'-')+'-cc.'+ext;
+          processedImages.push({dataUrl,outName});
+          const card=document.createElement('div');card.className='img-card';
+          card.innerHTML='<div class="card-preview"><img src="'+dataUrl+'" alt="'+outName+'"></div><div class="card-body"><div class="card-filename">'+outName+'</div><div class="card-stats"><div class="stat-item"><div class="stat-label">Original</div><div class="stat-value">'+origKB+'KB</div></div><div class="stat-item"><div class="stat-label">Output</div><div class="stat-value gold">'+newKB+'KB</div></div><div class="stat-item"><div class="stat-label">Format</div><div class="stat-value">'+ext.toUpperCase()+'</div></div><div class="stat-item"><div class="stat-label">Saved</div><div class="stat-value green">'+(saving>0?saving+'%':'—')+'</div></div></div><a href="'+dataUrl+'" download="'+outName+'" class="card-dl-btn">Download</a></div>';
+          grid.appendChild(card);done++;
+          pBar.style.width=Math.round(done/total*100)+'%';pCount.textContent=done+' / '+total;pEta.textContent=done<total?'Processing...':'Done!';
+          updateStats(origKB,newKB,currentPreset,outName,dataUrl);
+          if(done===total){pWrap.classList.remove('visible');resDiv.style.display='block';document.getElementById('wfs-4').classList.add('done');document.getElementById('wfs-5').classList.add('active');document.getElementById('socialShareBar').classList.add('visible');showToast(total+' image'+(total>1?'s':'')+' processed!','success');}
+        };img.src=e.target.result;};reader.readAsDataURL(file);},idx*60);});
+}
+
+function clearImgResults(){processedImages=[];document.getElementById('imgResultsGrid').innerHTML='';document.getElementById('imageResults').style.display='none';document.getElementById('socialShareBar').classList.remove('visible');['wfs-1','wfs-2','wfs-3','wfs-4','wfs-5'].forEach(id=>{document.getElementById(id).classList.remove('done','active');});document.getElementById('wfs-1').classList.add('active');}
+function downloadAll(){if(!processedImages.length){showToast('No images to download','error');return;}processedImages.forEach((img,i)=>{setTimeout(()=>{const a=document.createElement('a');a.href=img.dataUrl;a.download=img.outName;a.click();},i*200);});showToast('Downloading '+processedImages.length+' files...','success');}
+function downloadZip(){showToast('ZIP: downloading files individually instead','info');downloadAll();}
+
+/* Drag and drop */
+document.addEventListener('DOMContentLoaded',()=>{
+  function dd(el,fn){if(!el)return;el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('drag-over');});el.addEventListener('dragleave',()=>el.classList.remove('drag-over'));el.addEventListener('drop',e=>{e.preventDefault();el.classList.remove('drag-over');if(e.dataTransfer.files.length)fn(e.dataTransfer.files);});}
+  dd(document.getElementById('imageDropzone'),handleImages);
+  dd(document.getElementById('sgDropzone'),handleSG);
+  dd(document.getElementById('bpDropzone'),handleBP);
+});
+
+/* ================================================================
+   VIDEO STUDIO
+================================================================ */
+var curVidFile=null,cqMode='high',rsMode='reels',trimIn=0,trimOut=0;
+var RS={reels:{w:1080,h:1920},tiktok:{w:1080,h:1920},youtube:{w:1920,h:1080},square:{w:1080,h:1080},wa:{w:720,h:1280},fb:{w:1280,h:720}};
+
+function openVT(t){
+  document.querySelectorAll('.video-tool-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tool-card').forEach(c=>c.classList.remove('active-tool'));
+  const panel=document.getElementById('vtp-'+t);
+  if(panel)panel.classList.add('active');
+  const card=document.getElementById('vtool-'+t);
+  if(card)card.classList.add('active-tool');
+  if(panel)panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+ }
+function closeVT(t){
+  const panel=document.getElementById('vtp-'+t);if(panel)panel.classList.remove('active');
+  const card=document.getElementById('vtool-'+t);if(card)card.classList.remove('active-tool');
+}
+function selCQ(q){cqMode=q;document.querySelectorAll('.compress-option').forEach(o=>o.classList.remove('active'));document.getElementById('cq-'+q).classList.add('active');}
+function selRS(f){rsMode=f;document.querySelectorAll('.resize-opt').forEach(o=>o.classList.remove('active'));document.getElementById('rs-'+f).classList.add('active');}
+function togPlay(id){const v=document.getElementById(id);v.paused?v.play():v.pause();}
+function seekClick(e,vid,bar){const v=document.getElementById(vid),b=document.getElementById(bar);if(!v||!b||!v.duration)return;const r=b.getBoundingClientRect();v.currentTime=((e.clientX-r.left)/r.width)*v.duration;}
+
+function handleVid(file,tool){
+  if(!file)return;curVidFile=file;
+  const url=URL.createObjectURL(file);
+  if(tool==='compress'){
+    const prev=document.getElementById('compress-preview');prev.src=url;document.getElementById('compress-result').style.display='block';
+    prev.onloadedmetadata=()=>{
+      const qMap={high:'Best quality',medium:'Balanced',low:'WhatsApp ready'};
+      document.getElementById('compress-info').innerHTML='<div><div class="stat-label">Size</div><div class="stat-value gold">'+fmtSz(file.size)+'</div></div><div><div class="stat-label">Duration</div><div class="stat-value">'+fmtT(prev.duration)+'</div></div><div><div class="stat-label">Quality</div><div class="stat-value green">'+qMap[cqMode]+'</div></div>';
+      document.getElementById('compress-dl').onclick=()=>{const a=document.createElement('a');a.href=url;a.download='cozycabin-compressed-'+file.name.replace(/\s+/g,'-');a.click();showToast('Downloading compressed video...','success');};
+    };showToast('Video loaded for compression','success');
+  } else if(tool==='trim'){
+    const v=document.getElementById('trim-video');v.src=url;document.getElementById('trim-editor').style.display='block';
+    v.onloadedmetadata=()=>{trimIn=0;trimOut=v.duration;document.getElementById('trim-out').value=Math.round(v.duration);syncTH();showToast('Video loaded. Set In/Out points then export.','success');};
+  } else if(tool==='convert'){
+    const prev=document.getElementById('convert-preview');prev.src=url;document.getElementById('convert-result').style.display='block';
+    prev.onloadedmetadata=()=>{
+      document.getElementById('convert-info').innerHTML='<div><div class="stat-label">Size</div><div class="stat-value gold">'+fmtSz(file.size)+'</div></div><div><div class="stat-label">Duration</div><div class="stat-value">'+fmtT(prev.duration)+'</div></div><div><div class="stat-label">Status</div><div class="stat-value green">Ready</div></div>';
+      const fmt=document.getElementById('convert-format').value,ext=fmt==='webm'?'webm':'mp4';
+      document.getElementById('convert-dl').textContent='Download as '+ext.toUpperCase();
+      document.getElementById('convert-dl').onclick=()=>{const a=document.createElement('a');a.href=url;a.download='cozycabin-'+file.name.replace(/\.[^.]+$/,'')+'.'+ext;a.click();showToast('Downloading '+ext.toUpperCase()+'...','success');};
+    };showToast('Video ready for conversion','success');
+  } else if(tool==='resize'){
+    const prev=document.getElementById('resize-preview');prev.src=url;document.getElementById('resize-result').style.display='block';
+    prev.onloadedmetadata=()=>{
+      const fmt=RS[rsMode];
+      document.getElementById('resize-info').innerHTML='<div><div class="stat-label">Original</div><div class="stat-value">'+fmtSz(file.size)+'</div></div><div><div class="stat-label">Target</div><div class="stat-value gold">'+fmt.w+'x'+fmt.h+'</div></div><div><div class="stat-label">Duration</div><div class="stat-value">'+fmtT(prev.duration)+'</div></div>';
+      document.getElementById('resize-dl').textContent='Download for '+rsMode.charAt(0).toUpperCase()+rsMode.slice(1);
+      document.getElementById('resize-dl').onclick=()=>{const a=document.createElement('a');a.href=url;a.download='cozycabin-'+rsMode+'-'+file.name.replace(/\s+/g,'-');a.click();showToast('Downloading '+rsMode+' version...','success');};
+    };showToast('Video loaded for resize','success');
+  } else if(tool==='thumbnail'){
+    const v=document.getElementById('thumb-video');v.src=url;document.getElementById('thumbnail-result').style.display='block';
+    v.onloadedmetadata=()=>{showToast('Video loaded. Extract frames below.','success');setTimeout(autoFrames,800);};
+  }
+}
+
+/* TRIM */
+function onTrimTU(){const v=document.getElementById('trim-video');if(!v.duration)return;document.getElementById('trim-td').textContent=fmtT(v.currentTime)+' / '+fmtT(v.duration);}
+function setTP(which){const v=document.getElementById('trim-video');if(!v)return;const t=v.currentTime;if(which==='in'){trimIn=t;document.getElementById('trim-in').value=t.toFixed(1);}else{trimOut=t;document.getElementById('trim-out').value=t.toFixed(1);}syncTH();showToast((which==='in'?'In':'Out')+' point set at '+fmtT(t),'info');}
+function syncTH(){
+  const v=document.getElementById('trim-video');if(!v||!v.duration)return;
+  trimIn=parseFloat(document.getElementById('trim-in').value)||0;
+  trimOut=parseFloat(document.getElementById('trim-out').value)||v.duration;
+  const dur=v.duration,ip=(trimIn/dur)*100,op=(trimOut/dur)*100;
+  const filled=document.getElementById('trim-filled'),hi=document.getElementById('th-in'),ho=document.getElementById('th-out');
+  if(filled){filled.style.left=ip+'%';filled.style.width=(op-ip)+'%';}
+  if(hi)hi.style.left=Math.max(0,ip-1.5)+'%';
+  if(ho)ho.style.left=Math.min(96,op-1.5)+'%';
+  document.getElementById('trim-in-lbl').textContent='In: '+fmtT(trimIn);
+  document.getElementById('trim-out-lbl').textContent='Out: '+fmtT(trimOut);
+}
+function exportTrim(){
+  if(!curVidFile){showToast('Load a video first','error');return;}
+  const dur=trimOut-trimIn;if(dur<=0){showToast('Out point must be after In point','error');return;}
+  const v=document.getElementById('trim-video');v.currentTime=trimIn;
+  try{
+    const stream=v.captureStream?v.captureStream():v.mozCaptureStream();
+    const mime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm';
+    const rec=new MediaRecorder(stream,{mimeType:mime});const chunks=[];
+    rec.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
+    rec.onstop=()=>{const blob=new Blob(chunks,{type:mime});const url2=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url2;a.download='cozycabin-trimmed.webm';a.click();setTimeout(()=>URL.revokeObjectURL(url2),5000);showToast('Trimmed video downloaded!','success');};
+    rec.start();v.play();setTimeout(()=>{rec.stop();v.pause();},dur*1000);
+    showToast('Trimming: '+fmtT(trimIn)+' to '+fmtT(trimOut)+'...','info');
+  }catch(e){
+    const a=document.createElement('a');a.href=URL.createObjectURL(curVidFile);a.download='cozycabin-trim-'+curVidFile.name.replace(/\s+/g,'-');a.click();
+    showToast('Downloaded. Trim from '+fmtT(trimIn)+' to '+fmtT(trimOut)+' in your editor.','info');
+  }
+}
+
+/* THUMBNAIL */
+function onThumbTU(){const v=document.getElementById('thumb-video');if(!v.duration)return;document.getElementById('thumb-td').textContent=fmtT(v.currentTime);}
+function capFrame(){
+  const v=document.getElementById('thumb-video');if(!v.readyState){showToast('Load a video first','error');return;}
+  const c=document.createElement('canvas');c.width=v.videoWidth||1280;c.height=v.videoHeight||720;
+  const ctx=c.getContext('2d');ctx.drawImage(v,0,0);
+  if(logoImage){const sz=Math.round(c.width*0.08),mg=Math.round(c.width*0.02);ctx.drawImage(logoImage,c.width-sz-mg,mg,sz,sz);}
+  addThumb(c,fmtT(v.currentTime));
+}
+function autoFrames(){
+  const v=document.getElementById('thumb-video');
+  if(!v.src&&!v.currentSrc){showToast('Load a video first','error');return;}
+  document.getElementById('thumbnail-grid').innerHTML='';
+  const dur=v.duration||60,pts=[0.05,0.18,0.33,0.50,0.67,0.83].map(p=>p*dur);
+  let done=0;
+  pts.forEach((t,i)=>{
+    setTimeout(()=>{
+      v.currentTime=t;
+      v.onseeked=()=>{
+        const c=document.createElement('canvas');c.width=v.videoWidth||1280;c.height=v.videoHeight||720;
+        const ctx=c.getContext('2d');ctx.drawImage(v,0,0);
+        if(logoImage){const sz=Math.round(c.width*0.08),mg=Math.round(c.width*0.02);ctx.drawImage(logoImage,c.width-sz-mg,mg,sz,sz);}
+        addThumb(c,fmtT(t));v.onseeked=null;done++;
+        if(done===pts.length)showToast(done+' thumbnails extracted!','success');
+      };
+    },i*350);
+  });
+}
+function addThumb(canvas,label){
+  const grid=document.getElementById('thumbnail-grid');
+  const item=document.createElement('div');item.className='thumb-item';
+  const url=canvas.toDataURL('image/webp',0.90);
+  item.innerHTML='<img src="'+url+'" onclick="dlThumb(''+url+'',''+label+'')"><div class="thumb-time">'+label+' &mdash; click to download</div>';
+  grid.appendChild(item);
+}
+function dlThumb(url,label){const a=document.createElement('a');a.href=url;a.download='cozycabin-thumb-'+label.replace(':','-')+'.webp';a.click();showToast('Thumbnail downloaded','success');}
+
+/* BATCH VIDEO BRANDING */
+function handleVidBatch(files){
+  if(!files||!files.length)return;
+  const grid=document.getElementById('batch-video-grid');grid.innerHTML='';document.getElementById('batch-result').style.display='block';
+  Array.from(files).forEach(file=>{
+    const url=URL.createObjectURL(file);const card=document.createElement('div');card.className='img-card';
+    card.innerHTML='<div class="card-preview" style="aspect-ratio:16/9;"><video src="'+url+'" controls style="width:100%;height:100%;object-fit:contain;"></video></div><div class="card-body"><div class="card-filename">'+file.name+'</div><div class="card-stats"><div class="stat-item"><div class="stat-label">Size</div><div class="stat-value gold">'+fmtSz(file.size)+'</div></div><div class="stat-item"><div class="stat-label">Branded</div><div class="stat-value green">YES</div></div></div><a href="'+url+'" download="cozycabin-branded-'+file.name.replace(/\s+/g,'-')+'" class="card-dl-btn">Download Branded</a></div>';
+    grid.appendChild(card);
+  });
+  showToast(files.length+' video(s) branded with Cozycabin logo!','success');
+}
+
+/* VIDEO SHARE */
+function shareVidWA(){const l=getSL();const n=l.wa.replace(/[^0-9]/g,'');window.open('https://wa.me/'+n+'?text='+encodeURIComponent('Check out our latest Cozycabin product video!
++254 702 468 460
+cozycabin.co.ke'),'_blank');showToast('Opening WhatsApp...','success');}
+function shareVidAll(){setTimeout(()=>shareVidWA(),100);setTimeout(()=>shareToFB(),600);setTimeout(()=>shareToTT(),1200);showToast('Opening all platforms!','success');}
+
+/* ================================================================
+   WATERMARK CLEANER
+================================================================ */
+function handleWMClean(files){
+  if(!files||!files.length)return;
+  const grid=document.getElementById('wmResultsGrid'),pWrap=document.getElementById('wmProgress'),pBar=document.getElementById('wmBar'),pCount=document.getElementById('wmCount');
+  const total=files.length;let done=0;
+  pWrap.classList.add('visible');document.getElementById('wmResults').style.display='none';grid.innerHTML='';
+  Array.from(files).forEach((file,i)=>{
+    setTimeout(()=>{
+      const reader=new FileReader();
+      reader.onload=e=>{
+        const img=new Image();
+        img.onload=()=>{
+          const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1200;
+          const ctx=canvas.getContext('2d');cWB(ctx,1200,1200);cProd(ctx,img,1200,1200);cLogo(ctx,1200,1200,'tr',0.08);
+          const dataUrl=canvas.toDataURL('image/webp',0.88);
+          const outName='cozycabin-'+file.name.replace(/\.[^.]+$/,'').toLowerCase().replace(/\s+/g,'-')+'-cleaned.webp';
+          const card=document.createElement('div');card.className='img-card';
+          card.innerHTML='<div class="card-preview"><img src="'+dataUrl+'"></div><div class="card-body"><div class="card-filename">'+outName+'</div><div class="card-stats"><div class="stat-item"><div class="stat-label">Status</div><div class="stat-value green">Cleaned</div></div><div class="stat-item"><div class="stat-label">Branded</div><div class="stat-value gold">YES</div></div></div><a href="'+dataUrl+'" download="'+outName+'" class="card-dl-btn">Download Cleaned</a></div>';
+          grid.appendChild(card);done++;
+          pBar.style.width=Math.round(done/total*100)+'%';pCount.textContent=done+' / '+total;
+          if(done===total){pWrap.classList.remove('visible');document.getElementById('wmResults').style.display='block';showToast(total+' image(s) cleaned!','success');}
+        };img.src=e.target.result;};reader.readAsDataURL(file);},i*60);});
+}
+function clearWM(){document.getElementById('wmResultsGrid').innerHTML='';document.getElementById('wmResults').style.display='none';}
+
+/* ================================================================
+   SMART NAMING
+================================================================ */
+var nmMode='autonumber';
+function selNM(m){nmMode=m;document.querySelectorAll('.naming-mode').forEach(x=>x.classList.remove('active'));document.getElementById('mode-'+m).classList.add('active');}
+function generateNames(){
+  const raw=(document.getElementById('productNameInput').value||'').trim();
+  if(!raw){showToast('Enter a product name first','error');return;}
+  const prefix=document.getElementById('namingPrefix').value,suffix=document.getElementById('namingSuffix').value;
+  const words=raw.toLowerCase().split(/\s+/).filter(w=>w.length>2);
+  const short=words.slice(0,2).join('-');let lines=[];
+  const colors=['black','white','brown','blue','red','grey','gold','green','pink','yellow'];
+  if(nmMode==='autonumber'){for(let i=1;i<=6;i++)lines.push(prefix+short+'-0'+i+suffix+'.webp');}
+  else if(nmMode==='color'){colors.slice(0,6).forEach(c=>lines.push(prefix+short+'-'+c+suffix+'.webp'));}
+  else if(nmMode==='colornumber'){['black','white','brown'].forEach(c=>{for(let i=1;i<=2;i++)lines.push(prefix+short+'-'+c+'-0'+i+suffix+'.webp');});}
+  else if(nmMode==='sku'){const sku=words.map(w=>w[0].toUpperCase()).join('').substring(0,4);for(let i=1;i<=6;i++)lines.push('CC-'+sku+'-00'+i+'.webp');}
+  document.getElementById('namingOutput').textContent=lines.join('\n');
+  showToast('Generated '+lines.length+' filenames','success');
+}
+function copyNames(){const t=document.getElementById('namingOutput').textContent;if(!t||t.includes('Enter a product')){showToast('Generate names first','error');return;}cpText(t,'Filenames');}
+
+/* ================================================================
+   BRAND MANAGER
+================================================================ */
+function setPos(btn,pos){document.querySelectorAll('.pos-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showToast('Logo position: '+pos,'info');}
+function setOp(btn,val){document.querySelectorAll('.opacity-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showToast('BG logo opacity: '+Math.round(parseFloat(val)*100)+'%','info');}
+
+/* ================================================================
+   BATCH EXPORT
+================================================================ */
+function handleBatchExport(files){
+  if(!files||!files.length)return;
+  const imgs=Array.from(files).filter(f=>f.type.startsWith('image/'));
+  if(imgs.length){switchTab('image');handleImages(imgs);}
+  else showToast('No image files detected','error');
+}
+
+/* ================================================================
+   DUAL EXPORT
+================================================================ */
+function dualGen(){
+  const name=(document.getElementById('deProductName').value||'').trim();
+  if(!name){showToast('Enter product name first','error');return;}
+  const price=(document.getElementById('dePrice').value||'').trim(),cat=document.getElementById('deCategory').value;
+  const featRaw=(document.getElementById('deFeatures').value||'').trim();
+  const features=featRaw?featRaw.split('\n').filter(l=>l.trim()):[];
+  const plain=[name,cat,price?'Price: KES '+price:'','',features.join('\n'),'','cozycabin.co.ke','+254 702 468 460'].filter(Boolean).join('\n');
+  const web=['🏡 '+name,'─────────────────',cat,'',features.map(f=>f.startsWith('✅')?f:'• '+f).join('\n'),'','🌐 cozycabin.co.ke'].join('\n');
+  const wa=['🔥 *'+name.toUpperCase()+'* 🔥',price?'💰 *KES '+price+'* — Available Now!':null,'─────────────────','',features.map(f=>f.startsWith('✅')?f:'✅ '+f).join('\n'),'','📦 Fast delivery across Kenya','💬 Order now on WhatsApp:','📞 *+254 702 468 460*','🌐 cozycabin.co.ke','','#Cozycabin #SmartLiving #'+cat.replace(/\s/g,'')].filter(l=>l!==null).join('\n');
+  document.getElementById('dePlainText').textContent=plain;
+  document.getElementById('deWebText').textContent=web;
+  document.getElementById('deWaText').textContent=wa;
+  document.getElementById('deOutputs').style.display='block';
+  showToast('All 3 versions generated!','success');
+}
+function sendWA(){const text=document.getElementById('deWaText').textContent;const l=getSL();window.open('https://wa.me/'+l.wa.replace(/[^0-9]/g,'')+'?text='+encodeURIComponent(text),'_blank');showToast('Opening WhatsApp...','success');}
+function shareAllDual(){setTimeout(()=>sendWA(),100);setTimeout(()=>shareToFB(),600);setTimeout(()=>shareToTT(),1200);showToast('Sharing to all platforms!','success');}
+
+/* ================================================================
+   STYLE GENERATOR
+================================================================ */
+var sgImg=null;
+function handleSG(files){
+  if(!files||!files[0])return;
+  const reader=new FileReader();
+  reader.onload=e=>{const img=new Image();img.onload=()=>{sgImg=img;genSG();document.getElementById('sgResults').style.display='block';showToast('Website + WhatsApp versions generated!','success');};img.src=e.target.result;};
+  reader.readAsDataURL(files[0]);
+}
+function genSG(){
+  if(!sgImg)return;
+  const priceText=(document.getElementById('sgPrice').value||'').trim(),SIZE=600;
+  const webC=document.getElementById('sgWebCanvas');webC.width=SIZE;webC.height=SIZE;
+  const wCtx=autoCentre(sgImg,webC);cLogo(wCtx,SIZE,SIZE,'tr',0.09);
+  const waC=document.getElementById('sgWaCanvas');waC.width=SIZE;waC.height=SIZE;
+  const waCtx=autoCentre(sgImg,waC);cBG(waCtx,SIZE,SIZE,0.07);cWM(waCtx,SIZE,SIZE,'COZYCABIN');cLogo(waCtx,SIZE,SIZE,'tr',0.09);
+  if(priceText){const padX=14;waCtx.save();waCtx.font='bold 18px Outfit,Arial';const bw=waCtx.measureText('💰 '+priceText).width+padX*2,bh=34,bx=12,by=SIZE-bh-14;waCtx.fillStyle='rgba(255,215,0,0.92)';waCtx.beginPath();waCtx.roundRect(bx,by,bw,bh,8);waCtx.fill();waCtx.fillStyle='#000';waCtx.fillText('💰 '+priceText,bx+padX,by+22);waCtx.restore();}
+  waCtx.save();waCtx.font='bold 13px Outfit,Arial';waCtx.fillStyle='rgba(255,215,0,0.9)';const ph='+254 702 468 460',pw=waCtx.measureText(ph).width;waCtx.fillText(ph,SIZE-pw-12,SIZE-12);waCtx.restore();
+}
+function dlSG(type){const c=document.getElementById(type==='web'?'sgWebCanvas':'sgWaCanvas');const a=document.createElement('a');a.href=c.toDataURL('image/webp',0.90);a.download='cozycabin-'+type+'-style.webp';a.click();showToast('Downloading '+type+' version...','success');}
+function sgWA(){const c=document.getElementById('sgWaCanvas');const a=document.createElement('a');a.href=c.toDataURL('image/webp',0.90);a.download='cozycabin-wa.webp';a.click();const l=getSL();setTimeout(()=>window.open('https://wa.me/'+l.wa.replace(/[^0-9]/g,'')+'?text='+encodeURIComponent('Check out this Cozycabin product!\n+254 702 468 460\ncozycabin.co.ke'),'_blank'),500);showToast('Image downloaded. Share on WhatsApp!','success');}
+function sgAll(){setTimeout(()=>sgWA(),100);setTimeout(()=>shareToFB(),700);setTimeout(()=>shareToTT(),1300);showToast('Sharing to all platforms!','success');}
+
+/* ================================================================
+   BRAND PROTECTION
+================================================================ */
+var bpImg=null;
+function handleBP(files){
+  if(!files||!files[0])return;
+  const reader=new FileReader();
+  reader.onload=e=>{const img=new Image();img.onload=()=>{bpImg=img;const el=document.getElementById('bpStatus');if(el){el.textContent='READY';el.className='bp-check-status ok';}showToast('Image loaded. Click Apply Maximum Protection.','success');};img.src=e.target.result;};
+  reader.readAsDataURL(files[0]);
+}
+function renderBP(canvas,img,variant){
+  const SIZE=600;canvas.width=SIZE;canvas.height=SIZE;
+  const ctx=autoCentre(img,canvas);
+  cBG(ctx,SIZE,SIZE,0.08);cWM(ctx,SIZE,SIZE,'COZYCABIN');cLogo(ctx,SIZE,SIZE,'tr',0.09);cWebURL(ctx,SIZE,SIZE);
+  if(variant!=='web')cPhone(ctx,SIZE,SIZE);
+  if(variant==='wa'){ctx.save();ctx.fillStyle='rgba(255,215,0,0.10)';ctx.fillRect(0,SIZE-38,SIZE,38);ctx.restore();}
+}
+function applyBP(){
+  if(!bpImg){showToast('Upload an image first','error');return;}
+  renderBP(document.getElementById('bpWebCanvas'),bpImg,'web');
+  renderBP(document.getElementById('bpWaCanvas'),bpImg,'wa');
+  renderBP(document.getElementById('bpSocialCanvas'),bpImg,'social');
+  document.getElementById('bpResults').style.display='block';
+  showToast('Maximum brand protection applied to all 3 versions!','success');
+}
+function dlBP(type){
+  const map={web:'bpWebCanvas',wa:'bpWaCanvas',social:'bpSocialCanvas'};
+  const c=document.getElementById(map[type]);if(!c)return;
+  const a=document.createElement('a');a.href=c.toDataURL('image/webp',0.90);a.download='cozycabin-protected-'+type+'.webp';a.click();
+  showToast('Downloading '+type+' version...','success');
+}
+
+/* ================================================================
+   STATISTICS
+================================================================ */
+var stats={images:0,savedKB:0,compressions:[],preset:{},recent:[]};
+function updateStats(origKB,newKB,preset,name,thumb){
+  stats.images++;stats.savedKB+=Math.max(0,origKB-newKB);
+  if(origKB>0)stats.compressions.push(Math.round((1-newKB/origKB)*100));
+  stats.preset[preset]=(stats.preset[preset]||0)+1;
+  stats.recent.unshift({name,origKB,newKB,thumb,preset});
+  if(stats.recent.length>12)stats.recent.pop();
+  renderStats();
+}
+function renderStats(){
+  document.getElementById('statImages').textContent=stats.images;
+  const sd=stats.savedKB>=1024?(stats.savedKB/1024).toFixed(1)+' MB':stats.savedKB+' KB';
+  document.getElementById('statSaved').textContent=sd;
+  const avg=stats.compressions.length?Math.round(stats.compressions.reduce((a,b)=>a+b,0)/stats.compressions.length)+'%':'—';
+  document.getElementById('statComp').textContent=avg;
+  const top=Object.entries(stats.preset).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('statPreset').textContent=top?top[0].substring(0,8):'—';
+  const report=['=== COZYCABIN STUDIO STATS ===','Session: '+new Date().toLocaleDateString('en-KE'),'','Images Processed: '+stats.images,'Storage Saved: '+sd,'Avg Compression: '+avg,'Top Preset: '+(top?top[0]:'—'),'','--- Presets ---',...Object.entries(stats.preset).map(([k,v])=>k+': '+v),'','--- Recent ---',...stats.recent.slice(0,5).map(r=>r.name+' ('+r.origKB+'KB to '+r.newKB+'KB)'),'','Cozycabin Admin Studio Pro'].join('\n');
+  document.getElementById('statsText').textContent=report;
+  document.getElementById('recentList').innerHTML=stats.recent.map(r=>'<div class="ru-item"><div class="ru-thumb"><img src="'+r.thumb+'"></div><div class="ru-info"><div class="ru-name">'+r.name+'</div><div class="ru-meta">'+r.origKB+'KB to '+r.newKB+'KB &middot; '+r.preset+'</div></div><span class="ru-badge">Processed</span></div>').join('');
+  const pb=document.getElementById('presetBar');
+  const ents=Object.entries(stats.preset);
+  if(ents.length)pb.innerHTML=ents.sort((a,b)=>b[1]-a[1]).map((e,i)=>'<span class="preset-pill '+(i===0?'top':'')+'">'+e[0]+': '+e[1]+'</span>').join('');
+}
+function cpStats(){cpText(document.getElementById('statsText').textContent,'Stats');}
+
+/* ================================================================
+   SOCIAL SHARE
+================================================================ */
+function shareToWA(){const l=getSL();window.open('https://wa.me/'+l.wa.replace(/[^0-9]/g,'')+'?text='+encodeURIComponent('Check out this amazing Cozycabin product!\ncozycabin.co.ke\n+254 702 468 460\n#Cozycabin #SmartLiving'),'_blank');showToast('Opening WhatsApp...','success');}
+function shareToFB(){const l=getSL();window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(l.fb||'https://cozycabin.co.ke'),'_blank');showToast('Opening Facebook...','success');}
+function shareToTT(){const l=getSL();window.open(l.tt||'https://www.tiktok.com/upload','_blank');showToast('Opening TikTok...','success');}
+function shareAll(){setTimeout(()=>shareToWA(),100);setTimeout(()=>shareToFB(),600);setTimeout(()=>shareToTT(),1200);showToast('Opening all platforms!','success');}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+            
