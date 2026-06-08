@@ -228,7 +228,7 @@ var products = {
       sizes: [],
       colors: [],
       description: "3 IN 1 LAXURIOUS MANAGERIAL BOSSY Aliminium flame UNICROSS zippless SUITCASE BRIEFCASE TRAVEL BAG",
-      images: ["Images/LAXURIOUS3_1-S562616.webp"],
+      images: ["Images/LAXURIOUS3_1-S562616.webp","Images/LuxurySs-4.webp","Images/LuxurySs-11.webp","Images/LuxurySs564486.webp","Images/LuxurySs-10.webp","Images/LuxurySs564496.webp"],
       badge: "New arrivals 🛬 you don't miss the Boss"
     },
   
