@@ -1103,7 +1103,7 @@ function renderZipList(){
   var list=document.getElementById('zipList');list.innerHTML='';
   state.zipFiles.forEach(function(f,i){
     var item=document.createElement('div');item.className='zip-item';
-    item.innerHTML='<div><div class="zip-item-name">'+f.name+'</div><div class="zip-item-meta">Image '+（i+1)+'</div></div>'+
+    item.innerHTML='<div><div class="zip-item-name">'+f.name+'</div><div class="zip-item-meta">Image '+ (i+1)+'</div></div>'+
       '<button class="btn-red" onclick="removeFromZip('+i+')">✕</button>';
     list.appendChild(item);
   });
