@@ -219,8 +219,20 @@ var products = {
       images: ["Images/1-9.webp","Images/1-7.webp","Images/1-4.webp","Images/1-5.webp","Images/1-6.webp","Images/1-7webp.webp","Images/1-2.webp"],
       badge: "New Arrival",
       category: "travel"
-      }
-    ],
+      },
+      {
+      title: "3 IN 1 LAXURIOUS suitcase",
+      company: "Cozycabin",
+      price: 23999,
+      oldPrice: 30000,
+      sizes: [],
+      colors: [],
+      description: "3 IN 1 LAXURIOUS MANAGERIAL BOSSY Aliminium flame UNICROSS zippless SUITCASE BRIEFCASE TRAVEL BAG",
+      images: ["Images/LAXURIOUS3_1-S562616.webp"],
+      badge: "New arrivals 🛬 you don't miss the Boss"
+    },
+  
+  ],
   cutlery: [
   {
     title: "Silicone Spoons", company: "Kitchen",
