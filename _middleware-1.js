@@ -43,7 +43,7 @@ const PRODUCTS = {
   travel: [
     ["3 in 1 Luxurious Fibre Suitcase Set", 8500,  "Images/Siutbl.webp", "Premium 3-piece fibre suitcase set with 360° spinner wheels and telescopic handle."],
     ["4 in 1 Premium Fibre Suitcase Set",  11000,  "Images/1-9.webp",   "Luxury 4-piece fibre suitcase set with beauty case and smooth 360° spinner wheels."],
-    ["3 in 1 Laxurious Suitcase", 23999,   "Images/LAXURIOUS3_1-S562616.webp",  "Laxurious 3in1 Managerial Bossy  quality unicrose multi-purpose Briefcase for travel."],
+    ["3 in 1 Luxurious Suitcase", 23999,   "Images/LAXURIOUS3_1-S562616.webp",  "Luxurious 3in1 Managerial Bossy  quality unicrose multi-purpose Briefcase for travel."],
   ],
   cutlery: [
     ["Silicone Spoons",                    1499, "Images/blcksilicn.webp",        "Elegant silicone spoons for everyday kitchen use."],
