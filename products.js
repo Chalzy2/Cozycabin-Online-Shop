@@ -225,8 +225,8 @@ var products = {
       company: "Cozycabin",
       price: 23999,
       oldPrice: 30000,
-      sizes: [],
-      colors: [],
+      sizes: ["14\"","20\"","24\"","28\""],
+      colors: ["Grey","Pink", "Sage Green", "Beige", "Black", "Navy Blue", "Blush Pink", "Sky Blue"],
       description: "Luxurious 3in1 Managerial Bossy  quality unicrose multi-purpose Briefcase for travel.",
   
       images: ["Images/LAXURIOUS3_1-S562616.webp","Images/LuxurySs-4.webp","Images/LuxurySs-11.webp","Images/LuxurySs564486.webp","Images/LuxurySs-10.webp","Images/LuxurySs564496.webp"],
