@@ -227,8 +227,7 @@ var products = {
       oldPrice: 30000,
       sizes: ["14\"","20\"","24\"","28\""],
       colors: ["Grey","Pink", "Sage Green", "Beige", "Black", "Navy Blue", "Blush Pink", "Sky Blue"],
-      description: "Luxurious 3in1 Managerial Bossy  quality unicrose multi-purpose Briefcase for travel.",
-  
+      description: "Premium 3-in-1 luxury Unicrose suitcase set featuring elegant design, durable hard shell, smooth spinner wheels, and spacious storage for business and leisure travel.",
       images: ["Images/LAXURIOUS3_1-S562616.webp","Images/LuxurySs-4.webp","Images/LuxurySs-11.webp","Images/LuxurySs564486.webp","Images/LuxurySs-10.webp","Images/LuxurySs564496.webp"],
       badge: "New arrivals 🛬 you don't miss the Boss"
     },
