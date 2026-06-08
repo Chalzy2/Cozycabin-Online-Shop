@@ -221,13 +221,14 @@ var products = {
       category: "travel"
       },
       {
-      title: "3 IN 1 LAXURIOUS suitcase",
+      title: "3 in 1 Luxurious Suitcase",
       company: "Cozycabin",
       price: 23999,
       oldPrice: 30000,
       sizes: [],
       colors: [],
-      description: "3 IN 1 LAXURIOUS MANAGERIAL BOSSY Aliminium flame UNICROSS zippless SUITCASE BRIEFCASE TRAVEL BAG",
+      description: "Luxurious 3in1 Managerial Bossy  quality unicrose multi-purpose Briefcase for travel.",
+  
       images: ["Images/LAXURIOUS3_1-S562616.webp","Images/LuxurySs-4.webp","Images/LuxurySs-11.webp","Images/LuxurySs564486.webp","Images/LuxurySs-10.webp","Images/LuxurySs564496.webp"],
       badge: "New arrivals 🛬 you don't miss the Boss"
     },
