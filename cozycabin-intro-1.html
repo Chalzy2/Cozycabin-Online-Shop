@@ -353,7 +353,7 @@ var INTRO = (function() {
     ctx.stroke();
 
     // Windows (warm glow)
-    [[−hs*0.38, -hs*0.05], [hs*0.38, -hs*0.05]].forEach(function(pos) {
+    [[-hs*0.38, -hs*0.05], [hs*0.38, -hs*0.05]].forEach(function(pos) {
       var wGrad = ctx.createRadialGradient(pos[0], pos[1], 0, pos[0], pos[1], hs*0.22);
       wGrad.addColorStop(0,   'rgba(255,220,100,0.95)');
       wGrad.addColorStop(0.5, 'rgba(255,160,30,0.6)');
@@ -584,8 +584,9 @@ var INTRO = (function() {
 
   // ── INIT ──
   canvas.addEventListener('click', replay);
-  render(0);
+  setTimeout(() => {
   replay();
+}, 200);
 
   return { replay:replay, toggleLoop:toggleLoop, exportFrames:exportFrames };
 
