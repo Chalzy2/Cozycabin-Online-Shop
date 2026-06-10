@@ -1109,10 +1109,18 @@ async function bootApp(){
 async function loadAffiliates(){
   try{
     const snap = await getDocs(collection(db,'affiliates'));
+    console.log("Affiliates found:", snap.size);
+
     allAffiliates = snap.docs.map(d=>({id:d.id,...d.data()}));
+
     renderAffiliatesTable();
-    document.getElementById('affCount').textContent = allAffiliates.length + ' total affiliates';
-  }catch(e){ console.error('loadAffiliates',e); }
+
+    document.getElementById('affCount').textContent =
+      allAffiliates.length + ' total affiliates';
+
+  }catch(e){
+    console.error('loadAffiliates',e);
+  }
 }
 
 async function loadOrders(){
