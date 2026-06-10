@@ -1090,14 +1090,8 @@ onAuthStateChanged(auth, async user => {
    BOOT / INIT
 ══════════════════════════════ */
 async function bootApp(){
-  await Promise.all([
-    loadAffiliates(),
-    loadOrders(),
-    loadCommissions(),
-    loadWithdrawals(),
-    loadClicks(),
-    loadNotifications()
-  ]);
+  await loadAffiliates();
+
   renderDashboard();
   updateBadges();
   populateAffiliateSelects();
