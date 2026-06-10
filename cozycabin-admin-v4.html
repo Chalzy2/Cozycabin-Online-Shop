@@ -1,0 +1,2610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cozycabin · Admin Studio</title>
+<style>
+/* ================================================================
+   COZYCABIN IMAGE PROCESSOR — upload.css
+   Mobile-first, dark theme, brand: navy + gold
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --gold:       #ffd700;
+  --gold2:      #e6a800;
+  --gold-soft:  rgba(255,215,0,0.12);
+  --gold-glow:  rgba(255,215,0,0.25);
+  --navy:       #060d1f;
+  --navy2:      #0a1228;
+  --card:       #0d1830;
+  --card2:      #111f3a;
+  --border:     rgba(255,215,0,0.14);
+  --border2:    rgba(255,215,0,0.28);
+  --text:       #e2e8f0;
+  --muted:      #5a7090;
+  --muted2:     #8aa0b8;
+  --green:      #22c55e;
+  --red:        #ef4444;
+  --radius-sm:  8px;
+  --radius:     14px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --shadow:     0 8px 40px rgba(0,0,0,0.5);
+  --shadow-sm:  0 2px 12px rgba(0,0,0,0.3);
+  --transition: all .2s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--navy2); }
+::-webkit-scrollbar-thumb { background: var(--gold2); border-radius: 4px; }
+
+/* ================================================================
+   LAYOUT
+   ================================================================ */
+.app-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 14px 80px;
+}
+
+/* ── Noise texture overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 0 16px;
+  margin-bottom: 4px;
+  position: relative;
+}
+.app-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.logo-wrap {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--card);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 18px var(--gold-glow);
+}
+.logo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.logo-fallback {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .06em;
+}
+.header-text h1 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .1em;
+  line-height: 1;
+}
+.header-text p {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.header-badge {
+  margin-left: auto;
+  background: var(--gold-soft);
+  border: 1px solid var(--border2);
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* ================================================================
+   SECTION TITLES
+   ================================================================ */
+.section-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted2);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ================================================================
+   PANELS / CARDS
+   ================================================================ */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.panel-sm { padding: 12px 14px; }
+
+/* ================================================================
+   PRESET SELECTOR
+   ================================================================ */
+.presets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.preset-btn {
+  background: var(--navy2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 11px 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
+}
+.preset-btn:hover { border-color: var(--gold2); background: var(--card2); }
+.preset-btn.active {
+  border-color: var(--gold);
+  background: var(--gold-soft);
+  box-shadow: 0 0 16px var(--gold-glow);
+}
+.preset-icon { font-size: 20px; margin-bottom: 5px; }
+.preset-name {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+.preset-dim {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+}
+
+/* ================================================================
+   SETTINGS GRID
+   ================================================================ */
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.setting-item label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+.setting-item select {
+  width: 100%;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 9px 12px;
+  font-size: 12px;
+  font-family: 'Sora', sans-serif;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ffd700'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  transition: var(--transition);
+}
+.setting-item select:focus { border-color: var(--gold2); }
+
+/* Range sliders */
+.range-wrap { display: flex; flex-direction: column; gap: 4px; }
+.range-label-row { display: flex; justify-content: space-between; align-items: center; }
+.range-label-row label { font-size: 10px; font-weight: 600; color: var(--muted2); text-transform: uppercase; letter-spacing: .08em; }
+.range-val { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); font-weight: 500; }
+input[type=range] {
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  background: var(--navy2);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  accent-color: var(--gold);
+}
+input[type=range]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px; height: 16px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+/* ================================================================
+   TOGGLE SWITCHES
+   ================================================================ */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.toggle-row:last-child { border-bottom: none; padding-bottom: 0; }
+.toggle-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.toggle-label span:first-child {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.toggle-label span:last-child {
+  font-size: 10px;
+  color: var(--muted);
+}
+.toggle {
+  position: relative;
+  width: 44px; height: 24px;
+  flex-shrink: 0;
+}
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  left: 2px; top: 2px;
+  background: var(--muted);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+.toggle input:checked + .toggle-slider {
+  background: var(--gold-soft);
+  border-color: var(--gold);
+}
+.toggle input:checked + .toggle-slider::before {
+  background: var(--gold);
+  transform: translateX(20px);
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+/* Sub-settings (shown when toggle ON) */
+.sub-settings {
+  display: none;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  animation: fadeDown .2s ease;
+}
+.sub-settings.visible { display: block; }
+@keyframes fadeDown { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+
+/* Naming options */
+.naming-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.naming-row label { font-size: 11px; color: var(--muted2); min-width: 50px; }
+.naming-row input[type=text] {
+  flex: 1;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 7px 10px;
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  outline: none;
+  transition: var(--transition);
+}
+.naming-row input[type=text]:focus { border-color: var(--gold2); }
+.naming-row input[type=checkbox] { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
+
+/* ================================================================
+   LOGO UPLOAD
+   ================================================================ */
+.logo-upload-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--navy2);
+  border: 1.5px dashed var(--border2);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.logo-upload-area input[type=file] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.logo-upload-area:hover { border-color: var(--gold); background: var(--card2); }
+.logo-preview-thumb {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.logo-preview-thumb img { width: 100%; height: 100%; object-fit: contain; }
+.logo-upload-text { flex: 1; }
+.logo-upload-text strong { font-size: 12px; color: var(--gold); display: block; }
+.logo-upload-text span { font-size: 10px; color: var(--muted); }
+
+/* ================================================================
+   DROP ZONE
+   ================================================================ */
+.dropzone {
+  border: 2px dashed rgba(255,215,0,0.25);
+  border-radius: var(--radius-xl);
+  padding: 48px 20px 44px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  background: rgba(255,215,0,0.015);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.dropzone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center bottom, rgba(255,215,0,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.dropzone.drag-over {
+  border-color: var(--gold);
+  background: rgba(255,215,0,0.06);
+  box-shadow: 0 0 40px rgba(255,215,0,0.12);
+}
+.dropzone input[type=file] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.drop-icon {
+  font-size: 52px;
+  margin-bottom: 14px;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+.drop-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .04em;
+  margin-bottom: 6px;
+}
+.drop-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.drop-formats {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.format-tag {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  color: var(--muted2);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+
+/* ================================================================
+   PROGRESS
+   ================================================================ */
+.progress-wrap {
+  display: none;
+  margin-bottom: 16px;
+  padding: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  z-index: 1;
+  position: relative;
+}
+.progress-wrap.visible { display: block; }
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.progress-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.progress-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--gold);
+}
+.progress-bar-bg {
+  height: 6px;
+  background: var(--navy2);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold2), var(--gold));
+  border-radius: 6px;
+  transition: width .3s ease;
+  width: 0%;
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+.progress-eta {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* ================================================================
+   RESULTS
+   ================================================================ */
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.results-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .04em;
+}
+.clear-btn {
+  background: transparent;
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Sora', sans-serif;
+  transition: var(--transition);
+}
+.clear-btn:hover { background: rgba(239,68,68,0.08); border-color: #ef4444; }
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Image Card ── */
+.img-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  animation: fadeUp .3s ease both;
+  display: flex;
+  flex-direction: column;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:none; }
+}
+
+/* Preview area with tabs */
+.card-preview {
+  position: relative;
+  aspect-ratio: 1;
+  background: #000;
+  overflow: hidden;
+}
+.card-preview canvas,
+.card-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.preview-tabs {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  display: flex;
+  gap: 4px;
+}
+.preview-tab {
+  background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+  font-size: 9px;
+  font-weight: 600;
+  padding: 3px 7px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Sora', sans-serif;
+}
+.preview-tab.active {
+  background: var(--gold);
+  color: #000;
+  border-color: var(--gold);
+}
+
+/* Card body */
+.card-body {
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.card-filename {
+  font-size: 10px;
+  color: var(--muted2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'DM Mono', monospace;
+}
+.card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.stat-item {
+  background: var(--navy2);
+  border-radius: 5px;
+  padding: 4px 6px;
+}
+.stat-label { font-size: 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.stat-value { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text); font-weight: 500; }
+.stat-value.gold { color: var(--gold); }
+.stat-value.green { color: var(--green); }
+
+.card-dl-btn {
+  display: block;
+  width: 100%;
+  background: var(--gold);
+  color: #000;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 9px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  font-family: 'Sora', sans-serif;
+  letter-spacing: .04em;
+  transition: var(--transition);
+  margin-top: auto;
+}
+.card-dl-btn:hover { opacity: .88; }
+.card-dl-btn:active { transform: scale(.97); }
+
+/* ================================================================
+   DOWNLOAD ALL BAR
+   ================================================================ */
+.dl-all-bar {
+  display: none;
+  position: sticky;
+  bottom: 14px;
+  z-index: 50;
+  margin-top: 16px;
+}
+.dl-all-bar.visible { display: flex; gap: 10px; }
+.dl-all-btn {
+  flex: 1;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #000;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 30px rgba(255,215,0,0.35);
+  transition: var(--transition);
+}
+.dl-all-btn:hover { opacity: .9; transform: translateY(-1px); }
+.dl-all-btn:active { transform: scale(.98); }
+.dl-zip-btn {
+  background: var(--card);
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 16px 20px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.dl-zip-btn:hover { background: var(--gold-soft); }
+
+/* ================================================================
+   EMPTY STATE
+   ================================================================ */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: 13px;
+  display: none;
+}
+.empty-state-icon { font-size: 40px; margin-bottom: 10px; }
+
+/* ================================================================
+   TOAST NOTIFICATIONS
+   ================================================================ */
+.toast-container {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: calc(100% - 32px);
+  max-width: 400px;
+  pointer-events: none;
+}
+.toast {
+  background: var(--card2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow);
+  animation: slideDown .3s ease;
+  pointer-events: all;
+}
+.toast.success { border-color: rgba(34,197,94,0.4); color: var(--green); }
+.toast.error   { border-color: rgba(239,68,68,0.4);  color: var(--red); }
+.toast.info    { border-color: var(--border2);        color: var(--gold); }
+@keyframes slideDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:none; } }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (min-width: 600px) {
+  .results-grid { grid-template-columns: repeat(3, 1fr); }
+  .presets-grid { gap: 12px; }
+  .settings-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .presets-grid { grid-template-columns: 1fr; }
+  .settings-grid { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ================================================================
+   AUTH SYSTEM — Login screen + session bar
+   ================================================================ */
+
+/* App hidden until authenticated */
+#appShield { display: none; }
+
+/* ── Login overlay ── */
+#loginOverlay {
+  position: fixed;
+  inset: 0;
+  background: var(--navy);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+#loginOverlay.hidden { display: none; }
+
+.login-box {
+  width: 100%;
+  max-width: 380px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 24px;
+  padding: 32px 24px 28px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 60px rgba(255,215,0,0.06);
+  animation: loginAppear .4s cubic-bezier(.4,0,.2,1);
+}
+@keyframes loginAppear {
+  from { opacity:0; transform:translateY(24px) scale(.97); }
+  to   { opacity:1; transform:none; }
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.login-logo-img {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  object-fit: cover;
+  box-shadow: 0 0 24px rgba(255,215,0,0.3);
+  margin-bottom: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.login-logo-fallback {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--navy2);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+  box-shadow: 0 0 24px rgba(255,215,0,0.3);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .06em;
+}
+.login-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .1em;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.login-subtitle {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.login-field {
+  position: relative;
+  margin-bottom: 14px;
+}
+.login-field label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 7px;
+}
+.login-field input[type=password],
+.login-field input[type=text] {
+  width: 100%;
+  background: var(--navy2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  padding: 14px 50px 14px 16px;
+  font-size: 18px;
+  font-family: 'Sora', sans-serif;
+  outline: none;
+  letter-spacing: .12em;
+  transition: border-color .2s, box-shadow .2s;
+  -webkit-text-security: disc;
+}
+.login-field input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(255,215,0,0.1);
+}
+.login-field input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
+  animation: shake .35s ease;
+}
+@keyframes shake {
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-8px)}
+  40%{transform:translateX(8px)}
+  60%{transform:translateX(-5px)}
+  80%{transform:translateX(5px)}
+}
+
+/* Show/hide password toggle */
+.pw-toggle {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 18px;
+  padding: 0;
+  line-height: 1;
+  transition: color .15s;
+}
+.pw-toggle:hover { color: var(--gold); }
+
+/* Remember device row */
+.remember-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+.remember-row input[type=checkbox] {
+  width: 18px; height: 18px;
+  accent-color: var(--gold);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.remember-row span {
+  font-size: 12px;
+  color: var(--muted2);
+  line-height: 1.4;
+}
+
+/* Login button */
+.login-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #000;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 28px rgba(255,215,0,0.3);
+  transition: all .2s;
+  margin-bottom: 14px;
+}
+.login-btn:hover   { opacity:.9; transform:translateY(-1px); box-shadow: 0 12px 36px rgba(255,215,0,0.4); }
+.login-btn:active  { transform:scale(.97); }
+.login-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+/* Error message */
+.login-error {
+  text-align: center;
+  font-size: 12px;
+  color: #ef4444;
+  min-height: 18px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.login-error.visible { opacity: 1; }
+
+/* Passkey hint (future upgrade) */
+.passkey-hint {
+  text-align: center;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+  letter-spacing: .04em;
+}
+.passkey-hint span {
+  color: var(--muted2);
+  cursor: default;
+    }
+  
+
+/* ── Session bar ── */
+#sessionBar {
+  display: none;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+#sessionBar.visible {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.session-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.session-dot {
+  width: 7px; height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(34,197,94,0.6);
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;} 50%{opacity:.5;}
+}
+.session-label {
+  font-size: 11px;
+  color: var(--muted2);
+  font-weight: 500;
+}
+.session-label strong { color: var(--gold); font-size: 12px; }
+.logout-btn {
+  background: transparent;
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Sora', sans-serif;
+  transition: all .2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.logout-btn:hover { background: rgba(239,68,68,0.1); border-color: #ef4444; }
+
+</style>
+<!-- JSZip for ZIP downloads -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     AUTH — Login Overlay (rendered FIRST, blocks app)
+     WebAuthn/passkey hooks ready for future upgrade
+═══════════════════════════════════════════ -->
+<div id="loginOverlay">
+  <div class="login-box">
+
+    <!-- Logo -->
+    <div class="login-logo">
+      <img class="login-logo-img" src="Images/cozycabin-logo1.webp" alt="Cozycabin"
+           onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex'">
+      <div class="login-logo-fallback" id="logoFallback" style="display:none;">CC</div>
+      <div class="login-title">COZYCABIN</div>
+      <div class="login-subtitle">Admin Studio · Pro</div>
+    </div>
+
+    <!-- Password field -->
+    <div class="login-field">
+      <label>Admin Password</label>
+      <input type="password" id="pwInput" placeholder="••••••••"
+             autocomplete="current-password"
+             onkeydown="if(event.key==='Enter')AUTH.login()">
+      <button class="pw-toggle" onclick="AUTH.togglePw()" title="Show/hide">👁</button>
+    </div>
+
+    <!-- Remember device -->
+    <label class="remember-row">
+      <input type="checkbox" id="rememberDevice" checked>
+      <span>Remember this device for <strong>30 days</strong></span>
+    </label>
+
+    <!-- Error -->
+    <div class="login-error" id="loginError">Incorrect password — Access Denied</div>
+
+    <!-- Login button -->
+    <button class="login-btn" id="loginBtn" onclick="AUTH.login()">
+      🔐 Unlock Access
+    </button>
+
+    <!-- Passkey hint (WebAuthn ready) -->
+    <div class="passkey-hint">
+      <span id="passkeyHint">🔒 Private Admin Tool · Cozycabin</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Session Bar (shown after login) ── -->
+<div id="sessionBar">
+  <div class="session-info">
+    <div class="session-dot"></div>
+    <div class="session-label">Logged in as <strong>Cozycabin Admin</strong></div>
+  </div>
+  <button class="logout-btn" onclick="AUTH.logout()">⏏ Logout</button>
+</div>
+
+<!-- ── App Shield (wraps everything, hidden until auth) ── -->
+<div id="appShield">
+
+
+<!-- Toast container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<div class="app-wrapper">
+
+  <!-- ═══════════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════════ -->
+  <header class="app-header">
+    <div class="logo-wrap" id="headerLogoWrap">
+      <img src="Images/cozycabin-logo1.webp" alt="Logo" onerror="this.parentElement.innerHTML='<span class=logo-fallback>CC</span>'">
+    </div>
+    <div class="header-text">
+      <h1>COZYCABIN</h1>
+      <p>Admin Studio · Pro</p>
+    </div>
+    <div class="header-badge">Admin Tool</div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 1 — SIZE PRESET
+  ═══════════════════════════════════════════ -->
+  <div style="margin-top:20px;margin-bottom:8px;">
+    <div class="section-title">① Size Preset</div>
+  </div>
+
+  <div class="presets-grid" id="presetGrid">
+    <button class="preset-btn active" data-preset="standard" onclick="CC.selectPreset('standard',this)">
+      <div class="preset-icon">🟥</div>
+      <div class="preset-name">Product Standard</div>
+      <div class="preset-dim">1200 × 1200</div>
+    </button>
+    <button class="preset-btn" data-preset="fashion" onclick="CC.selectPreset('fashion',this)">
+      <div class="preset-icon">👟</div>
+      <div class="preset-name">Fashion Portrait</div>
+      <div class="preset-dim">1200 × 1600</div>
+    </button>
+    <button class="preset-btn" data-preset="original" onclick="CC.selectPreset('original',this)">
+      <div class="preset-icon">📐</div>
+      <div class="preset-name">Keep Ratio</div>
+      <div class="preset-dim">Long side 1200</div>
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 2 — QUALITY & OUTPUT
+  ═══════════════════════════════════════════ -->
+  <div style="margin-top:20px;margin-bottom:8px;">
+    <div class="section-title">② Output Quality</div>
+  </div>
+
+  <div class="panel panel-sm">
+    <div class="settings-grid">
+      <div class="setting-item">
+        <label>Quality</label>
+        <select id="quality" onchange="CC.saveSettings()">
+          <option value="0.7">70% — Smallest</option>
+          <option value="0.8">80% — Balanced</option>
+          <option value="0.85" selected>85% — Default ✓</option>
+          <option value="0.9">90% — High</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <label>Format</label>
+        <select id="outputFormat" onchange="CC.saveSettings()">
+          <option value="webp" selected>WEBP (recommended)</option>
+          <option value="jpeg">JPEG</option>
+          <option value="png">PNG (lossless)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 3 — LOGO
+  ═══════════════════════════════════════════ -->
+  <div style="margin-top:20px;margin-bottom:8px;">
+    <div class="section-title">③ Logo Settings</div>
+  </div>
+
+  <div class="panel">
+    <!-- Logo upload -->
+    <div class="logo-upload-area" id="logoUploadArea" style="cursor:default;" onclick="return false;">
+      <div class="logo-preview-thumb" id="logoThumb">
+        <img src="Images/cozycabin-logo1.webp" id="logoThumbImg" alt="Logo"
+             onerror="this.parentElement.innerHTML='<span style=color:var(--gold);font-size:16px;font-family:Rajdhani,sans-serif;font-weight:700;padding:4px>CC</span>'">
+      </div>
+      <div class="logo-upload-text">
+        <strong>🔒 Cozycabin Logo (Permanent)</strong>
+        <span style="color:var(--green);">✓ Locked · Images/cozycabin-logo1.webp</span>
+      </div>
+      <div style="background:var(--gold-soft);border:1px solid var(--border2);color:var(--gold);font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;">LOCKED</div>
+    </div>
+
+    <div style="margin-top:14px;" class="settings-grid">
+      <div class="setting-item">
+        <label>Position</label>
+        <select id="logoPosition" onchange="CC.saveSettings()">
+          <option value="auto" selected>🤖 Smart Auto</option>
+          <option value="br">↘ Bottom Right</option>
+          <option value="bl">↙ Bottom Left</option>
+          <option value="tr">↗ Top Right</option>
+          <option value="tl">↖ Top Left</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <label>Size</label>
+        <select id="logoSize" onchange="CC.saveSettings()">
+          <option value="0.05">Small (5%)</option>
+          <option value="0.08" selected>Medium (8%)</option>
+          <option value="0.12">Large (12%)</option>
+          <option value="0.16">X-Large (16%)</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;" class="range-wrap">
+      <div class="range-label-row">
+        <label>Logo Opacity</label>
+        <span class="range-val" id="logoOpVal">90%</span>
+      </div>
+      <input type="range" id="logoOpacity" min="50" max="100" value="90"
+             oninput="document.getElementById('logoOpVal').textContent=this.value+'%'; CC.saveSettings()">
+    </div>
+  </div>
+  
+  <!-- ═══════════════════════════════════════════
+       STEP 4 — OPTIONS
+  ═══════════════════════════════════════════ -->
+  <div style="margin-top:20px;margin-bottom:8px;">
+    <div class="section-title">④ Options</div>
+  </div>
+
+  <div class="panel">
+
+    <!-- White Background -->
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>⬜ White Background</span>
+        <span>Center product on clean white</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="toggleWhiteBg" onchange="CC.saveSettings()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <!-- Watermark -->
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>💧 Text Watermark</span>
+        <span>Diagonal text overlay</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="toggleWatermark" onchange="CC.toggleWatermarkSub(); CC.saveSettings()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="sub-settings" id="watermarkSub">
+      <div class="settings-grid">
+        <div class="setting-item" style="grid-column:1/-1;">
+          <label>Watermark Text</label>
+          <input type="text" id="watermarkText" value="COZYCABIN" placeholder="Your text"
+                 style="width:100%;background:var(--navy2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:9px 12px;font-size:13px;font-family:'DM Mono',monospace;outline:none;"
+                 oninput="CC.saveSettings()">
+        </div>
+        <div class="range-wrap">
+          <div class="range-label-row">
+            <label>Opacity</label>
+            <span class="range-val" id="wmOpVal">15%</span>
+          </div>
+          <input type="range" id="wmOpacity" min="5" max="60" value="15"
+                 oninput="document.getElementById('wmOpVal').textContent=this.value+'%'; CC.saveSettings()">
+        </div>
+        <div class="range-wrap">
+          <div class="range-label-row">
+            <label>Size</label>
+            <span class="range-val" id="wmSzVal">28px</span>
+          </div>
+          <input type="range" id="wmSize" min="14" max="60" value="28"
+                 oninput="document.getElementById('wmSzVal').textContent=this.value+'px'; CC.saveSettings()">
+        </div>
+      </div>
+    </div>
+
+    <!-- File Naming -->
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span>🏷️ Custom File Naming</span>
+        <span>Add prefix / suffix</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="toggleNaming" onchange="CC.toggleNamingSub(); CC.saveSettings()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="sub-settings" id="namingSub">
+      <div class="naming-row">
+        <label>Prefix</label>
+        <input type="checkbox" id="usePrefix" onchange="CC.saveSettings()">
+        <input type="text" id="prefixText" value="cozycabin-" oninput="CC.saveSettings()">
+      </div>
+      <div class="naming-row">
+        <label>Suffix</label>
+        <input type="checkbox" id="useSuffix" onchange="CC.saveSettings()">
+        <input type="text" id="suffixText" value="-cc" oninput="CC.saveSettings()">
+      </div>
+    </div>
+
+  </div><!-- /panel -->
+
+  <!-- ═══════════════════════════════════════════
+       STEP 5 — UPLOAD / DROP ZONE
+  ═══════════════════════════════════════════ -->
+  <div style="margin-top:20px;margin-bottom:8px;">
+    <div class="section-title">⑤ Upload Images</div>
+  </div>
+
+  <div class="dropzone" id="dropzone">
+    <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/jpg" multiple>
+    <span class="drop-icon">📸</span>
+    <div class="drop-title">Tap or Drop Images Here</div>
+    <div class="drop-sub">Process multiple images · logos from TikTok/FB/WhatsApp auto-removed</div>
+    <div class="drop-formats">
+      <span class="format-tag">JPG</span>
+      <span class="format-tag">JPEG</span>
+      <span class="format-tag">PNG</span>
+      <span class="format-tag">WEBP</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PROGRESS
+  ═══════════════════════════════════════════ -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-header">
+      <span class="progress-label" id="progressLabel">Processing...</span>
+      <span class="progress-count" id="progressCount">0 / 0</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-eta" id="progressEta">Estimating time...</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       RESULTS
+  ═══════════════════════════════════════════ -->
+  <div id="resultsSection" style="display:none;">
+    <div class="results-header">
+      <div class="results-title" id="resultsTitle">✅ 0 Ready</div>
+      <button class="clear-btn" onclick="CC.clearResults()">✕ Clear All</button>
+    </div>
+    <div class="results-grid" id="resultsGrid"></div>
+  </div>
+
+  <!-- Download All Bar -->
+  <div class="dl-all-bar" id="dlAllBar">
+    <button class="dl-zip-btn" onclick="CC.downloadZip()">📦 ZIP</button>
+    <button class="dl-all-btn" onclick="CC.downloadAll()">⬇ Download All</button>
+  </div>
+
+</div><!-- /app-wrapper -->
+
+<script>
+
+/* ================================================================
+   AUTH SYSTEM — Password protection + Remember Device
+   Structure ready for WebAuthn / passkey upgrade
+   ================================================================ */
+
+var AUTH = (function () {
+
+  // ── Config ──
+  // CHANGE THIS PASSWORD to your own secret
+  var PASSWORD_HASH = btoa('Cozycabin2024!');   // base64 obfuscated — change to your password
+
+  var STORAGE_KEY   = 'cc_auth_token';
+  var REMEMBER_DAYS = 30;
+  var pwVisible     = false;
+
+  /* ----------------------------------------------------------
+     INIT — runs immediately, before DOMContentLoaded
+     Blocks the app render until auth passes
+  ---------------------------------------------------------- */
+  function init() {
+    // Check saved session first
+    if (isSessionValid()) {
+      grantAccess(false);
+      return;
+    }
+    // Otherwise show login
+    showLogin();
+  }
+
+  /* ----------------------------------------------------------
+     SESSION CHECK
+  ---------------------------------------------------------- */
+  function isSessionValid() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      var data = JSON.parse(raw);
+      if (data.token !== PASSWORD_HASH) return false;
+      if (Date.now() > data.expires)   return false;
+      return true;
+    } catch (e) { return false; }
+  }
+
+  /* ----------------------------------------------------------
+     LOGIN
+  ---------------------------------------------------------- */
+  function login() {
+    var inp = document.getElementById('pwInput');
+    var err = document.getElementById('loginError');
+    var btn = document.getElementById('loginBtn');
+    if (!inp) return;
+
+    var entered = btoa(inp.value);
+
+    if (entered === PASSWORD_HASH) {
+      // ── Correct ──
+      var remember = document.getElementById('rememberDevice').checked;
+      if (remember) {
+        var expires = Date.now() + (REMEMBER_DAYS * 24 * 60 * 60 * 1000);
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            token:   PASSWORD_HASH,
+            expires: expires,
+            device:  navigator.userAgent.substring(0, 60)
+          }));
+        } catch (e) {}
+      }
+      inp.classList.remove('error');
+      if (err) { err.classList.remove('visible'); }
+      grantAccess(true);
+
+    } else {
+      // ── Wrong password ──
+      inp.classList.add('error');
+      if (err) { err.classList.add('visible'); }
+      inp.value = '';
+      // Remove error class after shake animation
+      setTimeout(function () { inp.classList.remove('error'); }, 600);
+      // Rate limit: brief disable
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = '⏳ Wait...';
+        setTimeout(function () {
+          btn.disabled = false;
+          btn.textContent = '🔐 Unlock Access';
+        }, 1500);
+      }
+    }
+  }
+            
+
+  /* ----------------------------------------------------------
+     GRANT ACCESS
+  ---------------------------------------------------------- */
+  function grantAccess(animate) {
+    var overlay    = document.getElementById('loginOverlay');
+    var shield     = document.getElementById('appShield');
+    var sessionBar = document.getElementById('sessionBar');
+
+    if (overlay) overlay.classList.add('hidden');
+    if (shield)  shield.style.display = 'block';
+    if (sessionBar) sessionBar.classList.add('visible');
+
+    // Focus body for usability
+    document.body.style.overflow = '';
+  }
+
+  /* ----------------------------------------------------------
+     LOGOUT
+  ---------------------------------------------------------- */
+  function logout() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+
+    var overlay    = document.getElementById('loginOverlay');
+    var shield     = document.getElementById('appShield');
+    var sessionBar = document.getElementById('sessionBar');
+    var inp        = document.getElementById('pwInput');
+
+    if (overlay)    { overlay.classList.remove('hidden'); }
+    if (shield)     { shield.style.display = 'none'; }
+    if (sessionBar) { sessionBar.classList.remove('visible'); }
+    if (inp)        { inp.value = ''; }
+
+    // Scroll to top
+    window.scrollTo(0, 0);
+  }
+
+  /* ----------------------------------------------------------
+     TOGGLE PASSWORD VISIBILITY
+  ---------------------------------------------------------- */
+  function togglePw() {
+    var inp = document.getElementById('pwInput');
+    var btn = document.querySelector('.pw-toggle');
+    if (!inp) return;
+    pwVisible = !pwVisible;
+    inp.type  = pwVisible ? 'text' : 'password';
+    if (btn) btn.textContent = pwVisible ? '🙈' : '👁';
+  }
+
+  /* ----------------------------------------------------------
+     SHOW LOGIN (prevent body scroll while overlay is up)
+  ---------------------------------------------------------- */
+  function showLogin() {
+    document.body.style.overflow = 'hidden';
+    var overlay = document.getElementById('loginOverlay');
+    if (overlay) overlay.classList.remove('hidden');
+    // Focus password input after a tick
+    setTimeout(function () {
+      var inp = document.getElementById('pwInput');
+      if (inp) inp.focus();
+    }, 200);
+  }
+
+  /* ----------------------------------------------------------
+     WEBAUTHN HOOK — ready for future passkey upgrade
+     Uncomment and implement when needed:
+
+  async function loginWithPasskey() {
+    try {
+      const credential = await navigator.credentials.get({
+        publicKey: {
+          challenge: new Uint8Array(32),
+          allowCredentials: [],
+          timeout: 60000,
+          userVerification: 'preferred'
+        }
+      });
+      // Verify credential here
+      grantAccess(true);
+    } catch (err) {
+      console.log('Passkey failed:', err);
+    }
+  }
+  ---------------------------------------------------------- */
+
+  /* ----------------------------------------------------------
+     AUTO-INIT on DOM ready
+  ---------------------------------------------------------- */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Public API
+  return { login: login, logout: logout, togglePw: togglePw };
+
+})();
+
+/* ================================================================
+   COZYCABIN IMAGE PROCESSOR — upload.js
+   All processing runs in-browser via Canvas API.
+   No backend. No server. GitHub Pages compatible.
+   ================================================================ */
+
+/* global JSZip */
+
+var CC = (function () {
+
+  // ── State ──────────────────────────────────────────────────
+  var state = {
+    preset:       'standard',
+    logoImg:      null,
+    logoLoaded:   false,
+    processed:    [],          // { canvas, name, origSize, outSize }
+    processing:   false,
+    startTime:    0
+  };
+
+  // ── Preset definitions ─────────────────────────────────────
+  var PRESETS = {
+    standard: { w: 1200, h: 1200 },
+    fashion:  { w: 1200, h: 1600 },
+    original: { w: null, h: null }   // longest side = 1200
+  };
+
+  /* ============================================================
+     INIT
+  ============================================================ */
+  function init() {
+    loadSettings();
+    loadDefaultLogo();
+    bindDropzone();
+    bindLogoUpload();
+    restoreToggles();
+  }
+
+  /* ============================================================
+     LOGO LOADING
+  ============================================================ */
+  function loadDefaultLogo() {
+    // PERMANENT LOGO — always cozycabin-logo1.webp, never overridden
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload  = function () { state.logoImg = img; state.logoLoaded = true; };
+    img.onerror = function () { buildFallbackLogo(); };
+    img.src = 'Images/cozycabin-logo1.webp';
+  }
+
+  function buildFallbackLogo() {
+    // Draw a text-based fallback logo onto a canvas
+    var fc  = document.createElement('canvas');
+    fc.width  = 260; fc.height = 70;
+    var ctx = fc.getContext('2d');
+    ctx.fillStyle = 'rgba(0,0,0,0.6)';
+    ctx.beginPath();
+    ctx.roundRect(0, 0, 260, 70, 12);
+    ctx.fill();
+    ctx.fillStyle   = '#ffd700';
+    ctx.font        = 'bold 22px Arial';
+    ctx.textAlign   = 'center';
+    ctx.fillText('COZYCABIN', 130, 28);
+    ctx.font        = '11px Arial';
+    ctx.fillStyle   = '#ffffff';
+    ctx.fillText('SMART LIVING SOLUTIONS', 130, 52);
+    var fallback = new Image();
+    fallback.onload = function () { state.logoImg = fallback; state.logoLoaded = true; };
+    fallback.src = fc.toDataURL();
+  }
+
+  function bindLogoUpload() {
+    // Logo is PERMANENT — no upload allowed
+    // cozycabin-logo1.webp is always used
+    var area = document.getElementById('logoUploadArea');
+    if (area) {
+      area.style.cursor = 'default';
+      area.onclick = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+    }
+  }
+
+  /* ============================================================
+     DROPZONE — drag & drop + file input
+  ============================================================ */
+  function bindDropzone() {
+    var dz  = document.getElementById('dropzone');
+    var inp = document.getElementById('fileInput');
+    if (!dz || !inp) return;
+
+    dz.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      dz.classList.add('drag-over');
+    });
+    dz.addEventListener('dragleave', function () {
+      dz.classList.remove('drag-over');
+    });
+    dz.addEventListener('drop', function (e) {
+      e.preventDefault();
+      dz.classList.remove('drag-over');
+      handleFiles(e.dataTransfer.files);
+    });
+
+    inp.addEventListener('change', function () {
+      handleFiles(this.files);
+      this.value = '';   // allow re-upload of same file
+    });
+  }
+
+  /* ============================================================
+     FILE HANDLING — validate, queue, process
+  ============================================================ */
+  function handleFiles(files) {
+    if (!files || !files.length) return;
+    if (state.processing) { toast('⏳ Already processing — please wait', 'info'); return; }
+
+    var arr = Array.prototype.slice.call(files).filter(function (f) {
+      return f.type.startsWith('image/');
+    });
+
+    if (!arr.length) { toast('No valid images found', 'error'); return; }
+
+    state.processing = true;
+    state.startTime  = Date.now();
+
+    showProgress(true);
+    updateProgress(0, arr.length);
+
+    var done    = 0;
+    var results = [];
+
+    arr.forEach(function (file, idx) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var img = new Image();
+        img.onload = function () {
+          setTimeout(function () {    // yield to browser so UI updates
+            var result = processImage(img, file);
+            results.push(result);
+            done++;
+            updateProgress(done, arr.length);
+
+            if (done === arr.length) {
+              finishBatch(results);
+            }
+          }, idx * 30);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /* ============================================================
+     CORE IMAGE PROCESSOR
+  ============================================================ */
+  function processImage(sourceImg, file) {
+    var preset      = state.preset;
+    var quality     = parseFloat(document.getElementById('quality').value       || '0.85');
+    var whiteBg     = document.getElementById('toggleWhiteBg').checked;
+    var doWatermark = document.getElementById('toggleWatermark').checked;
+    var logoPosSel  = document.getElementById('logoPosition').value;
+    var logoSizePct = parseFloat(document.getElementById('logoSize').value      || '0.08');
+    var logoOpacity = parseInt(document.getElementById('logoOpacity').value     || '90') / 100;
+    var fmt         = document.getElementById('outputFormat').value             || 'webp';
+    var origSize    = file.size;
+
+    // ── Determine output dimensions ──
+    var outW, outH;
+    if (preset === 'original') {
+      var maxSide = 1200;
+      if (sourceImg.width >= sourceImg.height) {
+        outW = Math.min(sourceImg.width, maxSide);
+        outH = Math.round(outW * (sourceImg.height / sourceImg.width));
+      } else {
+        outH = Math.min(sourceImg.height, maxSide);
+        outW = Math.round(outH * (sourceImg.width / sourceImg.height));
+      }
+    } else {
+      outW = PRESETS[preset].w;
+      outH = PRESETS[preset].h;
+    }
+
+    // ── Create canvas ──
+    var canvas = document.createElement('canvas');
+    canvas.width  = outW;
+    canvas.height = outH;
+    var ctx = canvas.getContext('2d');
+
+    // ── Background ──
+    if (whiteBg) {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, outW, outH);
+      // Center product with padding (80% of canvas)
+      var scale    = Math.min((outW * 0.8) / sourceImg.width, (outH * 0.8) / sourceImg.height);
+      var drawW    = sourceImg.width  * scale;
+      var drawH    = sourceImg.height * scale;
+      var drawX    = (outW - drawW) / 2;
+      var drawY    = (outH - drawH) / 2;
+      ctx.drawImage(sourceImg, drawX, drawY, drawW, drawH);
+    } else {
+      // Cover-crop fill
+      var srcR = sourceImg.width / sourceImg.height;
+      var tgtR = outW / outH;
+      var sx, sy, sw, sh;
+      if (srcR > tgtR) {
+        sh = sourceImg.height;
+        sw = Math.round(sh * tgtR);
+        sx = Math.round((sourceImg.width - sw) / 2);
+        sy = 0;
+      } else {
+        sw = sourceImg.width;
+        sh = Math.round(sw / tgtR);
+        sx = 0;
+        sy = Math.round((sourceImg.height - sh) / 2);
+      }
+      ctx.drawImage(sourceImg, sx, sy, sw, sh, 0, 0, outW, outH);
+    }
+
+    // ── Watermark ──
+    if (doWatermark) {
+      drawWatermark(ctx, outW, outH);
+    }
+
+    // ── Logo ──
+    if (state.logoLoaded && state.logoImg) {
+      drawLogo(ctx, outW, outH, logoPosSel, logoSizePct, logoOpacity);
+    }
+
+    // ── File name ──
+    var outName = buildFileName(file.name, fmt);
+
+    // ── Estimate output size (approximate) ──
+    var dataUrl  = canvas.toDataURL('image/' + fmt, quality);
+    var base64   = dataUrl.split(',')[1] || '';
+    var outSize  = Math.round((base64.length * 3) / 4);
+
+    return { canvas: canvas, name: outName, origSize: origSize, outSize: outSize, quality: quality, fmt: fmt, dataUrl: dataUrl };
+  }
+
+  /* ============================================================
+     LOGO PLACEMENT — smart auto or manual
+  ============================================================ */
+  function drawLogo(ctx, outW, outH, posMode, sizePct, opacity) {
+    var logo   = state.logoImg;
+    var logoW  = Math.round(outW * sizePct);
+    var logoH  = Math.round(logoW * (logo.height / logo.width));
+    var margin = Math.max(20, Math.round(outW * 0.02));
+
+    var lx, ly;
+
+    if (posMode === 'auto') {
+      // Smart placement: sample pixel brightness in each corner to find emptiest
+      var corners = [
+        { id:'br', x: outW - logoW - margin, y: outH - logoH - margin },
+        { id:'bl', x: margin,                y: outH - logoH - margin },
+        { id:'tr', x: outW - logoW - margin, y: margin },
+        { id:'tl', x: margin,                y: margin }
+      ];
+
+      var best      = corners[0];
+      var bestScore = Infinity;
+
+      corners.forEach(function (corner) {
+        // Sample a small region brightness
+        var sampleW = Math.min(logoW, outW - corner.x);
+        var sampleH = Math.min(logoH, outH - corner.y);
+        if (sampleW <= 0 || sampleH <= 0) return;
+        try {
+          var data   = ctx.getImageData(corner.x, corner.y, sampleW, sampleH).data;
+          var total  = 0;
+          var count  = 0;
+          for (var i = 0; i < data.length; i += 16) {   // sample every 4th pixel
+            // variance from neutral grey — lower = more uniform (better spot)
+            var r = data[i] - 128, g = data[i+1] - 128, b = data[i+2] - 128;
+            total += r*r + g*g + b*b;
+            count++;
+          }
+          var score = count > 0 ? total / count : Infinity;
+          if (score < bestScore) { bestScore = score; best = corner; }
+        } catch (e) {
+          // CORS or tainted canvas — skip auto, default to br
+        }
+      });
+
+      lx = best.x;
+      ly = best.y;
+    } else {
+      var positions = {
+        br: { x: outW - logoW - margin, y: outH - logoH - margin },
+        bl: { x: margin,                y: outH - logoH - margin },
+        tr: { x: outW - logoW - margin, y: margin },
+        tl: { x: margin,                y: margin }
+      };
+      lx = positions[posMode].x;
+      ly = positions[posMode].y;
+    }
+
+    // Clamp to canvas bounds
+    lx = Math.max(0, Math.min(lx, outW - logoW));
+    ly = Math.max(0, Math.min(ly, outH - logoH));
+
+    ctx.globalAlpha = opacity;
+    ctx.drawImage(logo, lx, ly, logoW, logoH);
+    ctx.globalAlpha = 1;
+  }
+  
+/* ============================================================
+     WATERMARK — diagonal tiled text
+  ============================================================ */
+  function drawWatermark(ctx, outW, outH) {
+    var text    = document.getElementById('watermarkText').value || 'COZYCABIN';
+    var opacity = parseInt(document.getElementById('wmOpacity').value || '15') / 100;
+    var size    = parseInt(document.getElementById('wmSize').value || '28');
+
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    ctx.font        = 'bold ' + size + 'px Arial';
+    ctx.fillStyle   = '#ffffff';
+    ctx.textAlign   = 'center';
+
+    ctx.translate(outW / 2, outH / 2);
+    ctx.rotate(-Math.PI / 5);
+
+    var spacing = size * 4;
+    var cols    = Math.ceil(outW * 1.5 / spacing) + 2;
+    var rows    = Math.ceil(outH * 1.5 / spacing) + 2;
+    var startX  = -(cols / 2) * spacing;
+    var startY  = -(rows / 2) * spacing;
+
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        ctx.fillText(text, startX + c * spacing, startY + r * spacing);
+      }
+    }
+
+    ctx.restore();
+  }
+
+  /* ============================================================
+     FILE NAMING
+  ============================================================ */
+  function buildFileName(originalName, fmt) {
+    var usePrefix  = document.getElementById('toggleNaming').checked && document.getElementById('usePrefix').checked;
+    var useSuffix  = document.getElementById('toggleNaming').checked && document.getElementById('useSuffix').checked;
+    var prefixText = document.getElementById('prefixText').value  || '';
+    var suffixText = document.getElementById('suffixText').value  || '';
+
+    // Strip extension
+    var base = originalName.lastIndexOf('.') !== -1
+      ? originalName.substring(0, originalName.lastIndexOf('.'))
+      : originalName;
+
+    var name = (usePrefix ? prefixText : '') + base + (useSuffix ? suffixText : '');
+    return name + '.' + fmt;
+  }
+
+  /* ============================================================
+     BATCH FINISH — render cards
+  ============================================================ */
+  function finishBatch(results) {
+    state.processing = false;
+    showProgress(false);
+
+    // Append to existing results
+    results.forEach(function (r) {
+      state.processed.push(r);
+      appendCard(r);
+    });
+
+    var total = state.processed.length;
+    var sec   = ((Date.now() - state.startTime) / 1000).toFixed(1);
+
+    document.getElementById('resultsSection').style.display = 'block';
+    document.getElementById('resultsTitle').textContent     = '✅ ' + total + ' Image' + (total !== 1 ? 's' : '') + ' Ready';
+
+    var dlBar = document.getElementById('dlAllBar');
+    if (dlBar && total > 0) dlBar.classList.add('visible');
+
+    toast('✓ ' + results.length + ' image' + (results.length !== 1 ? 's' : '') + ' processed in ' + sec + 's', 'success');
+  }
+
+  /* ============================================================
+     CARD RENDERER
+  ============================================================ */
+  function appendCard(result) {
+    var grid = document.getElementById('resultsGrid');
+    if (!grid) return;
+
+    var idx      = state.processed.indexOf(result);
+    var origKB   = (result.origSize  / 1024).toFixed(0);
+    var outKB    = (result.outSize   / 1024).toFixed(0);
+    var saved    = result.origSize > 0
+      ? Math.max(0, Math.round((1 - result.outSize / result.origSize) * 100))
+      : 0;
+
+    var card      = document.createElement('div');
+    card.className = 'img-card';
+    card.style.animationDelay = (idx * 60) + 'ms';
+
+    // Preview area
+    var prevWrap  = document.createElement('div');
+    prevWrap.className = 'card-preview';
+
+    // Clone canvas for display
+    var dispCanvas = document.createElement('canvas');
+    dispCanvas.width  = result.canvas.width;
+    dispCanvas.height = result.canvas.height;
+    dispCanvas.getContext('2d').drawImage(result.canvas, 0, 0);
+    prevWrap.appendChild(dispCanvas);
+
+    // Original / Processed tabs
+    var tabsDiv = document.createElement('div');
+    tabsDiv.className = 'preview-tabs';
+    tabsDiv.innerHTML =
+      '<button class="preview-tab active" onclick="CC.showProcessed(this)">After</button>' +
+      '<button class="preview-tab" onclick="CC.showOriginal(this,\'' + idx + '\')">Before</button>';
+    prevWrap.appendChild(tabsDiv);
+
+    // Card body
+    var body = document.createElement('div');
+    body.className = 'card-body';
+    body.innerHTML =
+      '<div class="card-filename">' + result.name + '</div>' +
+      '<div class="card-stats">' +
+        '<div class="stat-item">' +
+          '<div class="stat-label">Output</div>' +
+          '<div class="stat-value gold">' + result.canvas.width + '×' + result.canvas.height + '</div>' +
+        '</div>' +
+        '<div class="stat-item">' +
+          '<div class="stat-label">Original</div>' +
+          '<div class="stat-value">' + origKB + ' KB</div>' +
+        '</div>' +
+        '<div class="stat-item">' +
+          '<div class="stat-label">Output size</div>' +
+          '<div class="stat-value">' + outKB + ' KB</div>' +
+        '</div>' +
+        '<div class="stat-item">' +
+          '<div class="stat-label">Saved</div>' +
+          '<div class="stat-value green">' + saved + '%</div>' +
+        '</div>' +
+      '</div>' +
+      '<button class="card-dl-btn" onclick="CC.downloadSingle(' + idx + ')">⬇ Download</button>';
+
+    card.appendChild(prevWrap);
+    card.appendChild(body);
+    grid.appendChild(card);
+  }
+
+  /* ============================================================
+     PREVIEW TOGGLE (Before / After)
+  ============================================================ */
+  function showProcessed(btn) {
+    var preview = btn.closest('.card-preview');
+    var canvas  = preview.querySelector('canvas');
+    var tabs    = preview.querySelectorAll('.preview-tab');
+    tabs.forEach(function (t) { t.classList.remove('active'); });
+    btn.classList.add('active');
+    if (canvas) canvas.style.display = 'block';
+    var imgEl = preview.querySelector('img.before-img');
+    if (imgEl) imgEl.style.display = 'none';
+  }
+
+  function showOriginal(btn, idx) {
+    var preview = btn.closest('.card-preview');
+    var canvas  = preview.querySelector('canvas');
+    var tabs    = preview.querySelectorAll('.preview-tab');
+    tabs.forEach(function (t) { t.classList.remove('active'); });
+    btn.classList.add('active');
+    if (canvas) canvas.style.display = 'none';
+
+    var imgEl = preview.querySelector('img.before-img');
+    if (!imgEl) {
+      // We can't recover original from state but we show a note
+      var note = document.createElement('div');
+      note.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:11px;text-align:center;padding:16px;';
+      note.textContent   = 'Original not cached\n(upload fresh to compare)';
+      note.classList.add('before-img');
+      preview.appendChild(note);
+    } else {
+      imgEl.style.display = 'flex';
+    }
+  }
+
+  /* ============================================================
+     DOWNLOAD
+  ============================================================ */
+  function downloadSingle(idx) {
+    // Show confirmation modal — no auto-download
+    DLM.openSingle(idx, state.processed);
+  }
+
+  function downloadAll() {
+    // Show confirm modal listing all files
+    DLM.openAll(state.processed);
+  }
+
+  function downloadZip() {
+    if (!state.processed.length) return;
+    // Show ZIP confirm modal
+    DLM.openZip(state.processed);
+  }
+
+  function triggerDownload(dataUrl, name) {
+    var link      = document.createElement('a');
+    link.href     = dataUrl;
+    link.download = name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // Expose triggerDownload for modal use
+  return { triggerDownload: triggerDownload };
+
+  /* ============================================================
+     CLEAR RESULTS
+  ============================================================ */
+  function clearResults() {
+    state.processed = [];
+    var grid = document.getElementById('resultsGrid');
+    if (grid) grid.innerHTML = '';
+    document.getElementById('resultsSection').style.display = 'none';
+    var dlBar = document.getElementById('dlAllBar');
+    if (dlBar) dlBar.classList.remove('visible');
+    toast('Results cleared', 'info');
+  }
+
+  /* ============================================================
+     PROGRESS
+  ============================================================ */
+  function showProgress(visible) {
+    var wrap = document.getElementById('progressWrap');
+    if (!wrap) return;
+    if (visible) {
+      wrap.classList.add('visible');
+      document.getElementById('progressFill').style.width = '0%';
+    } else {
+      wrap.classList.remove('visible');
+    }
+  }
+
+  function updateProgress(done, total) {
+    var pct     = total > 0 ? Math.round((done / total) * 100) : 0;
+    var elapsed = (Date.now() - state.startTime) / 1000;
+    var eta     = done > 0 ? Math.round((elapsed / done) * (total - done)) : '…';
+
+    var fill  = document.getElementById('progressFill');
+    var label = document.getElementById('progressLabel');
+    var count = document.getElementById('progressCount');
+    var etaEl = document.getElementById('progressEta');
+
+    if (fill)  fill.style.width   = pct + '%';
+    if (label) label.textContent  = pct < 100 ? 'Processing…' : 'Done!';
+    if (count) count.textContent  = done + ' / ' + total;
+    if (etaEl) etaEl.textContent  = done < total
+      ? 'About ' + eta + 's remaining'
+      : '✓ All done in ' + elapsed.toFixed(1) + 's';
+  }
+
+  /* ============================================================
+     PRESET SELECTION
+  ============================================================ */
+  function selectPreset(name, btn) {
+    state.preset = name;
+    document.querySelectorAll('.preset-btn').forEach(function (b) {
+      b.classList.remove('active');
+    });
+    if (btn) btn.classList.add('active');
+    saveSettings();
+  }
+
+  /* ============================================================
+     TOGGLE UI HELPERS
+  ============================================================ */
+  function toggleWatermarkSub() {
+    var sub = document.getElementById('watermarkSub');
+    if (sub) sub.classList.toggle('visible', document.getElementById('toggleWatermark').checked);
+  }
+
+  function toggleNamingSub() {
+    var sub = document.getElementById('namingSub');
+    if (sub) sub.classList.toggle('visible', document.getElementById('toggleNaming').checked);
+  }
+
+  /* ============================================================
+     SETTINGS PERSISTENCE
+  ============================================================ */
+  function saveSettings() {
+    try {
+      localStorage.setItem('cc_settings', JSON.stringify({
+        preset:      state.preset,
+        quality:     document.getElementById('quality').value,
+        fmt:         document.getElementById('outputFormat').value,
+        logoPos:     document.getElementById('logoPosition').value,
+        logoSize:    document.getElementById('logoSize').value,
+        logoOp:      document.getElementById('logoOpacity').value,
+        whiteBg:     document.getElementById('toggleWhiteBg').checked,
+        watermark:   document.getElementById('toggleWatermark').checked,
+        wmText:      document.getElementById('watermarkText').value,
+        wmOp:        document.getElementById('wmOpacity').value,
+        wmSz:        document.getElementById('wmSize').value,
+        naming:      document.getElementById('toggleNaming').checked,
+        usePrefix:   document.getElementById('usePrefix').checked,
+        prefixText:  document.getElementById('prefixText').value,
+        useSuffix:   document.getElementById('useSuffix').checked,
+        suffixText:  document.getElementById('suffixText').value
+      }));
+    } catch (e) { /* localStorage may be blocked */ }
+  }
+
+  function loadSettings() {
+    try {
+      var raw = localStorage.getItem('cc_settings');
+      if (!raw) return;
+      var s = JSON.parse(raw);
+
+      if (s.preset)   { state.preset = s.preset; document.querySelector('[data-preset="' + s.preset + '"]') && document.querySelector('[data-preset="' + s.preset + '"]').classList.add('active'); }
+      if (s.quality)  setVal('quality', s.quality);
+      if (s.fmt)      setVal('outputFormat', s.fmt);
+      if (s.logoPos)  setVal('logoPosition', s.logoPos);
+      if (s.logoSize) setVal('logoSize', s.logoSize);
+      if (s.logoOp) {
+        setVal('logoOpacity', s.logoOp);
+        var el = document.getElementById('logoOpVal');
+        if (el) el.textContent = s.logoOp + '%';
+      }
+      if (s.whiteBg   !== undefined) document.getElementById('toggleWhiteBg').checked  = s.whiteBg;
+      if (s.watermark !== undefined) document.getElementById('toggleWatermark').checked = s.watermark;
+      if (s.wmText)   document.getElementById('watermarkText').value = s.wmText;
+      if (s.wmOp) {
+        setVal('wmOpacity', s.wmOp);
+        var el2 = document.getElementById('wmOpVal');
+        if (el2) el2.textContent = s.wmOp + '%';
+      }
+      if (s.wmSz) {
+        setVal('wmSize', s.wmSz);
+        var el3 = document.getElementById('wmSzVal');
+        if (el3) el3.textContent = s.wmSz + 'px';
+      }
+      if (s.naming    !== undefined) document.getElementById('toggleNaming').checked   = s.naming;
+      if (s.usePrefix !== undefined) document.getElementById('usePrefix').checked      = s.usePrefix;
+      if (s.prefixText) document.getElementById('prefixText').value = s.prefixText;
+      if (s.useSuffix !== undefined) document.getElementById('useSuffix').checked      = s.useSuffix;
+      if (s.suffixText) document.getElementById('suffixText').value = s.suffixText;
+    } catch (e) { /* corrupted data */ }
+  }
+
+  function restoreToggles() {
+    toggleWatermarkSub();
+    toggleNamingSub();
+    // Restore active preset button
+    var btn = document.querySelector('[data-preset="' + state.preset + '"]');
+    if (btn) {
+      document.querySelectorAll('.preset-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    }
+  }
+
+  function setVal(id, val) {
+    var el = document.getElementById(id);
+    if (el) el.value = val;
+  }
+
+  /* ============================================================
+     TOAST NOTIFICATIONS
+  ============================================================ */
+  function toast(msg, type) {
+    var container = document.getElementById('toastContainer');
+    if (!container) return;
+    var icons = { success: '✅', error: '❌', info: 'ℹ️' };
+    var div   = document.createElement('div');
+    div.className   = 'toast ' + (type || 'info');
+    div.textContent = (icons[type] || '') + ' ' + msg;
+    container.appendChild(div);
+    setTimeout(function () {
+      div.style.opacity   = '0';
+      div.style.transform = 'translateY(-8px)';
+      div.style.transition = 'all .3s';
+      setTimeout(function () { if (div.parentNode) div.parentNode.removeChild(div); }, 350);
+    }, 3000);
+  }
+
+  /* ============================================================
+     PUBLIC API
+  ============================================================ */
+  document.addEventListener('DOMContentLoaded', init);
+
+  return {
+    selectPreset:       selectPreset,
+    saveSettings:       saveSettings,
+    clearResults:       clearResults,
+    downloadSingle:     downloadSingle,
+    downloadAll:        downloadAll,
+    downloadZip:        downloadZip,
+    toggleWatermarkSub: toggleWatermarkSub,
+    toggleNamingSub:    toggleNamingSub,
+    showProcessed:      showProcessed,
+    showOriginal:       showOriginal,
+    toast:              toast,
+    _triggerDownload:   triggerDownload,
+    _state:             state
+  };
+
+})();
+
+/* ================================================================
+   DLM — DOWNLOAD MODAL MANAGER
+   All downloads require user confirmation + filename edit
+================================================================ */
+var DLM = (function () {
+
+  var _pendingIdx    = null;
+  var _pendingItems  = null;
+
+  /* ── SINGLE FILE MODAL ── */
+  function openSingle(idx, items) {
+    var item = items[idx];
+    if (!item) return;
+    _pendingIdx   = idx;
+    _pendingItems = items;
+
+    // Draw preview into modal canvas
+    var mc = document.getElementById('dlModalPreview');
+    if (mc) {
+      mc.width  = item.canvas.width;
+      mc.height = item.canvas.height;
+      mc.getContext('2d').drawImage(item.canvas, 0, 0);
+    }
+
+    // Pre-fill filename
+    var inp = document.getElementById('dlModalFilename');
+    if (inp) inp.value = item.name;
+
+    // Ext hint
+    var ext = item.name.split('.').pop();
+    var extEl = document.getElementById('dlModalExt');
+    if (extEl) extEl.textContent = '.' + ext + ' · edit name freely, extension is preserved';
+
+    // Size info
+    var origKB = Math.round(item.origSize / 1024);
+    var outKB  = Math.round(item.outSize  / 1024);
+    var saved  = item.origSize > 0 ? Math.max(0, Math.round((1 - item.outSize / item.origSize) * 100)) : 0;
+    var infoEl = document.getElementById('dlModalInfo');
+    if (infoEl) infoEl.innerHTML =
+      'Dimensions: ' + item.canvas.width + ' × ' + item.canvas.height + ' px\n' +
+      'Original:   ' + origKB + ' KB\n' +
+      'Output:     ' + outKB + ' KB  (-' + saved + '% saved)\n' +
+      'Quality:    ' + Math.round(item.quality * 100) + '%  ·  Format: ' + item.fmt.toUpperCase();
+
+    showModal('dlModal');
+  }
+
+  function validateName() {
+    var inp = document.getElementById('dlModalFilename');
+    var btn = document.getElementById('dlModalConfirm');
+    if (!inp || !btn) return;
+    var ok = inp.value.trim().length > 0;
+    btn.disabled = !ok;
+    btn.style.opacity = ok ? '1' : '0.4';
+    inp.style.borderColor = ok ? 'var(--gold2)' : 'var(--red)';
+  }
+
+  function confirm() {
+    if (_pendingIdx === null || !_pendingItems) return;
+    var item = _pendingItems[_pendingIdx];
+    if (!item) return;
+
+    var inp = document.getElementById('dlModalFilename');
+    var rawName = (inp ? inp.value.trim() : item.name) || item.name;
+
+    // Preserve extension
+    var origExt = item.name.split('.').pop();
+    var nameNoExt = rawName.replace(/\.[^.]+$/, '');
+    var finalName = nameNoExt + '.' + origExt;
+
+    CC._triggerDownload(item.dataUrl, finalName);
+    hideModal('dlModal');
+    CC.toast('✓ Saved: ' + finalName, 'success');
+    _pendingIdx = null;
+  }
+
+  function cancel() { hideModal('dlModal'); }
+
+  /* ── ZIP MODAL ── */
+  function openZip(items) {
+    if (!items.length) return;
+    _pendingItems = items;
+
+    var listEl = document.getElementById('zipModalList');
+    if (listEl) {
+      listEl.textContent = items.map(function (it, i) {
+        return (i + 1) + '. ' + it.name + '  (' + Math.round(it.outSize / 1024) + ' KB)';
+      }).join('\n');
+    }
+
+    // Suggest ZIP name with date
+    var d   = new Date();
+    var ds  = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    var inp = document.getElementById('zipModalFilename');
+    if (inp) inp.value = 'cozycabin-' + ds + '.zip';
+
+    showModal('zipModal');
+  }
+
+  function confirmZip() {
+    if (!_pendingItems || !_pendingItems.length) return;
+    if (typeof JSZip === 'undefined') { CC.toast('JSZip not loaded', 'error'); return; }
+
+    var zipName = (document.getElementById('zipModalFilename').value.trim() || 'cozycabin-images') + '';
+    if (!zipName.endsWith('.zip')) zipName += '.zip';
+
+    CC.toast('⏳ Building ZIP…', 'info');
+    var zip = new JSZip();
+    _pendingItems.forEach(function (item) {
+      zip.file(item.name, item.dataUrl.split(',')[1], { base64: true });
+    });
+    zip.generateAsync({ type: 'blob' }).then(function (content) {
+      var url  = URL.createObjectURL(content);
+      var link = document.createElement('a');
+      link.href = url; link.download = zipName; link.click();
+      URL.revokeObjectURL(url);
+      CC.toast('✓ ZIP saved: ' + zipName + ' (' + _pendingItems.length + ' files)', 'success');
+      hideModal('zipModal');
+    });
+  }
+
+  function cancelZip() { hideModal('zipModal'); }
+
+  /* ── DOWNLOAD ALL MODAL ── */
+  function openAll(items) {
+    if (!items.length) return;
+    _pendingItems = items;
+
+    var infoEl = document.getElementById('dlAllInfo');
+    if (infoEl) infoEl.textContent = items.length + ' processed image' + (items.length !== 1 ? 's' : '') + ' will be downloaded one by one. Your browser may ask for permission.';
+
+    var listEl = document.getElementById('dlAllList');
+    if (listEl) {
+      listEl.textContent = items.map(function (it, i) {
+        return (i + 1) + '. ' + it.name + '  (' + Math.round(it.outSize / 1024) + ' KB)';
+      }).join('\n');
+    }
+
+    showModal('dlAllModal');
+  }
+
+  function confirmAll() {
+    if (!_pendingItems) return;
+    var items = _pendingItems;
+    hideModal('dlAllModal');
+    items.forEach(function (item, i) {
+      setTimeout(function () {
+        CC._triggerDownload(item.dataUrl, item.name);
+      }, i * 400);
+    });
+    CC.toast('⬇ Downloading ' + items.length + ' files…', 'info');
+  }
+
+  function cancelAll() { hideModal('dlAllModal'); }
+
+  /* ── HELPERS ── */
+  function showModal(id) {
+    var el = document.getElementById(id);
+    if (el) { el.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+  }
+  function hideModal(id) {
+    var el = document.getElementById(id);
+    if (el) { el.style.display = 'none'; document.body.style.overflow = ''; }
+  }
+
+  // Close on backdrop click
+  ['dlModal','zipModal','dlAllModal'].forEach(function (id) {
+    document.addEventListener('DOMContentLoaded', function () {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('click', function (e) {
+        if (e.target === el) hideModal(id);
+      });
+    });
+  });
+
+  return {
+    openSingle:  openSingle,
+    validateName: validateName,
+    confirm:     confirm,
+    cancel:      cancel,
+    openZip:     openZip,
+    confirmZip:  confirmZip,
+    cancelZip:   cancelZip,
+    openAll:     openAll,
+    confirmAll:  confirmAll,
+    cancelAll:   cancelAll
+  };
+
+})();
+
+/* ================================================================
+   LOGO — permanent lock: always use cozycabin-logo1.webp
+   Works on GitHub Pages and Cloudflare Pages (relative path)
+================================================================ */
+(function lockLogo() {
+  var LOGO_PATH = 'Images/cozycabin-logo1.webp';
+
+  function applyLogo(img) {
+    if (!img) return;
+    if (img.src.indexOf('cozycabin-logo1') === -1) {
+      img.src = LOGO_PATH;
+    }
+    img.onerror = function () {
+      // Fallback: draw text canvas logo
+      var fc = document.createElement('canvas');
+      fc.width = 200; fc.height = 200;
+      var ctx = fc.getContext('2d');
+      ctx.fillStyle = '#0d1830';
+      ctx.fillRect(0,0,200,200);
+      ctx.strokeStyle = '#ffd700';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(4,4,192,192);
+      ctx.fillStyle = '#ffd700';
+      ctx.font = 'bold 42px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('CC', 100, 120);
+      this.src = fc.toDataURL();
+      this.onerror = null;
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Lock every logo image on page
+    document.querySelectorAll('.login-logo-img, #logoThumbImg, .logo-wrap img').forEach(applyLogo);
+    // Also lock the CC state logo
+    if (window.CC && CC._state) {
+      var logoImg = new Image();
+      logoImg.onload = function () {
+        CC._state.logoImg    = logoImg;
+        CC._state.logoLoaded = true;
+      };
+      logoImg.onerror = function () {
+        // Build canvas fallback logo
+        var fc = document.createElement('canvas');
+        fc.width = 260; fc.height = 70;
+        var ctx = fc.getContext('2d');
+        ctx.fillStyle = 'rgba(0,0,0,0.65)';
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(0,0,260,70,12); else ctx.rect(0,0,260,70);
+        ctx.fill();
+        ctx.fillStyle = '#ffd700';
+        ctx.font = 'bold 22px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('COZYCABIN', 130, 28);
+        ctx.font = '11px Arial';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('SMART LIVING SOLUTIONS', 130, 52);
+        var fb = new Image();
+        fb.onload = function () { CC._state.logoImg = fb; CC._state.logoLoaded = true; };
+        fb.src = fc.toDataURL();
+      };
+      logoImg.src = LOGO_PATH;
+    }
+  });
+})();
+
+</script>
+
+<!-- ═══════════════════════════════════════════
+     DOWNLOAD CONFIRMATION MODAL
+═══════════════════════════════════════════ -->
+<div id="dlModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:5000;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:var(--card);border:1px solid var(--border2);border-radius:24px;width:100%;max-width:400px;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.7);animation:loginAppear .3s ease;">
+    <div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:6px;">⬇ Download Image</div>
+    <div style="font-size:11px;color:var(--muted2);margin-bottom:20px;">Edit filename before saving. Format is preserved.</div>
+
+    <!-- Preview thumb -->
+    <div style="text-align:center;margin-bottom:16px;">
+      <canvas id="dlModalPreview" style="max-width:140px;max-height:140px;border-radius:10px;border:1px solid var(--border);object-fit:contain;"></canvas>
+    </div>
+
+    <!-- Filename editor -->
+    <div style="margin-bottom:14px;">
+      <label style="display:block;font-size:10px;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.09em;margin-bottom:7px;">Filename</label>
+      <input type="text" id="dlModalFilename" style="width:100%;background:var(--navy2);border:1.5px solid var(--border2);border-radius:10px;color:var(--gold);padding:12px 14px;font-size:14px;font-family:'DM Mono',monospace;outline:none;letter-spacing:.03em;" oninput="DLM.validateName()">
+      <div id="dlModalExt" style="font-size:10px;color:var(--muted);margin-top:5px;font-family:'DM Mono',monospace;"></div>
+    </div>
+
+    <!-- Size info -->
+    <div id="dlModalInfo" style="background:var(--navy2);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--muted2);font-family:'DM Mono',monospace;line-height:2;margin-bottom:18px;"></div>
+
+    <!-- Buttons -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <button onclick="DLM.cancel()" style="padding:13px;background:transparent;border:1.5px solid var(--border2);color:var(--muted2);border-radius:12px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.04em;">✕ Cancel</button>
+      <button id="dlModalConfirm" onclick="DLM.confirm()" style="padding:13px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:12px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.04em;">⬇ Save File</button>
+    </div>
+  </div>
+</div>
+
+<!-- ZIP CONFIRM MODAL -->
+<div id="zipModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:5000;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:var(--card);border:1px solid var(--border2);border-radius:24px;width:100%;max-width:400px;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.7);animation:loginAppear .3s ease;">
+    <div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:6px;">📦 Download ZIP</div>
+    <div style="font-size:11px;color:var(--muted2);margin-bottom:20px;">Confirm the ZIP filename and review files before downloading.</div>
+    <div style="margin-bottom:14px;">
+      <label style="display:block;font-size:10px;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.09em;margin-bottom:7px;">ZIP Filename</label>
+      <input type="text" id="zipModalFilename" value="cozycabin-images.zip" style="width:100%;background:var(--navy2);border:1.5px solid var(--border2);border-radius:10px;color:var(--gold);padding:12px 14px;font-size:14px;font-family:'DM Mono',monospace;outline:none;">
+    </div>
+    <div id="zipModalList" style="background:var(--navy2);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--muted2);font-family:'DM Mono',monospace;max-height:160px;overflow-y:auto;margin-bottom:18px;line-height:2;"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <button onclick="DLM.cancelZip()" style="padding:13px;background:transparent;border:1.5px solid var(--border2);color:var(--muted2);border-radius:12px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;cursor:pointer;">✕ Cancel</button>
+      <button onclick="DLM.confirmZip()" style="padding:13px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:12px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;cursor:pointer;">📦 Download ZIP</button>
+    </div>
+  </div>
+</div>
+
+<!-- DOWNLOAD ALL CONFIRM MODAL -->
+<div id="dlAllModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:5000;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:var(--card);border:1px solid var(--border2);border-radius:24px;width:100%;max-width:400px;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.7);animation:loginAppear .3s ease;">
+    <div style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:6px;">⬇ Download All Images</div>
+    <div id="dlAllInfo" style="font-size:12px;color:var(--muted2);margin-bottom:16px;line-height:1.6;"></div>
+    <div id="dlAllList" style="background:var(--navy2);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--muted2);font-family:'DM Mono',monospace;max-height:160px;overflow-y:auto;margin-bottom:18px;line-height:2;"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <button onclick="DLM.cancelAll()" style="padding:13px;background:transparent;border:1.5px solid var(--border2);color:var(--muted2);border-radius:12px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;cursor:pointer;">✕ Cancel</button>
+      <button onclick="DLM.confirmAll()" style="padding:13px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:12px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;cursor:pointer;">⬇ Download All</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /appShield -->
+</body>
+</html>
+
+
+
+  
