@@ -1108,7 +1108,7 @@ async function bootApp(){
 ══════════════════════════════ */
 async function loadAffiliates(){
   try{
-    const snap = await getDocs(query(collection(db,'affiliates'), orderBy('createdAt','desc')));
+    const snap = await getDocs(collection(db,'affiliates'));
     allAffiliates = snap.docs.map(d=>({id:d.id,...d.data()}));
     renderAffiliatesTable();
     document.getElementById('affCount').textContent = allAffiliates.length + ' total affiliates';
