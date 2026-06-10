@@ -496,86 +496,29 @@ var products = {
   ],
 floodlights: [
   {
-    title: "Solar Security Floodlight",
-    {
-  title: "Solar Security Floodlight",
-  company: "Solar",
-  productType: "variant",
+       
+      title: "Solar Security Floodlight",
+      company: "Solar",
+      productType: "variant",
 
-  description: "Waterproof solar-powered security floodlights with automatic photocell sensor. Automatically switches ON at night and OFF during the day. No wiring required, easy installation, remote control included. Ideal for homes, businesses, compounds, farms and security lighting.",
-
+      description: "Waterproof solar-powered security floodlights with automatic photocell sensor. Automatically switches ON at night and OFF during the day. No wiring required, easy installation, remote control included. Ideal for homes, businesses, compounds, farms and security lighting.",
   features: [
-    "Automatic ON/OFF Photocell Sensor",
-    "Waterproof Design",
-    "Solar Powered",
-    "Remote Control Included",
-    "No Wiring Required",
-    "Easy Installation",
-    "Security Flood Lighting"
+       "Automatic ON/OFF Photocell Sensor",
+       "Waterproof Design",
+       "Solar Powered",
+       "Remote Control Included",
+       "No Wiring Required",
+       "Easy Installation",
+      "Security Flood Lighting"
   ],
 
   variants: [
     {
-      name: "30W Solar Security Floodlight",
-      price: 4500,
-      oldPrice: 6000,
-      description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
-      images: ["Images/556271.jpg"]
-    },
-
-    {
-      name: "60W Solar Security Floodlight",
-      price: 5500,
-      oldPrice: 7500,
-      description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
-      images: ["Images/556267.jpg"]
-    },
-
-    {
-      name: "100W Solar Security Floodlight",
-      price: 6999,
-      oldPrice: 9500,
-      description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
-      images: ["Images/556274.jpg"]
-    },
-
-    {
-      name: "200W Solar Security Floodlight",
-      price: 9000,
-      oldPrice: 12000,
-      description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
-      images: ["Images/556275.jpg"]
-    },
-
-    {
-      name: "300W Solar Security Floodlight",
-      price: 12500,
-      oldPrice: 16000,
-      description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
-      images: ["Images/556276.jpg{
-  title: "Solar Security Floodlight",
-  company: "Solar",
-  productType: "variant",
-
-  description: "Waterproof solar-powered security floodlights with automatic photocell sensor. Automatically switches ON at night and OFF during the day. No wiring required, easy installation, remote control included. Ideal for homes, businesses, compounds, farms and security lighting.",
-
-  features: [
-    "Automatic ON/OFF Photocell Sensor",
-    "Waterproof Design",
-    "Solar Powered",
-    "Remote Control Included",
-    "No Wiring Required",
-    "Easy Installation",
-    "Security Flood Lighting"
-  ],
-
-  variants: [
-    {
-      name: "30W Solar Security Floodlight",
-      price: 4500,
-      oldPrice: 6000,
-      description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
-      images: ["Images/solar-30w.jpg"]
+       name: "30W Solar Security Floodlight",
+       price: 4500,
+       oldPrice: 6000,
+       description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
+       images: ["Images/solar-30w.jpg"]
     },
 
     {
@@ -608,13 +551,13 @@ floodlights: [
       oldPrice: 16000,
       description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
       images: ["Images/solar-200w.jpg"]
+       }
+     ]
+              
     }
-  ]
-               }"]
-    }
-  ]
-}
-  
+  ],
+
+   
   // ── Placeholders — add products + video fields later ──
   
   solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], chargers:[], fans:[],
