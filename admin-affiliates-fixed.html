@@ -1121,6 +1121,7 @@ async function loadAffiliates(){
     if(el) el.textContent = allAffiliates.length + ' total affiliates';
   }catch(e){ console.error('loadAffiliates:', e); }
 }
+Replace the entire "loadOrders()" function with:
 
 async function loadOrders(){
   try{
@@ -1143,20 +1144,24 @@ async function loadOrders(){
 
       return toMs(b.date) - toMs(a.date);
     });
-allOrders = orders;
 
-console.log("ORDERS LOADED:", orders);
-alert("Orders loaded = " + orders.length);
+    allOrders = orders;
 
-renderOrdersTable();
+    console.log("ORDERS LOADED:", orders);
+    alert("Orders loaded = " + orders.length);
 
-const el = document.getElementById('ordCount');
-if(el) el.textContent = allOrders.length + ' total orders';
+    renderOrdersTable();
+
+    const el = document.getElementById('ordCount');
+    if(el) el.textContent = allOrders.length + ' total orders';
 
   }catch(e){
-    console.error('loadOrders:', e);
+    console.error('loadOrders FAILED:', e);
+    alert('loadOrders FAILED: ' + e.message);
   }
 }
+
+Do not use "orderBy()" anywhere inside "loadOrders()" for now.
 
 async function loadCommissions(){
   try{
