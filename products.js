@@ -547,9 +547,58 @@ floodlights: [
       images: ["Images/solar-200w.jpg"]
        }
      ]
-    }
+    },
+    {
+      title: "Solar Indoor Ceiling Light",
+      company: "Solar",
+      productType: "variant",
+
+      description: "Solar-powered indoor ceiling light with all-weather solar panel, large lithium battery capacity up to 20,000mAh, three lighting colors and up to 18 hours of continuous lighting. Ideal for homes, shops, rural homes, emergency lighting and areas without electricity.",
+
+  features: [
+      "All Weather Solar Panel",
+      "Large Lithium Battery",
+     "Up To 20,000mAh Capacity",
+     "Up To 18 Hours Lighting",
+     "3 Lighting Colors",
+     "Remote Control Included",
+     "Easy Installation",
+     "Energy Saving",
+     "Indoor Solar Lighting"
   ],
 
+  variants: [
+    {
+      name: "100W Solar Indoor Ceiling Light",
+      price: 2500,
+      oldPrice: 3500,
+      description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
+      images: ["Images/solar-ceiling-100w.jpg"]
+    },
+    {
+      name: "200W Solar Indoor Ceiling Light",
+      price: 3500,
+      oldPrice: 5000,
+      description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
+      images: ["Images/solar-ceiling-200w.jpg"]
+    },
+    {
+      name: "300W Solar Indoor Ceiling Light",
+      price: 4500,
+      oldPrice: 6500,
+      description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
+      images: ["Images/solar-ceiling-300w.jpg"]
+    },
+    {
+      name: "400W Solar Indoor Ceiling Light",
+      price: 5500,
+      oldPrice: 7500,
+      description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
+      images: ["Images/solar-ceiling-400w.jpg"]
+    }
+  ]
+  }
+],
    
   // ── Placeholders — add products + video fields later ──
   
