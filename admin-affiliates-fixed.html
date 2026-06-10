@@ -1143,15 +1143,15 @@ async function loadOrders(){
 
       return toMs(b.date) - toMs(a.date);
     });
+allOrders = orders;
 
-    allOrders = orders;
-     console.log("ORDERS LOADED:", orders);
+console.log("ORDERS LOADED:", orders);
 alert("Orders loaded = " + orders.length);
 
-    renderOrdersTable();
+renderOrdersTable();
 
-    const el = document.getElementById('ordCount');
-    if(el) el.textContent = allOrders.length + ' total orders';
+const el = document.getElementById('ordCount');
+if(el) el.textContent = allOrders.length + ' total orders';
 
   }catch(e){
     console.error('loadOrders:', e);
