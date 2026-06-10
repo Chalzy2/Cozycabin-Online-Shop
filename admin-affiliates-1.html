@@ -1038,7 +1038,8 @@ window.adminLogin = async function(){
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>';
   try {
-    await signInWithEmailAndPassword(auth, email, pw);
+    const cred = await signInWithEmailAndPassword(auth, email, pw);
+alert("LOGIN SUCCESS: " + cred.user.email);
   } catch(e) {
     const msgs = {
       'auth/user-not-found':'No admin account found.',
