@@ -552,7 +552,7 @@ floodlights: [
   
   // ── Placeholders — add products + video fields later ──
   
-  solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], floodlights:[], chargers:[], fans:[],
+  solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], chargers:[], fans:[],
   fridges:[], microwaves:[], washing:[], cookersapp:[], kettles:[], irons:[], heaters:[], fansapp:[],
   wallart:[], mirrors:[], flowers:[], lamps:[], carpets:[], curtains:[], frames:[], vases:[],
   duvets:[], bedsheets:[], blankets:[], pillows:[], mattress:[], covers:[], nets:[], towels:[],
@@ -1656,6 +1656,22 @@ window.openPaymentModal = function() {
   var waOrderEl = document.getElementById('wa-order-link');
   if (waOrderEl) waOrderEl.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + waOrder;
   modal.style.display = 'flex';
+  // Record affiliate click/pending sale to Firestore
+if (order.ref && typeof firebase !== 'undefined') {
+  var db = firebase.firestore();
+  db.collection('affiliateOrders').add({
+    ref:       order.ref,
+    title:     order.title,
+    variant:   order.variant || null,
+    size:      order.size || null,
+    color:     order.color || null,
+    price:     order.price || 0,
+    status:    'pending',        // you change to 'confirmed' after payment
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  }).catch(function(err) {
+    console.error('Affiliate order record failed:', err);
+  });
+}
   document.body.style.overflow = 'hidden';
   window.backToStep1();
 };
