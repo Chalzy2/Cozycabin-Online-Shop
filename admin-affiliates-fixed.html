@@ -1145,6 +1145,8 @@ async function loadOrders(){
     });
 
     allOrders = orders;
+     console.log("ORDERS LOADED:", orders);
+alert("Orders loaded = " + orders.length);
 
     renderOrdersTable();
 
