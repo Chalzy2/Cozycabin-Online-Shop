@@ -127,10 +127,9 @@ var products = {
       description: "Premium Timberland casual sneakers crafted for comfort and style. Durable construction, cushioned sole and versatile design make them ideal for everyday wear, office casual outfits and weekend outings.",
       video: "https://www.dropbox.com/scl/fi/yqlmt56nzjgkzxur1l86u/MP4_20260530_211747VLOG.mp4?rlkey=vywsa20vw3qo528nssg0b3hse&raw=1",
       images: [
-        "Images/timber-navy.webp","Images/timber-black (1).webp","Images/Blackwhite-timberland (1).webp","Images/timber-greywhite.webp","Images/timber-tan.webp","Images/Warmhseslipink.webp"
-      ]
-    },
-    {
+        "Images/timber-navy.webp","Images/timber-black (1).webp","Images/Blackwhite-timberland (1).webp","Images/timber-greywhite.webp","Images/timber-tan.webp","Images/Warmhseslipink.webp"]
+      },
+      {
       ratio: "3/4", title: "Women's Comfort Slip-On Sneakers", company: "Fashion",
       price: 1799, oldPrice: 2500,
       sizes: [37,38,39,40,41,42],
@@ -140,9 +139,9 @@ var products = {
       images: [
         "Images/womenredwalker.webp","Images/womendarkblue.webp","Images/womenlightbrown.webp",
         "Images/womenblackwalker.webp","Images/womegreywalker.webp"
-      ]
-    },
-    {
+        ]
+     },
+     {
       title: "Ladies Comfort Sandals",
       company: "Fashion",
       price: 2499,
@@ -495,11 +494,10 @@ var products = {
    }
   ],
 floodlights: [
-  {
-       
-      title: "Solar Security Floodlight",
-      company: "Solar",
-      productType: "variant",
+   {
+       title: "Solar Security Floodlight",
+       company: "Solar",
+       productType: "variant",
 
       description: "Waterproof solar-powered security floodlights with automatic photocell sensor. Automatically switches ON at night and OFF during the day. No wiring required, easy installation, remote control included. Ideal for homes, businesses, compounds, farms and security lighting.",
   features: [
@@ -520,7 +518,6 @@ floodlights: [
        description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
        images: ["Images/solar-30w.jpg"]
     },
-
     {
       name: "60W Solar Security Floodlight",
       price: 5500,
@@ -528,7 +525,6 @@ floodlights: [
       description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
       images: ["Images/solar-60w.jpg"]
     },
-
     {
       name: "100W Solar Security Floodlight",
       price: 6999,
@@ -536,7 +532,6 @@ floodlights: [
       description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
       images: ["Images/solar-300w.jpg"]
     },
-
     {
       name: "200W Solar Security Floodlight",
       price: 9000,
@@ -544,7 +539,6 @@ floodlights: [
       description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
       images: ["Images/solar-100w.jpg"]
     },
-
     {
       name: "300W Solar Security Floodlight",
       price: 12500,
@@ -553,7 +547,6 @@ floodlights: [
       images: ["Images/solar-200w.jpg"]
        }
      ]
-              
     }
   ],
 
