@@ -1692,8 +1692,7 @@ window.saveOrder = async function(){
     allOrders.unshift({id:ref.id,...data});
     if(generatesComm){
       await createCommission(affId,ref.id,orderId,amount,type,comm);
-      await updateDoc(doc(db,'affiliates',affId),{totalSales:increment(amount),sales:increment(1),updatedAt:serverTimestamp()});
-    }
+      await updateDoc(doc(db,'affiliates',affId),{totalSales: increment(amount),sales: increment(1),commission: increment(comm),balance: increment(comm),updatedAt: serverTimestamp()});
     renderOrdersTable();
     closeModal('addOrderModal');
     toast('Order saved.','success');
