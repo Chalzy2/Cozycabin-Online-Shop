@@ -997,11 +997,16 @@ function toast(msg, type='info'){
 
 function calcCommission(amount, productType){
   const amt = Number(amount)||0;
-  if(productType==='digital') return Math.round(amt * 0.30);
-  if(amt < 1000) return 50;
-  if(amt < 3000) return Math.round(amt * 0.10);
-  if(amt < 10000) return Math.round(amt * 0.12);
-  return Math.round(amt * 0.15);
+
+  if(productType==='digital')
+    return Math.round(amt * 0.30);
+
+  if(amt <= 4999) return 100;
+  if(amt <= 9999) return 200;
+  if(amt <= 19999) return 300;
+  if(amt <= 29999) return 500;
+
+  return 600;
 }
 
 function commRate(amount, productType){
