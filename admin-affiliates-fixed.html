@@ -1125,7 +1125,7 @@ async function loadOrders(){
   try{
     let snap;
     try{
-      snap = await getDocs(query(collection(db,'orders'),orderBy('createdAt','desc')));
+      snap = await getDocs(query(collection(db,'orders'), orderBy('date','desc')));
     }
     catch(_){
       snap = await getDocs(collection(db,'orders'));
@@ -1141,8 +1141,6 @@ async function loadOrders(){
     console.error('loadOrders:',e);
   }
 }
-
-Do not use "orderBy()" anywhere inside "loadOrders()" for now.
 
 async function loadCommissions(){
   try{
