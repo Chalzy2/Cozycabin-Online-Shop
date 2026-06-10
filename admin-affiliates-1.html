@@ -1107,21 +1107,33 @@ async function bootApp(){
    DATA LOADERS
 ══════════════════════════════ */
 async function loadAffiliates(){
+  console.log("Starting loadAffiliates...");
+
   try{
     const snap = await getDocs(collection(db,'affiliates'));
+
     console.log("Affiliates found:", snap.size);
 
-    allAffiliates = snap.docs.map(d=>({id:d.id,...d.data()}));
+    allAffiliates = snap.docs.map(d => ({
+      id: d.id,
+      ...d.data()
+    }));
+
+    console.log("Affiliate data:", allAffiliates);
 
     renderAffiliatesTable();
 
-    document.getElementById('affCount').textContent =
-      allAffiliates.length + ' total affiliates';
+    const affCount = document.getElementById('affCount');
+    if(affCount){
+      affCount.textContent =
+        allAffiliates.length + ' total affiliates';
+    }
 
   }catch(e){
-    console.error('loadAffiliates',e);
+    console.error("FIRESTORE ERROR:", e);
+    alert("Firestore Error: " + e.message);
   }
-}
+     }
 
 async function loadOrders(){
   try{
