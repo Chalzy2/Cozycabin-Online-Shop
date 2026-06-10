@@ -1121,43 +1121,24 @@ async function loadAffiliates(){
     if(el) el.textContent = allAffiliates.length + ' total affiliates';
   }catch(e){ console.error('loadAffiliates:', e); }
 }
-Replace the entire "loadOrders()" function with:
-
 async function loadOrders(){
   try{
-    const snap = await getDocs(collection(db,'orders'));
+    let snap;
+    try{
+      snap = await getDocs(query(collection(db,'orders'),orderBy('createdAt','desc')));
+    }
+    catch(_){
+      snap = await getDocs(collection(db,'orders'));
+    }
 
-    const orders = [];
-
-    snap.forEach(doc=>{
-      orders.push({
-        id: doc.id,
-        ...doc.data()
-      });
-    });
-
-    orders.sort((a,b)=>{
-      const toMs = v =>
-        v?.toDate
-          ? v.toDate().getTime()
-          : new Date(v || 0).getTime();
-
-      return toMs(b.date) - toMs(a.date);
-    });
-
-    allOrders = orders;
-
-    console.log("ORDERS LOADED:", orders);
-    alert("Orders loaded = " + orders.length);
-
+    allOrders = snap.docs.map(d=>({id:d.id,...d.data()}));
     renderOrdersTable();
 
     const el = document.getElementById('ordCount');
     if(el) el.textContent = allOrders.length + ' total orders';
 
   }catch(e){
-    console.error('loadOrders FAILED:', e);
-    alert('loadOrders FAILED: ' + e.message);
+    console.error('loadOrders:',e);
   }
 }
 
