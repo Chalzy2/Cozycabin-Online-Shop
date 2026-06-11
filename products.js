@@ -573,7 +573,7 @@ floodlights: [
       price: 2500,
       oldPrice: 3500,
       description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
-      images: ["Images/Sol-cl50w.webp"]
+      images: ["Images/Solcl50w.webp"]
     },
     {
       name: "100W Solar Indoor Ceiling Light",
@@ -601,7 +601,7 @@ floodlights: [
       price: 5500,
       oldPrice: 7500,
       description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
-      images: ["Sol-cl400w.webp"]
+      images: ["Images/Sol-cl400w.webp"]
      }
     ]
    },
