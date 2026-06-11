@@ -629,21 +629,21 @@ floodlights: [
         price: 2500,
         oldPrice: 3500,
         description: "MOQ: 20 Pieces",
-        images: ["Images/Yommy-50w.webp"]
+        images: ["Images/Yommy50w.webp"]
       },
       {
       name: "100W YOMY Solar Floodlight",
       price: 3600,
       oldPrice: 5000,
       description: "MOQ: 20 Pieces",
-      images: ["Images/Yommy-100w.webp"]
+      images: ["Images/Yommy100w.webp"]
     },
     {
       name: "200W YOMY Solar Floodlight",
       price: 4900,
       oldPrice: 6500,
       description: "MOQ: 10 Pieces",
-      images: ["Images/Yommy-200w.webp"]
+      images: ["Images/Yommy200w.webp"]
     },
     {
       name: "300W YOMY Solar Floodlight",
@@ -657,7 +657,7 @@ floodlights: [
       price: 7500,
       oldPrice: 10000,
       description: "MOQ: 5 Pieces",
-      images: ["Images/Yommy-400w.webp"]
+      images: ["Images/Sol-cl400w.webp"]
      }
     ]
    }
