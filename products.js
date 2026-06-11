@@ -569,36 +569,99 @@ floodlights: [
 
   variants: [
     {
+      name: "50W Solar Indoor Ceiling Light",
+      price: 2500,
+      oldPrice: 3500,
+      description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
+      images: ["Images/Sol-cl50w.webp"]
+    },
+    {
       name: "100W Solar Indoor Ceiling Light",
       price: 2500,
       oldPrice: 3500,
       description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
-      images: ["Images/solar-ceiling-100w.jpg"]
+      images: ["Images/Sol-cl100w.webp"]
     },
     {
       name: "200W Solar Indoor Ceiling Light",
       price: 3500,
       oldPrice: 5000,
       description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
-      images: ["Images/solar-ceiling-200w.jpg"]
+      images: ["Images/Sol-cl200w.webp"]
     },
     {
       name: "300W Solar Indoor Ceiling Light",
       price: 4500,
       oldPrice: 6500,
       description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
-      images: ["Images/solar-ceiling-300w.jpg"]
+      images: ["Images/Sol-cl300w.webp"]
     },
     {
       name: "400W Solar Indoor Ceiling Light",
       price: 5500,
       oldPrice: 7500,
       description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
-      images: ["Images/solar-ceiling-400w.jpg"]
-    }
-  ]
-  }
-],
+      images: ["Sol-cl400w.webp"]
+     }
+    ]
+   },
+   {
+      title: "YOMY Solar Floodlight",
+      company: "YOMY",
+      productType: "variant",
+
+      description: "Premium YOMY solar floodlight with high-efficiency solar panel, waterproof IP65 design, battery level indicator and powerful outdoor security lighting. Suitable for homes, compounds, parking areas, businesses and farms.",
+
+  features: [
+      "High Efficiency Solar Panel",
+      "IP65 Waterproof",
+       "Battery Level Indicator",
+       "Energy Saving",
+       "Automatic Day/Night Operation",
+       "Outdoor Security Lighting",
+       "Easy Installation",
+       "Maintenance Free"
+      ],
+
+  variants: [
+     {
+        name: "50W YOMY Solar Floodlight",
+        price: 2500,
+        oldPrice: 3500,
+        description: "MOQ: 20 Pieces",
+        images: ["Images/Yommy-50w.webp"]
+      },
+      {
+      name: "100W YOMY Solar Floodlight",
+      price: 3600,
+      oldPrice: 5000,
+      description: "MOQ: 20 Pieces",
+      images: ["Images/Yommy-100w.webp"]
+    },
+    {
+      name: "200W YOMY Solar Floodlight",
+      price: 4900,
+      oldPrice: 6500,
+      description: "MOQ: 10 Pieces",
+      images: ["Images/Yommy-200w.webp"]
+    },
+    {
+      name: "300W YOMY Solar Floodlight",
+      price: 6000,
+      oldPrice: 8000,
+      description: "MOQ: 10 Pieces",
+      images: ["Images/Yommy300w.webp"]
+    },
+    {
+      name: "400W YOMY Solar Floodlight",
+      price: 7500,
+      oldPrice: 10000,
+      description: "MOQ: 5 Pieces",
+      images: ["Images/Yommy-400w.webp"]
+     }
+    ]
+   }
+  ],
    
   // ── Placeholders — add products + video fields later ──
   
