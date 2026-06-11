@@ -86,7 +86,7 @@ const PRODUCTS = {
 ],
 
 solarCeilingLights: [
-     ["50W Solar Indoor Ceiling Light", 2500, "Images/Sol-cl50w.webp", "Solar ceiling light with remote control, 3 lighting colors and all-weather solar panel."],
+     ["50W Solar Indoor Ceiling Light", 2500, "Images/Solcl50w.webp", "Solar ceiling light with remote control, 3 lighting colors and all-weather solar panel."],
      ["100W Solar Indoor Ceiling Light", 2500, "Images/Sol-cl100w.webp", "Solar ceiling light with remote control, 3 lighting colors and all-weather solar panel."],
      ["200W Solar Indoor Ceiling Light", 3500, "Images/Sol-cl200w.webp", "Solar ceiling light with remote control, 3 lighting colors and all-weather solar panel."],
      ["300W Solar Indoor Ceiling Light", 4500, "Images/Sol-cl300w.webp", "Solar ceiling light with remote control, 3 lighting colors and all-weather solar panel."],
