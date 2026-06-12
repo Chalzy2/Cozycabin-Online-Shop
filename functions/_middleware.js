@@ -77,29 +77,28 @@ const PRODUCTS = {
     ["Muchen Vacuum Flask 800ml",    900,  "Images/551394Flsk.webp",   "Elegant Muchen insulated flask with premium build quality and stylish design."],
     ["Muchen Vacuum Flask 1000ml",  1000,  "Images/551394Flsk.webp",   "Large capacity Muchen vacuum flask — keeps drinks at perfect temperature all day long."],
   ],
-  solarFloodlights: [
-     ["30W Solar Security Floodlight", 4500, "Images/solar-30w.jpg", "Waterproof solar floodlight with automatic day/night sensor and remote control."],
-     ["60W Solar Security Floodlight", 5500, "Images/solar-60w.jpg", "Waterproof solar floodlight with automatic day/night sensor and remote control."],
-     ["100W Solar Security Floodlight", 6999, "Images/solar-100w.jpg", "Waterproof solar floodlight with automatic day/night sensor and remote control."],
-     ["200W Solar Security Floodlight", 9000, "Images/solar-200w.jpg", "Waterproof solar floodlight with automatic day/night sensor and remote control."],
-     ["300W Solar Security Floodlight", 12500, "Images/solar-300w.jpg", "Waterproof solar floodlight with automatic day/night sensor and remote control."]
+  floodlights: [
+  ["30W Solar Security Floodlight",  4500,  "Images/solar-30w.jpg",  "Waterproof solar floodlight with automatic day/night sensor, IP66 waterproof and remote control included."],
+  ["60W Solar Security Floodlight",  5500,  "Images/solar-60w.jpg",  "Waterproof solar floodlight with automatic day/night sensor, IP66 waterproof and remote control included."],
+  ["100W Solar Security Floodlight", 6999,  "Images/solar-300w.jpg", "Waterproof solar floodlight with automatic day/night sensor, IP66 waterproof and remote control included."],
+  ["200W Solar Security Floodlight", 9000,  "Images/solar-100w.jpg", "Waterproof solar floodlight with automatic day/night sensor, IP66 waterproof and remote control included."],
+  ["300W Solar Security Floodlight", 12500, "Images/solar-200w.jpg", "Waterproof solar floodlight with automatic day/night sensor, IP66 waterproof and remote control included."],
 ],
 
-solarCeilingLights: [
-     ["50W Solar Indoor Ceiling Light", 2500, "Images/Solcl50w.webp", "Solar ceiling light with remote control, 3 lighting colors and all-weather solar panel."],
-     ["100W Solar Indoor Ceiling Light", 2500, "Images/Sol-cl100w.webp", "Solar ceiling light with remote control, 3 lighting colors and all-weather solar panel."],
-     ["200W Solar Indoor Ceiling Light", 3500, "Images/Sol-cl200w.webp", "Solar ceiling light with remote control, 3 lighting colors and all-weather solar panel."],
-     ["300W Solar Indoor Ceiling Light", 4500, "Images/Sol-cl300w.webp", "Solar ceiling light with remote control, 3 lighting colors and all-weather solar panel."],
-     ["400W Solar Indoor Ceiling Light", 5500, "Images/Sol-cl400w.webp", "Solar ceiling light with remote control, 3 lighting colors and all-weather solar panel."]
-   ],
-
-yomyFloodlights: [
-     ["50W YOMY Solar Floodlight", 2500, "Images/Yommy-50w.webp", "Premium IP65 waterproof YOMY solar floodlight with battery indicator."],
-     ["100W YOMY Solar Floodlight", 3600, "Images/Yommy-100w.webp", "Premium IP65 waterproof YOMY solar floodlight with battery indicator."],
-     ["200W YOMY Solar Floodlight", 4900, "Images/Yommy-200w.webp", "Premium IP65 waterproof YOMY solar floodlight with battery indicator."],
-     ["300W YOMY Solar Floodlight", 6000, "Images/Yommy300w.webp", "Premium IP65 waterproof YOMY solar floodlight with battery indicator."],
-     ["400W YOMY Solar Floodlight", 7500, "Images/Yommy-400w.webp", "Premium IP65 waterproof YOMY solar floodlight with battery indicator."]
-  ],
+solarCeiling: [
+  ["50W Solar Indoor Ceiling Light",  2500, "Images/Solcl50w.webp",    "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["100W Solar Indoor Ceiling Light", 2500, "Images/Sol-cl100w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["200W Solar Indoor Ceiling Light", 3500, "Images/Sol-cl200w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["300W Solar Indoor Ceiling Light", 4500, "Images/Sol-cl300w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["400W Solar Indoor Ceiling Light", 5500, "Images/Sol-cl400w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+],
+yomy: [
+  ["50W YOMY Solar Floodlight",  2500, "Images/Yommy50w.webp",   "Premium YOMY solar floodlight, IP65 waterproof with battery level indicator and automatic day/night operation."],
+  ["100W YOMY Solar Floodlight", 3600, "Images/Yommy100w.webp",  "Premium YOMY solar floodlight, IP65 waterproof with battery level indicator and automatic day/night operation."],
+  ["200W YOMY Solar Floodlight", 4900, "Images/Yommy200w.webp",  "Premium YOMY solar floodlight, IP65 waterproof with battery level indicator and automatic day/night operation."],
+  ["300W YOMY Solar Floodlight", 6000, "Images/Yommy300w.webp",  "Premium YOMY solar floodlight, IP65 waterproof with battery level indicator and automatic day/night operation."],
+  ["400W YOMY Solar Floodlight", 7500, "Images/Sol-cl400w.webp", "Premium YOMY solar floodlight, IP65 waterproof with battery level indicator and automatic day/night operation."],
+],
  };
 
 const CAT_LABELS = {
@@ -108,6 +107,9 @@ const CAT_LABELS = {
   cutlery:   "Cutlery & Kitchenware",
   hotpots:   "Hot Pots",
   flasks:    "Vacuum Flasks",
+  floodlights:  "Solar Floodlights",
+solarCeiling: "Solar Indoor Ceiling Lights",
+yomy:         "YOMY Solar Floodlights",
   duvets:    "Duvets",
   bedsheets: "Bed Sheets",
   blankets:  "Blankets",
