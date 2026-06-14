@@ -493,6 +493,57 @@ var products = {
     ]
    }
   ],
+  solarlights: [
+       {
+        title: "Solar Street Lights",
+        company: "Cozycabin",
+        productType: "variant",
+
+        description: "High-quality solar street lights available in 100W, 200W, 300W and 400W options. Designed with bright LED illumination, waterproof construction and an intelligent dusk-to-dawn sensor that automatically switches ON at night and OFF during the day. Powered entirely by solar energy with no electricity bills or wiring required. Easy to install and comes with a remote control for convenient operation. Ideal for homes, compounds, businesses, farms, streets and outdoor security lighting.",
+
+    features: [
+         "Available in 100W, 200W, 300W & 400W",
+         "Automatic Dusk-to-Dawn Sensor",
+         "100% Solar Powered",
+         "Bright LED Illumination",
+         "Waterproof & Weather Resistant",
+         "Remote Control Included",
+         "No Wiring Required",
+         "Easy Installation",
+         "Energy Saving",
+         "Ideal for Homes & Businesses",
+         "Suitable for Compounds, Farms & Streets",
+        "Outdoor Security Lighting"
+     ],
+   variants: [
+      {
+         name: "Solar Street Light 100W",
+         price: 2500,
+         image: "Images/cozycabin-100w.webp",
+         desc: "100W all-in-one solar street light with solar panel and remote control."
+        },
+        {
+         name: "Solar Street Light 200W",
+         price: 3500,
+         image: "Images/cozycabin-200w.webp",
+         desc: "200W all-in-one solar street light with brighter illumination and remote control."
+         },
+         {
+          name: "Solar Street Light 300W",
+          price: 4000,
+          image: "Images/cozycabin-300w.webp",
+          desc: "300W high-power solar street light with wide lighting coverage."
+         },
+         {
+          name: "Solar Street Light 400W",
+          price: 4500,
+          image: "Images/cozycabin-400w.webp",
+          desc: "400W premium solar street light with extra brightness and long battery life."
+          }
+        ]
+       }
+      ],
+   
 floodlights: [
    {
        title: "Solar Security Floodlight",
@@ -565,7 +616,7 @@ floodlights: [
      "Easy Installation",
      "Energy Saving",
      "Indoor Solar Lighting"
-  ],
+    ],
 
   variants: [
     {
