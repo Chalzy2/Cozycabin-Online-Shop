@@ -493,7 +493,7 @@ var products = {
     ]
    }
   ],
-  solarlights: [
+  streetlights: [
        {
         title: "Solar Street Lights",
         company: "Cozycabin",
@@ -716,7 +716,7 @@ floodlights: [
    
   // ── Placeholders — add products + video fields later ──
   
-  solarlights:[], panels:[], inverters:[], batteries:[], streetlights:[], chargers:[], fans:[],
+   
   fridges:[], microwaves:[], washing:[], cookersapp:[], kettles:[], irons:[], heaters:[], fansapp:[],
   wallart:[], mirrors:[], flowers:[], lamps:[], carpets:[], curtains:[], frames:[], vases:[],
   duvets:[], bedsheets:[], blankets:[], pillows:[], mattress:[], covers:[], nets:[], towels:[],
