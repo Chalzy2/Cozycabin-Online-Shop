@@ -77,6 +77,12 @@ const PRODUCTS = {
     ["Muchen Vacuum Flask 800ml",    900,  "Images/551394Flsk.webp",   "Elegant Muchen insulated flask with premium build quality and stylish design."],
     ["Muchen Vacuum Flask 1000ml",  1000,  "Images/551394Flsk.webp",   "Large capacity Muchen vacuum flask — keeps drinks at perfect temperature all day long."],
   ],
+    streetlights: [
+    ["Solar Street Light 100W", 2500, "Images/cozycabin-100w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, bright LED illumination, remote control included and no wiring required."],
+    ["Solar Street Light 200W", 3500, "Images/cozycabin-200w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, bright LED illumination, remote control included and no wiring required."],
+    ["Solar Street Light 300W", 4000, "Images/cozycabin-300w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, bright LED illumination, remote control included and no wiring required."],
+    ["Solar Street Light 400W", 4500, "Images/cozycabin-400w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, bright LED illumination, remote control included and no wiring required."]
+  ],
   floodlights: [
   ["30W Solar Security Floodlight",  4500,  "Images/solar-30w.jpg",  "Waterproof solar floodlight with automatic day/night sensor, IP66 waterproof and remote control included."],
   ["60W Solar Security Floodlight",  5500,  "Images/solar-60w.jpg",  "Waterproof solar floodlight with automatic day/night sensor, IP66 waterproof and remote control included."],
