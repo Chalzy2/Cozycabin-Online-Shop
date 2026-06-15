@@ -492,7 +492,7 @@ var products = {
      }
     ]
    }
-  ],
+  ],     
 streetlights: [
   {
     title: "Solar Street Lights (100W - 400W)",
@@ -585,174 +585,166 @@ streetlights: [
   }
 ],
 floodlights: [
-    {
-       title: "Solar Security Floodlight",
-       company: "Solar",
-       productType: "variant",
-
-      description: "Waterproof solar-powered security floodlights with automatic photocell sensor. Automatically switches ON at night and OFF during the day. No wiring required, easy installation, remote control included. Ideal for homes, businesses, compounds, farms and security lighting.",
-  features: [
-       "Automatic ON/OFF Photocell Sensor",
-       "Waterproof Design",
-       "Solar Powered",
-       "Remote Control Included",
-       "No Wiring Required",
-       "Easy Installation",
+  {
+    title: "Solar Security Floodlight",
+    company: "Solar",
+    productType: "variant",
+    description: "Waterproof solar-powered security floodlights with automatic photocell sensor. Automatically switches ON at night and OFF during the day. No wiring required, easy installation, remote control included. Ideal for homes, businesses, compounds, farms and security lighting.",
+    features: [
+      "Automatic ON/OFF Photocell Sensor",
+      "Waterproof Design",
+      "Solar Powered",
+      "Remote Control Included",
+      "No Wiring Required",
+      "Easy Installation",
       "Security Flood Lighting"
-  ],
-
-  variants: [
-    {
-       name: "30W Solar Security Floodlight",
-       price: 4500,
-       oldPrice: 6000,
-       description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
-       images: ["Images/solar-30w.jpg"]
-    },
-    {
-      name: "60W Solar Security Floodlight",
-      price: 5500,
-      oldPrice: 7500,
-      description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
-      images: ["Images/solar-60w.jpg"]
-    },
-    {
-      name: "100W Solar Security Floodlight",
-      price: 6999,
-      oldPrice: 9500,
-      description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
-      images: ["Images/solar-300w.jpg"]
-    },
-    {
-      name: "200W Solar Security Floodlight",
-      price: 9000,
-      oldPrice: 12000,
-      description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
-      images: ["Images/solar-100w.jpg"]
-    },
-    {
-      name: "300W Solar Security Floodlight",
-      price: 12500,
-      oldPrice: 16000,
-      description: "Automatic day/night sensor, IP66 waterproof, remote control included.",
-      images: ["Images/solar-200w.jpg"]
-       }
-     ]
-    },
-    {
-      title: "Solar Indoor Ceiling Light",
-      company: "Solar",
-      productType: "variant",
-
-      description: "Solar-powered indoor ceiling light with all-weather solar panel, large lithium battery capacity up to 20,000mAh, three lighting colors and up to 18 hours of continuous lighting. Ideal for homes, shops, rural homes, emergency lighting and areas without electricity.",
-
-  features: [
+    ],
+    variants: [
+      {
+        name: "30W Solar Security Floodlight",
+        price: 4500,
+        oldPrice: 6000,
+        image: "Images/solar-30w.jpg",
+        description: "Automatic day/night sensor, IP66 waterproof, remote control included."
+      },
+      {
+        name: "60W Solar Security Floodlight",
+        price: 5500,
+        oldPrice: 7500,
+        image: "Images/solar-60w.jpg",
+        description: "Automatic day/night sensor, IP66 waterproof, remote control included."
+      },
+      {
+        name: "100W Solar Security Floodlight",
+        price: 6999,
+        oldPrice: 9500,
+        image: "Images/solar-100w.jpg",
+        description: "Automatic day/night sensor, IP66 waterproof, remote control included."
+      },
+      {
+        name: "200W Solar Security Floodlight",
+        price: 9000,
+        oldPrice: 12000,
+        image: "Images/solar-200w.jpg",
+        description: "Automatic day/night sensor, IP66 waterproof, remote control included."
+      },
+      {
+        name: "300W Solar Security Floodlight",
+        price: 12500,
+        oldPrice: 16000,
+        image: "Images/solar-300w.jpg",
+        description: "Automatic day/night sensor, IP66 waterproof, remote control included."
+      }
+    ]
+  },
+  {
+    title: "Solar Indoor Ceiling Light",
+    company: "Solar",
+    productType: "variant",
+    description: "Solar-powered indoor ceiling light with all-weather solar panel, large lithium battery capacity up to 20,000mAh, three lighting colors and up to 18 hours of continuous lighting. Ideal for homes, shops, rural homes, emergency lighting and areas without electricity.",
+    features: [
       "All Weather Solar Panel",
       "Large Lithium Battery",
-     "Up To 20,000mAh Capacity",
-     "Up To 18 Hours Lighting",
-     "3 Lighting Colors",
-     "Remote Control Included",
-     "Easy Installation",
-     "Energy Saving",
-     "Indoor Solar Lighting"
+      "Up To 20,000mAh Capacity",
+      "Up To 18 Hours Lighting",
+      "3 Lighting Colors",
+      "Remote Control Included",
+      "Easy Installation",
+      "Energy Saving",
+      "Indoor Solar Lighting"
     ],
-
-  variants: [
-    {
-      name: "50W Solar Indoor Ceiling Light",
-      price: 2500,
-      oldPrice: 3500,
-      description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
-      images: ["Images/Solcl50w.webp"]
-    },
-    {
-      name: "100W Solar Indoor Ceiling Light",
-      price: 2500,
-      oldPrice: 3500,
-      description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
-      images: ["Images/Sol-cl100w.webp"]
-    },
-    {
-      name: "200W Solar Indoor Ceiling Light",
-      price: 3500,
-      oldPrice: 5000,
-      description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
-      images: ["Images/Sol-cl200w.webp"]
-    },
-    {
-      name: "300W Solar Indoor Ceiling Light",
-      price: 4500,
-      oldPrice: 6500,
-      description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
-      images: ["Images/Sol-cl300w.webp"]
-    },
-    {
-      name: "400W Solar Indoor Ceiling Light",
-      price: 5500,
-      oldPrice: 7500,
-      description: "Solar indoor ceiling light with remote control and 3 lighting colors.",
-      images: ["Images/Sol-cl400w.webp"]
-     }
+    variants: [
+      {
+        name: "50W Solar Indoor Ceiling Light",
+        price: 2500,
+        oldPrice: 3500,
+        image: "Images/Solcl50w.webp",
+        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
+      },
+      {
+        name: "100W Solar Indoor Ceiling Light",
+        price: 2500,
+        oldPrice: 3500,
+        image: "Images/Sol-cl100w.webp",
+        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
+      },
+      {
+        name: "200W Solar Indoor Ceiling Light",
+        price: 3500,
+        oldPrice: 5000,
+        image: "Images/Sol-cl200w.webp",
+        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
+      },
+      {
+        name: "300W Solar Indoor Ceiling Light",
+        price: 4500,
+        oldPrice: 6500,
+        image: "Images/Sol-cl300w.webp",
+        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
+      },
+      {
+        name: "400W Solar Indoor Ceiling Light",
+        price: 5500,
+        oldPrice: 7500,
+        image: "Images/Sol-cl400w.webp",
+        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
+      }
     ]
-   },
-   {
-      title: "YOMY Solar Floodlight",
-      company: "YOMY",
-      productType: "variant",
-
-      description: "Premium YOMY solar floodlight with high-efficiency solar panel, waterproof IP65 design, battery level indicator and powerful outdoor security lighting. Suitable for homes, compounds, parking areas, businesses and farms.",
-
-  features: [
+  },
+  {
+    title: "YOMY Solar Floodlight",
+    company: "YOMY",
+    productType: "variant",
+    description: "Premium YOMY solar floodlight with high-efficiency solar panel, waterproof IP65 design, battery level indicator and powerful outdoor security lighting. Suitable for homes, compounds, parking areas, businesses and farms.",
+    features: [
       "High Efficiency Solar Panel",
       "IP65 Waterproof",
-       "Battery Level Indicator",
-       "Energy Saving",
-       "Automatic Day/Night Operation",
-       "Outdoor Security Lighting",
-       "Easy Installation",
-       "Maintenance Free"
-      ],
-
-  variants: [
-     {
+      "Battery Level Indicator",
+      "Energy Saving",
+      "Automatic Day/Night Operation",
+      "Outdoor Security Lighting",
+      "Easy Installation",
+      "Maintenance Free"
+    ],
+    variants: [
+      {
         name: "50W YOMY Solar Floodlight",
         price: 2500,
         oldPrice: 3500,
-        description: "MOQ: 20 Pieces",
-        images: ["Images/Yommy50w.webp"]
+        image: "Images/Yommy50w.webp",
+        description: "MOQ: 20 Pieces"
       },
       {
-      name: "100W YOMY Solar Floodlight",
-      price: 3600,
-      oldPrice: 5000,
-      description: "MOQ: 20 Pieces",
-      images: ["Images/Yommy100w.webp"]
-    },
-    {
-      name: "200W YOMY Solar Floodlight",
-      price: 4900,
-      oldPrice: 6500,
-      description: "MOQ: 10 Pieces",
-      images: ["Images/Yommy200w.webp"]
-    },
-    {
-      name: "300W YOMY Solar Floodlight",
-      price: 6000,
-      oldPrice: 8000,
-      description: "MOQ: 10 Pieces",
-      images: ["Images/Yommy300w.webp"]
-    },
-    {
-      name: "400W YOMY Solar Floodlight",
-      price: 7500,
-      oldPrice: 10000,
-      description: "MOQ: 5 Pieces",
-      images: ["Images/Sol-cl400w.webp"]
-     }
+        name: "100W YOMY Solar Floodlight",
+        price: 3600,
+        oldPrice: 5000,
+        image: "Images/Yommy100w.webp",
+        description: "MOQ: 20 Pieces"
+      },
+      {
+        name: "200W YOMY Solar Floodlight",
+        price: 4900,
+        oldPrice: 6500,
+        image: "Images/Yommy200w.webp",
+        description: "MOQ: 10 Pieces"
+      },
+      {
+        name: "300W YOMY Solar Floodlight",
+        price: 6000,
+        oldPrice: 8000,
+        image: "Images/Yommy300w.webp",
+        description: "MOQ: 10 Pieces"
+      },
+      {
+        name: "400W YOMY Solar Floodlight",
+        price: 7500,
+        oldPrice: 10000,
+        image: "Images/Yommy400w.webp",
+        description: "MOQ: 5 Pieces"
+      }
     ]
-   }
-  ],
+  }
+],
    
   // ── Placeholders — add products + video fields later ──
   
