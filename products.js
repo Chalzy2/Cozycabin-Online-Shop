@@ -564,14 +564,14 @@ streetlights: [
         name: "1000W Solar Street Light",
         price: 7500,
         oldPrice: 11000,
-        image: "Images/Streetl1000w.webp",
+        image: "Images/streetl1000w.webp",
         description: "1000W solar street light with automatic dusk-to-dawn sensor, waterproof design and remote control included."
       },
       {
         name: "2000W Solar Street Light",
         price: 8500,
         oldPrice: 13000,
-        image: "Images/Streetl2000w.webp",
+        image: "Images/streetl2000w.webp",
         description: "2000W ultra-bright solar street light with automatic dusk-to-dawn sensor, waterproof design and remote control included."
       },
       {
