@@ -514,7 +514,7 @@ var products = {
          "Ideal for Homes & Businesses",
          "Suitable for Compounds, Farms & Streets",
         "Outdoor Security Lighting"
-     ],
+         ],
    variants: [
       {
          name: "Solar Street Light 100W",
@@ -541,9 +541,54 @@ var products = {
           desc: "400W premium solar street light with extra brightness and long battery life."
           }
         ]
-       }
-      ],
-   
+       },
+       {
+       title: "Solar Street Lights",
+       company: "Cozycabin",
+       productType: "variant",
+
+       description: "High-quality solar street lights with bright LED illumination and intelligent dusk-to-dawn operation. Automatically switches ON at night and OFF during the day. Waterproof, energy-saving and powered entirely by solar energy with no electricity bills or wiring required. Comes with remote control and is ideal for homes, compounds, businesses, farms, streets and outdoor security lighting.",
+
+ features: [
+       "Available in 1000W, 2000W & 3000W",
+       "Automatic Dusk-to-Dawn Sensor",
+       "100% Solar Powered",
+       "Ultra Bright LED Illumination",
+       "Waterproof & Weather Resistant",
+       "Remote Control Included",
+       "No Wiring Required",
+       "Easy Installation",
+       "Energy Saving",
+       "Long Battery Life",
+       "Wide Lighting Coverage",
+       "Outdoor Security Lighting"
+     ],
+
+ variants: [
+   {
+     name: "1000W Solar Street Light",
+     price: 7500,
+     oldPrice: 11000,
+     description: "1000W solar street light with automatic dusk-to-dawn sensor, waterproof design and remote control included.",
+     images: ["Images/streetl1000w.webp"]
+   },
+   {
+     name: "2000W Solar Street Light",
+     price: 8500,
+     oldPrice: 13000,
+     description: "2000W ultra-bright solar street light with automatic dusk-to-dawn sensor, waterproof design and remote control included.",
+     images: ["Images/streetl2000w.webp"]
+   },
+   {
+     name: "3000W Solar Street Light",
+     price: 10,500,
+     oldPrice: 18,500,
+     description: "3000W premium solar street light with extra brightness, wide lighting coverage, waterproof design and remote control included.",
+     images: ["Images/streetl3000w.webp"]
+   }
+  ]
+ }
+],   
 floodlights: [
    {
        title: "Solar Security Floodlight",
