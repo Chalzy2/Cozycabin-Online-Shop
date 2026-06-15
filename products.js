@@ -493,104 +493,99 @@ var products = {
     ]
    }
   ],
-  streetlights: [
-       {
-        title: "Solar Street Lights",
-        company: "Cozycabin",
-        productType: "variant",
-
-        description: "High-quality solar street lights available in 100W, 200W, 300W and 400W options. Designed with bright LED illumination, waterproof construction and an intelligent dusk-to-dawn sensor that automatically switches ON at night and OFF during the day. Powered entirely by solar energy with no electricity bills or wiring required. Easy to install and comes with a remote control for convenient operation. Ideal for homes, compounds, businesses, farms, streets and outdoor security lighting.",
-
+streetlights: [
+  {
+    title: "Solar Street Lights (100W - 400W)",
+    company: "Cozycabin",
+    productType: "variant",
+    description: "High-quality solar street lights available in 100W, 200W, 300W and 400W options. Designed with bright LED illumination, waterproof construction and an intelligent dusk-to-dawn sensor that automatically switches ON at night and OFF during the day. Powered entirely by solar energy with no electricity bills or wiring required. Easy to install and comes with a remote control for convenient operation. Ideal for homes, compounds, businesses, farms, streets and outdoor security lighting.",
     features: [
-         "Available in 100W, 200W, 300W & 400W",
-         "Automatic Dusk-to-Dawn Sensor",
-         "100% Solar Powered",
-         "Bright LED Illumination",
-         "Waterproof & Weather Resistant",
-         "Remote Control Included",
-         "No Wiring Required",
-         "Easy Installation",
-         "Energy Saving",
-         "Ideal for Homes & Businesses",
-         "Suitable for Compounds, Farms & Streets",
-        "Outdoor Security Lighting"
-         ],
-   variants: [
+      "Available in 100W, 200W, 300W & 400W",
+      "Automatic Dusk-to-Dawn Sensor",
+      "100% Solar Powered",
+      "Bright LED Illumination",
+      "Waterproof & Weather Resistant",
+      "Remote Control Included",
+      "No Wiring Required",
+      "Easy Installation",
+      "Energy Saving",
+      "Ideal for Homes & Businesses",
+      "Suitable for Compounds, Farms & Streets",
+      "Outdoor Security Lighting"
+    ],
+    variants: [
       {
-         name: "Solar Street Light 100W",
-         price: 2500,
-         image: "Images/cozycabin-100w.webp",
-         desc: "100W all-in-one solar street light with solar panel and remote control."
-        },
-        {
-         name: "Solar Street Light 200W",
-         price: 3500,
-         image: "Images/cozycabin-200w.webp",
-         desc: "200W all-in-one solar street light with brighter illumination and remote control."
-         },
-         {
-          name: "Solar Street Light 300W",
-          price: 4000,
-          image: "Images/cozycabin-300w.webp",
-          desc: "300W high-power solar street light with wide lighting coverage."
-         },
-         {
-          name: "Solar Street Light 400W",
-          price: 4500,
-          image: "Images/cozycabin-400w.webp",
-          desc: "400W premium solar street light with extra brightness and long battery life."
-          }
-        ]
-       },
-       {
-       title: "Solar Street Lights",
-       company: "Cozycabin",
-       productType: "variant",
-
-       description: "High-quality solar street lights with bright LED illumination and intelligent dusk-to-dawn operation. Automatically switches ON at night and OFF during the day. Waterproof, energy-saving and powered entirely by solar energy with no electricity bills or wiring required. Comes with remote control and is ideal for homes, compounds, businesses, farms, streets and outdoor security lighting.",
-
- features: [
-       "Available in 1000W, 2000W & 3000W",
-       "Automatic Dusk-to-Dawn Sensor",
-       "100% Solar Powered",
-       "Ultra Bright LED Illumination",
-       "Waterproof & Weather Resistant",
-       "Remote Control Included",
-       "No Wiring Required",
-       "Easy Installation",
-       "Energy Saving",
-       "Long Battery Life",
-       "Wide Lighting Coverage",
-       "Outdoor Security Lighting"
-     ],
-
- variants: [
-   {
-     name: "1000W Solar Street Light",
-     price: 7500,
-     oldPrice: 11000,
-     description: "1000W solar street light with automatic dusk-to-dawn sensor, waterproof design and remote control included.",
-     images: ["Images/streetl1000w.webp"]
-   },
-   {
-     name: "2000W Solar Street Light",
-     price: 8500,
-     oldPrice: 13000,
-     description: "2000W ultra-bright solar street light with automatic dusk-to-dawn sensor, waterproof design and remote control included.",
-     images: ["Images/streetl2000w.webp"]
-   },
-   {
-     name: "3000W Solar Street Light",
-     price: 10,500,
-     oldPrice: 18,500,
-     description: "3000W premium solar street light with extra brightness, wide lighting coverage, waterproof design and remote control included.",
-     images: ["Images/streetl3000w.webp"]
-   }
-  ]
- }
-],   
+        name: "Solar Street Light 100W",
+        price: 2500,
+        image: "Images/cozycabin-100w.webp",
+        description: "100W all-in-one solar street light with solar panel and remote control."
+      },
+      {
+        name: "Solar Street Light 200W",
+        price: 3500,
+        image: "Images/cozycabin-200w.webp",
+        description: "200W all-in-one solar street light with brighter illumination and remote control."
+      },
+      {
+        name: "Solar Street Light 300W",
+        price: 4000,
+        image: "Images/cozycabin-300w.webp",
+        description: "300W high-power solar street light with wide lighting coverage."
+      },
+      {
+        name: "Solar Street Light 400W",
+        price: 4500,
+        image: "Images/cozycabin-400w.webp",
+        description: "400W premium solar street light with extra brightness and long battery life."
+      }
+    ]
+  },
+  {
+    title: "Solar Street Lights (1000W - 3000W)",
+    company: "Cozycabin",
+    productType: "variant",
+    description: "High-quality solar street lights with bright LED illumination and intelligent dusk-to-dawn operation. Automatically switches ON at night and OFF during the day. Waterproof, energy-saving and powered entirely by solar energy with no electricity bills or wiring required. Comes with remote control and is ideal for homes, compounds, businesses, farms, streets and outdoor security lighting.",
+    features: [
+      "Available in 1000W, 2000W & 3000W",
+      "Automatic Dusk-to-Dawn Sensor",
+      "100% Solar Powered",
+      "Ultra Bright LED Illumination",
+      "Waterproof & Weather Resistant",
+      "Remote Control Included",
+      "No Wiring Required",
+      "Easy Installation",
+      "Energy Saving",
+      "Long Battery Life",
+      "Wide Lighting Coverage",
+      "Outdoor Security Lighting"
+    ],
+    variants: [
+      {
+        name: "1000W Solar Street Light",
+        price: 7500,
+        oldPrice: 11000,
+        image: "Images/streetl1000w.webp",
+        description: "1000W solar street light with automatic dusk-to-dawn sensor, waterproof design and remote control included."
+      },
+      {
+        name: "2000W Solar Street Light",
+        price: 8500,
+        oldPrice: 13000,
+        image: "Images/streetl2000w.webp",
+        description: "2000W ultra-bright solar street light with automatic dusk-to-dawn sensor, waterproof design and remote control included."
+      },
+      {
+        name: "3000W Solar Street Light",
+        price: 10500,
+        oldPrice: 18500,
+        image: "Images/streetl3000w.webp",
+        description: "3000W premium solar street light with extra brightness, wide lighting coverage, waterproof design and remote control included."
+      }
+    ]
+  }
+],
 floodlights: [
-   {
+    {
        title: "Solar Security Floodlight",
        company: "Solar",
        productType: "variant",
