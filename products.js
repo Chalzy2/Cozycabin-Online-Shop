@@ -679,7 +679,7 @@ floodlights: [
         name: "300W Solar Indoor Ceiling Light",
         price: 4500,
         oldPrice: 6500,
-        image: "Images/streetl3000w.webp",
+        image: "Images/solarcel300w.webp",
         description: "Solar indoor ceiling light with remote control and 3 lighting colors."
       },
       {
