@@ -96,10 +96,10 @@ const PRODUCTS = {
 
 solarCeiling: [
   ["50W Solar Indoor Ceiling Light",  2500, "Images/Solcl50w.webp",    "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
-  ["100W Solar Indoor Ceiling Light", 2500, "Images/Sol-cl100w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
-  ["200W Solar Indoor Ceiling Light", 3500, "Images/Sol-cl200w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
-  ["300W Solar Indoor Ceiling Light", 4500, "Images/Sol-cl300w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
-  ["400W Solar Indoor Ceiling Light", 5500, "Images/Sol-cl400w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["100W Solar Indoor Ceiling Light", 2500, "Images/solarcl100w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["200W Solar Indoor Ceiling Light", 3500, "Images/solarcl200w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["300W Solar Indoor Ceiling Light", 4500, "Images/solarcel300w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["400W Solar Indoor Ceiling Light", 5500, "Images/solarcl400w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
 ],
 yomy: [
   ["50W YOMY Solar Floodlight",  2500, "Images/Yommy50w.webp",   "Premium YOMY solar floodlight, IP65 waterproof with battery level indicator and automatic day/night operation."],
