@@ -1,0 +1,2346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<title>Cozycabin · Affiliate Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+/* ══════════════════════════════════════════
+   COZYCABIN AFFILIATE ADMIN — CSS
+   Dark premium: black + green + gold
+══════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root{
+  --bg:#080808; --bg2:#0e0e0e; --bg3:#131313; --bg4:#1a1a1a;
+  --border:#222; --border2:#2a2a2a;
+  --gold:#ffd700; --gold2:#e6a800; --gold-soft:rgba(255,215,0,0.1);
+  --green:#22c55e; --green2:#15803d; --green-soft:rgba(34,197,94,0.1);
+  --red:#ef4444; --red-soft:rgba(239,68,68,0.1);
+  --blue:#3b82f6; --blue-soft:rgba(59,130,246,0.1);
+  --text:#e2e8f0; --muted:#64748b; --muted2:#94a3b8;
+  --radius:14px; --radius-lg:20px; --radius-xl:28px;
+  --transition:all .2s cubic-bezier(.4,0,.2,1);
+  --shadow:0 8px 40px rgba(0,0,0,0.7);
+  --sidebar-w:240px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+
+/* ── AUTH GATE ── */
+#authGate{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;}
+#authGate.hidden{display:none !important;}
+#appRoot{display:none !important;}
+#appRoot.visible{display:flex !important;min-height:100vh;width:100%;}
+
+/* ── LOGIN BOX ── */
+.login-box{width:100%;max-width:400px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-xl);padding:36px 28px;box-shadow:var(--shadow);}
+.login-logo{text-align:center;margin-bottom:28px;}
+.login-logo img{width:56px;height:56px;border-radius:14px;object-fit:cover;border:2px solid var(--gold);box-shadow:0 0 20px rgba(255,215,0,0.3);}
+.login-logo-fb{width:56px;height:56px;border-radius:14px;background:var(--bg3);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:20px;font-weight:900;color:var(--gold);}
+.login-title{font-size:22px;font-weight:900;color:#fff;text-align:center;margin-bottom:4px;letter-spacing:.5px;}
+.login-sub{font-size:12px;color:var(--muted);text-align:center;margin-bottom:28px;}
+.inp{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:13px 16px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;outline:none;transition:var(--transition);}
+.inp:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(255,215,0,0.12);}
+.inp::placeholder{color:var(--muted);}
+.btn-gold{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-weight:800;font-size:13px;letter-spacing:.5px;padding:14px;border-radius:var(--radius);border:none;cursor:pointer;transition:var(--transition);}
+.btn-gold:hover{opacity:.9;}
+.btn-gold:active{transform:scale(.98);}
+.btn-gold:disabled{opacity:.5;cursor:not-allowed;}
+.auth-err{font-size:12px;color:var(--red);text-align:center;min-height:18px;font-weight:600;}
+
+/* ── APP LAYOUT ── */
+.app-sidebar{width:var(--sidebar-w);background:var(--bg2);border-right:1px solid var(--border);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;z-index:200;flex-shrink:0;display:flex;flex-direction:column;transition:transform .3s ease;}
+.app-main{flex:1;margin-left:var(--sidebar-w);min-height:100vh;display:flex;flex-direction:column;}
+.app-topbar{height:60px;background:rgba(8,8,8,0.95);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);}
+.app-content{flex:1;padding:24px 20px 40px;}
+
+/* ── SIDEBAR ── */
+.sidebar-header{padding:20px 16px 14px;border-bottom:1px solid var(--border);}
+.sidebar-logo{display:flex;align-items:center;gap:10px;}
+.sidebar-logo img{width:32px;height:32px;border-radius:8px;object-fit:cover;}
+.sidebar-logo-fb{width:32px;height:32px;border-radius:8px;background:var(--bg3);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--gold);}
+.sidebar-title{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;}
+.sidebar-sub{font-size:9px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-top:1px;}
+.sidebar-nav{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:2px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius);cursor:pointer;transition:var(--transition);color:var(--muted2);font-size:13px;font-weight:600;white-space:nowrap;border:none;background:transparent;width:100%;text-align:left;}
+.nav-item:hover{background:var(--bg3);color:var(--text);}
+.nav-item.active{background:var(--gold-soft);color:var(--gold);border:1px solid rgba(255,215,0,0.15);}
+.nav-item .nav-icon{font-size:16px;width:22px;text-align:center;flex-shrink:0;}
+.nav-badge{margin-left:auto;background:var(--red);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:20px;min-width:18px;text-align:center;}
+.nav-badge.gold{background:var(--gold);color:#000;}
+.sidebar-footer{padding:12px 10px;border-top:1px solid var(--border);}
+.sidebar-section{font-size:9px;font-weight:800;color:var(--muted);letter-spacing:2px;text-transform:uppercase;padding:8px 12px 4px;}
+
+/* ── TOPBAR ── */
+.topbar-title{font-size:16px;font-weight:800;color:#fff;}
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.topbar-avatar{width:34px;height:34px;border-radius:50%;background:var(--gold-soft);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--gold);cursor:pointer;}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--text);font-size:20px;padding:4px;line-height:1;}
+.notif-btn{position:relative;background:none;border:none;cursor:pointer;color:var(--muted2);font-size:18px;padding:4px;line-height:1;transition:color .15s;}
+.notif-btn:hover{color:var(--text);}
+.notif-dot{position:absolute;top:2px;right:2px;width:8px;height:8px;background:var(--red);border-radius:50%;border:2px solid var(--bg);}
+
+/* ── PAGES ── */
+.page{display:none;}
+.page.active{display:block;animation:fadeIn .25s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* ── STAT CARDS ── */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px;transition:var(--transition);}
+.stat-card:hover{border-color:var(--border2);transform:translateY(-1px);}
+.stat-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
+.stat-icon{width:40px;height:40px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.stat-change{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;}
+.stat-change.up{background:var(--green-soft);color:var(--green);}
+.stat-change.down{background:var(--red-soft);color:var(--red);}
+.stat-value{font-size:24px;font-weight:900;color:#fff;letter-spacing:-.5px;line-height:1;}
+.stat-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+.stat-sub{font-size:11px;color:var(--muted2);margin-top:6px;}
+
+/* ── SECTION HEADER ── */
+.section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.section-title{font-size:15px;font-weight:800;color:#fff;}
+.section-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.btn-sm{padding:7px 14px;border-radius:var(--radius);font-size:11px;font-weight:700;border:none;cursor:pointer;transition:var(--transition);}
+.btn-sm-gold{background:var(--gold-soft);color:var(--gold);border:1px solid rgba(255,215,0,0.2);}
+.btn-sm-gold:hover{background:rgba(255,215,0,0.18);}
+.btn-sm-green{background:var(--green-soft);color:var(--green);border:1px solid rgba(34,197,94,0.2);}
+.btn-sm-red{background:var(--red-soft);color:var(--red);border:1px solid rgba(239,68,68,0.2);}
+.btn-sm-blue{background:var(--blue-soft);color:var(--blue);border:1px solid rgba(59,130,246,0.2);}
+
+/* ── CHARTS ── */
+.charts-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:24px;}
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px;}
+.chart-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.chart-sub{font-size:10px;color:var(--muted);margin-bottom:14px;}
+
+/* ── TABLE ── */
+.table-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:24px;}
+.table-toolbar{display:flex;align-items:center;gap:10px;padding:16px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.search-inp{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:8px 14px 8px 36px;color:var(--text);font-size:12px;outline:none;width:220px;font-family:'Inter',sans-serif;transition:var(--transition);position:relative;}
+.search-inp:focus{border-color:var(--gold);}
+.search-wrap{position:relative;}
+.search-wrap::before{content:'🔍';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:12px;pointer-events:none;}
+.filter-sel{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:8px 12px;color:var(--text);font-size:12px;outline:none;cursor:pointer;font-family:'Inter',sans-serif;}
+.filter-sel:focus{border-color:var(--gold);}
+table{width:100%;border-collapse:collapse;}
+thead th{padding:12px 14px;text-align:left;font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none;}
+thead th:hover{color:var(--text);}
+tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--bg3);}
+tbody td{padding:12px 14px;font-size:13px;color:var(--text);vertical-align:middle;}
+.td-mono{font-family:'JetBrains Mono',monospace;font-size:12px;}
+.td-muted{color:var(--muted2);font-size:12px;}
+
+/* ── STATUS BADGES ── */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.3px;white-space:nowrap;}
+.badge-active{background:var(--green-soft);color:var(--green);}
+.badge-pending{background:rgba(251,191,36,0.12);color:#fbbf24;}
+.badge-suspended{background:var(--red-soft);color:var(--red);}
+.badge-paid{background:var(--green-soft);color:var(--green);}
+.badge-approved{background:var(--blue-soft);color:var(--blue);}
+.badge-rejected{background:var(--red-soft);color:var(--red);}
+.badge-cancelled{background:rgba(100,116,139,0.15);color:var(--muted2);}
+.badge-refunded{background:rgba(251,191,36,0.12);color:#fbbf24;}
+
+/* ── ACTION BUTTONS ── */
+.action-wrap{display:flex;align-items:center;gap:4px;}
+.act-btn{width:28px;height:28px;border-radius:8px;border:none;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:var(--transition);}
+.act-btn:hover{opacity:.8;}
+.act-view{background:var(--blue-soft);color:var(--blue);}
+.act-edit{background:var(--gold-soft);color:var(--gold);}
+.act-suspend{background:rgba(251,191,36,0.12);color:#fbbf24;}
+.act-activate{background:var(--green-soft);color:var(--green);}
+.act-delete{background:var(--red-soft);color:var(--red);}
+.act-approve{background:var(--green-soft);color:var(--green);}
+.act-reject{background:var(--red-soft);color:var(--red);}
+.act-pay{background:var(--blue-soft);color:var(--blue);}
+
+/* ── PAGINATION ── */
+.pagination{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-top:1px solid var(--border);}
+.page-info{font-size:11px;color:var(--muted);}
+.page-btns{display:flex;gap:4px;}
+.page-btn{width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--muted2);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);}
+.page-btn:hover{border-color:var(--gold);color:var(--gold);}
+.page-btn.active{background:var(--gold-soft);border-color:rgba(255,215,0,0.25);color:var(--gold);}
+.page-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);z-index:800;display:none;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;animation:fadeIn .2s ease;}
+.modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-xl);width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow);animation:modalIn .25s ease;}
+@keyframes modalIn{from{opacity:0;transform:scale(.96);}to{opacity:1;transform:scale(1);}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border);}
+.modal-title{font-size:16px;font-weight:800;color:#fff;}
+.modal-close{background:none;border:none;cursor:pointer;color:var(--muted2);font-size:20px;line-height:1;transition:color .15s;}
+.modal-close:hover{color:#fff;}
+.modal-body{padding:20px 24px;}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;}
+.form-row{margin-bottom:14px;}
+.form-label{display:block;font-size:11px;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+/* ── DETAIL PANEL ── */
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.detail-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px;}
+.detail-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.detail-value{font-size:14px;font-weight:700;color:#fff;}
+
+/* ── LEADERBOARD ── */
+.lb-row{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;transition:var(--transition);}
+.lb-row:hover{border-color:var(--border2);}
+.lb-rank{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;}
+.lb-rank-1{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;}
+.lb-rank-2{background:rgba(148,163,184,0.15);color:#94a3b8;}
+.lb-rank-3{background:rgba(205,127,50,0.15);color:#cd7f32;}
+.lb-rank-n{background:var(--bg4);color:var(--muted);}
+.lb-name{flex:1;font-size:13px;font-weight:700;color:var(--text);}
+.lb-code{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--muted);margin-top:1px;}
+.lb-val{font-size:14px;font-weight:800;color:var(--gold);}
+.lb-sub{font-size:10px;color:var(--muted);}
+
+/* ── NOTIFICATIONS ── */
+.notif-item{display:flex;align-items:flex-start;gap:12px;padding:14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;transition:var(--transition);}
+.notif-item.unread{border-color:rgba(255,215,0,0.2);background:rgba(255,215,0,0.03);}
+.notif-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.notif-body{flex:1;}
+.notif-title{font-size:13px;font-weight:700;color:var(--text);}
+.notif-text{font-size:11px;color:var(--muted2);margin-top:3px;line-height:1.5;}
+.notif-time{font-size:10px;color:var(--muted);margin-top:5px;}
+.notif-unread-dot{width:8px;height:8px;background:var(--gold);border-radius:50%;flex-shrink:0;margin-top:4px;}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;font-size:12px;font-weight:700;padding:11px 20px;border-radius:30px;white-space:nowrap;display:none;pointer-events:none;max-width:90vw;text-align:center;}
+
+/* ── LOADING SPINNER ── */
+.spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,215,0,0.2);border-top:2px solid var(--gold);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loading-overlay{display:flex;align-items:center;justify-content:center;padding:60px 20px;gap:12px;color:var(--muted);font-size:13px;}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:48px 20px;color:var(--muted);}
+.empty-icon{font-size:44px;margin-bottom:12px;opacity:.5;}
+.empty-title{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--muted2);}
+.empty-sub{font-size:12px;line-height:1.6;}
+
+/* ── QUICK STATS ROW ── */
+.mini-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+.mini-stat{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px;text-align:center;}
+.mini-stat-val{font-size:18px;font-weight:900;color:#fff;}
+.mini-stat-lbl{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:3px;}
+
+/* ── WALLET CARD ── */
+.wallet-card{background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(34,197,94,0.05));border:1px solid rgba(255,215,0,0.2);border-radius:var(--radius-lg);padding:20px;margin-bottom:20px;}
+.wallet-balance{font-size:32px;font-weight:900;color:var(--gold);letter-spacing:-.5px;}
+.wallet-sub{font-size:11px;color:var(--muted);margin-top:3px;}
+
+/* ── COMMISSION TIERS ── */
+.tier-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.tier-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px;}
+.tier-pct{font-size:22px;font-weight:900;color:var(--green);}
+.tier-range{font-size:11px;color:var(--muted);margin-top:3px;}
+
+/* ── DATE FILTER BAR ── */
+.date-filter-bar{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;}
+.date-btn{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg3);color:var(--muted2);font-size:11px;font-weight:700;cursor:pointer;transition:var(--transition);}
+.date-btn.active{background:var(--gold-soft);border-color:rgba(255,215,0,0.25);color:var(--gold);}
+.date-btn:hover:not(.active){border-color:var(--border2);color:var(--text);}
+
+/* ── MOBILE ── */
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:190;}
+
+@media(max-width:900px){
+  .app-sidebar{transform:translateX(-100%);}
+  .app-sidebar.open{transform:translateX(0);}
+  .sidebar-overlay{display:none;}
+  .sidebar-overlay.visible{display:block;}
+  .app-main{margin-left:0;}
+  .menu-toggle{display:block;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .charts-grid{grid-template-columns:1fr;}
+  .mini-stats{grid-template-columns:repeat(2,1fr);}
+  .tier-grid{grid-template-columns:1fr;}
+  .form-grid{grid-template-columns:1fr;}
+  .detail-grid{grid-template-columns:1fr;}
+  .table-toolbar{gap:8px;}
+  .search-inp{width:100%;}
+}
+@media(max-width:600px){
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .stat-value{font-size:20px;}
+  .app-content{padding:16px 12px 40px;}
+  .modal-box{max-height:95vh;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- ═══════════════════════════════════
+     AUTH GATE
+═══════════════════════════════════ -->
+<div id="authGate">
+  <div class="login-box">
+    <div class="login-logo">
+      <img src="Images/Cozycabin log .webp" alt="Logo" onerror="this.style.display='none';document.getElementById('loginLogoFb').style.display='flex'">
+      <div class="login-logo-fb" id="loginLogoFb" style="display:none;">CC</div>
+    </div>
+    <div class="login-title">Admin Portal</div>
+    <div class="login-sub">Cozycabin Affiliate Management System</div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div>
+        <label class="form-label">Admin Email</label>
+        <input type="email" class="inp" id="loginEmail" placeholder="cozycabincoke@gmail.com" autocomplete="email">
+      </div>
+      <div>
+        <label class="form-label">Password</label>
+        <input type="password" class="inp" id="loginPassword" placeholder="••••••••" autocomplete="current-password"
+          onkeydown="if(event.key==='Enter')adminLogin()">
+      </div>
+      <div id="loginErr" class="auth-err"></div>
+      <button class="btn-gold" id="loginBtn" onclick="adminLogin()">
+        <span id="loginBtnText">🔐 Sign In as Admin</span>
+      </button>
+      <!-- Divider -->
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="flex:1;height:1px;background:#2a2a2a;"></div>
+        <span style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:2px;white-space:nowrap;">or</span>
+        <div style="flex:1;height:1px;background:#2a2a2a;"></div>
+      </div>
+      <button onclick="adminGoogleLogin()" id="googleLoginBtn"
+        style="width:100%;background:#fff;color:#000;font-weight:800;padding:13px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;gap:9px;font-size:12px;letter-spacing:.5px;border:none;cursor:pointer;transition:.2s;"
+        onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='1'">
+        <svg width="16" height="16" viewBox="0 0 24 24">
+          <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l3.227-3.227C18.216 1.414 15.48 0 12.24 0 5.48 0 0 5.48 0 12.24s5.48 12.24 12.24 12.24c7.05 0 11.732-4.957 11.732-11.94 0-.804-.085-1.42-.19-1.97H12.24z"/>
+        </svg>
+        CONTINUE WITH GOOGLE
+      </button>
+    </div>
+    <div style="margin-top:16px;text-align:center;font-size:11px;color:var(--muted);">
+      🔒 Admin access only · <a href="affiliate.html" style="color:var(--gold);text-decoration:none;">Affiliate Portal →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     APP ROOT
+═══════════════════════════════════ -->
+<div id="appRoot">
+
+  <!-- Sidebar overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="app-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <img src="Images/Cozycabin log .webp" alt="Logo" onerror="this.style.display='none';document.getElementById('sideLogoFb').style.display='flex'">
+        <div class="sidebar-logo-fb" id="sideLogoFb" style="display:none;">CC</div>
+        <div>
+          <div class="sidebar-title">CozyCabin</div>
+          <div class="sidebar-sub">Affiliate Admin</div>
+        </div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">Main</div>
+      <button class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">📊</span> Dashboard</button>
+      <button class="nav-item" onclick="showPage('affiliates',this)"><span class="nav-icon">👥</span> Affiliates</button>
+      <button class="nav-item" onclick="showPage('orders',this)"><span class="nav-icon">🛒</span> Orders</button>
+
+      <div class="sidebar-section">Finance</div>
+      <button class="nav-item" onclick="showPage('commissions',this)">
+        <span class="nav-icon">💰</span> Commissions
+        <span class="nav-badge gold" id="pendingCommBadge" style="display:none;">0</span>
+      </button>
+      <button class="nav-item" onclick="showPage('withdrawals',this)">
+        <span class="nav-icon">💸</span> Withdrawals
+        <span class="nav-badge" id="pendingWdBadge" style="display:none;">0</span>
+      </button>
+      <button class="nav-item" onclick="showPage('transactions',this)"><span class="nav-icon">📋</span> Transactions</button>
+
+      <div class="sidebar-section">Insights</div>
+      <button class="nav-item" onclick="showPage('leaderboard',this)"><span class="nav-icon">🏆</span> Leaderboard</button>
+      <button class="nav-item" onclick="showPage('clicks',this)"><span class="nav-icon">👆</span> Click Tracking</button>
+      <button class="nav-item" onclick="showPage('notifications',this)">
+        <span class="nav-icon">🔔</span> Notifications
+        <span class="nav-badge" id="unreadNotifBadge" style="display:none;">0</span>
+      </button>
+
+      <div class="sidebar-section">System</div>
+      <button class="nav-item" onclick="showPage('settings',this)"><span class="nav-icon">⚙️</span> Settings</button>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="nav-item" onclick="adminLogout()" style="color:var(--red);">
+        <span class="nav-icon">⏏️</span> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="app-main">
+    <!-- Topbar -->
+    <div class="app-topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="topbar-title" id="topbarTitle">Dashboard</div>
+      </div>
+      <div class="topbar-right">
+        <button class="notif-btn" onclick="showPage('notifications',null)" title="Notifications">
+          🔔<span class="notif-dot" id="topNotifDot" style="display:none;"></span>
+        </button>
+        <a href="https://www.cozycabin.co.ke" target="_blank" style="font-size:11px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:4px;">
+          🏪 Store
+        </a>
+        <div class="topbar-avatar" id="adminAvatar" title="Admin">A</div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="app-content">
+
+      <!-- ═══ PAGE: DASHBOARD ═══ -->
+      <div id="page-dashboard" class="page active">
+        <div class="stats-grid" id="dashStatsGrid">
+          <!-- Populated by JS -->
+          <div class="loading-overlay" style="grid-column:1/-1;"><div class="spinner"></div> Loading stats...</div>
+        </div>
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-title">Sales & Commissions Trend</div>
+            <div class="chart-sub">Last 30 days</div>
+            <canvas id="salesChart" height="120"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Top Affiliates</div>
+            <div class="chart-sub">By earnings</div>
+            <canvas id="topAffChart" height="200"></canvas>
+          </div>
+        </div>
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-title">Click Trends</div>
+            <div class="chart-sub">Daily referral clicks</div>
+            <canvas id="clickChart" height="100"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Commission Status</div>
+            <div class="chart-sub">Distribution</div>
+            <canvas id="commPieChart" height="200"></canvas>
+          </div>
+        </div>
+        <!-- Recent Activity -->
+        <div class="table-wrap">
+          <div style="padding:16px;border-bottom:1px solid var(--border);">
+            <div class="section-title">Recent Orders</div>
+            <div class="section-sub">Last 10 orders across all affiliates</div>
+          </div>
+          <table>
+            <thead><tr>
+              <th>Order ID</th><th>Affiliate</th><th>Customer</th><th>Product</th>
+              <th>Amount</th><th>Status</th><th>Date</th>
+            </tr></thead>
+            <tbody id="recentOrdersTbody">
+              <tr><td colspan="7"><div class="loading-overlay"><div class="spinner"></div> Loading...</div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══ PAGE: AFFILIATES ═══ -->
+      <div id="page-affiliates" class="page">
+        <div class="section-hdr">
+          <div><div class="section-title">Affiliate Management</div><div class="section-sub" id="affCount">Loading...</div></div>
+          <button class="btn-sm btn-sm-gold" onclick="openAddAffiliateModal()">+ Add Affiliate</button>
+        </div>
+        <div class="table-wrap">
+          <div class="table-toolbar">
+            <div class="search-wrap">
+              <input class="search-inp" id="affSearch" placeholder="Search name, email, code..." oninput="filterAffiliates()">
+            </div>
+            <select class="filter-sel" id="affStatusFilter" onchange="filterAffiliates()">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="suspended">Suspended</option>
+              <option value="pending">Pending</option>
+            </select>
+            <select class="filter-sel" id="affSortBy" onchange="filterAffiliates()">
+              <option value="createdAt_desc">Newest First</option>
+              <option value="earnings_desc">Top Earners</option>
+              <option value="clicks_desc">Most Clicks</option>
+              <option value="sales_desc">Most Sales</option>
+            </select>
+            <button class="btn-sm btn-sm-blue" onclick="exportAffiliates()">⬇ Export</button>
+          </div>
+          <div style="overflow-x:auto;">
+            <table>
+              <thead><tr>
+                <th onclick="sortAffiliates('name')">Name ↕</th>
+                <th>Phone</th><th>Email</th>
+                <th onclick="sortAffiliates('referralCode')">Code ↕</th>
+                <th onclick="sortAffiliates('clicks')">Clicks ↕</th>
+                <th onclick="sortAffiliates('totalSales')">Sales ↕</th>
+                <th onclick="sortAffiliates('balance')">Balance ↕</th>
+                <th>Status</th><th>Actions</th>
+              </tr></thead>
+              <tbody id="affiliatesTbody">
+                <tr><td colspan="9"><div class="loading-overlay"><div class="spinner"></div> Loading affiliates...</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination" id="affPagination"></div>
+        </div>
+      </div>
+
+      <!-- ═══ PAGE: ORDERS ═══ -->
+      <div id="page-orders" class="page">
+        <div class="section-hdr">
+          <div><div class="section-title">Order Tracking</div><div class="section-sub" id="ordCount">All affiliate-linked orders</div></div>
+          <button class="btn-sm btn-sm-gold" onclick="openAddOrderModal()">+ Add Order</button>
+        </div>
+        <div class="table-wrap">
+          <div class="table-toolbar">
+            <div class="search-wrap">
+              <input class="search-inp" id="ordSearch" placeholder="Search order, customer, product..." oninput="filterOrders()">
+            </div>
+            <select class="filter-sel" id="ordStatusFilter" onchange="filterOrders()">
+              <option value="">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="paid">Paid</option>
+              <option value="cancelled">Cancelled</option>
+              <option value="refunded">Refunded</option>
+            </select>
+            <select class="filter-sel" id="ordSortBy" onchange="filterOrders()">
+              <option value="date_desc">Newest</option>
+              <option value="amount_desc">Highest Amount</option>
+            </select>
+          </div>
+          <div style="overflow-x:auto;">
+            <table>
+              <thead><tr>
+                <th>Order ID</th><th>Affiliate</th><th>Customer</th><th>Phone</th>
+                <th>Product</th><th>Type</th><th>Amount</th><th>Commission</th>
+                <th>Delivery</th><th>Status</th><th>Date</th><th>Actions</th>
+              </tr></thead>
+              <tbody id="ordersTbody">
+                <tr><td colspan="11"><div class="loading-overlay"><div class="spinner"></div> Loading orders...</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination" id="ordPagination"></div>
+        </div>
+      </div>
+
+      <!-- ═══ PAGE: COMMISSIONS ═══ -->
+      <div id="page-commissions" class="page">
+        <div class="section-hdr">
+          <div><div class="section-title">Commission Management</div><div class="section-sub" id="commCount">Loading...</div></div>
+        </div>
+        <!-- Tier reference — Physical fixed KES tiers only -->
+        <div class="tier-grid" style="margin-bottom:16px;">
+          <div class="tier-card"><div class="tier-pct">KES 100</div><div class="tier-range">Physical · KES 0 – 4,999</div></div>
+          <div class="tier-card"><div class="tier-pct">KES 200</div><div class="tier-range">Physical · KES 5,000 – 9,999</div></div>
+          <div class="tier-card"><div class="tier-pct">KES 300</div><div class="tier-range">Physical · KES 10,000 – 19,999</div></div>
+          <div class="tier-card"><div class="tier-pct">KES 500</div><div class="tier-range">Physical · KES 20,000 – 29,999</div></div>
+          <div class="tier-card"><div class="tier-pct">KES 600</div><div class="tier-range">Physical · KES 30,000+</div></div>
+          <div class="tier-card" style="border-color:rgba(34,197,94,0.25);"><div class="tier-pct" style="color:var(--green);">30%</div><div class="tier-range">Digital products (future)</div></div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-toolbar">
+            <div class="search-wrap">
+              <input class="search-inp" id="commSearch" placeholder="Search affiliate, order..." oninput="filterCommissions()">
+            </div>
+            <select class="filter-sel" id="commStatusFilter" onchange="filterCommissions()">
+              <option value="">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="paid">Paid</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div style="overflow-x:auto;">
+            <table>
+              <thead><tr>
+                <th>Commission ID</th><th>Affiliate</th><th>Order ID</th>
+                <th>Order Amount</th><th>Rate</th><th>Commission</th>
+                <th>Status</th><th>Date</th><th>Actions</th>
+              </tr></thead>
+              <tbody id="commissionsTbody">
+                <tr><td colspan="9"><div class="loading-overlay"><div class="spinner"></div> Loading...</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination" id="commPagination"></div>
+        </div>
+      </div>
+
+      <!-- ═══ PAGE: WITHDRAWALS ═══ -->
+      <div id="page-withdrawals" class="page">
+        <div class="section-hdr">
+          <div><div class="section-title">Withdrawal Requests</div><div class="section-sub">Min. KES 500 · M-Pesa payouts</div></div>
+        </div>
+        <div class="mini-stats" id="wdMiniStats">
+          <div class="mini-stat"><div class="mini-stat-val" id="wdTotalAmt">-</div><div class="mini-stat-lbl">Total Requested</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="wdPendingAmt">-</div><div class="mini-stat-lbl">Pending</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="wdApprovedAmt">-</div><div class="mini-stat-lbl">Approved</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="wdPaidAmt">-</div><div class="mini-stat-lbl">Paid</div></div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-toolbar">
+            <div class="search-wrap">
+              <input class="search-inp" id="wdSearch" placeholder="Search affiliate, phone..." oninput="filterWithdrawals()">
+            </div>
+            <select class="filter-sel" id="wdStatusFilter" onchange="filterWithdrawals()">
+              <option value="">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="paid">Paid</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div style="overflow-x:auto;">
+            <table>
+              <thead><tr>
+                <th>Withdrawal ID</th><th>Affiliate</th><th>Phone</th>
+                <th>Amount</th><th>Status</th><th>Requested</th><th>Actions</th>
+              </tr></thead>
+              <tbody id="withdrawalsTbody">
+                <tr><td colspan="7"><div class="loading-overlay"><div class="spinner"></div> Loading...</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination" id="wdPagination"></div>
+        </div>
+      </div>
+
+      <!-- ═══ PAGE: TRANSACTIONS ═══ -->
+      <div id="page-transactions" class="page">
+        <div class="section-hdr">
+          <div><div class="section-title">Transaction History</div><div class="section-sub">All financial activity</div></div>
+        </div>
+        <div class="date-filter-bar">
+          <button class="date-btn active" onclick="setDateFilter('today',this)">Today</button>
+          <button class="date-btn" onclick="setDateFilter('7d',this)">7 Days</button>
+          <button class="date-btn" onclick="setDateFilter('30d',this)">30 Days</button>
+          <button class="date-btn" onclick="setDateFilter('all',this)">All Time</button>
+        </div>
+        <div class="table-wrap">
+          <div style="overflow-x:auto;">
+            <table>
+              <thead><tr>
+                <th>Type</th><th>Affiliate</th><th>Amount</th><th>Reference</th>
+                <th>Status</th><th>Date</th>
+              </tr></thead>
+              <tbody id="txTbody">
+                <tr><td colspan="6"><div class="loading-overlay"><div class="spinner"></div> Loading...</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination" id="txPagination"></div>
+        </div>
+      </div>
+
+      <!-- ═══ PAGE: LEADERBOARD ═══ -->
+      <div id="page-leaderboard" class="page">
+        <div class="section-hdr">
+          <div><div class="section-title">🏆 Affiliate Leaderboard</div></div>
+          <select class="filter-sel" id="lbMetric" onchange="renderLeaderboard()">
+            <option value="totalEarnings">Top by Earnings</option>
+            <option value="totalSales">Top by Sales</option>
+            <option value="clicks">Top by Clicks</option>
+            <option value="conversionRate">Top by Conversion</option>
+          </select>
+        </div>
+        <div id="leaderboardList">
+          <div class="loading-overlay"><div class="spinner"></div> Loading leaderboard...</div>
+        </div>
+      </div>
+
+      <!-- ═══ PAGE: CLICKS ═══ -->
+      <div id="page-clicks" class="page">
+        <div class="section-hdr">
+          <div><div class="section-title">Click Tracking</div><div class="section-sub">All referral clicks</div></div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-toolbar">
+            <div class="search-wrap">
+              <input class="search-inp" id="clickSearch" placeholder="Search affiliate, device..." oninput="filterClicks()">
+            </div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table>
+              <thead><tr>
+                <th>Affiliate</th><th>Code</th><th>Device</th>
+                <th>Browser</th><th>Referrer</th><th>Timestamp</th>
+              </tr></thead>
+              <tbody id="clicksTbody">
+                <tr><td colspan="6"><div class="loading-overlay"><div class="spinner"></div> Loading...</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination" id="clickPagination"></div>
+        </div>
+      </div>
+
+      <!-- ═══ PAGE: NOTIFICATIONS ═══ -->
+      <div id="page-notifications" class="page">
+        <div class="section-hdr">
+          <div><div class="section-title">Notifications</div><div class="section-sub" id="notifCount">Loading...</div></div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn-sm btn-sm-blue" onclick="markAllNotifsRead()">Mark All Read</button>
+            <button class="btn-sm btn-sm-gold" onclick="openSendNotifModal()">📢 Send Notification</button>
+          </div>
+        </div>
+        <div id="notifList">
+          <div class="loading-overlay"><div class="spinner"></div> Loading...</div>
+        </div>
+      </div>
+
+      <!-- ═══ PAGE: SETTINGS ═══ -->
+      <div id="page-settings" class="page">
+        <div class="section-title" style="margin-bottom:20px;">System Settings</div>
+        <div style="max-width:600px;">
+          <div class="chart-card" style="margin-bottom:16px;">
+            <div class="chart-title">Admin Account</div>
+            <div style="margin-top:14px;display:flex;flex-direction:column;gap:12px;">
+              <div class="form-row">
+                <label class="form-label">Admin Email</label>
+                <input class="inp" id="settingsEmail" readonly style="opacity:.6;">
+              </div>
+              <div class="form-row">
+                <label class="form-label">Display Name</label>
+                <input class="inp" id="settingsName" placeholder="Admin name">
+              </div>
+              <button class="btn-sm btn-sm-gold" style="width:auto;padding:9px 20px;" onclick="saveAdminSettings()">Save Settings</button>
+            </div>
+          </div>
+          <div class="chart-card" style="margin-bottom:16px;">
+            <div class="chart-title">Commission Tiers</div>
+            <div class="chart-sub" style="margin-bottom:14px;">Automatic calculation rules</div>
+            <div class="tier-grid">
+              <div class="tier-card"><div class="tier-pct">KES 100</div><div class="tier-range">Physical · KES 0–4,999</div></div>
+              <div class="tier-card"><div class="tier-pct">KES 200</div><div class="tier-range">Physical · KES 5K–9,999</div></div>
+              <div class="tier-card"><div class="tier-pct">KES 300</div><div class="tier-range">Physical · KES 10K–19,999</div></div>
+              <div class="tier-card"><div class="tier-pct">KES 500</div><div class="tier-range">Physical · KES 20K–29,999</div></div>
+              <div class="tier-card"><div class="tier-pct">KES 600</div><div class="tier-range">Physical · KES 30K+</div></div>
+              <div class="tier-card" style="border-color:rgba(34,197,94,0.25);"><div class="tier-pct" style="color:var(--green);">30%</div><div class="tier-range">Digital (future)</div></div>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Withdrawal Settings</div>
+            <div style="margin-top:14px;display:flex;flex-direction:column;gap:12px;">
+              <div class="form-row">
+                <label class="form-label">Minimum Withdrawal (KES)</label>
+                <input class="inp" value="500" id="minWithdrawal">
+              </div>
+              <div class="form-row">
+                <label class="form-label">WhatsApp Support Number</label>
+                <input class="inp" value="+254702468460" id="waNumber">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /app-content -->
+  </main>
+</div><!-- /appRoot -->
+
+<!-- ═══════════════════════════════════
+     MODALS
+═══════════════════════════════════ -->
+
+<!-- VIEW AFFILIATE MODAL -->
+<div class="modal-overlay" id="viewAffModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Affiliate Details</div>
+      <button class="modal-close" onclick="closeModal('viewAffModal')">✕</button>
+    </div>
+    <div class="modal-body" id="viewAffBody"></div>
+  </div>
+</div>
+
+<!-- ADD/EDIT AFFILIATE MODAL -->
+<div class="modal-overlay" id="editAffModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title" id="editAffModalTitle">Add Affiliate</div>
+      <button class="modal-close" onclick="closeModal('editAffModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="editAffId">
+      <div class="form-grid">
+        <div class="form-row">
+          <label class="form-label">Full Name *</label>
+          <input class="inp" id="editAffName" placeholder="Full name" required>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Phone *</label>
+          <input class="inp" id="editAffPhone" placeholder="07XXXXXXXX" required>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Email *</label>
+          <input class="inp" id="editAffEmail" placeholder="name@email.com" type="email" required>
+        </div>
+        <div class="form-row">
+          <label class="form-label" style="color:var(--muted);">⚠️ One account per phone, email & referral code enforced</label>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Referral Code</label>
+          <input class="inp" id="editAffCode" placeholder="Auto-generated if blank">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Status</label>
+          <select class="inp" id="editAffStatus">
+            <option value="active">Active</option>
+            <option value="pending">Pending</option>
+            <option value="suspended">Suspended</option>
+            <option value="under_review">Under Review</option>
+            <option value="closed">Closed</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-sm" style="background:var(--bg3);color:var(--muted2);border:1px solid var(--border);" onclick="closeModal('editAffModal')">Cancel</button>
+      <button class="btn-sm btn-sm-gold" id="saveAffBtn" onclick="saveAffiliate()">Save Affiliate</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD ORDER MODAL -->
+<div class="modal-overlay" id="addOrderModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Record New Order</div>
+      <button class="modal-close" onclick="closeModal('addOrderModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-row">
+          <label class="form-label">Order ID *</label>
+          <input class="inp" id="ordId" placeholder="ORD-XXXXXX">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Affiliate *</label>
+          <select class="inp" id="ordAffiliate"></select>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Customer Name *</label>
+          <input class="inp" id="ordCustomer" placeholder="Customer full name">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Customer Phone</label>
+          <input class="inp" id="ordCustomerPhone" placeholder="07XXXXXXXX">
+        </div>
+        <div class="form-row" style="grid-column:1/-1;">
+          <label class="form-label">Product *</label>
+          <input class="inp" id="ordProduct" placeholder="Product name / description">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Product Type</label>
+          <select class="inp" id="ordProductType">
+            <option value="physical">Physical</option>
+            <option value="digital">Digital</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Amount (KES) *</label>
+          <input class="inp" id="ordAmount" type="number" placeholder="0" oninput="previewCommission()">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Order Status</label>
+          <select class="inp" id="ordStatus">
+            <option value="pending">Pending</option>
+            <option value="paid">Paid</option>
+            <option value="delivered">Delivered ✓ (generates commission)</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="refunded">Refunded</option>
+          </select>
+        </div>
+      </div>
+      <div id="commPreview" style="background:var(--green-soft);border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius);padding:10px 14px;margin-top:8px;font-size:12px;color:var(--green);display:none;">
+        Estimated Commission: <strong id="commPreviewAmt">KES 0</strong>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-sm" style="background:var(--bg3);color:var(--muted2);border:1px solid var(--border);" onclick="closeModal('addOrderModal')">Cancel</button>
+      <button class="btn-sm btn-sm-green" id="saveOrderBtn" onclick="saveOrder()">Save Order</button>
+    </div>
+  </div>
+</div>
+
+<!-- SEND NOTIFICATION MODAL -->
+<div class="modal-overlay" id="sendNotifModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Send Notification</div>
+      <button class="modal-close" onclick="closeModal('sendNotifModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <label class="form-label">Recipient</label>
+        <select class="inp" id="notifRecipient">
+          <option value="all">All Affiliates</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Title *</label>
+        <input class="inp" id="notifTitle" placeholder="Notification title">
+      </div>
+      <div class="form-row">
+        <label class="form-label">Message *</label>
+        <textarea class="inp" id="notifMessage" rows="3" placeholder="Notification message..." style="resize:vertical;line-height:1.5;"></textarea>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Type</label>
+        <select class="inp" id="notifType">
+          <option value="info">Info</option>
+          <option value="success">Success</option>
+          <option value="warning">Warning</option>
+          <option value="error">Alert</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-sm" style="background:var(--bg3);color:var(--muted2);border:1px solid var(--border);" onclick="closeModal('sendNotifModal')">Cancel</button>
+      <button class="btn-sm btn-sm-gold" onclick="sendNotification()">📢 Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DIALOG -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box" style="max-width:380px;">
+    <div class="modal-header">
+      <div class="modal-title" id="confirmTitle">Confirm Action</div>
+      <button class="modal-close" onclick="closeModal('confirmModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="confirmMsg" style="font-size:13px;color:var(--muted2);line-height:1.6;"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-sm" style="background:var(--bg3);color:var(--muted2);border:1px solid var(--border);" onclick="closeModal('confirmModal')">Cancel</button>
+      <button class="btn-sm btn-sm-red" id="confirmOkBtn">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FIREBASE + ALL LOGIC
+═══════════════════════════════════════════════ -->
+<script type="module">
+import { initializeApp }          from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged }
+                                   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc,
+         getDocs, getDoc, query, where, orderBy, limit, onSnapshot,
+         serverTimestamp, increment, Timestamp }
+                                   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* ── FIREBASE CONFIG ── */
+const firebaseConfig = {
+  apiKey:            "AIzaSyDToZQ-f31ZA2RmPWNKZ4DTtVjyj-toMW0",
+  authDomain:        "cozycabin-affiliate.firebaseapp.com",
+  databaseURL:       "https://cozycabin-affiliate-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId:         "cozycabin-affiliate",
+  storageBucket:     "cozycabin-affiliate.firebasestorage.app",
+  messagingSenderId: "765281276271",
+  appId:             "1:765281276271:web:1368fb340b1fb68a01189a",
+  measurementId:     "G-NFYX4TH0H7"
+};
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+const googleProvider = new GoogleAuthProvider();
+
+/* ── ADMIN EMAILS (whitelist) ── */
+const ADMIN_EMAILS = ['cozycabincoke@gmail.com','chalzowuor516@gmail.com'];
+
+/* ── GLOBALS ── */
+let currentAdmin = null;
+let allAffiliates = [];
+let allOrders = [];
+let allCommissions = [];
+let allWithdrawals = [];
+let allClicks = [];
+let allTransactions = [];
+let allNotifications = [];
+let dateFilter = 'today';
+let salesChartInst, clickChartInst, topAffChartInst, commPieInst;
+
+/* ══════════════════════════════
+   UTILITIES
+══════════════════════════════ */
+const fmtKES = n => 'KES ' + (Number(n)||0).toLocaleString('en-KE', {minimumFractionDigits:0, maximumFractionDigits:0});
+const fmtDate = ts => {
+  if(!ts) return '—';
+  const d = ts.toDate ? ts.toDate() : new Date(ts);
+  return d.toLocaleDateString('en-KE', {day:'2-digit',month:'short',year:'numeric', hour:'2-digit',minute:'2-digit'});
+};
+const shortDate = ts => {
+  if(!ts) return '—';
+  const d = ts.toDate ? ts.toDate() : new Date(ts);
+  return d.toLocaleDateString('en-KE',{day:'2-digit',month:'short',year:'numeric'});
+};
+const genId = (prefix='AFF') => prefix + '-' + Date.now().toString(36).toUpperCase();
+const genCode = name => {
+  const base = name.replace(/\s+/g,'').toUpperCase().substring(0,5);
+  return base + Math.floor(1000+Math.random()*9000);
+};
+
+function toast(msg, type='info'){
+  const t = document.getElementById('toast');
+  const colors = {success:'#22c55e',error:'#ef4444',info:'#ffd700',warning:'#fbbf24'};
+  t.style.background = colors[type]||colors.info;
+  t.style.color = type==='info'||type==='warning' ? '#000' : '#fff';
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(()=>t.style.display='none', 3200);
+}
+
+function calcCommission(amount, productType){
+  const amt = Number(amount)||0;
+
+  if(productType==='digital')
+    return Math.round(amt * 0.30);
+
+  if(amt <= 4999) return 100;
+  if(amt <= 9999) return 200;
+  if(amt <= 19999) return 300;
+  if(amt <= 29999) return 500;
+
+  return 600;
+}
+
+function commRate(amount, productType){
+  const amt = Number(amount)||0;
+  if(productType==='digital') return '30%';
+  if(amt <= 4999)  return 'KES 100';
+  if(amt <= 9999)  return 'KES 200';
+  if(amt <= 19999) return 'KES 300';
+  if(amt <= 29999) return 'KES 500';
+  return 'KES 600';
+}
+
+function statusBadge(s){
+  const map = {
+    active:'badge-active',pending:'badge-pending',suspended:'badge-suspended',
+    paid:'badge-paid',approved:'badge-approved',rejected:'badge-rejected',
+    cancelled:'badge-cancelled',refunded:'badge-refunded',
+    delivered:'badge-paid',under_review:'badge-pending',closed:'badge-rejected'
+  };
+  return `<span class="badge ${map[s]||'badge-pending'}">${(s||'—').toUpperCase()}</span>`;
+}
+
+/* ══════════════════════════════
+   AUTH
+══════════════════════════════ */
+window.adminLogin = async function(){
+  const email = document.getElementById('loginEmail').value.trim();
+  const pw    = document.getElementById('loginPassword').value;
+  const btn   = document.getElementById('loginBtn');
+  const err   = document.getElementById('loginErr');
+  err.textContent = '';
+  if(!email||!pw){ err.textContent = 'Enter email and password.'; return; }
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>';
+  try {
+    await signInWithEmailAndPassword(auth, email, pw);
+    // onAuthStateChanged handles transition to dashboard
+  } catch(e) {
+    const msgs = {
+      'auth/invalid-credential':'Incorrect email or password.',
+      'auth/user-not-found':'No admin account found.',
+      'auth/wrong-password':'Incorrect password.',
+      'auth/invalid-email':'Invalid email format.',
+      'auth/too-many-requests':'Too many attempts. Please wait.',
+      'auth/network-request-failed':'Network error. Check connection.',
+    };
+    err.textContent = msgs[e.code] || e.message;
+    btn.disabled = false;
+    btn.innerHTML = '🔐 Sign In as Admin';
+  }
+};
+
+window.adminGoogleLogin = async function(){
+  const err = document.getElementById('loginErr');
+  const btn = document.getElementById('googleLoginBtn');
+  err.textContent = '';
+  btn.disabled = true;
+  btn.textContent = 'Signing in...';
+  try {
+    await signInWithPopup(auth, googleProvider);
+    // onAuthStateChanged handles the rest
+  } catch(e) {
+    const msgs = {
+      'auth/popup-closed-by-user':    'Sign-in cancelled.',
+      'auth/popup-blocked':           'Pop-up blocked — please allow pop-ups.',
+      'auth/cancelled-popup-request': 'Sign-in cancelled.',
+      'auth/network-request-failed':  'Network error. Check connection.',
+    };
+    err.textContent = msgs[e.code] || e.message;
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24"><path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l3.227-3.227C18.216 1.414 15.48 0 12.24 0 5.48 0 0 5.48 0 12.24s5.48 12.24 12.24 12.24c7.05 0 11.732-4.957 11.732-11.94 0-.804-.085-1.42-.19-1.97H12.24z"/></svg> CONTINUE WITH GOOGLE';
+  }
+};
+
+// ── 15-MINUTE INACTIVITY TIMEOUT ──
+let _adminInactiveTimer = null;
+const ADMIN_INACTIVITY_MS = 15 * 60 * 1000;
+
+function resetAdminInactivityTimer() {
+  if (!currentAdmin) return;
+  clearTimeout(_adminInactiveTimer);
+  _adminInactiveTimer = setTimeout(async () => {
+    toast('⚠️ Signing out due to inactivity in 60 seconds...', 'warning');
+    _adminInactiveTimer = setTimeout(async () => {
+      await signOut(auth);
+      window.location.href = 'affiliate.html';
+    }, 60 * 1000);
+  }, ADMIN_INACTIVITY_MS - 60 * 1000);
+}
+
+['click','touchstart','keydown','scroll','mousemove'].forEach(evt =>
+  document.addEventListener(evt, resetAdminInactivityTimer, { passive: true })
+);
+
+window.adminLogout = async function(){
+  try {
+    await signOut(auth);
+    window.location.href = 'affiliate.html';
+  } catch(e) {
+    alert('Logout failed: ' + (e.message || e.code));
+  }
+};
+
+onAuthStateChanged(auth, async user => {
+  if(user){
+    // Check admin role via Firestore
+    let isAdmin = ADMIN_EMAILS.includes(user.email);
+    if(!isAdmin){
+      try{
+        const snap = await getDoc(doc(db,'admins',user.uid));
+        isAdmin = snap.exists();
+      }catch(e){}
+    }
+    if(!isAdmin){
+      await signOut(auth);
+      document.getElementById('loginErr').textContent = 'Access denied. Admin accounts only.';
+      return;
+    }
+    currentAdmin = user;
+    document.getElementById('authGate').classList.add('hidden');
+    const root = document.getElementById('appRoot');
+    root.classList.add('visible');
+    document.getElementById('adminAvatar').textContent = (user.email||'A')[0].toUpperCase();
+    document.getElementById('adminAvatar').title = user.email || 'Admin';
+    document.getElementById('settingsEmail').value = user.email||'';
+    resetAdminInactivityTimer();
+    bootApp();
+  } else {
+    currentAdmin = null;
+    document.getElementById('authGate').classList.remove('hidden');
+    const root = document.getElementById('appRoot');
+    root.classList.remove('visible');
+  }
+});
+
+/* ══════════════════════════════
+   BOOT / INIT
+══════════════════════════════ */
+async function bootApp(){
+  try {
+    await Promise.all([
+      loadAffiliates(),
+      loadOrders(),
+      loadCommissions(),
+      loadWithdrawals(),
+      loadClicks(),
+      loadNotifications(),
+    ]);
+  } catch(e) {
+    console.error('bootApp load error:', e);
+  }
+  try { renderDashboard(); } catch(e){ console.error('renderDashboard:', e); }
+  try { updateBadges(); }    catch(e){ console.error('updateBadges:', e); }
+  try { populateAffiliateSelects(); } catch(e){}
+}
+
+/* ══════════════════════════════
+   DATA LOADERS
+══════════════════════════════ */
+async function loadAffiliates(){
+  try{
+    const snap = await getDocs(collection(db,'affiliates'));
+    allAffiliates = snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderAffiliatesTable();
+    const el = document.getElementById('affCount');
+    if(el) el.textContent = allAffiliates.length + ' total affiliates';
+  }catch(e){ console.error('loadAffiliates:', e); }
+}
+async function loadOrders(){
+  try{
+    let snap;
+    try{
+      snap = await getDocs(query(collection(db,'orders'), orderBy('date','desc')));
+    }
+    catch(_){
+      snap = await getDocs(collection(db,'orders'));
+    }
+
+    allOrders = snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderOrdersTable();
+
+    const el = document.getElementById('ordCount');
+    if(el) el.textContent = allOrders.length + ' total orders';
+
+  }catch(e){
+    console.error('loadOrders:',e);
+  }
+}
+
+async function loadCommissions(){
+  try{
+    const snap = await getDocs(query(collection(db,'commissions'), orderBy('createdAt','desc')));
+    allCommissions = snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderCommissionsTable();
+  }catch(e){ console.error('loadCommissions',e); }
+}
+
+async function loadWithdrawals(){
+  try{
+    let snap;
+    try{ snap = await getDocs(query(collection(db,'withdrawals'),orderBy('createdAt','desc'))); }
+    catch(_){
+      try{ snap = await getDocs(query(collection(db,'withdrawals'),orderBy('requestedAt','desc'))); }
+      catch(_2){ snap = await getDocs(collection(db,'withdrawals')); }
+    }
+    allWithdrawals = snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderWithdrawalsTable();
+    updateWdStats();
+  }catch(e){ console.error('loadWithdrawals:',e); }
+}
+
+async function loadClicks(){
+  try{
+    const snap = await getDocs(query(collection(db,'clicks'), orderBy('timestamp','desc'), limit(500)));
+    allClicks = snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderClicksTable();
+  }catch(e){ console.error('loadClicks',e); }
+}
+
+async function loadNotifications(){
+  try{
+    const snap = await getDocs(query(collection(db,'notifications'), orderBy('createdAt','desc'), limit(100)));
+    allNotifications = snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderNotifications();
+  }catch(e){ console.error('loadNotifications',e); }
+}
+
+/* ══════════════════════════════
+   DASHBOARD
+══════════════════════════════ */
+function renderDashboard(){
+  const totalAff    = allAffiliates.length;
+  const activeAff   = allAffiliates.filter(a=>a.status==='active').length;
+  const totalClicks = allAffiliates.reduce((s,a)=>s+(a.clicks||0),0);
+  const totalOrders = allOrders.length;
+  const totalSales  = allOrders.filter(o=>o.status==='paid').reduce((s,o)=>s+(Number(o.amount)||0),0);
+  const totalComm   = allCommissions.reduce((s,c)=>s+(Number(c.amount)||0),0);
+  const pendingComm = allCommissions.filter(c=>c.status==='pending').reduce((s,c)=>s+(Number(c.amount)||0),0);
+  const pendingWd   = allWithdrawals.filter(w=>w.status==='pending').reduce((s,w)=>s+(Number(w.amount)||0),0);
+
+  const stats = [
+    { icon:'👥', label:'Total Affiliates',  value:totalAff,         color:'rgba(59,130,246,0.15)',  sub:`${activeAff} active` },
+    { icon:'👆', label:'Total Clicks',      value:totalClicks.toLocaleString(), color:'rgba(168,85,247,0.15)',sub:'All time' },
+    { icon:'🛒', label:'Total Orders',      value:totalOrders,      color:'rgba(34,197,94,0.15)',   sub:`${allOrders.filter(o=>o.status==='paid').length} paid` },
+    { icon:'💰', label:'Total Sales',       value:fmtKES(totalSales),color:'rgba(255,215,0,0.12)',  sub:'Paid orders only' },
+    { icon:'💸', label:'Total Commissions', value:fmtKES(totalComm), color:'rgba(34,197,94,0.12)',  sub:'All commissions' },
+    { icon:'⏳', label:'Pending Commissions',value:fmtKES(pendingComm),color:'rgba(251,191,36,0.12)',sub:'Awaiting approval' },
+    { icon:'🏦', label:'Pending Withdrawals',value:fmtKES(pendingWd), color:'rgba(239,68,68,0.12)', sub:`${allWithdrawals.filter(w=>w.status==='pending').length} requests` },
+    { icon:'✅', label:'Paid Withdrawals',   value:fmtKES(allWithdrawals.filter(w=>w.status==='paid').reduce((s,w)=>s+(Number(w.amount)||0),0)),color:'rgba(34,197,94,0.12)',sub:'Total paid out' }
+  ];
+
+  document.getElementById('dashStatsGrid').innerHTML = stats.map(s=>`
+    <div class="stat-card">
+      <div class="stat-top">
+        <div class="stat-icon" style="background:${s.color};">${s.icon}</div>
+      </div>
+      <div class="stat-value">${s.value}</div>
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-sub">${s.sub}</div>
+    </div>
+  `).join('');
+
+  // Recent orders
+  const recent = allOrders.slice(0,10);
+  document.getElementById('recentOrdersTbody').innerHTML = recent.length
+    ? recent.map(o=>`<tr>
+        <td class="td-mono">${o.orderId||o.id}</td>
+        <td>${getAffName(o.affiliateId)}</td>
+        <td>${o.customerName||'—'}</td>
+        <td>${o.product||'—'}</td>
+        <td class="td-mono">${fmtKES(o.amount)}</td>
+        <td>${statusBadge(o.status)}</td>
+        <td class="td-muted">${shortDate(o.date)}</td>
+      </tr>`).join('')
+    : `<tr><td colspan="7"><div class="empty-state"><div class="empty-icon">🛒</div><div class="empty-title">No orders yet</div></div></td></tr>`;
+
+  buildCharts();
+}
+
+function getAffName(id){
+  const a = allAffiliates.find(x=>x.id===id||x.affiliateId===id);
+  return a ? (a.name||a.email||'—') : (id||'—');
+}
+
+/* ── CHARTS ── */
+function buildCharts(){
+  buildSalesChart();
+  buildClickChart();
+  buildTopAffChart();
+  buildCommPieChart();
+}
+
+function buildSalesChart(){
+  const ctx = document.getElementById('salesChart');
+  if(!ctx) return;
+  if(salesChartInst) salesChartInst.destroy();
+  const days = 14;
+  const labels = [];
+  const salesData = [];
+  const commData  = [];
+  for(let i=days-1;i>=0;i--){
+    const d = new Date(); d.setDate(d.getDate()-i);
+    labels.push(d.toLocaleDateString('en-KE',{day:'2-digit',month:'short'}));
+    const dayStr = d.toDateString();
+    const daySales = allOrders.filter(o=>{
+      if(o.status!=='paid') return false;
+      const od = o.date?.toDate?o.date.toDate():new Date(o.date||0);
+      return od.toDateString()===dayStr;
+    }).reduce((s,o)=>s+(Number(o.amount)||0),0);
+    const dayComm = allCommissions.filter(c=>{
+      const cd = c.createdAt?.toDate?c.createdAt.toDate():new Date(c.createdAt||0);
+      return cd.toDateString()===dayStr;
+    }).reduce((s,c)=>s+(Number(c.amount)||0),0);
+    salesData.push(daySales);
+    commData.push(dayComm);
+  }
+  salesChartInst = new Chart(ctx,{
+    type:'bar',
+    data:{labels,datasets:[
+      {label:'Sales (KES)',data:salesData,backgroundColor:'rgba(255,215,0,0.6)',borderColor:'#ffd700',borderWidth:1,borderRadius:4},
+      {label:'Commission (KES)',data:commData,backgroundColor:'rgba(34,197,94,0.5)',borderColor:'#22c55e',borderWidth:1,borderRadius:4}
+    ]},
+    options:{responsive:true,plugins:{legend:{labels:{color:'#94a3b8',font:{size:10}}}},
+      scales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{color:'rgba(255,255,255,0.03)'}},
+              y:{ticks:{color:'#64748b',font:{size:9}},grid:{color:'rgba(255,255,255,0.05)'}}}}
+  });
+}
+
+function buildClickChart(){
+  const ctx = document.getElementById('clickChart');
+  if(!ctx) return;
+  if(clickChartInst) clickChartInst.destroy();
+  const days = 14;
+  const labels = [];
+  const data   = [];
+  for(let i=days-1;i>=0;i--){
+    const d = new Date(); d.setDate(d.getDate()-i);
+    labels.push(d.toLocaleDateString('en-KE',{day:'2-digit',month:'short'}));
+    const cnt = allClicks.filter(c=>{
+      const cd = c.timestamp?.toDate?c.timestamp.toDate():new Date(c.timestamp||0);
+      return cd.toDateString()===d.toDateString();
+    }).length;
+    data.push(cnt);
+  }
+  clickChartInst = new Chart(ctx,{
+    type:'line',
+    data:{labels,datasets:[{
+      label:'Clicks',data,borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,0.1)',
+      fill:true,tension:.4,pointRadius:3,pointBackgroundColor:'#3b82f6'
+    }]},
+    options:{responsive:true,plugins:{legend:{labels:{color:'#94a3b8',font:{size:10}}}},
+      scales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{color:'rgba(255,255,255,0.03)'}},
+              y:{ticks:{color:'#64748b',font:{size:9}},grid:{color:'rgba(255,255,255,0.05)'}}}}
+  });
+}
+
+function buildTopAffChart(){
+  const ctx = document.getElementById('topAffChart');
+  if(!ctx) return;
+  if(topAffChartInst) topAffChartInst.destroy();
+  const top5 = [...allAffiliates].sort((a,b)=>(Number(b.totalEarnings)||0)-(Number(a.totalEarnings)||0)).slice(0,5);
+  if(!top5.length){ctx.parentElement.innerHTML='<div class="empty-state"><div class="empty-icon">🏆</div><div class="empty-title">No data yet</div></div>';return;}
+  topAffChartInst = new Chart(ctx,{
+    type:'doughnut',
+    data:{
+      labels:top5.map(a=>a.name||a.email||a.id),
+      datasets:[{
+        data:top5.map(a=>Number(a.totalEarnings)||0),
+        backgroundColor:['rgba(255,215,0,0.8)','rgba(34,197,94,0.8)','rgba(59,130,246,0.8)','rgba(168,85,247,0.8)','rgba(251,191,36,0.8)'],
+        borderWidth:0
+      }]
+    },
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{color:'#94a3b8',font:{size:10},padding:8}}}}
+  });
+}
+
+function buildCommPieChart(){
+  const ctx = document.getElementById('commPieChart');
+  if(!ctx) return;
+  if(commPieInst) commPieInst.destroy();
+  const pending  = allCommissions.filter(c=>c.status==='pending').length;
+  const approved = allCommissions.filter(c=>c.status==='approved').length;
+  const paid     = allCommissions.filter(c=>c.status==='paid').length;
+  const rejected = allCommissions.filter(c=>c.status==='rejected').length;
+  if(!allCommissions.length){ctx.parentElement.innerHTML='<div class="empty-state"><div class="empty-icon">💰</div><div class="empty-title">No commissions yet</div></div>';return;}
+  commPieInst = new Chart(ctx,{
+    type:'pie',
+    data:{
+      labels:['Pending','Approved','Paid','Rejected'],
+      datasets:[{
+        data:[pending,approved,paid,rejected],
+        backgroundColor:['rgba(251,191,36,0.8)','rgba(59,130,246,0.8)','rgba(34,197,94,0.8)','rgba(239,68,68,0.8)'],
+        borderWidth:0
+      }]
+    },
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{color:'#94a3b8',font:{size:10},padding:8}}}}
+  });
+}
+
+/* ══════════════════════════════
+   AFFILIATES TABLE
+══════════════════════════════ */
+let affPage=1, AFF_PER_PAGE=15;
+let filteredAffiliates=[];
+
+function renderAffiliatesTable(){
+  filteredAffiliates = [...allAffiliates];
+  filterAffiliates();
+}
+
+window.filterAffiliates = function(){
+  const q    = (document.getElementById('affSearch')?.value||'').toLowerCase();
+  const stat = document.getElementById('affStatusFilter')?.value||'';
+  const sort = document.getElementById('affSortBy')?.value||'createdAt_desc';
+  filteredAffiliates = allAffiliates.filter(a=>{
+    const matchQ = !q || (a.name||'').toLowerCase().includes(q) ||
+      (a.email||'').toLowerCase().includes(q) || (a.referralCode||'').toLowerCase().includes(q) ||
+      (a.phone||'').includes(q);
+    const matchS = !stat || a.status===stat;
+    return matchQ && matchS;
+  });
+  const [field,dir] = sort.split('_');
+  filteredAffiliates.sort((a,b)=>{
+    const av = field==='name'?(a.name||'').toLowerCase():Number(a[field])||0;
+    const bv = field==='name'?(b.name||'').toLowerCase():Number(b[field])||0;
+    return dir==='desc'?(bv>av?1:-1):(av>bv?1:-1);
+  });
+  affPage=1;
+  renderAffPage();
+};
+
+function renderAffPage(){
+  const tbody = document.getElementById('affiliatesTbody');
+  const total = filteredAffiliates.length;
+  const pages = Math.max(1,Math.ceil(total/AFF_PER_PAGE));
+  affPage = Math.min(affPage,pages);
+  const slice = filteredAffiliates.slice((affPage-1)*AFF_PER_PAGE, affPage*AFF_PER_PAGE);
+
+  if(!slice.length){
+    tbody.innerHTML=`<tr><td colspan="9"><div class="empty-state"><div class="empty-icon">👥</div><div class="empty-title">No affiliates found</div><div class="empty-sub">Try adjusting your search or filters</div></div></td></tr>`;
+  } else {
+    tbody.innerHTML = slice.map(a=>`
+      <tr>
+        <td><div style="font-weight:700;font-size:13px;">${a.name||'—'}</div><div class="td-muted">#${a.affiliateId||a.id}</div></td>
+        <td class="td-mono">${a.phone||'—'}</td>
+        <td class="td-muted">${a.email||'—'}</td>
+        <td><span class="badge badge-active" style="font-family:monospace;">${a.referralCode||'—'}</span></td>
+        <td class="td-mono">${(a.clicks||0).toLocaleString()}</td>
+        <td class="td-mono">${fmtKES(a.totalSales||0)}</td>
+        <td class="td-mono" style="color:var(--gold);font-weight:700;">${fmtKES(a.balance||0)}</td>
+        <td>${statusBadge(a.status||'pending')}${a.fraudFlag?'<br><span class="badge" style="background:rgba(239,68,68,0.15);color:#ef4444;font-size:9px;margin-top:3px;">⚠️ Flagged</span>':''}</td>
+        <td>
+          <div class="action-wrap">
+            <button class="act-btn act-view" title="View" onclick='viewAffiliate("${a.id}")'>👁</button>
+            <button class="act-btn act-edit" title="Edit" onclick='editAffiliate("${a.id}")'>✏️</button>
+            ${a.status==='active'
+              ? `<button class="act-btn act-suspend" title="Suspend" onclick='suspendAffiliate("${a.id}")'>⏸</button>`
+              : `<button class="act-btn act-activate" title="Activate" onclick='activateAffiliate("${a.id}")'>▶️</button>`}
+            <button class="act-btn act-delete" title="Delete" onclick='deleteAffiliate("${a.id}")'>🗑</button>
+            <button class="act-btn" style="background:rgba(251,191,36,0.12);color:#fbbf24;" title="Flag Suspicious" onclick='flagAffiliate("${a.id}")'>⚠️</button>
+          </div>
+        </td>
+      </tr>`).join('');
+  }
+  renderPagination('affPagination', affPage, pages, p=>{ affPage=p; renderAffPage(); });
+}
+
+window.sortAffiliates = function(field){
+  const sel = document.getElementById('affSortBy');
+  const cur = sel.value;
+  sel.value = cur===`${field}_desc`?`${field}_asc`:`${field}_desc`;
+  filterAffiliates();
+};
+
+/* ── VIEW AFFILIATE ── */
+window.viewAffiliate = function(id){
+  const a = allAffiliates.find(x=>x.id===id);
+  if(!a) return;
+  const orders = allOrders.filter(o=>o.affiliateId===id);
+  const comms  = allCommissions.filter(c=>c.affiliateId===id);
+  const wds    = allWithdrawals.filter(w=>w.affiliateId===id);
+  document.getElementById('viewAffBody').innerHTML = `
+    <div class="wallet-card">
+      <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Available Balance</div>
+      <div class="wallet-balance">${fmtKES(a.balance||0)}</div>
+      <div style="display:flex;gap:20px;margin-top:14px;flex-wrap:wrap;">
+        <div><div class="wallet-sub">Total Earnings</div><div style="color:#fff;font-weight:700;">${fmtKES(a.totalEarnings||0)}</div></div>
+        <div><div class="wallet-sub">Pending</div><div style="color:#fbbf24;font-weight:700;">${fmtKES(a.pendingBalance||0)}</div></div>
+        <div><div class="wallet-sub">Withdrawn</div><div style="color:var(--green);font-weight:700;">${fmtKES(a.withdrawn||0)}</div></div>
+      </div>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-item"><div class="detail-label">Name</div><div class="detail-value">${a.name||'—'}</div></div>
+      <div class="detail-item"><div class="detail-label">Phone</div><div class="detail-value">${a.phone||'—'}</div></div>
+      <div class="detail-item"><div class="detail-label">Email</div><div class="detail-value" style="font-size:12px;">${a.email||'—'}</div></div>
+      <div class="detail-item"><div class="detail-label">Referral Code</div><div class="detail-value" style="font-family:monospace;color:var(--gold);">${a.referralCode||'—'}</div></div>
+      <div class="detail-item"><div class="detail-label">Clicks</div><div class="detail-value">${(a.clicks||0).toLocaleString()}</div></div>
+      <div class="detail-item"><div class="detail-label">Total Sales</div><div class="detail-value">${fmtKES(a.totalSales||0)}</div></div>
+      <div class="detail-item"><div class="detail-label">Orders</div><div class="detail-value">${orders.length}</div></div>
+      <div class="detail-item"><div class="detail-label">Status</div><div class="detail-value">${statusBadge(a.status)}</div></div>
+      <div class="detail-item"><div class="detail-label">Joined</div><div class="detail-value" style="font-size:12px;">${shortDate(a.createdAt)}</div></div>
+      <div class="detail-item"><div class="detail-label">Conversion</div><div class="detail-value">${a.clicks?(((orders.length/(a.clicks||1))*100).toFixed(1)+'%'):'0%'}</div></div>
+    </div>
+    <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">Referral Link</div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;font-family:monospace;font-size:11px;color:var(--gold);word-break:break-all;">
+      https://cozycabin.co.ke?ref=${a.referralCode||a.id}
+    </div>
+  `;
+  openModal('viewAffModal');
+};
+
+/* ── ADD / EDIT AFFILIATE ── */
+window.openAddAffiliateModal = function(){
+  document.getElementById('editAffId').value='';
+  document.getElementById('editAffModalTitle').textContent='Add Affiliate';
+  document.getElementById('editAffName').value='';
+  document.getElementById('editAffPhone').value='';
+  document.getElementById('editAffEmail').value='';
+  document.getElementById('editAffCode').value='';
+  document.getElementById('editAffStatus').value='active';
+  openModal('editAffModal');
+};
+
+window.editAffiliate = function(id){
+  const a = allAffiliates.find(x=>x.id===id);
+  if(!a) return;
+  document.getElementById('editAffId').value=id;
+  document.getElementById('editAffModalTitle').textContent='Edit Affiliate';
+  document.getElementById('editAffName').value=a.name||'';
+  document.getElementById('editAffPhone').value=a.phone||'';
+  document.getElementById('editAffEmail').value=a.email||'';
+  document.getElementById('editAffCode').value=a.referralCode||'';
+  document.getElementById('editAffStatus').value=a.status||'active';
+  openModal('editAffModal');
+};
+
+window.saveAffiliate = async function(){
+  const id     = document.getElementById('editAffId').value;
+  const name   = document.getElementById('editAffName').value.trim();
+  const phone  = document.getElementById('editAffPhone').value.trim();
+  const email  = document.getElementById('editAffEmail').value.trim();
+  const code   = document.getElementById('editAffCode').value.trim() || genCode(name);
+  const status = document.getElementById('editAffStatus').value;
+  if(!name||!email||!phone){ toast('Fill all required fields.','error'); return; }
+  const btn = document.getElementById('saveAffBtn');
+  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>';
+  try{
+    // Normalize phone
+    const normalizedPhone = phone.startsWith('+') ? phone : ('+254'+phone.replace(/^0/,''));
+
+    if(id){
+      // Duplicate phone check (exclude self)
+      const phoneDupe = allAffiliates.find(a=>a.id!==id&&a.phone===normalizedPhone);
+      if(phoneDupe){toast('Phone number already registered to: '+phoneDupe.name,'error');return;}
+      const emailDupe = allAffiliates.find(a=>a.id!==id&&(a.email||'').toLowerCase()===email.toLowerCase());
+      if(emailDupe){toast('Email already registered to: '+emailDupe.name,'error');return;}
+      const codeDupe = allAffiliates.find(a=>a.id!==id&&a.referralCode===code);
+      if(codeDupe){toast('Referral code already used by: '+codeDupe.name,'error');return;}
+      await updateDoc(doc(db,'affiliates',id),{name,phone:normalizedPhone,email:email.toLowerCase(),referralCode:code,status,updatedAt:serverTimestamp()});
+      const idx = allAffiliates.findIndex(x=>x.id===id);
+      if(idx>-1) allAffiliates[idx]={...allAffiliates[idx],name,phone:normalizedPhone,email,referralCode:code,status};
+      toast('Affiliate updated.','success');
+      await logActivity('affiliate_updated',`Updated affiliate: ${name}`,id);
+    } else {
+      // Full duplicate checks for new affiliates
+      const phoneDupe = allAffiliates.find(a=>a.phone===normalizedPhone);
+      if(phoneDupe){toast('Phone number already registered to: '+phoneDupe.name,'error');return;}
+      const emailDupe = allAffiliates.find(a=>(a.email||'').toLowerCase()===email.toLowerCase());
+      if(emailDupe){toast('Email already registered to: '+emailDupe.name,'error');return;}
+      const codeDupe = allAffiliates.find(a=>a.referralCode===code);
+      if(codeDupe){toast('Referral code already in use. Please choose another.','error');return;}
+      const affId = genId('AFF');
+      const data = {affiliateId:affId,name,phone:normalizedPhone,email:email.toLowerCase(),referralCode:code,status,clicks:0,sales:0,totalSales:0,balance:0,totalEarnings:0,pendingBalance:0,withdrawn:0,fraudFlag:false,createdAt:serverTimestamp()};
+      const ref = await addDoc(collection(db,'affiliates'),data);
+      allAffiliates.unshift({id:ref.id,...data});
+      toast('Affiliate added.','success');
+      await logActivity('affiliate_created',`New affiliate: ${name}`,ref.id);
+    }
+    filterAffiliates();
+    populateAffiliateSelects();
+    closeModal('editAffModal');
+  }catch(e){ toast(e.message,'error'); }
+  finally{ btn.disabled=false; btn.textContent='Save Affiliate'; }
+};
+
+window.suspendAffiliate = function(id){
+  const a = allAffiliates.find(x=>x.id===id);
+  confirm2('Suspend Affiliate',`Suspend ${a?.name||'this affiliate'}? They will not be able to log in.`, async()=>{
+    await updateDoc(doc(db,'affiliates',id),{status:'suspended',updatedAt:serverTimestamp()});
+    const idx = allAffiliates.findIndex(x=>x.id===id);
+    if(idx>-1) allAffiliates[idx].status='suspended';
+    filterAffiliates();
+    toast('Affiliate suspended.','warning');
+    sendSystemNotif(id,'account_suspended','Account Suspended','Your affiliate account has been suspended. Contact support for help.');
+  });
+};
+
+window.activateAffiliate = function(id){
+  const a = allAffiliates.find(x=>x.id===id);
+  confirm2('Activate Affiliate',`Re-activate ${a?.name||'this affiliate'}?`, async()=>{
+    await updateDoc(doc(db,'affiliates',id),{status:'active',updatedAt:serverTimestamp()});
+    const idx = allAffiliates.findIndex(x=>x.id===id);
+    if(idx>-1) allAffiliates[idx].status='active';
+    filterAffiliates();
+    toast('Affiliate activated.','success');
+  });
+};
+
+window.flagAffiliate = function(id){
+  const a = allAffiliates.find(x=>x.id===id);
+  if(!a) return;
+  const newFlag = !a.fraudFlag;
+  confirm2(
+    newFlag ? 'Flag as Suspicious' : 'Clear Fraud Flag',
+    newFlag
+      ? `Flag ${a.name||'this affiliate'} as suspicious and set status to Under Review?`
+      : `Clear the fraud flag on ${a.name||'this affiliate'}?`,
+    async()=>{
+      const updates = {fraudFlag:newFlag,updatedAt:serverTimestamp()};
+      if(newFlag) updates.status = 'under_review';
+      await updateDoc(doc(db,'affiliates',id),updates);
+      const idx = allAffiliates.findIndex(x=>x.id===id);
+      if(idx>-1){ allAffiliates[idx].fraudFlag=newFlag; if(newFlag) allAffiliates[idx].status='under_review'; }
+      filterAffiliates();
+      toast(newFlag ? 'Affiliate flagged for review.' : 'Fraud flag cleared.', newFlag ? 'warning' : 'success');
+      await logActivity('fraud_flag',`${newFlag?'Flagged':'Cleared flag'}: ${a.name}`,id);
+      if(newFlag) sendSystemNotif(id,'account_under_review','Account Under Review','Your account is under review. You will be notified once the review is complete. Contact support if needed.');
+    }
+  );
+};
+
+window.deleteAffiliate = function(id){
+  const a = allAffiliates.find(x=>x.id===id);
+  confirm2('Delete Affiliate',`Permanently delete ${a?.name||'this affiliate'}? This cannot be undone.`, async()=>{
+    await deleteDoc(doc(db,'affiliates',id));
+    allAffiliates = allAffiliates.filter(x=>x.id!==id);
+    filterAffiliates();
+    toast('Affiliate deleted.','success');
+  });
+};
+
+window.exportAffiliates = function(){
+  const rows = [['ID','Name','Phone','Email','Code','Clicks','Sales','Balance','Status','Joined']];
+  allAffiliates.forEach(a=>rows.push([a.affiliateId||a.id,a.name,a.phone,a.email,a.referralCode,a.clicks||0,a.totalSales||0,a.balance||0,a.status,shortDate(a.createdAt)]));
+  downloadCSV(rows,'affiliates-export.csv');
+};
+
+/* ══════════════════════════════
+   ORDERS TABLE
+══════════════════════════════ */
+let ordPage=1, ORD_PER_PAGE=15, filteredOrders=[];
+
+function renderOrdersTable(){ filteredOrders=[...allOrders]; filterOrders(); }
+
+window.filterOrders = function(){
+  const q    = (document.getElementById('ordSearch')?.value||'').toLowerCase();
+  const stat = document.getElementById('ordStatusFilter')?.value||'';
+  filteredOrders = allOrders.filter(o=>{
+    const mq = !q||(o.orderId||'').toLowerCase().includes(q)||(o.customerName||'').toLowerCase().includes(q)||(o.product||'').toLowerCase().includes(q)||(o.customerPhone||'').includes(q);
+    const ms = !stat||o.status===stat;
+    return mq&&ms;
+  });
+  const sort = document.getElementById('ordSortBy')?.value||'date_desc';
+  if(sort==='amount_desc') filteredOrders.sort((a,b)=>(Number(b.amount)||0)-(Number(a.amount)||0));
+  ordPage=1; renderOrdPage();
+};
+
+function renderOrdPage(){
+  const tbody = document.getElementById('ordersTbody');
+  const total = filteredOrders.length;
+  const pages = Math.max(1,Math.ceil(total/ORD_PER_PAGE));
+  ordPage = Math.min(ordPage,pages);
+  const slice = filteredOrders.slice((ordPage-1)*ORD_PER_PAGE, ordPage*ORD_PER_PAGE);
+  if(!slice.length){
+    tbody.innerHTML=`<tr><td colspan="11"><div class="empty-state"><div class="empty-icon">🛒</div><div class="empty-title">No orders found</div></div></td></tr>`;
+  } else {
+    tbody.innerHTML = slice.map(o=>`<tr>
+      <td class="td-mono">${o.orderId||o.id}</td>
+      <td>${getAffName(o.affiliateId)}</td>
+      <td>${o.customerName||'—'}</td>
+      <td class="td-mono">${o.customerPhone||'—'}</td>
+      <td>${o.product||'—'}</td>
+      <td><span class="badge ${o.productType==='digital'?'badge-approved':'badge-active'}">${(o.productType||'physical').toUpperCase()}</span></td>
+      <td class="td-mono" style="font-weight:700;">${fmtKES(o.amount)}</td>
+      <td class="td-mono" style="color:var(--green);">${fmtKES(calcCommission(o.amount,o.productType))}</td>
+      <td>${statusBadge(o.deliveryStatus||'pending')}</td>
+      <td>${statusBadge(o.status)}${o.flagged?'<span class="badge" style="background:rgba(239,68,68,0.2);color:#ef4444;margin-left:4px;">⚠️FLAG</span>':''}</td>
+      <td class="td-muted">${shortDate(o.date)}</td>
+      <td>
+        <div class="action-wrap">
+          <select class="filter-sel" style="font-size:10px;padding:4px 8px;height:28px;" onchange='updateOrderStatus("${o.id}",this.value)'>
+            <option value="">Update</option>
+            ${['pending','paid','delivered','cancelled','refunded'].map(s=>`<option value="${s}" ${o.status===s?'selected':''}>${s.toUpperCase()}</option>`).join('')}
+          </select>
+        </div>
+      </td>
+    </tr>`).join('');
+  }
+  renderPagination('ordPagination',ordPage,pages,p=>{ordPage=p;renderOrdPage();});
+}
+
+window.openAddOrderModal = function(){
+  document.getElementById('ordId').value = genId('ORD');
+  document.getElementById('ordCustomer').value='';
+  document.getElementById('ordCustomerPhone').value='';
+  document.getElementById('ordProduct').value='';
+  document.getElementById('ordAmount').value='';
+  document.getElementById('ordStatus').value='pending';
+  document.getElementById('commPreview').style.display='none';
+  openModal('addOrderModal');
+};
+
+window.previewCommission = function(){
+  const amt = Number(document.getElementById('ordAmount').value)||0;
+  const type = document.getElementById('ordProductType').value;
+  const comm = calcCommission(amt,type);
+  if(amt>0){
+    document.getElementById('commPreviewAmt').textContent = fmtKES(comm)+' ('+commRate(amt,type)+')';
+    document.getElementById('commPreview').style.display='block';
+  }
+};
+
+window.saveOrder = async function(){
+  const orderId = document.getElementById('ordId').value.trim();
+  const affId   = document.getElementById('ordAffiliate').value;
+  const customer= document.getElementById('ordCustomer').value.trim();
+  const phone   = document.getElementById('ordCustomerPhone').value.trim();
+  const product = document.getElementById('ordProduct').value.trim();
+  const type    = document.getElementById('ordProductType').value;
+  const amount  = Number(document.getElementById('ordAmount').value)||0;
+  const status  = document.getElementById('ordStatus').value;
+  if(!orderId||!affId||!customer||!product||!amount){toast('Fill all required fields.','error');return;}
+  const btn = document.getElementById('saveOrderBtn');
+  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>';
+  try{
+    const generatesComm = (status==='delivered');
+    const comm = generatesComm ? calcCommission(amount,type) : 0;
+    const data = {orderId,affiliateId:affId,customerName:customer,customerPhone:phone,product,productType:type,amount,commission:comm,deliveryStatus:status==='delivered'?'delivered':'pending',status:(status==='delivered'?'paid':status),date:serverTimestamp()};
+    const ref = await addDoc(collection(db,'orders'),data);
+    allOrders.unshift({id:ref.id,...data});
+    if(generatesComm){
+      await createCommission(affId,ref.id,orderId,amount,type,comm);
+      await updateDoc(doc(db,'affiliates',affId),{totalSales:increment(amount),sales:increment(1),updatedAt:serverTimestamp()});
+    }
+    renderOrdersTable();
+    closeModal('addOrderModal');
+    toast('Order saved.','success');
+    await logActivity('order_created',`Order ${orderId} - ${fmtKES(amount)}`,ref.id);
+  }catch(e){toast(e.message,'error');}
+  finally{btn.disabled=false;btn.textContent='Save Order';}
+};
+
+window.updateOrderStatus = async function(id, status){
+  if(!status) return;
+  const o = allOrders.find(x=>x.id===id);
+  if(!o) return;
+  await updateDoc(doc(db,'orders',id),{status,updatedAt:serverTimestamp()});
+  const prevStatus = o.status;
+  o.status = status;
+  // Commission ONLY triggers on 'delivered' — not on 'paid' alone
+  if(status==='delivered' && prevStatus!=='delivered'){
+    const comm = calcCommission(o.amount, o.productType);
+    // Check no duplicate commission already exists
+    const existingComm = allCommissions.find(c=>c.orderId===id||c.orderRef===o.orderId);
+    if(!existingComm){
+      await createCommission(o.affiliateId,id,o.orderId,o.amount,o.productType,comm);
+      await updateDoc(doc(db,'affiliates',o.affiliateId),{
+        totalSales:increment(o.amount), sales:increment(1), updatedAt:serverTimestamp()
+      });
+      // Also update delivery status field
+      await updateDoc(doc(db,'orders',id),{deliveryStatus:'delivered'});
+      toast('Order delivered. Commission of '+fmtKES(comm)+' created.','success');
+    } else {
+      toast('Commission already exists for this order.','info');
+    }
+  } else if((status==='cancelled'||status==='refunded') && prevStatus==='delivered'){
+    // If cancelling/refunding a delivered order, flag for review
+    await updateDoc(doc(db,'orders',id),{flagged:true,flagReason:'Reversed after commission generated'});
+    toast('Order reversed. Please manually review commission for this order.','warning');
+  } else {
+    toast('Order status updated.','success');
+  }
+  renderOrdPage();
+};
+
+/* ══════════════════════════════
+   COMMISSION MANAGEMENT
+══════════════════════════════ */
+async function createCommission(affId, ordDocId, ordId, amount, productType, commAmt){
+  const data = {affiliateId:affId,orderId:ordDocId,orderRef:ordId,orderAmount:amount,productType,rate:commRate(amount,productType),amount:commAmt,status:'pending',createdAt:serverTimestamp()};
+  const ref = await addDoc(collection(db,'commissions'),data);
+  allCommissions.unshift({id:ref.id,...data});
+  // Update pending balance
+  const aff = allAffiliates.find(x=>x.id===affId);
+  if(aff){
+    aff.pendingBalance = (aff.pendingBalance||0)+commAmt;
+    await updateDoc(doc(db,'affiliates',affId),{pendingBalance:increment(commAmt)});
+  }
+  await logActivity('commission_created',`Commission ${fmtKES(commAmt)} for order ${ordId}`,ref.id);
+  updateBadges();
+}
+
+let commPage=1, COMM_PER_PAGE=15, filteredComms=[];
+
+function renderCommissionsTable(){ filteredComms=[...allCommissions]; filterCommissions(); }
+
+window.filterCommissions = function(){
+  const q    = (document.getElementById('commSearch')?.value||'').toLowerCase();
+  const stat = document.getElementById('commStatusFilter')?.value||'';
+  filteredComms = allCommissions.filter(c=>{
+    const mq = !q||getAffName(c.affiliateId).toLowerCase().includes(q)||(c.orderRef||'').toLowerCase().includes(q);
+    const ms = !stat||c.status===stat;
+    return mq&&ms;
+  });
+  commPage=1; renderCommPage();
+  document.getElementById('commCount').textContent = `${filteredComms.length} commissions · Total: ${fmtKES(filteredComms.reduce((s,c)=>s+(Number(c.amount)||0),0))}`;
+};
+
+function renderCommPage(){
+  const tbody = document.getElementById('commissionsTbody');
+  const total = filteredComms.length;
+  const pages = Math.max(1,Math.ceil(total/COMM_PER_PAGE));
+  commPage = Math.min(commPage,pages);
+  const slice = filteredComms.slice((commPage-1)*COMM_PER_PAGE,commPage*COMM_PER_PAGE);
+  if(!slice.length){
+    tbody.innerHTML=`<tr><td colspan="9"><div class="empty-state"><div class="empty-icon">💰</div><div class="empty-title">No commissions found</div></div></td></tr>`;
+  } else {
+    tbody.innerHTML = slice.map(c=>`<tr>
+      <td class="td-mono" style="font-size:10px;">${c.id.substring(0,10)}...</td>
+      <td>${getAffName(c.affiliateId)}</td>
+      <td class="td-mono">${c.orderRef||c.orderId||'—'}</td>
+      <td class="td-mono">${fmtKES(c.orderAmount)}</td>
+      <td><span class="badge badge-active">${c.rate||'—'}</span></td>
+      <td class="td-mono" style="color:var(--gold);font-weight:700;">${fmtKES(c.amount)}</td>
+      <td>${statusBadge(c.status)}</td>
+      <td class="td-muted">${shortDate(c.createdAt)}</td>
+      <td>
+        <div class="action-wrap">
+          ${c.status==='pending'?`
+            <button class="act-btn act-approve" title="Approve" onclick='approveCommission("${c.id}")'>✅</button>
+            <button class="act-btn act-reject"  title="Reject"  onclick='rejectCommission("${c.id}")'>❌</button>`:''}
+          ${c.status==='approved'?`<button class="act-btn act-pay" title="Mark Paid" onclick='payCommission("${c.id}")'>💳</button>`:''}
+        </div>
+      </td>
+    </tr>`).join('');
+  }
+  renderPagination('commPagination',commPage,pages,p=>{commPage=p;renderCommPage();});
+}
+
+window.approveCommission = async function(id){
+  const c = allCommissions.find(x=>x.id===id); if(!c) return;
+  confirm2('Approve Commission',`Approve commission of ${fmtKES(c.amount)} for ${getAffName(c.affiliateId)}?`, async()=>{
+    await updateDoc(doc(db,'commissions',id),{status:'approved',approvedAt:serverTimestamp(),approvedBy:currentAdmin?.uid});
+    c.status='approved';
+    // Move from pending to available balance
+    await updateDoc(doc(db,'affiliates',c.affiliateId),{
+      pendingBalance:increment(-(c.amount)),
+      balance:increment(c.amount),
+      totalEarnings:increment(c.amount)
+    });
+    const aff = allAffiliates.find(x=>x.id===c.affiliateId);
+    if(aff){ aff.pendingBalance=(aff.pendingBalance||0)-c.amount; aff.balance=(aff.balance||0)+c.amount; aff.totalEarnings=(aff.totalEarnings||0)+c.amount; }
+    renderCommPage(); updateBadges();
+    toast('Commission approved.','success');
+    sendSystemNotif(c.affiliateId,'commission_approved','Commission Approved!',`Your commission of ${fmtKES(c.amount)} has been approved and added to your wallet.`);
+    await logActivity('commission_approved',`Commission ${fmtKES(c.amount)} approved`,id);
+  });
+};
+
+window.rejectCommission = async function(id){
+  const c = allCommissions.find(x=>x.id===id); if(!c) return;
+  confirm2('Reject Commission',`Reject commission of ${fmtKES(c.amount)}? This will remove the pending balance.`, async()=>{
+    await updateDoc(doc(db,'commissions',id),{status:'rejected',rejectedAt:serverTimestamp()});
+    c.status='rejected';
+    await updateDoc(doc(db,'affiliates',c.affiliateId),{pendingBalance:increment(-(c.amount))});
+    const aff = allAffiliates.find(x=>x.id===c.affiliateId);
+    if(aff) aff.pendingBalance=(aff.pendingBalance||0)-c.amount;
+    renderCommPage(); updateBadges();
+    toast('Commission rejected.','warning');
+    sendSystemNotif(c.affiliateId,'commission_rejected','Commission Rejected',`Your commission of ${fmtKES(c.amount)} has been rejected. Contact support for assistance.`);
+  });
+};
+
+window.payCommission = async function(id){
+  const c = allCommissions.find(x=>x.id===id); if(!c) return;
+  confirm2('Mark Commission Paid',`Mark ${fmtKES(c.amount)} as paid to ${getAffName(c.affiliateId)}?`, async()=>{
+    await updateDoc(doc(db,'commissions',id),{status:'paid',paidAt:serverTimestamp()});
+    c.status='paid';
+    renderCommPage();
+    toast('Commission marked as paid.','success');
+    sendSystemNotif(c.affiliateId,'commission_paid','Commission Paid!',`Your commission of ${fmtKES(c.amount)} has been paid.`);
+  });
+};
+
+/* ══════════════════════════════
+   WITHDRAWALS
+══════════════════════════════ */
+let wdPage=1, WD_PER_PAGE=15, filteredWds=[];
+
+function renderWithdrawalsTable(){ filteredWds=[...allWithdrawals]; filterWithdrawals(); }
+
+window.filterWithdrawals = function(){
+  const q    = (document.getElementById('wdSearch')?.value||'').toLowerCase();
+  const stat = document.getElementById('wdStatusFilter')?.value||'';
+  filteredWds = allWithdrawals.filter(w=>{
+    const mq = !q||getAffName(w.affiliateId).toLowerCase().includes(q)||(w.phone||'').includes(q);
+    const ms = !stat||w.status===stat;
+    return mq&&ms;
+  });
+  wdPage=1; renderWdPage();
+};
+
+function renderWdPage(){
+  const tbody = document.getElementById('withdrawalsTbody');
+  const total = filteredWds.length;
+  const pages = Math.max(1,Math.ceil(total/WD_PER_PAGE));
+  wdPage = Math.min(wdPage,pages);
+  const slice = filteredWds.slice((wdPage-1)*WD_PER_PAGE,wdPage*WD_PER_PAGE);
+  if(!slice.length){
+    tbody.innerHTML=`<tr><td colspan="7"><div class="empty-state"><div class="empty-icon">💸</div><div class="empty-title">No withdrawals yet</div></div></td></tr>`;
+  } else {
+    tbody.innerHTML = slice.map(w=>`<tr>
+      <td class="td-mono" style="font-size:10px;">${w.id.substring(0,12)}...</td>
+      <td>${getAffName(w.affiliateId)}</td>
+      <td class="td-mono">${w.phone||'—'}</td>
+      <td class="td-mono" style="font-weight:700;color:var(--gold);">${fmtKES(w.amount)}</td>
+      <td>${statusBadge(w.status)}</td>
+      <td class="td-muted">${shortDate(w.requestedAt)}</td>
+      <td>
+        <div class="action-wrap">
+          ${w.status==='pending'?`
+            <button class="act-btn act-approve" title="Approve" onclick='approveWithdrawal("${w.id}")'>✅</button>
+            <button class="act-btn act-reject"  title="Reject"  onclick='rejectWithdrawal("${w.id}")'>❌</button>`:''}
+          ${w.status==='approved'?`<button class="act-btn act-pay" title="Mark Paid" onclick='payWithdrawal("${w.id}")'>💳</button>`:''}
+          ${w.phone?`<a href="https://wa.me/254${w.phone.replace(/^0/,'').replace(/\s/,'')}?text=${encodeURIComponent('Hi! Your Cozycabin affiliate withdrawal of '+fmtKES(w.amount)+' has been processed.')}" target="_blank" class="act-btn" style="background:rgba(37,211,102,0.1);color:#25d366;font-size:11px;width:auto;padding:0 8px;">WA</a>`:''}
+        </div>
+      </td>
+    </tr>`).join('');
+  }
+  renderPagination('wdPagination',wdPage,pages,p=>{wdPage=p;renderWdPage();});
+}
+
+function updateWdStats(){
+  const total    = allWithdrawals.reduce((s,w)=>s+(Number(w.amount)||0),0);
+  const pending  = allWithdrawals.filter(w=>w.status==='pending').reduce((s,w)=>s+(Number(w.amount)||0),0);
+  const approved = allWithdrawals.filter(w=>w.status==='approved').reduce((s,w)=>s+(Number(w.amount)||0),0);
+  const paid     = allWithdrawals.filter(w=>w.status==='paid').reduce((s,w)=>s+(Number(w.amount)||0),0);
+  document.getElementById('wdTotalAmt').textContent  = fmtKES(total);
+  document.getElementById('wdPendingAmt').textContent= fmtKES(pending);
+  document.getElementById('wdApprovedAmt').textContent= fmtKES(approved);
+  document.getElementById('wdPaidAmt').textContent   = fmtKES(paid);
+}
+
+window.approveWithdrawal = function(id){
+  const w = allWithdrawals.find(x=>x.id===id); if(!w) return;
+  confirm2('Approve Withdrawal',`Approve withdrawal of ${fmtKES(w.amount)} for ${getAffName(w.affiliateId)}?`, async()=>{
+    await updateDoc(doc(db,'withdrawals',id),{status:'approved',approvedAt:serverTimestamp(),approvedBy:currentAdmin?.uid});
+    w.status='approved';
+    renderWithdrawalsTable(); updateWdStats(); updateBadges();
+    toast('Withdrawal approved.','success');
+    sendSystemNotif(w.affiliateId,'withdrawal_approved','Withdrawal Approved!',`Your withdrawal of ${fmtKES(w.amount)} has been approved and will be sent to your M-Pesa shortly.`);
+    await logActivity('withdrawal_approved',`Withdrawal ${fmtKES(w.amount)} approved`,id);
+  });
+};
+
+window.rejectWithdrawal = function(id){
+  const w = allWithdrawals.find(x=>x.id===id); if(!w) return;
+  confirm2('Reject Withdrawal',`Reject withdrawal of ${fmtKES(w.amount)}? The amount will be returned to the affiliate's wallet.`, async()=>{
+    await updateDoc(doc(db,'withdrawals',id),{status:'rejected',rejectedAt:serverTimestamp()});
+    w.status='rejected';
+    // Refund balance
+    await updateDoc(doc(db,'affiliates',w.affiliateId),{balance:increment(w.amount)});
+    const aff = allAffiliates.find(x=>x.id===w.affiliateId);
+    if(aff) aff.balance=(aff.balance||0)+w.amount;
+    renderWithdrawalsTable(); updateWdStats(); updateBadges();
+    toast('Withdrawal rejected. Balance refunded.','warning');
+    sendSystemNotif(w.affiliateId,'withdrawal_rejected','Withdrawal Rejected',`Your withdrawal of ${fmtKES(w.amount)} has been rejected. The amount has been returned to your wallet.`);
+  });
+};
+
+window.payWithdrawal = function(id){
+  const w = allWithdrawals.find(x=>x.id===id); if(!w) return;
+  confirm2('Mark Withdrawal Paid',`Mark ${fmtKES(w.amount)} as paid to ${getAffName(w.affiliateId)} via M-Pesa?`, async()=>{
+    await updateDoc(doc(db,'withdrawals',id),{status:'paid',paidAt:serverTimestamp()});
+    w.status='paid';
+    renderWithdrawalsTable(); updateWdStats();
+    toast('Withdrawal marked as paid.','success');
+    sendSystemNotif(w.affiliateId,'withdrawal_paid','Withdrawal Paid!',`Your withdrawal of ${fmtKES(w.amount)} has been sent to your M-Pesa successfully.`);
+    await logActivity('withdrawal_paid',`Withdrawal ${fmtKES(w.amount)} paid`,id);
+  });
+};
+
+/* ══════════════════════════════
+   TRANSACTIONS
+══════════════════════════════ */
+let txPage=1, TX_PER_PAGE=20, filteredTx=[];
+
+window.setDateFilter = function(f, btn){
+  dateFilter = f;
+  document.querySelectorAll('.date-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  loadTransactions();
+};
+
+async function loadTransactions(){
+  const txBody = document.getElementById('txTbody');
+  txBody.innerHTML = `<tr><td colspan="6"><div class="loading-overlay"><div class="spinner"></div> Loading...</div></td></tr>`;
+  const now = new Date();
+  let cutoff = null;
+  if(dateFilter==='today'){ cutoff=new Date(now); cutoff.setHours(0,0,0,0); }
+  else if(dateFilter==='7d'){ cutoff=new Date(now-7*86400000); }
+  else if(dateFilter==='30d'){ cutoff=new Date(now-30*86400000); }
+
+  // Build from commissions + withdrawals
+  const rows = [];
+  allCommissions.forEach(c=>{
+    const d = c.createdAt?.toDate?c.createdAt.toDate():new Date(c.createdAt||0);
+    if(cutoff && d<cutoff) return;
+    rows.push({type:'commission',typeLbl:'💰 Commission',aff:getAffName(c.affiliateId),amount:c.amount,ref:c.orderRef||c.orderId,status:c.status,date:c.createdAt});
+  });
+  allWithdrawals.forEach(w=>{
+    const d = w.requestedAt?.toDate?w.requestedAt.toDate():new Date(w.requestedAt||0);
+    if(cutoff && d<cutoff) return;
+    rows.push({type:'withdrawal',typeLbl:'💸 Withdrawal',aff:getAffName(w.affiliateId),amount:w.amount,ref:w.id.substring(0,10),status:w.status,date:w.requestedAt});
+  });
+  rows.sort((a,b)=>{
+    const da = a.date?.toDate?a.date.toDate():new Date(a.date||0);
+    const db2 = b.date?.toDate?b.date.toDate():new Date(b.date||0);
+    return db2-da;
+  });
+  filteredTx = rows; txPage=1; renderTxPage();
+}
+
+function renderTxPage(){
+  const tbody = document.getElementById('txTbody');
+  const total = filteredTx.length;
+  const pages = Math.max(1,Math.ceil(total/TX_PER_PAGE));
+  txPage = Math.min(txPage,pages);
+  const slice = filteredTx.slice((txPage-1)*TX_PER_PAGE,txPage*TX_PER_PAGE);
+  if(!slice.length){
+    tbody.innerHTML=`<tr><td colspan="6"><div class="empty-state"><div class="empty-icon">📋</div><div class="empty-title">No transactions for this period</div></div></td></tr>`;
+  } else {
+    tbody.innerHTML = slice.map(t=>`<tr>
+      <td>${t.typeLbl}</td>
+      <td>${t.aff}</td>
+      <td class="td-mono" style="color:var(--gold);font-weight:700;">${fmtKES(t.amount)}</td>
+      <td class="td-mono td-muted" style="font-size:11px;">${t.ref||'—'}</td>
+      <td>${statusBadge(t.status)}</td>
+      <td class="td-muted">${shortDate(t.date)}</td>
+    </tr>`).join('');
+  }
+  renderPagination('txPagination',txPage,pages,p=>{txPage=p;renderTxPage();});
+}
+
+/* ══════════════════════════════
+   LEADERBOARD
+══════════════════════════════ */
+window.renderLeaderboard = function(){
+  const metric = document.getElementById('lbMetric').value;
+  const sorted = [...allAffiliates].filter(a=>a.status!=='suspended')
+    .sort((a,b)=>{
+      if(metric==='conversionRate'){
+        const ra = a.clicks?(allOrders.filter(o=>o.affiliateId===a.id).length/(a.clicks||1)):0;
+        const rb = b.clicks?(allOrders.filter(o=>o.affiliateId===b.id).length/(b.clicks||1)):0;
+        return rb-ra;
+      }
+      return (Number(b[metric])||0)-(Number(a[metric])||0);
+    }).slice(0,20);
+
+  const fmtVal = (a,m) => {
+    if(m==='conversionRate'){
+      const r = a.clicks?(allOrders.filter(o=>o.affiliateId===a.id).length/(a.clicks||1)):0;
+      return (r*100).toFixed(1)+'%';
+    }
+    if(m==='totalEarnings'||m==='totalSales') return fmtKES(a[m]||0);
+    return (a[m]||0).toLocaleString();
+  };
+
+  document.getElementById('leaderboardList').innerHTML = sorted.length
+    ? sorted.map((a,i)=>`
+      <div class="lb-row" style="${i<3?'border-color:rgba(255,215,0,0.2);':''}">
+        <div class="lb-rank ${i===0?'lb-rank-1':i===1?'lb-rank-2':i===2?'lb-rank-3':'lb-rank-n'}">${i+1}</div>
+        <div>
+          <div class="lb-name">${a.name||'—'}</div>
+          <div class="lb-code">${a.referralCode||''} · ${a.phone||a.email||''}</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="lb-val">${fmtVal(a,metric)}</div>
+          <div class="lb-sub">${{totalEarnings:'Earnings',totalSales:'Sales',clicks:'Clicks',conversionRate:'Rate'}[metric]}</div>
+        </div>
+      </div>`).join('')
+    : `<div class="empty-state"><div class="empty-icon">🏆</div><div class="empty-title">No data yet</div><div class="empty-sub">Affiliate data will appear here as they generate activity.</div></div>`;
+};
+
+/* ══════════════════════════════
+   CLICKS TABLE
+══════════════════════════════ */
+let clickPage=1, CLICK_PER_PAGE=20, filteredClicks=[];
+
+function renderClicksTable(){ filteredClicks=[...allClicks]; filterClicks(); }
+
+window.filterClicks = function(){
+  const q = (document.getElementById('clickSearch')?.value||'').toLowerCase();
+  filteredClicks = allClicks.filter(c=>{
+    return !q||getAffName(c.affiliateId).toLowerCase().includes(q)||(c.device||'').toLowerCase().includes(q)||(c.browser||'').toLowerCase().includes(q)||(c.referralCode||'').toLowerCase().includes(q);
+  });
+  clickPage=1; renderClickPage();
+};
+
+function renderClickPage(){
+  const tbody = document.getElementById('clicksTbody');
+  const total = filteredClicks.length;
+  const pages = Math.max(1,Math.ceil(total/CLICK_PER_PAGE));
+  clickPage = Math.min(clickPage,pages);
+  const slice = filteredClicks.slice((clickPage-1)*CLICK_PER_PAGE,clickPage*CLICK_PER_PAGE);
+  if(!slice.length){
+    tbody.innerHTML=`<tr><td colspan="6"><div class="empty-state"><div class="empty-icon">👆</div><div class="empty-title">No click data</div></div></td></tr>`;
+  } else {
+    tbody.innerHTML = slice.map(c=>`<tr>
+      <td>${getAffName(c.affiliateId)}</td>
+      <td class="td-mono">${c.referralCode||'—'}</td>
+      <td class="td-muted">${c.device||'—'}</td>
+      <td class="td-muted">${c.browser||'—'}</td>
+      <td class="td-muted" style="font-size:11px;max-width:150px;overflow:hidden;text-overflow:ellipsis;">${c.referrer||'Direct'}</td>
+      <td class="td-muted">${fmtDate(c.timestamp)}</td>
+    </tr>`).join('');
+  }
+  renderPagination('clickPagination',clickPage,pages,p=>{clickPage=p;renderClickPage();});
+}
+
+/* ══════════════════════════════
+   NOTIFICATIONS
+══════════════════════════════ */
+function renderNotifications(){
+  const unread = allNotifications.filter(n=>!n.read).length;
+  document.getElementById('notifCount').textContent = `${allNotifications.length} total · ${unread} unread`;
+  const unreadBadge = document.getElementById('unreadNotifBadge');
+  const topDot = document.getElementById('topNotifDot');
+  if(unread>0){ unreadBadge.textContent=unread; unreadBadge.style.display='inline-flex'; topDot.style.display='block'; }
+  else{ unreadBadge.style.display='none'; topDot.style.display='none'; }
+
+  const icons = {commission_approved:'✅',commission_rejected:'❌',commission_paid:'💳',withdrawal_approved:'💸',withdrawal_paid:'✅',withdrawal_rejected:'❌',account_suspended:'⚠️',info:'ℹ️',success:'✅',warning:'⚠️',error:'🚨'};
+  const colors = {success:'var(--green-soft)',warning:'rgba(251,191,36,0.1)',error:'var(--red-soft)',info:'var(--blue-soft)'};
+
+  document.getElementById('notifList').innerHTML = allNotifications.length
+    ? allNotifications.map(n=>`
+      <div class="notif-item ${n.read?'':'unread'}">
+        <div class="notif-icon" style="background:${colors[n.type]||'var(--bg3)'};">${icons[n.eventType]||icons[n.type]||'🔔'}</div>
+        <div class="notif-body">
+          <div class="notif-title">${n.title||'Notification'}</div>
+          <div class="notif-text">${n.message||''}</div>
+          <div class="notif-time">${n.affiliateId&&n.affiliateId!=='all'?('To: '+getAffName(n.affiliateId)+' · '):''}${fmtDate(n.createdAt)}</div>
+        </div>
+        ${!n.read?'<div class="notif-unread-dot"></div>':''}
+      </div>`).join('')
+    : `<div class="empty-state"><div class="empty-icon">🔔</div><div class="empty-title">No notifications</div></div>`;
+}
+
+window.markAllNotifsRead = async function(){
+  const unread = allNotifications.filter(n=>!n.read);
+  for(const n of unread){
+    await updateDoc(doc(db,'notifications',n.id),{read:true});
+    n.read = true;
+  }
+  renderNotifications();
+  toast('All notifications marked as read.','success');
+};
+
+window.openSendNotifModal = function(){
+  // Populate recipients
+  const sel = document.getElementById('notifRecipient');
+  sel.innerHTML = '<option value="all">All Affiliates</option>' +
+    allAffiliates.map(a=>`<option value="${a.id}">${a.name||a.email}</option>`).join('');
+  openModal('sendNotifModal');
+};
+
+window.sendNotification = async function(){
+  const recipient = document.getElementById('notifRecipient').value;
+  const title     = document.getElementById('notifTitle').value.trim();
+  const message   = document.getElementById('notifMessage').value.trim();
+  const type      = document.getElementById('notifType').value;
+  if(!title||!message){ toast('Enter title and message.','error'); return; }
+  try{
+    if(recipient==='all'){
+      for(const a of allAffiliates){
+        await sendSystemNotif(a.id, type, title, message);
+      }
+      toast(`Notification sent to all ${allAffiliates.length} affiliates.`,'success');
+    } else {
+      await sendSystemNotif(recipient, type, title, message);
+      toast('Notification sent.','success');
+    }
+    closeModal('sendNotifModal');
+    await loadNotifications();
+  }catch(e){ toast(e.message,'error'); }
+};
+
+async function sendSystemNotif(affiliateId, eventType, title, message){
+  const data = {affiliateId,eventType,title,message,type:eventType.includes('approved')||eventType.includes('paid')?'success':eventType.includes('rejected')||eventType.includes('suspended')?'error':'info',read:false,createdAt:serverTimestamp()};
+  const ref = await addDoc(collection(db,'notifications'),data);
+  allNotifications.unshift({id:ref.id,...data});
+  renderNotifications();
+}
+
+/* ══════════════════════════════
+   ACTIVITY LOG
+══════════════════════════════ */
+async function logActivity(type, description, refId=''){
+  try{
+    await addDoc(collection(db,'activity_logs'),{type,description,refId,adminId:currentAdmin?.uid,adminEmail:currentAdmin?.email,timestamp:serverTimestamp()});
+  }catch(e){}
+}
+
+/* ══════════════════════════════
+   BADGES
+══════════════════════════════ */
+function updateBadges(){
+  const pc = allCommissions.filter(c=>c.status==='pending').length;
+  const pw = allWithdrawals.filter(w=>w.status==='pending').length;
+  const pb = document.getElementById('pendingCommBadge');
+  const wb = document.getElementById('pendingWdBadge');
+  if(pc>0){ pb.textContent=pc; pb.style.display='inline-flex'; } else pb.style.display='none';
+  if(pw>0){ wb.textContent=pw; wb.style.display='inline-flex'; } else wb.style.display='none';
+}
+
+/* ══════════════════════════════
+   PAGINATION HELPER
+══════════════════════════════ */
+function renderPagination(containerId, current, total, cb){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  if(total<=1){ el.innerHTML=''; return; }
+  const start = (current-1)*15+1;
+  const end   = Math.min(current*15, total*15);
+  el.innerHTML = `
+    <div class="page-info">Page ${current} of ${total}</div>
+    <div class="page-btns">
+      <button class="page-btn" ${current<=1?'disabled':''} onclick="(${cb.toString()})(${current-1})">←</button>
+      ${Array.from({length:Math.min(total,5)},(_,i)=>{
+        const p = Math.max(1,Math.min(current-2+i,total-4+i));
+        return `<button class="page-btn ${p===current?'active':''}" onclick="(${cb.toString()})(${p})">${p}</button>`;
+      }).join('')}
+      <button class="page-btn" ${current>=total?'disabled':''} onclick="(${cb.toString()})(${current+1})">→</button>
+    </div>`;
+}
+
+/* ══════════════════════════════
+   CONFIRM DIALOG
+══════════════════════════════ */
+function confirm2(title, msg, cb){
+  document.getElementById('confirmTitle').textContent = title;
+  document.getElementById('confirmMsg').textContent = msg;
+  document.getElementById('confirmOkBtn').onclick = ()=>{ closeModal('confirmModal'); cb(); };
+  openModal('confirmModal');
+}
+
+/* ══════════════════════════════
+   MODAL HELPERS
+══════════════════════════════ */
+window.openModal = function(id){ document.getElementById(id).classList.add('open'); };
+window.closeModal = function(id){ document.getElementById(id).classList.remove('open'); };
+document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('open'); }));
+
+/* ══════════════════════════════
+   NAV
+══════════════════════════════ */
+const PAGE_TITLES = {
+  dashboard:'Dashboard',affiliates:'Affiliates',orders:'Orders',commissions:'Commissions',
+  withdrawals:'Withdrawals',transactions:'Transactions',leaderboard:'Leaderboard',
+  clicks:'Click Tracking',notifications:'Notifications',settings:'Settings'
+};
+
+window.showPage = function(id, btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id)?.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.getElementById('topbarTitle').textContent = PAGE_TITLES[id]||id;
+  closeSidebar();
+  // Lazy loads
+  if(id==='leaderboard') renderLeaderboard();
+  if(id==='transactions') loadTransactions();
+};
+
+window.toggleSidebar = function(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('visible');
+};
+window.closeSidebar = function(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('visible');
+};
+
+/* ══════════════════════════════
+   POPULATE SELECTS
+══════════════════════════════ */
+function populateAffiliateSelects(){
+  const opts = allAffiliates.map(a=>`<option value="${a.id}">${a.name||a.email} (${a.referralCode||''})</option>`).join('');
+  const sel = document.getElementById('ordAffiliate');
+  if(sel) sel.innerHTML = `<option value="">Select Affiliate</option>${opts}`;
+}
+
+/* ══════════════════════════════
+   SETTINGS
+══════════════════════════════ */
+window.saveAdminSettings = function(){
+  toast('Settings saved.','success');
+};
+
+/* ══════════════════════════════
+   CSV EXPORT
+══════════════════════════════ */
+function downloadCSV(rows, filename){
+  const csv = rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a'); a.href=url; a.download=filename; a.click(); URL.revokeObjectURL(url);
+}
+
+</script>
+</body>
+</html>
