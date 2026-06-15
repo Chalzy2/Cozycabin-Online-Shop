@@ -665,28 +665,28 @@ floodlights: [
         name: "100W Solar Indoor Ceiling Light",
         price: 2500,
         oldPrice: 3500,
-        image: "Images/Sol-cl100w.webp",
+        image: "Images/solarcl100w.webp",
         description: "Solar indoor ceiling light with remote control and 3 lighting colors."
       },
       {
         name: "200W Solar Indoor Ceiling Light",
         price: 3500,
         oldPrice: 5000,
-        image: "Images/Sol-cl200w.webp",
+        image: "Images/solarcl200w.webp",
         description: "Solar indoor ceiling light with remote control and 3 lighting colors."
       },
       {
         name: "300W Solar Indoor Ceiling Light",
         price: 4500,
         oldPrice: 6500,
-        image: "Images/Sol-cl300w.webp",
+        image: "Images/streetl3000w.webp",
         description: "Solar indoor ceiling light with remote control and 3 lighting colors."
       },
       {
         name: "400W Solar Indoor Ceiling Light",
         price: 5500,
         oldPrice: 7500,
-        image: "Images/Sol-cl400w.webp",
+        image: "Images/solarcl400w.webp",
         description: "Solar indoor ceiling light with remote control and 3 lighting colors."
       }
     ]
