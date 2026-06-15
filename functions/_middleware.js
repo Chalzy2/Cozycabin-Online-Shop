@@ -82,8 +82,8 @@ const PRODUCTS = {
     ["Solar Street Light 200W", 3500, "Images/cozycabin-200w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, bright LED illumination, remote control included and no wiring required."],
     ["Solar Street Light 300W", 4000, "Images/cozycabin-300w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, bright LED illumination, remote control included and no wiring required."],
     ["Solar Street Light 400W", 4500, "Images/cozycabin-400w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, bright LED illumination, remote control included and no wiring required."]
-    ["1000W Solar Street Light", 7500, "Images/streetl1000w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, ultra-bright LED illumination, remote control included and no wiring required."],
-    ["2000W Solar Street Light", 8500, "Images/streetl2000w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, ultra-bright LED illumination, remote control included and no wiring required."],
+    ["1000W Solar Street Light", 7500, "Images/Streetl1000w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, ultra-bright LED illumination, remote control included and no wiring required."],
+    ["2000W Solar Street Light", 8500, "Images/Streetl2000w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, ultra-bright LED illumination, remote control included and no wiring required."],
     ["3000W Solar Street Light", 10500, "Images/streetl3000w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, ultra-bright LED illumination, remote control included and no wiring required."],
     ],
   floodlights: [
