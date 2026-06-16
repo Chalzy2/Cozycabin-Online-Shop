@@ -492,7 +492,122 @@ var products = {
      }
     ]
    }
-  ],     
+ ],
+
+    
+      
+Panels:  [   
+      
+{
+  title: "Solarmax Solar Panels",
+  company: "Solarmax",
+  productType: "variant",
+
+  description: "High-quality Solarmax solar panels with high conversion efficiency, durable aluminium frame and weather-resistant design. Ideal for homes, businesses, solar backup systems, water pumps, CCTV systems and off-grid installations.",
+
+  video: "Videos/solarmax-panels-tiktok.mp4",
+
+  features: [
+    "High Conversion Efficiency",
+    "Monocrystalline Solar Technology",
+    "Weather Resistant Design",
+    "Durable Aluminium Frame",
+    "Tempered Glass Protection",
+    "Low Maintenance",
+    "Long Service Life",
+    "Suitable for Homes & Businesses",
+    "Reliable Off-Grid Power Solution"
+  ],
+
+  variants: [
+
+    {
+      name: "Solarmax 10W Panel",
+      price: 1200,
+      description: "10W compact solar panel suitable for small lighting and charging systems.",
+      images: ["Images/solarmax-10w.webp"]
+    },
+    {
+      name: "Solarmax 15W Panel",
+      price: 1500,
+      description: "15W solar panel for home lighting and small solar applications.",
+      images: ["Images/solarmax-15w.webp"]
+    },
+    {
+      name: "Solarmax 20W Panel",
+      price: 1800,
+      description: "20W efficient solar panel ideal for lighting and charging batteries.",
+      images: ["Images/solarmax-20w.webp"]
+    },
+    {
+      name: "Solarmax 30W Panel",
+      price: 2300,
+      description: "30W durable solar panel with reliable power generation.",
+      images: ["Images/solarmax-30w.webp"]
+    },
+    {
+      name: "Solarmax 40W Panel",
+      price: 2600,
+      description: "40W high-efficiency solar panel for home solar systems.",
+      images: ["Images/solarmax-40w.webp"]
+    },
+    {
+      name: "Solarmax 50W Panel",
+      price: 2900,
+      description: "50W solar panel with stable power output and durable design.",
+      images: ["Images/solarmax-50w.webp"]
+    },
+    {
+      name: "Solarmax 60W Panel",
+      price: 3000,
+      description: "60W solar panel suitable for lighting, TVs and battery charging.",
+      images: ["Images/solarmax-60w.webp"]
+    },
+    {
+      name: "Solarmax 80W Panel",
+      price: 4500,
+      description: "80W high-performance solar panel for medium-sized solar setups.",
+      images: ["Images/solarmax-80w.webp"]
+    },
+    {
+      name: "Solarmax 100W Panel",
+      price: 5900,
+      description: "100W solar panel with efficient energy conversion and durable build.",
+      images: ["Images/solarmax-100w.webp"]
+    },
+    {
+      name: "Solarmax 120W Panel",
+      price: 7000,
+      description: "120W solar panel ideal for homes, businesses and backup systems.",
+      images: ["Images/solarmax-120w.webp"]
+    },
+    {
+      name: "Solarmax 150W Panel",
+      price: 7500,
+      description: "150W powerful solar panel with excellent charging efficiency.",
+      images: ["Images/solarmax-150w.webp"]
+    },
+    {
+      name: "Solarmax 200W Panel",
+      price: 9500,
+      description: "200W premium solar panel for larger solar installations.",
+      images: ["Images/solarmax-200w.webp"]
+    },
+    {
+      name: "Solarmax 250W Panel",
+      price: 10500,
+      description: "250W high-output solar panel with long-lasting performance.",
+      images: ["Images/solarmax-250w.webp"]
+    },
+    {
+      name: "Solarmax 300W Panel",
+      price: 11500,
+      description: "300W premium solar panel offering maximum efficiency and reliable power generation.",
+      images: ["Images/solarmax-300w.webp"]
+      }
+    ]
+   }
+ ],
 streetlights: [
   {
     title: "Solar Street Lights (100W - 400W)",
