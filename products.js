@@ -545,10 +545,10 @@ var products = {
         oldPrice: 7500,
         image: "Images/solarcl400w.webp",
         description: "Solar indoor ceiling light with remote control and 3 lighting colors."
-      }
-    ]
-  },
- ],
+        }
+       ]
+     }
+   ],
 panels: [
   {
      title: "Solarmax Solar Panels",
@@ -568,7 +568,7 @@ panels: [
     "Suitable for Homes & Businesses",
     "Ideal for Solar Backup Systems",
     "Reliable Off-Grid Power Solution"
-  ],
+    ],
 
   variants: [
 
@@ -579,7 +579,6 @@ panels: [
       description: "10W compact solar panel suitable for small lighting and charging systems.",
       images: ["Images/solarmax-10w.webp"]
     },
-
     {
       name: "Solarmax 15W Panel",
       price: 1500,
@@ -587,7 +586,6 @@ panels: [
       description: "15W solar panel for home lighting and small solar applications.",
       images: ["Images/solamax-15w.webp"]
     },
-
     {
       name: "Solarmax 20W Panel",
       price: 1800,
@@ -595,7 +593,6 @@ panels: [
       description: "20W efficient solar panel ideal for lighting and charging batteries.",
       images: ["Images/solarmax-20w.webp"]
     },
-
     {
       name: "Solarmax 30W Panel",
       price: 2300,
@@ -603,7 +600,6 @@ panels: [
       description: "30W durable solar panel with reliable power generation.",
       images: ["Images/solarmax-30w.webp"]
     },
-
     {
       name: "Solarmax 40W Panel",
       price: 2600,
@@ -611,7 +607,6 @@ panels: [
       description: "40W high-efficiency solar panel for home solar systems.",
       images: ["Images/solarmax-40w.webp"]
     },
-
     {
       name: "Solarmax 50W Panel",
       price: 2900,
@@ -619,7 +614,6 @@ panels: [
       description: "50W solar panel with stable power output and durable design.",
       images: ["Images/solarmax-50w.webp"]
     },
-
     {
       name: "Solarmax 60W Panel",
       price: 3000,
@@ -627,7 +621,6 @@ panels: [
       description: "60W solar panel suitable for lighting, TVs and battery charging.",
       images: ["Images/solarmax-60w.webp"]
     },
-
     {
       name: "Solarmax 80W Panel",
       price: 4500,
@@ -635,7 +628,6 @@ panels: [
       description: "80W high-performance solar panel for medium-sized solar setups.",
       images: ["Images/solarmax-80w.webp"]
     },
-
     {
       name: "Solarmax 100W Panel",
       price: 5900,
@@ -643,7 +635,6 @@ panels: [
       description: "100W solar panel with efficient energy conversion and durable build.",
       images: ["Images/solarmax-100w.webp"]
     },
-
     {
       name: "Solarmax 120W Panel",
       price: 7000,
@@ -651,7 +642,6 @@ panels: [
       description: "120W solar panel ideal for homes, businesses and backup systems.",
       images: ["Images/solarmax-120w.webp"]
     },
-
     {
       name: "Solarmax 150W Panel",
       price: 7500,
@@ -659,7 +649,6 @@ panels: [
       description: "150W powerful solar panel with excellent charging efficiency.",
       images: ["Images/solarmax-150w.webp"]
     },
-
     {
       name: "Solarmax 200W Panel",
       price: 9500,
@@ -667,7 +656,6 @@ panels: [
       description: "200W premium solar panel for larger solar installations.",
       images: ["Images/solarmax-200w.webp"]
     },
-
     {
       name: "Solarmax 250W Panel",
       price: 10500,
@@ -675,7 +663,6 @@ panels: [
       description: "250W high-output solar panel with long-lasting performance.",
       images: ["Images/solarmax-250w.webp"]
     },
-
     {
       name: "Solarmax 300W Panel",
       price: 11500,
@@ -685,7 +672,7 @@ panels: [
     }
    ]
   }
-b],
+],
   batteries: [
    {
       title: "Solar GEL Batteries",
