@@ -77,7 +77,30 @@ const PRODUCTS = {
     ["Muchen Vacuum Flask 800ml",    900,  "Images/551394Flsk.webp",   "Elegant Muchen insulated flask with premium build quality and stylish design."],
     ["Muchen Vacuum Flask 1000ml",  1000,  "Images/551394Flsk.webp",   "Large capacity Muchen vacuum flask — keeps drinks at perfect temperature all day long."],
   ],
-    streetlights: [
+  panels: [
+  ["Solarmax 10W Panel", 1200, "Images/solarmax-10w.webp", "10W compact solar panel suitable for small lighting and charging systems."],
+  ["Solarmax 15W Panel", 1500, "Images/solarmax-15w.webp", "15W solar panel for home lighting and small solar applications."],
+  ["Solarmax 20W Panel", 1800, "Images/solarmax-20w.webp", "20W efficient solar panel ideal for lighting and charging batteries."],
+  ["Solarmax 30W Panel", 2300, "Images/solarmax-30w.webp", "30W durable solar panel with reliable power generation."],
+  ["Solarmax 40W Panel", 2600, "Images/solarmax-40w.webp", "40W high-efficiency solar panel for home solar systems."],
+  ["Solarmax 50W Panel", 2900, "Images/solarmax-50w.webp", "50W solar panel with stable power output and durable design."],
+  ["Solarmax 60W Panel", 3000, "Images/solarmax-60w.webp", "60W solar panel suitable for lighting, TVs and battery charging."],
+  ["Solarmax 80W Panel", 4500, "Images/solarmax-80w.webp", "80W high-performance solar panel for medium-sized solar setups."],
+  ["Solarmax 100W Panel", 5900, "Images/solarmax-100w.webp", "100W solar panel with efficient energy conversion and durable build."],
+  ["Solarmax 120W Panel", 7000, "Images/solarmax-120w.webp", "120W solar panel ideal for homes, businesses and backup systems."],
+  ["Solarmax 150W Panel", 7500, "Images/solarmax-150w.webp", "150W powerful solar panel with excellent charging efficiency."],
+  ["Solarmax 200W Panel", 9500, "Images/solarmax-200w.webp", "200W premium solar panel for larger solar installations."],
+  ["Solarmax 250W Panel", 10500, "Images/solarmax-250w.webp", "250W high-output solar panel with long-lasting performance."],
+  ["Solarmax 300W Panel", 11500, "Images/solarmax-300w.webp", "300W premium solar panel offering maximum efficiency and reliable power generation."]
+],
+   solarCeiling: [
+  ["50W Solar Indoor Ceiling Light",  2500, "Images/Solcl50w.webp",    "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["100W Solar Indoor Ceiling Light", 2500, "Images/solarcl100w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["200W Solar Indoor Ceiling Light", 3500, "Images/solarcl200w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["300W Solar Indoor Ceiling Light", 4500, "Images/solarcel300w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+  ["400W Solar Indoor Ceiling Light", 5500, "Images/solarcl400w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+], 
+  streetlights: [
     ["Solar Street Light 100W", 2500, "Images/cozycabin-100w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, bright LED illumination, remote control included and no wiring required."],
     ["Solar Street Light 200W", 3500, "Images/cozycabin-200w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, bright LED illumination, remote control included and no wiring required."],
     ["Solar Street Light 300W", 4000, "Images/cozycabin-300w.webp", "Waterproof solar street light with automatic dusk-to-dawn sensor, bright LED illumination, remote control included and no wiring required."],
@@ -93,15 +116,14 @@ const PRODUCTS = {
   ["200W Solar Security Floodlight", 9000,  "Images/solar-200w.jpg", "Waterproof solar floodlight with automatic day/night sensor, IP66 waterproof and remote control included."],
   ["300W Solar Security Floodlight", 12500, "Images/solar-300w.jpg", "Waterproof solar floodlight with automatic day/night sensor, IP66 waterproof and remote control included."],
 ],
-
-solarCeiling: [
-  ["50W Solar Indoor Ceiling Light",  2500, "Images/Solcl50w.webp",    "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
-  ["100W Solar Indoor Ceiling Light", 2500, "Images/solarcl100w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
-  ["200W Solar Indoor Ceiling Light", 3500, "Images/solarcl200w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
-  ["300W Solar Indoor Ceiling Light", 4500, "Images/solarcel300w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
-  ["400W Solar Indoor Ceiling Light", 5500, "Images/solarcl400w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
+jsotussolar: [
+  ["40W JSOT US Solar Floodlight", 2900, "Images/solarl40w.webp", "40W solar floodlight with automatic dusk-to-dawn sensor, IP67 waterproof design and remote control included."],
+  ["60W JSOT US Solar Floodlight", 3500, "Images/Solarl60w.webp", "60W bright solar floodlight with automatic dusk-to-dawn sensor, IP67 waterproof design and remote control included."],
+  ["100W JSOT US Solar Floodlight", 4500, "Images/solarl100w.webp", "100W high-brightness solar floodlight with automatic dusk-to-dawn sensor, IP67 waterproof design and remote control included."],
+  ["200W JSOT US Solar Floodlight", 5500, "Images/solarl200w.webp", "200W powerful solar floodlight with wide lighting coverage, IP67 waterproof design and remote control included."],
+  ["300W JSOT US Solar Floodlight", 6500, "Images/solarl300w.webp", "300W premium solar floodlight with extra brightness, IP67 waterproof design and remote control included."]],
 ],
-yomy: [
+  yomy: [
   ["50W YOMY Solar Floodlight",  2500, "Images/Yommy50w.webp",   "Premium YOMY solar floodlight, IP65 waterproof with battery level indicator and automatic day/night operation."],
   ["100W YOMY Solar Floodlight", 3600, "Images/Yommy100w.webp",  "Premium YOMY solar floodlight, IP65 waterproof with battery level indicator and automatic day/night operation."],
   ["200W YOMY Solar Floodlight", 4900, "Images/Yommy200w.webp",  "Premium YOMY solar floodlight, IP65 waterproof with battery level indicator and automatic day/night operation."],
