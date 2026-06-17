@@ -1,0 +1,2514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Cozycabin Affiliate Portal</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+/* ── BASE ── */
+*,*::before,*::after{box-sizing:border-box;}
+html,body{overflow-x:hidden;width:100%;max-width:100vw;margin:0;padding:0;}
+body{
+  background:radial-gradient(circle at top,rgba(255,215,0,0.07),transparent 35%),#080808;
+  min-height:100vh;
+  font-family:'Inter',system-ui,sans-serif;
+  color:#e2e8f0;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes glow{0%{box-shadow:0 0 12px rgba(255,215,0,.12);}50%{box-shadow:0 0 28px rgba(255,215,0,.32);}100%{box-shadow:0 0 12px rgba(255,215,0,.12);}}
+@keyframes spin{100%{transform:rotate(360deg);}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes modalIn{from{opacity:0;transform:scale(.96)translateY(10px);}to{opacity:1;transform:scale(1)translateY(0);}}
+
+.gold-glow{animation:glow 3s infinite;}
+.slide-up{animation:slideUp .35s ease forwards;}
+.fade-in{animation:fadeIn .25s ease forwards;}
+
+/* ── TYPOGRAPHY ── */
+.label-sm{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:3px;color:#ffd700;}
+
+/* ── CARDS ── */
+.card{background:#111111;border:1px solid #222;border-radius:20px;padding:20px;}
+.card-dark{background:#0d0d0d;border:1px solid #1a1a1a;border-radius:16px;padding:14px;}
+
+/* ── BUTTONS ── */
+.btn-gold{display:block;width:100%;background:linear-gradient(135deg,#ffd700,#e0a800);color:#000;font-weight:900;font-size:12px;letter-spacing:2px;padding:15px;border-radius:16px;text-transform:uppercase;border:none;cursor:pointer;transition:.2s;-webkit-tap-highlight-color:transparent;}
+.btn-gold:hover{opacity:.9;}
+.btn-gold:active{transform:scale(.98);}
+.btn-outline{display:block;width:100%;background:rgba(255,215,0,.07);color:#ffd700;font-weight:800;font-size:11px;letter-spacing:1px;padding:13px;border-radius:14px;text-transform:uppercase;border:1.5px solid rgba(255,215,0,.25);cursor:pointer;transition:.2s;-webkit-tap-highlight-color:transparent;}
+.btn-outline:hover{background:rgba(255,215,0,.13);}
+.btn-ghost{display:block;width:100%;background:rgba(255,255,255,.04);color:#94a3b8;font-weight:700;font-size:11px;padding:12px;border-radius:14px;border:1px solid #222;cursor:pointer;transition:.2s;}
+.btn-ghost:hover{background:rgba(255,255,255,.07);}
+.btn-green{display:block;width:100%;background:linear-gradient(135deg,#15803d,#22c55e);color:#fff;font-weight:800;font-size:12px;letter-spacing:1px;padding:13px;border-radius:14px;text-transform:uppercase;border:none;cursor:pointer;transition:.2s;}
+
+/* ── INPUTS ── */
+.inp{width:100%;background:#151515;border:1px solid #2a2a2a;border-radius:14px;padding:14px 18px;color:#fff;font-size:14px;outline:none;box-sizing:border-box;transition:.2s;}
+.inp:focus{border-color:#ffd700;box-shadow:0 0 0 1px rgba(255,215,0,.2);}
+.inp::placeholder{color:#475569;}
+select.inp{cursor:pointer;}
+
+/* ── LOADER ── */
+.loader{width:18px;height:18px;border:2px solid rgba(0,0,0,.15);border-top:2px solid transparent;border-radius:50%;animation:spin 1s linear infinite;display:inline-block;}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:20px;}
+
+/* ── STAT CARD ── */
+.stat-card{background:#111;border:1px solid #222;border-radius:16px;padding:16px;text-align:center;}
+.stat-value{font-size:26px;font-weight:900;margin:4px 0 2px;}
+.stat-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#475569;}
+
+/* ── QUICK ACTION ── */
+.qa-btn{display:flex;align-items:center;gap:10px;background:#111;border:1px solid #1e1e1e;border-radius:16px;padding:14px 16px;cursor:pointer;transition:.2s;-webkit-tap-highlight-color:transparent;width:100%;text-align:left;}
+.qa-btn:hover{border-color:rgba(255,215,0,.25);background:#151515;}
+.qa-btn:active{transform:scale(.98);}
+.qa-icon{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.qa-text{font-size:13px;font-weight:700;color:#e2e8f0;}
+.qa-sub{font-size:10px;color:#475569;margin-top:2px;}
+.qa-arrow{margin-left:auto;color:#334155;font-size:14px;}
+
+/* ── PLAN CARDS ── */
+.plan-card{border-radius:18px;overflow:hidden;border:1.5px solid #222;position:relative;transition:.2s;}
+.plan-badge{position:absolute;top:12px;right:12px;font-size:9px;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.5px;}
+.plan-feat{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:#94a3b8;padding:2px 0;line-height:1.5;}
+.plan-feat.on{color:#e2e8f0;}
+.plan-feat.off{color:#334155;text-decoration:line-through;}
+
+/* ── PAYOUT ACCORDION ── */
+.payout-item{background:#0d0d0d;border:1px solid #1e1e1e;border-radius:16px;overflow:hidden;transition:.2s;}
+.payout-header{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;}
+.payout-header:hover{background:rgba(255,255,255,.02);}
+.payout-body{padding:0 16px 16px;display:none;}
+.payout-body.open{display:block;animation:slideUp .2s ease;}
+.payout-chevron{margin-left:auto;color:#475569;transition:transform .25s;font-size:16px;}
+.payout-chevron.open{transform:rotate(180deg);}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:9999;font-size:12px;font-weight:700;padding:11px 20px;border-radius:30px;white-space:nowrap;display:none;pointer-events:none;max-width:90vw;text-align:center;}
+
+/* ── MODAL OVERLAY ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);z-index:800;display:none;align-items:flex-end;justify-content:center;padding:0;}
+.modal-overlay.open{display:flex;animation:fadeIn .2s ease;}
+.modal-sheet{background:#0e0e0e;border:1px solid #222;border-radius:28px 28px 0 0;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;padding:24px 20px 32px;animation:modalIn .25s ease;}
+.modal-handle{width:40px;height:4px;background:#2a2a2a;border-radius:4px;margin:0 auto 20px;}
+
+/* ── BOTTOM NAV (logged-in only) ── */
+#bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(10,10,10,.97);
+  backdrop-filter:blur(14px);
+  border-top:1px solid rgba(255,215,0,.1);
+  display:none; /* shown after login */
+  padding:8px 0 env(safe-area-inset-bottom,8px);
+  z-index:700;
+}
+.bnav-item{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;cursor:pointer;padding:4px 0;-webkit-tap-highlight-color:transparent;transition:.15s;}
+.bnav-emoji{font-size:18px;line-height:1;}
+.bnav-label{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#475569;transition:.15s;}
+.bnav-item.active .bnav-label{color:#ffd700;}
+.bnav-item:hover .bnav-label{color:#94a3b8;}
+
+/* ── TOP NAV ── */
+#topnav{
+  position:sticky;top:0;z-index:600;
+  background:rgba(8,8,8,.97);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,215,0,.1);
+  padding:10px 16px;
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+
+/* ── PAGES ── */
+.page{display:none;min-height:calc(100vh - 60px);padding:16px 16px 96px;}
+.page.active{display:block;animation:slideUp .3s ease;}
+
+/* ── TOOL GRID ── */
+.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.tool-card{background:#0f172a;border:1.5px solid rgba(255,255,255,.06);border-radius:14px;padding:12px 6px;text-align:center;text-decoration:none;transition:.2s;display:block;-webkit-tap-highlight-color:transparent;position:relative;}
+.tool-card:hover{border-color:rgba(255,215,0,.3);}
+.tool-card-emoji{font-size:22px;margin-bottom:5px;}
+.tool-card-name{font-size:9px;font-weight:800;color:#e2e8f0;line-height:1.3;}
+.tool-card-limit{font-size:8px;color:#475569;margin-top:3px;}
+.tool-card-new{font-size:7px;font-weight:800;background:rgba(236,72,153,.18);color:#f472b6;padding:1px 5px;border-radius:6px;display:inline-block;margin-top:2px;}
+
+/* ── USAGE BAR ── */
+.ubar-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.03);}
+.ubar-row:last-child{border-bottom:none;}
+.ubar-fill{height:4px;border-radius:2px;transition:width .6s ease;}
+.ubar-bg{height:4px;background:rgba(255,255,255,.06);border-radius:2px;flex:1;}
+
+/* ── EARNINGS HISTORY ── */
+.tx-card{background:#0d0d0d;border:1px solid #1a1a1a;border-radius:14px;padding:12px;display:flex;align-items:center;gap:10px;}
+
+/* ── LEADERBOARD ── */
+.lb-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:12px;}
+
+/* ── SHARE BUTTONS ── */
+.share-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.share-btn{display:flex;align-items:center;justify-content:center;gap:7px;padding:12px;border-radius:13px;font-size:12px;font-weight:700;border:none;cursor:pointer;transition:.15s;-webkit-tap-highlight-color:transparent;}
+.share-btn:active{transform:scale(.97);}
+
+/* ── RESPONSIVE OVERRIDES ── */
+@media(max-width:380px){
+  .tool-grid{grid-template-columns:repeat(2,1fr);}
+  .share-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     TOAST NOTIFICATION
+══════════════════════════════════ -->
+<div id="toast"></div>
+
+<!-- ══════════════════════════════════
+     TOP NAVIGATION BAR
+══════════════════════════════════ -->
+<div id="topnav">
+  <!-- Back to shop -->
+  <a href="https://www.cozycabin.co.ke"
+    style="display:flex;align-items:center;gap:5px;background:rgba(255,215,0,.07);border:1.5px solid rgba(255,215,0,.2);color:#ffd700;padding:7px 12px;border-radius:20px;font-size:11px;font-weight:800;text-decoration:none;white-space:nowrap;letter-spacing:.5px;-webkit-tap-highlight-color:transparent;">
+    ← Shop
+  </a>
+  <!-- Logo -->
+  <div style="display:flex;align-items:center;gap:7px;flex:1;justify-content:center;">
+    <img src="Images/Cozycabin%20log%20.webp" alt="Logo"
+      style="width:26px;height:26px;border-radius:7px;object-fit:cover;"
+      onerror="this.style.display='none'">
+    <span style="font-size:13px;font-weight:900;color:#ffd700;letter-spacing:2.5px;text-transform:uppercase;">CozyCabin</span>
+  </div>
+  <!-- WhatsApp help -->
+  <a href="https://wa.me/254702468460?text=Hi%20Cozycabin%2C%20I%20need%20help%20with%20the%20Affiliate%20Portal"
+    target="_blank"
+    style="display:flex;align-items:center;gap:5px;background:rgba(37,211,102,.07);border:1.5px solid rgba(37,211,102,.2);color:#25d366;padding:7px 11px;border-radius:20px;font-size:11px;font-weight:800;text-decoration:none;white-space:nowrap;-webkit-tap-highlight-color:transparent;">
+    💬 Help
+  </a>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE WRAPPER (max-width centered)
+══════════════════════════════════ -->
+<div style="max-width:480px;margin:0 auto;">
+
+<!-- ════════════════════════════════════════════
+     PAGE: LOGIN  (public)
+════════════════════════════════════════════ -->
+<div id="page-login" class="page active" style="padding-top:32px;">
+  <div class="card gold-glow" style="margin-bottom:16px;">
+
+    <!-- Logo Header -->
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="width:80px;height:80px;border-radius:24px;background:#111;border:1px solid #2a2a2a;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:0 auto 16px;">
+        <img src="Images/Cozycabin%20log%20.webp" alt="Cozycabin Logo"
+          style="width:100%;height:100%;object-fit:cover;"
+          onerror="this.parentNode.innerHTML='<span style=font-size:32px>🏠</span>'">
+      </div>
+      <h1 style="font-size:28px;font-weight:900;letter-spacing:6px;color:#ffd700;text-transform:uppercase;margin:0 0 6px;">COZYCABIN</h1>
+      <p style="color:#475569;font-size:10px;text-transform:uppercase;letter-spacing:5px;margin:0;">Affiliate Partner Portal</p>
+    </div>
+
+    <!-- LOGIN FORM SECTION -->
+    <div id="login-section">
+      <div style="text-align:center;margin-bottom:24px;">
+        <h2 id="auth-title" style="font-size:20px;font-weight:800;color:#fff;margin:0 0 8px;text-transform:uppercase;letter-spacing:.5px;">Sign In</h2>
+        <p id="auth-desc" style="color:#64748b;font-size:12px;line-height:1.6;margin:0;">Generate referral links, track sales &amp; withdraw earnings.</p>
+      </div>
+
+      <!-- Google -->
+      <button onclick="googleLogin()"
+        style="width:100%;background:#fff;color:#000;font-weight:800;padding:14px;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:12px;letter-spacing:1px;border:none;cursor:pointer;margin-bottom:20px;-webkit-tap-highlight-color:transparent;transition:.2s;"
+        onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='1'">
+        <svg width="16" height="16" viewBox="0 0 24 24">
+          <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l3.227-3.227C18.216 1.414 15.48 0 12.24 0 5.48 0 0 5.48 0 12.24s5.48 12.24 12.24 12.24c7.05 0 11.732-4.957 11.732-11.94 0-.804-.085-1.42-.19-1.97H12.24z"/>
+        </svg>
+        CONTINUE WITH GOOGLE
+      </button>
+
+      <!-- Divider -->
+      <div style="display:flex;align-items:center;gap:0;margin-bottom:20px;">
+        <div style="flex:1;height:1px;background:#1e1e1e;"></div>
+        <span style="padding:0 14px;font-size:9px;text-transform:uppercase;letter-spacing:3px;color:#334155;">or use email</span>
+        <div style="flex:1;height:1px;background:#1e1e1e;"></div>
+      </div>
+
+      <!-- Email Form -->
+      <form id="email-auth-form" onsubmit="handleEmailAuth(event)" style="display:flex;flex-direction:column;gap:14px;">
+
+        <!-- Name (register only) -->
+        <div id="name-field-group" style="display:none;">
+          <label class="label-sm" style="display:block;margin-bottom:8px;">Full Name</label>
+          <input type="text" id="auth-name" placeholder="Your Full Name" class="inp"/>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="label-sm" style="display:block;margin-bottom:8px;">Email Address</label>
+          <input type="email" id="auth-email" required placeholder="name@gmail.com" class="inp"/>
+        </div>
+
+        <!-- Phone (register only) -->
+        <div id="phone-field-group" style="display:none;">
+          <label class="label-sm" style="display:block;margin-bottom:8px;">M-Pesa Number <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#475569;font-size:9px;">(for payouts)</span></label>
+          <div style="position:relative;">
+            <span style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#64748b;font-size:13px;font-weight:700;pointer-events:none;">+254</span>
+            <input type="tel" id="auth-phone" placeholder="7XXXXXXXX" maxlength="9"
+              class="inp" style="padding-left:58px;"
+              oninput="this.value=this.value.replace(/\D/g,'')"/>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label class="label-sm" style="display:block;margin-bottom:8px;">Password</label>
+          <div style="position:relative;">
+            <input type="password" id="auth-password" required placeholder="Minimum 6 characters" minlength="6"
+              class="inp" style="padding-right:60px;"/>
+            <button type="button" onclick="togglePasswordVis()"
+              style="position:absolute;right:16px;top:50%;transform:translateY(-50%);color:#64748b;font-size:10px;font-weight:800;background:none;border:none;cursor:pointer;" id="pw-toggle">
+              SHOW
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember Me + Forgot password row (login only) -->
+        <div id="forgot-pw-row" style="display:flex;align-items:center;justify-content:space-between;margin-top:-6px;">
+          <label style="display:flex;align-items:center;gap:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;">
+            <input type="checkbox" id="remember-me"
+              style="width:15px;height:15px;accent-color:#ffd700;cursor:pointer;"
+              onchange="handleRememberMe(this.checked)"/>
+            <span style="font-size:11px;font-weight:700;color:#64748b;">Remember me</span>
+          </label>
+          <button type="button" onclick="showResetScreen()"
+            style="color:#ffd700;font-size:11px;font-weight:800;background:none;border:none;cursor:pointer;padding:0;">
+            Forgot Password?
+          </button>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" id="auth-submit-btn" class="btn-gold" style="margin-top:4px;">
+          SIGN IN WITH EMAIL
+        </button>
+
+        <!-- Auth message -->
+        <div id="auth-msg" style="display:none;text-align:center;font-size:12px;font-weight:700;padding:10px 14px;border-radius:12px;"></div>
+
+      </form>
+
+      <!-- Toggle register / login -->
+      <div style="text-align:center;margin-top:20px;">
+        <span id="toggle-text" style="color:#64748b;font-size:13px;">Don't have an affiliate account?</span>
+        <button onclick="toggleAuthMode()" id="toggle-action-btn"
+          style="color:#ffd700;font-size:13px;font-weight:800;text-decoration:underline;background:none;border:none;cursor:pointer;margin-left:6px;">
+          Register Here
+        </button>
+      </div>
+    </div><!-- /login-section -->
+
+    <!-- PASSWORD RESET SECTION -->
+    <div id="reset-section" style="display:none;">
+      <button onclick="hideResetScreen()"
+        style="display:flex;align-items:center;gap:6px;background:none;border:none;color:#64748b;font-size:12px;font-weight:700;cursor:pointer;padding:0;margin-bottom:22px;">
+        ← Back to Sign In
+      </button>
+      <div style="text-align:center;margin-bottom:24px;">
+        <div style="width:60px;height:60px;border-radius:18px;background:rgba(255,215,0,.08);border:1.5px solid rgba(255,215,0,.2);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 14px;">🔑</div>
+        <h2 style="font-size:18px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Reset Password</h2>
+        <p style="font-size:12px;color:#64748b;line-height:1.7;">Enter your email — we'll send a reset link.</p>
+      </div>
+      <div id="reset-step-1">
+        <div style="margin-bottom:14px;">
+          <label class="label-sm" style="display:block;margin-bottom:8px;">Email Address</label>
+          <input type="email" id="reset-email" placeholder="name@gmail.com" class="inp"/>
+        </div>
+        <div id="reset-msg" style="display:none;text-align:center;font-size:12px;font-weight:700;padding:10px 14px;border-radius:12px;margin-bottom:12px;"></div>
+        <button onclick="sendResetEmail()" id="reset-send-btn" class="btn-gold">📧 Send Reset Link</button>
+        <div class="card-dark" style="margin-top:14px;text-align:center;">
+          <p style="font-size:10px;color:#475569;line-height:1.7;">🔒 Link expires in <strong style="color:#94a3b8;">1 hour</strong><br>Check spam if you don't see it within 2 minutes</p>
+        </div>
+      </div>
+      <div id="reset-step-2" style="display:none;text-align:center;">
+        <div style="width:70px;height:70px;border-radius:50%;background:rgba(34,197,94,.1);border:2px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 16px;">✅</div>
+        <h3 style="font-size:15px;font-weight:800;color:#22c55e;margin-bottom:8px;">Reset Link Sent!</h3>
+        <p style="font-size:12px;color:#64748b;line-height:1.8;margin-bottom:16px;">
+          We sent a reset link to:<br><strong id="reset-email-display" style="color:#fff;font-size:13px;"></strong>
+        </p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px;">
+          <button onclick="resendResetEmail()" id="resend-btn" class="btn-outline">🔄 Resend Email</button>
+          <button onclick="hideResetScreen()" class="btn-ghost">← Back to Sign In</button>
+          <a href="https://wa.me/254702468460?text=Hi%20Cozycabin%2C%20I%20need%20help%20resetting%20my%20password" target="_blank"
+            style="display:block;text-align:center;color:#25d366;font-size:11px;font-weight:700;text-decoration:none;padding:10px;">
+            💬 Still need help? Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div><!-- /reset-section -->
+
+  </div><!-- /card -->
+
+  <!-- View Plans Button (public) -->
+  <button onclick="openPlansModal()" class="btn-outline" style="margin-top:4px;">
+    📋 View Plans &amp; Pricing
+  </button>
+
+  <!-- Footer -->
+  <div style="text-align:center;margin-top:24px;padding-bottom:8px;">
+    <p style="font-size:9px;text-transform:uppercase;letter-spacing:4px;color:#334155;">© Cozycabin Online Shop 2026</p>
+    <p style="font-size:10px;color:#334155;margin-top:4px;">
+      <a href="https://www.cozycabin.co.ke" style="color:#334155;text-decoration:none;">www.cozycabin.co.ke</a> · 🇰🇪 Kenya · Nationwide Delivery
+    </p>
+  </div>
+
+</div><!-- /page-login -->
+
+
+<!-- ════════════════════════════════════════════
+     PAGE: DASHBOARD  (post-login)
+════════════════════════════════════════════ -->
+<div id="page-dashboard" class="page">
+
+  <!-- Welcome -->
+  <div style="text-align:center;margin-bottom:20px;padding-top:4px;">
+    <p style="font-size:11px;color:#475569;margin-bottom:4px;">Welcome back,</p>
+    <p id="affiliate-name" style="font-size:18px;font-weight:900;color:#ffd700;"></p>
+  </div>
+
+  <!-- Balance Card -->
+  <div style="background:linear-gradient(135deg,#061408,#0a2010);border:1.5px solid rgba(34,197,94,.25);border-radius:20px;padding:20px;margin-bottom:14px;box-shadow:0 0 20px rgba(34,197,94,.08);">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+      <p class="label-sm" style="color:#22c55e;">Earned Balance</p>
+      <span style="font-size:9px;background:rgba(34,197,94,.1);color:#22c55e;padding:3px 10px;border-radius:20px;font-weight:800;border:1px solid rgba(34,197,94,.25);">VERIFIED ✓</span>
+    </div>
+    <h2 style="font-size:32px;font-weight:900;color:#22c55e;margin:6px 0 0;">KES <span id="balance-display">0.00</span></h2>
+  </div>
+
+  <!-- Stats Grid -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;">
+    <div class="stat-card">
+      <div class="stat-label">Clicks</div>
+      <div class="stat-value" id="clicks-display" style="color:#fff;">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Sales</div>
+      <div class="stat-value" id="sales-display" style="color:#ffd700;">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Plan</div>
+      <div style="font-size:14px;font-weight:900;color:#fff;margin:4px 0 2px;" id="dash-plan-badge">🆓</div>
+      <div class="stat-label" id="dash-plan-name" style="font-size:8px;color:#22c55e;">Active</div>
+    </div>
+  </div>
+
+  <!-- Tracker Link -->
+  <div class="card" style="margin-bottom:14px;">
+    <label class="label-sm" style="display:block;margin-bottom:10px;color:#94a3b8;">🔗 Your Tracker Link</label>
+    <input type="text" id="share-link" readonly class="inp" style="font-size:11px;font-family:monospace;color:#94a3b8;margin-bottom:10px;"/>
+    <button onclick="copyLink()" class="btn-gold">📋 Copy Tracker Link</button>
+  </div>
+
+  <!-- Quick Actions -->
+  <p class="label-sm" style="margin-bottom:12px;">Quick Actions</p>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+
+    <button class="qa-btn" onclick="navTo('links')">
+      <div class="qa-icon" style="background:rgba(255,215,0,.1);">🔗</div>
+      <div>
+        <div class="qa-text">Generate Affiliate Links</div>
+        <div class="qa-sub">Create product referral links</div>
+      </div>
+      <span class="qa-arrow">›</span>
+    </button>
+
+    <button class="qa-btn" onclick="navTo('tools')">
+      <div class="qa-icon" style="background:rgba(99,102,241,.12);">🛠️</div>
+      <div>
+        <div class="qa-text">Marketing Tools</div>
+        <div class="qa-sub">Image, video & PDF tools</div>
+      </div>
+      <span class="qa-arrow">›</span>
+    </button>
+
+    <button class="qa-btn" onclick="openWithdrawModal()">
+      <div class="qa-icon" style="background:rgba(34,197,94,.1);">💸</div>
+      <div>
+        <div class="qa-text">Withdraw Earnings</div>
+        <div class="qa-sub">M-Pesa, Crypto, PayPal &amp; more</div>
+      </div>
+      <span class="qa-arrow">›</span>
+    </button>
+
+    <button class="qa-btn" onclick="openPlansModal()">
+      <div class="qa-icon" style="background:rgba(255,215,0,.08);">⚡</div>
+      <div>
+        <div class="qa-text">Upgrade Plan</div>
+        <div class="qa-sub">Unlock premium tools &amp; higher limits</div>
+      </div>
+      <span class="qa-arrow">›</span>
+    </button>
+
+    <button class="qa-btn" onclick="navTo('account')">
+      <div class="qa-icon" style="background:rgba(96,165,250,.1);">⚙️</div>
+      <div>
+        <div class="qa-text">Account Settings</div>
+        <div class="qa-sub">Profile, phone number, logout</div>
+      </div>
+      <span class="qa-arrow">›</span>
+    </button>
+
+  </div>
+
+  <!-- Share Your Link -->
+  <p class="label-sm" style="margin-bottom:12px;">📣 Share Your Link</p>
+  <div class="share-grid" style="margin-bottom:20px;">
+    <button class="share-btn" onclick="shareOn('whatsapp')" style="background:#128C7E;color:#fff;">💬 WhatsApp</button>
+    <button class="share-btn" onclick="shareOn('facebook')" style="background:#1877F2;color:#fff;">📘 Facebook</button>
+    <button class="share-btn" onclick="shareOn('twitter')" style="background:#000;color:#fff;border:1px solid #333;">𝕏 Twitter</button>
+    <button class="share-btn" onclick="shareOn('telegram')" style="background:#229ED9;color:#fff;">✈️ Telegram</button>
+    <button class="share-btn" onclick="shareOn('tiktok')" style="background:#111;color:#fff;border:1px solid #333;">🎵 TikTok Bio</button>
+    <button class="share-btn" onclick="copyLink()" style="background:rgba(255,215,0,.1);color:#ffd700;border:1px solid rgba(255,215,0,.25);">📋 Copy Link</button>
+  </div>
+
+  <!-- Leaderboard -->
+  <p class="label-sm" style="margin-bottom:12px;">🏆 Top Affiliates</p>
+  <div id="leaderboard-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+    <div style="text-align:center;padding:18px;color:#334155;font-size:12px;">Loading leaderboard...</div>
+  </div>
+
+  <!-- Earnings History -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <p class="label-sm">📊 Earnings History</p>
+    <span id="history-count" style="font-size:10px;color:#475569;background:#111;padding:3px 10px;border-radius:20px;border:1px solid #222;">0 transactions</span>
+  </div>
+  <div id="earnings-history-list" style="display:flex;flex-direction:column;gap:8px;">
+    <div style="text-align:center;padding:24px;background:#0a0a0a;border:1px dashed #1e1e1e;border-radius:14px;">
+      <p style="font-size:22px;margin-bottom:6px;">📭</p>
+      <p style="font-size:12px;color:#475569;">No transactions yet.<br>Share your link to start earning!</p>
+    </div>
+  </div>
+
+</div><!-- /page-dashboard -->
+
+
+<!-- ════════════════════════════════════════════
+     PAGE: LINKS  (post-login)
+════════════════════════════════════════════ -->
+<div id="page-links" class="page">
+
+  <!-- QR Code -->
+  <div class="card" style="margin-bottom:16px;text-align:center;">
+    <label class="label-sm" style="display:block;margin-bottom:12px;">📲 Your QR Code</label>
+    <p style="font-size:11px;color:#64748b;margin-bottom:14px;line-height:1.6;">Share your QR code anywhere — customers scan to shop via your link.</p>
+    <div id="qr-container" style="display:flex;justify-content:center;margin-bottom:14px;">
+      <div id="qr-canvas-wrap" style="background:#fff;border-radius:14px;padding:12px;display:inline-block;box-shadow:0 0 24px rgba(255,215,0,.15);">
+        <canvas id="qr-canvas" width="160" height="160" style="display:block;"></canvas>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <button onclick="downloadQR()" class="btn-gold" style="font-size:11px;padding:11px;">⬇️ Download QR</button>
+      <button onclick="shareQR()" class="btn-outline" style="font-size:11px;padding:11px;">📤 Share QR</button>
+    </div>
+  </div>
+
+  <h2 style="font-size:16px;font-weight:900;color:#ffd700;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;">🔗 Generate Affiliate Links</h2>
+
+  <div class="card" style="margin-bottom:16px;">
+    <label class="label-sm" style="display:block;margin-bottom:10px;">Generate Product Link</label>
+    <p style="font-size:11px;color:#64748b;margin-bottom:14px;line-height:1.6;">Paste any Cozycabin product URL below to create your personalised affiliate link.</p>
+    <input type="text" id="product-url" placeholder="Paste Cozycabin product URL here" class="inp" style="margin-bottom:10px;"/>
+    <button onclick="generateCustomAffiliateLink()" class="btn-gold" style="margin-bottom:10px;">⚡ Generate Link</button>
+    <input type="text" id="generated-affiliate-link" readonly placeholder="Your affiliate link will appear here" class="inp" style="font-size:11px;font-family:monospace;color:#94a3b8;margin-bottom:10px;"/>
+    <button onclick="copyGeneratedLink()" class="btn-green">📋 Copy Affiliate Link</button>
+  </div>
+
+  <!-- Tracker link reminder -->
+  <div class="card-dark" style="text-align:center;margin-bottom:16px;">
+    <p style="font-size:10px;color:#475569;margin-bottom:6px;">Your General Tracker Link</p>
+    <input type="text" id="share-link-2" readonly class="inp" style="font-size:10px;font-family:monospace;color:#64748b;margin-bottom:10px;"/>
+    <button onclick="copyLink()" class="btn-outline">📋 Copy Tracker Link</button>
+  </div>
+
+  <!-- Share preview -->
+  <div class="card-dark">
+    <p class="label-sm" style="margin-bottom:8px;color:#64748b;">📝 Share Message Preview</p>
+    <p id="share-preview" style="font-size:12px;color:#94a3b8;line-height:1.7;">
+      🛍️ Shop smart at Cozycabin — fashion, electronics, solar, kitchen &amp; digital products!<br>
+      Use my link to shop:
+    </p>
+  </div>
+
+</div><!-- /page-links -->
+
+
+<!-- ════════════════════════════════════════════
+     PAGE: EARNINGS  (post-login)
+════════════════════════════════════════════ -->
+<div id="page-earnings" class="page">
+
+  <h2 style="font-size:16px;font-weight:900;color:#ffd700;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;">💰 Earnings</h2>
+
+  <!-- Big balance -->
+  <div style="background:linear-gradient(135deg,#061408,#0a2010);border:1.5px solid rgba(34,197,94,.25);border-radius:20px;padding:22px;margin-bottom:16px;text-align:center;">
+    <p class="label-sm" style="color:#22c55e;margin-bottom:8px;">Total Earned Balance</p>
+    <h1 style="font-size:38px;font-weight:900;color:#22c55e;margin:0 0 4px;">KES <span id="balance-display-2">0.00</span></h1>
+    <p style="font-size:10px;color:#475569;">Minimum withdrawal: KES 500</p>
+  </div>
+
+  <!-- Stats -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+    <div class="stat-card">
+      <div class="stat-label">Link Clicks</div>
+      <div class="stat-value" id="clicks-display-2" style="color:#fff;">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Total Sales</div>
+      <div class="stat-value" id="sales-display-2" style="color:#ffd700;">0</div>
+    </div>
+  </div>
+
+  <!-- Withdraw button -->
+  <button onclick="openWithdrawModal()" class="btn-green" style="margin-bottom:20px;font-size:13px;padding:16px;">
+    💸 Withdraw Earnings
+  </button>
+
+  <!-- Commission Calculator -->
+  <p class="label-sm" style="margin-bottom:12px;">🧮 Commission Calculator</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div style="display:flex;gap:10px;margin-bottom:12px;">
+      <div style="flex:1;">
+        <label class="label-sm" style="display:block;margin-bottom:6px;color:#64748b;">Product Price (KES)</label>
+        <input type="number" id="calc-price" placeholder="e.g. 2500" oninput="calcCommission()" class="inp"/>
+      </div>
+      <div>
+        <label class="label-sm" style="display:block;margin-bottom:6px;color:#64748b;">Type</label>
+        <select id="calc-type" onchange="calcCommission()" class="inp" style="width:auto;min-width:100px;">
+          <option value="physical">Physical</option>
+          <option value="digital">Digital</option>
+        </select>
+      </div>
+    </div>
+    <div id="calc-placeholder" style="text-align:center;padding:14px;color:#334155;font-size:12px;">Enter a price above to see your commission</div>
+    <div id="calc-result" style="display:none;background:#0a1a0a;border:1px solid rgba(34,197,94,.2);border-radius:14px;padding:14px;text-align:center;">
+      <p style="font-size:10px;color:#475569;margin-bottom:4px;">Your commission per sale</p>
+      <p id="calc-amount" style="font-size:28px;font-weight:900;color:#22c55e;margin-bottom:4px;"></p>
+      <p id="calc-note" style="font-size:10px;color:#64748b;"></p>
+    </div>
+  </div>
+
+  <!-- Earnings History -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <p class="label-sm">📊 Transaction History</p>
+    <span id="history-count-2" style="font-size:10px;color:#475569;background:#111;padding:3px 10px;border-radius:20px;border:1px solid #222;">0 transactions</span>
+  </div>
+  <div id="earnings-history-list-2" style="display:flex;flex-direction:column;gap:8px;">
+    <div style="text-align:center;padding:24px;background:#0a0a0a;border:1px dashed #1e1e1e;border-radius:14px;">
+      <p style="font-size:22px;margin-bottom:6px;">📭</p>
+      <p style="font-size:12px;color:#475569;">No transactions yet.</p>
+    </div>
+  </div>
+
+</div><!-- /page-earnings -->
+
+
+<!-- ════════════════════════════════════════════
+     PAGE: TOOLS  (post-login)
+════════════════════════════════════════════ -->
+<div id="page-tools" class="page">
+
+  <h2 style="font-size:16px;font-weight:900;color:#ffd700;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;">🛠️ Marketing Tools</h2>
+
+  <!-- Current Plan Badge -->
+  <div style="background:#0d0d0d;border:1px solid #222;border-radius:16px;padding:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <p style="font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;">Current Plan</p>
+      <p id="current-plan-name" style="font-size:14px;font-weight:800;color:#fff;">🆓 Free Plan</p>
+    </div>
+    <button onclick="openPlansModal()" style="background:rgba(255,215,0,.1);color:#ffd700;border:1.5px solid rgba(255,215,0,.25);padding:8px 14px;border-radius:12px;font-size:10px;font-weight:800;cursor:pointer;letter-spacing:.5px;text-transform:uppercase;">Upgrade ⚡</button>
+  </div>
+
+  <!-- Tool Grid -->
+  <p class="label-sm" style="margin-bottom:12px;">Free &amp; Premium Tools</p>
+  <div class="tool-grid" style="margin-bottom:20px;">
+    <a href="free-tools.html" class="tool-card">
+      <div class="tool-card-emoji">🖼️</div>
+      <div class="tool-card-name">Image Compressor</div>
+      <div class="tool-card-limit">20/day free</div>
+    </a>
+    <a href="free-tools.html#webp" class="tool-card">
+      <div class="tool-card-emoji">🔄</div>
+      <div class="tool-card-name">WebP Converter</div>
+      <div class="tool-card-limit">20/day free</div>
+    </a>
+    <a href="free-tools.html#bgremove" class="tool-card">
+      <div class="tool-card-emoji">🧹</div>
+      <div class="tool-card-name">BG Remover</div>
+      <div class="tool-card-limit">5/day free</div>
+    </a>
+    <a href="video-editor.html" class="tool-card" style="border-color:rgba(255,215,0,.2);">
+      <div class="tool-card-emoji">🎥</div>
+      <div class="tool-card-name">Video Editor</div>
+      <div class="tool-card-limit">3/day free</div>
+      <div class="tool-card-new">NEW</div>
+    </a>
+    <a href="free-tools.html#video" class="tool-card">
+      <div class="tool-card-emoji">🗜️</div>
+      <div class="tool-card-name">Video Compressor</div>
+      <div class="tool-card-limit">5/day free</div>
+    </a>
+    <a href="free-tools.html#videoedit" class="tool-card">
+      <div class="tool-card-emoji">✂️</div>
+      <div class="tool-card-name">Video Trimmer</div>
+      <div class="tool-card-limit">3/day free</div>
+    </a>
+  </div>
+
+  <!-- Usage Bars -->
+  <p class="label-sm" style="margin-bottom:12px;color:#64748b;">📊 Today's Usage</p>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="ubar-row">
+      <span style="font-size:18px;width:28px;text-align:center;">🖼️</span>
+      <div style="flex:1;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+          <span style="font-size:11px;font-weight:700;color:#e2e8f0;">Image Compression</span>
+          <span id="count-img" style="font-size:10px;color:#64748b;">0 / 20</span>
+        </div>
+        <div class="ubar-bg"><div class="ubar-fill" id="bar-img" style="width:0%;background:linear-gradient(90deg,#ffd700,#e0a800);"></div></div>
+      </div>
+      <a href="free-tools.html" style="font-size:10px;font-weight:800;background:rgba(255,215,0,.1);color:#ffd700;border:1px solid rgba(255,215,0,.2);padding:4px 12px;border-radius:8px;text-decoration:none;">USE</a>
+    </div>
+    <div class="ubar-row">
+      <span style="font-size:18px;width:28px;text-align:center;">🔄</span>
+      <div style="flex:1;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+          <span style="font-size:11px;font-weight:700;color:#e2e8f0;">WebP Conversion</span>
+          <span id="count-webp" style="font-size:10px;color:#64748b;">0 / 20</span>
+        </div>
+        <div class="ubar-bg"><div class="ubar-fill" id="bar-webp" style="width:0%;background:linear-gradient(90deg,#60a5fa,#3b82f6);"></div></div>
+      </div>
+      <a href="free-tools.html#webp" style="font-size:10px;font-weight:800;background:rgba(255,215,0,.1);color:#ffd700;border:1px solid rgba(255,215,0,.2);padding:4px 12px;border-radius:8px;text-decoration:none;">USE</a>
+    </div>
+    <div class="ubar-row">
+      <span style="font-size:18px;width:28px;text-align:center;">🧹</span>
+      <div style="flex:1;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+          <span style="font-size:11px;font-weight:700;color:#e2e8f0;">Background Removal</span>
+          <span id="count-bg" style="font-size:10px;color:#64748b;">0 / 5</span>
+        </div>
+        <div class="ubar-bg"><div class="ubar-fill" id="bar-bg" style="width:0%;background:linear-gradient(90deg,#34d399,#059669);"></div></div>
+      </div>
+      <a href="free-tools.html#bgremove" style="font-size:10px;font-weight:800;background:rgba(255,215,0,.1);color:#ffd700;border:1px solid rgba(255,215,0,.2);padding:4px 12px;border-radius:8px;text-decoration:none;">USE</a>
+    </div>
+    <div class="ubar-row">
+      <span style="font-size:18px;width:28px;text-align:center;">🎥</span>
+      <div style="flex:1;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+          <span style="font-size:11px;font-weight:700;color:#e2e8f0;">Video Exports</span>
+          <span id="count-vid" style="font-size:10px;color:#64748b;">0 / 3</span>
+        </div>
+        <div class="ubar-bg"><div class="ubar-fill" id="bar-vid" style="width:0%;background:linear-gradient(90deg,#f472b6,#ec4899);"></div></div>
+      </div>
+      <a href="video-editor.html" style="font-size:10px;font-weight:800;background:rgba(244,114,182,.1);color:#f472b6;border:1px solid rgba(244,114,182,.25);padding:4px 12px;border-radius:8px;text-decoration:none;">USE</a>
+    </div>
+    <p style="font-size:9px;color:#334155;text-align:center;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.04);">Usage resets daily at midnight EAT</p>
+  </div>
+
+  <!-- Affiliate Programs Hub -->
+  <p class="label-sm" style="margin-bottom:14px;">💼 Affiliate Programs Hub</p>
+
+  <!-- Tab buttons -->
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+    <button onclick="switchAffTab('cozycabin',this)" class="aff-tab" style="background:rgba(255,215,0,.12);color:#ffd700;border:1.5px solid rgba(255,215,0,.4);font-size:10px;font-weight:800;padding:7px 12px;border-radius:10px;cursor:pointer;letter-spacing:.5px;transition:.15s;">🏠 Cozycabin</button>
+    <button onclick="switchAffTab('crypto',this)" class="aff-tab" style="background:rgba(255,255,255,.04);color:#94a3b8;border:1px solid rgba(255,255,255,.08);font-size:10px;font-weight:800;padding:7px 12px;border-radius:10px;cursor:pointer;letter-spacing:.5px;transition:.15s;">₿ Crypto</button>
+    <button onclick="switchAffTab('digital',this)" class="aff-tab" style="background:rgba(255,255,255,.04);color:#94a3b8;border:1px solid rgba(255,255,255,.08);font-size:10px;font-weight:800;padding:7px 12px;border-radius:10px;cursor:pointer;letter-spacing:.5px;transition:.15s;">📚 Digital</button>
+    <button onclick="switchAffTab('fintech',this)" class="aff-tab" style="background:rgba(255,255,255,.04);color:#94a3b8;border:1px solid rgba(255,255,255,.08);font-size:10px;font-weight:800;padding:7px 12px;border-radius:10px;cursor:pointer;letter-spacing:.5px;transition:.15s;">💳 Fintech</button>
+    <button onclick="switchAffTab('mining',this)" class="aff-tab" style="background:rgba(255,255,255,.04);color:#94a3b8;border:1px solid rgba(255,255,255,.08);font-size:10px;font-weight:800;padding:7px 12px;border-radius:10px;cursor:pointer;letter-spacing:.5px;transition:.15s;">⛏️ Mining</button>
+  </div>
+
+  <!-- Cozycabin programs panel -->
+  <div id="aff-cozycabin" class="aff-panel" style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+    <div style="background:linear-gradient(135deg,#0a1128,#111827);border:1.5px solid rgba(255,215,0,.3);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#ffd700,#e0a800);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📚</div>
+      <div style="flex:1;min-width:0;">
+        <p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">Cozycabin Academy</p>
+        <p style="font-size:10px;color:#64748b;margin-bottom:4px;">Video editing, marketing, website setup courses</p>
+        <span style="font-size:9px;background:rgba(255,215,0,.12);color:#ffd700;padding:2px 8px;border-radius:6px;font-weight:700;">30% commission per sale</span>
+      </div>
+      <a href="https://wa.me/254702468460?text=I%20want%20to%20promote%20Cozycabin%20Academy%20courses" target="_blank"
+        style="flex-shrink:0;background:#ffd700;color:#000;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Promote →</a>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid rgba(251,191,36,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#f59e0b,#d97706);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📘</div>
+      <div style="flex:1;min-width:0;">
+        <p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">Facebook Profit Formula</p>
+        <p style="font-size:10px;color:#64748b;margin-bottom:4px;">Master Meta monetization — bestselling ebook</p>
+        <span style="font-size:9px;background:rgba(251,191,36,.12);color:#fbbf24;padding:2px 8px;border-radius:6px;font-weight:700;">Earn per referral</span>
+      </div>
+      <a href="https://selar.com/378373r336" target="_blank"
+        style="flex-shrink:0;background:#f59e0b;color:#000;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Share →</a>
+    </div>
+    <a href="https://selar.com/m/charles-owuor1" target="_blank"
+      style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#6126c6,#9333ea);color:#fff;padding:13px;border-radius:12px;font-weight:800;font-size:12px;text-decoration:none;">
+      🛒 View Full Selar Store
+    </a>
+  </div>
+  <div id="aff-crypto" class="aff-panel" style="display:none;flex-direction:column;gap:8px;margin-bottom:14px;">
+    <div style="background:#0d0d0d;border:1px solid rgba(243,186,47,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:#f3ba2f;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🟡</div>
+      <div style="flex:1;min-width:0;"><p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">Binance Affiliate</p><p style="font-size:10px;color:#64748b;margin-bottom:4px;">World's largest crypto exchange</p><span style="font-size:9px;background:rgba(243,186,47,.12);color:#f3ba2f;padding:2px 8px;border-radius:6px;font-weight:700;">Up to 40% commission</span></div>
+      <a href="https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00TZ2L450F" target="_blank" style="flex-shrink:0;background:#f3ba2f;color:#000;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Join →</a>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid rgba(255,138,0,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:#ff8a00;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🔶</div>
+      <div style="flex:1;min-width:0;"><p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">Bybit Affiliate</p><p style="font-size:10px;color:#64748b;margin-bottom:4px;">Fast growing exchange — up to $50</p><span style="font-size:9px;background:rgba(255,138,0,.12);color:#ff8a00;padding:2px 8px;border-radius:6px;font-weight:700;">Up to 30% commission</span></div>
+      <a href="https://partner.bybit.com/b/123495" target="_blank" style="flex-shrink:0;background:#ff8a00;color:#fff;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Join →</a>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid rgba(39,184,231,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:#27b8e7;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🚀</div>
+      <div style="flex:1;min-width:0;"><p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">KuCoin Affiliate</p><p style="font-size:10px;color:#64748b;margin-bottom:4px;">Discover gems early — up to $500</p><span style="font-size:9px;background:rgba(39,184,231,.12);color:#27b8e7;padding:2px 8px;border-radius:6px;font-weight:700;">Up to 40% commission</span></div>
+      <a href="https://link.kucoin.com/iqEP/alk9lpk6" target="_blank" style="flex-shrink:0;background:#27b8e7;color:#000;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Join →</a>
+    </div>
+  </div>
+  <div id="aff-digital" class="aff-panel" style="display:none;flex-direction:column;gap:8px;margin-bottom:14px;">
+    <div style="background:#0d0d0d;border:1px solid rgba(167,139,250,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#a78bfa,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">₿</div>
+      <div style="flex:1;min-width:0;"><p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">Crypto Mastery Guide</p><p style="font-size:10px;color:#64748b;margin-bottom:4px;">Ultimate crypto blueprint — on Selar</p><span style="font-size:9px;background:rgba(167,139,250,.12);color:#a78bfa;padding:2px 8px;border-radius:6px;font-weight:700;">Earn per referral</span></div>
+      <a href="https://selar.com/dy79oz7112" target="_blank" style="flex-shrink:0;background:#7c3aed;color:#fff;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Share →</a>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid rgba(52,211,153,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#34d399,#059669);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">💼</div>
+      <div style="flex:1;min-width:0;"><p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">Online Business Starter</p><p style="font-size:10px;color:#64748b;margin-bottom:4px;">Step-by-step guide to earning online</p><span style="font-size:9px;background:rgba(52,211,153,.12);color:#34d399;padding:2px 8px;border-radius:6px;font-weight:700;">Earn per referral</span></div>
+      <a href="https://selar.com/z6wn6j11g1" target="_blank" style="flex-shrink:0;background:#059669;color:#fff;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Share →</a>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid rgba(0,150,255,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:#0096ff;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">💸</div>
+      <div style="flex:1;min-width:0;"><p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">ClickBank</p><p style="font-size:10px;color:#64748b;margin-bottom:4px;">Health, finance, self-help &amp; more</p><span style="font-size:9px;background:rgba(0,150,255,.12);color:#0096ff;padding:2px 8px;border-radius:6px;font-weight:700;">Up to 75% commission</span></div>
+      <a href="https://wa.me/254702468460?text=I%20want%20to%20learn%20ClickBank%20affiliate" target="_blank" style="flex-shrink:0;background:#0096ff;color:#fff;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Join →</a>
+    </div>
+  </div>
+  <div id="aff-fintech" class="aff-panel" style="display:none;flex-direction:column;gap:8px;margin-bottom:14px;">
+    <div style="background:#0d0d0d;border:1px solid rgba(18,179,71,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:#12b347;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">💚</div>
+      <div style="flex:1;min-width:0;"><p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">MiniPay</p><p style="font-size:10px;color:#64748b;margin-bottom:4px;">Fast African payments — Ghana, Nigeria &amp; more</p><span style="font-size:9px;background:rgba(18,179,71,.12);color:#12b347;padding:2px 8px;border-radius:6px;font-weight:700;">Up to 2% cashback</span></div>
+      <a href="https://link.minipay.xyz/invite?ref=B8w6PEzQ" target="_blank" style="flex-shrink:0;background:#12b347;color:#fff;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Join →</a>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid rgba(0,112,186,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:#0070ba;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">💳</div>
+      <div style="flex:1;min-width:0;"><p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">PayPal</p><p style="font-size:10px;color:#64748b;margin-bottom:4px;">Send &amp; receive money globally</p><span style="font-size:9px;background:rgba(0,112,186,.12);color:#60a5fa;padding:2px 8px;border-radius:6px;font-weight:700;">Global payments</span></div>
+      <a href="https://paypal.me/charlesowuor" target="_blank" style="flex-shrink:0;background:#0070ba;color:#fff;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Join →</a>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid rgba(22,193,129,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:#16c181;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">💸</div>
+      <div style="flex:1;min-width:0;"><p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">Wise</p><p style="font-size:10px;color:#64748b;margin-bottom:4px;">Best rates — send to 80+ countries</p><span style="font-size:9px;background:rgba(22,193,129,.12);color:#16c181;padding:2px 8px;border-radius:6px;font-weight:700;">Low fees worldwide</span></div>
+      <a href="https://wise.com/invite/ih/charlesowuor" target="_blank" style="flex-shrink:0;background:#16c181;color:#fff;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Join →</a>
+    </div>
+  </div>
+  <div id="aff-mining" class="aff-panel" style="display:none;flex-direction:column;gap:8px;margin-bottom:14px;">
+    <div style="background:#0d0d0d;border:1px solid rgba(255,90,31,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:#ff5a1f;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">⚡</div>
+      <div style="flex:1;min-width:0;"><p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">CryptoTab Browser</p><p style="font-size:10px;color:#64748b;margin-bottom:4px;">Earn Bitcoin while browsing</p><span style="font-size:9px;background:rgba(255,90,31,.12);color:#ff5a1f;padding:2px 8px;border-radius:6px;font-weight:700;">Earn while browsing</span></div>
+      <a href="https://cryptotabbrowser.com/landing/89/20904432" target="_blank" style="flex-shrink:0;background:#ff5a1f;color:#fff;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Join →</a>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid rgba(123,31,162,.25);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:10px;background:#7b1fa2;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🎁</div>
+      <div style="flex:1;min-width:0;"><p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">Pi Network</p><p style="font-size:10px;color:#64748b;margin-bottom:4px;">Free crypto mining from your phone</p><span style="font-size:9px;background:rgba(123,31,162,.12);color:#c084fc;padding:2px 8px;border-radius:6px;font-weight:700;">Free phone mining</span></div>
+      <a href="https://minepi.com/Chalzy1" target="_blank" style="flex-shrink:0;background:#7b1fa2;color:#fff;padding:8px 14px;border-radius:10px;font-size:11px;font-weight:800;text-decoration:none;">Join →</a>
+    </div>
+    <p style="font-size:10px;color:#475569;text-align:center;margin-top:8px;">⚠️ DYOR — Do your own research before investing.</p>
+  </div>
+
+</div><!-- /page-tools -->
+
+
+<!-- ════════════════════════════════════════════
+     PAGE: ACCOUNT  (post-login)
+════════════════════════════════════════════ -->
+<div id="page-account" class="page">
+
+  <h2 style="font-size:16px;font-weight:900;color:#ffd700;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;">⚙️ Account</h2>
+
+  <!-- Profile card -->
+  <div class="card" style="margin-bottom:14px;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+      <div style="width:54px;height:54px;border-radius:18px;background:rgba(255,215,0,.1);border:1.5px solid rgba(255,215,0,.25);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">👤</div>
+      <div>
+        <p id="account-name" style="font-size:15px;font-weight:800;color:#fff;margin-bottom:3px;"></p>
+        <p id="account-email" style="font-size:11px;color:#64748b;"></p>
+      </div>
+    </div>
+    <div class="card-dark" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+      <div>
+        <p style="font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px;">Referral Code</p>
+        <p id="account-ref-code" style="font-size:14px;font-weight:900;color:#ffd700;letter-spacing:2px;"></p>
+      </div>
+      <button onclick="copyRefCode()" style="background:rgba(255,215,0,.1);color:#ffd700;border:1px solid rgba(255,215,0,.25);padding:7px 14px;border-radius:10px;font-size:10px;font-weight:800;cursor:pointer;">COPY</button>
+    </div>
+    <div class="card-dark">
+      <p style="font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px;">M-Pesa Number</p>
+      <p id="account-phone" style="font-size:13px;font-weight:700;color:#fff;margin-bottom:10px;">Not set</p>
+      <div style="display:flex;gap:8px;">
+        <input type="tel" id="update-phone" placeholder="07XXXXXXXX" maxlength="10" class="inp" style="flex:1;padding:10px 14px;font-size:12px;"/>
+        <button onclick="updateMpesaNumber()" style="background:#22c55e;color:#fff;border:none;border-radius:12px;padding:10px 16px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap;flex-shrink:0;">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Plan info -->
+  <div class="card" style="margin-bottom:14px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+      <p class="label-sm" style="color:#64748b;">Current Plan</p>
+      <span style="font-size:9px;background:rgba(34,197,94,.1);color:#22c55e;padding:3px 10px;border-radius:20px;font-weight:800;border:1px solid rgba(34,197,94,.25);">ACTIVE</span>
+    </div>
+    <p id="account-plan-name" style="font-size:15px;font-weight:800;color:#fff;margin:8px 0 14px;">🆓 Free Plan</p>
+    <button onclick="openPlansModal()" class="btn-gold">⚡ Upgrade Plan</button>
+  </div>
+
+  <!-- Support -->
+  <div class="card" style="margin-bottom:14px;">
+    <p class="label-sm" style="margin-bottom:14px;color:#64748b;">Support</p>
+    <a href="https://wa.me/254702468460?text=Hi%20Cozycabin%2C%20I%20need%20help%20with%20the%20Affiliate%20Portal" target="_blank"
+      style="display:flex;align-items:center;gap:10px;background:rgba(37,211,102,.07);border:1.5px solid rgba(37,211,102,.2);border-radius:14px;padding:14px;text-decoration:none;margin-bottom:10px;">
+      <span style="font-size:20px;">💬</span>
+      <div>
+        <p style="font-size:13px;font-weight:700;color:#fff;margin-bottom:2px;">WhatsApp Support</p>
+        <p style="font-size:10px;color:#64748b;">+254702468460 · Fast response</p>
+      </div>
+      <span style="margin-left:auto;color:#25d366;font-size:14px;">›</span>
+    </a>
+    <a href="https://www.cozycabin.co.ke" target="_blank"
+      style="display:flex;align-items:center;gap:10px;background:rgba(255,215,0,.05);border:1px solid rgba(255,215,0,.15);border-radius:14px;padding:14px;text-decoration:none;">
+      <span style="font-size:20px;">🏠</span>
+      <div>
+        <p style="font-size:13px;font-weight:700;color:#fff;margin-bottom:2px;">Cozycabin Shop</p>
+        <p style="font-size:10px;color:#64748b;">www.cozycabin.co.ke</p>
+      </div>
+      <span style="margin-left:auto;color:#ffd700;font-size:14px;">›</span>
+    </a>
+  </div>
+
+  <!-- Logout -->
+  <button onclick="logoutUser()"
+    style="width:100%;background:rgba(127,29,29,.6);color:#fca5a5;border:1.5px solid rgba(239,68,68,.25);padding:14px;border-radius:16px;font-weight:800;font-size:12px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;transition:.2s;"
+    onmouseover="this.style.background='rgba(185,28,28,.7)'" onmouseout="this.style.background='rgba(127,29,29,.6)'">
+    🚪 Sign Out
+  </button>
+
+  <div style="text-align:center;margin-top:24px;padding-bottom:8px;">
+    <p style="font-size:9px;text-transform:uppercase;letter-spacing:4px;color:#334155;">© Cozycabin 2026 · 🇰🇪 Kenya</p>
+  </div>
+
+</div><!-- /page-account -->
+
+</div><!-- /max-width wrapper -->
+
+
+<!-- ══════════════════════════════════
+     BOTTOM NAV (logged-in only)
+══════════════════════════════════ -->
+<nav id="bottom-nav">
+  <div style="display:flex;max-width:480px;margin:0 auto;">
+    <div class="bnav-item active" id="bnav-dashboard" onclick="navTo('dashboard')">
+      <div class="bnav-emoji">🏠</div>
+      <div class="bnav-label">Dashboard</div>
+    </div>
+    <div class="bnav-item" id="bnav-links" onclick="navTo('links')">
+      <div class="bnav-emoji">🔗</div>
+      <div class="bnav-label">Links</div>
+    </div>
+    <div class="bnav-item" id="bnav-earnings" onclick="navTo('earnings')">
+      <div class="bnav-emoji">💰</div>
+      <div class="bnav-label">Earnings</div>
+    </div>
+    <div class="bnav-item" id="bnav-tools" onclick="navTo('tools')">
+      <div class="bnav-emoji">🛠️</div>
+      <div class="bnav-label">Tools</div>
+    </div>
+    <div class="bnav-item" id="bnav-account" onclick="navTo('account')">
+      <div class="bnav-emoji">⚙️</div>
+      <div class="bnav-label">Account</div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════
+     PLANS MODAL (triggered by button)
+══════════════════════════════════ -->
+<div id="plans-modal" class="modal-overlay">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <h2 style="font-size:16px;font-weight:900;color:#ffd700;letter-spacing:2px;text-transform:uppercase;">⚡ Plans &amp; Pricing</h2>
+      <button onclick="closePlansModal()" style="background:rgba(255,255,255,.06);border:1px solid #222;color:#94a3b8;width:32px;height:32px;border-radius:10px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">×</button>
+    </div>
+    <p style="font-size:11px;color:#64748b;margin-bottom:18px;line-height:1.6;">Upgrade anytime via M-Pesa · Instant activation via WhatsApp</p>
+
+    <!-- Current plan indicator -->
+    <div id="modal-current-plan" style="background:#0d0d0d;border:1px solid #222;border-radius:14px;padding:12px 14px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <p style="font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;">Your Plan</p>
+        <p id="modal-plan-name" style="font-size:14px;font-weight:800;color:#fff;">🆓 Free Plan</p>
+      </div>
+      <span style="font-size:9px;background:rgba(34,197,94,.1);color:#22c55e;padding:4px 10px;border-radius:20px;border:1px solid rgba(34,197,94,.25);font-weight:800;">ACTIVE</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+
+      <!-- Free -->
+      <div style="background:#0d0d0d;border:1.5px solid #222;border-radius:18px;overflow:hidden;">
+        <div style="padding:14px 16px;border-bottom:1px solid #1a1a1a;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <p style="font-size:15px;font-weight:800;color:#fff;">🆓 Free</p>
+            <span style="font-size:18px;font-weight:900;color:#94a3b8;">KES 0</span>
+          </div>
+          <p style="font-size:10px;color:#475569;margin-top:4px;">Forever free — get started today</p>
+        </div>
+        <div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px;">
+          <div class="plan-feat on">✅ <span>2 document views/day</span></div>
+          <div class="plan-feat on">✅ <span>10 image conversions/day</span></div>
+          <div class="plan-feat on">✅ <span>Basic affiliate creator</span></div>
+          <div class="plan-feat off">🔒 <span>PDF exports</span></div>
+          <div class="plan-feat off">🔒 <span>ZIP operations</span></div>
+          <div class="plan-feat off">🔒 <span>Advanced affiliate tools</span></div>
+        </div>
+      </div>
+
+      <!-- Premium KES 200 -->
+      <div style="background:linear-gradient(135deg,#0d1a00,#0f2000);border:1.5px solid rgba(255,215,0,.35);border-radius:18px;overflow:hidden;position:relative;">
+        <div style="position:absolute;top:12px;right:12px;background:#ffd700;color:#000;font-size:9px;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:1px;">POPULAR</div>
+        <div style="padding:14px 16px;border-bottom:1px solid rgba(255,215,0,.1);">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <p style="font-size:15px;font-weight:800;color:#ffd700;">⚡ Premium</p>
+            <div style="text-align:right;"><span style="font-size:18px;font-weight:900;color:#ffd700;">KES 200</span><span style="font-size:10px;color:#64748b;display:block;">/ month</span></div>
+          </div>
+          <p style="font-size:10px;color:#64748b;margin-top:4px;">Great for regular users &amp; affiliates</p>
+        </div>
+        <div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px;margin-bottom:10px;">
+          <div class="plan-feat on" style="color:#ffd700;">✅ <span>50 document views/month</span></div>
+          <div class="plan-feat on" style="color:#ffd700;">✅ <span>100 PDF exports/month</span></div>
+          <div class="plan-feat on" style="color:#ffd700;">✅ <span>50 ZIP operations/month</span></div>
+          <div class="plan-feat on" style="color:#ffd700;">✅ <span>Unlimited image conversions</span></div>
+          <div class="plan-feat on" style="color:#ffd700;">✅ <span>Advanced affiliate tools</span></div>
+        </div>
+        <div style="padding:0 16px 16px;">
+          <button onclick="openUpgrade('200')" class="btn-gold">⚡ Upgrade — KES 200/mo</button>
+        </div>
+      </div>
+
+      <!-- Pro KES 500 -->
+      <div style="background:linear-gradient(135deg,#0a0d1f,#111830);border:1.5px solid rgba(99,102,241,.35);border-radius:18px;overflow:hidden;">
+        <div style="padding:14px 16px;border-bottom:1px solid rgba(99,102,241,.15);">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <p style="font-size:15px;font-weight:800;color:#818cf8;">🚀 Pro Monthly</p>
+            <div style="text-align:right;"><span style="font-size:18px;font-weight:900;color:#818cf8;">KES 500</span><span style="font-size:10px;color:#64748b;display:block;">/ month</span></div>
+          </div>
+          <p style="font-size:10px;color:#64748b;margin-top:4px;">Power users &amp; serious affiliates</p>
+        </div>
+        <div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px;margin-bottom:10px;">
+          <div class="plan-feat on" style="color:#818cf8;">✅ <span>150 document views/month</span></div>
+          <div class="plan-feat on" style="color:#818cf8;">✅ <span>300 PDF exports/month</span></div>
+          <div class="plan-feat on" style="color:#818cf8;">✅ <span>200 ZIP operations/month</span></div>
+          <div class="plan-feat on" style="color:#818cf8;">✅ <span>Priority processing ⚡</span></div>
+          <div class="plan-feat on" style="color:#818cf8;">✅ <span>Early access features 🔮</span></div>
+        </div>
+        <div style="padding:0 16px 16px;">
+          <button onclick="openUpgrade('500')" style="width:100%;background:linear-gradient(135deg,#4338ca,#818cf8);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:800;font-size:12px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">🚀 Upgrade — KES 500/mo</button>
+        </div>
+      </div>
+
+      <!-- Yearly KES 2000 -->
+      <div style="background:linear-gradient(135deg,#0a1a10,#0f2515);border:1.5px solid rgba(52,211,153,.35);border-radius:18px;overflow:hidden;position:relative;">
+        <div style="position:absolute;top:12px;right:12px;background:rgba(52,211,153,.15);color:#34d399;font-size:9px;font-weight:800;padding:3px 10px;border-radius:20px;border:1px solid rgba(52,211,153,.3);">BEST VALUE</div>
+        <div style="padding:14px 16px;border-bottom:1px solid rgba(52,211,153,.1);">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <p style="font-size:15px;font-weight:800;color:#34d399;">📅 Premium Yearly</p>
+            <div style="text-align:right;"><span style="font-size:18px;font-weight:900;color:#34d399;">KES 2,000</span><span style="font-size:10px;color:#64748b;display:block;">/ year · save 67%</span></div>
+          </div>
+          <p style="font-size:10px;color:#64748b;margin-top:4px;">Pay once, use all year</p>
+        </div>
+        <div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px;margin-bottom:10px;">
+          <div class="plan-feat on" style="color:#34d399;">✅ <span>10,000 document views/year</span></div>
+          <div class="plan-feat on" style="color:#34d399;">✅ <span>15,000 PDF exports/year</span></div>
+          <div class="plan-feat on" style="color:#34d399;">✅ <span>Priority processing ⚡</span></div>
+          <div class="plan-feat on" style="color:#34d399;">✅ <span>All Premium features included</span></div>
+        </div>
+        <div style="padding:0 16px 16px;">
+          <button onclick="openUpgrade('2000')" style="width:100%;background:linear-gradient(135deg,#065f46,#34d399);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:800;font-size:12px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">📅 Get Yearly — KES 2,000</button>
+        </div>
+      </div>
+
+      <!-- Lifetime KES 5000 -->
+      <div style="background:linear-gradient(135deg,#1a0a00,#2d1500);border:2px solid #f97316;border-radius:18px;overflow:hidden;position:relative;">
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(249,115,22,.1),transparent 60%);pointer-events:none;"></div>
+        <div style="position:absolute;top:12px;right:12px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:9px;font-weight:800;padding:3px 10px;border-radius:20px;">👑 LIFETIME</div>
+        <div style="padding:14px 16px;border-bottom:1px solid rgba(249,115,22,.15);position:relative;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <p style="font-size:15px;font-weight:800;color:#f97316;">👑 Lifetime Access</p>
+            <div style="text-align:right;"><span style="font-size:18px;font-weight:900;color:#f97316;">KES 5,000</span><span style="font-size:10px;color:#64748b;display:block;">one-time · forever</span></div>
+          </div>
+          <p style="font-size:10px;color:#64748b;margin-top:4px;">Pay once. Use forever.</p>
+        </div>
+        <div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px;margin-bottom:10px;position:relative;">
+          <div class="plan-feat on" style="color:#f97316;">♾️ <span>Unlimited everything — forever</span></div>
+          <div class="plan-feat on" style="color:#f97316;">♾️ <span>All future premium tools included</span></div>
+          <div class="plan-feat on" style="color:#f97316;">✅ <span>Priority processing forever ⚡</span></div>
+          <div class="plan-feat on" style="color:#f97316;">✅ <span>No recurring payments ever 🎉</span></div>
+        </div>
+        <div style="padding:0 16px 16px;position:relative;">
+          <button onclick="openUpgrade('5000')" style="width:100%;background:linear-gradient(135deg,#c2410c,#f97316);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;font-size:13px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;box-shadow:0 4px 20px rgba(249,115,22,.3);">👑 Get Lifetime — KES 5,000</button>
+        </div>
+      </div>
+
+    </div><!-- /plan cards -->
+
+    <p style="text-align:center;margin-top:16px;font-size:11px;color:#475569;line-height:1.7;">
+      All plans activated instantly · M-Pesa · WhatsApp confirmation<br>
+      <a href="https://wa.me/254702468460?text=I%20have%20a%20question%20about%20Cozycabin%20plans" target="_blank" style="color:#ffd700;text-decoration:none;font-weight:700;">💬 Questions? Chat with us</a>
+    </p>
+
+  </div>
+</div><!-- /plans-modal -->
+
+
+<!-- ══════════════════════════════════
+     WITHDRAW MODAL
+══════════════════════════════════ -->
+<div id="withdraw-modal" class="modal-overlay">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+      <h2 style="font-size:16px;font-weight:900;color:#ffd700;letter-spacing:2px;text-transform:uppercase;">💸 Withdraw Earnings</h2>
+      <button onclick="closeWithdrawModal()" style="background:rgba(255,255,255,.06);border:1px solid #222;color:#94a3b8;width:32px;height:32px;border-radius:10px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">×</button>
+    </div>
+
+    <!-- Balance reminder -->
+    <div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:14px;padding:12px 14px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;">
+      <p style="font-size:11px;color:#64748b;">Available Balance</p>
+      <p style="font-size:18px;font-weight:900;color:#22c55e;">KES <span id="withdraw-balance">0.00</span></p>
+    </div>
+
+    <!-- Min payout grid -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:16px;">
+      <div class="card-dark" style="text-align:center;padding:10px 8px;">
+        <p style="font-size:14px;font-weight:900;color:#22c55e;">KES 350</p>
+        <p style="font-size:8px;color:#475569;margin-top:2px;">Kenya min.</p>
+      </div>
+      <div class="card-dark" style="text-align:center;padding:10px 8px;">
+        <p style="font-size:14px;font-weight:900;color:#60a5fa;">$3 USD</p>
+        <p style="font-size:8px;color:#475569;margin-top:2px;">International</p>
+      </div>
+      <div class="card-dark" style="text-align:center;padding:10px 8px;">
+        <p style="font-size:14px;font-weight:900;color:#f3ba2f;">$3 USDT</p>
+        <p style="font-size:8px;color:#475569;margin-top:2px;">Crypto min.</p>
+      </div>
+    </div>
+
+    <!-- Region selector -->
+    <div style="margin-bottom:14px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;">
+        <label class="label-sm" style="color:#64748b;">🌍 Your Region</label>
+        <span id="geo-status" style="font-size:9px;color:#475569;"></span>
+      </div>
+      <select id="region-select" onchange="switchRegion(this.value)" class="inp">
+        <option value="kenya">🇰🇪 Kenya</option>
+        <option value="nigeria">🇳🇬 Nigeria</option>
+        <option value="ghana">🇬🇭 Ghana</option>
+        <option value="uganda">🇺🇬 Uganda</option>
+        <option value="tanzania">🇹🇿 Tanzania</option>
+        <option value="africa">🌍 Other Africa</option>
+        <option value="europe">🇪🇺 Europe</option>
+        <option value="usa">🇺🇸 USA / Canada</option>
+        <option value="asia">🌏 Asia / Middle East</option>
+        <option value="international">🌐 Other International</option>
+        <option value="crypto">₿ Anywhere via Crypto</option>
+      </select>
+    </div>
+
+    <!-- ── KENYA PAYOUT METHODS (ACCORDION) ── -->
+    <div id="region-kenya" class="region-panel">
+      <p style="font-size:10px;font-weight:800;color:#22c55e;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;">🇰🇪 Kenya Payment Methods</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+
+        <!-- M-Pesa -->
+        <div class="payout-item">
+          <div class="payout-header" onclick="togglePayout(this,'mpesa-form')">
+            <div style="width:38px;height:38px;border-radius:11px;background:#2db742;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">📱</div>
+            <div>
+              <p style="font-size:13px;font-weight:800;color:#fff;">M-Pesa Send Money</p>
+              <p style="font-size:10px;color:#64748b;">Instant · Min KES 350</p>
+            </div>
+            <span style="font-size:9px;background:rgba(45,183,66,.15);color:#2db742;padding:2px 8px;border-radius:8px;font-weight:700;flex-shrink:0;">INSTANT</span>
+            <span class="payout-chevron">▾</span>
+          </div>
+          <div id="mpesa-form" class="payout-body">
+            <p style="font-size:11px;color:#94a3b8;margin-bottom:10px;">Registered M-Pesa: <strong id="mpesa-display" style="color:#fff;">—</strong></p>
+            <div style="display:flex;gap:8px;margin-bottom:10px;">
+              <input type="tel" id="update-phone-w" placeholder="07XXXXXXXX" maxlength="10" class="inp" style="flex:1;padding:10px 14px;font-size:12px;"/>
+              <button onclick="updateMpesaNumber()" style="background:#2db742;color:#fff;border:none;border-radius:12px;padding:10px 14px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap;flex-shrink:0;">Update</button>
+            </div>
+            <button onclick="requestPayout('mpesa')" class="btn-green">💚 Request M-Pesa Payout</button>
+          </div>
+        </div>
+
+        <!-- Pochi la Biashara -->
+        <div class="payout-item">
+          <div class="payout-header" onclick="togglePayout(this,'pochi-form')">
+            <div style="width:38px;height:38px;border-radius:11px;background:#047857;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🏪</div>
+            <div>
+              <p style="font-size:13px;font-weight:800;color:#fff;">Pochi la Biashara</p>
+              <p style="font-size:10px;color:#64748b;">Business wallet · Kenya only</p>
+            </div>
+            <span class="payout-chevron">▾</span>
+          </div>
+          <div id="pochi-form" class="payout-body">
+            <p style="font-size:11px;color:#64748b;margin-bottom:12px;">Uses your registered M-Pesa/Pochi number on file.</p>
+            <button onclick="requestPayout('pochi')" style="width:100%;background:linear-gradient(135deg,#047857,#059669);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:800;font-size:12px;cursor:pointer;text-transform:uppercase;">🏪 Request Pochi Payout</button>
+          </div>
+        </div>
+
+        <!-- Kenya Bank -->
+        <div class="payout-item">
+          <div class="payout-header" onclick="togglePayout(this,'ke-bank-form')">
+            <div style="width:38px;height:38px;border-radius:11px;background:#1d4ed8;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🏦</div>
+            <div>
+              <p style="font-size:13px;font-weight:800;color:#fff;">Kenya Bank Transfer</p>
+              <p style="font-size:10px;color:#64748b;">KCB, Equity, Co-op, NCBA, Absa…</p>
+            </div>
+            <span style="font-size:9px;background:rgba(96,165,250,.1);color:#60a5fa;padding:2px 8px;border-radius:8px;font-weight:700;flex-shrink:0;">1-2 DAYS</span>
+            <span class="payout-chevron">▾</span>
+          </div>
+          <div id="ke-bank-form" class="payout-body">
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+              <input type="text" id="ke-bank-name" placeholder="Bank name (e.g. KCB)" class="inp" style="padding:10px 14px;font-size:12px;"/>
+              <input type="text" id="ke-account-num" placeholder="Account number" class="inp" style="padding:10px 14px;font-size:12px;"/>
+              <input type="text" id="ke-account-name" placeholder="Account holder name" class="inp" style="padding:10px 14px;font-size:12px;"/>
+            </div>
+            <button onclick="requestPayout('ke-bank')" style="width:100%;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:800;font-size:12px;cursor:pointer;text-transform:uppercase;">🏦 Request Bank Transfer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── INTERNATIONAL METHODS ── -->
+    <div id="region-international" class="region-panel" style="display:none;">
+      <p style="font-size:10px;font-weight:800;color:#60a5fa;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;">🌐 International Payment Methods</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+
+        <!-- PayPal -->
+        <div class="payout-item">
+          <div class="payout-header" onclick="togglePayout(this,'paypal-form')">
+            <div style="width:38px;height:38px;border-radius:11px;background:#0070ba;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">💳</div>
+            <div>
+              <p style="font-size:13px;font-weight:800;color:#fff;">PayPal</p>
+              <p style="font-size:10px;color:#64748b;">USD · EUR · GBP · Min $3</p>
+            </div>
+            <span style="font-size:9px;background:rgba(0,112,186,.15);color:#60a5fa;padding:2px 8px;border-radius:8px;font-weight:700;flex-shrink:0;">GLOBAL</span>
+            <span class="payout-chevron">▾</span>
+          </div>
+          <div id="paypal-form" class="payout-body">
+            <div style="display:flex;gap:8px;margin-bottom:12px;">
+              <input type="email" id="paypal-email" placeholder="PayPal email" class="inp" style="flex:1;padding:10px 14px;font-size:12px;"/>
+              <select id="paypal-currency" class="inp" style="width:auto;padding:10px 12px;font-size:12px;">
+                <option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="CAD">CAD</option>
+              </select>
+            </div>
+            <button onclick="requestPayout('paypal')" style="width:100%;background:linear-gradient(135deg,#003087,#0070ba);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:800;font-size:12px;cursor:pointer;text-transform:uppercase;">💳 Request PayPal Payout</button>
+          </div>
+        </div>
+
+        <!-- Wise -->
+        <div class="payout-item">
+          <div class="payout-header" onclick="togglePayout(this,'wise-form')">
+            <div style="width:38px;height:38px;border-radius:11px;background:#16c181;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">💸</div>
+            <div>
+              <p style="font-size:13px;font-weight:800;color:#fff;">Wise</p>
+              <p style="font-size:10px;color:#64748b;">Best rates · 80+ countries · Min $3</p>
+            </div>
+            <span style="font-size:9px;background:rgba(22,193,129,.15);color:#16c181;padding:2px 8px;border-radius:8px;font-weight:700;flex-shrink:0;">BEST RATE</span>
+            <span class="payout-chevron">▾</span>
+          </div>
+          <div id="wise-form" class="payout-body">
+            <div style="display:flex;gap:8px;margin-bottom:12px;">
+              <input type="email" id="wise-email" placeholder="Wise email" class="inp" style="flex:1;padding:10px 14px;font-size:12px;"/>
+              <select id="wise-currency" class="inp" style="width:auto;padding:10px 12px;font-size:12px;">
+                <option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="NGN">NGN</option><option value="GHS">GHS</option><option value="ZAR">ZAR</option>
+              </select>
+            </div>
+            <button onclick="requestPayout('wise')" style="width:100%;background:linear-gradient(135deg,#0a4f35,#16c181);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:800;font-size:12px;cursor:pointer;text-transform:uppercase;">💸 Request Wise Payout</button>
+          </div>
+        </div>
+
+        <!-- Crypto -->
+        <div class="payout-item">
+          <div class="payout-header" onclick="togglePayout(this,'crypto-form')">
+            <div style="width:38px;height:38px;border-radius:11px;background:#f3ba2f;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">₿</div>
+            <div>
+              <p style="font-size:13px;font-weight:800;color:#fff;">Crypto</p>
+              <p style="font-size:10px;color:#64748b;">USDT · BTC · BNB · ETH · Min $3</p>
+            </div>
+            <span class="payout-chevron">▾</span>
+          </div>
+          <div id="crypto-form" class="payout-body">
+            <select id="crypto-coin" class="inp" style="margin-bottom:8px;padding:10px 14px;font-size:12px;">
+              <option value="USDT (BEP-20)">USDT BEP-20 (Binance Smart Chain)</option>
+              <option value="USDT (TRC-20)">USDT TRC-20 (Tron)</option>
+              <option value="BTC">Bitcoin (BTC)</option>
+              <option value="ETH">Ethereum (ETH)</option>
+              <option value="BNB">Binance Coin (BNB)</option>
+            </select>
+            <input type="text" id="crypto-wallet" placeholder="Your wallet address" class="inp" style="margin-bottom:12px;padding:10px 14px;font-size:12px;"/>
+            <button onclick="requestPayout('crypto')" style="width:100%;background:linear-gradient(135deg,#854d0e,#f3ba2f);color:#000;border:none;padding:13px;border-radius:14px;font-weight:800;font-size:12px;cursor:pointer;text-transform:uppercase;">₿ Request Crypto Payout</button>
+          </div>
+        </div>
+
+        <!-- MiniPay -->
+        <div class="payout-item">
+          <div class="payout-header" onclick="togglePayout(this,'minipay-form')">
+            <div style="width:38px;height:38px;border-radius:11px;background:#12b347;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🌍</div>
+            <div>
+              <p style="font-size:13px;font-weight:800;color:#fff;">MiniPay</p>
+              <p style="font-size:10px;color:#64748b;">Ghana · Nigeria · Uganda &amp; more</p>
+            </div>
+            <span class="payout-chevron">▾</span>
+          </div>
+          <div id="minipay-form" class="payout-body">
+            <input type="tel" id="minipay-number" placeholder="+233XXXXXXXXX" class="inp" style="margin-bottom:8px;padding:10px 14px;font-size:12px;"/>
+            <select id="minipay-country" class="inp" style="margin-bottom:12px;padding:10px 14px;font-size:12px;">
+              <option value="">Select Country</option>
+              <option value="Ghana">🇬🇭 Ghana</option><option value="Nigeria">🇳🇬 Nigeria</option><option value="Uganda">🇺🇬 Uganda</option><option value="Tanzania">🇹🇿 Tanzania</option><option value="Rwanda">🇷🇼 Rwanda</option><option value="Zambia">🇿🇲 Zambia</option><option value="South Africa">🇿🇦 South Africa</option>
+            </select>
+            <button onclick="requestPayout('minipay')" style="width:100%;background:linear-gradient(135deg,#065f46,#12b347);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:800;font-size:12px;cursor:pointer;text-transform:uppercase;">🌍 Request MiniPay Payout</button>
+          </div>
+        </div>
+
+        <!-- African Bank -->
+        <div class="payout-item">
+          <div class="payout-header" onclick="togglePayout(this,'af-bank-form')">
+            <div style="width:38px;height:38px;border-radius:11px;background:#1d4ed8;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🏦</div>
+            <div>
+              <p style="font-size:13px;font-weight:800;color:#fff;">African Bank Transfer</p>
+              <p style="font-size:10px;color:#64748b;">GTBank · Access · Zenith · Stanbic…</p>
+            </div>
+            <span class="payout-chevron">▾</span>
+          </div>
+          <div id="af-bank-form" class="payout-body">
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+              <input type="text" id="af-bank-country" placeholder="Country" class="inp" style="padding:10px 14px;font-size:12px;"/>
+              <input type="text" id="af-bank-name" placeholder="Bank name" class="inp" style="padding:10px 14px;font-size:12px;"/>
+              <input type="text" id="af-account-num" placeholder="Account number" class="inp" style="padding:10px 14px;font-size:12px;"/>
+              <input type="text" id="af-account-name" placeholder="Account holder name" class="inp" style="padding:10px 14px;font-size:12px;"/>
+            </div>
+            <button onclick="requestPayout('af-bank')" style="width:100%;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:800;font-size:12px;cursor:pointer;text-transform:uppercase;">🏦 Request Bank Transfer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Nigeria, Ghana, Uganda, Tanzania, Africa, Europe, USA, Asia panels 
+         all show International methods for simplicity per spec -->
+    <div id="region-nigeria" class="region-panel" style="display:none;"></div>
+    <div id="region-ghana" class="region-panel" style="display:none;"></div>
+    <div id="region-uganda" class="region-panel" style="display:none;"></div>
+    <div id="region-tanzania" class="region-panel" style="display:none;"></div>
+    <div id="region-africa" class="region-panel" style="display:none;"></div>
+    <div id="region-europe" class="region-panel" style="display:none;"></div>
+    <div id="region-usa" class="region-panel" style="display:none;"></div>
+    <div id="region-asia" class="region-panel" style="display:none;"></div>
+    <div id="region-crypto" class="region-panel" style="display:none;"></div>
+
+    <!-- Payout footer -->
+    <div class="card-dark" style="text-align:center;margin-top:14px;">
+      <p style="font-size:10px;color:#475569;line-height:1.8;">
+        ✅ All payouts confirmed via WhatsApp<br>
+        ⏱️ Instant (M-Pesa) · ~1hr (Crypto) · 1-3 days (Bank/PayPal/Wise)<br>
+        ❓ <a href="https://wa.me/254702468460?text=I%20need%20help%20with%20my%20payout" target="_blank" style="color:#ffd700;font-weight:700;text-decoration:none;">Need help? Chat with us</a>
+      </p>
+    </div>
+
+  </div>
+</div><!-- /withdraw-modal -->
+
+
+<!-- ══════════════════════════════════════════════
+     FIREBASE + ALL LOGIC
+══════════════════════════════════════════════ -->
+<script type="module">
+import { initializeApp }           from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getAuth, GoogleAuthProvider,
+  signInWithPopup,
+  signInWithEmailAndPassword, createUserWithEmailAndPassword,
+  onAuthStateChanged, sendPasswordResetEmail, signOut,
+  browserLocalPersistence, setPersistence
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, addDoc,
+  collection, updateDoc, query, where, getDocs,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// ══════════════════════════════════
+//  FIREBASE CONFIG
+// ══════════════════════════════════
+const firebaseConfig = {
+  apiKey:            "AIzaSyDToZQ-f31ZA2RmPWNKZ4DTtVjyj-toMW0",
+  authDomain:        "cozycabin-affiliate.firebaseapp.com",
+  databaseURL:       "https://cozycabin-affiliate-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId:         "cozycabin-affiliate",
+  storageBucket:     "cozycabin-affiliate.firebasestorage.app",
+  messagingSenderId: "765281276271",
+  appId:             "1:765281276271:web:1368fb340b1fb68a01189a",
+  measurementId:     "G-NFYX4TH0H7"
+};
+
+const app            = initializeApp(firebaseConfig);
+const auth           = getAuth(app);
+const db             = getFirestore(app);
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
+
+// ── SET PERSISTENCE IMMEDIATELY ──
+// User stays logged in after refresh, close browser, restart phone
+setPersistence(auth, browserLocalPersistence).catch(e => {
+  console.warn('Persistence setup:', e.message);
+});
+
+// ── ADMIN WHITELIST ──
+const ADMIN_EMAILS = ['cozycabincoke@gmail.com', 'chalzowuor516@gmail.com'];
+
+// ── STATE ──
+let currentAuthMode      = 'login';
+let currentAffiliateData = null;
+let currentUserUid       = null;
+let _authReady           = false;
+
+// ── URL PARAMS ──
+const incomingReferralCode = new URLSearchParams(window.location.search).get('ref') || 'Direct';
+
+// ══════════════════════════════════
+//  LOADING SCREEN — prevents flicker
+// ══════════════════════════════════
+function showSplash() {
+  let el = document.getElementById('cc-splash');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'cc-splash';
+    el.style.cssText = `
+      position:fixed;inset:0;z-index:9999;
+      background:#080808;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+      transition:opacity .3s ease;
+    `;
+    el.innerHTML = `
+      <div style="width:64px;height:64px;border-radius:18px;background:#111;border:1px solid #2a2a2a;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <img src="Images/Cozycabin%20log%20.webp" style="width:100%;height:100%;object-fit:cover;"
+          onerror="this.parentNode.innerHTML='<span style=font-size:28px>🏠</span>'">
+      </div>
+      <div style="text-align:center;">
+        <p style="font-size:18px;font-weight:900;letter-spacing:4px;color:#ffd700;text-transform:uppercase;margin:0 0 4px;">COZYCABIN</p>
+        <p style="font-size:9px;text-transform:uppercase;letter-spacing:4px;color:#334155;margin:0;">Affiliate Portal</p>
+      </div>
+      <div style="width:28px;height:28px;border:2.5px solid #1e1e1e;border-top-color:#ffd700;border-radius:50%;animation:spin 1s linear infinite;"></div>
+    `;
+    document.body.prepend(el);
+  }
+  el.style.opacity = '1';
+  el.style.display = 'flex';
+}
+
+function hideSplash() {
+  const el = document.getElementById('cc-splash');
+  if (!el) return;
+  el.style.opacity = '0';
+  setTimeout(() => { el.style.display = 'none'; }, 350);
+}
+
+// Show splash immediately — prevents any flicker of the login page for logged-in users
+showSplash();
+
+// ══════════════════════════════════
+//  TOAST
+// ══════════════════════════════════
+function toast(msg, isError = true) {
+  const el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.background = isError ? 'rgba(127,29,29,0.95)' : 'rgba(20,83,45,0.95)';
+  el.style.color      = isError ? '#fca5a5' : '#86efac';
+  el.style.border     = isError ? '1px solid rgba(239,68,68,0.3)' : '1px solid rgba(34,197,94,0.3)';
+  el.style.display    = 'block';
+  clearTimeout(el._t);
+  el._t = setTimeout(() => { el.style.display = 'none'; }, 4500);
+}
+window.toast = toast;
+
+// Auth message (in-form)
+function showMsg(text, isError = true) {
+  const el = document.getElementById('auth-msg');
+  if (!el) { toast(text, isError); return; }
+  el.textContent      = text;
+  el.style.display    = 'block';
+  el.style.background = isError ? 'rgba(127,29,29,0.6)' : 'rgba(20,83,45,0.6)';
+  el.style.color      = isError ? '#fca5a5' : '#86efac';
+  el.style.border     = isError ? '1px solid rgba(239,68,68,0.3)' : '1px solid rgba(34,197,94,0.3)';
+  clearTimeout(el._t);
+  el._t = setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+function setLoading(loading) {
+  const btn = document.getElementById('auth-submit-btn');
+  if (!btn) return;
+  if (loading) {
+    btn.innerHTML = '<div class="loader"></div>';
+    btn.disabled  = true;
+  } else {
+    btn.disabled     = false;
+    btn.textContent  = currentAuthMode === 'register' ? 'CREATE ACCOUNT' : 'SIGN IN WITH EMAIL';
+    btn.style.background = currentAuthMode === 'register'
+      ? '#ffffff'
+      : 'linear-gradient(135deg,#ffd700,#e0a800)';
+    btn.style.color = '#000';
+  }
+}
+
+// Fallback for when module hasn't loaded yet
+window.handleEmailAuth = function(event) {
+  if (event) event.preventDefault();
+  const errEl = document.getElementById('auth-msg');
+  if (errEl) {
+    errEl.textContent   = '⚠️ App not ready. Please refresh the page.';
+    errEl.style.display = 'block';
+    errEl.style.background = 'rgba(127,29,29,0.6)';
+    errEl.style.color   = '#fca5a5';
+    errEl.style.border  = '1px solid rgba(239,68,68,0.3)';
+  }
+};
+
+// ══════════════════════════════════
+//  SHOW LOGIN PAGE (clean state)
+// ══════════════════════════════════
+function showLoginPage() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-login').classList.add('active');
+  document.getElementById('bottom-nav').style.display = 'none';
+  // Reset form to Sign In mode
+  if (currentAuthMode !== 'login') {
+    currentAuthMode = 'login';
+    _syncAuthModeUI();
+  }
+  hideSplash();
+  window.scrollTo(0, 0);
+}
+
+// ══════════════════════════════════
+//  ENSURE AFFILIATE PROFILE EXISTS
+// ══════════════════════════════════
+async function ensureAffiliateProfile(user) {
+  const ref  = doc(db, 'affiliates', user.uid);
+  const snap = await getDoc(ref);
+  if (snap.exists()) return snap;
+
+  // New user — create profile automatically
+  const code = 'CZ-' + user.uid.substring(0, 8).toUpperCase();
+  await setDoc(ref, {
+    uid:         user.uid,
+    email:       user.email        || '',
+    displayName: user.displayName  || '',
+    photoURL:    user.photoURL     || '',
+    name:        user.displayName  || '',
+    phone:       '',
+    provider:    user.providerData?.[0]?.providerId === 'google.com' ? 'google' : 'email',
+    role:        'affiliate',
+    referralCode: code,
+    referredBy:  incomingReferralCode,
+    earnings:    0,
+    balance:     0,
+    commission:  0,
+    totalSales:  0,
+    clicks:      0,
+    sales:       0,
+    status:      'active',
+    createdAt:   serverTimestamp(),
+    joinedAt:    new Date().toISOString()
+  });
+  return await getDoc(ref);
+}
+
+// ══════════════════════════════════
+//  LOAD DASHBOARD
+// ══════════════════════════════════
+async function loadDashboard(user) {
+  if (!user) { showLoginPage(); return; }
+
+  // ── ROLE-BASED REDIRECT ──
+  // Admin emails → Admin Dashboard (using location.replace per spec)
+  if (ADMIN_EMAILS.includes(user.email)) {
+    hideSplash();
+    // Backfill admin role in Firestore if needed
+    try {
+      const aRef  = doc(db, 'affiliates', user.uid);
+      const aSnap = await getDoc(aRef);
+      if (!aSnap.exists()) {
+        const aCode = 'CZ-' + user.uid.substring(0,8).toUpperCase();
+        await setDoc(aRef, {
+          uid: user.uid, email: user.email || '',
+          displayName: user.displayName || '', photoURL: user.photoURL || '',
+          name: user.displayName || '', provider: 'google',
+          role: 'admin', referralCode: aCode,
+          earnings: 0, balance: 0, commission: 0,
+          totalSales: 0, clicks: 0, sales: 0, status: 'active',
+          createdAt: serverTimestamp(), joinedAt: new Date().toISOString()
+        });
+      } else if (!aSnap.data().role) {
+        await updateDoc(aRef, { role: 'admin' });
+      }
+    } catch(ae) { console.warn('Admin profile:', ae.message); }
+    showMsg('✅ Admin account verified. Redirecting…', false);
+    // Use location.replace() — no back button, no redirect loops
+    setTimeout(() => { window.location.replace('admin.html'); }, 800);
+    return;
+  }
+
+  // Affiliate role — load SPA dashboard
+
+  currentUserUid = user.uid;
+
+  try {
+    // Race against an 8s timeout so a stalled Firestore connection
+    // can never leave the splash spinning forever.
+    const profileTimeout = new Promise((_, reject) =>
+      setTimeout(() => reject({ code: 'unavailable', message: 'Profile load timed out' }), 8000)
+    );
+    const snap = await Promise.race([ensureAffiliateProfile(user), profileTimeout]);
+    if (!snap.exists()) throw new Error('Profile could not be created.');
+    await renderDashboard(snap);
+  } catch (err) {
+    console.error('loadDashboard error:', err);
+    hideSplash();
+    // Don't sign out on network errors — let user retry
+    const msgs = {
+      'permission-denied': '🔒 Access denied. Please contact support via WhatsApp.',
+      'unavailable':       '📶 No internet. Check your connection and refresh.',
+      'unauthenticated':   '🔑 Session expired. Please sign in again.',
+    };
+    const friendly = msgs[err.code] || 'Failed to load your dashboard. Please refresh.';
+    showMsg(friendly);
+    // Only sign out on auth errors, not network errors
+    if (err.code === 'unauthenticated' || err.code === 'permission-denied') {
+      await signOut(auth).catch(() => {});
+      showLoginPage();
+    } else {
+      // Show login page but don't sign out (let them retry)
+      showLoginPage();
+    }
+  }
+}
+
+// ══════════════════════════════════
+//  RENDER DASHBOARD
+// ══════════════════════════════════
+async function renderDashboard(snap) {
+  try {
+    currentAffiliateData = snap.data();
+    const d = currentAffiliateData;
+
+    // Switch pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-dashboard').classList.add('active');
+    document.getElementById('bottom-nav').style.display = 'flex';
+    hideSplash();
+
+    const balance    = Number(d.balance ?? d.commission ?? d.earnings ?? 0);
+    const code       = d.referralCode || d.referral_code || currentUserUid?.substring(0,8).toUpperCase() || 'COZY0001';
+    const trackerLink = `${window.location.origin}/?ref=${code}`;
+    const name       = d.name || d.displayName || d.email?.split('@')[0] || 'Affiliate';
+
+    // Populate all display fields
+    ['balance-display','balance-display-2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerText = balance.toFixed(2);
+    });
+    ['clicks-display','clicks-display-2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerText = d.clicks || 0;
+    });
+    ['sales-display','sales-display-2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerText = d.sales || 0;
+    });
+    ['share-link','share-link-2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = trackerLink;
+    });
+
+    const nameEl = document.getElementById('affiliate-name');
+    if (nameEl) nameEl.textContent = name;
+
+    const accountNameEl = document.getElementById('account-name');
+    if (accountNameEl) accountNameEl.textContent = name;
+    const accountEmailEl = document.getElementById('account-email');
+    if (accountEmailEl) accountEmailEl.textContent = d.email || '';
+    const accountPhoneEl = document.getElementById('account-phone');
+    if (accountPhoneEl) accountPhoneEl.textContent = d.phone || 'Not set';
+    const accountRefEl = document.getElementById('account-ref-code');
+    if (accountRefEl) accountRefEl.textContent = code;
+
+    const mpesaEls = document.querySelectorAll('#mpesa-display');
+    mpesaEls.forEach(el => el.textContent = d.phone || 'Not set');
+
+    const plan      = d.plan || 'free';
+    const planNames = { free:'🆓 Free Plan', p200:'⚡ Premium — KES 200/mo', p500:'🚀 Pro — KES 500/mo', yearly:'📅 Premium Yearly', lifetime:'👑 Lifetime Access' };
+    const planEmoji = { free:'🆓', p200:'⚡', p500:'🚀', yearly:'📅', lifetime:'👑' };
+    ['current-plan-name','account-plan-name','modal-plan-name'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = planNames[plan] || '🆓 Free Plan';
+    });
+    const dbp = document.getElementById('dash-plan-badge');
+    if (dbp) dbp.textContent = planEmoji[plan] || '🆓';
+    const dpn = document.getElementById('dash-plan-name');
+    if (dpn) dpn.textContent = 'Active';
+
+    const prev = document.getElementById('share-preview');
+    if (prev) prev.innerHTML = `🛍️ Shop smart at Cozycabin — fashion, electronics, solar, kitchen & digital products!<br>Use my link: <span style="color:#ffd700;word-break:break-all;">${trackerLink}</span>`;
+
+    document.querySelectorAll('[onclick*="requestPayout"]').forEach(btn => {
+      btn.style.opacity = balance < 500 ? '0.55' : '1';
+      btn.title = balance < 500 ? `Need KES ${(500 - balance).toFixed(2)} more to withdraw` : '';
+    });
+
+    setTimeout(() => generateQRCode(trackerLink), 400);
+    resetInactivityTimer();
+    loadToolUsage();
+    autoDetectRegion();
+    loadLeaderboard();
+    loadEarningsHistory(currentUserUid);
+
+  } catch (err) {
+    console.error('renderDashboard error:', err);
+    hideSplash();
+    toast('Failed to display dashboard. Please refresh.', true);
+  }
+}
+
+// ══════════════════════════════════
+//  GOOGLE LOGIN
+//  — popup on desktop, redirect on mobile
+// ══════════════════════════════════
+
+// ══════════════════════════════════
+//  SYNC REAL STATS FROM SHOP TRACKING
+//  Reads affiliate_clicks + affiliateOrders
+//  written by products.js on every order click
+// ══════════════════════════════════
+async function syncClickCount(referralCode) {
+  if (!referralCode) return;
+  try {
+    // 1. Sync real click count from affiliate_clicks/{code}
+    const clickSnap = await getDoc(doc(db, 'affiliate_clicks', referralCode));
+    if (clickSnap.exists()) {
+      const realClicks = clickSnap.data().clicks || 0;
+      ['clicks-display','clicks-display-2'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = realClicks;
+      });
+      if (currentAffiliateData) currentAffiliateData.clicks = realClicks;
+    }
+
+    // 2. Count pending orders from affiliateOrders for this code
+    const ordersQ = query(
+      collection(db, 'affiliateOrders'),
+      where('ref', '==', referralCode)
+    );
+    const ordersSnap = await getDocs(ordersQ);
+    const pendingOrders = ordersSnap.size;
+    // Show in clicks-display as a secondary stat if a specific element exists
+    const pendingEl = document.getElementById('pending-orders-display');
+    if (pendingEl) pendingEl.innerText = pendingOrders;
+
+  } catch(e) {
+    console.warn('[Cozycabin] Stats sync (non-critical):', e.message);
+  }
+}
+
+window.googleLogin = async function() {
+  const btn = document.querySelector('[onclick="googleLogin()"]');
+  const GOOGLE_SVG = `<svg width="16" height="16" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l3.227-3.227C18.216 1.414 15.48 0 12.24 0 5.48 0 0 5.48 0 12.24s5.48 12.24 12.24 12.24c7.05 0 11.732-4.957 11.732-11.94 0-.804-.085-1.42-.19-1.97H12.24z"/></svg>CONTINUE WITH GOOGLE`;
+
+  if (btn) {
+    btn.innerHTML  = '<span style="display:inline-block;width:16px;height:16px;border:2px solid #0002;border-top-color:#000;border-radius:50%;animation:spin 1s linear infinite;vertical-align:middle;margin-right:8px;"></span>Signing in…';
+    btn.disabled   = true;
+  }
+
+  const resetBtn = () => { if (btn) { btn.disabled = false; btn.innerHTML = GOOGLE_SVG; } };
+
+  try {
+    // Always use browserLocalPersistence — stays logged in across refreshes/restarts
+    await setPersistence(auth, browserLocalPersistence);
+
+    // Spec: Use signInWithPopup() ONLY — no redirect
+    const result = await signInWithPopup(auth, googleProvider);
+    await loadDashboard(result.user);
+
+  } catch(e) {
+    const msgs = {
+      'auth/popup-closed-by-user':       'Google sign-in was cancelled.',
+      'auth/cancelled-popup-request':    'Google sign-in was cancelled.',
+      'auth/redirect-cancelled-by-user': 'Google sign-in was cancelled.',
+      'auth/popup-blocked':              'Pop-up was blocked by your browser. Please allow pop-ups and try again.',
+      'auth/network-request-failed':     'Please check your internet connection.',
+      'auth/user-disabled':              'This account has been disabled. Contact support.',
+    };
+    showMsg(msgs[e.code] || 'Google sign-in failed. Please try again.');
+    resetBtn();
+  }
+};
+
+// ══════════════════════════════════
+//  EMAIL AUTH (login + register)
+// ══════════════════════════════════
+window.handleEmailAuth = async function(event) {
+  if (event) event.preventDefault();
+  const email    = document.getElementById('auth-email').value.trim();
+  const password = document.getElementById('auth-password').value;
+  if (!email)              { showMsg('Please enter your email address.');   return; }
+  if (!email.includes('@')){ showMsg('Please enter a valid email address.'); return; }
+  if (password.length < 6) { showMsg('Password must be at least 6 characters.'); return; }
+
+  setLoading(true);
+  try {
+    await setPersistence(auth, browserLocalPersistence);
+
+    if (currentAuthMode === 'register') {
+      if (ADMIN_EMAILS.includes(email)) {
+        showMsg('⚠️ Admin accounts cannot register here. Use the Admin Dashboard.');
+        setLoading(false); return;
+      }
+      const name  = document.getElementById('auth-name')?.value.trim()  || '';
+      const phone = document.getElementById('auth-phone')?.value.trim() || '';
+      if (!name)                { showMsg('Please enter your full name.'); setLoading(false); return; }
+      if (!phone || phone.length < 9) { showMsg('Please enter a valid M-Pesa number (9 digits).'); setLoading(false); return; }
+
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      const code = 'CZ-' + cred.user.uid.substring(0, 8).toUpperCase();
+      await setDoc(doc(db, 'affiliates', cred.user.uid), {
+        uid:         cred.user.uid,
+        email,
+        name,
+        displayName: name,
+        photoURL:    '',
+        phone:       '+254' + phone.replace(/^0+/, '').replace(/^\+254/, ''),
+        provider:    'email',
+        role:        'affiliate',
+        referralCode: code,
+        referredBy:  incomingReferralCode,
+        earnings:    0,
+        balance:     0,
+        commission:  0,
+        totalSales:  0,
+        clicks:      0,
+        sales:       0,
+        status:      'active',
+        createdAt:   serverTimestamp(),
+        joinedAt:    new Date().toISOString()
+      });
+      toast('🎉 Account created! Welcome to Cozycabin Affiliates!', false);
+      await loadDashboard(cred.user);
+
+    } else {
+      // Login
+      if (document.getElementById('remember-me')?.checked) {
+        localStorage.setItem('cc_remember_email', email);
+      } else {
+        localStorage.removeItem('cc_remember_email');
+      }
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      await loadDashboard(cred.user);
+    }
+  } catch(err) {
+    const msgs = {
+      'auth/email-already-in-use':      'This email is already registered. Please sign in instead.',
+      'auth/user-not-found':            'No account found. Please check your email or register.',
+      'auth/wrong-password':            'Incorrect password. Please try again.',
+      'auth/invalid-credential':        'Incorrect email or password.',
+      'auth/invalid-email':             'Please enter a valid email address.',
+      'auth/weak-password':             'Password must be at least 6 characters.',
+      'auth/too-many-requests':         'Too many attempts. Please wait a moment and try again.',
+      'auth/network-request-failed':    'Please check your internet connection.',
+      'auth/user-disabled':             'This account has been disabled. Contact support.',
+      'auth/operation-not-allowed':     'This sign-in method is not enabled. Contact support.',
+      'auth/requires-recent-login':     'Please sign out and sign back in to continue.',
+      'auth/account-exists-with-different-credential': 'An account with this email already exists. Try signing in with Google.',
+    };
+    showMsg(msgs[err.code] || 'Something went wrong. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
+
+// ══════════════════════════════════
+//  PASSWORD RESET
+// ══════════════════════════════════
+window.showResetScreen = function() {
+  document.getElementById('login-section').style.display = 'none';
+  document.getElementById('reset-section').style.display = 'block';
+  document.getElementById('reset-step-1').style.display  = 'block';
+  document.getElementById('reset-step-2').style.display  = 'none';
+  const email = document.getElementById('auth-email')?.value.trim();
+  if (email) document.getElementById('reset-email').value = email;
+};
+
+window.hideResetScreen = function() {
+  document.getElementById('reset-section').style.display = 'none';
+  document.getElementById('login-section').style.display = 'block';
+  document.getElementById('reset-step-1').style.display  = 'block';
+  document.getElementById('reset-step-2').style.display  = 'none';
+  document.getElementById('reset-email').value = '';
+  const msg = document.getElementById('reset-msg');
+  if (msg) msg.style.display = 'none';
+};
+
+function showResetMsg(text, isError = true) {
+  const el = document.getElementById('reset-msg');
+  if (!el) return;
+  el.textContent      = text;
+  el.style.display    = 'block';
+  el.style.background = isError ? 'rgba(127,29,29,0.6)' : 'rgba(20,83,45,0.6)';
+  el.style.color      = isError ? '#fca5a5' : '#86efac';
+  el.style.border     = isError ? '1px solid rgba(239,68,68,0.3)' : '1px solid rgba(34,197,94,0.3)';
+}
+
+window.sendResetEmail = async function() {
+  const email = document.getElementById('reset-email').value.trim();
+  const btn   = document.getElementById('reset-send-btn');
+  if (!email) { showResetMsg('Please enter your email address.'); return; }
+  if (!email.includes('@') || !email.includes('.')) { showResetMsg('Please enter a valid email.'); return; }
+  btn.disabled  = true;
+  btn.innerHTML = '<div class="loader" style="border-color:#000;border-top-color:transparent;"></div>';
+  try {
+    await sendPasswordResetEmail(auth, email);
+    document.getElementById('reset-step-1').style.display = 'none';
+    document.getElementById('reset-step-2').style.display = 'block';
+    document.getElementById('reset-email-display').textContent = email;
+    window._lastResetEmail = email;
+  } catch(err) {
+    const msgs = {
+      'auth/user-not-found':    'No account found with this email.',
+      'auth/invalid-email':     'Please enter a valid email address.',
+      'auth/too-many-requests': 'Too many attempts. Please wait a moment.',
+    };
+    showResetMsg(msgs[err.code] || 'Failed to send reset email. Please try again.');
+  } finally {
+    btn.disabled    = false;
+    btn.textContent = '📧 Send Reset Link';
+  }
+};
+
+window.resendResetEmail = async function() {
+  const email = window._lastResetEmail;
+  if (!email) return;
+  const btn = document.getElementById('resend-btn');
+  btn.disabled    = true;
+  btn.textContent = 'Sending…';
+  try {
+    await sendPasswordResetEmail(auth, email);
+    btn.textContent = '✅ Sent! Check your inbox';
+    btn.style.color = '#22c55e';
+    setTimeout(() => { btn.disabled = false; btn.textContent = '🔄 Resend Email'; btn.style.color = ''; }, 30000);
+  } catch(e) {
+    btn.disabled    = false;
+    btn.textContent = '🔄 Resend Email';
+    showResetMsg('Resend failed. Please try again.');
+  }
+};
+window.resetPassword = window.sendResetEmail;
+
+// ══════════════════════════════════
+//  TOGGLE AUTH MODE (login ↔ register)
+// ══════════════════════════════════
+function _syncAuthModeUI() {
+  const isReg = currentAuthMode === 'register';
+  document.getElementById('auth-title').textContent = isReg ? 'Create Account' : 'Sign In';
+  document.getElementById('auth-desc').textContent  = isReg
+    ? 'Register to start earning commissions on every sale.'
+    : 'Generate referral links, track sales & withdraw earnings.';
+  document.getElementById('toggle-text').textContent       = isReg ? 'Already have an account?' : "Don't have an affiliate account?";
+  document.getElementById('toggle-action-btn').textContent = isReg ? 'Sign In' : 'Register Here';
+  document.getElementById('name-field-group').style.display  = isReg ? 'block' : 'none';
+  document.getElementById('phone-field-group').style.display = isReg ? 'block' : 'none';
+  document.getElementById('forgot-pw-row').style.display     = isReg ? 'none'  : 'flex';
+  const ph = document.getElementById('auth-phone');
+  if (ph) ph.required = isReg;
+  const btn = document.getElementById('auth-submit-btn');
+  if (btn) {
+    btn.textContent      = isReg ? 'CREATE ACCOUNT' : 'SIGN IN WITH EMAIL';
+    btn.style.background = isReg ? '#ffffff' : 'linear-gradient(135deg,#ffd700,#e0a800)';
+    btn.style.color      = '#000';
+  }
+  const msg = document.getElementById('auth-msg');
+  if (msg) msg.style.display = 'none';
+}
+
+window.toggleAuthMode = function() {
+  currentAuthMode = currentAuthMode === 'login' ? 'register' : 'login';
+  _syncAuthModeUI();
+};
+
+// ══════════════════════════════════
+//  PASSWORD VISIBILITY TOGGLE
+// ══════════════════════════════════
+window.togglePasswordVis = function() {
+  const pw  = document.getElementById('auth-password');
+  const btn = document.getElementById('pw-toggle');
+  if (pw.type === 'password') { pw.type = 'text';     btn.textContent = 'HIDE'; }
+  else                        { pw.type = 'password'; btn.textContent = 'SHOW'; }
+};
+
+// ══════════════════════════════════
+//  REMEMBER ME
+// ══════════════════════════════════
+window.handleRememberMe = function(checked) {
+  const email = document.getElementById('auth-email')?.value.trim();
+  if (checked && email) localStorage.setItem('cc_remember_email', email);
+  else localStorage.removeItem('cc_remember_email');
+};
+
+// Pre-fill remembered email
+(function() {
+  const saved = localStorage.getItem('cc_remember_email');
+  if (!saved) return;
+  const emailEl = document.getElementById('auth-email');
+  const remEl   = document.getElementById('remember-me');
+  if (emailEl) emailEl.value = saved;
+  if (remEl)   remEl.checked = true;
+})();
+
+// ══════════════════════════════════
+//  NAVIGATION (SPA)
+// ══════════════════════════════════
+window.navTo = function(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.bnav-item').forEach(b => b.classList.remove('active'));
+  const pg = document.getElementById('page-' + page);
+  if (pg) pg.classList.add('active');
+  const nb = document.getElementById('bnav-' + page);
+  if (nb) nb.classList.add('active');
+  window.scrollTo(0, 0);
+  if (page === 'links') {
+    const sl  = document.getElementById('share-link')?.value;
+    const sl2 = document.getElementById('share-link-2');
+    if (sl2 && sl) sl2.value = sl;
+  }
+};
+
+// ══════════════════════════════════
+//  MODALS
+// ══════════════════════════════════
+window.openPlansModal = function() {
+  document.getElementById('plans-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+window.closePlansModal = function() {
+  document.getElementById('plans-modal').classList.remove('open');
+  document.body.style.overflow = '';
+};
+window.openWithdrawModal = function() {
+  const bal  = document.getElementById('balance-display')?.innerText || '0.00';
+  const wbal = document.getElementById('withdraw-balance');
+  if (wbal) wbal.textContent = bal;
+  document.getElementById('withdraw-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+window.closeWithdrawModal = function() {
+  document.getElementById('withdraw-modal').classList.remove('open');
+  document.body.style.overflow = '';
+};
+['plans-modal','withdraw-modal'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('click', function(e) {
+    if (e.target === this) { this.classList.remove('open'); document.body.style.overflow = ''; }
+  });
+});
+
+// ══════════════════════════════════
+//  PAYOUT ACCORDION
+// ══════════════════════════════════
+window.togglePayout = function(header, bodyId) {
+  const body    = document.getElementById(bodyId);
+  const chevron = header.querySelector('.payout-chevron');
+  const isOpen  = body.classList.contains('open');
+  document.querySelectorAll('.payout-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.payout-chevron').forEach(c => c.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); chevron.classList.add('open'); }
+};
+
+// ══════════════════════════════════
+//  REGION SWITCHER
+// ══════════════════════════════════
+window.switchRegion = function(region) {
+  document.querySelectorAll('.region-panel').forEach(p => p.style.display = 'none');
+  const intl = ['nigeria','ghana','uganda','tanzania','africa','europe','usa','asia','crypto'];
+  if (intl.includes(region)) {
+    const el = document.getElementById('region-international');
+    if (el) el.style.display = 'block';
+  } else {
+    const el = document.getElementById('region-' + region);
+    if (el) el.style.display = 'block';
+  }
+};
+
+async function autoDetectRegion() {
+  const statusEl = document.getElementById('geo-status');
+  try {
+    const res  = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    const cc   = (data.country_code || '').toUpperCase();
+    const regionMap = {
+      'KE':'kenya','NG':'nigeria','GH':'ghana','UG':'uganda','TZ':'tanzania',
+      'RW':'africa','ZM':'africa','ZA':'africa','ET':'africa',
+      'GB':'europe','DE':'europe','FR':'europe',
+      'US':'usa','CA':'usa',
+      'IN':'asia','AE':'asia','SA':'asia','JP':'asia',
+    };
+    const region = regionMap[cc] || 'international';
+    const sel = document.getElementById('region-select');
+    if (sel) sel.value = region === 'kenya' ? 'kenya' : region;
+    switchRegion(region);
+    if (statusEl) statusEl.textContent = `📍 ${data.country_name || cc}`;
+  } catch(e) {
+    switchRegion('kenya');
+    if (statusEl) statusEl.textContent = '';
+  }
+}
+
+// ══════════════════════════════════
+//  TOOL USAGE
+// ══════════════════════════════════
+function loadToolUsage() {
+  try {
+    const today  = new Date().toDateString();
+    const raw    = localStorage.getItem('cc_tool_usage');
+    const saved  = raw ? JSON.parse(raw) : {};
+    const data   = saved.date === today ? saved : { date: today, img: 0, webp: 0, bg: 0, video: 0 };
+    const limits = { img: 20, webp: 20, bg: 5, video: 3 };
+    ['img','webp','bg','video'].forEach(t => {
+      const used  = data[t] || 0;
+      const limit = limits[t];
+      const pct   = Math.min(Math.round((used / limit) * 100), 100);
+      const bar   = document.getElementById('bar-' + t);
+      const count = document.getElementById('count-' + t);
+      if (bar)   { bar.style.width = pct + '%'; if (pct >= 100) bar.style.background = '#ef4444'; }
+      if (count) count.textContent = `${used} / ${limit}`;
+    });
+  } catch(e) { console.warn('Tool usage:', e.message); }
+}
+
+// ══════════════════════════════════
+//  COMMISSION CALCULATOR
+// ══════════════════════════════════
+window.calcCommission = function() {
+  const price  = parseFloat(document.getElementById('calc-price')?.value) || 0;
+  const type   = document.getElementById('calc-type')?.value || 'physical';
+  const resEl  = document.getElementById('calc-result');
+  const amtEl  = document.getElementById('calc-amount');
+  const noteEl = document.getElementById('calc-note');
+  const phEl   = document.getElementById('calc-placeholder');
+  if (!price || price <= 0) { if (resEl) resEl.style.display='none'; if (phEl) phEl.style.display='block'; return; }
+  let earn = 0, note = '';
+  if (type === 'digital') { earn = price * 0.4; note = '40% flat commission on all digital products'; }
+  else {
+    if      (price < 1000)  { earn = 50;  note = 'Flat KES 50 for products under KES 1,000'; }
+    else if (price < 3000)  { earn = 100; note = 'KES 100 for KES 1,000–2,999'; }
+    else if (price < 4000)  { earn = 200; note = 'KES 200 for KES 3,000–3,999'; }
+    else if (price < 5000)  { earn = 250; note = 'KES 250 for KES 4,000–4,999'; }
+    else if (price < 6000)  { earn = 300; note = 'KES 300 for KES 5,000–5,999'; }
+    else if (price < 10000) { earn = 400; note = 'KES 400 for KES 6,000–9,999'; }
+    else if (price < 20000) { earn = 500; note = 'KES 500 for KES 10,000–19,999'; }
+    else                    { earn = 650; note = 'KES 650+ for KES 20,000+'; }
+  }
+  if (amtEl)  amtEl.textContent  = `KES ${earn.toLocaleString('en-KE',{maximumFractionDigits:0})}`;
+  if (noteEl) noteEl.textContent = note;
+  if (resEl)  resEl.style.display = 'block';
+  if (phEl)   phEl.style.display  = 'none';
+};
+
+// ══════════════════════════════════
+//  PLANS / UPGRADE
+// ══════════════════════════════════
+window.openUpgrade = function(planId) {
+  const names = {
+    '200':'Premium Monthly — KES 200/month',
+    '500':'Pro Monthly — KES 500/month',
+    '2000':'Premium Yearly — KES 2,000/year',
+    '5000':'Lifetime Access — KES 5,000 one-time'
+  };
+  const msg = encodeURIComponent(`Hi Cozycabin! I'd like to upgrade to the ${names[planId]||'Premium'} plan.\n\nPlease guide me on M-Pesa payment.\n\nEmail: ${currentAffiliateData?.email||''}`);
+  window.open(`https://wa.me/254702468460?text=${msg}`, '_blank');
+};
+
+// ══════════════════════════════════
+//  PAYOUT REQUEST
+// ══════════════════════════════════
+window.requestPayout = async function(method) {
+  if (!currentUserUid) { toast('Please log in first.'); return; }
+  const balance = Number(currentAffiliateData?.balance ?? currentAffiliateData?.commission ?? 0);
+  if (balance <= 0) { toast('No balance to withdraw.'); return; }
+  const kenyaMethods = ['mpesa','pochi','ke-bank'];
+  if (kenyaMethods.includes(method) && balance < 500) { toast('Minimum withdrawal is KES 500.'); return; }
+
+  const snap = await getDoc(doc(db, 'affiliates', currentUserUid));
+  const d    = snap.data() || {};
+  let msgText = `💰 Payout Request — Cozycabin Affiliate\nAmount: KES ${balance.toFixed(2)}\nEmail: ${d.email||''}\nUID: ${currentUserUid}\nMethod: `;
+
+  if      (method === 'mpesa')    { msgText += `M-Pesa\nPhone: ${d.phone||'Not set'}`; }
+  else if (method === 'pochi')    { msgText += `Pochi la Biashara\nPhone: ${d.phone||'Not set'}`; }
+  else if (method === 'ke-bank') {
+    const bank = document.getElementById('ke-bank-name')?.value.trim();
+    const acc  = document.getElementById('ke-account-num')?.value.trim();
+    const name = document.getElementById('ke-account-name')?.value.trim();
+    if (!bank||!acc||!name) { toast('Please fill in all bank details.'); return; }
+    msgText += `Kenya Bank Transfer\nBank: ${bank}\nAccount: ${acc}\nName: ${name}`;
+  } else if (method === 'minipay') {
+    const num     = document.getElementById('minipay-number')?.value.trim();
+    const country = document.getElementById('minipay-country')?.value;
+    if (!num||!country) { toast('Enter MiniPay number and select country.'); return; }
+    msgText += `MiniPay\nCountry: ${country}\nNumber: ${num}`;
+  } else if (method === 'paypal') {
+    const email    = document.getElementById('paypal-email')?.value.trim();
+    const currency = document.getElementById('paypal-currency')?.value;
+    if (!email) { toast('Enter your PayPal email.'); return; }
+    msgText += `PayPal\nEmail: ${email}\nCurrency: ${currency}`;
+  } else if (method === 'wise') {
+    const email    = document.getElementById('wise-email')?.value.trim();
+    const currency = document.getElementById('wise-currency')?.value;
+    if (!email) { toast('Enter your Wise email.'); return; }
+    msgText += `Wise\nEmail: ${email}\nCurrency: ${currency}`;
+  } else if (method === 'af-bank') {
+    const country = document.getElementById('af-bank-country')?.value.trim();
+    const bank    = document.getElementById('af-bank-name')?.value.trim();
+    const acc     = document.getElementById('af-account-num')?.value.trim();
+    const name    = document.getElementById('af-account-name')?.value.trim();
+    if (!country||!bank||!acc||!name) { toast('Please fill in all bank details.'); return; }
+    msgText += `African Bank Transfer\nCountry: ${country}\nBank: ${bank}\nAccount: ${acc}\nName: ${name}`;
+  } else if (method === 'crypto') {
+    const coin   = document.getElementById('crypto-coin')?.value;
+    const wallet = document.getElementById('crypto-wallet')?.value.trim();
+    if (!wallet) { toast('Enter your wallet address.'); return; }
+    msgText += `Crypto\nCoin: ${coin}\nWallet: ${wallet}`;
+  }
+
+  try {
+    await addDoc(collection(db, 'withdrawals'), {
+      affiliateId: currentUserUid, affiliateEmail: d.email||'',
+      method, amount: balance, requestedAt: new Date(), status: 'pending'
+    });
+  } catch(e) { console.warn('Payout log error:', e.message); }
+
+  window.open(`https://wa.me/254702468460?text=${encodeURIComponent(msgText)}`, '_blank');
+  toast('Payout request sent via WhatsApp! ✓', false);
+};
+
+// ══════════════════════════════════
+//  UPDATE M-PESA NUMBER
+// ══════════════════════════════════
+window.updateMpesaNumber = async function() {
+  const raw = (document.getElementById('update-phone')?.value || document.getElementById('update-phone-w')?.value || '').trim();
+  if (!raw || raw.length < 9) { toast('Enter a valid phone number.'); return; }
+  const formatted = '+254' + raw.replace(/^0+/, '').replace(/^\+254/, '');
+  try {
+    await updateDoc(doc(db, 'affiliates', currentUserUid), { phone: formatted });
+    document.querySelectorAll('#mpesa-display').forEach(el => el.textContent = formatted);
+    const ap = document.getElementById('account-phone');
+    if (ap) ap.textContent = formatted;
+    if (currentAffiliateData) currentAffiliateData.phone = formatted;
+    ['update-phone','update-phone-w'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.value = '';
+    });
+    toast('M-Pesa number updated! ✓', false);
+  } catch(e) { toast('Update failed: ' + e.message); }
+};
+
+// ══════════════════════════════════
+//  LINK HELPERS
+// ══════════════════════════════════
+window.copyLink = function() {
+  const val = document.getElementById('share-link')?.value || document.getElementById('share-link-2')?.value || '';
+  navigator.clipboard.writeText(val)
+    .then(() => toast('Tracker link copied! ✓', false))
+    .catch(() => toast('Copy failed — please copy manually.'));
+};
+
+window.generateCustomAffiliateLink = function() {
+  const base = document.getElementById('product-url')?.value.trim();
+  if (!base)                 { toast('Paste a product URL first.'); return; }
+  if (!currentAffiliateData) { toast('Please log in first.'); return; }
+  try {
+    const url = new URL(base);
+    url.searchParams.set('ref', currentAffiliateData.referralCode || 'COZY');
+    document.getElementById('generated-affiliate-link').value = url.toString();
+  } catch(e) { toast('Invalid URL — make sure it starts with https://'); }
+};
+
+window.copyGeneratedLink = function() {
+  const val = document.getElementById('generated-affiliate-link')?.value;
+  if (!val) { toast('Generate a link first.'); return; }
+  navigator.clipboard.writeText(val)
+    .then(() => toast('Link copied! ✓', false))
+    .catch(() => toast('Copy failed — please copy manually.'));
+};
+
+window.copyRefCode = function() {
+  const code = document.getElementById('account-ref-code')?.textContent;
+  if (!code) return;
+  navigator.clipboard.writeText(code)
+    .then(() => toast('Referral code copied! ✓', false))
+    .catch(() => toast('Copy failed.'));
+};
+
+// ══════════════════════════════════
+//  QR CODE
+// ══════════════════════════════════
+let qrInstance = null;
+function generateQRCode(link) {
+  const wrap = document.getElementById('qr-canvas-wrap');
+  if (!wrap || !link) return;
+  wrap.innerHTML = '';
+  try {
+    qrInstance = new QRCode(wrap, {
+      text: link, width: 160, height: 160,
+      colorDark: '#000000', colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  } catch(e) { console.warn('QR generation error:', e); }
+}
+
+window.downloadQR = function() {
+  const wrap = document.getElementById('qr-canvas-wrap');
+  const img  = wrap?.querySelector('img') || wrap?.querySelector('canvas');
+  if (!img) { toast('QR not ready yet.'); return; }
+  const dataUrl = img.tagName === 'IMG' ? img.src : img.toDataURL('image/png');
+  const a = document.createElement('a');
+  a.href = dataUrl; a.download = 'cozycabin-qr.png'; a.click();
+  toast('QR code downloaded! ✓', false);
+};
+
+window.shareQR = async function() {
+  const link = document.getElementById('share-link')?.value || window.location.origin;
+  if (navigator.share) {
+    try { await navigator.share({ title: 'Cozycabin Affiliate Link', url: link }); }
+    catch(e) { /* cancelled */ }
+  } else {
+    navigator.clipboard.writeText(link)
+      .then(() => toast('Link copied — share it anywhere! ✓', false))
+      .catch(() => toast('Copy failed.'));
+  }
+};
+
+// ══════════════════════════════════
+//  SOCIAL SHARE
+// ══════════════════════════════════
+window.shareOn = function(platform) {
+  const link = document.getElementById('share-link')?.value || window.location.origin;
+  const msg  = encodeURIComponent(`🛍️ Shop smart at Cozycabin — fashion, electronics, solar, kitchen & digital products!\n\nUse my link: ${link}\n\n💰 Quality products, fast delivery Kenya-wide!`);
+  const urls = {
+    whatsapp: `https://wa.me/?text=${msg}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`,
+    twitter:  `https://twitter.com/intent/tweet?text=${msg}`,
+    telegram: `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent('🛍️ Shop at Cozycabin using my link!')}`,
+  };
+  if (platform === 'tiktok') {
+    navigator.clipboard.writeText(link)
+      .then(() => toast('Link copied! Paste it in your TikTok bio 🎵', false))
+      .catch(() => toast('Copy failed.'));
+    return;
+  }
+  if (urls[platform]) window.open(urls[platform], '_blank');
+};
+
+// ══════════════════════════════════
+//  AFFILIATE PROGRAM TABS
+// ══════════════════════════════════
+window.switchAffTab = function(tab, btn) {
+  document.querySelectorAll('.aff-panel').forEach(p => { p.style.display='none'; });
+  const panel = document.getElementById('aff-' + tab);
+  if (panel) panel.style.display = 'flex';
+  document.querySelectorAll('.aff-tab').forEach(b => {
+    b.style.background  = 'rgba(255,255,255,0.04)';
+    b.style.color       = '#94a3b8';
+    b.style.borderColor = 'rgba(255,255,255,0.08)';
+    b.style.borderWidth = '1px';
+  });
+  if (btn) {
+    btn.style.background  = 'rgba(255,215,0,0.12)';
+    btn.style.color       = '#ffd700';
+    btn.style.borderColor = 'rgba(255,215,0,0.4)';
+    btn.style.borderWidth = '1.5px';
+  }
+};
+
+// ══════════════════════════════════
+//  LEADERBOARD
+// ══════════════════════════════════
+async function loadLeaderboard() {
+  const el = document.getElementById('leaderboard-list');
+  if (!el) return;
+  try {
+    const q    = query(collection(db, 'affiliates'), where('sales', '>', 0));
+    const snap = await getDocs(q);
+    const list = [];
+    snap.forEach(d => list.push(d.data()));
+    list.sort((a, b) => (b.sales || 0) - (a.sales || 0));
+    const top = list.slice(0, 5);
+    if (top.length === 0) {
+      el.innerHTML = `<div style="text-align:center;padding:18px;color:#334155;font-size:12px;">🏆 Be the first on the leaderboard — share your link!</div>`;
+      return;
+    }
+    const medals = ['🥇','🥈','🥉','4️⃣','5️⃣'];
+    el.innerHTML = top.map((a, i) => {
+      const isMe = a.uid === currentUserUid;
+      return `<div class="lb-row" style="background:${isMe?'rgba(255,215,0,.06)':'#0a0a0a'};border-color:${isMe?'rgba(255,215,0,.25)':'#1a1a1a'}">
+        <span style="font-size:20px;flex-shrink:0;">${medals[i]}</span>
+        <div style="flex:1;min-width:0;">
+          <p style="font-size:12px;font-weight:700;color:${isMe?'#ffd700':'#e2e8f0'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.name||a.email?.split('@')[0]||'Affiliate'} ${isMe?'(You)':''}</p>
+          <p style="font-size:10px;color:#64748b;">${a.sales||0} sales · ${a.clicks||0} clicks</p>
+        </div>
+        <span style="font-size:13px;font-weight:800;color:#22c55e;">KES ${Number(a.balance??a.commission??0).toFixed(0)}</span>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    el.innerHTML = `<div style="text-align:center;padding:16px;color:#334155;font-size:12px;">Leaderboard unavailable</div>`;
+    console.warn('Leaderboard:', e.message);
+  }
+}
+
+// ══════════════════════════════════
+//  EARNINGS HISTORY
+// ══════════════════════════════════
+async function loadEarningsHistory(uid) {
+  const els  = [document.getElementById('earnings-history-list'), document.getElementById('earnings-history-list-2')];
+  const cnts = [document.getElementById('history-count'), document.getElementById('history-count-2')];
+  if (!els[0] && !els[1]) return;
+  try {
+    const q    = query(collection(db, 'withdrawals'), where('affiliateId', '==', uid));
+    const snap = await getDocs(q);
+    const list = [];
+    snap.forEach(d => list.push(d.data()));
+    list.sort((a, b) => (b.requestedAt?.toMillis?.() || 0) - (a.requestedAt?.toMillis?.() || 0));
+    cnts.forEach(el => { if (el) el.textContent = list.length; });
+    if (list.length === 0) {
+      const empty = `<div style="text-align:center;padding:24px;color:#334155;font-size:12px;">No earnings yet — share your link to start earning!</div>`;
+      els.forEach(el => { if (el) el.innerHTML = empty; });
+      return;
+    }
+    const statusMap = {
+      paid:    { label:'Paid',    color:'#22c55e', bg:'rgba(34,197,94,0.1)'  },
+      pending: { label:'Pending', color:'#ffd700', bg:'rgba(255,215,0,0.1)'  },
+      rejected:{ label:'Rejected',color:'#ef4444', bg:'rgba(239,68,68,0.1)'  },
+    };
+    const html = list.map(tx => {
+      const s   = statusMap[tx.status] || statusMap.pending;
+      const dt  = tx.requestedAt?.toDate?.() || new Date();
+      const dtStr = dt.toLocaleDateString('en-KE', { day:'numeric', month:'short', year:'numeric' });
+      return `<div class="tx-card">
+        <div style="width:36px;height:36px;border-radius:10px;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.15);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">💸</div>
+        <div style="flex:1;min-width:0;">
+          <p style="font-size:12px;font-weight:700;color:#e2e8f0;">${(tx.method||'withdrawal').toUpperCase()}</p>
+          <p style="font-size:10px;color:#64748b;">${dtStr}</p>
+        </div>
+        <div style="text-align:right;">
+          <p style="font-size:13px;font-weight:800;color:#fff;">KES ${Number(tx.amount||0).toFixed(2)}</p>
+          <span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;background:${s.bg};color:${s.color};">${s.label}</span>
+        </div>
+      </div>`;
+    }).join('');
+    els.forEach(el => { if (el) el.innerHTML = html; });
+  } catch(e) {
+    const err = `<div style="text-align:center;padding:16px;color:#334155;font-size:12px;">History unavailable</div>`;
+    els.forEach(el => { if (el) el.innerHTML = err; });
+    console.warn('History:', e.message);
+  }
+}
+
+// ══════════════════════════════════
+//  LOGOUT
+// ══════════════════════════════════
+window.logoutUser = async function() {
+  clearTimeout(_inactivityTimer);
+  try {
+    await signOut(auth);
+    currentAffiliateData = null;
+    currentUserUid       = null;
+    showLoginPage();
+    // Clear form
+    const emailEl = document.getElementById('auth-email');
+    const passEl  = document.getElementById('auth-password');
+    if (emailEl) emailEl.value = '';
+    if (passEl)  passEl.value  = '';
+    const saved = localStorage.getItem('cc_remember_email');
+    if (saved && emailEl) emailEl.value = saved;
+  } catch(e) { toast(e.message); }
+};
+
+// ══════════════════════════════════
+//  15-MIN INACTIVITY TIMEOUT
+// ══════════════════════════════════
+let _inactivityTimer = null;
+const INACTIVITY_MS  = 15 * 60 * 1000;
+
+function resetInactivityTimer() {
+  if (!currentUserUid) return;
+  clearTimeout(_inactivityTimer);
+  _inactivityTimer = setTimeout(async () => {
+    toast('⚠️ You will be signed out in 1 minute due to inactivity.', true);
+    _inactivityTimer = setTimeout(async () => {
+      await signOut(auth);
+    }, 60 * 1000);
+  }, INACTIVITY_MS - 60 * 1000);
+}
+['click','touchstart','keydown','scroll','mousemove'].forEach(evt =>
+  document.addEventListener(evt, resetInactivityTimer, { passive: true })
+);
+
+// ══════════════════════════════════
+//  ON AUTH STATE CHANGED
+//  — single source of truth, no loops
+// ══════════════════════════════════
+// ══════════════════════════════════
+//  AUTH STATE OBSERVER
+//  — Single source of truth
+//  — Zero redirect loops
+//  — Zero login flickers
+//  — Popup-only (no redirect)
+// ══════════════════════════════════
+
+// SAFETY NET: if Firebase never responds (network/CDN issue),
+// don't leave the user staring at a spinner forever.
+const _authBootTimeout = setTimeout(() => {
+  const splash = document.getElementById('cc-splash');
+  const isStillSpinning = splash && splash.style.display !== 'none';
+  if (isStillSpinning) {
+    console.warn('[Cozycabin] Auth did not respond within 8s — showing login page.');
+    showLoginPage();
+    showMsg('⚠️ Connection is slow. Please sign in, or refresh if this persists.', true);
+  }
+}, 8000);
+
+onAuthStateChanged(auth, async (user) => {
+  clearTimeout(_authBootTimeout);
+  if (user) {
+    // User authenticated — NEVER show login page
+    // Always go directly to correct dashboard
+    await loadDashboard(user);
+  } else {
+    // Not authenticated — show login
+    showLoginPage();
+  }
+});
+
+</script>
+</body>
+</html>
