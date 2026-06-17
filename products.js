@@ -2591,7 +2591,7 @@ function ccBuildSimilar(containerId, currentCategory, currentIndex) {
     var item = document.createElement('div');
     item.className = 'cc-similar-item';
     item.innerHTML =
-      '<img class="cc-sim-img" src="' + img + '" loading="lazy" alt="' + (p.title || '') + '">' +
+       '<img class="cc-sim-img" src="' + img + '" loading="eager" onerror="this.style.background=\'#1a2340\';this.removeAttribute(\'src\')" alt="' + (p.title || '') + '">' +
       '<div class="cc-sim-info">' +
         '<div class="cc-sim-title">' + (p.title || '') + '</div>' +
         '<div class="cc-sim-price">KES ' + price.toLocaleString() + '</div>' +
