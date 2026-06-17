@@ -121,7 +121,7 @@ jsotussolar: [
   ["60W JSOT US Solar Floodlight", 3500, "Images/Solarl60w.webp", "60W bright solar floodlight with automatic dusk-to-dawn sensor, IP67 waterproof design and remote control included."],
   ["100W JSOT US Solar Floodlight", 4500, "Images/solarl100w.webp", "100W high-brightness solar floodlight with automatic dusk-to-dawn sensor, IP67 waterproof design and remote control included."],
   ["200W JSOT US Solar Floodlight", 5500, "Images/solarl200w.webp", "200W powerful solar floodlight with wide lighting coverage, IP67 waterproof design and remote control included."],
-  ["300W JSOT US Solar Floodlight", 6500, "Images/solarl300w.webp", "300W premium solar floodlight with extra brightness, IP67 waterproof design and remote control included."]],
+  ["300W JSOT US Solar Floodlight", 6500, "Images/solarl300w.webp", "300W premium solar floodlight with extra brightness, IP67 waterproof design and remote control included."],
 ],
   yomy: [
   ["50W YOMY Solar Floodlight",  2500, "Images/Yommy50w.webp",   "Premium YOMY solar floodlight, IP65 waterproof with battery level indicator and automatic day/night operation."],
