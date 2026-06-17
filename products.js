@@ -571,8 +571,7 @@ panels: [
     ],
 
   variants: [
-
-    {
+   {
       name: "Solarmax 10W Panel",
       price: 1200,
       oldPrice: 1500,
