@@ -2631,7 +2631,11 @@ function ccBuildSimilar(containerId, currentCategory, currentIndex) {
 
   candidates.forEach(function(c) {
     var p   = c.product;
-    var img = (p.images && p.images[0]) || (p.variants && p.variants[0] && p.variants[0].image) || '';
+    var img = (p.images && p.images[0]) ||
+          (p.variants && p.variants[0] && (
+            (p.variants[0].images && p.variants[0].images[0]) ||
+            p.variants[0].image
+          )) || '';
     var price = p.price || (p.variants && p.variants[0] && p.variants[0].price) || 0;
 
     var item = document.createElement('div');
