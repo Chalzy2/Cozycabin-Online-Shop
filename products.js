@@ -657,7 +657,7 @@ panels: [
       price: 7500,
       oldPrice: 9000,
       description: "150W powerful solar panel with excellent charging efficiency.",
-      images: ["Images/solamax-150w.webp"]
+      images: ["Images/solarmax-150w.webp"]
     },
 
     {
