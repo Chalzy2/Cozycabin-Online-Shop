@@ -683,10 +683,70 @@ panels: [
       description: "300W premium solar panel offering maximum efficiency and reliable power generation.",
       images: ["Images/solarmax-300w.webp"]
     }
-  ]
+   ]
+  }
+b],
+  batteries: [
+   {
+      title: "Solar GEL Batteries",
+      company: "Cozycabin",
+      productType: "variant",
+
+      description: "High-quality maintenance-free GEL batteries designed for solar systems, inverters and backup power solutions. Built with deep cycle technology for reliable energy storage, long service life and stable performance. Ideal for homes, businesses and off-grid solar installations.",
+
+  features: [
+    "Maintenance-Free Design",
+    "Deep Cycle Technology",
+    "High Energy Storage",
+    "Fast Charging",
+    "Leak Proof Construction",
+    "Long Service Life",
+    "Reliable Solar Backup",
+    "Stable Power Output",
+    "Suitable for Homes & Businesses",
+    "Ideal for Off-Grid Solar Systems"
+    ],
+
+  variants: [
+
+     {
+        name: "3491 100Ah GEL Battery",
+        price: 14000,
+        oldPrice: 18000,
+        description: "100Ah maintenance-free GEL battery with deep cycle technology, full capacity and 1-year warranty.",
+        images: ["Images/3491-100ah.webp"]
+      },
+      {
+         name: "YACHU 100Ah Solar GEL Battery",
+         price: 17000,
+         oldPrice: 22000,
+         description: "100Ah maintenance-free GEL battery with full capacity, deep cycle technology and reliable solar power storage.",
+         images: ["Images/yachu-100ah.webp"]
+      },
+      {
+         name: "3491 150Ah GEL Battery",
+         price: 20000,
+         oldPrice: 26000,
+         description: "150Ah GEL battery with deep cycle performance, maintenance-free design and 1-year warranty.",
+         images: ["Images/3491-150ah.webp"]
+      },
+      {
+      name: "YACHU 150Ah Solar GEL Battery",
+      price: 24500,
+      oldPrice: 32000,
+      description: "150Ah heavy-duty GEL battery with deep cycle technology, full capacity and 3-year warranty.",
+      images: ["Images/yachu-150ah.webp"]
+    },
+    {
+      name: "YACHU 200Ah Solar GEL Battery",
+      price: 30500,
+      oldPrice: 39000,
+      description: "200Ah premium GEL battery with high storage capacity, deep cycle performance and long service life.",
+      images: ["Images/yachu-200ah.webp"]
+    }
+   ]
  }
 ],
-
 streetlights: [
   {
     title: "Solar Street Lights (100W - 400W)",
