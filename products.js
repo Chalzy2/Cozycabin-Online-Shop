@@ -577,7 +577,7 @@ panels: [
       price: 1200,
       oldPrice: 1500,
       description: "10W compact solar panel suitable for small lighting and charging systems.",
-      images: ["Images/solamax-10w.webp"]
+      images: ["Images/solarmax-10w.webp"]
     },
 
     {
@@ -593,7 +593,7 @@ panels: [
       price: 1800,
       oldPrice: 2200,
       description: "20W efficient solar panel ideal for lighting and charging batteries.",
-      images: ["Images/solamax-20w.webp"]
+      images: ["Images/solarmax-20w.webp"]
     },
 
     {
@@ -601,7 +601,7 @@ panels: [
       price: 2300,
       oldPrice: 2800,
       description: "30W durable solar panel with reliable power generation.",
-      images: ["Images/solamax-30w.webp"]
+      images: ["Images/solarmax-30w.webp"]
     },
 
     {
@@ -609,7 +609,7 @@ panels: [
       price: 2600,
       oldPrice: 3200,
       description: "40W high-efficiency solar panel for home solar systems.",
-      images: ["Images/solamax-40w.webp"]
+      images: ["Images/solarmax-40w.webp"]
     },
 
     {
@@ -617,7 +617,7 @@ panels: [
       price: 2900,
       oldPrice: 3500,
       description: "50W solar panel with stable power output and durable design.",
-      images: ["Images/solamax-50w.webp"]
+      images: ["Images/solarmax-50w.webp"]
     },
 
     {
@@ -625,7 +625,7 @@ panels: [
       price: 3000,
       oldPrice: 3800,
       description: "60W solar panel suitable for lighting, TVs and battery charging.",
-      images: ["Images/solamax-60w.webp"]
+      images: ["Images/solarmax-60w.webp"]
     },
 
     {
@@ -633,7 +633,7 @@ panels: [
       price: 4500,
       oldPrice: 5500,
       description: "80W high-performance solar panel for medium-sized solar setups.",
-      images: ["Images/solamax-80w.webp"]
+      images: ["Images/solarmax-80w.webp"]
     },
 
     {
@@ -641,7 +641,7 @@ panels: [
       price: 5900,
       oldPrice: 7000,
       description: "100W solar panel with efficient energy conversion and durable build.",
-      images: ["Images/solamax-100w.webp"]
+      images: ["Images/solarmax-100w.webp"]
     },
 
     {
@@ -649,7 +649,7 @@ panels: [
       price: 7000,
       oldPrice: 8500,
       description: "120W solar panel ideal for homes, businesses and backup systems.",
-      images: ["Images/solamax-120w.webp"]
+      images: ["Images/solarmax-120w.webp"]
     },
 
     {
@@ -665,7 +665,7 @@ panels: [
       price: 9500,
       oldPrice: 11500,
       description: "200W premium solar panel for larger solar installations.",
-      images: ["Images/solamax-200w.webp"]
+      images: ["Images/solarmax-200w.webp"]
     },
 
     {
@@ -673,7 +673,7 @@ panels: [
       price: 10500,
       oldPrice: 12500,
       description: "250W high-output solar panel with long-lasting performance.",
-      images: ["Images/solamax-250w.webp"]
+      images: ["Images/solarmax-250w.webp"]
     },
 
     {
@@ -681,7 +681,7 @@ panels: [
       price: 11500,
       oldPrice: 14000,
       description: "300W premium solar panel offering maximum efficiency and reliable power generation.",
-      images: ["Images/solamax-300w.webp"]
+      images: ["Images/solarmax-300w.webp"]
     }
   ]
  }
