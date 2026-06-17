@@ -492,7 +492,201 @@ var products = {
      }
     ]
    }
-  ],     
+  ],
+  solarlights: [
+  {
+    title: "Solar Indoor Ceiling Light",
+    company: "Solar",
+    productType: "variant",
+    description: "Solar-powered indoor ceiling light with all-weather solar panel, large lithium battery capacity up to 20,000mAh, three lighting colors and up to 18 hours of continuous lighting. Ideal for homes, shops, rural homes, emergency lighting and areas without electricity.",
+    features: [
+      "All Weather Solar Panel",
+      "Large Lithium Battery",
+      "Up To 20,000mAh Capacity",
+      "Up To 18 Hours Lighting",
+      "3 Lighting Colors",
+      "Remote Control Included",
+      "Easy Installation",
+      "Energy Saving",
+      "Indoor Solar Lighting"
+    ],
+    variants: [
+      {
+        name: "50W Solar Indoor Ceiling Light",
+        price: 2500,
+        oldPrice: 3500,
+        image: "Images/Solcl50w.webp",
+        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
+      },
+      {
+        name: "100W Solar Indoor Ceiling Light",
+        price: 2500,
+        oldPrice: 3500,
+        image: "Images/solarcl100w.webp",
+        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
+      },
+      {
+        name: "200W Solar Indoor Ceiling Light",
+        price: 3500,
+        oldPrice: 5000,
+        image: "Images/solarcl200w.webp",
+        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
+      },
+      {
+        name: "300W Solar Indoor Ceiling Light",
+        price: 4500,
+        oldPrice: 6500,
+        image: "Images/solarcel300w.webp",
+        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
+      },
+      {
+        name: "400W Solar Indoor Ceiling Light",
+        price: 5500,
+        oldPrice: 7500,
+        image: "Images/solarcl400w.webp",
+        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
+      }
+    ]
+  },
+ ],
+panels: [
+  {
+     title: "Solarmax Solar Panels",
+     company: "Solarmax",
+     productType: "variant",
+
+     description: "High-quality Solarmax solar panels designed for reliable and efficient solar energy generation. Built with durable tempered glass, weather-resistant aluminium frames and high conversion efficiency for maximum power output. Ideal for home lighting systems, solar backup, water pumps, CCTV systems, businesses and off-grid installations.",
+
+  features: [
+    "High Conversion Efficiency",
+    "Monocrystalline Solar Technology",
+    "Weather Resistant Design",
+    "Durable Aluminium Frame",
+    "Tempered Glass Protection",
+    "Low Maintenance",
+    "Long Service Life",
+    "Suitable for Homes & Businesses",
+    "Ideal for Solar Backup Systems",
+    "Reliable Off-Grid Power Solution"
+  ],
+
+  variants: [
+
+    {
+      name: "Solarmax 10W Panel",
+      price: 1200,
+      oldPrice: 1500,
+      description: "10W compact solar panel suitable for small lighting and charging systems.",
+      images: ["Images/solarmax-10w.webp"]
+    },
+
+    {
+      name: "Solarmax 15W Panel",
+      price: 1500,
+      oldPrice: 1800,
+      description: "15W solar panel for home lighting and small solar applications.",
+      images: ["Images/solarmax-15w.webp"]
+    },
+
+    {
+      name: "Solarmax 20W Panel",
+      price: 1800,
+      oldPrice: 2200,
+      description: "20W efficient solar panel ideal for lighting and charging batteries.",
+      images: ["Images/solarmax-20w.webp"]
+    },
+
+    {
+      name: "Solarmax 30W Panel",
+      price: 2300,
+      oldPrice: 2800,
+      description: "30W durable solar panel with reliable power generation.",
+      images: ["Images/solarmax-30w.webp"]
+    },
+
+    {
+      name: "Solarmax 40W Panel",
+      price: 2600,
+      oldPrice: 3200,
+      description: "40W high-efficiency solar panel for home solar systems.",
+      images: ["Images/solarmax-40w.webp"]
+    },
+
+    {
+      name: "Solarmax 50W Panel",
+      price: 2900,
+      oldPrice: 3500,
+      description: "50W solar panel with stable power output and durable design.",
+      images: ["Images/solarmax-50w.webp"]
+    },
+
+    {
+      name: "Solarmax 60W Panel",
+      price: 3000,
+      oldPrice: 3800,
+      description: "60W solar panel suitable for lighting, TVs and battery charging.",
+      images: ["Images/solarmax-60w.webp"]
+    },
+
+    {
+      name: "Solarmax 80W Panel",
+      price: 4500,
+      oldPrice: 5500,
+      description: "80W high-performance solar panel for medium-sized solar setups.",
+      images: ["Images/solarmax-80w.webp"]
+    },
+
+    {
+      name: "Solarmax 100W Panel",
+      price: 5900,
+      oldPrice: 7000,
+      description: "100W solar panel with efficient energy conversion and durable build.",
+      images: ["Images/solarmax-100w.webp"]
+    },
+
+    {
+      name: "Solarmax 120W Panel",
+      price: 7000,
+      oldPrice: 8500,
+      description: "120W solar panel ideal for homes, businesses and backup systems.",
+      images: ["Images/solarmax-120w.webp"]
+    },
+
+    {
+      name: "Solarmax 150W Panel",
+      price: 7500,
+      oldPrice: 9000,
+      description: "150W powerful solar panel with excellent charging efficiency.",
+      images: ["Images/solarmax-150w.webp"]
+    },
+
+    {
+      name: "Solarmax 200W Panel",
+      price: 9500,
+      oldPrice: 11500,
+      description: "200W premium solar panel for larger solar installations.",
+      images: ["Images/solarmax-200w.webp"]
+    },
+
+    {
+      name: "Solarmax 250W Panel",
+      price: 10500,
+      oldPrice: 12500,
+      description: "250W high-output solar panel with long-lasting performance.",
+      images: ["Images/solarmax-250w.webp"]
+    },
+
+    {
+      name: "Solarmax 300W Panel",
+      price: 11500,
+      oldPrice: 14000,
+      description: "300W premium solar panel offering maximum efficiency and reliable power generation.",
+      images: ["Images/solarmax-300w.webp"]
+    }
+  ]
+ }
+],
+
 streetlights: [
   {
     title: "Solar Street Lights (100W - 400W)",
@@ -638,58 +832,69 @@ floodlights: [
     ]
   },
   {
-    title: "Solar Indoor Ceiling Light",
-    company: "Solar",
-    productType: "variant",
-    description: "Solar-powered indoor ceiling light with all-weather solar panel, large lithium battery capacity up to 20,000mAh, three lighting colors and up to 18 hours of continuous lighting. Ideal for homes, shops, rural homes, emergency lighting and areas without electricity.",
-    features: [
-      "All Weather Solar Panel",
-      "Large Lithium Battery",
-      "Up To 20,000mAh Capacity",
-      "Up To 18 Hours Lighting",
-      "3 Lighting Colors",
-      "Remote Control Included",
-      "Easy Installation",
-      "Energy Saving",
-      "Indoor Solar Lighting"
-    ],
-    variants: [
-      {
-        name: "50W Solar Indoor Ceiling Light",
-        price: 2500,
-        oldPrice: 3500,
-        image: "Images/Solcl50w.webp",
-        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
-      },
-      {
-        name: "100W Solar Indoor Ceiling Light",
-        price: 2500,
-        oldPrice: 3500,
-        image: "Images/solarcl100w.webp",
-        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
-      },
-      {
-        name: "200W Solar Indoor Ceiling Light",
-        price: 3500,
-        oldPrice: 5000,
-        image: "Images/solarcl200w.webp",
-        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
-      },
-      {
-        name: "300W Solar Indoor Ceiling Light",
-        price: 4500,
-        oldPrice: 6500,
-        image: "Images/solarcel300w.webp",
-        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
-      },
-      {
-        name: "400W Solar Indoor Ceiling Light",
-        price: 5500,
-        oldPrice: 7500,
-        image: "Images/solarcl400w.webp",
-        description: "Solar indoor ceiling light with remote control and 3 lighting colors."
-      }
-    ]
+  title: "JSOT US Solar Floodlights",
+  company: "JSOT US",
+  productType: "variant",
+
+  description: "High-performance solar floodlights with bright LED illumination, waterproof IP67 protection and intelligent dusk-to-dawn sensor. Powered entirely by solar energy with no wiring required. Suitable for homes, businesses, compounds, farms and outdoor security lighting.",
+
+  features: [
+    "Available in 40W, 60W, 100W, 200W & 300W",
+    "Automatic Dusk-to-Dawn Sensor",
+    "100% Solar Powered",
+    "Bright LED Illumination",
+    "IP67 Waterproof Design",
+    "Remote Control Included",
+    "No Wiring Required",
+    "Easy Installation",
+    "Energy Saving",
+    "Suitable for Homes & Businesses",
+    "Outdoor Security Lighting"
+  ],
+
+  variants: [
+
+    {
+      name: "40W JSOT US Solar Floodlight",
+      price: 2900,
+      oldPrice: 4000,
+      description: "40W solar floodlight with automatic dusk-to-dawn sensor, IP67 waterproof design and remote control included.",
+      images: ["Images/solarl40w.webp"]
+    },
+
+    {
+      name: "60W JSOT US Solar Floodlight",
+      price: 3500,
+      oldPrice: 5000,
+      description: "60W bright solar floodlight with automatic dusk-to-dawn sensor, IP67 waterproof design and remote control included.",
+      images: ["Images/Solarl60w.webp"]
+    },
+
+    {
+      name: "100W JSOT US Solar Floodlight",
+      price: 4500,
+      oldPrice: 6500,
+      description: "100W high-brightness solar floodlight with automatic dusk-to-dawn sensor, IP67 waterproof design and remote control included.",
+      images: ["Images/solarl100w.webp"]
+    },
+
+    {
+      name: "200W JSOT US Solar Floodlight",
+      price: 5500,
+      oldPrice: 8000,
+      description: "200W powerful solar floodlight with wide lighting coverage, IP67 waterproof design and remote control included.",
+      images: ["Images/solarl200w.webp"]
+    },
+
+    {
+      name: "300W JSOT US Solar Floodlight",
+      price: 6500,
+      oldPrice: 9500,
+      description: "300W premium solar floodlight with extra brightness, IP67 waterproof design and remote control included.",
+      images: ["Images/solarl300w.webp"]
+    }
+
+  ]
   },
   {
     title: "YOMY Solar Floodlight",
