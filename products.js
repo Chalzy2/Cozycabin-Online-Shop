@@ -714,35 +714,35 @@ b],
         price: 14000,
         oldPrice: 18000,
         description: "100Ah maintenance-free GEL battery with deep cycle technology, full capacity and 1-year warranty.",
-        images: ["Images/3491-100ah.webp"]
+        images: ["Images/Gelb100ah.webp"]
       },
       {
          name: "YACHU 100Ah Solar GEL Battery",
          price: 17000,
          oldPrice: 22000,
          description: "100Ah maintenance-free GEL battery with full capacity, deep cycle technology and reliable solar power storage.",
-         images: ["Images/yachu-100ah.webp"]
+         images: ["Images/yachu100ah.webp"]
       },
       {
          name: "3491 150Ah GEL Battery",
          price: 20000,
          oldPrice: 26000,
          description: "150Ah GEL battery with deep cycle performance, maintenance-free design and 1-year warranty.",
-         images: ["Images/3491-150ah.webp"]
+         images: ["Images/gelb150ah.webp"]
       },
       {
       name: "YACHU 150Ah Solar GEL Battery",
       price: 24500,
       oldPrice: 32000,
       description: "150Ah heavy-duty GEL battery with deep cycle technology, full capacity and 3-year warranty.",
-      images: ["Images/yachu-150ah.webp"]
+      images: ["Images/yachu150ah.webp"]
     },
     {
       name: "YACHU 200Ah Solar GEL Battery",
       price: 30500,
       oldPrice: 39000,
       description: "200Ah premium GEL battery with high storage capacity, deep cycle performance and long service life.",
-      images: ["Images/yachu-200ah.webp"]
+      images: ["Images/yachu200ah.webp"]
     }
    ]
  }
