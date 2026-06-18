@@ -2692,6 +2692,7 @@ var CC_RELATED = {
   fans:        ['fansapp','heaters','solarlights','chargers'],
   shoes:       ['travel'],
   travel:      ['shoes'],
+  solarfans:   ['solarlights','batteries','floodlights'],
   solarlights: ['panels','inverters','batteries','chargers','floodlights','solarfans','streetlights'],
   panels:      ['solarlights','inverters','batteries','chargers'],
   inverters:   ['panels','batteries','chargers','solarlights'],
