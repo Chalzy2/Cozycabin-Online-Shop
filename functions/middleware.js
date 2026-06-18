@@ -93,7 +93,24 @@ const PRODUCTS = {
   ["Solarmax 250W Panel", 10500, "Images/solarmax-250w.webp", "250W high-output solar panel with long-lasting performance."],
   ["Solarmax 300W Panel", 11500, "Images/solarmax-300w.webp", "300W premium solar panel offering maximum efficiency and reliable power generation."]
 ],
-   solarCeiling: [
+   batteries: [
+
+["Solar GEL Battery Bluetooth AC 200W 100Ah", 19000, "Images/yachu-ac100ah.webp", "12V 100Ah multifunctional Solar GEL battery with built-in AC 220V output, solar charging support, USB charging ports, digital voltage display and intelligent power management."],
+["Solar GEL Battery AC 100W 58Ah", 9800, "Images/gelac100w58ah.webp", "58Ah GEL battery designed for AC 100W solar backup systems with reliable power storage."],
+["Solar GEL Battery AC 200W 80Ah", 13000, "Images/yachuac200w80ah.webp", "80Ah GEL battery suitable for AC 200W solar systems with stable power output and long service life."],
+ 
+["Solar GEL Battery USB 20Ah", 4500, "Images/gelusb20ah.webp", "20Ah compact GEL battery with USB charging support, maintenance-free design and stable power output."],
+["YACHU 55Ah Solar GEL Battery", 8000, "Images/yachu55ah.webp", "55Ah maintenance-free GEL battery with deep cycle technology, stable power output and reliable solar backup."],
+["YACHU 80Ah Solar GEL Battery", 10800, "Images/yachu80ah.webp", "80Ah maintenance-free GEL battery with deep cycle technology and reliable backup power for solar systems."],
+["3491 100Ah GEL Battery", 14000, "Images/Gelb100ah.webp", "100Ah maintenance-free GEL battery with deep cycle technology, full capacity and 1-year warranty."],
+["YACHU 100Ah Solar GEL Battery", 17000, "Images/yachu100ah.webp", "100Ah maintenance-free GEL battery with full capacity, deep cycle technology and reliable solar power storage."],
+["3491 150Ah GEL Battery", 20000, "Images/gelb150ah.webp", "150Ah GEL battery with deep cycle performance, maintenance-free design and 1-year warranty."],
+["YACHU 150Ah Solar GEL Battery", 24500, "Images/yachu150ah.webp", "150Ah heavy-duty GEL battery with deep cycle technology, full capacity and 3-year warranty."],
+["3491 200Ah GEL Battery", 23500, "Images/gelb200ah.webp", "200Ah high-capacity GEL battery with deep cycle performance and reliable backup power."],
+["YACHU 200Ah Solar GEL Battery", 30500, "Images/yachu200ah.webp", "200Ah premium GEL battery with high storage capacity, deep cycle performance and long service life."],
+["YACHU 200Ah Heavy Duty Solar GEL Battery", 32000, "Images/yachu200ahheavy.webp", "200Ah heavy-duty GEL battery with extra backup capacity, deep cycle technology and long service life."]
+],
+  solarCeiling: [
   ["50W Solar Indoor Ceiling Light",  2500, "Images/Solcl50w.webp",    "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
   ["100W Solar Indoor Ceiling Light", 2500, "Images/solarcl100w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
   ["200W Solar Indoor Ceiling Light", 3500, "Images/solarcl200w.webp",  "Solar indoor ceiling light with remote control, 3 lighting colors and up to 18 hours of lighting."],
