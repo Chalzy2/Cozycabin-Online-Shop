@@ -673,8 +673,53 @@ panels: [
   }
 ],
   batteries: [
-   
-   
+    {
+        title: "Solar GEL Batteries",
+        company: "Cozycabin",
+        productType: "variant",
+        description: "12V 100Ah,58ah and 80ah multifunctional Solar GEL battery with built-in AC 220V output, solar charging support and intelligent power management. Features a digital voltage display, multiple USB charging ports, deep cycle GEL technology and maintenance-free design for long-lasting performance. Portable carry handle for easy movement and stable power output for lighting, TVs, phone charging, laptops and other small appliances. Ideal for homes, shops, offices and reliable backup power during blackouts.",
+      
+    features: [
+
+  "12V 100Ah Capacity",
+  "Built-in AC 220V Output",
+  "Built-in Solar Charge Controller",
+  "Supports Solar Panel Charging",
+  "Digital Voltage Display",
+  "Multiple USB Charging Ports",
+  "Deep Cycle GEL Technology",
+  "Maintenance-Free Design",
+  "Portable Carry Handle",
+  "Stable Power Output",
+  "Low Noise Operation",
+  "Ideal for Lighting & TVs",
+  "Phone & Laptop Charging",
+  "Reliable Home Backup Power",
+  "Suitable for Homes & Small Businesses"
+
+   ],
+    {
+      name: "YACHU 100Ah Multifunctional Solar GEL Battery",
+      price: 19000,
+      oldPrice: 25000,
+      description: "12V 100Ah multifunctional Solar GEL battery with built-in AC 220V output, solar charging support and intelligent power management. Features a digital voltage display, multiple USB charging ports, deep cycle GEL technology and maintenance-free design for long-lasting performance. Portable carry handle for easy movement and stable power output for lighting, TVs, phone charging, laptops and other small appliances. Ideal for homes, shops, offices and reliable backup power during blackouts.",
+      images: ["Images/yachu-ac100ah.webp"]
+   },
+    {
+       name: "Solar GEL Battery AC 100W 58Ah",
+       price: 9800,
+       oldPrice: 12000,
+       description: "58Ah GEL battery designed for AC 100W solar backup systems with reliable power storage.",
+       images: ["Images/gelac100w58ah.webp"]
+     },
+    
+     {
+       name: "Solar GEL Battery AC 200W 80Ah",
+       price: 13000,
+       oldPrice: 16000,
+       description: "80Ah GEL battery suitable for AC 200W solar systems with stable power output and long service life.",
+       images: ["Images/gelac200w80ah.webp"]
+     },
     {
         title: "Solar GEL Batteries",
         company: "Cozycabin",
@@ -710,20 +755,7 @@ panels: [
         description: "55Ah maintenance-free GEL battery with deep cycle technology, stable power output and reliable solar backup.",
         images: ["Images/yachu55ah.webp"]
      },
-     {
-       name: "Solar GEL Battery AC 100W 58Ah",
-       price: 9800,
-       oldPrice: 12000,
-       description: "58Ah GEL battery designed for AC 100W solar backup systems with reliable power storage.",
-       images: ["Images/gelac100w58ah.webp"]
-     },
-     {
-       name: "Solar GEL Battery AC 200W 80Ah",
-       price: 13000,
-       oldPrice: 16000,
-       description: "80Ah GEL battery suitable for AC 200W solar systems with stable power output and long service life.",
-       images: ["Images/gelac200w80ah.webp"]
-     },
+     
      {
        name: "YACHU 80Ah Solar GEL Battery",
        price: 10800,
@@ -789,13 +821,7 @@ panels: [
     }
    ]
  },
-{
-  name: "YACHU 100Ah Multifunctional Solar GEL Battery",
-  price: 19000,
-  oldPrice: 25000,
-  description: "12V 100Ah multifunctional Solar GEL battery with built-in AC 220V output, solar charging support and intelligent power management. Features a digital voltage display, multiple USB charging ports, deep cycle GEL technology and maintenance-free design for long-lasting performance. Portable carry handle for easy movement and stable power output for lighting, TVs, phone charging, laptops and other small appliances. Ideal for homes, shops, offices and reliable backup power during blackouts.",
-  images: ["Images/yachu-ac100ah.webp"]
-  }
+
 ],
 streetlights: [
   {
