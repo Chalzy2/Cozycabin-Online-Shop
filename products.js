@@ -673,28 +673,85 @@ panels: [
   }
 ],
   batteries: [
-   {
-      title: "Solar GEL Batteries",
-      company: "Cozycabin",
-      productType: "variant",
+   
+   
+    {
+        title: "Solar GEL Batteries",
+        company: "Cozycabin",
+        productType: "variant",
 
-      description: "High-quality maintenance-free GEL batteries designed for solar systems, inverters and backup power solutions. Built with deep cycle technology for reliable energy storage, long service life and stable performance. Ideal for homes, businesses and off-grid solar installations.",
+        description: "High-quality maintenance-free GEL batteries designed for solar systems, inverters and backup power solutions. Built with deep cycle technology for reliable energy storage, long service life and stable performance. Ideal for homes, businesses and off-grid solar installations.",
 
   features: [
-    "Maintenance-Free Design",
-    "Deep Cycle Technology",
-    "High Energy Storage",
-    "Fast Charging",
-    "Leak Proof Construction",
-    "Long Service Life",
-    "Reliable Solar Backup",
-    "Stable Power Output",
-    "Suitable for Homes & Businesses",
-    "Ideal for Off-Grid Solar Systems"
-    ],
+       "Maintenance-Free Design",
+       "Deep Cycle Technology",
+       "High Energy Storage",
+       "Fast Charging",
+       "Leak Proof Construction",
+       "Long Service Life",
+       "Reliable Solar Backup",
+       "Stable Power Output",
+       "Suitable for Homes & Businesses",
+       "Ideal for Off-Grid Solar Systems"
+      ],
 
   variants: [
-
+    {
+        name: "Solar GEL Battery USB 20Ah",
+        price: 4500,
+        oldPrice: 6000,
+        description: "20Ah compact GEL battery with USB charging support, maintenance-free design and stable power output.",
+        images: ["Images/gelusb20ah.webp"]
+      },
+      {
+        name: "YACHU 55Ah Solar GEL Battery",
+        price: 8000,
+        oldPrice: 10000,
+        description: "55Ah maintenance-free GEL battery with deep cycle technology, stable power output and reliable solar backup.",
+        images: ["Images/yachu55ah.webp"]
+     },
+     {
+       name: "Solar GEL Battery AC 100W 58Ah",
+       price: 9800,
+       oldPrice: 12000,
+       description: "58Ah GEL battery designed for AC 100W solar backup systems with reliable power storage.",
+       images: ["Images/gelac100w58ah.webp"]
+     },
+     {
+       name: "Solar GEL Battery AC 200W 80Ah",
+       price: 13000,
+       oldPrice: 16000,
+       description: "80Ah GEL battery suitable for AC 200W solar systems with stable power output and long service life.",
+       images: ["Images/gelac200w80ah.webp"]
+     },
+     {
+       name: "YACHU 80Ah Solar GEL Battery",
+       price: 10800,
+       oldPrice: 13000,
+       description: "80Ah maintenance-free GEL battery with deep cycle technology and reliable backup power for solar systems.",
+       images: ["Images/yachu80ah.webp"]
+    },
+    {
+       name: "Solar GEL Battery Bluetooth AC 200W 100Ah",
+       price: 19000,
+       oldPrice: 23000,
+       description: "100Ah smart GEL battery with Bluetooth monitoring and AC 200W support for efficient solar backup.",
+       images: ["Images/gelbluetooth100ah.webp"]
+    },
+    {
+        name: "YACHU 200Ah Heavy Duty Solar GEL Battery",
+        price: 32000,
+        oldPrice: 45000,
+        description: "200Ah heavy-duty GEL battery with extra backup capacity, deep cycle technology and long service life.",
+        images: ["Images/yachu200ahheavy.webp"]
+    },
+    {
+        name: "3491 200Ah GEL Battery",
+        price: 23500,
+        oldPrice: 29000,
+        description: "200Ah high-capacity GEL battery with deep cycle performance and reliable backup power.",
+        images: ["Images/gelb200ah.webp"]
+    },
      {
         name: "3491 100Ah GEL Battery",
         price: 14000,
