@@ -680,7 +680,7 @@ panels: [
         description: "12V 100Ah,58ah and 80ah multifunctional Solar GEL battery with built-in AC 220V output, solar charging support and intelligent power management. Features a digital voltage display, multiple USB charging ports, deep cycle GEL technology and maintenance-free design for long-lasting performance. Portable carry handle for easy movement and stable power output for lighting, TVs, phone charging, laptops and other small appliances. Ideal for homes, shops, offices and reliable backup power during blackouts.",
       
     features: [
-
+  "Bluetooth support "
   "12V 100Ah Capacity",
   "Built-in AC 220V Output",
   "Built-in Solar Charge Controller",
@@ -699,7 +699,8 @@ panels: [
 
    ],
     {
-      name: "YACHU 100Ah Multifunctional Solar GEL Battery",
+      
+      name: "Solar GEL Battery Bluetooth AC 200W 100Ah",
       price: 19000,
       oldPrice: 25000,
       description: "12V 100Ah multifunctional Solar GEL battery with built-in AC 220V output, solar charging support and intelligent power management. Features a digital voltage display, multiple USB charging ports, deep cycle GEL technology and maintenance-free design for long-lasting performance. Portable carry handle for easy movement and stable power output for lighting, TVs, phone charging, laptops and other small appliances. Ideal for homes, shops, offices and reliable backup power during blackouts.",
@@ -755,20 +756,12 @@ panels: [
         description: "55Ah maintenance-free GEL battery with deep cycle technology, stable power output and reliable solar backup.",
         images: ["Images/yachu55ah.webp"]
      },
-     
      {
        name: "YACHU 80Ah Solar GEL Battery",
        price: 10800,
        oldPrice: 13000,
        description: "80Ah maintenance-free GEL battery with deep cycle technology and reliable backup power for solar systems.",
        images: ["Images/yachu80ah.webp"]
-    },
-    {
-       name: "Solar GEL Battery Bluetooth AC 200W 100Ah",
-       price: 19000,
-       oldPrice: 23000,
-       description: "100Ah smart GEL battery with Bluetooth monitoring and AC 200W support for efficient solar backup.",
-       images: ["Images/gelbluetooth100ah.webp"]
     },
     {
         name: "YACHU 200Ah Heavy Duty Solar GEL Battery",
