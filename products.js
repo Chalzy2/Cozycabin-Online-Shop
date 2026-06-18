@@ -718,7 +718,7 @@ panels: [
        price: 13000,
        oldPrice: 16000,
        description: "80Ah GEL battery suitable for AC 200W solar systems with stable power output and long service life.",
-       images: ["Images/gelac200w80ah.webp"]
+       images: ["Images/yachuac200w80ah.webp"]
      },
     {
         title: "Solar GEL Batteries",
