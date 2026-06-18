@@ -672,77 +672,75 @@ panels: [
    ]
   }
 ],
-  batteries: [
-    {
-        title: "Solar GEL Batteries",
-        company: "Cozycabin",
-        productType: "variant",
-        description: "12V 100Ah,58ah and 80ah multifunctional Solar GEL battery with built-in AC 220V output, solar charging support and intelligent power management. Features a digital voltage display, multiple USB charging ports, deep cycle GEL technology and maintenance-free design for long-lasting performance. Portable carry handle for easy movement and stable power output for lighting, TVs, phone charging, laptops and other small appliances. Ideal for homes, shops, offices and reliable backup power during blackouts.",
-      
+  
+  
+batteries: [
+  {
+    title: "Solar GEL Batteries (AC Output)",
+    company: "Cozycabin",
+    productType: "variant",
+    description: "12V 100Ah, 58Ah and 80Ah multifunctional Solar GEL battery with built-in AC 220V output, solar charging support and intelligent power management. Features a digital voltage display, multiple USB charging ports, deep cycle GEL technology and maintenance-free design for long-lasting performance. Portable carry handle for easy movement and stable power output for lighting, TVs, phone charging, laptops and other small appliances. Ideal for homes, shops, offices and reliable backup power during blackouts.",
     features: [
-  "Bluetooth support "
-  "12V 100Ah Capacity",
-  "Built-in AC 220V Output",
-  "Built-in Solar Charge Controller",
-  "Supports Solar Panel Charging",
-  "Digital Voltage Display",
-  "Multiple USB Charging Ports",
-  "Deep Cycle GEL Technology",
-  "Maintenance-Free Design",
-  "Portable Carry Handle",
-  "Stable Power Output",
-  "Low Noise Operation",
-  "Ideal for Lighting & TVs",
-  "Phone & Laptop Charging",
-  "Reliable Home Backup Power",
-  "Suitable for Homes & Small Businesses"
-
-   ],
-    {
-      
-      name: "Solar GEL Battery Bluetooth AC 200W 100Ah",
-      price: 19000,
-      oldPrice: 25000,
-      description: "12V 100Ah multifunctional Solar GEL battery with built-in AC 220V output, solar charging support and intelligent power management. Features a digital voltage display, multiple USB charging ports, deep cycle GEL technology and maintenance-free design for long-lasting performance. Portable carry handle for easy movement and stable power output for lighting, TVs, phone charging, laptops and other small appliances. Ideal for homes, shops, offices and reliable backup power during blackouts.",
-      images: ["Images/yachu-ac100ah.webp"]
-   },
-    {
-       name: "Solar GEL Battery AC 100W 58Ah",
-       price: 9800,
-       oldPrice: 12000,
-       description: "58Ah GEL battery designed for AC 100W solar backup systems with reliable power storage.",
-       images: ["Images/gelac100w58ah.webp"]
-     },
-    
-     {
-       name: "Solar GEL Battery AC 200W 80Ah",
-       price: 13000,
-       oldPrice: 16000,
-       description: "80Ah GEL battery suitable for AC 200W solar systems with stable power output and long service life.",
-       images: ["Images/yachuac200w80ah.webp"]
-     },
-    {
-        title: "Solar GEL Batteries",
-        company: "Cozycabin",
-        productType: "variant",
-
-        description: "High-quality maintenance-free GEL batteries designed for solar systems, inverters and backup power solutions. Built with deep cycle technology for reliable energy storage, long service life and stable performance. Ideal for homes, businesses and off-grid solar installations.",
-
-  features: [
-       "Maintenance-Free Design",
-       "Deep Cycle Technology",
-       "High Energy Storage",
-       "Fast Charging",
-       "Leak Proof Construction",
-       "Long Service Life",
-       "Reliable Solar Backup",
-       "Stable Power Output",
-       "Suitable for Homes & Businesses",
-       "Ideal for Off-Grid Solar Systems"
-      ],
-
-  variants: [
-    {
+      "Bluetooth Support",
+      "12V 100Ah Capacity",
+      "Built-in AC 220V Output",
+      "Built-in Solar Charge Controller",
+      "Supports Solar Panel Charging",
+      "Digital Voltage Display",
+      "Multiple USB Charging Ports",
+      "Deep Cycle GEL Technology",
+      "Maintenance-Free Design",
+      "Portable Carry Handle",
+      "Stable Power Output",
+      "Low Noise Operation",
+      "Ideal for Lighting & TVs",
+      "Phone & Laptop Charging",
+      "Reliable Home Backup Power",
+      "Suitable for Homes & Small Businesses"
+    ],
+    variants: [
+      {
+        name: "Solar GEL Battery Bluetooth AC 200W 100Ah",
+        price: 19000,
+        oldPrice: 25000,
+        description: "12V 100Ah multifunctional Solar GEL battery with built-in AC 220V output, solar charging support and intelligent power management. Features a digital voltage display, multiple USB charging ports, deep cycle GEL technology and maintenance-free design for long-lasting performance. Portable carry handle for easy movement and stable power output for lighting, TVs, phone charging, laptops and other small appliances. Ideal for homes, shops, offices and reliable backup power during blackouts.",
+        images: ["Images/yachu-ac100ah.webp"]
+      },
+      {
+        name: "Solar GEL Battery AC 100W 58Ah",
+        price: 9800,
+        oldPrice: 12000,
+        description: "58Ah GEL battery designed for AC 100W solar backup systems with reliable power storage.",
+        images: ["Images/gelac100w58ah.webp"]
+      },
+      {
+        name: "Solar GEL Battery AC 200W 80Ah",
+        price: 13000,
+        oldPrice: 16000,
+        description: "80Ah GEL battery suitable for AC 200W solar systems with stable power output and long service life.",
+        images: ["Images/yachuac200w80ah.webp"]
+      }
+    ]
+  },
+  {
+    title: "Solar GEL Batteries",
+    company: "Cozycabin",
+    productType: "variant",
+    description: "High-quality maintenance-free GEL batteries designed for solar systems, inverters and backup power solutions. Built with deep cycle technology for reliable energy storage, long service life and stable performance. Ideal for homes, businesses and off-grid solar installations.",
+    features: [
+      "Maintenance-Free Design",
+      "Deep Cycle Technology",
+      "High Energy Storage",
+      "Fast Charging",
+      "Leak Proof Construction",
+      "Long Service Life",
+      "Reliable Solar Backup",
+      "Stable Power Output",
+      "Suitable for Homes & Businesses",
+      "Ideal for Off-Grid Solar Systems"
+    ],
+    variants: [
+      {
         name: "Solar GEL Battery USB 20Ah",
         price: 4500,
         oldPrice: 6000,
@@ -755,29 +753,29 @@ panels: [
         oldPrice: 10000,
         description: "55Ah maintenance-free GEL battery with deep cycle technology, stable power output and reliable solar backup.",
         images: ["Images/yachu55ah.webp"]
-     },
-     {
-       name: "YACHU 80Ah Solar GEL Battery",
-       price: 10800,
-       oldPrice: 13000,
-       description: "80Ah maintenance-free GEL battery with deep cycle technology and reliable backup power for solar systems.",
-       images: ["Images/yachu80ah.webp"]
-    },
-    {
+      },
+      {
+        name: "YACHU 80Ah Solar GEL Battery",
+        price: 10800,
+        oldPrice: 13000,
+        description: "80Ah maintenance-free GEL battery with deep cycle technology and reliable backup power for solar systems.",
+        images: ["Images/yachu80ah.webp"]
+      },
+      {
         name: "YACHU 200Ah Heavy Duty Solar GEL Battery",
         price: 32000,
         oldPrice: 45000,
         description: "200Ah heavy-duty GEL battery with extra backup capacity, deep cycle technology and long service life.",
         images: ["Images/yachu200ahheavy.webp"]
-    },
-    {
+      },
+      {
         name: "3491 200Ah GEL Battery",
         price: 23500,
         oldPrice: 29000,
         description: "200Ah high-capacity GEL battery with deep cycle performance and reliable backup power.",
         images: ["Images/gelb200ah.webp"]
-    },
-     {
+      },
+      {
         name: "3491 100Ah GEL Battery",
         price: 14000,
         oldPrice: 18000,
@@ -785,37 +783,37 @@ panels: [
         images: ["Images/Gelb100ah.webp"]
       },
       {
-         name: "YACHU 100Ah Solar GEL Battery",
-         price: 17000,
-         oldPrice: 22000,
-         description: "100Ah maintenance-free GEL battery with full capacity, deep cycle technology and reliable solar power storage.",
-         images: ["Images/yachu100ah.webp"]
+        name: "YACHU 100Ah Solar GEL Battery",
+        price: 17000,
+        oldPrice: 22000,
+        description: "100Ah maintenance-free GEL battery with full capacity, deep cycle technology and reliable solar power storage.",
+        images: ["Images/yachu100ah.webp"]
       },
       {
-         name: "3491 150Ah GEL Battery",
-         price: 20000,
-         oldPrice: 26000,
-         description: "150Ah GEL battery with deep cycle performance, maintenance-free design and 1-year warranty.",
-         images: ["Images/gelb150ah.webp"]
+        name: "3491 150Ah GEL Battery",
+        price: 20000,
+        oldPrice: 26000,
+        description: "150Ah GEL battery with deep cycle performance, maintenance-free design and 1-year warranty.",
+        images: ["Images/gelb150ah.webp"]
       },
       {
-      name: "YACHU 150Ah Solar GEL Battery",
-      price: 24500,
-      oldPrice: 32000,
-      description: "150Ah heavy-duty GEL battery with deep cycle technology, full capacity and 3-year warranty.",
-      images: ["Images/yachu150ah.webp"]
-    },
-    {
-      name: "YACHU 200Ah Solar GEL Battery",
-      price: 30500,
-      oldPrice: 39000,
-      description: "200Ah premium GEL battery with high storage capacity, deep cycle performance and long service life.",
-      images: ["Images/yachu200ah.webp"]
-    }
-   ]
- },
-
+        name: "YACHU 150Ah Solar GEL Battery",
+        price: 24500,
+        oldPrice: 32000,
+        description: "150Ah heavy-duty GEL battery with deep cycle technology, full capacity and 3-year warranty.",
+        images: ["Images/yachu150ah.webp"]
+      },
+      {
+        name: "YACHU 200Ah Solar GEL Battery",
+        price: 30500,
+        oldPrice: 39000,
+        description: "200Ah premium GEL battery with high storage capacity, deep cycle performance and long service life.",
+        images: ["Images/yachu200ah.webp"]
+      }
+    ]
+  }
 ],
+        
 streetlights: [
   {
     title: "Solar Street Lights (100W - 400W)",
