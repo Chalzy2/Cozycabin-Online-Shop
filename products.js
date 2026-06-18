@@ -788,7 +788,14 @@ panels: [
       images: ["Images/yachu200ah.webp"]
     }
    ]
- }
+ },
+{
+  name: "YACHU 100Ah Multifunctional Solar GEL Battery",
+  price: 19000,
+  oldPrice: 25000,
+  description: "12V 100Ah multifunctional Solar GEL battery with built-in AC 220V output, solar charging support and intelligent power management. Features a digital voltage display, multiple USB charging ports, deep cycle GEL technology and maintenance-free design for long-lasting performance. Portable carry handle for easy movement and stable power output for lighting, TVs, phone charging, laptops and other small appliances. Ideal for homes, shops, offices and reliable backup power during blackouts.",
+  images: ["Images/yachu-ac100ah.webp"]
+  }
 ],
 streetlights: [
   {
