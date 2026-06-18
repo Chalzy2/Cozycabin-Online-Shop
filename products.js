@@ -1080,129 +1080,128 @@ floodlights: [
 ],
 solarfans: [
   {
-  title: "Solar Home Systems & Fans",
-  company: "Cozycabin",
-  productType: "variant",
-
-  description: "Portable solar home systems and rechargeable solar fans designed for homes, shops and outdoor use. Features solar charging, LED lighting, USB phone charging and long-lasting rechargeable batteries for reliable backup power.",
-
-  features: [
-    "Solar Charging",
-    "Rechargeable Battery",
-    "USB Phone Charging",
-    "Energy Saving",
-    "Portable Design",
-    "Long Battery Life",
-    "LED Lighting",
-    "Ideal for Homes & Shops"
-  ],
-
-  variants: [
-
-    {
-      name: "DAT Home Lighting System AT-X10",
-      price: 5500,
-      oldPrice: 8500,
-      description: "Portable solar home lighting system with Bluetooth, FM radio, 8W monocrystalline solar panel, 3 LED bulbs, torch, phone charging and rechargeable battery. Comes with fan and AC adapter for reliable home backup power.",
-      images: ["Images/dat-atx10.webp"]
-    },
-   {
-      name: "Golden Sun Solar Fan",
-      price: 6900,
-      oldPrice: 9500,
-      description: "16-inch rechargeable solar fan with 3 speed oscillation, 15W solar panel, remote control, AC/DC charging and mosquito repellent function. Quiet operation with long battery backup.",
-      images: ["Images/goldensun-solarfan.webp"]
-    },
-    {
-      name: "Oraimo PowerSolar 76 Solar Home Power System With Fan",
-      price: 18000,
-      oldPrice: 25000,
-      description: "15W Oraimo PowerSolar 76 solar home power system with rechargeable battery, solar panel, fan and LED bulbs. Features USB phone charging, energy-saving technology and reliable backup power for homes and businesses.",
-      images: ["Images/oraimo-powersolar76.webp"]
-    }
-   ]
- }, 
+    title: "Solar Home Systems & Fans",
+    company: "Cozycabin",
+    productType: "variant",
+    description: "Portable solar home systems and rechargeable solar fans designed for homes, shops and outdoor use. Features solar charging, LED lighting, USB phone charging and long-lasting rechargeable batteries for reliable backup power.",
+    features: [
+      "Solar Charging",
+      "Rechargeable Battery",
+      "USB Phone Charging",
+      "Energy Saving",
+      "Portable Design",
+      "Long Battery Life",
+      "LED Lighting",
+      "Ideal for Homes & Shops"
+    ],
+    variants: [
+      {
+        name: "DAT Home Lighting System AT-X10",
+        price: 5500,
+        oldPrice: 8500,
+        description: "Portable solar home lighting system with Bluetooth, FM radio, 8W monocrystalline solar panel, 3 LED bulbs, torch, phone charging and rechargeable battery. Comes with fan and AC adapter for reliable home backup power.",
+        images: ["Images/dat-atx10.webp"]
+      },
+      {
+        name: "Golden Sun Solar Fan",
+        price: 6900,
+        oldPrice: 9500,
+        description: "16-inch rechargeable solar fan with 3 speed oscillation, 15W solar panel, remote control, AC/DC charging and mosquito repellent function. Quiet operation with long battery backup.",
+        images: ["Images/goldensun-solarfan.webp"]
+      },
+      {
+        name: "Oraimo PowerSolar 76 Solar Home Power System With Fan",
+        price: 18000,
+        oldPrice: 25000,
+        description: "15W Oraimo PowerSolar 76 solar home power system with rechargeable battery, solar panel, fan and LED bulbs. Features USB phone charging, energy-saving technology and reliable backup power for homes and businesses.",
+        images: ["Images/oraimo-powersolar76.webp"]
+      }
+    ]
+  },
   {
     title: "Solar Fans",
     company: "Cozycabin",
     productType: "variant",
-
     description: "Energy-efficient solar fans designed for homes, offices and outdoor use. Rechargeable with solar panels and USB charging support for reliable cooling anytime, anywhere.",
+    features: [
+      "Solar Charging",
+      "Rechargeable Battery",
+      "USB Charging",
+      "Energy Saving",
+      "Portable Design",
+      "Long Battery Life",
+      "Multiple Speed Levels",
+      "Quiet Operation",
+      "Ideal for Homes & Offices",
+      "Reliable Cooling Solution"
+    ],
+    variants: [
+      {
+        name: "SunAfrica Solar Mini Fan",
+        price: 2500,
+        oldPrice: 3500,
+        description: "Rechargeable solar mini fan with solar panel, USB charging support, portable design and long battery life.",
+        images: ["Images/sunafrica-mini-fan.webp"]
+      },
+      {
+        name: "GDTIMES 6 Inch Solar Rechargeable Fan",
+        price: 3500,
+        oldPrice: 4500,
+        description: "6-inch rechargeable fan with solar panel, LED light, phone charging support and multiple speed levels.",
+        images: ["Images/gdtimes-6inch.webp"]
+      },
+      {
+        name: "Aifike Solar Table Fan",
+        price: 5500,
+        oldPrice: 7000,
+        description: "Rechargeable table fan with solar panel, powerful airflow, adjustable speed and long-lasting battery.",
+        images: ["Images/aifike-solarfan.webp"]
+      },
+      {
+        name: "Golden Sun Solar Standing Fan",
+        price: 8500,
+        oldPrice: 11000,
+        description: "16-inch solar standing fan with LED light, rechargeable battery, multiple speed control and solar charging support.",
+        images: ["Images/goldensun-standingfan.webp"]
+      },
+      {
+        name: "Solar Standing Fan With Panel",
+        price: 9500,
+        oldPrice: 12500,
+        description: "16-inch rechargeable standing fan with high-capacity battery, solar panel included and powerful cooling performance.",
+        images: ["Images/solar-standingfan.webp"]
+      },
+      {
+        name: "Itel Rechargeable Solar Fan",
+        price: 8500,
+        oldPrice: 11000,
+        description: "Rechargeable Itel fan with solar panel and 2 LED bulbs. Features multiple speed settings and long battery backup.",
+        images: ["Images/itel-solarfan.webp"]
+      },
+      {
+        name: "Easy Power EP009 Solar Fan",
+        price: 4500,
+        oldPrice: 6000,
+        description: "8-inch rechargeable solar fan with Bluetooth speaker, FM radio, LED light, USB charging and solar panel included.",
+        images: ["Images/easypower-ep009.webp"]
+      },
+      {
+        name: "Solar Rechargeable Box Fan",
+        price: 3200,
+        oldPrice: 4500,
+        description: "Portable rechargeable box fan with solar charging support, LED light and compact design for home and travel.",
+        images: ["Images/solar-boxfan.webp"]
+      }
+    ]
+  }
+],
 
-   features: [
-    "Solar Charging",
-    "Rechargeable Battery",
-    "USB Charging",
-    "Energy Saving",
-    "Portable Design",
-    "Long Battery Life",
-    "Multiple Speed Levels",
-    "Quiet Operation",
-    "Ideal for Homes & Offices",
-    "Reliable Cooling Solution"
-  ],
 
-  variants: [
 
-    {
-      name: "SunAfrica Solar Mini Fan",
-      price: 2500,
-      oldPrice: 3500,
-      description: "Rechargeable solar mini fan with solar panel, USB charging support, portable design and long battery life.",
-      images: ["Images/sunafrica-mini-fan.webp"]
-    },
-    {
-      name: "GDTIMES 6 Inch Solar Rechargeable Fan",
-      price: 3500,
-      oldPrice: 4500,
-      description: "6-inch rechargeable fan with solar panel, LED light, phone charging support and multiple speed levels.",
-      images: ["Images/gdtimes-6inch.webp"]
-    },
-    {
-      name: "Aifike Solar Table Fan",
-      price: 5500,
-      oldPrice: 7000,
-      description: "Rechargeable table fan with solar panel, powerful airflow, adjustable speed and long-lasting battery.",
-      images: ["Images/aifike-solarfan.webp"]
-    },
-    {
-      name: "Golden Sun Solar Standing Fan",
-      price: 8500,
-      oldPrice: 11000,
-      description: "16-inch solar standing fan with LED light, rechargeable battery, multiple speed control and solar charging support.",
-      images: ["Images/goldensun-standingfan.webp"]
-    },
-    {
-      name: "Solar Standing Fan With Panel",
-      price: 9500,
-      oldPrice: 12500,
-      description: "16-inch rechargeable standing fan with high-capacity battery, solar panel included and powerful cooling performance.",
-      images: ["Images/solar-standingfan.webp"]
-    },
-    {
-      name: "Itel Rechargeable Solar Fan",
-      price: 8500,
-      oldPrice: 11000,
-      description: "Rechargeable Itel fan with solar panel and 2 LED bulbs. Features multiple speed settings and long battery backup.",
-      images: ["Images/itel-solarfan.webp"]
-    },
-    {
-      name: "Easy Power EP009 Solar Fan",
-      price: 4500,
-      oldPrice: 6000,
-      description: "8-inch rechargeable solar fan with Bluetooth speaker, FM radio, LED light, USB charging and solar panel included.",
-      images: ["Images/easypower-ep009.webp"]
-    },
-    {
-      name: "Solar Rechargeable Box Fan",
-      price: 3200,
-      oldPrice: 4500,
-      description: "Portable rechargeable box fan with solar charging support, LED light and compact design for home and travel.",
-      images: ["Images/solar-boxfan.webp"]
-    }
-   ]
-   }
-  ],
+
+
+
+       
   // ── Placeholders — add products + video fields later ──
   
    
