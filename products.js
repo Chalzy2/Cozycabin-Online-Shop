@@ -707,6 +707,13 @@ batteries: [
         images: ["Images/yachu-ac100ah.webp"]
       },
       {
+        name: "Solar GEL Battery USB 20Ah",
+        price: 4500,
+        oldPrice: 6000,
+        description: "20Ah compact GEL battery with USB charging support, maintenance-free design and stable power output.",
+        images: ["Images/gelusb20ah.webp"]
+      },
+      {
         name: "Solar GEL Battery AC 100W 58Ah",
         price: 9800,
         oldPrice: 12000,
@@ -740,13 +747,7 @@ batteries: [
       "Ideal for Off-Grid Solar Systems"
     ],
     variants: [
-      {
-        name: "Solar GEL Battery USB 20Ah",
-        price: 4500,
-        oldPrice: 6000,
-        description: "20Ah compact GEL battery with USB charging support, maintenance-free design and stable power output.",
-        images: ["Images/gelusb20ah.webp"]
-      },
+    
       {
         name: "YACHU 55Ah Solar GEL Battery",
         price: 8000,
