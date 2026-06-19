@@ -896,15 +896,15 @@ variants: [
 
    {
         name: "Yachu Lithium Battery 5.12KWh 51.2V",
-        price: 90000,
-        oldPrice: 100000,
+        price: 105000,
+        oldPrice: 120000,
         description:
         "5.12KWh 51.2V wall-mounted lithium battery with intelligent BMS and long cycle life.",
-        images:["Images/yachu-lithium-5.12kwh.webp]
+        images:["Images/yachu-lithium-5.12kwh.webp"]
    {
         name: "Yachu Lithium Battery 8.03KWh 25.6V",
         price: 115000,
-        oldPrice: 135000,
+        oldPrice: 145000,
         description:
         "8.03KWh 25.6V lithium battery for solar backup systems with high efficiency and long lifespan.",
         images:["Images/yachu-lithium-8.03kwh.webp"]
