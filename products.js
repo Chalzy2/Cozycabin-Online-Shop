@@ -1021,8 +1021,7 @@ floodlights: [
       description: "300W premium solar floodlight with extra brightness, IP67 waterproof design and remote control included.",
       images: ["Images/solarl300w.webp"]
     }
-
-  ]
+   ]
   },
   {
     title: "YOMY Solar Floodlight",
