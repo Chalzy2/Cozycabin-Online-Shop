@@ -672,7 +672,79 @@ panels: [
    ]
   }
 ],
-  
+inverters: [
+   {
+      title: "Yachu Lithium Batteries",
+      company: "Cozycabin",
+      productType: "variant",
+
+      description:
+      "High-performance Yachu lithium batteries designed for solar systems, homes and businesses. Features intelligent battery management, long cycle life and reliable backup power.",
+
+      features: [
+      "Long Cycle Life",
+      "Intelligent BMS",
+      "Fast Charging",
+      "High Energy Density",
+      "Solar Compatible",
+      "Maintenance Free",
+      "Reliable Backup Power",
+      "Safe & Durable"
+      ],
+
+variants: [
+
+   {
+        name: "Yachu Lithium Battery 5.12KWh 51.2V",
+        price: 90000,
+        oldPrice: 100000,
+        description:
+        "5.12KWh 51.2V wall-mounted lithium battery with intelligent BMS and long cycle life.",
+        images:["Images/yachu-lithium-5.12kwh.webp"]
+   },
+   {
+        name: "Yachu Lithium Battery 8.03KWh 25.6V",
+        price: 105000,
+        oldPrice: 115000,
+        description:
+        "8.03KWh 25.6V lithium battery for solar backup systems with high efficiency and long lifespan.",
+        images:["Images/yachu-lithium-8.03kwh.webp"]
+},
+{
+        name: "Yachu Lithium Battery 10.85KWh 51.2V",
+        price: 155000,
+        oldPrice: 170000,
+        description:
+        "10.85KWh 51.2V lithium battery with intelligent battery management and dependable backup power.",
+        images:["Images/yachu-lithium-10.85kwh.webp"]
+},
+{
+        name: "Yachu Lithium Battery 16.07KWh 51.2V",
+        price: 185000,
+        oldPrice: 200000,
+        description:
+        "16.07KWh 51.2V high-capacity lithium battery ideal for homes and commercial solar systems.",
+        images:["Images/yachu-lithium-16.07kwh.webp"]
+},
+{
+        name: "Yachu Lithium Battery 12.8V 100Ah",
+        price: 24000,
+        oldPrice: 28000,
+        description:
+       "12.8V 100Ah lithium battery with lightweight design and fast charging capability.",
+       images:["Images/yachu-lithium-100ah.webp"]
+},
+{
+       name: "Yachu Lithium Battery 12.8V 200Ah",
+       price: 40000,
+       oldPrice: 45000,
+       description:
+       "12.8V 200Ah lithium battery offering high energy density and long-lasting backup power.",
+       images:["Images/yachu-lithium-200ah.webp"]
+      }
+    ]
+   }
+ ],
   
 batteries: [
   {
