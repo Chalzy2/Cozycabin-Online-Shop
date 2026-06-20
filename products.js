@@ -732,7 +732,7 @@ description:
 images:["Images/yachu-inverter-11kw.webp"]
   }
   ]
- },
+ }
 ],
 batteries: [
   {
