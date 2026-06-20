@@ -672,7 +672,69 @@ panels: [
    ]
   }
 ],
-  
+  inverters: [
+   {
+title: "Yachu Inverters",
+company: "Cozycabin",
+productType: "variant",
+
+description:
+"High-performance Yachu hybrid inverters designed for homes, businesses and solar backup systems. Features pure sine wave output, intelligent charging and reliable power conversion for off-grid and hybrid solar installations.",
+
+features: [
+"Pure Sine Wave Output",
+"Hybrid Solar Technology",
+"High Conversion Efficiency",
+"Solar Charging Support",
+"Intelligent LCD Display",
+"Overload Protection",
+"Low Battery Protection",
+"Reliable Backup Power",
+"Suitable for Homes & Businesses",
+"Easy Installation"
+],
+
+variants: [
+
+{
+name: "Yachu Hybrid Inverter 12V 1.5KW",
+price: 24500,
+oldPrice: 30000,
+description:
+"12V hybrid solar inverter rated at 1.5KW. Suitable for home solar backup systems and small appliances.",
+images:["Images/yachu-inverter-1.5kw.webp"]
+},
+
+{
+name: "Yachu Hybrid Inverter 24V 3.5KW",
+price: 33000,
+oldPrice: 40000,
+description:
+"24V hybrid inverter with 3.5KW output for homes, offices and solar backup applications.",
+images:["Images/yachu-inverter-3.5kw.webp"]
+},
+
+{
+name: "Yachu Hybrid Inverter 48V 6.2KW",
+price: 47100,
+oldPrice: 55000,
+description:
+"48V pure sine wave hybrid inverter with 6.2KW output, high efficiency and solar charging support.",
+images:["Images/yachu-inverter-6.2kw.webp"]
+},
+
+{
+name: "Yachu Hybrid Inverter 48V 11KW",
+price: 91500,
+oldPrice: 105000,
+description:
+"48V high-power hybrid inverter rated at 11KW for homes, businesses and large solar installations.",
+images:["Images/yachu-inverter-11kw.webp"]
+  }
+  ]
+ }
+],
+
   
 batteries: [
   {
@@ -812,8 +874,79 @@ batteries: [
         images: ["Images/yachu200ah.webp"]
       }
     ]
-  }
-],
+  },
+  {   
+     title: "Yachu Lithium Batteries",
+      company: "Cozycabin",
+      productType: "variant",
+
+      description:
+      "High-performance Yachu lithium batteries designed for solar systems, homes and businesses. Features intelligent battery management, long cycle life and reliable backup power.",
+
+      features: [
+      "Long Cycle Life",
+      "Intelligent BMS",
+      "Fast Charging",
+      "High Energy Density",
+      "Solar Compatible",
+      "Maintenance Free",
+      "Reliable Backup Power",
+      "Safe & Durable"
+      ],
+
+variants: [
+
+   {
+        name: "Yachu Lithium Battery 5.12KWh 51.2V",
+        price: 105000,
+        oldPrice: 120000,
+        description:
+        "5.12KWh 51.2V wall-mounted lithium battery with intelligent BMS and long cycle life.",
+        images:["Images/yachu-lithium-5.12kwh.webp"]
+   },
+   {
+        name: "Yachu Lithium Battery 8.03KWh 25.6V",
+        price: 115000,
+        oldPrice: 145000,
+        description:
+        "8.03KWh 25.6V lithium battery for solar backup systems with high efficiency and long lifespan.",
+        images:["Images/yachu-lithium-8.03kwh.webp"]
+   },
+   {
+        name: "Yachu Lithium Battery 10.85KWh 51.2V",
+        price: 165000,
+        oldPrice: 190000,
+        description:
+        "10.85KWh 51.2V lithium battery with intelligent battery management and dependable backup power.",
+        images:["Images/yachu-lithium-10.85kwh.webp"]
+   },
+   {
+        name: "Yachu Lithium Battery 16.07KWh 51.2V",
+        price: 195000,
+        oldPrice: 220000,
+        description:
+        "16.07KWh 51.2V high-capacity lithium battery ideal for homes and commercial solar systems.",
+        images:["Images/yachu-lithium-16.07kwh.webp"]
+    },
+    {
+        name: "Yachu Lithium Battery 12.8V 100Ah",
+        price: 30000,
+        oldPrice: 40000,
+        description:
+       "12.8V 100Ah lithium battery with lightweight design and fast charging capability.",
+       images:["Images/yachu-lithium-100ah.webp"]
+    },
+    {
+       name: "Yachu Lithium Battery 12.8V 200Ah",
+       price: 50000,
+       oldPrice: 60000,
+       description:
+       "12.8V 200Ah lithium battery offering high energy density and long-lasting backup power.",
+       images:["Images/yachu-lithium-200ah.webp"]
+      }
+    ]
+   }
+ ],
         
 streetlights: [
   {
