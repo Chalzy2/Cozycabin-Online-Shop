@@ -1790,3 +1790,10 @@ body {
   display: block !important;
   contain: none !important;
 }
+/* All submenus hidden by default — shown only when .open class is added */
+.minor-menu {
+  display: none;
+}
+.minor-menu.open {
+  display: block !important;
+}
