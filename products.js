@@ -2080,7 +2080,7 @@ window.toggleSub = function(id) {
   var t = document.getElementById(id);
   if (!t) return;
   var isOpen = t.classList.contains('open');
-if (isOpen) { t.classList.remove('open'); } else { t.classList.add('open'); }
+if (isOpen) { t.classList.remove('open'); t.style.display = 'none'; } else { t.classList.remove('open'); t.style.display = ''; t.classList.add('open'); }
   if (isOpen) {
     hideProducts();
   } else {
