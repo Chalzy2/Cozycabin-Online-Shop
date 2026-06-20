@@ -2065,18 +2065,24 @@ window.toggleSub = function(id) {
   document.querySelectorAll('.minor-menu').forEach(function(m) {
     var digitalIds = ['video-courses','ebooks-menu','crypto-menu','affiliate-menu','problem-menu','entertainment-menu'];
     if (m.id !== id && digitalIds.indexOf(m.id) === -1) {
-      // FIX: visibility is driven by the "open" class (.minor-menu.open
-      // uses display:block !important in CSS), so setting inline
-      // style.display = 'none' alone never actually hid a panel that
-      // still had .open on it — the !important class rule won every
-      // time. That's why switching categories left the previous panel
-      // (and its Back button) visibly expanded. Removing the class is
-      // what actually closes it; the inline style is kept as a harmless
-      // belt-and-suspenders for non-class-driven cases.
       m.classList.remove('open');
       m.style.display = 'none';
     }
   });
+  var t = document.getElementById(id);
+  if (!t) return;
+  var isOpen = t.classList.contains('open');
+  if (isOpen) {
+    t.classList.remove('open');
+    t.style.display = 'none';
+    hideProducts();
+  } else {
+    t.classList.remove('open');
+    t.style.display = '';
+    t.classList.add('open');
+    setTimeout(function() { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
+  }
+};
   var t = document.getElementById(id);
   if (!t) return;
   var isOpen = t.classList.contains('open');
