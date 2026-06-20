@@ -1679,60 +1679,27 @@ body {
   display: block !important;
 }
 
-/* Minor menu border stops bleeding into product section */
+//* Minor menu — hidden by default, shown via .open class */
 .minor-menu {
+  display: none;
   overflow: hidden !important;
-  margin-bottom: 24px !important;
-}
-/* ══ YELLOW LINE FIX — CSS ONLY ══ */
-.minor-menu {
-  border-left: none !important;
-  border-right: none !important;
-  border-top: 2px solid var(--gold) !important;
-  border-bottom: 2px solid var(--gold) !important;
-}
-/* ============================================================
-   COZYCABIN — OVERLAY + PRODUCTS FIX CSS
-   Add this file as:  <link rel="stylesheet" href="overlay-fix.css">
-   OR paste these rules at the bottom of your fix.css
-   ============================================================ */
-
-/* ──────────────────────────────────────────────────────────────
-   FIX 1: Remove the yellow border bleed / overlay on products
-   
-   The gold border on .minor-menu was creating a visible frame
-   around product images because #products-container was rendered
-   inside the same stacking context and the border bled through.
-   ────────────────────────────────────────────────────────────── */
-
-/* Fully contain the minor-menu — prevent its gold border from
-   leaking visually into adjacent/child elements               */
-.minor-menu {
-  overflow: hidden !important;
-  isolation: isolate !important;        /* new stacking context  */
-  contain: layout style !important;     /* hard paint boundary   */
+  isolation: isolate !important;
   border: 2px solid var(--gold) !important;
-  margin-bottom: 0 !important;          /* gap handled below     */
+  margin-bottom: 0 !important;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   FIX 2: products-container — ensure it renders OUTSIDE the
-   yellow frame, with its own stacking context & no border bleed
-   ────────────────────────────────────────────────────────────── */
+.minor-menu.open {
+  display: block !important;
+}
+
 #products-container {
   position: relative !important;
   z-index: 2 !important;
   isolation: isolate !important;
-  margin-top: 16px !important;          /* clean gap after menu  */
-  /* Remove any inherited border/outline that could show gold:  */
+  margin-top: 16px !important;
   outline: none !important;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   FIX 3: Product images — no gold border, no box-shadow bleed
-   Ensure thumb images and main images have clean transparent
-   borders so the yellow overlay cannot appear on them
-   ────────────────────────────────────────────────────────────── */
 .product-card .main-product-image,
 .product-card .cc-gallery img,
 .product-card .cc-gallery video {
@@ -1741,7 +1708,6 @@ body {
   box-shadow: none !important;
 }
 
-/* Thumbnails: only show gold border when actively selected     */
 .cc-thumb {
   border: 2px solid transparent !important;
   border-radius: 10px !important;
@@ -1752,9 +1718,6 @@ body {
   border-color: var(--gold) !important;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   FIX 4: .product-gallery wrapper — remove any inherited gold
-   ────────────────────────────────────────────────────────────── */
 .product-gallery,
 .cc-gallery,
 .cc-viewport {
@@ -1763,10 +1726,6 @@ body {
   box-shadow: none !important;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   FIX 5: Ensure cc-slide images fill correctly without any
-   aspect-ratio override causing white/gold borders to show
-   ────────────────────────────────────────────────────────────── */
 .cc-slide {
   flex: 0 0 100% !important;
   min-width: 100% !important;
@@ -1775,7 +1734,7 @@ body {
   overflow: hidden !important;
   box-sizing: border-box !important;
   border: none !important;
-  background: #000 !important;          /* black fallback, not gold */
+  background: #000 !important;
 }
 
 .cc-slide img,
@@ -1785,15 +1744,4 @@ body {
   object-fit: cover !important;
   display: block !important;
   border: none !important;
-}
-.minor-menu.open {
-  display: block !important;
-  contain: none !important;
-}
-/* All submenus hidden by default — shown only when .open class is added */
-.minor-menu {
-  display: none;
-}
-.minor-menu.open {
-  display: block !important;
 }
