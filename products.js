@@ -1412,6 +1412,113 @@ fridges: [
       }
     ]
   }
+  ],
+ microwaves: [
+  {
+   
+title: "Microwave Ovens",
+company: "Cozycabin",
+productType: "variant",
+
+description:
+"Modern microwave ovens for quick cooking, reheating and defrosting. Available in analogue and digital models from trusted brands including Ramtons, Hisense, Globalstar and Electromate.",
+
+features: [
+"20 Litres Capacity",
+"Fast Heating",
+"Defrost Function",
+"Multiple Power Levels",
+"Digital & Analogue Models",
+"Easy To Clean",
+"Energy Efficient",
+"Compact Design"
+],
+
+variants: [
+
+{
+name: "Ramtons RM/458 Digital Glass Microwave 20L",
+price: 9500,
+oldPrice: 10500,
+description:
+"20 litres digital microwave with elegant silver glass finish, 700W power and multiple cooking programs.",
+images:["Images/ramtons-rm458-microwave.webp"]
+},
+{
+name: "Hisense 20L Microwave Black",
+price: 9000,
+oldPrice: 10000,
+description:
+"20 litres digital microwave oven in black finish with fast heating and defrost function.",
+images:["Images/hisense-20l-black.webp"]
+},
+{
+name: "Hisense 20L Microwave Silver",
+price: 9000,
+oldPrice: 10000,
+description:
+"20 litres microwave oven in silver finish featuring easy controls and energy efficient operation.",
+images:["Images/hisense-20l-silver.webp"]
+},
+{
+name: "Hisense 20L Microwave White",
+price: 8500,
+oldPrice: 9500,
+description:
+"20 litres microwave oven in white finish ideal for home kitchens and everyday cooking.",
+images:["Images/hisense-20l-white.webp"]
+},
+{
+name: "Hisense 20L White/Silver Analogue Microwave",
+price: 7500,
+oldPrice: 8500,
+description:
+"20 litres analogue microwave with simple knob controls and stylish white/silver finish.",
+images:["Images/hisense-20l-analogue.webp"]
+},
+{
+name: "Globalstar F20MXP08 Analogue Microwave 20L",
+price: 7500,
+oldPrice: 8500,
+description:
+"20 litres analogue microwave without handle featuring defrost function and 5 power levels.",
+images:["Images/globalstar-f20mxp08.webp"]
+},
+{
+name: "Globalstar C20MXP01 Analogue Microwave 20L",
+price: 8000,
+oldPrice: 9000,
+description:
+"20 litres analogue microwave with handle, compact design and easy timer controls.",
+images:["Images/globalstar-c20mxp01.webp"]
+},
+{
+name: "Globalstar Digital Microwave 20L",
+price: 8500,
+oldPrice: 9500,
+description:
+"20 litres digital microwave oven with touch controls, multiple power levels and defrost function.",
+images:["Images/globalstar-digital-20l.webp"]
+},
+{
+name: "Electromate Digital Microwave 20L",
+price: 8500,
+oldPrice: 9500,
+description:
+"20 litres digital microwave with handle, modern glass finish and multiple cooking options.",
+images:["Images/electromate-digital-20l.webp"]
+},
+{
+name: "Electromate Microwave 20L Black",
+price: 7500,
+oldPrice: 8500,
+description:
+"20 litres black microwave oven with handle, compact design and fast heating capability.",
+images:["Images/electromate-black-20l.webp"]
+ }
+
+ ]
+ }
 ],
 
 
@@ -1421,7 +1528,7 @@ fridges: [
   // ── Placeholders — add products + video fields later ──
   
    
- microwaves:[], washing:[], cookersapp:[], kettles:[], irons:[], heaters:[], fansapp:[],
+  washing:[], cookersapp:[], kettles:[], irons:[], heaters:[], fansapp:[],
   // FIX: these 10 keys exist as buttons (data-category) in index.html but were
   // missing from this file entirely, so products[category] was undefined
   // instead of an empty array — clicking them could throw and always looked broken.
