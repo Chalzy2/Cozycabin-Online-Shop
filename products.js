@@ -1482,9 +1482,8 @@ microwaves: [
         images: ["Images/electromate-black-20l.webp"]
       }
     ]
-  },
- 
-      {
+   },
+   {
         name: "Globalstar C20MXP01 Analogue Microwave 20L",
         price: 8000,
         oldPrice: 9500,
@@ -1492,41 +1491,27 @@ microwaves: [
         images: ["Images/globalstar-c20mxp01.webp"]
       },
       {
-         name: "Mika Analog Microwave 20L",
-         price: 9499,
-         oldPrice: 10999,
-         description: "20 litres analog microwave oven with 5 power levels, defrost function and durable glass door. Comes with 2 years warranty.",
-         images: ["Images/mika-20l-analog.webp"]
+        name: "Mika Analog Microwave 20L",
+        price: 9499,
+        oldPrice: 10999,
+        description: "20 litres analog microwave oven with 5 power levels, defrost function and durable glass door. Comes with 2 years warranty.",
+        images: ["Images/mika-20l-analog.webp"]
       },
       {
-           name: "Von Microwave 20L Digital With Grill",
-           price: 10500,
-           oldPrice: 12000,
-           description: "20 litres digital microwave with grill, elegant glass finish and multiple auto cooking programs.",
-           images: ["Images/von-20dgb.webp"]
-    },
-    {
-            name: "Hanmac Manual Microwave 20L Black",
-            price: 7800,
-            oldPrice: 9000,
-            description: "20 litres manual microwave in black with 5 power levels, defrost feature and 3 years warranty.",
-            images: ["Images/hanmac-manual-black.webp"]
-    },
-    {
-        name: "Hanmac Manual Microwave 20L White",
-        price: 7800,
-        oldPrice: 9000,
-        description: "20 litres manual microwave in white with 5 power levels, defrost feature and 3 years warranty.",
-        images: ["Images/hanmac-manual-white.webp"]
-   },
-   {
+        name: "Von Microwave 20L Digital With Grill",
+        price: 10500,
+        oldPrice: 12000,
+        description: "20 litres digital microwave with grill, elegant glass finish and multiple auto cooking programs.",
+        images: ["Images/von-20dgb.webp"]
+      },
+      {
         name: "Hanmac Digital Microwave 20L",
         price: 8000,
         oldPrice: 9000,
         description: "20 litres digital microwave with touch controls, auto menus and 3 years warranty.",
         images: ["Images/hanmac-digital-20l.webp"]
-    },
-     {
+      },
+      {
         name: "Ramtons RM/458 Digital Glass Microwave 20L",
         price: 9500,
         oldPrice: 10500,
@@ -1534,34 +1519,36 @@ microwaves: [
         images: ["Images/ramtons-rm458-microwave.webp"]
       },
       {
-          name: "Ramtons Microwave 20L Manual RM672",
-          price: 10500,
-          oldPrice: 11500,
-          description: "20 litres manual microwave with 700W power, defrost function and multiple cooking power levels.",
-          images: ["Images/ramtons-rm672.webp"]
-    },
-    {
-           name: "Ramtons Microwave + Convection Oven 28L",
-           price: 28500,
-           oldPrice: 32000,
-           description: "28 litres microwave with convection oven for baking, grilling and reheating. Premium black finish.",
-           images: ["Images/ramtons-rm327-convection.webp"]
-  },
-  {
+        name: "Ramtons Microwave 20L Manual RM672",
+        price: 10500,
+        oldPrice: 11500,
+        description: "20 litres manual microwave with 700W power, defrost function and multiple cooking power levels.",
+        images: ["Images/ramtons-rm672.webp"]
+      },
+      {
+        name: "Ramtons Microwave + Convection Oven 28L",
+        price: 28500,
+        oldPrice: 32000,
+        description: "28 litres microwave with convection oven for baking, grilling and reheating. Premium black finish.",
+        images: ["Images/ramtons-rm327-convection.webp"]
+      },
+      {
         name: "Ramtons Microwave With Grill RM589 23L Silver",
         price: 15000,
         oldPrice: 17000,
         description: "23 litres microwave with grill, digital controls and elegant silver finish.",
         images: ["Images/ramtons-rm589.webp"]
-   },
-   {
+      },
+      {
         name: "Ramtons Microwave With Grill RM326 25L Silver",
         price: 20000,
-         oldPrice: 22000,
-         description: "25 litres microwave with grill, digital display and premium silver finish.",
-         images: ["Images/ramtons-rm326.webp"]
-        }
-       ], 
+        oldPrice: 22000,
+        description: "25 litres microwave with grill, digital display and premium silver finish.",
+        images: ["Images/ramtons-rm326.webp"]
+      }
+    ]
+  }
+],
       
   
   // ── Placeholders — add products + video fields later ──
