@@ -1413,12 +1413,12 @@ fridges: [
     ]
   }
   ],
-microwaves: [
+ microwaves: [
   {
     title: "Microwave Ovens",
     company: "Cozycabin",
     productType: "variant",
-    description: "Modern microwave ovens for quick cooking, reheating and defrosting. Available in analogue and digital models from trusted brands including Ramtons, Hisense, Globalstar and Electromate.",
+    description: "Modern microwave ovens for quick cooking, reheating and defrosting. Available in analogue and digital models from trusted brands including Ramtons, Hisense, Globalstar, Electromate, Mika, Von, Hanmac and more.",
     features: [
       "20 Litres Capacity",
       "Fast Heating",
@@ -1430,7 +1430,6 @@ microwaves: [
       "Compact Design"
     ],
     variants: [
-      
       {
         name: "Hisense 20L Microwave Black",
         price: 9000,
@@ -1459,13 +1458,12 @@ microwaves: [
         description: "20 litres analogue microwave with simple knob controls and stylish white/silver finish.",
         images: ["Images/hisense-20l-analogue.webp"]
       },
-      
       {
-       name: "Electromate Microwave 20L Black",
-       price: 7500,
-       oldPrice: 8500,
-       description: "20 litres black microwave oven with handle, compact design and fast heating capability.",
-       images: ["Images/electromate-black-20l.webp"]
+        name: "Electromate Microwave 20L Black",
+        price: 7500,
+        oldPrice: 8500,
+        description: "20 litres black microwave oven with handle, compact design and fast heating capability.",
+        images: ["Images/electromate-black-20l.webp"]
       },
       {
         name: "Electromate Digital Microwave 20L",
@@ -1475,15 +1473,6 @@ microwaves: [
         images: ["Images/electromate-digital-20l.webp"]
       },
       {
-        name: "Electromate Microwave 20L Black",
-        price: 7500,
-        oldPrice: 8500,
-        description: "20 litres black microwave oven with handle, compact design and fast heating capability.",
-        images: ["Images/electromate-black-20l.webp"]
-      }
-    ]
-   },
-   {
         name: "Globalstar C20MXP01 Analogue Microwave 20L",
         price: 8000,
         oldPrice: 9500,
@@ -1503,6 +1492,20 @@ microwaves: [
         oldPrice: 12000,
         description: "20 litres digital microwave with grill, elegant glass finish and multiple auto cooking programs.",
         images: ["Images/von-20dgb.webp"]
+      },
+      {
+        name: "Hanmac Manual Microwave 20L Black",
+        price: 7800,
+        oldPrice: 9000,
+        description: "20 litres manual microwave in black with 5 power levels, defrost feature and 3 years warranty.",
+        images: ["Images/hanmac-manual-black.webp"]
+      },
+      {
+        name: "Hanmac Manual Microwave 20L White",
+        price: 7800,
+        oldPrice: 9000,
+        description: "20 litres manual microwave in white with 5 power levels, defrost feature and 3 years warranty.",
+        images: ["Images/hanmac-manual-white.webp"]
       },
       {
         name: "Hanmac Digital Microwave 20L",
