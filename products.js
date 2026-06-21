@@ -1359,7 +1359,6 @@ description:
 "Ramtons 128 litres direct cool double door refrigerator in silver finish. Energy-saving with spacious compartments and elegant design.",
 images:["Images/ramtons-128l-double-door.webp"]
 },
-
 {
 name: "Volsmart 138L Double Door Refrigerator",
 price: 28000,
@@ -1368,7 +1367,6 @@ description:
 "Volsmart 138 litres double door refrigerator with energy-saving technology, spacious storage and reliable cooling.",
 images:["Images/volsmart-138l-double-door.webp"]
 },
-
 {
 name: "Von 181L Double Door Refrigerator Direct Cool",
 price: 35000,
@@ -1377,7 +1375,6 @@ description:
 "Von 181 litres direct cool double door refrigerator featuring stylish silver finish, powerful cooling and low energy consumption.",
 images:["Images/von-181l-double-door.webp"]
 },
-
 {
 name: "Smartpro 138L Double Door Refrigerator",
 price: 24500,
@@ -1386,7 +1383,6 @@ description:
 "Smartpro 138 litres double door refrigerator model 175DTI with energy-saving technology, low noise operation and spacious storage.",
 images:["Images/smartpro-138l-double-door.webp"]
 },
-
 {
 name: "Syinix 137L Double Door Refrigerator",
 price: 30500,
@@ -1395,7 +1391,6 @@ description:
 "Syinix 137 litres double door refrigerator with 3-star energy rating, inbuilt fridge guard, low noise and low power consumption.",
 images:["Images/syinix-137l-double-door.webp"]
 },
-
 {
 name: "Ailyons 172L Double Door Refrigerator",
 price: 33500,
@@ -1404,7 +1399,6 @@ description:
 "Ailyons 172 litres double door refrigerator with stylish silver finish, spacious compartments and efficient cooling.",
 images:["Images/ailyons-172l-double-door.webp"]
 },
-
 {
 name: "Ailyons 266L Double Door Refrigerator",
 price: 45000,
@@ -1413,7 +1407,6 @@ description:
 "Ailyons 266 litres large capacity double door refrigerator suitable for families, shops and offices.",
 images:["Images/ailyons-266l-double-door.webp"]
 },
-
 {
 name: "Roch 197L Double Door Refrigerator No Frost",
 price: 45000,
@@ -1422,8 +1415,7 @@ description:
 "Roch 197 litres no frost double door refrigerator with modern black finish and 5 years warranty.",
 images:["Images/roch-197l-double-door.webp"]
 },
-
-{
+  {
 name: "Ecomax 138L Double Door Refrigerator",
 price: 31500,
 oldPrice: 36000,
@@ -1433,7 +1425,8 @@ images:["Images/ecomax-138l-double-door.webp"]
 }
 
 ]
-},
+}
+ ],
 
 
 
