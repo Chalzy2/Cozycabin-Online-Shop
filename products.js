@@ -1552,7 +1552,7 @@ fridges: [
     ]
   }
 ],
-washingmachines: [   
+ washingmachines: [   
   {
   name: "TLAC Twin Tub Semi Automatic Washing Machine 10KG",
   price: 29500,
@@ -1616,7 +1616,6 @@ washingmachines: [
   description: "8kg front load washing machine with inverter technology, low noise operation and low energy consumption.",
   images: ["Images/syinix-v8wmft-8kg.webp"]
 },
-
 {
   name: "TCL Front Load Wash & Dry Washing Machine 10/6KG C2110WDG",
   price: 55500,
@@ -1631,7 +1630,6 @@ washingmachines: [
   description: "10kg wash and 7kg dry front load washing machine with advanced drying system and energy-saving technology.",
   images: ["Images/tcl-c7110wdg-10-7kg.webp"]
 },
-
 {
   name: "Hisense Front Load Wash & Dry Washing Machine 12/8KG",
   price: 87999,
@@ -1645,7 +1643,7 @@ washingmachines: [
   oldPrice: 68000,
   description: "10kg front load washing machine featuring SpaCare Steam Wash, Inverter Motor (BLDC), 1400 RPM spin speed and multiple wash programs. Energy efficient design with powerful cleaning and gentle fabric care.",
   images: ["Images/mika-front-load-10kg-mwafs13410dsv.webp","mika-front-load-10kg-mwafs13410dsv1.webp"]
-}
+  }
 ],
   
   // ── Placeholders — add products + video fields later ──
