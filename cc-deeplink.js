@@ -47,7 +47,7 @@
     yomy:        'solar-sub',
     // Appliances
     fridges:     'appliances-sub', microwaves:  'appliances-sub',
-    washing:     'appliances-sub', cookersapp:  'appliances-sub',
+    washingmachines: 'appliances-sub', cookersapp:  'appliances-sub',
     kettles:     'appliances-sub', irons:       'appliances-sub',
     heaters:     'appliances-sub', fansapp:     'appliances-sub',
     // Decor
