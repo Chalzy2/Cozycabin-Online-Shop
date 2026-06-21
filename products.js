@@ -1327,54 +1327,7 @@ solarfans: [
     ]
   }
 ],
-fridges: [
-  {
-title: "Double Door Refrigerators",
-company: "Cozycabin",
-productType: "variant",
 
-description:
-"Energy-saving double door refrigerators from trusted brands including Ramtons, Volsmart, Von, Smartpro, Syinix, Ailyons, Roch and Ecomax. Designed for homes and offices with spacious storage, fast cooling and low power consumption.",
-
-features: [
-"Double Door Design",
-"Energy Saving",
-"Fast Cooling",
-"Low Noise Operation",
-"Direct Cool Technology",
-"Spacious Storage",
-"Adjustable Thermostat",
-"Durable Compressor",
-"Modern Design",
-"Suitable for Homes & Offices"
-],
-
-variants: [
-
-{
-name: "Ramtons 128L Double Door Refrigerator Silver",
-price: 30500,
-oldPrice: 34000,
-description:
-"Ramtons 128 litres direct cool double door refrigerator in silver finish. Energy-saving with spacious compartments and elegant design.",
-images:["Images/ramtons-128l-double-door.webp"]
-},
-{
-name: "Volsmart 138L Double Door Refrigerator",
-price: 28000,
-oldPrice: 32000,
-description:
-"Volsmart 138 litres double door refrigerator with energy-saving technology, spacious storage and reliable cooling.",
-images:["Images/volsmart-138l-double-door.webp"]
-},
-{
-name: "Von 181L Double Door Refrigerator Direct Cool",
-price: 35000,
-oldPrice: 40000,
-description:
-"Von 181 litres direct cool double door refrigerator featuring stylish silver finish, powerful cooling and low energy consumption.",
-images:["Images/von-181l-double-door.webp"]
-},
 fridges: [
   {
     title: "Double Door Refrigerators",
