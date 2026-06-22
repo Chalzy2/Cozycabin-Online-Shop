@@ -1694,7 +1694,7 @@ variants: [
       description: "Full gas standing cooker with gas oven.",
       price: "17900",
       images: [
-        "Images/nunix-wld-560-go.webp"
+        "Images/Nunix-wld-560-go.webp"
       ]
     },
 
@@ -1703,7 +1703,7 @@ variants: [
       description: "3 gas burners + 1 electric hot plate with gas oven.",
       price: "18500",
       images: [
-        "Images/nunix-wld-560-3g1e.webp"
+        "Images/Nunix-wld-560-3g1e.webp"
       ]
     },
 
@@ -1712,7 +1712,7 @@ variants: [
       description: "3 gas burners + 1 electric hot plate with electric oven.",
       price: "23500",
       images: [
-        "Images/nunix-kz-560-3g1e.webp"
+        "Images/Nunix-kz-560-3g1e.webp"
       ]
     },
 
@@ -1721,7 +1721,7 @@ variants: [
       description: "60×60 standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
       price: "25000",
       images: [
-        "Images/nunix-kz-660-3g1e.webp"
+        "Images/Nunix-kz-660-3g1e.webp"
       ]
     },
 
@@ -1730,7 +1730,7 @@ variants: [
       description: "3 gas + 1 electric standing cooker with free gas pipe, spatula and 13kg regulator.",
       price: "27500",
       images: [
-        "Images/ecomax-60x60-standing-cooker.webp"
+        "Images/Ecomax-60x60-standing-cooker.webp"
       ]
     },
 
@@ -1739,7 +1739,7 @@ variants: [
       description: "4 gas burners with electric oven and free accessories.",
       price: "18799",
       images: [
-        "Images/ecomax-50x55-standing-cooker.webp"
+        "Images/Ecomax-50x55-standing-cooker.webp"
       ]
     },
 
@@ -1748,7 +1748,7 @@ variants: [
       description: "3 gas + 1 electric hot plate, rotisserie and 50L electric oven.",
       price: "23500",
       images: [
-        "Images/electromate-60x60-standing-cooker.webp"
+        "Images/Electromate-60x60-standing-cooker.webp"
       ]
     },
 
@@ -1757,7 +1757,7 @@ variants: [
       description: "3 gas + 1 electric standing cooker with rapid hot plate.",
       price: "19500",
       images: [
-        "Images/electromate-50x55-standing-cooker.webp"
+        "Images/Electromate-50x55-standing-cooker.webp"
       ]
     },
 
@@ -1766,7 +1766,7 @@ variants: [
       description: "Black standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
       price: "22500",
       images: [
-        "Images/globalstar-jet-50x55.webp"
+        "Images/Globalstar-jet-50x55.webp"
       ]
     },
 
@@ -1775,7 +1775,7 @@ variants: [
       description: "Black standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
       price: "25000",
       images: [
-        "Images/globalstar-jet-60x60.webp"
+        "Images/Globalstar-jet-60x60.webp"
       ]
     }
 
