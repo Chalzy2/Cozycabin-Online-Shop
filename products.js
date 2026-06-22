@@ -1551,8 +1551,28 @@ fridges: [
       }
     ]
   }
-],  
- washingmachines: [
+],
+washingmachines: [
+{
+title: "Washing Machines",
+company: "Cozycabin",
+productType: "variant",
+
+description:
+"Modern washing machines for homes and businesses with powerful cleaning, energy efficiency and multiple washing programs.",
+
+features: [
+"Twin Tub Models",
+"Front Load Models",
+"Wash & Dry Options",
+"Energy Efficient",
+"Large Capacity",
+"Low Noise Operation",
+"Durable Construction",
+"Easy Controls"
+],
+
+variants: [
 {
   title: "TLAC Twin Tub Semi Automatic Washing Machine 10KG",
   company: "Cozycabin",
@@ -1654,13 +1674,15 @@ fridges: [
   company: "Cozycabin",
   price: 62000,
   oldPrice: 68000,
-  description: "10kg front load washing machine featuring SpaCare Steam Wash, Inverter Motor (BLDC), 1400 RPM spin speed and multiple wash programs. Energy efficient design with powerful cleaning and gentle fabric care.",
+  description: "10kg front load washing machine featuring SpaCare Steam Wash, Inverter Motor (BLDC), 1400 RPM spin speed and multiple wash programs.",
   images: [
     "Images/mika-front-load-10kg-mwafs13410dsv.webp",
     "Images/mika-front-load-10kg-mwafs13410dsv1.webp"
   ]
 }
 
+]
+}
 ],
   // ══════════════════════════════════════════════════════════
   //  CATEGORY KEYS — ORGANISED BY SUBMENU
