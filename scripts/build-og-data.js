@@ -115,11 +115,13 @@ function firstPrice(product) {
   return null;
 }
 
-// ── Title: supports both schemas in products.js ────────────────
-//   existing cards  → product.title
-//   newer schema    → product.longName (falls back to shortName)
+// ── Title: supports ALL schemas found in products.js ───────────
+//   standard cards → product.title
+//   newer schema   → product.longName (falls back to shortName)
+//   some categories (e.g. washingmachines) use product.name
+//   This function tries every known field so no product is missed.
 function resolveTitle(product) {
-  return product.longName || product.title || product.shortName || '';
+  return product.longName || product.title || product.name || product.shortName || '';
 }
 
 // ── Description: NEVER invented. If a product has no description
@@ -129,7 +131,8 @@ function resolveTitle(product) {
 //    placeholder marketing copy. ──
 function resolveDescription(product, warnings) {
   if (product.description) return product.description.replace(/\s+/g, ' ').trim();
-  const fallback = product.shortName || product.longName || product.title || '';
+  // Check all known title fields so washingmachines (which use 'name') are covered
+  const fallback = product.shortName || product.longName || product.title || product.name || '';
   warnings.push(`"${fallback}" has no "description" field — using its name as a placeholder. Add a description in products.js for a better-looking share preview.`);
   return fallback;
 }
