@@ -1553,6 +1553,28 @@ fridges: [
   }
 ],  
   washingmachines: [
+    {
+title: "Front Load & Twin Tub Washing Machines",
+company: "Cozycabin",
+productType: "variant",
+
+description:
+"Discover our range of high-quality washing machines from trusted brands including TLAC, Globalstar, Smart Pro, Ramtons, Syinix, TCL, Hisense and Mika. Available in Twin Tub Semi Automatic, Front Load and Wash & Dry models with capacities ranging from 8KG to 14KG. Features include Inverter Motors, Air Dry Technology, Steam Wash, Direct Drive Motors, Low Noise Operation, Energy Saving Technology and multiple smart wash programs. Designed for efficient cleaning, durability and convenience for both small and large households.",
+
+features: [
+"Front Load & Twin Tub Models",
+"8KG - 14KG Capacity Options",
+"Inverter Motor Technology",
+"Air Dry Technology",
+"Steam Wash",
+"Wash & Dry Models",
+"Low Noise Operation",
+"Energy Saving",
+"Multiple Wash Programs",
+"Durable & Reliable Design"
+],
+
+variants: [
   {
   name: "TLAC Twin Tub Semi Automatic Washing Machine 10KG",
   price: 29500,
