@@ -1704,16 +1704,11 @@ variants: [
   // ADD MORE KITCHEN ITEMS HERE
 
   // ── SOLAR ────────────────────────────────────────────────
-  panels:      [],
-  batteries:   [],
-  streetlights:[],
-  floodlights: [],
-  chargers:    [],
-  solarfans:   [],
+   chargers:    [],
+
   // ADD MORE SOLAR ITEMS HERE
 
   // ── APPLIANCES ───────────────────────────────────────────
-  fridges:     [],
   fryers:      [],
   kettles:     [],
   irons:       [],
