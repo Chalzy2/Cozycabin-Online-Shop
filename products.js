@@ -1552,100 +1552,115 @@ fridges: [
     ]
   }
 ],  
-  washingmachines: [
-  {
-  name: "TLAC Twin Tub Semi Automatic Washing Machine 10KG",
+ washingmachines: [
+{
+  title: "TLAC Twin Tub Semi Automatic Washing Machine 10KG",
+  company: "Cozycabin",
   price: 29500,
   oldPrice: 32000,
   description: "10kg twin tub semi automatic washing machine with separate wash and spin tubs, durable body and easy-to-use controls.",
   images: ["Images/tlac-twin-tub-10kg.webp"]
 },
 {
-  name: "TLAC Twin Tub Semi Automatic Washing Machine 12KG",
+  title: "TLAC Twin Tub Semi Automatic Washing Machine 12KG",
+  company: "Cozycabin",
   price: 35000,
   oldPrice: 38000,
   description: "12kg twin tub semi automatic washing machine designed for larger families with powerful washing and spinning performance.",
   images: ["Images/tlac-twin-tub-12kg.webp"]
 },
 {
-  name: "TLAC Twin Tub Semi Automatic Washing Machine 14KG",
+  title: "TLAC Twin Tub Semi Automatic Washing Machine 14KG",
+  company: "Cozycabin",
   price: 37000,
   oldPrice: 40000,
   description: "14kg heavy-duty twin tub washing machine with large capacity, efficient spin dryer and durable construction.",
   images: ["Images/tlac-twin-tub-14kg.webp"]
 },
 {
-  name: "Globalstar Front Load Washing Machine 8KG GS-800GT",
+  title: "Globalstar Front Load Washing Machine 8KG GS-800GT",
+  company: "Cozycabin",
   price: 40000,
   oldPrice: 45000,
   description: "8kg front load washing machine with inverter motor, multiple wash programs and energy-saving technology.",
   images: ["Images/globalstar-gs800gt-8kg.webp"]
 },
 {
-  name: "Smart Pro Twin Tub Washing Machine 8KG",
+  title: "Smart Pro Twin Tub Washing Machine 8KG",
+  company: "Cozycabin",
   price: 21500,
   oldPrice: 25000,
   description: "8kg twin tub washing machine with Air Dry technology, compact design and efficient washing performance.",
   images: ["Images/smartpro-twin-tub-8kg.webp"]
 },
 {
-  name: "Smart Pro Twin Tub Washing Machine 10KG",
+  title: "Smart Pro Twin Tub Washing Machine 10KG",
+  company: "Cozycabin",
   price: 27000,
   oldPrice: 30000,
   description: "10kg twin tub washing machine featuring Air Dry system, strong motor and large washing capacity.",
   images: ["Images/smartpro-twin-tub-10kg.webp"]
 },
 {
-  name: "Smart Pro Twin Tub Washing Machine 13KG",
+  title: "Smart Pro Twin Tub Washing Machine 13KG",
+  company: "Cozycabin",
   price: 40500,
   oldPrice: 45000,
   description: "13kg top load twin tub washing machine with Air Dry technology, ideal for large households.",
   images: ["Images/smartpro-twin-tub-13kg.webp"]
 },
 {
-  name: "Ramtons Twin Tub Washing Machine 10KG RW215",
+  title: "Ramtons Twin Tub Washing Machine 10KG RW215",
+  company: "Cozycabin",
   price: 35000,
   oldPrice: 38000,
   description: "10kg twin tub washing machine with Air Dryer, powerful washing performance and easy operation.",
   images: ["Images/ramtons-rw215-10kg.webp"]
 },
 {
-  name: "Syinix Front Load Washing Machine 8KG V8WMFT",
+  title: "Syinix Front Load Washing Machine 8KG V8WMFT",
+  company: "Cozycabin",
   price: 42000,
   oldPrice: 47000,
   description: "8kg front load washing machine with inverter technology, low noise operation and low energy consumption.",
   images: ["Images/syinix-v8wmft-8kg.webp"]
 },
-
 {
-  name: "TCL Front Load Wash & Dry Washing Machine 10/6KG C2110WDG",
+  title: "TCL Front Load Wash & Dry Washing Machine 10/6KG C2110WDG",
+  company: "Cozycabin",
   price: 55500,
   oldPrice: 60000,
   description: "10kg washing and 6kg drying capacity front load washing machine with Direct Drive motor and multiple smart wash programs.",
   images: ["Images/tcl-c2110wdg-10-6kg.webp"]
 },
 {
-  name: "TCL Front Load Wash & Dry Washing Machine 10/7KG C7110WDG",
+  title: "TCL Front Load Wash & Dry Washing Machine 10/7KG C7110WDG",
+  company: "Cozycabin",
   price: 60000,
   oldPrice: 65000,
   description: "10kg wash and 7kg dry front load washing machine with advanced drying system and energy-saving technology.",
   images: ["Images/tcl-c7110wdg-10-7kg.webp"]
 },
-
 {
-  name: "Hisense Front Load Wash & Dry Washing Machine 12/8KG",
+  title: "Hisense Front Load Wash & Dry Washing Machine 12/8KG",
+  company: "Cozycabin",
   price: 87999,
   oldPrice: 95000,
   description: "12kg washing and 8kg drying capacity front load washing machine with modern design, multiple wash modes and energy efficiency.",
   images: ["Images/hisense-wash-dry-12-8kg.webp"]
- },
-  {
-  name: "Mika Front Load Washing Machine 10KG MWAFS13410DSV",
+},
+{
+  title: "Mika Front Load Washing Machine 10KG MWAFS13410DSV",
+  company: "Cozycabin",
   price: 62000,
   oldPrice: 68000,
   description: "10kg front load washing machine featuring SpaCare Steam Wash, Inverter Motor (BLDC), 1400 RPM spin speed and multiple wash programs. Energy efficient design with powerful cleaning and gentle fabric care.",
-  images: ["Images/mika-front-load-10kg-mwafs13410dsv.webp","Images/mika-front-load-10kg-mwafs13410dsv1.webp"]
+  images: [
+    "Images/mika-front-load-10kg-mwafs13410dsv.webp",
+    "Images/mika-front-load-10kg-mwafs13410dsv1.webp"
+  ]
 }
+
 ],
   // ══════════════════════════════════════════════════════════
   //  CATEGORY KEYS — ORGANISED BY SUBMENU
