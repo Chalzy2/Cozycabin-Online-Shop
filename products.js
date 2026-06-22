@@ -1574,7 +1574,7 @@ features: [
 
 variants: [
 {
-  title: "TLAC Twin Tub Semi Automatic Washing Machine 10KG",
+  name: "TLAC Twin Tub Semi Automatic Washing Machine 10KG",
   company: "Cozycabin",
   price: 29500,
   oldPrice: 32000,
@@ -1582,7 +1582,7 @@ variants: [
   images: ["Images/tlac-twin-tub-10kg.webp"]
 },
 {
-  title: "TLAC Twin Tub Semi Automatic Washing Machine 12KG",
+  name: "TLAC Twin Tub Semi Automatic Washing Machine 12KG",
   company: "Cozycabin",
   price: 35000,
   oldPrice: 38000,
@@ -1590,7 +1590,7 @@ variants: [
   images: ["Images/tlac-twin-tub-12kg.webp"]
 },
 {
-  title: "TLAC Twin Tub Semi Automatic Washing Machine 14KG",
+  name: "TLAC Twin Tub Semi Automatic Washing Machine 14KG",
   company: "Cozycabin",
   price: 37000,
   oldPrice: 40000,
@@ -1598,7 +1598,7 @@ variants: [
   images: ["Images/tlac-twin-tub-14kg.webp"]
 },
 {
-  title: "Globalstar Front Load Washing Machine 8KG GS-800GT",
+  name: "Globalstar Front Load Washing Machine 8KG GS-800GT",
   company: "Cozycabin",
   price: 40000,
   oldPrice: 45000,
@@ -1606,7 +1606,7 @@ variants: [
   images: ["Images/globalstar-gs800gt-8kg.webp"]
 },
 {
-  title: "Smart Pro Twin Tub Washing Machine 8KG",
+  name: "Smart Pro Twin Tub Washing Machine 8KG",
   company: "Cozycabin",
   price: 21500,
   oldPrice: 25000,
@@ -1614,7 +1614,7 @@ variants: [
   images: ["Images/smartpro-twin-tub-8kg.webp"]
 },
 {
-  title: "Smart Pro Twin Tub Washing Machine 10KG",
+  name: "Smart Pro Twin Tub Washing Machine 10KG",
   company: "Cozycabin",
   price: 27000,
   oldPrice: 30000,
@@ -1622,7 +1622,7 @@ variants: [
   images: ["Images/smartpro-twin-tub-10kg.webp"]
 },
 {
-  title: "Smart Pro Twin Tub Washing Machine 13KG",
+  name: "Smart Pro Twin Tub Washing Machine 13KG",
   company: "Cozycabin",
   price: 40500,
   oldPrice: 45000,
@@ -1630,7 +1630,7 @@ variants: [
   images: ["Images/smartpro-twin-tub-13kg.webp"]
 },
 {
-  title: "Ramtons Twin Tub Washing Machine 10KG RW215",
+  name: "Ramtons Twin Tub Washing Machine 10KG RW215",
   company: "Cozycabin",
   price: 35000,
   oldPrice: 38000,
@@ -1638,7 +1638,7 @@ variants: [
   images: ["Images/ramtons-rw215-10kg.webp"]
 },
 {
-  title: "Syinix Front Load Washing Machine 8KG V8WMFT",
+  name: "Syinix Front Load Washing Machine 8KG V8WMFT",
   company: "Cozycabin",
   price: 42000,
   oldPrice: 47000,
@@ -1646,7 +1646,7 @@ variants: [
   images: ["Images/syinix-v8wmft-8kg.webp"]
 },
 {
-  title: "TCL Front Load Wash & Dry Washing Machine 10/6KG C2110WDG",
+  name: "TCL Front Load Wash & Dry Washing Machine 10/6KG C2110WDG",
   company: "Cozycabin",
   price: 55500,
   oldPrice: 60000,
@@ -1654,7 +1654,7 @@ variants: [
   images: ["Images/tcl-c2110wdg-10-6kg.webp"]
 },
 {
-  title: "TCL Front Load Wash & Dry Washing Machine 10/7KG C7110WDG",
+  name: "TCL Front Load Wash & Dry Washing Machine 10/7KG C7110WDG",
   company: "Cozycabin",
   price: 60000,
   oldPrice: 65000,
@@ -1662,7 +1662,7 @@ variants: [
   images: ["Images/tcl-c7110wdg-10-7kg.webp"]
 },
 {
-  title: "Hisense Front Load Wash & Dry Washing Machine 12/8KG",
+  name: "Hisense Front Load Wash & Dry Washing Machine 12/8KG",
   company: "Cozycabin",
   price: 87999,
   oldPrice: 95000,
@@ -1670,7 +1670,7 @@ variants: [
   images: ["Images/hisense-wash-dry-12-8kg.webp"]
 },
 {
-  title: "Mika Front Load Washing Machine 10KG MWAFS13410DSV",
+  name: "Mika Front Load Washing Machine 10KG MWAFS13410DSV",
   company: "Cozycabin",
   price: 62000,
   oldPrice: 68000,
