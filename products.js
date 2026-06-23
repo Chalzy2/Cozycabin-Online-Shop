@@ -1804,8 +1804,9 @@ cookers: [
       ]
     }
    ]
-   },
-    {
+   }
+  ],
+    
   heaters: [
     {
        title: "Room Heaters",
