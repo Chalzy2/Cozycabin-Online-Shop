@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CozyCabin Receipt Template</title>
+    <style>
+        :root {
+            --primary-color: #5c3a21; /* Cozy Cabin Dark Wood Brown */
+            --accent-color: #e67e22;  /* Amber/Warm Autumn Horizon */
+            --bg-color: #fdfaf6;      /* Off-White Cream Soft Backing */
+            --text-color: #2c1d11;    /* Deep Charcoal Bark */
+            --table-border: #bcaaa4;  /* Refined Earth-Tone Rules */
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #d7ccc8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+        }
+
+        .receipt-container {
+            background-color: var(--bg-color);
+            width: 100%;
+            max-width: 800px;
+            min-height: 1050px;
+            padding: 0 0 50px 0;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        /* Top Angular Header Geometric Artifice inspired by 647485.jpg */
+        .header-graphic-bar {
+            height: 35px;
+            width: 100%;
+            background: var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-graphic-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 140px;
+            height: 100%;
+            background: var(--accent-color);
+            transform: skewX(-35deg);
+            transform-origin: top left;
+        }
+
+        .header-graphic-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 135px;
+            width: 25px;
+            height: 100%;
+            background: var(--bg-color);
+            transform: skewX(-35deg);
+            transform-origin: top left;
+        }
+
+        /* Branding Block Placement */
+        .header-content-wrapper {
+            padding: 30px 45px 10px 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .logo-box {
+            width: 180px;
+            margin-bottom: 5px;
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: auto;
+            max-height: 75px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .fallback-logo {
+            font-weight: 800;
+            color: var(--primary-color);
+            border: 2px dashed var(--primary-color);
+            padding: 8px;
+            text-align: center;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .corporate-text {
+            text-align: right;
+        }
+
+        .brand-headline {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary-color);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0 0 4px 0;
+        }
+
+        .brand-subline {
+            font-size: 11px;
+            color: #5d4037;
+            line-height: 1.4;
+        }
+
+        /* Central Designation Strip */
+        .badge-strip {
+            text-align: center;
+            margin: 15px 0 25px 0;
+        }
+
+        .document-title {
+            background-color: #1a110b;
+            color: #ffffff;
+            padding: 5px 35px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+        /* Customer Metadata Meta-grid */
+        .meta-data-container {
+            padding: 0 45px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .row-entry {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .meta-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-color);
+            width: 85px;
+            flex-shrink: 0;
+        }
+
+        .meta-editable {
+            flex-grow: 1;
+            border-bottom: 1px dotted #8d6e63;
+            font-size: 13px;
+            padding: 2px 4px;
+            outline: none;
+            min-height: 22px;
+        }
+
+        .meta-editable:focus {
+            border-bottom: 1px solid var(--accent-color);
+            background-color: #fffbf7;
+        }
+
+        /* Ledger / Inventory Matrix */
+        .matrix-holder {
+            padding: 0 45px;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 11px;
+            padding: 10px 8px;
+            letter-spacing: 0.8px;
+            border: 1px solid var(--primary-color);
+        }
+
+        th.w-idx { width: 8%; text-align: center; }
+        th.w-lbl { width: 52%; text-align: left; }
+        th.w-qty { width: 11%; text-align: center; }
+        th.w-val { width: 13%; text-align: right; }
+        th.w-tot { width: 16%; text-align: right; }
+
+        td {
+            border: 1px solid var(--table-border);
+            padding: 8px;
+            height: 35px;
+            vertical-align: middle;
+        }
+
+        td.txt-center { text-align: center; }
+        td.txt-right { text-align: right; }
+
+        .cell-interactive {
+            outline: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cell-interactive:focus {
+            background-color: #fffbf7;
+        }
+
+        /* Dynamic Calculations Area Styling */
+        .summary-header-label {
+            font-weight: 700;
+            text-align: right;
+            background-color: #f5ece6;
+            color: var(--primary-color);
+        }
+
+        .accented-summary-label {
+            font-weight: 700;
+            text-align: right;
+            background-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        /* Base Section / Disclaimers / Signatures */
+        .footer-content-area {
+            padding: 0 45px;
+            margin-top: 35px;
+        }
+
+        .words-container {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 65px;
+        }
+
+        .words-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-color);
+            width: 85px;
+        }
+
+        .words-output {
+            flex-grow: 1;
+            border-bottom: 1px dotted #8d6e63;
+            font-size: 13px;
+            padding: 2px 4px;
+            outline: none;
+        }
+
+        .signing-deck {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 45px;
+            padding: 0 5px;
+        }
+
+        .signee-slot {
+            width: 190px;
+            border-top: 1px solid var(--primary-color);
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary-color);
+            padding-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Bottom Angular Footer Geometric Ribbon matching 647485.jpg style */
+        .bottom-graphic-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 25px;
+            width: 100%;
+            background: var(--primary-color);
+        }
+
+        .bottom-graphic-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 140px;
+            height: 100%;
+            background: var(--accent-color);
+            transform: skewX(-35deg);
+            transform-origin: top right;
+        }
+
+        /* Control Board for Live Interactivity */
+        .control-panel {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 9999;
+        }
+
+        .action-button {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+        }
+
+        .action-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+
+        .add-row-theme {
+            background-color: #2e7d32;
+        }
+        .add-row-theme:hover {
+            background-color: #388e3c;
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .receipt-container {
+                box-shadow: none;
+                max-width: 100%;
+                min-height: auto;
+            }
+            .control-panel {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Actions Interface -->
+    <div class="control-panel">
+        <button class="action-button add-row-theme" onclick="appendItemRow()">＋ Add Item Row</button>
+        <button class="action-button" onclick="window.print()">🖨️ Print / Save PDF</button>
+    </div>
+
+    <div class="receipt-container">
+        <!-- Top Geometric Banner -->
+        <div class="header-graphic-bar"></div>
+
+        <!-- Corporate Branding Area -->
+        <div class="header-content-wrapper">
+            <div class="logo-box">
+                <!-- Locked CozyCabin Logo Element -->
+                <img src="Images/cozycabin-logo1.webp" alt="CozyCabin Logo" onerror="this.style.display='none'; document.getElementById('fallback-target').style.display='block';">
+                <div id="fallback-target" class="fallback-logo" style="display:none;">
+                    CozyCabin Logo
+                </div>
+            </div>
+            <div class="corporate-text">
+                <div class="brand-headline">CozyCabin</div>
+                <div class="brand-subline">
+                    Premium Wilderness Escape Lodgings<br>
+                    Resort Registry No: 884-2026<br>
+                    concierge@cozycabin.local
+                </div>
+            </div>
+        </div>
+
+        <!-- Document Identifier -->
+        <div class="badge-strip">
+            <div class="document-title">Challan / Bill Receipt</div>
+        </div>
+
+        <!-- Metadata Variable Grid -->
+        <div class="meta-data-container">
+            <div>
+                <div class="row-entry">
+                    <div class="meta-label">Serial No:</div>
+                    <div class="meta-editable" contenteditable="true">CC-2026-8942</div>
+                </div>
+                <div class="row-entry">
+                    <div class="meta-label">Customer:</div>
+                    <div class="meta-editable" contenteditable="true">Alex Mercer</div>
+                </div>
+                <div class="row-entry">
+                    <div class="meta-label">Address:</div>
+                    <div class="meta-editable" contenteditable="true">742 Evergreen Terrace</div>
+                </div>
+            </div>
+            <div>
+                <div class="row-entry">
+                    <div class="meta-label">Date:</div>
+                    <div class="meta-editable" contenteditable="true">June 23, 2026</div>
+                </div>
+                <div class="row-entry">
+                    <div class="meta-label">Mobile:</div>
+                    <div class="meta-editable" contenteditable="true">+1 (555) 392-0192</div>
+                </div>
+                <div class="row-entry">
+                    <div class="meta-label">Email:</div>
+                    <div class="meta-editable" contenteditable="true">alex.m@domain.com</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Itemized Matrix Layout -->
+        <div class="matrix-holder">
+            <table id="receipt-ledger">
+                <thead>
+                    <tr>
+                        <th class="w-idx">Sl.No</th>
+                        <th class="w-lbl">Description</th>
+                        <th class="w-qty">Quantity</th>
+                        <th class="w-val">Rate</th>
+                        <th class="w-tot">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="txt-center">1</td>
+                        <td><div class="cell-interactive" contenteditable="true" oninput="runRowMath(this)">A-Frame Deluxe Timber Cabin (3 Nights)</div></td>
+                        <td class="txt-center"><div class="cell-interactive raw-qty" contenteditable="true" oninput="runRowMath(this)">3</div></td>
+                        <td class="txt-right"><div class="cell-interactive raw-rate" contenteditable="true" oninput="runRowMath(this)">320.00</div></td>
+                        <td class="txt-right row-calculated-total">960.00</td>
+                    </tr>
+                    <tr>
+                        <td class="txt-center">2</td>
+                        <td><div class="cell-interactive" contenteditable="true" oninput="runRowMath(this)">Private Hearth Firewood Package</div></td>
+                        <td class="txt-center"><div class="cell-interactive raw-qty" contenteditable="true" oninput="runRowMath(this)">1</div></td>
+                        <td class="txt-right"><div class="cell-interactive raw-rate" contenteditable="true" oninput="runRowMath(this)">45.00</div></td>
+                        <td class="txt-right row-calculated-total">45.00</td>
+                    </tr>
+                    <tr>
+                        <td class="txt-center">3</td>
+                        <td><div class="cell-interactive" contenteditable="true" oninput="runRowMath(this)"></div></td>
+                        <td class="txt-center"><div class="cell-interactive raw-qty" contenteditable="true" oninput="runRowMath(this)"></div></td>
+                        <td class="txt-right"><div class="cell-interactive raw-rate" contenteditable="true" oninput="runRowMath(this)"></div></td>
+                        <td class="txt-right row-calculated-total">0.00</td>
+                    </tr>
+                    <tr>
+                        <td class="txt-center">4</td>
+                        <td><div class="cell-interactive" contenteditable="true" oninput="runRowMath(this)"></div></td>
+                        <td class="txt-center"><div class="cell-interactive raw-qty" contenteditable="true" oninput="runRowMath(this)"></div></td>
+                        <td class="txt-right"><div class="cell-interactive raw-rate" contenteditable="true" oninput="runRowMath(this)"></div></td>
+                        <td class="txt-right row-calculated-total">0.00</td>
+                    </tr>
+                    
+                    <!-- Computation Metrics Block -->
+                    <tr>
+                        <td colspan="3" rowspan="3" style="vertical-align: top; padding: 12px; border: 1px solid var(--table-border);">
+                            <strong style="font-size: 11px; color: var(--primary-color); display: block; margin-bottom: 4px;">Comments / Remarks:</strong>
+                            <div contenteditable="true" style="outline: none; color: #4e342e; font-size: 12px; line-height: 1.4;">Valued guest checking out via priority express ledger. Account settled at desk.</div>
+                        </td>
+                        <td class="summary-header-label">Sub Total</td>
+                        <td class="txt-right" id="value-subtotal" style="font-weight: 700;">1005.00</td>
+                    </tr>
+                    <tr>
+                        <td class="summary-header-label">Advance</td>
+                        <td class="txt-right" id="value-advance" contenteditable="true" oninput="refigureGrandAggregates()" style="font-weight: 700; outline: none; background-color: #fffbf7;">300.00</td>
+                    </tr>
+                    <tr>
+                        <td class="accented-summary-label">Due Balance</td>
+                        <td class="txt-right" id="value-due" style="font-weight: 700; background-color: #fdf2e9;">705.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Descriptive Value Field and Validation Deck -->
+        <div class="footer-content-area">
+            <div class="words-container">
+                <div class="words-title">In Words:</div>
+                <div class="words-output" contenteditable="true">Seven Hundred and Five Dollars Only</div>
+            </div>
+
+            <div class="signing-deck">
+                <div class="signee-slot">Received By</div>
+                <div class="signee-slot">Authorized Representative</div>
+            </div>
+        </div>
+
+        <!-- Bottom Ribbon Architecture -->
+        <div class="bottom-graphic-bar"></div>
+    </div>
+
+    <script>
+        function runRowMath(element) {
+            var matchingRow = element.closest('tr');
+            var qty = parseFloat(matchingRow.querySelector('.raw-qty').innerText) || 0;
+            var rate = parseFloat(matchingRow.querySelector('.raw-rate').innerText) || 0;
+            var targetCell = matchingRow.querySelector('.row-calculated-total');
+            
+            var aggregate = qty * rate;
+            targetCell.innerText = aggregate.toFixed(2);
+            
+            refigureGrandAggregates();
+        }
+
+        function refigureGrandAggregates() {
+            var collectiveTotals = document.querySelectorAll('.row-calculated-total');
+            var operationalSubtotal = 0;
+            
+            collectiveTotals.forEach(function(currentCell) {
+                operationalSubtotal += parseFloat(currentCell.innerText) || 0;
+            });
+            
+            document.getElementById('value-subtotal').innerText = operationalSubtotal.toFixed(2);
+            
+            var advancedDeposit = parseFloat(document.getElementById('value-advance').innerText) || 0;
+            var currentOutstanding = operationalSubtotal - advancedDeposit;
+            
+            document.getElementById('value-due').innerText = currentOutstanding.toFixed(2);
+        }
+
+        function appendItemRow() {
+            var activeTable = document.getElementById('receipt-ledger').getElementsByTagName('tbody')[0];
+            var trailingRowsBound = activeTable.rows.length - 3; 
+            
+            var dynamicRow = activeTable.insertRow(trailingRowsBound);
+            
+            var cellIndex = dynamicRow.insertCell(0);
+            var cellDesc = dynamicRow.insertCell(1);
+            var cellQty = dynamicRow.insertCell(2);
+            var cellRate = dynamicRow.insertCell(3);
+            var cellTotal = dynamicRow.insertCell(4);
+            
+            cellIndex.className = "txt-center";
+            cellIndex.innerText = trailingRowsBound + 1;
+            
+            cellDesc.innerHTML = '<div class="cell-interactive" contenteditable="true" oninput="runRowMath(this)"></div>';
+            cellQty.className = "txt-center";
+            cellQty.innerHTML = '<div class="cell-interactive raw-qty" contenteditable="true" oninput="runRowMath(this)"></div>';
+            cellRate.clas
