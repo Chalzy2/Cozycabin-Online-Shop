@@ -1810,7 +1810,6 @@ variants: [
         "Images/Globalstar-jet-50x55.webp"
       ]
     },
-
     {
       name: "Globalstar Jet 60×60",
       description: "Black standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
@@ -1819,9 +1818,65 @@ variants: [
         "Images/Globalstar-jet-60x60.webp"
       ]
     }
+   ]
+   },
+    {
+  
+  title: "Room Heaters",
+  company: "Nunix",
 
-  ]
-}
+  description:
+    "Stay warm and comfortable with Nunix Room Heaters designed for fast and efficient heating. These heaters feature adjustable temperature settings, energy-saving technology and safety protection, making them ideal for homes, offices and bedrooms during cold weather.",
+
+  features: [
+    "Fast Heating",
+    "Adjustable Thermostat",
+    "Multiple Heat Settings",
+    "Energy Efficient",
+    "Overheat Protection",
+    "Portable Design",
+    "Low Noise Operation",
+    "Compact & Lightweight",
+    "Easy-to-Use Controls",
+    "Suitable for Home & Office"
+  ],
+
+  products: [
+
+    {
+      name: "Nunix Room Heater NH01",
+      price: 2300,
+      oldPrice: 3000,
+      description: "Compact room heater with adjustable thermostat and fast heating for home and office use.",
+      images: ["Images/nunix-room-heater-nh01.webp"]
+    },
+
+    {
+      name: "Nunix Room Heater NH-02",
+      price: 2500,
+      oldPrice: 3500,
+      description: "Portable room heater with multiple heat settings and energy efficient operation.",
+      images: ["Images/nunix-room-heater-nh02.webp"]
+    },
+
+    {
+      name: "Nunix Room Heater HQ30",
+      price: 2900,
+      oldPrice: 4000,
+      description: "Powerful room heater with safety protection and quick heat distribution.",
+      images: ["Images/nunix-room-heater-hq30.webp"]
+    },
+
+    {
+      name: "Nunix Room Heater NH03",
+      price: 2700,
+      oldPrice: 3500,
+      description: "Modern room heater with compact design, adjustable heat levels and low power consumption.",
+      images: ["Images/nunix-room-heater-nh03.webp"]
+    }
+   ]
+  }
+],
   // ══════════════════════════════════════════════════════════
   //  CATEGORY KEYS — ORGANISED BY SUBMENU
   //  ─────────────────────────────────────────────────────────
@@ -1860,7 +1915,6 @@ variants: [
   fryers:      [],
   kettles:     [],
   irons:       [],
-  heaters:     [],
   fans:        [],
   fansapp:     [],
   // ADD MORE APPLIANCE ITEMS HERE
