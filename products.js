@@ -732,10 +732,51 @@ description:
 images:["Images/yachu-inverter-11kw.webp"]
   }
   ]
- }
-],
+ },
+{
+  title: "ATTA Solar LED Flood Lights",
+  company: "ATTA",
+  productType: "variant",
 
-  
+  description:
+    "ATTA Solar LED Flood Lights are energy-saving outdoor lighting solutions designed for homes, shops, compounds and security applications. They come with high-efficiency solar panels, rechargeable batteries, remote control and weather-resistant design for reliable illumination day and night.",
+
+  variants: [
+
+    {
+      name: "ATTA Solar LED Flood Light 100W",
+      price: 3000,
+      oldPrice: 3500,
+      description: "100W solar flood light with solar panel, remote control and rechargeable battery. Ideal for home security and outdoor lighting.",
+      images: ["Images/atta-solar-floodlight-100w.webp"]
+    },
+
+    {
+      name: "ATTA Solar LED Flood Light 200W",
+      price: 4000,
+      oldPrice: 4500,
+      description: "200W solar LED flood light with bright illumination, durable construction and easy installation.",
+      images: ["Images/atta-solar-floodlight-200w.webp"]
+    },
+
+    {
+      name: "ATTA Solar LED Flood Light 300W",
+      price: 5000,
+      oldPrice: 5500,
+      description: "300W solar flood light featuring high brightness, long battery life and weather-resistant design.",
+      images: ["Images/atta-solar-floodlight-300w.webp"]
+    },
+
+    {
+      name: "ATTA Solar LED Flood Light 400W",
+      price: 6000,
+      oldPrice: 7000,
+      description: "400W heavy-duty solar flood light with powerful illumination, remote control and large-capacity battery for extended lighting.",
+      images: ["Images/atta-solar-floodlight-400w.webp"]
+    }
+   ]
+  }
+],  
 batteries: [
   {
     title: "Solar GEL Batteries (AC Output)",
