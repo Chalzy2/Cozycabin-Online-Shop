@@ -750,7 +750,6 @@ images:["Images/yachu-inverter-11kw.webp"]
       description: "100W solar flood light with solar panel, remote control and rechargeable battery. Ideal for home security and outdoor lighting.",
       images: ["Images/atta-solar-floodlight-100w.webp"]
     },
-
     {
       name: "ATTA Solar LED Flood Light 200W",
       price: 4000,
@@ -758,7 +757,6 @@ images:["Images/yachu-inverter-11kw.webp"]
       description: "200W solar LED flood light with bright illumination, durable construction and easy installation.",
       images: ["Images/atta-solar-floodlight-200w.webp"]
     },
-
     {
       name: "ATTA Solar LED Flood Light 300W",
       price: 5000,
@@ -766,7 +764,6 @@ images:["Images/yachu-inverter-11kw.webp"]
       description: "300W solar flood light featuring high brightness, long battery life and weather-resistant design.",
       images: ["Images/atta-solar-floodlight-300w.webp"]
     },
-
     {
       name: "ATTA Solar LED Flood Light 400W",
       price: 6000,
@@ -1163,7 +1160,6 @@ floodlights: [
       description: "40W solar floodlight with automatic dusk-to-dawn sensor, IP67 waterproof design and remote control included.",
       images: ["Images/solarl40w.webp"]
     },
-
     {
       name: "60W JSOT US Solar Floodlight",
       price: 3500,
@@ -1171,7 +1167,6 @@ floodlights: [
       description: "60W bright solar floodlight with automatic dusk-to-dawn sensor, IP67 waterproof design and remote control included.",
       images: ["Images/Solarl60w.webp"]
     },
-
     {
       name: "100W JSOT US Solar Floodlight",
       price: 4500,
@@ -1179,7 +1174,6 @@ floodlights: [
       description: "100W high-brightness solar floodlight with automatic dusk-to-dawn sensor, IP67 waterproof design and remote control included.",
       images: ["Images/solarl100w.webp"]
     },
-
     {
       name: "200W JSOT US Solar Floodlight",
       price: 5500,
@@ -1187,7 +1181,6 @@ floodlights: [
       description: "200W powerful solar floodlight with wide lighting coverage, IP67 waterproof design and remote control included.",
       images: ["Images/solarl200w.webp"]
     },
-
     {
       name: "300W JSOT US Solar Floodlight",
       price: 6500,
@@ -1694,7 +1687,6 @@ variants: [
   description: "10kg wash and 7kg dry front load washing machine with advanced drying system and energy-saving technology.",
   images: ["Images/tcl-c7110wdg-10-7kg.webp"]
 },
-
 {
   name: "Hisense Front Load Wash & Dry Washing Machine 12/8KG",
   price: 87999,
@@ -1702,30 +1694,30 @@ variants: [
   description: "12kg washing and 8kg drying capacity front load washing machine with modern design, multiple wash modes and energy efficiency.",
   images: ["Images/hisense-wash-dry-12-8kg.webp"]
  },
-  {
+{
   name: "Mika Front Load Washing Machine 10KG MWAFS13410DSV",
   price: 62000,
   oldPrice: 68000,
   description: "10kg front load washing machine featuring SpaCare Steam Wash, Inverter Motor (BLDC), 1400 RPM spin speed and multiple wash programs. Energy efficient design with powerful cleaning and gentle fabric care.",
   images: ["Images/mika-front-load-10kg-mwafs13410dsv.webp","Images/mika-front-load-10kg-mwafs13410dsv1.webp"]
-}
-]
+   }
+  ]
   }
 ],
-  cookers: [
-  {
-  title: "Standing Cookers",
-  company: "Nunix, Ecomax, Electromate & Globalstar",
-  productType: "Variant",
-  description: "Upgrade your kitchen with premium standing cookers featuring gas burners, electric hot plates, gas or electric ovens, auto ignition, oven lamps and spacious cooking capacity. Available in different sizes and brands to suit every home.",
-  features: [
-    "3 Gas + 1 Electric or Full Gas Options",
-    "Gas Oven or Electric Oven",
-    "Auto Ignition",
-    "Oven Lamp",
-    "Available in 50×55, 55×55 and 60×60 sizes",
-    "Durable Stainless Steel Finish",
-    "1 Year Warranty on selected models"
+cookers: [
+{
+     title: "Standing Cookers",
+      company: "Nunix, Ecomax, Electromate & Globalstar",
+      productType: "Variant",
+      description: "Upgrade your kitchen with premium standing cookers featuring gas burners, electric hot plates, gas or electric ovens, auto ignition, oven lamps and spacious cooking capacity. Available in different sizes and brands to suit every home.",
+      features: [
+     "3 Gas + 1 Electric or Full Gas Options",
+     "Gas Oven or Electric Oven",
+     "Auto Ignition",
+     "Oven Lamp",
+     "Available in 50×55, 55×55 and 60×60 sizes",
+     "Durable Stainless Steel Finish",
+      "1 Year Warranty on selected models"
   ],
 
   variants: [
@@ -1738,7 +1730,6 @@ variants: [
         "Images/Nunix-wld-560-go.webp"
       ]
     },
-
     {
       name: "Nunix WLD-560-3G1E",
       description: "3 gas burners + 1 electric hot plate with gas oven.",
@@ -1747,7 +1738,6 @@ variants: [
         "Images/Nunix-wld-560-3g1e.webp"
       ]
     },
-
     {
       name: "Nunix KZ-560-3G1E",
       description: "3 gas burners + 1 electric hot plate with electric oven.",
@@ -1756,8 +1746,7 @@ variants: [
         "Images/Nunix-kz-560-3g1e.webp"
       ]
     },
-
-    {
+   {
       name: "Nunix KZ-660-3G1E",
       description: "60×60 standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
       price: "25000",
@@ -1765,7 +1754,6 @@ variants: [
         "Images/Nunix-kz-660-3g1e.webp"
       ]
     },
-
     {
       name: "Ecomax 60×60 Standing Cooker",
       description: "3 gas + 1 electric standing cooker with free gas pipe, spatula and 13kg regulator.",
@@ -1774,8 +1762,7 @@ variants: [
         "Images/Ecomax-60x60-standing-cooker.webp"
       ]
     },
-
-    {
+   {
       name: "Ecomax 50×55 Standing Cooker",
       description: "4 gas burners with electric oven and free accessories.",
       price: "18799",
@@ -1792,8 +1779,7 @@ variants: [
         "Images/Electromate-60x60-standing-cooker.webp"
       ]
     },
-
-    {
+   {
       name: "Electromate 50×55 Standing Cooker",
       description: "3 gas + 1 electric standing cooker with rapid hot plate.",
       price: "19500",
@@ -1801,8 +1787,7 @@ variants: [
         "Images/Electromate-50x55-standing-cooker.webp"
       ]
     },
-
-    {
+   {
       name: "Globalstar Jet 50×55",
       description: "Black standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
       price: "22500",
@@ -1821,27 +1806,28 @@ variants: [
    ]
    },
     {
-  
-  title: "Room Heaters",
-  company: "Nunix",
+  heaters: [
+    {
+       title: "Room Heaters",
+       company: "Nunix",
 
-  description:
-    "Stay warm and comfortable with Nunix Room Heaters designed for fast and efficient heating. These heaters feature adjustable temperature settings, energy-saving technology and safety protection, making them ideal for homes, offices and bedrooms during cold weather.",
+        description:
+       "Stay warm and comfortable with Nunix Room Heaters designed for fast and efficient heating. These heaters feature adjustable temperature settings, energy-saving technology and safety protection, making them ideal for homes, offices and bedrooms during cold weather.",
 
   features: [
-    "Fast Heating",
-    "Adjustable Thermostat",
-    "Multiple Heat Settings",
-    "Energy Efficient",
-    "Overheat Protection",
-    "Portable Design",
-    "Low Noise Operation",
-    "Compact & Lightweight",
-    "Easy-to-Use Controls",
-    "Suitable for Home & Office"
+       "Fast Heating",
+        "Adjustable Thermostat",
+       "Multiple Heat Settings",
+       "Energy Efficient",
+       "Overheat Protection",
+       "Portable Design",
+       "Low Noise Operation",
+       "Compact & Lightweight",
+       "Easy-to-Use Controls",
+       "Suitable for Home & Office"
   ],
 
-  products: [
+  variants: [
 
     {
       name: "Nunix Room Heater NH01",
@@ -1850,7 +1836,6 @@ variants: [
       description: "Compact room heater with adjustable thermostat and fast heating for home and office use.",
       images: ["Images/nunix-room-heater-nh01.webp"]
     },
-
     {
       name: "Nunix Room Heater NH-02",
       price: 2500,
@@ -1858,7 +1843,6 @@ variants: [
       description: "Portable room heater with multiple heat settings and energy efficient operation.",
       images: ["Images/nunix-room-heater-nh02.webp"]
     },
-
     {
       name: "Nunix Room Heater HQ30",
       price: 2900,
@@ -1866,7 +1850,6 @@ variants: [
       description: "Powerful room heater with safety protection and quick heat distribution.",
       images: ["Images/nunix-room-heater-hq30.webp"]
     },
-
     {
       name: "Nunix Room Heater NH03",
       price: 2700,
@@ -1902,7 +1885,6 @@ variants: [
   dispenser:   [],
   racks:       [],
   bottles:     [],
-  cookers:     [],
   blenders:    [],
   cups:        [],   // NEW
   // ADD MORE KITCHEN ITEMS HERE
