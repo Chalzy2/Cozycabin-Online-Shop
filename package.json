@@ -2,10 +2,10 @@
   "name": "cozycabin-co-ke",
   "private": true,
   "version": "1.0.0",
-  "description": "Cozycabin Kenya — static storefront with Cloudflare Pages Functions for dynamic Open Graph tags",
+  "description": "Cozycabin Kenya",
   "scripts": {
-"build": "node scripts/build-og-data.js"
-  }
+    "build": "node scripts/build-og-data.js"
+  },
   "engines": {
     "node": ">=18"
   }
