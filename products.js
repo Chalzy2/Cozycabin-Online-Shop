@@ -1672,7 +1672,6 @@ variants: [
   description: "8kg front load washing machine with inverter technology, low noise operation and low energy consumption.",
   images: ["Images/syinix-v8wmft-8kg.webp"]
 },
-
 {
   name: "TCL Front Load Wash & Dry Washing Machine 10/6KG C2110WDG",
   price: 55500,
@@ -1704,161 +1703,134 @@ variants: [
   ]
   }
 ],
-cookers: [
-{
-     title: "Standing Cookers",
-      company: "Nunix, Ecomax, Electromate & Globalstar",
-      productType: "Variant",
-      description: "Upgrade your kitchen with premium standing cookers featuring gas burners, electric hot plates, gas or electric ovens, auto ignition, oven lamps and spacious cooking capacity. Available in different sizes and brands to suit every home.",
-      features: [
-     "3 Gas + 1 Electric or Full Gas Options",
-     "Gas Oven or Electric Oven",
-     "Auto Ignition",
-     "Oven Lamp",
-     "Available in 50×55, 55×55 and 60×60 sizes",
-     "Durable Stainless Steel Finish",
+      cookers: [
+  {
+    title: "Standing Cookers",
+    company: "Nunix, Ecomax, Electromate & Globalstar",
+    productType: "variant",
+    description: "Upgrade your kitchen with premium standing cookers featuring gas burners, electric hot plates, gas or electric ovens, auto ignition, oven lamps and spacious cooking capacity. Available in different sizes and brands to suit every home.",
+    features: [
+      "3 Gas + 1 Electric or Full Gas Options",
+      "Gas Oven or Electric Oven",
+      "Auto Ignition",
+      "Oven Lamp",
+      "Available in 50×55, 55×55 and 60×60 sizes",
+      "Durable Stainless Steel Finish",
       "1 Year Warranty on selected models"
-  ],
+    ],
+    variants: [
+      {
+        name: "Nunix WLD-560-GO",
+        price: 17900,
+        description: "Full gas standing cooker with gas oven.",
+        images: ["Images/Nunix-wld-560-go.webp"]
+      },
+      {
+        name: "Nunix WLD-560-3G1E",
+        price: 18500,
+        description: "3 gas burners + 1 electric hot plate with gas oven.",
+        images: ["Images/Nunix-wld-560-3g1e.webp"]
+      },
+      {
+        name: "Nunix KZ-560-3G1E",
+        price: 23500,
+        description: "3 gas burners + 1 electric hot plate with electric oven.",
+        images: ["Images/Nunix-kz-560-3g1e.webp"]
+      },
+      {
+        name: "Nunix KZ-660-3G1E",
+        price: 25000,
+        description: "60×60 standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
+        images: ["Images/Nunix-kz-660-3g1e.webp"]
+      },
+      {
+        name: "Ecomax 60×60 Standing Cooker",
+        price: 27500,
+        description: "3 gas + 1 electric standing cooker with free gas pipe, spatula and 13kg regulator.",
+        images: ["Images/Ecomax-60x60-standing-cooker.webp"]
+      },
+      {
+        name: "Ecomax 50×55 Standing Cooker",
+        price: 18799,
+        description: "4 gas burners with electric oven and free accessories.",
+        images: ["Images/Ecomax-50x55-standing-cooker.webp"]
+      },
+      {
+        name: "Electromate 60×60 Standing Cooker",
+        price: 23500,
+        description: "3 gas + 1 electric hot plate, rotisserie and 50L electric oven.",
+        images: ["Images/Electromate-60x60-standing-cooker.webp"]
+      },
+      {
+        name: "Electromate 50×55 Standing Cooker",
+        price: 19500,
+        description: "3 gas + 1 electric standing cooker with rapid hot plate.",
+        images: ["Images/Electromate-50x55-standing-cooker.webp"]
+      },
+      {
+        name: "Globalstar Jet 50×55",
+        price: 22500,
+        description: "Black standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
+        images: ["Images/Globalstar-jet-50x55.webp"]
+      },
+      {
+        name: "Globalstar Jet 60×60",
+        price: 25000,
+        description: "Black standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
+        images: ["Images/Globalstar-jet-60x60.webp"]
+      }
+    ]
+  }
+],
 
-  variants: [
-
-    {
-      name: "Nunix WLD-560-GO",
-      description: "Full gas standing cooker with gas oven.",
-      price: "17900",
-      images: [
-        "Images/Nunix-wld-560-go.webp"
-      ]
-    },
-    {
-      name: "Nunix WLD-560-3G1E",
-      description: "3 gas burners + 1 electric hot plate with gas oven.",
-      price: "18500",
-      images: [
-        "Images/Nunix-wld-560-3g1e.webp"
-      ]
-    },
-    {
-      name: "Nunix KZ-560-3G1E",
-      description: "3 gas burners + 1 electric hot plate with electric oven.",
-      price: "23500",
-      images: [
-        "Images/Nunix-kz-560-3g1e.webp"
-      ]
-    },
-   {
-      name: "Nunix KZ-660-3G1E",
-      description: "60×60 standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
-      price: "25000",
-      images: [
-        "Images/Nunix-kz-660-3g1e.webp"
-      ]
-    },
-    {
-      name: "Ecomax 60×60 Standing Cooker",
-      description: "3 gas + 1 electric standing cooker with free gas pipe, spatula and 13kg regulator.",
-      price: "27500",
-      images: [
-        "Images/Ecomax-60x60-standing-cooker.webp"
-      ]
-    },
-   {
-      name: "Ecomax 50×55 Standing Cooker",
-      description: "4 gas burners with electric oven and free accessories.",
-      price: "18799",
-      images: [
-        "Images/Ecomax-50x55-standing-cooker.webp"
-      ]
-    },
-
-    {
-      name: "Electromate 60×60 Standing Cooker",
-      description: "3 gas + 1 electric hot plate, rotisserie and 50L electric oven.",
-      price: "23500",
-      images: [
-        "Images/Electromate-60x60-standing-cooker.webp"
-      ]
-    },
-   {
-      name: "Electromate 50×55 Standing Cooker",
-      description: "3 gas + 1 electric standing cooker with rapid hot plate.",
-      price: "19500",
-      images: [
-        "Images/Electromate-50x55-standing-cooker.webp"
-      ]
-    },
-   {
-      name: "Globalstar Jet 50×55",
-      description: "Black standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
-      price: "22500",
-      images: [
-        "Images/Globalstar-jet-50x55.webp"
-      ]
-    },
-    {
-      name: "Globalstar Jet 60×60",
-      description: "Black standing cooker with 3 gas burners, 1 electric hot plate and electric oven.",
-      price: "25000",
-      images: [
-        "Images/Globalstar-jet-60x60.webp"
-      ]
-    }
-   ]
-   }
-  ],
-    
-  heaters: [
-    {
-       title: "Room Heaters",
-       company: "Nunix",
-
-        description:
-       "Stay warm and comfortable with Nunix Room Heaters designed for fast and efficient heating. These heaters feature adjustable temperature settings, energy-saving technology and safety protection, making them ideal for homes, offices and bedrooms during cold weather.",
-
-  features: [
-       "Fast Heating",
-        "Adjustable Thermostat",
-       "Multiple Heat Settings",
-       "Energy Efficient",
-       "Overheat Protection",
-       "Portable Design",
-       "Low Noise Operation",
-       "Compact & Lightweight",
-       "Easy-to-Use Controls",
-       "Suitable for Home & Office"
-  ],
-
-  variants: [
-
-    {
-      name: "Nunix Room Heater NH01",
-      price: 2300,
-      oldPrice: 3000,
-      description: "Compact room heater with adjustable thermostat and fast heating for home and office use.",
-      images: ["Images/nunix-room-heater-nh01.webp"]
-    },
-    {
-      name: "Nunix Room Heater NH-02",
-      price: 2500,
-      oldPrice: 3500,
-      description: "Portable room heater with multiple heat settings and energy efficient operation.",
-      images: ["Images/nunix-room-heater-nh02.webp"]
-    },
-    {
-      name: "Nunix Room Heater HQ30",
-      price: 2900,
-      oldPrice: 4000,
-      description: "Powerful room heater with safety protection and quick heat distribution.",
-      images: ["Images/nunix-room-heater-hq30.webp"]
-    },
-    {
-      name: "Nunix Room Heater NH03",
-      price: 2700,
-      oldPrice: 3500,
-      description: "Modern room heater with compact design, adjustable heat levels and low power consumption.",
-      images: ["Images/nunix-room-heater-nh03.webp"]
-    }
-   ]
+heaters: [
+  {
+    title: "Room Heaters",
+    company: "Nunix",
+    productType: "variant",
+    description: "Stay warm and comfortable with Nunix Room Heaters designed for fast and efficient heating. These heaters feature adjustable temperature settings, energy-saving technology and safety protection, making them ideal for homes, offices and bedrooms during cold weather.",
+    features: [
+      "Fast Heating",
+      "Adjustable Thermostat",
+      "Multiple Heat Settings",
+      "Energy Efficient",
+      "Overheat Protection",
+      "Portable Design",
+      "Low Noise Operation",
+      "Compact & Lightweight",
+      "Easy-to-Use Controls",
+      "Suitable for Home & Office"
+    ],
+    variants: [
+      {
+        name: "Nunix Room Heater NH01",
+        price: 2300,
+        oldPrice: 3000,
+        description: "Compact room heater with adjustable thermostat and fast heating for home and office use.",
+        images: ["Images/nunix-room-heater-nh01.webp"]
+      },
+      {
+        name: "Nunix Room Heater NH-02",
+        price: 2500,
+        oldPrice: 3500,
+        description: "Portable room heater with multiple heat settings and energy efficient operation.",
+        images: ["Images/nunix-room-heater-nh02.webp"]
+      },
+      {
+        name: "Nunix Room Heater HQ30",
+        price: 2900,
+        oldPrice: 4000,
+        description: "Powerful room heater with safety protection and quick heat distribution.",
+        images: ["Images/nunix-room-heater-hq30.webp"]
+      },
+      {
+        name: "Nunix Room Heater NH03",
+        price: 2700,
+        oldPrice: 3500,
+        description: "Modern room heater with compact design, adjustable heat levels and low power consumption.",
+        images: ["Images/nunix-room-heater-nh03.webp"]
+      }
+    ]
   }
 ],
   // ══════════════════════════════════════════════════════════
