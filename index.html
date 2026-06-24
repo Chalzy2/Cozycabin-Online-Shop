@@ -3407,7 +3407,7 @@ document.querySelector('.header-menu-btn').addEventListener('click', function() 
      SCRIPTS
    <script src="cart.js"></script>
    <script src="products.js"></script>
-   <script src="cc-deeplink.js?v=6"></script>
+   <script src="cc-deeplink.js"></script>
    <script src="wa-share-enhancer.js"></script>
    <script src="share-btn.js"></script>
 
@@ -3567,13 +3567,31 @@ document.querySelectorAll('img').forEach(function(img) {
   img.setAttribute('draggable', 'false');
   img.style.webkitUserSelect = 'none';
   img.style.userSelect = 'none';
-  // Only block pointer-events on images OUTSIDE product cards (thumbnails need to be clickable)
-  if (!img.closest('.product-card') && !img.closest('.ddrop-tile')) {
+  // ⚠️ DO NOT set pointer-events:none on grid button images —
+  // that breaks category navigation. Only apply to decorative
+  // images that are not inside any clickable container.
+  var parent = img.parentNode;
+  var isInsideButton = false;
+  while (parent && parent !== document.body) {
+    if (parent.tagName === 'BUTTON' || parent.tagName === 'A' ||
+        (parent.classList && (
+          parent.classList.contains('grid-btn') ||
+          parent.classList.contains('minor-btn') ||
+          parent.classList.contains('product-card') ||
+          parent.classList.contains('ddrop-tile') ||
+          parent.classList.contains('back-btn')
+        ))) {
+      isInsideButton = true;
+      break;
+    }
+    parent = parent.parentNode;
+  }
+  if (!isInsideButton) {
     img.style.pointerEvents = 'none';
   }
 });
 
-// Re-apply pointer-events block to new images added dynamically
+// Re-apply to dynamically added images
 var imgObserver = new MutationObserver(function(mutations) {
   mutations.forEach(function(m) {
     m.addedNodes.forEach(function(node) {
@@ -3581,7 +3599,13 @@ var imgObserver = new MutationObserver(function(mutations) {
         node.querySelectorAll && node.querySelectorAll('img').forEach(function(img) {
           img.setAttribute('oncontextmenu', 'return false');
           img.setAttribute('draggable', 'false');
-          if (!img.closest('.product-card') && !img.closest('.ddrop-tile')) {
+          // Never block pointer-events on images inside buttons or cards
+          if (!img.closest('.grid-btn') &&
+              !img.closest('.minor-btn') &&
+              !img.closest('.product-card') &&
+              !img.closest('.ddrop-tile') &&
+              !img.closest('button') &&
+              !img.closest('a')) {
             img.style.pointerEvents = 'none';
           }
         });
@@ -3590,7 +3614,6 @@ var imgObserver = new MutationObserver(function(mutations) {
   });
 });
 imgObserver.observe(document.body, { childList: true, subtree: true });
-
 </script>
 
 
