@@ -1,0 +1,11 @@
+{
+  "name": "cozycabin-co-ke",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/build-og-data.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
