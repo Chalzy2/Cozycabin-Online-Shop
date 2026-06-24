@@ -4061,7 +4061,64 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('[Cozycabin] Category audit passed — every data-category button has a matching products.js key.');
   }
 });
+// ============================================================
+//  DEEP LINK HANDLER — ?id= and optional ?v= (variant index)
+//  Reads URL on page load, calls showProducts() for the right
+//  category, scrolls to the card, and pre-selects the variant.
+// ============================================================
+(function ccDeepLink() {
+  var params  = new URLSearchParams(window.location.search);
+  var deepId  = params.get('id');
+  if (!deepId) return;
 
+  function activate() {
+    var entry = window.CC_PRODUCTS_BY_ID && window.CC_PRODUCTS_BY_ID[deepId];
+    if (!entry) return; // product not found
+
+    var category = entry.category;
+    var catIndex = entry.index;
+    var product  = entry.product;
+
+    // 1. Open the correct category panel
+    window.showProducts(category);
+
+    // 2. Give the DOM time to render, then scroll + highlight
+    setTimeout(function() {
+      var container = document.getElementById('products-container');
+      if (!container) return;
+      var cards = container.querySelectorAll('.product-card');
+      var card  = cards[catIndex];
+      if (!card) return;
+
+      // Smooth scroll to the specific card
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Brief gold highlight pulse
+      card.style.transition  = 'box-shadow .3s';
+      card.style.boxShadow   = '0 0 0 3px #ffd700';
+      setTimeout(function() { card.style.boxShadow = ''; }, 1500);
+
+      // 3. If ?v= is present and product is a variant card, select that variant
+      var vParam = params.get('v');
+      if (vParam !== null && product.productType === 'variant') {
+        var vIdx = parseInt(vParam, 10);
+        if (!isNaN(vIdx)) {
+          // vcSelectVariant(cardIndex, variantIndex) — already defined above
+          if (typeof window.vcSelectVariant === 'function') {
+            window.vcSelectVariant(catIndex, vIdx);
+          }
+        }
+      }
+    }, 400);
+  }
+
+  // Run after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', activate);
+  } else {
+    activate();
+  }
+})();
 
 
 
