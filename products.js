@@ -1887,7 +1887,9 @@ cookers: [
   racks:       [],
   bottles:     [],
   blenders:    [],
-  cups:        [],   // NEW
+  cups:        [],
+  dinnerset:   [],
+  plates :     [],
   // ADD MORE KITCHEN ITEMS HERE
 
   // ── SOLAR ────────────────────────────────────────────────
